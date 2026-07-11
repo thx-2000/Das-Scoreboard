@@ -26,7 +26,7 @@ async function loadGame() {
 
 function renderHeader(state) {
   const title = state.label ? `${state.label}` : 'Offene Punkterunde';
-  gameTitle.textContent = `🎲 ${title}`;
+  gameTitle.textContent = title;
   const startedAt = new Date(state.startedAt).toLocaleString('de-DE', {
     day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
   });

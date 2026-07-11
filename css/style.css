@@ -358,6 +358,12 @@ main {
   font-weight: 700;
 }
 
+.standings-table tr.rank-first td:nth-child(2) {
+  color: var(--color-green-strong);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
 .standings-table tr.rank-first td:nth-child(3) {
   color: var(--color-green-strong);
   font-size: 1.55rem;

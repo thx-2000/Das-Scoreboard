@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punkte bis Höchstwert — Scoreboard</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+  <header class="app-header">
+    <h1 id="game-title">🎲 Punkte bis Höchstwert</h1>
+    <p class="app-header__subtitle" id="game-subtitle">Lädt …</p>
+    <div class="app-header__accent" aria-hidden="true"></div>
+    <nav class="app-nav" aria-label="Hauptnavigation">
+      <a href="../../index.html" class="btn btn--ghost">Startseite</a>
+      <a href="../../history.html" class="btn btn--ghost">Spielverlauf</a>
+    </nav>
+  </header>
+
+  <div class="scoreboard">
+    <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+      <section class="card scoreboard-card">
+        <h2>Punktestand</h2>
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th scope="col">Platz</th>
+              <th scope="col">Name</th>
+              <th scope="col">Punkte</th>
+              <th scope="col" class="progress-cell">Fortschritt</th>
+            </tr>
+          </thead>
+          <tbody id="standings-body"></tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+
+  <main id="main" style="padding-top: 0;">
+    <div id="winner-banner-wrap"></div>
+
+    <section class="card section-spacing" id="round-entry-card">
+      <h2>Neue Runde eintragen</h2>
+      <p class="hint-text">Punkte der aktuellen Runde je Spieler eingeben (0 ist normal, z.B. bei Bust).</p>
+      <div class="round-form-grid" id="round-form-grid"></div>
+      <button type="button" id="save-round-btn" class="btn btn--primary">Runde speichern</button>
+    </section>
+
+    <section class="card section-spacing">
+      <h2>Rundenverlauf &amp; Korrektur</h2>
+      <p class="hint-text">Werte direkt anpassen, um Eintragungsfehler zu korrigieren.</p>
+      <div class="rounds-table-wrap">
+        <table class="rounds-table" id="rounds-table">
+          <thead><tr id="rounds-table-head"></tr></thead>
+          <tbody id="rounds-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <p class="app-version" id="app-version">Scoreboard</p>
+
+  <script src="../../js/version.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

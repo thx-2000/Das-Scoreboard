@@ -186,6 +186,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'status' => $game['status'],
         'startedAt' => $game['started_at'],
         'endedAt' => $game['ended_at'],
+        'startingPlayerId' => $game['starting_player_id'] !== null ? (int) $game['starting_player_id'] : null,
         'players' => array_map(fn($p) => ['id' => (int) $p['id'], 'name' => $p['name']], $players),
         'rounds' => $roundsOut,
         'standings' => $standings,

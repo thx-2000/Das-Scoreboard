@@ -92,6 +92,22 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE games ADD COLUMN win_direction TEXT NOT NULL DEFAULT "highest"');
             }
         },
+
+        // Zufaellig bestimmter Startspieler pro Spiel (wird beim Anlegen
+        // in games.php gesetzt, NULL fuer bereits laufende Altspiele).
+        3 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+            $hasColumn = false;
+            foreach ($columns as $col) {
+                if ($col['name'] === 'starting_player_id') {
+                    $hasColumn = true;
+                    break;
+                }
+            }
+            if (!$hasColumn) {
+                $pdo->exec('ALTER TABLE games ADD COLUMN starting_player_id INTEGER REFERENCES players(id)');
+            }
+        },
     ];
 }
 

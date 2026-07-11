@@ -83,13 +83,16 @@ if ($method === 'POST') {
         send_json(['error' => 'Mindestens 2 Spieler erforderlich.'], 400);
     }
 
+    // Startspieler zufaellig unter den teilnehmenden Spielern auslosen.
+    $startingPlayerId = $playerIds[array_rand($playerIds)];
+
     $pdo->beginTransaction();
 
     $insertGame = $pdo->prepare('
-        INSERT INTO games (mode, label, target_score, win_direction, status, started_at)
-        VALUES (?, ?, ?, ?, "active", ?)
+        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id)
+        VALUES (?, ?, ?, ?, "active", ?, ?)
     ');
-    $insertGame->execute([$mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso()]);
+    $insertGame->execute([$mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso(), $startingPlayerId]);
     $gameId = (int) $pdo->lastInsertId();
 
     $insertGamePlayer = $pdo->prepare('INSERT INTO game_players (game_id, player_id) VALUES (?, ?)');

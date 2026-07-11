@@ -7,8 +7,8 @@ Upload, genau wie die PHP-Variante von PingPongGewinnt.
 ## Konzept
 
 - **Startseite**: Übersicht der verfügbaren Aufschreibmöglichkeiten
-  ("Modi"), aktuell zwei: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto)
-  und *Offene Punkterunde* (Beispiel: Doppelkopf).
+  ("Modi"), aktuell drei: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto),
+  *Offene Punkterunde* (Beispiel: Doppelkopf) und *RAGE*.
 - **Spielerverwaltung** (`players.html`): zentrale Namens-Datenbank, aus der
   bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
   tippen. Entfernen ist eine weiche Löschung (Spieler bleiben in
@@ -34,12 +34,22 @@ Upload, genau wie die PHP-Variante von PingPongGewinnt.
   wählt danach zufällig einen der aufliegenden Finger aus (wird groß/grün),
   die anderen verschwinden. Rein clientseitig über die Touch-Events-API,
   ohne Backend-Anbindung.
-- **Startspieler**: Beide bisherigen Modi bestimmen beim Anlegen eines
-  Spiels automatisch zufällig einen Startspieler unter den ausgewählten
-  Spielern. Dessen Name trägt im Punktestand einen kleinen Stern (★), der
-  unten links im Punktestand-Kasten erklärt wird ("Startspieler
-  (zufällig)"). Bereits vor dieser Funktion angelegte Spiele zeigen keinen
-  Stern (kein Startspieler nachträglich zugewiesen).
+- **Startspieler**: Alle Modi bestimmen beim Anlegen eines Spiels
+  automatisch zufällig einen Startspieler unter den ausgewählten Spielern.
+  Dessen Name trägt im Punktestand einen kleinen Stern (★), der unten links
+  im Punktestand-Kasten erklärt wird ("Startspieler (zufällig)"). Bereits
+  vor dieser Funktion angelegte Spiele zeigen keinen Stern (kein
+  Startspieler nachträglich zugewiesen).
+- **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
+  10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
+  Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
+  Rage-Bonus- (+5) und Rage-Rache-Karten (−5); die Punkte werden
+  automatisch berechnet (+1 pro Stich, +10 bei Treffer, −5 bei Fehlschuss).
+  Beim Speichern einer Runde wird gewarnt, falls die Summe der Stiche nicht
+  der Kartenzahl entspricht (Speichern bleibt trotzdem möglich). Nach
+  Runde 10 endet das Spiel automatisch; ein manuelles Beenden/Fortsetzen
+  ist ebenfalls möglich. Löschen einer Runde reduziert die Rundenzahl und
+  öffnet ein automatisch beendetes Spiel bei Bedarf wieder.
 
 Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
 Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
@@ -97,22 +107,29 @@ Scoreboard/
 │   │   ├── setup.js
 │   │   ├── game.html         # aktives/beendetes Spiel
 │   │   └── game.js
-│   └── points-open/
-│       ├── setup.html        # neues Spiel einrichten (Sieg-Richtung)
+│   ├── points-open/
+│   │   ├── setup.html        # neues Spiel einrichten (Sieg-Richtung)
+│   │   ├── setup.js
+│   │   ├── game.html         # aktives/beendetes Spiel, manuelles Beenden
+│   │   └── game.js
+│   └── rage/
+│       ├── setup.html        # neues Spiel einrichten (nur Spielerauswahl)
 │       ├── setup.js
-│       ├── game.html         # aktives/beendetes Spiel, manuelles Beenden
+│       ├── game.html         # Runde X von 10, Ansage/Stiche/Sonderkarten
 │       └── game.js
 ├── tools/
 │   ├── finger-chooser.html   # "Wer fängt an?" Multitouch-Auswahl
 │   └── finger-chooser.js
 ├── api/
 │   ├── players.php           # GET/POST/PATCH Spieler-Roster
-│   ├── games.php              # GET/POST Spiele (Liste + Detail + Anlegen)
-│   ├── rounds.php              # POST/PATCH/DELETE Runden
+│   ├── games.php              # GET/POST/PATCH/DELETE Spiele
+│   ├── rounds.php              # POST/PATCH/DELETE Runden (einfache Punkte)
+│   ├── rage-rounds.php         # POST/PATCH/DELETE Runden (RAGE: Ansage/Stiche/Sonderkarten)
 │   └── version.php
 ├── includes/
 │   ├── db.php                 # PDO-SQLite-Verbindung + Schema
-│   └── state.php               # buildState(), Sieg-Erkennung, JSON-Helper
+│   ├── state.php               # buildState(), Sieg-Erkennung, JSON-Helper
+│   └── rage.php                 # RAGE-Punkteformel
 ├── css/style.css
 ├── js/version.js
 ├── data/                      # SQLite-Datei, per .htaccess geschützt

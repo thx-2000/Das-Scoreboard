@@ -3,6 +3,7 @@ const historyList = document.getElementById('history-list');
 const modeInfo = {
   points_to_target: { title: 'Punkte bis Höchstwert', url: 'modes/points-to-target/game.html' },
   points_open: { title: 'Offene Punkterunde', url: 'modes/points-open/game.html' },
+  rage: { title: 'RAGE', url: 'modes/rage/game.html' },
 };
 
 function formatDateTime(iso) {

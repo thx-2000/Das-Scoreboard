@@ -260,6 +260,11 @@ main {
   font-size: 0.85rem;
 }
 
+.starting-player-legend {
+  margin: 0.75rem 0 0;
+  text-align: left;
+}
+
 .error-text {
   color: var(--color-danger);
   font-weight: 600;

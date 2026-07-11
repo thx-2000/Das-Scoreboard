@@ -34,6 +34,12 @@ Upload, genau wie die PHP-Variante von PingPongGewinnt.
   wählt danach zufällig einen der aufliegenden Finger aus (wird groß/grün),
   die anderen verschwinden. Rein clientseitig über die Touch-Events-API,
   ohne Backend-Anbindung.
+- **Startspieler**: Beide bisherigen Modi bestimmen beim Anlegen eines
+  Spiels automatisch zufällig einen Startspieler unter den ausgewählten
+  Spielern. Dessen Name trägt im Punktestand einen kleinen Stern (★), der
+  unten links im Punktestand-Kasten erklärt wird ("Startspieler
+  (zufällig)"). Bereits vor dieser Funktion angelegte Spiele zeigen keinen
+  Stern (kein Startspieler nachträglich zugewiesen).
 
 Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
 Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile

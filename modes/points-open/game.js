@@ -11,6 +11,7 @@ const saveRoundBtn = document.getElementById('save-round-btn');
 const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
 const toggleFinishedBtn = document.getElementById('toggle-finished-btn');
+const startingPlayerLegend = document.getElementById('starting-player-legend');
 
 let currentState = null;
 
@@ -49,9 +50,11 @@ function renderStandings(state) {
     const row = document.createElement('tr');
     if (rank === 1) row.className = 'rank-first';
 
+    const displayName = player.id === state.startingPlayerId ? `${player.name} ★` : player.name;
+
     row.innerHTML = `
       <td>${rank}</td>
-      <td>${player.name}</td>
+      <td>${displayName}</td>
       <td>${player.total}</td>
     `;
     standingsBody.appendChild(row);
@@ -154,9 +157,14 @@ function renderRoundsTable(state) {
   });
 }
 
+function renderStartingPlayerLegend(state) {
+  startingPlayerLegend.hidden = state.startingPlayerId === null || state.startingPlayerId === undefined;
+}
+
 function render(state) {
   renderHeader(state);
   renderStandings(state);
+  renderStartingPlayerLegend(state);
   renderWinnerBanner(state);
   renderRoundEntryForm(state);
   renderRoundsTable(state);

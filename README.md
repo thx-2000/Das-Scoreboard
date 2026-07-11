@@ -47,6 +47,25 @@ angelegt.
 Kompletten Ordnerinhalt per FTP/SFTP ins Webroot hochladen. Die SQLite-Datei
 `data/scoreboard.sqlite` wird beim ersten Request automatisch angelegt.
 
+## Upgrade einer bestehenden Installation
+
+Jede eigene Installation lässt sich gefahrlos aktualisieren, ohne
+gespeicherte Spiele zu verlieren:
+
+1. Neue Code-Version per FTP/SFTP hochladen und dabei **den `data/`-Ordner
+   nicht überschreiben/löschen** (dort liegt die SQLite-Datenbank mit allen
+   Spielern, Spielen und Runden).
+2. Fertig — beim nächsten Seitenaufruf gleicht `includes/db.php` das
+   Datenbankschema automatisch an (versioniertes Migrationssystem über
+   `PRAGMA user_version`, siehe Kommentar dort). Migrationen sind rein
+   additiv (neue Tabellen/Spalten), bestehende Daten werden nie gelöscht
+   oder überschrieben.
+
+Für Entwickler: neue Schema-Änderungen immer als **neue** Migration mit der
+nächsthöheren Versionsnummer in `migrations()` ergänzen, niemals eine
+bestehende Migration nachträglich verändern — sonst würden bereits
+aktualisierte Installationen die Änderung nie ausführen.
+
 ## Versionsnummer pflegen
 
 Bei jedem Release die Datei `VERSION` auf den neuen Stand setzen — wird

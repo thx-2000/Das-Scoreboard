@@ -1,5 +1,113 @@
 <?php
 
+/**
+ * Migrationssystem fuer Upgrade-Sicherheit
+ * ==========================================
+ * Jede Schema-Aenderung ist ein nummerierter Eintrag in migrations().
+ * PRAGMA user_version (in der SQLite-Datei selbst gespeichert) merkt sich,
+ * welche Migrationen bereits gelaufen sind. Bei jedem Request werden nur
+ * die noch fehlenden Migrationen nachgefahren.
+ *
+ * Das ist die Grundlage fuer den Upgrade-Pfad: wer eine eigene Installation
+ * betreibt, laedt beim Update einfach die neuen Code-Dateien hoch (ohne den
+ * data/-Ordner anzufassen) - die SQLite-Datenbank samt aller gespeicherten
+ * Spiele bleibt erhalten, das Schema wird beim naechsten Aufruf automatisch
+ * und ohne Datenverlust auf den neuen Stand gebracht. Migrationen sind
+ * additiv (CREATE TABLE IF NOT EXISTS, ALTER TABLE ADD COLUMN) und werden
+ * nie rueckwirkend geaendert - eine bestehende Migration im Nachhinein zu
+ * bearbeiten wuerde den Upgrade-Pfad fuer bereits aktualisierte Installationen
+ * brechen. Fuer neue Schema-Aenderungen immer eine NEUE Migration mit der
+ * naechsthoeheren Versionsnummer ergaenzen.
+ *
+ * @return array<int, callable(PDO): void>
+ */
+function migrations(): array
+{
+    return [
+        1 => function (PDO $pdo) {
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS players (
+                    id     INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name   TEXT NOT NULL,
+                    active INTEGER NOT NULL DEFAULT 1
+                )
+            ');
+
+            // target_score = 0 bedeutet "kein Zielwert" (Modus "Offene
+            // Punkterunde"), damit muss die Spalte selbst nicht NULL-faehig sein.
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS games (
+                    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+                    mode          TEXT NOT NULL,
+                    label         TEXT,
+                    target_score  INTEGER NOT NULL DEFAULT 0,
+                    win_direction TEXT NOT NULL DEFAULT "highest",
+                    status        TEXT NOT NULL DEFAULT "active",
+                    started_at    TEXT NOT NULL,
+                    ended_at      TEXT
+                )
+            ');
+
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS game_players (
+                    game_id   INTEGER NOT NULL REFERENCES games(id),
+                    player_id INTEGER NOT NULL REFERENCES players(id),
+                    PRIMARY KEY (game_id, player_id)
+                )
+            ');
+
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS rounds (
+                    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+                    game_id      INTEGER NOT NULL REFERENCES games(id),
+                    round_number INTEGER NOT NULL,
+                    created_at   TEXT NOT NULL
+                )
+            ');
+
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS round_scores (
+                    round_id  INTEGER NOT NULL REFERENCES rounds(id),
+                    player_id INTEGER NOT NULL REFERENCES players(id),
+                    points    INTEGER NOT NULL DEFAULT 0,
+                    PRIMARY KEY (round_id, player_id)
+                )
+            ');
+        },
+
+        // Sieg-Richtung fuer den Modus "Offene Punkterunde" (highest/lowest).
+        // Bei Installationen, die migrations() erst ab hier kennenlernen
+        // (Tabellen existieren schon aus Migration 1), wird die Spalte
+        // nachtraeglich ergaenzt statt die Tabelle neu anzulegen.
+        2 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+            $hasColumn = false;
+            foreach ($columns as $col) {
+                if ($col['name'] === 'win_direction') {
+                    $hasColumn = true;
+                    break;
+                }
+            }
+            if (!$hasColumn) {
+                $pdo->exec('ALTER TABLE games ADD COLUMN win_direction TEXT NOT NULL DEFAULT "highest"');
+            }
+        },
+    ];
+}
+
+function run_migrations(PDO $pdo): void
+{
+    $currentVersion = (int) $pdo->query('PRAGMA user_version')->fetchColumn();
+
+    foreach (migrations() as $version => $migrate) {
+        if ($version <= $currentVersion) {
+            continue;
+        }
+        $migrate($pdo);
+        $pdo->exec('PRAGMA user_version = ' . (int) $version);
+    }
+}
+
 function get_db(): PDO
 {
     static $pdo = null;
@@ -13,71 +121,7 @@ function get_db(): PDO
     $pdo->exec('PRAGMA journal_mode = WAL');
     $pdo->exec('PRAGMA foreign_keys = ON');
 
-    $pdo->exec('
-        CREATE TABLE IF NOT EXISTS players (
-            id     INTEGER PRIMARY KEY AUTOINCREMENT,
-            name   TEXT NOT NULL,
-            active INTEGER NOT NULL DEFAULT 1
-        )
-    ');
-
-    // Weiche Loeschung ueber "active", damit Namen in vergangenen Spielen
-    // erhalten bleiben, auch wenn ein Spieler aus der Schnellauswahl entfernt wird.
-
-    // target_score = 0 bedeutet "kein Zielwert" (Modus "Offene Punkterunde"),
-    // damit muss die Spalte selbst nicht NULL-faehig sein.
-    $pdo->exec('
-        CREATE TABLE IF NOT EXISTS games (
-            id            INTEGER PRIMARY KEY AUTOINCREMENT,
-            mode          TEXT NOT NULL,
-            label         TEXT,
-            target_score  INTEGER NOT NULL DEFAULT 0,
-            win_direction TEXT NOT NULL DEFAULT "highest",
-            status        TEXT NOT NULL DEFAULT "active",
-            started_at    TEXT NOT NULL,
-            ended_at      TEXT
-        )
-    ');
-
-    // Migration fuer bereits bestehende Datenbanken (vor Einfuehrung von
-    // win_direction): Spalte nachtraeglich ergaenzen, falls noch nicht da.
-    $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
-    $hasWinDirection = false;
-    foreach ($columns as $col) {
-        if ($col['name'] === 'win_direction') {
-            $hasWinDirection = true;
-            break;
-        }
-    }
-    if (!$hasWinDirection) {
-        $pdo->exec('ALTER TABLE games ADD COLUMN win_direction TEXT NOT NULL DEFAULT "highest"');
-    }
-
-    $pdo->exec('
-        CREATE TABLE IF NOT EXISTS game_players (
-            game_id   INTEGER NOT NULL REFERENCES games(id),
-            player_id INTEGER NOT NULL REFERENCES players(id),
-            PRIMARY KEY (game_id, player_id)
-        )
-    ');
-
-    $pdo->exec('
-        CREATE TABLE IF NOT EXISTS rounds (
-            id           INTEGER PRIMARY KEY AUTOINCREMENT,
-            game_id      INTEGER NOT NULL REFERENCES games(id),
-            round_number INTEGER NOT NULL,
-            created_at   TEXT NOT NULL
-        )
-    ');
-
-    $pdo->exec('
-        CREATE TABLE IF NOT EXISTS round_scores (
-            round_id  INTEGER NOT NULL REFERENCES rounds(id),
-            player_id INTEGER NOT NULL REFERENCES players(id),
-            points    INTEGER NOT NULL DEFAULT 0,
-            PRIMARY KEY (round_id, player_id)
-        )
-    ');
+    run_migrations($pdo);
 
     return $pdo;
 }

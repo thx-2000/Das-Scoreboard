@@ -27,13 +27,18 @@ function now_iso(): string
  * Status/Endzeit des Spiels neu - auch nach nachtraeglichen Korrekturen.
  * Bei mehreren Spielern mit dem gleichen (hoechsten) Endstand gewinnen alle
  * gemeinsam (Gleichstand moeglich).
+ *
+ * Gilt nur fuer Spiele MIT Zielwert (target_score > 0, Modus "Punkte bis
+ * Höchstwert"). Spiele ohne Zielwert (target_score = 0, Modus "Offene
+ * Punkterunde") werden ausschliesslich manuell ueber set_game_finished()
+ * beendet/fortgesetzt, hier also uebersprungen.
  */
 function recompute_game_status(PDO $pdo, int $gameId): void
 {
     $game = $pdo->prepare('SELECT * FROM games WHERE id = ?');
     $game->execute([$gameId]);
     $game = $game->fetch(PDO::FETCH_ASSOC);
-    if (!$game) {
+    if (!$game || (int) $game['target_score'] <= 0) {
         return;
     }
 
@@ -45,6 +50,21 @@ function recompute_game_status(PDO $pdo, int $gameId): void
         $update = $pdo->prepare('UPDATE games SET status = "finished", ended_at = ? WHERE id = ?');
         $update->execute([now_iso(), $gameId]);
     } elseif (!$reachedTarget && $game['status'] !== 'active') {
+        $update = $pdo->prepare('UPDATE games SET status = "active", ended_at = NULL WHERE id = ?');
+        $update->execute([$gameId]);
+    }
+}
+
+/**
+ * Manuelles Beenden/Fortsetzen fuer Spiele ohne Zielwert ("Offene
+ * Punkterunde") - hier gibt es keinen automatischen Sieg-Moment.
+ */
+function set_game_finished(PDO $pdo, int $gameId, bool $finished): void
+{
+    if ($finished) {
+        $update = $pdo->prepare('UPDATE games SET status = "finished", ended_at = ? WHERE id = ?');
+        $update->execute([now_iso(), $gameId]);
+    } else {
         $update = $pdo->prepare('UPDATE games SET status = "active", ended_at = NULL WHERE id = ?');
         $update->execute([$gameId]);
     }
@@ -128,6 +148,10 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         ];
     }, $rounds);
 
+    // "lowest" (z.B. bei Doppelkopf-artigen Spielen) dreht Rangfolge und
+    // Sieg-Ermittlung um - Platz 1 ist dann der niedrigste Punktestand.
+    $direction = $game['win_direction'] === 'lowest' ? 'lowest' : 'highest';
+
     $totals = get_totals($pdo, $gameId);
     $standings = [];
     foreach ($players as $p) {
@@ -137,16 +161,17 @@ function build_game_state(PDO $pdo, int $gameId): ?array
             'total' => $totals[$p['id']] ?? 0,
         ];
     }
-    usort($standings, function ($a, $b) {
-        if ($b['total'] !== $a['total']) return $b['total'] - $a['total'];
+    usort($standings, function ($a, $b) use ($direction) {
+        $diff = $direction === 'lowest' ? $a['total'] - $b['total'] : $b['total'] - $a['total'];
+        if ($diff !== 0) return $diff;
         return strcmp($a['name'], $b['name']);
     });
 
     $winners = [];
     if ($game['status'] === 'finished' && count($standings) > 0) {
-        $maxTotal = $standings[0]['total'];
+        $bestTotal = $standings[0]['total'];
         foreach ($standings as $s) {
-            if ($s['total'] === $maxTotal) {
+            if ($s['total'] === $bestTotal) {
                 $winners[] = ['id' => $s['id'], 'name' => $s['name'], 'total' => $s['total']];
             }
         }
@@ -157,6 +182,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'mode' => $game['mode'],
         'label' => $game['label'],
         'targetScore' => (int) $game['target_score'],
+        'winDirection' => $direction,
         'status' => $game['status'],
         'startedAt' => $game['started_at'],
         'endedAt' => $game['ended_at'],

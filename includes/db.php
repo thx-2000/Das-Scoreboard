@@ -24,17 +24,34 @@ function get_db(): PDO
     // Weiche Loeschung ueber "active", damit Namen in vergangenen Spielen
     // erhalten bleiben, auch wenn ein Spieler aus der Schnellauswahl entfernt wird.
 
+    // target_score = 0 bedeutet "kein Zielwert" (Modus "Offene Punkterunde"),
+    // damit muss die Spalte selbst nicht NULL-faehig sein.
     $pdo->exec('
         CREATE TABLE IF NOT EXISTS games (
-            id           INTEGER PRIMARY KEY AUTOINCREMENT,
-            mode         TEXT NOT NULL,
-            label        TEXT,
-            target_score INTEGER NOT NULL,
-            status       TEXT NOT NULL DEFAULT "active",
-            started_at   TEXT NOT NULL,
-            ended_at     TEXT
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            mode          TEXT NOT NULL,
+            label         TEXT,
+            target_score  INTEGER NOT NULL DEFAULT 0,
+            win_direction TEXT NOT NULL DEFAULT "highest",
+            status        TEXT NOT NULL DEFAULT "active",
+            started_at    TEXT NOT NULL,
+            ended_at      TEXT
         )
     ');
+
+    // Migration fuer bereits bestehende Datenbanken (vor Einfuehrung von
+    // win_direction): Spalte nachtraeglich ergaenzen, falls noch nicht da.
+    $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+    $hasWinDirection = false;
+    foreach ($columns as $col) {
+        if ($col['name'] === 'win_direction') {
+            $hasWinDirection = true;
+            break;
+        }
+    }
+    if (!$hasWinDirection) {
+        $pdo->exec('ALTER TABLE games ADD COLUMN win_direction TEXT NOT NULL DEFAULT "highest"');
+    }
 
     $pdo->exec('
         CREATE TABLE IF NOT EXISTS game_players (

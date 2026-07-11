@@ -33,10 +33,11 @@ if ($method === 'GET') {
         if ($game['status'] === 'finished') {
             $totals = get_totals($pdo, $gameId);
             if (count($totals) > 0) {
-                $maxTotal = max($totals);
+                $direction = $game['win_direction'] === 'lowest' ? 'lowest' : 'highest';
+                $bestTotal = $direction === 'lowest' ? min($totals) : max($totals);
                 $namesById = $pdo->prepare('SELECT id, name FROM players WHERE id = ?');
                 foreach ($totals as $playerId => $total) {
-                    if ($total === $maxTotal) {
+                    if ($total === $bestTotal) {
                         $namesById->execute([$playerId]);
                         $p = $namesById->fetch(PDO::FETCH_ASSOC);
                         if ($p) $winners[] = $p['name'];
@@ -66,13 +67,16 @@ if ($method === 'POST') {
     $mode = trim((string) ($body['mode'] ?? ''));
     $label = trim((string) ($body['label'] ?? ''));
     $targetScore = (int) ($body['targetScore'] ?? 0);
+    $winDirection = ($body['winDirection'] ?? 'highest') === 'lowest' ? 'lowest' : 'highest';
     $playerIds = array_map('intval', $body['playerIds'] ?? []);
     $playerIds = array_values(array_unique($playerIds));
 
     if ($mode === '') {
         send_json(['error' => 'Modus fehlt.'], 400);
     }
-    if ($targetScore <= 0) {
+    // Nur der Modus "Punkte bis Höchstwert" braucht zwingend einen Zielwert -
+    // "Offene Punkterunde" laeuft mit target_score = 0 (kein Zielwert).
+    if ($mode === 'points_to_target' && $targetScore <= 0) {
         send_json(['error' => 'Zielwert muss groesser als 0 sein.'], 400);
     }
     if (count($playerIds) < 2) {
@@ -82,10 +86,10 @@ if ($method === 'POST') {
     $pdo->beginTransaction();
 
     $insertGame = $pdo->prepare('
-        INSERT INTO games (mode, label, target_score, status, started_at)
-        VALUES (?, ?, ?, "active", ?)
+        INSERT INTO games (mode, label, target_score, win_direction, status, started_at)
+        VALUES (?, ?, ?, ?, "active", ?)
     ');
-    $insertGame->execute([$mode, $label !== '' ? $label : null, $targetScore, now_iso()]);
+    $insertGame->execute([$mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso()]);
     $gameId = (int) $pdo->lastInsertId();
 
     $insertGamePlayer = $pdo->prepare('INSERT INTO game_players (game_id, player_id) VALUES (?, ?)');
@@ -96,6 +100,21 @@ if ($method === 'POST') {
     $pdo->commit();
 
     send_json(build_game_state($pdo, $gameId), 201);
+}
+
+if ($method === 'PATCH' && $id !== null) {
+    $existing = $pdo->prepare('SELECT id FROM games WHERE id = ?');
+    $existing->execute([$id]);
+    if (!$existing->fetch(PDO::FETCH_ASSOC)) {
+        send_json(['error' => 'Spiel nicht gefunden.'], 404);
+    }
+
+    $body = read_json_body();
+    if (array_key_exists('finished', $body)) {
+        set_game_finished($pdo, $id, (bool) $body['finished']);
+    }
+
+    send_json(build_game_state($pdo, $id));
 }
 
 send_json(['error' => 'Methode nicht erlaubt.'], 405);

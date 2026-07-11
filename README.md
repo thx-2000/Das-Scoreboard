@@ -28,6 +28,12 @@ Upload, genau wie die PHP-Variante von PingPongGewinnt.
   die niedrigste Punktzahl gewinnt. Das Spiel wird manuell per Knopfdruck
   beendet (und kann genauso wieder fortgesetzt werden), es gibt keinen
   automatischen Sieg-Moment.
+- **Tool "Wer fängt an?"** (`tools/finger-chooser.html`): Multitouch-
+  Fingerauswahl für iPad/iPhone. Wartet auf den ersten Finger, zählt dann
+  5 Sekunden runter (weitere Finger können in dieser Zeit dazukommen),
+  wählt danach zufällig einen der aufliegenden Finger aus (wird groß/grün),
+  die anderen verschwinden. Rein clientseitig über die Touch-Events-API,
+  ohne Backend-Anbindung.
 
 Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
 Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
@@ -90,6 +96,9 @@ Scoreboard/
 │       ├── setup.js
 │       ├── game.html         # aktives/beendetes Spiel, manuelles Beenden
 │       └── game.js
+├── tools/
+│   ├── finger-chooser.html   # "Wer fängt an?" Multitouch-Auswahl
+│   └── finger-chooser.js
 ├── api/
 │   ├── players.php           # GET/POST/PATCH Spieler-Roster
 │   ├── games.php              # GET/POST Spiele (Liste + Detail + Anlegen)

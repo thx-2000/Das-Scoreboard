@@ -7,8 +7,8 @@ Upload, genau wie die PHP-Variante von PingPongGewinnt.
 ## Konzept
 
 - **Startseite**: Übersicht der verfügbaren Aufschreibmöglichkeiten
-  ("Modi"), aktuell zwei: *Punkte bis Höchstwert* (Beispiel: Flip7) und
-  *Offene Punkterunde* (Beispiel: Doppelkopf).
+  ("Modi"), aktuell zwei: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto)
+  und *Offene Punkterunde* (Beispiel: Doppelkopf).
 - **Spielerverwaltung** (`players.html`): zentrale Namens-Datenbank, aus der
   bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
   tippen. Entfernen ist eine weiche Löschung (Spieler bleiben in

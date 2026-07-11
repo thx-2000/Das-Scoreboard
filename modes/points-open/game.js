@@ -1,0 +1,224 @@
+const params = new URLSearchParams(window.location.search);
+const gameId = params.get('id');
+
+const gameTitle = document.getElementById('game-title');
+const gameSubtitle = document.getElementById('game-subtitle');
+const standingsBody = document.getElementById('standings-body');
+const winnerBannerWrap = document.getElementById('winner-banner-wrap');
+const roundEntryCard = document.getElementById('round-entry-card');
+const roundFormGrid = document.getElementById('round-form-grid');
+const saveRoundBtn = document.getElementById('save-round-btn');
+const roundsTableHead = document.getElementById('rounds-table-head');
+const roundsTableBody = document.getElementById('rounds-table-body');
+const toggleFinishedBtn = document.getElementById('toggle-finished-btn');
+
+let currentState = null;
+
+async function loadGame() {
+  const response = await fetch(`/api/games.php?id=${gameId}`);
+  if (!response.ok) {
+    gameSubtitle.textContent = 'Spiel nicht gefunden.';
+    return;
+  }
+  currentState = await response.json();
+  render(currentState);
+}
+
+function renderHeader(state) {
+  const title = state.label ? `${state.label}` : 'Offene Punkterunde';
+  gameTitle.textContent = `🎲 ${title}`;
+  const startedAt = new Date(state.startedAt).toLocaleString('de-DE', {
+    day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
+  });
+  const directionText = state.winDirection === 'lowest' ? 'niedrigste Punktzahl gewinnt' : 'höchste Punktzahl gewinnt';
+  gameSubtitle.textContent = `${directionText} · gestartet ${startedAt} Uhr`;
+
+  toggleFinishedBtn.textContent = state.status === 'finished' ? 'Spiel fortsetzen' : 'Spiel beenden';
+}
+
+function renderStandings(state) {
+  standingsBody.innerHTML = '';
+  let previousTotal = null;
+  let previousRank = 0;
+
+  state.standings.forEach((player, index) => {
+    const rank = player.total === previousTotal ? previousRank : index + 1;
+    previousTotal = player.total;
+    previousRank = rank;
+
+    const row = document.createElement('tr');
+    if (rank === 1) row.className = 'rank-first';
+
+    row.innerHTML = `
+      <td>${rank}</td>
+      <td>${player.name}</td>
+      <td>${player.total}</td>
+    `;
+    standingsBody.appendChild(row);
+  });
+}
+
+function renderWinnerBanner(state) {
+  winnerBannerWrap.innerHTML = '';
+  if (state.status !== 'finished') return;
+
+  const names = state.winners.map((w) => w.name).join(' & ');
+  const banner = document.createElement('div');
+  banner.className = 'winner-banner section-spacing';
+  banner.textContent = state.winners.length > 1
+    ? `🏆 Spiel beendet! ${names} gewinnen gemeinsam mit ${state.winners[0].total} Punkten.`
+    : `🏆 Spiel beendet! ${names} hat gewonnen mit ${state.winners[0].total} Punkten.`;
+  winnerBannerWrap.appendChild(banner);
+}
+
+function renderRoundEntryForm(state) {
+  roundEntryCard.hidden = state.status === 'finished';
+  roundFormGrid.innerHTML = '';
+
+  state.players.forEach((player) => {
+    const field = document.createElement('div');
+    field.className = 'round-form-field';
+
+    const label = document.createElement('label');
+    label.setAttribute('for', `round-input-${player.id}`);
+    label.textContent = player.name;
+
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.id = `round-input-${player.id}`;
+    input.dataset.playerId = player.id;
+    input.value = '0';
+
+    field.appendChild(label);
+    field.appendChild(input);
+    roundFormGrid.appendChild(field);
+  });
+}
+
+function renderRoundsTable(state) {
+  roundsTableHead.innerHTML = '<th scope="col">Runde</th>';
+  state.players.forEach((player) => {
+    const th = document.createElement('th');
+    th.scope = 'col';
+    th.textContent = player.name;
+    roundsTableHead.appendChild(th);
+  });
+  const actionsTh = document.createElement('th');
+  actionsTh.scope = 'col';
+  actionsTh.textContent = 'Aktionen';
+  roundsTableHead.appendChild(actionsTh);
+
+  roundsTableBody.innerHTML = '';
+
+  if (state.rounds.length === 0) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = state.players.length + 2;
+    cell.textContent = 'Noch keine Runde gespielt.';
+    cell.style.color = 'var(--color-text-muted)';
+    cell.style.textAlign = 'left';
+    row.appendChild(cell);
+    roundsTableBody.appendChild(row);
+    return;
+  }
+
+  state.rounds.forEach((round) => {
+    const row = document.createElement('tr');
+
+    const roundCell = document.createElement('td');
+    roundCell.textContent = round.roundNumber;
+    row.appendChild(roundCell);
+
+    state.players.forEach((player) => {
+      const cell = document.createElement('td');
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.value = round.scores[player.id] ?? 0;
+      input.dataset.playerId = player.id;
+      input.addEventListener('change', () => correctRound(round.id, row));
+      cell.appendChild(input);
+      row.appendChild(cell);
+    });
+
+    const actionsCell = document.createElement('td');
+    actionsCell.className = 'rounds-table__row-actions';
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.className = 'btn btn--small btn--danger';
+    deleteBtn.textContent = 'Löschen';
+    deleteBtn.addEventListener('click', () => deleteRound(round.id));
+    actionsCell.appendChild(deleteBtn);
+    row.appendChild(actionsCell);
+
+    roundsTableBody.appendChild(row);
+  });
+}
+
+function render(state) {
+  renderHeader(state);
+  renderStandings(state);
+  renderWinnerBanner(state);
+  renderRoundEntryForm(state);
+  renderRoundsTable(state);
+}
+
+async function saveNewRound() {
+  const scores = {};
+  roundFormGrid.querySelectorAll('input[data-player-id]').forEach((input) => {
+    scores[input.dataset.playerId] = Number(input.value) || 0;
+  });
+
+  const response = await fetch(`/api/rounds.php?gameId=${gameId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ scores }),
+  });
+
+  currentState = await response.json();
+  render(currentState);
+}
+
+async function correctRound(roundId, rowEl) {
+  const scores = {};
+  rowEl.querySelectorAll('input[data-player-id]').forEach((input) => {
+    scores[input.dataset.playerId] = Number(input.value) || 0;
+  });
+
+  const response = await fetch(`/api/rounds.php?gameId=${gameId}&roundId=${roundId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ scores }),
+  });
+
+  currentState = await response.json();
+  render(currentState);
+}
+
+async function deleteRound(roundId) {
+  const confirmed = window.confirm('Diese Runde wirklich löschen?');
+  if (!confirmed) return;
+
+  const response = await fetch(`/api/rounds.php?gameId=${gameId}&roundId=${roundId}`, {
+    method: 'DELETE',
+  });
+
+  currentState = await response.json();
+  render(currentState);
+}
+
+async function toggleFinished() {
+  const wantFinished = currentState.status !== 'finished';
+  const response = await fetch(`/api/games.php?id=${gameId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ finished: wantFinished }),
+  });
+
+  currentState = await response.json();
+  render(currentState);
+}
+
+saveRoundBtn.addEventListener('click', saveNewRound);
+toggleFinishedBtn.addEventListener('click', toggleFinished);
+
+loadGame();

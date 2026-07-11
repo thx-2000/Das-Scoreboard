@@ -89,25 +89,26 @@ input:focus-visible,
 .app-header {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 1rem;
+  padding: 1rem 1.5rem 0.5rem;
   text-align: center;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.7rem;
+  font-size: 1.25rem;
   letter-spacing: -0.02em;
 }
 
 .app-header__subtitle {
-  margin: 0.25rem 0 0;
+  margin: 0.15rem 0 0;
   color: var(--color-text-muted);
+  font-size: 0.88rem;
 }
 
 .app-header__accent {
-  width: 64px;
-  height: 4px;
-  margin: 0.9rem auto 0;
+  width: 48px;
+  height: 3px;
+  margin: 0.5rem auto 0;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--color-green), var(--color-amber));
 }
@@ -117,7 +118,12 @@ input:focus-visible,
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 1.25rem;
+  margin-top: 0.6rem;
+}
+
+.app-nav .btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
 }
 
 main {
@@ -325,9 +331,15 @@ main {
 .standings-table th,
 .standings-table td {
   text-align: left;
-  padding: 0.5rem 0.4rem;
+  padding: 0.6rem 0.4rem;
   border-bottom: 1px solid var(--color-border);
   font-size: 0.95rem;
+}
+
+.standings-table td:nth-child(3) {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .standings-table th {
@@ -338,8 +350,17 @@ main {
   letter-spacing: 0.03em;
 }
 
+.standings-table tr.rank-first {
+  background: color-mix(in srgb, var(--color-green) 12%, transparent);
+}
+
 .standings-table tr.rank-first td {
   font-weight: 700;
+}
+
+.standings-table tr.rank-first td:nth-child(3) {
+  color: var(--color-green-strong);
+  font-size: 1.55rem;
 }
 
 .standings-table tr.rank-first td:first-child {
@@ -550,6 +571,7 @@ main {
   position: fixed;
   right: 0.75rem;
   bottom: 0.5rem;
+  z-index: 50;
   margin: 0;
   font-size: 0.72rem;
   color: var(--color-text-muted);

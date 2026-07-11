@@ -10,6 +10,7 @@ const roundFormGrid = document.getElementById('round-form-grid');
 const saveRoundBtn = document.getElementById('save-round-btn');
 const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
+const toggleFinishedBtn = document.getElementById('toggle-finished-btn');
 
 let currentState = null;
 
@@ -30,6 +31,8 @@ function renderHeader(state) {
     day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
   });
   gameSubtitle.textContent = `Ziel: ${state.targetScore} Punkte · gestartet ${startedAt} Uhr`;
+
+  toggleFinishedBtn.textContent = state.status === 'finished' ? 'Spiel fortsetzen' : 'Spiel beenden';
 }
 
 function renderStandings(state) {
@@ -209,6 +212,19 @@ async function deleteRound(roundId) {
   render(currentState);
 }
 
+async function toggleFinished() {
+  const wantFinished = currentState.status !== 'finished';
+  const response = await fetch(`/api/games.php?id=${gameId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ finished: wantFinished }),
+  });
+
+  currentState = await response.json();
+  render(currentState);
+}
+
 saveRoundBtn.addEventListener('click', saveNewRound);
+toggleFinishedBtn.addEventListener('click', toggleFinished);
 
 loadGame();

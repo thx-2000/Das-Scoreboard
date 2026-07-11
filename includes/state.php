@@ -128,23 +128,35 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     $rounds = $roundsStmt->fetchAll(PDO::FETCH_ASSOC);
 
     $scoresStmt = $pdo->prepare('
-        SELECT rs.round_id, rs.player_id, rs.points
+        SELECT rs.round_id, rs.player_id, rs.points, rs.bid, rs.actual_tricks,
+               rs.rage_bonus_count, rs.rage_rache_count
         FROM round_scores rs
         JOIN rounds r ON r.id = rs.round_id
         WHERE r.game_id = ?
     ');
     $scoresStmt->execute([$gameId]);
     $scoresByRound = [];
+    $rageDetailsByRound = [];
     foreach ($scoresStmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
         $scoresByRound[$row['round_id']][(int) $row['player_id']] = (int) $row['points'];
+        // Nur fuer den Modus RAGE relevant; bei anderen Modi bleiben diese
+        // Spalten NULL und werden hier trotzdem mitgefuehrt (kostet nichts,
+        // haelt build_game_state() aber modusuebergreifend einheitlich).
+        $rageDetailsByRound[$row['round_id']][(int) $row['player_id']] = [
+            'bid' => $row['bid'] !== null ? (int) $row['bid'] : null,
+            'actualTricks' => $row['actual_tricks'] !== null ? (int) $row['actual_tricks'] : null,
+            'rageBonusCount' => (int) $row['rage_bonus_count'],
+            'rageRacheCount' => (int) $row['rage_rache_count'],
+        ];
     }
 
-    $roundsOut = array_map(function ($r) use ($scoresByRound) {
+    $roundsOut = array_map(function ($r) use ($scoresByRound, $rageDetailsByRound) {
         return [
             'id' => (int) $r['id'],
             'roundNumber' => (int) $r['round_number'],
             'createdAt' => $r['created_at'],
             'scores' => $scoresByRound[$r['id']] ?? new stdClass(),
+            'rageDetails' => $rageDetailsByRound[$r['id']] ?? new stdClass(),
         ];
     }, $rounds);
 

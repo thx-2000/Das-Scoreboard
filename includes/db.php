@@ -108,6 +108,27 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE games ADD COLUMN starting_player_id INTEGER REFERENCES players(id)');
             }
         },
+
+        // Detailwerte fuer den Modus "RAGE": Ansage, tatsaechliche Stiche
+        // und Sonderkarten-Zaehler je Spieler und Runde. "points" bleibt der
+        // daraus berechnete Gesamtwert und macht get_totals()/Standings
+        // weiterhin modusuebergreifend nutzbar, ohne sie anzufassen.
+        4 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(round_scores)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            $toAdd = [
+                'bid' => 'ALTER TABLE round_scores ADD COLUMN bid INTEGER',
+                'actual_tricks' => 'ALTER TABLE round_scores ADD COLUMN actual_tricks INTEGER',
+                'rage_bonus_count' => 'ALTER TABLE round_scores ADD COLUMN rage_bonus_count INTEGER NOT NULL DEFAULT 0',
+                'rage_rache_count' => 'ALTER TABLE round_scores ADD COLUMN rage_rache_count INTEGER NOT NULL DEFAULT 0',
+            ];
+            foreach ($toAdd as $columnName => $sql) {
+                if (!in_array($columnName, $existing, true)) {
+                    $pdo->exec($sql);
+                }
+            }
+        },
     ];
 }
 

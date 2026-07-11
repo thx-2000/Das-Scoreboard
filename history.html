@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spielverlauf — Scoreboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+  <header class="app-header">
+    <h1>🎲 Scoreboard</h1>
+    <p class="app-header__subtitle">Spielverlauf</p>
+    <div class="app-header__accent" aria-hidden="true"></div>
+    <nav class="app-nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="btn btn--ghost">Startseite</a>
+      <a href="players.html" class="btn btn--ghost">Spieler verwalten</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="card">
+      <h2>Alle Spiele</h2>
+      <p class="hint-text">Neueste zuerst. Laufende Spiele können fortgesetzt werden, abgeschlossene zeigen das Ergebnis.</p>
+      <ul class="history-list" id="history-list"></ul>
+    </section>
+  </main>
+
+  <p class="app-version" id="app-version">Scoreboard</p>
+
+  <script src="js/version.js"></script>
+  <script src="js/history.js"></script>
+</body>
+</html>

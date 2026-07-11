@@ -117,4 +117,23 @@ if ($method === 'PATCH' && $id !== null) {
     send_json(build_game_state($pdo, $id));
 }
 
+if ($method === 'DELETE' && $id !== null) {
+    $existing = $pdo->prepare('SELECT id FROM games WHERE id = ?');
+    $existing->execute([$id]);
+    if (!$existing->fetch(PDO::FETCH_ASSOC)) {
+        send_json(['error' => 'Spiel nicht gefunden.'], 404);
+    }
+
+    $pdo->beginTransaction();
+    $pdo->prepare('
+        DELETE FROM round_scores WHERE round_id IN (SELECT id FROM rounds WHERE game_id = ?)
+    ')->execute([$id]);
+    $pdo->prepare('DELETE FROM rounds WHERE game_id = ?')->execute([$id]);
+    $pdo->prepare('DELETE FROM game_players WHERE game_id = ?')->execute([$id]);
+    $pdo->prepare('DELETE FROM games WHERE id = ?')->execute([$id]);
+    $pdo->commit();
+
+    send_json(['deleted' => true]);
+}
+
 send_json(['error' => 'Methode nicht erlaubt.'], 405);

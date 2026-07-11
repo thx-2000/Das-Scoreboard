@@ -668,16 +668,33 @@ main {
 
 .finger-circle {
   position: absolute;
-  width: 70px;
-  height: 70px;
-  margin-left: -35px;
-  margin-top: -35px;
+  width: 96px;
+  height: 96px;
+  margin-left: -48px;
+  margin-top: -48px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--color-green) 30%, transparent);
   border: 3px solid var(--color-green-strong);
   transition: width 0.5s ease, height 0.5s ease, margin 0.5s ease,
     background 0.5s ease, border-color 0.5s ease, opacity 0.5s ease;
   pointer-events: none;
+}
+
+/* Kurzer "Pop": Kreis erscheint deutlich groesser und schrumpft dann auf die
+   Ruhegroesse - bestaetigt sofort sichtbar, dass der Finger erkannt wurde. */
+@keyframes finger-pop {
+  0% {
+    transform: scale(1.7);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.finger-circle--pop {
+  animation: finger-pop 0.3s ease-out;
 }
 
 .finger-circle--selected {

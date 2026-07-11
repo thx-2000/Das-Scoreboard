@@ -1,7 +1,7 @@
 const chooserArea = document.getElementById('chooser-area');
 const hintEl = document.getElementById('chooser-hint');
 
-const COUNTDOWN_START = 5;
+const COUNTDOWN_START = 4;
 
 // activeTouches: Touch-Identifier -> { el: Kreis-Element }
 const activeTouches = new Map();
@@ -19,9 +19,12 @@ function positionCircle(el, clientX, clientY) {
 
 function createCircle(clientX, clientY) {
   const el = document.createElement('div');
-  el.className = 'finger-circle';
+  // "--pop" gibt beim Auflegen kurz einen deutlich groesseren Kreis, damit
+  // sofort sichtbar ist, dass der Finger erkannt wurde.
+  el.className = 'finger-circle finger-circle--pop';
   positionCircle(el, clientX, clientY);
   chooserArea.appendChild(el);
+  el.addEventListener('animationend', () => el.classList.remove('finger-circle--pop'), { once: true });
   return el;
 }
 
@@ -29,16 +32,22 @@ function updateHint() {
   hintEl.hidden = state !== 'idle';
 }
 
-function startCountdown() {
-  state = 'counting';
-  updateHint();
+// Wird bei jedem neuen Finger erneut aufgerufen und setzt den Countdown
+// wieder auf den Startwert zurueck - so bleibt immer genug Zeit, damit noch
+// eine weitere Person dazukommen kann, solange noch neue Finger auflegen.
+function resetCountdown() {
   countdownValue = COUNTDOWN_START;
 
-  countdownEl = document.createElement('div');
-  countdownEl.className = 'chooser-countdown';
+  if (!countdownEl) {
+    countdownEl = document.createElement('div');
+    countdownEl.className = 'chooser-countdown';
+    chooserArea.appendChild(countdownEl);
+  }
   countdownEl.textContent = String(countdownValue);
-  chooserArea.appendChild(countdownEl);
 
+  if (countdownTimer) {
+    clearInterval(countdownTimer);
+  }
   countdownTimer = setInterval(() => {
     if (activeTouches.size === 0) {
       resetAll();
@@ -112,8 +121,14 @@ function handleTouchStart(event) {
     activeTouches.set(touch.identifier, { el });
   }
 
-  if (state === 'idle' && activeTouches.size > 0) {
-    startCountdown();
+  if (activeTouches.size > 0) {
+    if (state !== 'counting') {
+      state = 'counting';
+      updateHint();
+    }
+    // Jeder neue Finger (auch der erste) setzt den Countdown auf den
+    // Startwert zurueck.
+    resetCountdown();
   }
 }
 

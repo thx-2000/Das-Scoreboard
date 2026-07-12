@@ -714,3 +714,71 @@ main {
   margin-left: -8px;
   margin-top: -8px;
 }
+
+/* Einstellungen: Farbfelder */
+.color-field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.color-field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.color-field__inputs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.color-field__inputs input[type="color"] {
+  width: 44px;
+  height: 38px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.color-field__hex {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+.theme-pair-field {
+  margin-bottom: 1.5rem;
+}
+
+.theme-pair-field:last-child {
+  margin-bottom: 0;
+}
+
+.theme-pair-field h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+}
+
+.theme-pair-field__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .theme-pair-field__row {
+    grid-template-columns: 1fr;
+  }
+}

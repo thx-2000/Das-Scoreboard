@@ -1,0 +1,242 @@
+{
+  "common": {
+    "skipLink": "Skip to content",
+    "nav": {
+      "home": "Home",
+      "players": "Players",
+      "history": "History",
+      "chooser": "Who starts?",
+      "settings": "Settings"
+    },
+    "buttons": {
+      "add": "Add",
+      "save": "Save",
+      "delete": "Delete",
+      "start": "Start game",
+      "finish": "Finish game",
+      "resume": "Resume game",
+      "remove": "Remove",
+      "reactivate": "Reactivate"
+    },
+    "table": {
+      "rank": "Rank",
+      "name": "Name",
+      "points": "Points",
+      "progress": "Progress",
+      "actions": "Actions",
+      "round": "Round"
+    },
+    "game": {
+      "loading": "Loading …",
+      "notFound": "Game not found.",
+      "standingsHeading": "Standings",
+      "startingPlayerLegend": "★ Starting player (random)",
+      "startedSuffix": "started {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Game over! {names} win together with {points} points.",
+        "single": "🏆 Game over! {names} won with {points} points."
+      },
+      "roundEntry": {
+        "heading": "Enter new round",
+        "saveButton": "Save round"
+      },
+      "roundsTable": {
+        "heading": "Round history & correction",
+        "hint": "Adjust values directly to correct entry mistakes.",
+        "empty": "No rounds played yet.",
+        "deleteConfirm": "Really delete this round?"
+      },
+      "noPlayersHint": "No players yet — add one below."
+    },
+    "setup": {
+      "heading": "Set up game",
+      "labelOptional": "Label (optional)",
+      "whoPlays": "Who is playing?",
+      "addPlayerLabel": "Add new player",
+      "addPlayerPlaceholder": "Enter name"
+    },
+    "errors": {
+      "minPlayers": "Select at least 2 players.",
+      "createPlayerFailed": "Could not create player.",
+      "startGameFailed": "Could not start game."
+    }
+  },
+  "pages": {
+    "home": { "title": "Scoreboard — Game night scorekeeper" },
+    "players": { "title": "Manage players — Scoreboard" },
+    "history": { "title": "Game history — Scoreboard" },
+    "settings": { "title": "Settings — Scoreboard" },
+    "pointsToTargetSetup": { "title": "Points to target — New game" },
+    "pointsToTargetGame": { "title": "Points to target — Scoreboard" },
+    "pointsOpenSetup": { "title": "Open point round — New game" },
+    "pointsOpenGame": { "title": "Open point round — Scoreboard" },
+    "rageSetup": { "title": "RAGE — New game" },
+    "rageGame": { "title": "RAGE — Scoreboard" },
+    "chooser": { "title": "Who starts? — Scoreboard" }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Points to target",
+      "description": "Points are added up round by round until someone reaches or exceeds a fixed target value. Whoever has the most points then wins.",
+      "examples": "e.g. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Open point round",
+      "description": "Points are added up round by round with no fixed target. You decide yourselves when to stop — highest or lowest score wins, as you set it up.",
+      "examples": "e.g. Doppelkopf"
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fixed 10 rounds with a decreasing number of cards (10 down to 1). Before each round you bid your trick count, then enter the actual tricks — points are calculated automatically according to the RAGE rules (incl. Rage bonus/revenge).",
+      "examples": "Card game RAGE"
+    }
+  },
+  "home": {
+    "heading": "Scorekeeping helper for game nights",
+    "newGame": {
+      "heading": "Start a new game",
+      "hint": "Choose a scoring mode for your game."
+    }
+  },
+  "players": {
+    "heading": "Manage players",
+    "newPlayer": {
+      "heading": "New player",
+      "nameLabel": "Name"
+    },
+    "active": {
+      "heading": "Active players",
+      "hint": "These players are available for quick selection in new games.",
+      "empty": "No active players yet."
+    },
+    "inactive": {
+      "heading": "Deactivated players",
+      "hint": "Stay visible in past games but no longer appear in quick selection.",
+      "empty": "No deactivated players."
+    }
+  },
+  "history": {
+    "heading": "Game history",
+    "all": {
+      "heading": "All games",
+      "hint": "Newest first. Ongoing games can be resumed, finished ones show the result."
+    },
+    "empty": "No games played yet.",
+    "deleteConfirm": "Really permanently delete \"{label}\" from game history?",
+    "badge": {
+      "finished": "Finished",
+      "active": "Ongoing"
+    },
+    "meta": {
+      "target": "Target: {score} points",
+      "winners": "Winner: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Settings",
+    "subtitle": "Applies to everyone using this app (stored globally).",
+    "language": {
+      "heading": "Language",
+      "hint": "More languages can be added later.",
+      "label": "Language"
+    },
+    "colors": {
+      "single": {
+        "heading": "Accent and function colors",
+        "hint": "Apply unchanged in light and dark mode."
+      },
+      "pairs": {
+        "heading": "Base colors (separate for light/dark mode)",
+        "hint": "Background, surface, text, and border — once each for light and dark mode.",
+        "light": "Light",
+        "dark": "Dark"
+      }
+    },
+    "resetButton": "Reset to default colors",
+    "resetConfirm": "Really reset all colors to their default values?",
+    "savedStatus": "Saved. Other pages will pick up the change on their next visit.",
+    "resetStatus": "Reset to default colors.",
+    "colorLabels": {
+      "green": "Neon green (main accent)",
+      "greenStrong": "Neon green, darkened (text/lines)",
+      "amber": "Amber (secondary accent)",
+      "amberStrong": "Amber, darkened (text/lines)",
+      "onAccent": "Text on accent surfaces",
+      "focus": "Focus outline (keyboard navigation)",
+      "danger": "Error / danger (e.g. delete buttons)",
+      "bg": "Background",
+      "surface": "Surface (cards)",
+      "text": "Text",
+      "textMuted": "Muted text",
+      "border": "Border"
+    }
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Set up new game (e.g. Flip7, Tutto)",
+      "labelPlaceholder": "e.g. Flip7, Tutto",
+      "targetLabel": "Play up to which point value?"
+    },
+    "game": {
+      "subtitle": "Target: {target} points · {started}",
+      "roundEntryHint": "Enter this round's points per player (0 is normal, e.g. on a bust)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Set up new game (e.g. Doppelkopf)",
+      "labelPlaceholder": "e.g. Doppelkopf",
+      "winDirection": {
+        "heading": "Who wins at the end?",
+        "highest": "Highest score",
+        "lowest": "Lowest score"
+      }
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "highest score wins",
+        "lowest": "lowest score wins"
+      },
+      "roundEntryHint": "Enter this round's points per player (0 is normal)."
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Set up new game — 10 rounds, trick bidding",
+      "hint": "Fixed 10 rounds (10 down to 1 card), highest score wins at the end.",
+      "labelPlaceholder": "e.g. RAGE night"
+    },
+    "game": {
+      "cardSingular": "card",
+      "cardPlural": "cards",
+      "subtitleFinished": "{played} of 10 rounds played · {started}",
+      "subtitleOngoing": "Round {round} of 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Enter round",
+        "staticHint": "Enter bid and actual tricks per player, special cards if any.",
+        "heading": "Enter round {round} ({cards} {cardWord})",
+        "hint": "Enter bid and actual tricks per player (0 is valid). All players' tricks should add up to {cards}.",
+        "table": {
+          "player": "Player",
+          "bid": "Bid",
+          "tricks": "Tricks",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Points"
+        }
+      },
+      "roundsTableHint": "Adjust values directly to correct entry mistakes. Bid / tricks / +5 / −5 / points (calculated) per player and round.",
+      "deleteRoundButton": "Delete R{round}",
+      "mismatchConfirm": "The sum of entered tricks ({actual}) does not match this round's card count ({expected}). Save anyway?",
+      "saveFailed": "Could not save round."
+    }
+  },
+  "chooser": {
+    "heading": "Who starts?",
+    "subtitle": "Put all fingers on the screen at the same time — works via multitouch (iPad/iPhone).",
+    "hint": "Place fingers on the screen …",
+    "result": "This person starts! Place fingers again for a new round."
+  }
+}

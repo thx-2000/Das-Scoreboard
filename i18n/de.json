@@ -1,0 +1,242 @@
+{
+  "common": {
+    "skipLink": "Zum Inhalt springen",
+    "nav": {
+      "home": "Startseite",
+      "players": "Spieler",
+      "history": "Verlauf",
+      "chooser": "Wer fängt an?",
+      "settings": "Einstellungen"
+    },
+    "buttons": {
+      "add": "Hinzufügen",
+      "save": "Speichern",
+      "delete": "Löschen",
+      "start": "Spiel starten",
+      "finish": "Spiel beenden",
+      "resume": "Spiel fortsetzen",
+      "remove": "Entfernen",
+      "reactivate": "Reaktivieren"
+    },
+    "table": {
+      "rank": "Platz",
+      "name": "Name",
+      "points": "Punkte",
+      "progress": "Fortschritt",
+      "actions": "Aktionen",
+      "round": "Runde"
+    },
+    "game": {
+      "loading": "Lädt …",
+      "notFound": "Spiel nicht gefunden.",
+      "standingsHeading": "Punktestand",
+      "startingPlayerLegend": "★ Startspieler (zufällig)",
+      "startedSuffix": "gestartet {date} Uhr",
+      "dateTime": "{date} Uhr",
+      "winnerBanner": {
+        "multi": "🏆 Spiel beendet! {names} gewinnen gemeinsam mit {points} Punkten.",
+        "single": "🏆 Spiel beendet! {names} hat gewonnen mit {points} Punkten."
+      },
+      "roundEntry": {
+        "heading": "Neue Runde eintragen",
+        "saveButton": "Runde speichern"
+      },
+      "roundsTable": {
+        "heading": "Rundenverlauf & Korrektur",
+        "hint": "Werte direkt anpassen, um Eintragungsfehler zu korrigieren.",
+        "empty": "Noch keine Runde gespielt.",
+        "deleteConfirm": "Diese Runde wirklich löschen?"
+      },
+      "noPlayersHint": "Noch keine Spieler angelegt — rechts unten hinzufügen."
+    },
+    "setup": {
+      "heading": "Spiel einrichten",
+      "labelOptional": "Bezeichnung (optional)",
+      "whoPlays": "Wer spielt mit?",
+      "addPlayerLabel": "Neuen Spieler hinzufügen",
+      "addPlayerPlaceholder": "Name eingeben"
+    },
+    "errors": {
+      "minPlayers": "Mindestens 2 Spieler auswählen.",
+      "createPlayerFailed": "Spieler konnte nicht angelegt werden.",
+      "startGameFailed": "Spiel konnte nicht gestartet werden."
+    }
+  },
+  "pages": {
+    "home": { "title": "Scoreboard — Spieleabend-Aufschreiber" },
+    "players": { "title": "Spieler verwalten — Scoreboard" },
+    "history": { "title": "Spielverlauf — Scoreboard" },
+    "settings": { "title": "Einstellungen — Scoreboard" },
+    "pointsToTargetSetup": { "title": "Punkte bis Höchstwert — Neues Spiel" },
+    "pointsToTargetGame": { "title": "Punkte bis Höchstwert — Scoreboard" },
+    "pointsOpenSetup": { "title": "Offene Punkterunde — Neues Spiel" },
+    "pointsOpenGame": { "title": "Offene Punkterunde — Scoreboard" },
+    "rageSetup": { "title": "RAGE — Neues Spiel" },
+    "rageGame": { "title": "RAGE — Scoreboard" },
+    "chooser": { "title": "Wer fängt an? — Scoreboard" }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Punkte bis Höchstwert",
+      "description": "Punkte werden rundenweise addiert, bis jemand einen festgelegten Zielwert erreicht oder überschreitet. Wer dann am meisten Punkte hat, gewinnt.",
+      "examples": "z.B. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Offene Punkterunde",
+      "description": "Punkte werden rundenweise addiert, ohne festen Zielwert. Ihr entscheidet selbst, wann Schluss ist — höchste oder niedrigste Punktzahl gewinnt, wie ihr es beim Einrichten festlegt.",
+      "examples": "z.B. Doppelkopf"
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Feste 10 Runden mit sinkender Kartenzahl (10 bis 1). Vor jeder Runde sagt ihr eure Stichzahl an, danach tragt ihr die tatsächlichen Stiche ein — Punkte werden automatisch nach den RAGE-Regeln berechnet (inkl. Rage-Bonus/-Rache).",
+      "examples": "Kartenspiel RAGE"
+    }
+  },
+  "home": {
+    "heading": "Aufschreibhilfe für Spieleabende",
+    "newGame": {
+      "heading": "Neues Spiel starten",
+      "hint": "Wähle eine Aufschreibmöglichkeit für euer Spiel."
+    }
+  },
+  "players": {
+    "heading": "Spieler verwalten",
+    "newPlayer": {
+      "heading": "Neuer Spieler",
+      "nameLabel": "Name"
+    },
+    "active": {
+      "heading": "Aktive Spieler",
+      "hint": "Diese Spieler stehen bei neuen Spielen zur Schnellauswahl bereit.",
+      "empty": "Noch keine aktiven Spieler."
+    },
+    "inactive": {
+      "heading": "Deaktivierte Spieler",
+      "hint": "Bleiben in vergangenen Spielen sichtbar, erscheinen aber nicht mehr in der Schnellauswahl.",
+      "empty": "Keine deaktivierten Spieler."
+    }
+  },
+  "history": {
+    "heading": "Spielverlauf",
+    "all": {
+      "heading": "Alle Spiele",
+      "hint": "Neueste zuerst. Laufende Spiele können fortgesetzt werden, abgeschlossene zeigen das Ergebnis."
+    },
+    "empty": "Noch keine Spiele gespielt.",
+    "deleteConfirm": "\"{label}\" wirklich unwiderruflich aus dem Spielverlauf löschen?",
+    "badge": {
+      "finished": "Beendet",
+      "active": "Läuft"
+    },
+    "meta": {
+      "target": "Ziel: {score} Punkte",
+      "winners": "Sieger: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Einstellungen",
+    "subtitle": "Gilt für alle, die diese Seite nutzen (global gespeichert).",
+    "language": {
+      "heading": "Sprache",
+      "hint": "Weitere Sprachen können später ergänzt werden.",
+      "label": "Sprache"
+    },
+    "colors": {
+      "single": {
+        "heading": "Akzent- und Funktionsfarben",
+        "hint": "Gelten unverändert in Hell- und Dunkelmodus."
+      },
+      "pairs": {
+        "heading": "Basis-Farben (Hell- / Dunkelmodus getrennt)",
+        "hint": "Hintergrund, Fläche, Text und Rahmen — je einmal für Hell- und einmal für Dunkelmodus.",
+        "light": "Hell",
+        "dark": "Dunkel"
+      }
+    },
+    "resetButton": "Auf Standardfarben zurücksetzen",
+    "resetConfirm": "Wirklich alle Farben auf die Standardwerte zurücksetzen?",
+    "savedStatus": "Gespeichert. Andere Seiten übernehmen die Änderung beim nächsten Aufruf.",
+    "resetStatus": "Auf Standardfarben zurückgesetzt.",
+    "colorLabels": {
+      "green": "Neongrün (Hauptakzent)",
+      "greenStrong": "Neongrün, abgedunkelt (Text/Linien)",
+      "amber": "Amber (zweite Akzentfarbe)",
+      "amberStrong": "Amber, abgedunkelt (Text/Linien)",
+      "onAccent": "Text auf Akzentflächen",
+      "focus": "Fokus-Rahmen (Tastaturnavigation)",
+      "danger": "Fehler / Gefahr (z.B. Löschen-Buttons)",
+      "bg": "Hintergrund",
+      "surface": "Fläche (Karten)",
+      "text": "Text",
+      "textMuted": "Text, gedämpft",
+      "border": "Rahmen"
+    }
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Neues Spiel einrichten (z.B. Flip7, Tutto)",
+      "labelPlaceholder": "z.B. Flip7, Tutto",
+      "targetLabel": "Bis zu welchem Punktewert wird gespielt?"
+    },
+    "game": {
+      "subtitle": "Ziel: {target} Punkte · {started}",
+      "roundEntryHint": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal, z.B. bei Bust)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Neues Spiel einrichten (z.B. Doppelkopf)",
+      "labelPlaceholder": "z.B. Doppelkopf",
+      "winDirection": {
+        "heading": "Wer gewinnt am Ende?",
+        "highest": "Höchste Punktzahl",
+        "lowest": "Niedrigste Punktzahl"
+      }
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "höchste Punktzahl gewinnt",
+        "lowest": "niedrigste Punktzahl gewinnt"
+      },
+      "roundEntryHint": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal)."
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Neues Spiel einrichten — 10 Runden, Stichansage",
+      "hint": "Feste 10 Runden (10 bis 1 Karte), am Ende gewinnt die höchste Punktzahl.",
+      "labelPlaceholder": "z.B. RAGE-Abend"
+    },
+    "game": {
+      "cardSingular": "Karte",
+      "cardPlural": "Karten",
+      "subtitleFinished": "{played} von 10 Runden gespielt · {started}",
+      "subtitleOngoing": "Runde {round} von 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Runde eintragen",
+        "staticHint": "Ansage und tatsächliche Stiche je Spieler eingeben, Sonderkarten falls vorhanden.",
+        "heading": "Runde {round} eintragen ({cards} {cardWord})",
+        "hint": "Ansage und tatsächliche Stiche je Spieler eingeben (0 ist gültig). Die Stiche aller Spieler sollten zusammen {cards} ergeben.",
+        "table": {
+          "player": "Spieler",
+          "bid": "Ansage",
+          "tricks": "Stiche",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Punkte"
+        }
+      },
+      "roundsTableHint": "Werte direkt anpassen, um Eintragungsfehler zu korrigieren. Ansage / Stiche / +5 / −5 / Punkte (berechnet) je Spieler und Runde.",
+      "deleteRoundButton": "R{round} löschen",
+      "mismatchConfirm": "Die Summe der eingetragenen Stiche ({actual}) entspricht nicht der Kartenzahl dieser Runde ({expected}). Trotzdem speichern?",
+      "saveFailed": "Runde konnte nicht gespeichert werden."
+    }
+  },
+  "chooser": {
+    "heading": "Wer fängt an?",
+    "subtitle": "Alle Finger gleichzeitig auf den Bildschirm legen — funktioniert per Multitouch (iPad/iPhone).",
+    "hint": "Finger auf den Bildschirm legen …",
+    "result": "Diese Person fängt an! Für eine neue Runde erneut Finger auflegen."
+  }
+}

@@ -135,6 +135,14 @@ Bei jedem Release die Datei `VERSION` auf den neuen Stand setzen — wird
 über `/api/version.php` an alle Seiten ausgeliefert und unten rechts
 angezeigt.
 
+`js/version.js` prüft zusätzlich clientseitig gegen die GitHub-API
+(`releases/latest` des in `UPDATE_CHECK_REPO` hinterlegten Repos), ob eine
+neuere Version existiert, und zeigt dann unten rechts einen roten Link
+darauf an. Ergebnis wird 1 Tag pro Browser in `localStorage` gecacht.
+Solange das Repo privat ist, schlägt die Anfrage (404) einfach lautlos fehl
+— sobald es öffentlich geschaltet wird, funktioniert der Hinweis ohne
+Codeänderung.
+
 ## Struktur
 
 ```

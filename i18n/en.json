@@ -8,6 +8,7 @@
       "chooser": "Who starts?",
       "settings": "Settings"
     },
+    "updateAvailable": "Update available ({version})",
     "buttons": {
       "add": "Add",
       "save": "Save",

@@ -8,6 +8,7 @@
       "chooser": "Wer fängt an?",
       "settings": "Einstellungen"
     },
+    "updateAvailable": "Update verfügbar ({version})",
     "buttons": {
       "add": "Hinzufügen",
       "save": "Speichern",

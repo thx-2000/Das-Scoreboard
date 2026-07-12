@@ -2,7 +2,7 @@
 
 Aufschreibhilfe für Spieleabende. Reines PHP 8 + PDO/SQLite, kein Node,
 keine separate Datenbank nötig — läuft auf normalem Webhosting per FTP-
-Upload, genau wie die PHP-Variante von PingPongGewinnt.
+Upload, Darstellung soll auf iPad und iPhone funktionieren.
 
 ## Konzept
 

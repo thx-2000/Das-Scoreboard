@@ -437,6 +437,73 @@ main {
   box-shadow: var(--shadow-card);
 }
 
+/* Runde-beendet-Hinweis (Modus "Punkterunde mit fester Rundenzahl") */
+.round-end-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--color-amber);
+  color: var(--color-on-accent);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+.round-end-notice__close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+.round-end-notice__close:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Rundenzahl-erreicht-Hinweis (Beenden oder verlaengern) */
+.target-reached-banner {
+  background: var(--color-surface);
+  border: 2px solid var(--color-amber);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.target-reached-banner__heading {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 1rem;
+}
+
+.target-reached-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.target-reached-banner__extend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.target-reached-banner__extend input {
+  width: 4.5rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  text-align: center;
+}
+
 /* Rundenerfassung */
 .round-form-grid {
   display: grid;

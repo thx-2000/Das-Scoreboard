@@ -13,6 +13,7 @@ function default_settings(): array
 {
     return [
         'language' => 'de',
+        'app_title' => 'Das Scoreboard',
 
         'color_bg_light' => '#f1f2f4',
         'color_bg_dark' => '#17181b',
@@ -80,6 +81,11 @@ function save_settings(PDO $pdo, array $updates): void
 
         if ($key === 'language') {
             if (!array_key_exists($value, $languages)) {
+                continue;
+            }
+        } elseif ($key === 'app_title') {
+            $value = trim($value);
+            if ($value === '' || mb_strlen($value) > 60) {
                 continue;
             }
         } elseif (!is_valid_hex_color($value)) {

@@ -49,7 +49,7 @@ async function loadPlayers() {
   if (players.length === 0) {
     const hint = document.createElement('p');
     hint.className = 'hint-text';
-    hint.textContent = 'Noch keine Spieler angelegt — rechts unten hinzufügen.';
+    hint.textContent = window.t('common.game.noPlayersHint');
     playerPicker.appendChild(hint);
     return;
   }
@@ -70,7 +70,7 @@ addPlayerInlineBtn.addEventListener('click', async () => {
 
   if (!response.ok) {
     const data = await response.json();
-    showError(data.error || 'Spieler konnte nicht angelegt werden.');
+    showError(data.error || window.t('common.errors.createPlayerFailed'));
     return;
   }
 
@@ -87,7 +87,7 @@ setupForm.addEventListener('submit', async (event) => {
   clearError();
 
   if (selectedPlayerIds.size < 2) {
-    showError('Mindestens 2 Spieler auswählen.');
+    showError(window.t('common.errors.minPlayers'));
     return;
   }
 
@@ -107,11 +107,11 @@ setupForm.addEventListener('submit', async (event) => {
   const data = await response.json();
 
   if (!response.ok) {
-    showError(data.error || 'Spiel konnte nicht gestartet werden.');
+    showError(data.error || window.t('common.errors.startGameFailed'));
     return;
   }
 
   window.location.href = `game.html?id=${data.id}`;
 });
 
-loadPlayers();
+window.scoreboardI18nReady.then(loadPlayers);

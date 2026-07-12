@@ -86,7 +86,7 @@ function pickWinner() {
 
   resultEl = document.createElement('p');
   resultEl.className = 'chooser-hint chooser-hint--result';
-  resultEl.textContent = 'Diese Person fängt an! Für eine neue Runde erneut Finger auflegen.';
+  resultEl.textContent = window.t('chooser.result');
   chooserArea.appendChild(resultEl);
 }
 

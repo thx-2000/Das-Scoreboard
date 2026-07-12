@@ -1,21 +1,24 @@
 const historyList = document.getElementById('history-list');
 
-const modeInfo = {
-  points_to_target: { title: 'Punkte bis Höchstwert', url: 'modes/points-to-target/game.html' },
-  points_open: { title: 'Offene Punkterunde', url: 'modes/points-open/game.html' },
-  rage: { title: 'RAGE', url: 'modes/rage/game.html' },
-};
+function modeInfo() {
+  return {
+    points_to_target: { title: window.t('modes.pointsToTarget.title'), url: 'modes/points-to-target/game.html' },
+    points_open: { title: window.t('modes.pointsOpen.title'), url: 'modes/points-open/game.html' },
+    rage: { title: window.t('modes.rage.title'), url: 'modes/rage/game.html' },
+  };
+}
 
 function formatDateTime(iso) {
   if (!iso) return '';
   const date = new Date(iso);
-  return date.toLocaleString('de-DE', {
+  const formatted = date.toLocaleString(window.scoreboardLocale(), {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-  }) + ' Uhr';
+  });
+  return window.t('common.game.dateTime', { date: formatted });
 }
 
 async function loadHistory() {
@@ -25,7 +28,7 @@ async function loadHistory() {
 }
 
 async function deleteGame(gameId, label) {
-  const confirmed = window.confirm(`"${label}" wirklich unwiderruflich aus dem Spielverlauf löschen?`);
+  const confirmed = window.confirm(window.t('history.deleteConfirm', { label }));
   if (!confirmed) return;
 
   await fetch(`/api/games.php?id=${gameId}`, { method: 'DELETE' });
@@ -37,14 +40,16 @@ function renderHistory(games) {
 
   if (games.length === 0) {
     const empty = document.createElement('li');
-    empty.textContent = 'Noch keine Spiele gespielt.';
+    empty.textContent = window.t('history.empty');
     empty.style.color = 'var(--color-text-muted)';
     historyList.appendChild(empty);
     return;
   }
 
+  const modes = modeInfo();
+
   games.forEach((game) => {
-    const info = modeInfo[game.mode] || { title: game.mode, url: '#' };
+    const info = modes[game.mode] || { title: game.mode, url: '#' };
     const displayLabel = game.label ? `${game.label} (${info.title})` : info.title;
 
     const li = document.createElement('li');
@@ -63,7 +68,7 @@ function renderHistory(games) {
 
     const badge = document.createElement('span');
     badge.className = 'badge ' + (game.status === 'finished' ? 'badge--finished' : 'badge--active');
-    badge.textContent = game.status === 'finished' ? 'Beendet' : 'Läuft';
+    badge.textContent = game.status === 'finished' ? window.t('history.badge.finished') : window.t('history.badge.active');
     title.appendChild(document.createTextNode(' '));
     title.appendChild(badge);
 
@@ -72,10 +77,10 @@ function renderHistory(games) {
     const players = game.playerNames.join(', ');
     let metaText = `${formatDateTime(game.startedAt)} · ${players}`;
     if (game.targetScore > 0) {
-      metaText += ` · Ziel: ${game.targetScore} Punkte`;
+      metaText += ` · ${window.t('history.meta.target', { score: game.targetScore })}`;
     }
     if (game.status === 'finished' && game.winners.length > 0) {
-      metaText += ` · Sieger: ${game.winners.join(' & ')}`;
+      metaText += ` · ${window.t('history.meta.winners', { names: game.winners.join(' & ') })}`;
     }
     meta.textContent = metaText;
 
@@ -85,7 +90,7 @@ function renderHistory(games) {
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.className = 'btn btn--small btn--danger';
-    deleteBtn.textContent = 'Löschen';
+    deleteBtn.textContent = window.t('common.buttons.delete');
     deleteBtn.style.alignSelf = 'center';
     deleteBtn.addEventListener('click', () => deleteGame(game.id, displayLabel));
 
@@ -95,4 +100,4 @@ function renderHistory(games) {
   });
 }
 
-loadHistory();
+window.scoreboardI18nReady.then(loadHistory);

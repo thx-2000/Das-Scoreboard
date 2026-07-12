@@ -29,10 +29,14 @@ function computeRagePoints(bid, actualTricks, bonus, rache) {
   return points;
 }
 
+function cardWord(cards) {
+  return cards === 1 ? window.t('rage.game.cardSingular') : window.t('rage.game.cardPlural');
+}
+
 async function loadGame() {
   const response = await fetch(`/api/games.php?id=${gameId}`);
   if (!response.ok) {
-    gameSubtitle.textContent = 'Spiel nicht gefunden.';
+    gameSubtitle.textContent = window.t('common.game.notFound');
     return;
   }
   currentState = await response.json();
@@ -40,21 +44,24 @@ async function loadGame() {
 }
 
 function renderHeader(state) {
-  gameTitle.textContent = state.label ? state.label : 'RAGE';
-  const startedAt = new Date(state.startedAt).toLocaleString('de-DE', {
+  gameTitle.textContent = state.label ? state.label : window.t('modes.rage.title');
+  const startedAt = new Date(state.startedAt).toLocaleString(window.scoreboardLocale(), {
     day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
   });
+  const started = window.t('common.game.startedSuffix', { date: startedAt });
 
   const playedRounds = state.rounds.length;
   if (state.status === 'finished') {
-    gameSubtitle.textContent = `${playedRounds} von 10 Runden gespielt · gestartet ${startedAt} Uhr`;
+    gameSubtitle.textContent = window.t('rage.game.subtitleFinished', { played: playedRounds, started });
   } else {
     const nextRoundNumber = playedRounds + 1;
     const cards = cardsForRound(nextRoundNumber);
-    gameSubtitle.textContent = `Runde ${nextRoundNumber} von 10 (${cards} Karte${cards === 1 ? '' : 'n'}) · gestartet ${startedAt} Uhr`;
+    gameSubtitle.textContent = window.t('rage.game.subtitleOngoing', {
+      round: nextRoundNumber, cards, cardWord: cardWord(cards), started,
+    });
   }
 
-  toggleFinishedBtn.textContent = state.status === 'finished' ? 'Spiel fortsetzen' : 'Spiel beenden';
+  toggleFinishedBtn.textContent = state.status === 'finished' ? window.t('common.buttons.resume') : window.t('common.buttons.finish');
 }
 
 function renderStandings(state) {
@@ -93,8 +100,8 @@ function renderWinnerBanner(state) {
   const banner = document.createElement('div');
   banner.className = 'winner-banner section-spacing';
   banner.textContent = state.winners.length > 1
-    ? `🏆 Spiel beendet! ${names} gewinnen gemeinsam mit ${state.winners[0].total} Punkten.`
-    : `🏆 Spiel beendet! ${names} hat gewonnen mit ${state.winners[0].total} Punkten.`;
+    ? window.t('common.game.winnerBanner.multi', { names, points: state.winners[0].total })
+    : window.t('common.game.winnerBanner.single', { names, points: state.winners[0].total });
   winnerBannerWrap.appendChild(banner);
 }
 
@@ -114,8 +121,8 @@ function renderRoundEntry(state) {
 
   const nextRoundNumber = playedRounds + 1;
   const cards = cardsForRound(nextRoundNumber);
-  roundEntryTitle.textContent = `Runde ${nextRoundNumber} eintragen (${cards} Karte${cards === 1 ? '' : 'n'})`;
-  roundEntryHint.textContent = `Ansage und tatsächliche Stiche je Spieler eingeben (0 ist gültig). Die Stiche aller Spieler sollten zusammen ${cards} ergeben.`;
+  roundEntryTitle.textContent = window.t('rage.game.roundEntry.heading', { round: nextRoundNumber, cards, cardWord: cardWord(cards) });
+  roundEntryHint.textContent = window.t('rage.game.roundEntry.hint', { cards });
 
   roundEntryBody.innerHTML = '';
   state.players.forEach((player) => {
@@ -167,11 +174,11 @@ function renderRoundsTable(state) {
   roundsTableBody.innerHTML = '';
 
   if (state.rounds.length === 0) {
-    roundsTableHead.innerHTML = '<tr><th scope="col">Runde</th></tr>';
+    roundsTableHead.innerHTML = `<tr><th scope="col">${window.t('common.table.round')}</th></tr>`;
     const row = document.createElement('tr');
     const cell = document.createElement('td');
     cell.colSpan = 1;
-    cell.textContent = 'Noch keine Runde gespielt.';
+    cell.textContent = window.t('common.game.roundsTable.empty');
     cell.style.color = 'var(--color-text-muted)';
     cell.style.textAlign = 'left';
     row.appendChild(cell);
@@ -184,7 +191,7 @@ function renderRoundsTable(state) {
   const roundTh = document.createElement('th');
   roundTh.scope = 'col';
   roundTh.rowSpan = 2;
-  roundTh.textContent = 'Runde';
+  roundTh.textContent = window.t('common.table.round');
   headRow1.appendChild(roundTh);
   state.players.forEach((player) => {
     const th = document.createElement('th');
@@ -197,8 +204,15 @@ function renderRoundsTable(state) {
 
   // Kopfzeile 2: Feldbezeichnungen je Spieler.
   const headRow2 = document.createElement('tr');
+  const fieldLabels = [
+    window.t('rage.game.roundEntry.table.bid'),
+    window.t('rage.game.roundEntry.table.tricks'),
+    window.t('rage.game.roundEntry.table.plus5'),
+    window.t('rage.game.roundEntry.table.minus5'),
+    window.t('rage.game.roundEntry.table.points'),
+  ];
   state.players.forEach(() => {
-    ['Ansage', 'Stiche', '+5', '−5', 'Punkte'].forEach((label) => {
+    fieldLabels.forEach((label) => {
       const th = document.createElement('th');
       th.scope = 'col';
       th.textContent = label;
@@ -287,7 +301,7 @@ function renderRoundsTable(state) {
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.className = 'btn btn--small btn--danger';
-    deleteBtn.textContent = `R${round.roundNumber} löschen`;
+    deleteBtn.textContent = window.t('rage.game.deleteRoundButton', { round: round.roundNumber });
     deleteBtn.addEventListener('click', () => deleteRound(round.id));
     cell.appendChild(deleteBtn);
     deleteRow.appendChild(cell);
@@ -317,7 +331,7 @@ async function saveNewRound() {
 
   if (actualSum !== expectedCards) {
     const proceed = window.confirm(
-      `Die Summe der eingetragenen Stiche (${actualSum}) entspricht nicht der Kartenzahl dieser Runde (${expectedCards}). Trotzdem speichern?`
+      window.t('rage.game.mismatchConfirm', { actual: actualSum, expected: expectedCards })
     );
     if (!proceed) return;
   }
@@ -330,7 +344,7 @@ async function saveNewRound() {
 
   const data = await response.json();
   if (!response.ok) {
-    window.alert(data.error || 'Runde konnte nicht gespeichert werden.');
+    window.alert(data.error || window.t('rage.game.saveFailed'));
     return;
   }
 
@@ -352,7 +366,7 @@ async function correctRound(roundId, rowEl) {
 }
 
 async function deleteRound(roundId) {
-  const confirmed = window.confirm('Diese Runde wirklich löschen?');
+  const confirmed = window.confirm(window.t('common.game.roundsTable.deleteConfirm'));
   if (!confirmed) return;
 
   const response = await fetch(`/api/rage-rounds.php?gameId=${gameId}&roundId=${roundId}`, {
@@ -378,4 +392,4 @@ async function toggleFinished() {
 saveRoundBtn.addEventListener('click', saveNewRound);
 toggleFinishedBtn.addEventListener('click', toggleFinished);
 
-loadGame();
+window.scoreboardI18nReady.then(loadGame);

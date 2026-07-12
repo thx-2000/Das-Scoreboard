@@ -56,7 +56,7 @@ function renderPlayers(players) {
     const toggleBtn = document.createElement('button');
     toggleBtn.type = 'button';
     toggleBtn.className = 'btn btn--small ' + (player.active ? 'btn--ghost' : 'btn--primary');
-    toggleBtn.textContent = player.active ? 'Entfernen' : 'Reaktivieren';
+    toggleBtn.textContent = player.active ? window.t('common.buttons.remove') : window.t('common.buttons.reactivate');
     toggleBtn.addEventListener('click', () => {
       updatePlayer(player.id, { active: !player.active });
     });
@@ -74,13 +74,13 @@ function renderPlayers(players) {
 
   if (activeList.children.length === 0) {
     const empty = document.createElement('li');
-    empty.textContent = 'Noch keine aktiven Spieler.';
+    empty.textContent = window.t('players.active.empty');
     empty.style.color = 'var(--color-text-muted)';
     activeList.appendChild(empty);
   }
   if (inactiveList.children.length === 0) {
     const empty = document.createElement('li');
-    empty.textContent = 'Keine deaktivierten Spieler.';
+    empty.textContent = window.t('players.inactive.empty');
     empty.style.color = 'var(--color-text-muted)';
     inactiveList.appendChild(empty);
   }
@@ -101,7 +101,7 @@ addPlayerForm.addEventListener('submit', async (event) => {
 
   if (!response.ok) {
     const data = await response.json();
-    showError(data.error || 'Spieler konnte nicht angelegt werden.');
+    showError(data.error || window.t('common.errors.createPlayerFailed'));
     return;
   }
 
@@ -109,4 +109,4 @@ addPlayerForm.addEventListener('submit', async (event) => {
   loadPlayers();
 });
 
-loadPlayers();
+window.scoreboardI18nReady.then(loadPlayers);

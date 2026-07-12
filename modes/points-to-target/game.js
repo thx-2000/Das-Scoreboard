@@ -18,7 +18,7 @@ let currentState = null;
 async function loadGame() {
   const response = await fetch(`/api/games.php?id=${gameId}`);
   if (!response.ok) {
-    gameSubtitle.textContent = 'Spiel nicht gefunden.';
+    gameSubtitle.textContent = window.t('common.game.notFound');
     return;
   }
   currentState = await response.json();
@@ -26,14 +26,15 @@ async function loadGame() {
 }
 
 function renderHeader(state) {
-  const title = state.label ? `${state.label}` : 'Punkte bis Höchstwert';
+  const title = state.label ? `${state.label}` : window.t('modes.pointsToTarget.title');
   gameTitle.textContent = title;
-  const startedAt = new Date(state.startedAt).toLocaleString('de-DE', {
+  const startedAt = new Date(state.startedAt).toLocaleString(window.scoreboardLocale(), {
     day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
   });
-  gameSubtitle.textContent = `Ziel: ${state.targetScore} Punkte · gestartet ${startedAt} Uhr`;
+  const started = window.t('common.game.startedSuffix', { date: startedAt });
+  gameSubtitle.textContent = window.t('pointsToTarget.game.subtitle', { target: state.targetScore, started });
 
-  toggleFinishedBtn.textContent = state.status === 'finished' ? 'Spiel fortsetzen' : 'Spiel beenden';
+  toggleFinishedBtn.textContent = state.status === 'finished' ? window.t('common.buttons.resume') : window.t('common.buttons.finish');
 }
 
 function renderStandings(state) {
@@ -74,8 +75,8 @@ function renderWinnerBanner(state) {
   const banner = document.createElement('div');
   banner.className = 'winner-banner section-spacing';
   banner.textContent = state.winners.length > 1
-    ? `🏆 Spiel beendet! ${names} gewinnen gemeinsam mit ${state.winners[0].total} Punkten.`
-    : `🏆 Spiel beendet! ${names} hat gewonnen mit ${state.winners[0].total} Punkten.`;
+    ? window.t('common.game.winnerBanner.multi', { names, points: state.winners[0].total })
+    : window.t('common.game.winnerBanner.single', { names, points: state.winners[0].total });
   winnerBannerWrap.appendChild(banner);
 }
 
@@ -104,7 +105,7 @@ function renderRoundEntryForm(state) {
 }
 
 function renderRoundsTable(state) {
-  roundsTableHead.innerHTML = '<th scope="col">Runde</th>';
+  roundsTableHead.innerHTML = `<th scope="col">${window.t('common.table.round')}</th>`;
   state.players.forEach((player) => {
     const th = document.createElement('th');
     th.scope = 'col';
@@ -113,7 +114,7 @@ function renderRoundsTable(state) {
   });
   const actionsTh = document.createElement('th');
   actionsTh.scope = 'col';
-  actionsTh.textContent = 'Aktionen';
+  actionsTh.textContent = window.t('common.table.actions');
   roundsTableHead.appendChild(actionsTh);
 
   roundsTableBody.innerHTML = '';
@@ -122,7 +123,7 @@ function renderRoundsTable(state) {
     const row = document.createElement('tr');
     const cell = document.createElement('td');
     cell.colSpan = state.players.length + 2;
-    cell.textContent = 'Noch keine Runde gespielt.';
+    cell.textContent = window.t('common.game.roundsTable.empty');
     cell.style.color = 'var(--color-text-muted)';
     cell.style.textAlign = 'left';
     row.appendChild(cell);
@@ -153,7 +154,7 @@ function renderRoundsTable(state) {
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.className = 'btn btn--small btn--danger';
-    deleteBtn.textContent = 'Löschen';
+    deleteBtn.textContent = window.t('common.buttons.delete');
     deleteBtn.addEventListener('click', () => deleteRound(round.id));
     actionsCell.appendChild(deleteBtn);
     row.appendChild(actionsCell);
@@ -208,7 +209,7 @@ async function correctRound(roundId, rowEl) {
 }
 
 async function deleteRound(roundId) {
-  const confirmed = window.confirm('Diese Runde wirklich löschen?');
+  const confirmed = window.confirm(window.t('common.game.roundsTable.deleteConfirm'));
   if (!confirmed) return;
 
   const response = await fetch(`/api/rounds.php?gameId=${gameId}&roundId=${roundId}`, {
@@ -234,4 +235,4 @@ async function toggleFinished() {
 saveRoundBtn.addEventListener('click', saveNewRound);
 toggleFinishedBtn.addEventListener('click', toggleFinished);
 
-loadGame();
+window.scoreboardI18nReady.then(loadGame);

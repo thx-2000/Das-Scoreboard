@@ -1,4 +1,4 @@
-# Scoreboard
+# Das Scoreboard
 
 Aufschreibhilfe für Spieleabende. Reines PHP 8 + PDO/SQLite, kein Node,
 keine separate Datenbank nötig — läuft auf normalem Webhosting per FTP-
@@ -66,12 +66,17 @@ Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
 anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifend
 angelegt.
 - **Einstellungen** (`settings.html`): global gespeicherte (serverseitige)
-  Konfiguration, gilt für alle, die die Seite nutzen. Zwei Bereiche:
+  Konfiguration, gilt für alle, die die Seite nutzen. Drei Bereiche:
+  - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
+    im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
+    gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
+    eine eigene Gruppe betreibt, kann hier einen eigenen Namen eintragen.
   - **Farben**: komplette Palette einzeln per Hex-Eingabe + Farbwähler
     konfigurierbar. Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …)
     gelten unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund,
     Fläche, Text, Rahmen) je einmal für Hell- und einmal für Dunkelmodus.
-    "Auf Standardfarben zurücksetzen" löscht alle Overrides wieder.
+    "Auf Standardfarben zurücksetzen" löscht alle Overrides wieder (inkl.
+    Titel und Sprache).
   - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
     "Mehrsprachigkeit (i18n)" unten.
 
@@ -156,7 +161,7 @@ Codeänderung.
 ## Struktur
 
 ```
-Scoreboard/
+Das-Scoreboard/
 ├── index.html               # Startseite: Modi-Auswahl
 ├── players.html             # Spielerverwaltung
 ├── history.html              # Spielverlauf

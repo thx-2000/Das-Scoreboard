@@ -129,6 +129,18 @@ function migrations(): array
                 }
             }
         },
+
+        // Globale Einstellungen (Farbpalette, Sprache) als einfacher
+        // Key-Value-Speicher - bewusst generisch, damit sich spaeter weitere
+        // Einstellungen ergaenzen lassen, ohne das Schema erneut zu aendern.
+        5 => function (PDO $pdo) {
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS settings (
+                    key   TEXT PRIMARY KEY,
+                    value TEXT NOT NULL
+                )
+            ');
+        },
     ];
 }
 

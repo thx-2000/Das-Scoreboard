@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Punkte bis Höchstwert — Neues Spiel</title>
+  <title data-i18n="pages.pointsToTargetSetup.title">Punkte bis Höchstwert — Neues Spiel</title>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
   <header class="app-header">
     <div class="app-header__bar">
@@ -22,35 +22,35 @@
         <span>Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="../../index.html" class="btn btn--ghost">Startseite</a>
+        <a href="../../index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
       </nav>
     </div>
-    <h1>Punkte bis Höchstwert</h1>
-    <p class="app-header__subtitle">Neues Spiel einrichten (z.B. Flip7, Tutto)</p>
+    <h1 data-i18n="modes.pointsToTarget.title">Punkte bis Höchstwert</h1>
+    <p class="app-header__subtitle" data-i18n="pointsToTarget.setup.subtitle">Neues Spiel einrichten (z.B. Flip7, Tutto)</p>
     <div class="app-header__accent" aria-hidden="true"></div>
   </header>
 
   <main id="main">
     <section class="card">
-      <h2>Spiel einrichten</h2>
+      <h2 data-i18n="common.setup.heading">Spiel einrichten</h2>
 
       <form id="setup-form" class="form">
-        <label for="game-label">Bezeichnung (optional)</label>
-        <input type="text" id="game-label" placeholder="z.B. Flip7, Tutto" maxlength="60" autocomplete="off">
+        <label for="game-label" data-i18n="common.setup.labelOptional">Bezeichnung (optional)</label>
+        <input type="text" id="game-label" placeholder="z.B. Flip7, Tutto" data-i18n-placeholder="pointsToTarget.setup.labelPlaceholder" maxlength="60" autocomplete="off">
 
-        <label for="target-score">Bis zu welchem Punktewert wird gespielt?</label>
+        <label for="target-score" data-i18n="pointsToTarget.setup.targetLabel">Bis zu welchem Punktewert wird gespielt?</label>
         <input type="number" id="target-score" min="1" value="200" required>
 
-        <label>Wer spielt mit?</label>
+        <label data-i18n="common.setup.whoPlays">Wer spielt mit?</label>
         <div class="player-picker" id="player-picker"></div>
 
-        <label for="new-player-inline">Neuen Spieler hinzufügen</label>
+        <label for="new-player-inline" data-i18n="common.setup.addPlayerLabel">Neuen Spieler hinzufügen</label>
         <div style="display:flex; gap:0.5rem;">
-          <input type="text" id="new-player-inline" placeholder="Name eingeben" maxlength="40" autocomplete="off" style="flex:1; padding:0.6rem 0.75rem; border-radius:8px; border:1px solid var(--color-border); background:var(--color-bg); color:var(--color-text);">
-          <button type="button" id="add-player-inline-btn" class="btn btn--ghost">Hinzufügen</button>
+          <input type="text" id="new-player-inline" placeholder="Name eingeben" data-i18n-placeholder="common.setup.addPlayerPlaceholder" maxlength="40" autocomplete="off" style="flex:1; padding:0.6rem 0.75rem; border-radius:8px; border:1px solid var(--color-border); background:var(--color-bg); color:var(--color-text);">
+          <button type="button" id="add-player-inline-btn" class="btn btn--ghost" data-i18n="common.buttons.add">Hinzufügen</button>
         </div>
 
-        <button type="submit" class="btn btn--primary">Spiel starten</button>
+        <button type="submit" class="btn btn--primary" data-i18n="common.buttons.start">Spiel starten</button>
       </form>
 
       <p id="setup-error" class="error-text" role="alert" hidden></p>
@@ -60,6 +60,8 @@
   <p class="app-version" id="app-version">Scoreboard</p>
 
   <script src="../../js/version.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/i18n.js"></script>
   <script src="setup.js"></script>
 </body>
 </html>

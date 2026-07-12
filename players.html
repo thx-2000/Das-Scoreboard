@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spieler verwalten — Scoreboard</title>
+  <title data-i18n="pages.players.title">Spieler verwalten — Scoreboard</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
   <header class="app-header">
     <div class="app-header__bar">
@@ -22,35 +22,36 @@
         <span>Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="index.html" class="btn btn--ghost">Startseite</a>
-        <a href="history.html" class="btn btn--ghost">Verlauf</a>
-        <a href="tools/finger-chooser.html" class="btn btn--ghost">Wer fängt an?</a>
+        <a href="index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
+        <a href="history.html" class="btn btn--ghost" data-i18n="common.nav.history">Verlauf</a>
+        <a href="tools/finger-chooser.html" class="btn btn--ghost" data-i18n="common.nav.chooser">Wer fängt an?</a>
+        <a href="settings.html" class="btn btn--ghost" data-i18n="common.nav.settings">Einstellungen</a>
       </nav>
     </div>
-    <h1>Spieler verwalten</h1>
+    <h1 data-i18n="players.heading">Spieler verwalten</h1>
     <div class="app-header__accent" aria-hidden="true"></div>
   </header>
 
   <main id="main">
     <section class="card">
-      <h2>Neuer Spieler</h2>
+      <h2 data-i18n="players.newPlayer.heading">Neuer Spieler</h2>
       <form id="add-player-form" class="form">
-        <label for="new-player-name">Name</label>
+        <label for="new-player-name" data-i18n="players.newPlayer.nameLabel">Name</label>
         <input type="text" id="new-player-name" maxlength="40" required autocomplete="off">
-        <button type="submit" class="btn btn--primary">Hinzufügen</button>
+        <button type="submit" class="btn btn--primary" data-i18n="common.buttons.add">Hinzufügen</button>
       </form>
       <p id="add-player-error" class="error-text" role="alert" hidden></p>
     </section>
 
     <section class="card section-spacing">
-      <h2>Aktive Spieler</h2>
-      <p class="hint-text">Diese Spieler stehen bei neuen Spielen zur Schnellauswahl bereit.</p>
+      <h2 data-i18n="players.active.heading">Aktive Spieler</h2>
+      <p class="hint-text" data-i18n="players.active.hint">Diese Spieler stehen bei neuen Spielen zur Schnellauswahl bereit.</p>
       <ul class="player-list" id="active-player-list"></ul>
     </section>
 
     <section class="card section-spacing">
-      <h2>Deaktivierte Spieler</h2>
-      <p class="hint-text">Bleiben in vergangenen Spielen sichtbar, erscheinen aber nicht mehr in der Schnellauswahl.</p>
+      <h2 data-i18n="players.inactive.heading">Deaktivierte Spieler</h2>
+      <p class="hint-text" data-i18n="players.inactive.hint">Bleiben in vergangenen Spielen sichtbar, erscheinen aber nicht mehr in der Schnellauswahl.</p>
       <ul class="player-list" id="inactive-player-list"></ul>
     </section>
   </main>
@@ -58,6 +59,8 @@
   <p class="app-version" id="app-version">Scoreboard</p>
 
   <script src="js/version.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/players.js"></script>
 </body>
 </html>

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Wer fängt an? — Scoreboard</title>
+  <title data-i18n="pages.chooser.title">Wer fängt an? — Scoreboard</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
   <header class="app-header">
     <div class="app-header__bar">
@@ -22,20 +22,21 @@
         <span>Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="../index.html" class="btn btn--ghost">Startseite</a>
-        <a href="../players.html" class="btn btn--ghost">Spieler</a>
-        <a href="../history.html" class="btn btn--ghost">Verlauf</a>
+        <a href="../index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
+        <a href="../players.html" class="btn btn--ghost" data-i18n="common.nav.players">Spieler</a>
+        <a href="../history.html" class="btn btn--ghost" data-i18n="common.nav.history">Verlauf</a>
+        <a href="../settings.html" class="btn btn--ghost" data-i18n="common.nav.settings">Einstellungen</a>
       </nav>
     </div>
-    <h1>Wer fängt an?</h1>
-    <p class="app-header__subtitle">Alle Finger gleichzeitig auf den Bildschirm legen — funktioniert per Multitouch (iPad/iPhone).</p>
+    <h1 data-i18n="chooser.heading">Wer fängt an?</h1>
+    <p class="app-header__subtitle" data-i18n="chooser.subtitle">Alle Finger gleichzeitig auf den Bildschirm legen — funktioniert per Multitouch (iPad/iPhone).</p>
     <div class="app-header__accent" aria-hidden="true"></div>
   </header>
 
   <main id="main">
     <section class="card chooser-card">
       <div id="chooser-area" class="chooser-area">
-        <p class="chooser-hint" id="chooser-hint">Finger auf den Bildschirm legen …</p>
+        <p class="chooser-hint" id="chooser-hint" data-i18n="chooser.hint">Finger auf den Bildschirm legen …</p>
       </div>
     </section>
   </main>
@@ -43,6 +44,8 @@
   <p class="app-version" id="app-version">Scoreboard</p>
 
   <script src="../js/version.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/i18n.js"></script>
   <script src="finger-chooser.js"></script>
 </body>
 </html>

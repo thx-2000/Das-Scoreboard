@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Offene Punkterunde — Scoreboard</title>
+  <title data-i18n="pages.pointsOpenGame.title">Offene Punkterunde — Scoreboard</title>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
   <header class="app-header">
     <div class="app-header__bar">
@@ -22,12 +22,12 @@
         <span>Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="../../index.html" class="btn btn--ghost">Startseite</a>
-        <a href="../../history.html" class="btn btn--ghost">Verlauf</a>
+        <a href="../../index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
+        <a href="../../history.html" class="btn btn--ghost" data-i18n="common.nav.history">Verlauf</a>
       </nav>
     </div>
     <h1 id="game-title">Offene Punkterunde</h1>
-    <p class="app-header__subtitle" id="game-subtitle">Lädt …</p>
+    <p class="app-header__subtitle" id="game-subtitle" data-i18n="common.game.loading">Lädt …</p>
     <div class="app-header__accent" aria-hidden="true"></div>
   </header>
 
@@ -35,20 +35,20 @@
     <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
       <section class="card scoreboard-card">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
-          <h2 style="margin:0;">Punktestand</h2>
+          <h2 style="margin:0;" data-i18n="common.game.standingsHeading">Punktestand</h2>
           <button type="button" id="toggle-finished-btn" class="btn btn--small btn--ghost"></button>
         </div>
         <table class="standings-table">
           <thead>
             <tr>
-              <th scope="col">Platz</th>
-              <th scope="col">Name</th>
-              <th scope="col">Punkte</th>
+              <th scope="col" data-i18n="common.table.rank">Platz</th>
+              <th scope="col" data-i18n="common.table.name">Name</th>
+              <th scope="col" data-i18n="common.table.points">Punkte</th>
             </tr>
           </thead>
           <tbody id="standings-body"></tbody>
         </table>
-        <p class="hint-text starting-player-legend" id="starting-player-legend" hidden>★ Startspieler (zufällig)</p>
+        <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
       </section>
     </div>
   </div>
@@ -57,15 +57,15 @@
     <div id="winner-banner-wrap"></div>
 
     <section class="card section-spacing" id="round-entry-card">
-      <h2>Neue Runde eintragen</h2>
-      <p class="hint-text">Punkte der aktuellen Runde je Spieler eingeben (0 ist normal).</p>
+      <h2 data-i18n="common.game.roundEntry.heading">Neue Runde eintragen</h2>
+      <p class="hint-text" data-i18n="pointsOpen.game.roundEntryHint">Punkte der aktuellen Runde je Spieler eingeben (0 ist normal).</p>
       <div class="round-form-grid" id="round-form-grid"></div>
-      <button type="button" id="save-round-btn" class="btn btn--primary">Runde speichern</button>
+      <button type="button" id="save-round-btn" class="btn btn--primary" data-i18n="common.game.roundEntry.saveButton">Runde speichern</button>
     </section>
 
     <section class="card section-spacing">
-      <h2>Rundenverlauf &amp; Korrektur</h2>
-      <p class="hint-text">Werte direkt anpassen, um Eintragungsfehler zu korrigieren.</p>
+      <h2 data-i18n="common.game.roundsTable.heading">Rundenverlauf &amp; Korrektur</h2>
+      <p class="hint-text" data-i18n="common.game.roundsTable.hint">Werte direkt anpassen, um Eintragungsfehler zu korrigieren.</p>
       <div class="rounds-table-wrap">
         <table class="rounds-table" id="rounds-table">
           <thead><tr id="rounds-table-head"></tr></thead>
@@ -78,6 +78,8 @@
   <p class="app-version" id="app-version">Scoreboard</p>
 
   <script src="../../js/version.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/i18n.js"></script>
   <script src="game.js"></script>
 </body>
 </html>

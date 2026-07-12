@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spielverlauf — Scoreboard</title>
+  <title data-i18n="pages.history.title">Spielverlauf — Scoreboard</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
   <header class="app-header">
     <div class="app-header__bar">
@@ -22,19 +22,20 @@
         <span>Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="index.html" class="btn btn--ghost">Startseite</a>
-        <a href="players.html" class="btn btn--ghost">Spieler</a>
-        <a href="tools/finger-chooser.html" class="btn btn--ghost">Wer fängt an?</a>
+        <a href="index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
+        <a href="players.html" class="btn btn--ghost" data-i18n="common.nav.players">Spieler</a>
+        <a href="tools/finger-chooser.html" class="btn btn--ghost" data-i18n="common.nav.chooser">Wer fängt an?</a>
+        <a href="settings.html" class="btn btn--ghost" data-i18n="common.nav.settings">Einstellungen</a>
       </nav>
     </div>
-    <h1>Spielverlauf</h1>
+    <h1 data-i18n="history.heading">Spielverlauf</h1>
     <div class="app-header__accent" aria-hidden="true"></div>
   </header>
 
   <main id="main">
     <section class="card">
-      <h2>Alle Spiele</h2>
-      <p class="hint-text">Neueste zuerst. Laufende Spiele können fortgesetzt werden, abgeschlossene zeigen das Ergebnis.</p>
+      <h2 data-i18n="history.all.heading">Alle Spiele</h2>
+      <p class="hint-text" data-i18n="history.all.hint">Neueste zuerst. Laufende Spiele können fortgesetzt werden, abgeschlossene zeigen das Ergebnis.</p>
       <ul class="history-list" id="history-list"></ul>
     </section>
   </main>
@@ -42,6 +43,8 @@
   <p class="app-version" id="app-version">Scoreboard</p>
 
   <script src="js/version.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/history.js"></script>
 </body>
 </html>

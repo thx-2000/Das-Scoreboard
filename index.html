@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scoreboard — Spieleabend-Aufschreiber</title>
+  <title data-i18n="pages.home.title">Scoreboard — Spieleabend-Aufschreiber</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
   <header class="app-header">
     <div class="app-header__bar">
@@ -22,35 +22,36 @@
         <span>Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="players.html" class="btn btn--ghost">Spieler</a>
-        <a href="history.html" class="btn btn--ghost">Verlauf</a>
-        <a href="tools/finger-chooser.html" class="btn btn--ghost">Wer fängt an?</a>
+        <a href="players.html" class="btn btn--ghost" data-i18n="common.nav.players">Spieler</a>
+        <a href="history.html" class="btn btn--ghost" data-i18n="common.nav.history">Verlauf</a>
+        <a href="tools/finger-chooser.html" class="btn btn--ghost" data-i18n="common.nav.chooser">Wer fängt an?</a>
+        <a href="settings.html" class="btn btn--ghost" data-i18n="common.nav.settings">Einstellungen</a>
       </nav>
     </div>
-    <h1>Aufschreibhilfe für Spieleabende</h1>
+    <h1 data-i18n="home.heading">Aufschreibhilfe für Spieleabende</h1>
     <div class="app-header__accent" aria-hidden="true"></div>
   </header>
 
   <main id="main">
     <section class="card">
-      <h2>Neues Spiel starten</h2>
-      <p class="hint-text">Wähle eine Aufschreibmöglichkeit für euer Spiel.</p>
+      <h2 data-i18n="home.newGame.heading">Neues Spiel starten</h2>
+      <p class="hint-text" data-i18n="home.newGame.hint">Wähle eine Aufschreibmöglichkeit für euer Spiel.</p>
 
       <div class="mode-grid" id="mode-grid">
         <a href="modes/points-to-target/setup.html" class="mode-card">
-          <h2>Punkte bis Höchstwert</h2>
-          <p>Punkte werden rundenweise addiert, bis jemand einen festgelegten Zielwert erreicht oder überschreitet. Wer dann am meisten Punkte hat, gewinnt.</p>
-          <p class="mode-card__examples">z.B. Flip7, Tutto</p>
+          <h2 data-i18n="modes.pointsToTarget.title">Punkte bis Höchstwert</h2>
+          <p data-i18n="modes.pointsToTarget.description">Punkte werden rundenweise addiert, bis jemand einen festgelegten Zielwert erreicht oder überschreitet. Wer dann am meisten Punkte hat, gewinnt.</p>
+          <p class="mode-card__examples" data-i18n="modes.pointsToTarget.examples">z.B. Flip7, Tutto</p>
         </a>
         <a href="modes/points-open/setup.html" class="mode-card">
-          <h2>Offene Punkterunde</h2>
-          <p>Punkte werden rundenweise addiert, ohne festen Zielwert. Ihr entscheidet selbst, wann Schluss ist — höchste oder niedrigste Punktzahl gewinnt, wie ihr es beim Einrichten festlegt.</p>
-          <p class="mode-card__examples">z.B. Doppelkopf</p>
+          <h2 data-i18n="modes.pointsOpen.title">Offene Punkterunde</h2>
+          <p data-i18n="modes.pointsOpen.description">Punkte werden rundenweise addiert, ohne festen Zielwert. Ihr entscheidet selbst, wann Schluss ist — höchste oder niedrigste Punktzahl gewinnt, wie ihr es beim Einrichten festlegt.</p>
+          <p class="mode-card__examples" data-i18n="modes.pointsOpen.examples">z.B. Doppelkopf</p>
         </a>
         <a href="modes/rage/setup.html" class="mode-card">
-          <h2>RAGE</h2>
-          <p>Feste 10 Runden mit sinkender Kartenzahl (10 bis 1). Vor jeder Runde sagt ihr eure Stichzahl an, danach tragt ihr die tatsächlichen Stiche ein — Punkte werden automatisch nach den RAGE-Regeln berechnet (inkl. Rage-Bonus/-Rache).</p>
-          <p class="mode-card__examples">Kartenspiel RAGE</p>
+          <h2 data-i18n="modes.rage.title">RAGE</h2>
+          <p data-i18n="modes.rage.description">Feste 10 Runden mit sinkender Kartenzahl (10 bis 1). Vor jeder Runde sagt ihr eure Stichzahl an, danach tragt ihr die tatsächlichen Stiche ein — Punkte werden automatisch nach den RAGE-Regeln berechnet (inkl. Rage-Bonus/-Rache).</p>
+          <p class="mode-card__examples" data-i18n="modes.rage.examples">Kartenspiel RAGE</p>
         </a>
       </div>
     </section>
@@ -59,5 +60,7 @@
   <p class="app-version" id="app-version">Scoreboard</p>
 
   <script src="js/version.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
 </body>
 </html>

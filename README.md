@@ -55,6 +55,47 @@ Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
 Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
 anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifend
 angelegt.
+- **Einstellungen** (`settings.html`): global gespeicherte (serverseitige)
+  Konfiguration, gilt für alle, die die Seite nutzen. Zwei Bereiche:
+  - **Farben**: komplette Palette einzeln per Hex-Eingabe + Farbwähler
+    konfigurierbar. Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …)
+    gelten unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund,
+    Fläche, Text, Rahmen) je einmal für Hell- und einmal für Dunkelmodus.
+    "Auf Standardfarben zurücksetzen" löscht alle Overrides wieder.
+  - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
+    "Mehrsprachigkeit (i18n)" unten.
+
+## Mehrsprachigkeit (i18n)
+
+Die komplette Oberfläche (alle Seiten, alle JS-generierten Texte) ist
+übersetzbar aufgebaut:
+
+- **Wörterbücher**: `i18n/de.json` und `i18n/en.json`, verschachtelte Keys
+  nach Bereich (`common.*` für seitenübergreifend Wiederverwendetes,
+  `home.*`, `players.*`, `history.*`, `settings.*`, `pointsToTarget.*`,
+  `pointsOpen.*`, `rage.*`, `chooser.*`). Platzhalter in geschweiften
+  Klammern (`{name}`) werden von `t()` per Objekt ersetzt.
+- **Loader** (`js/i18n.js`): lädt beim Seitenaufruf die in den globalen
+  Einstellungen gewählte Sprache, wendet sie auf alle `[data-i18n]`
+  (Textinhalt), `[data-i18n-placeholder]` und `[data-i18n-title]`-Elemente
+  an und setzt `<html lang="…">`. Stellt global `window.t(key, vars)` für
+  JS-generierte Texte sowie `window.scoreboardLocale()` (für
+  `toLocaleString()`-Datumsformatierung) bereit.
+- **Ladereihenfolge**: jede Seite bindet `js/theme.js` und `js/i18n.js` vor
+  ihrem eigenen Skript ein. Eigene Skripte, die `t()` beim Initialisieren
+  brauchen, warten auf `window.scoreboardI18nReady` (ein Promise), statt
+  direkt beim Laden zu rendern — sonst liefe `t()` ggf. mit leerem
+  Wörterbuch.
+
+**Neue Sprache ergänzen:**
+
+1. `i18n/{code}.json` anlegen (z.B. `i18n/fr.json`), Struktur von `de.json`
+   1:1 übernehmen und alle Werte übersetzen.
+2. In `includes/settings.php::supported_languages()` den neuen Code mit
+   Anzeigename ergänzen (z.B. `'fr' => 'Français'`).
+3. Fertig — die Sprache erscheint automatisch in der Auswahl auf der
+   Einstellungen-Seite. An `js/i18n.js` oder den Seiten muss nichts
+   geändert werden.
 
 ## Voraussetzungen beim Hoster
 
@@ -101,6 +142,7 @@ Scoreboard/
 ├── index.html               # Startseite: Modi-Auswahl
 ├── players.html             # Spielerverwaltung
 ├── history.html              # Spielverlauf
+├── settings.html              # globale Einstellungen (Farben, Sprache)
 ├── modes/
 │   ├── points-to-target/
 │   │   ├── setup.html        # neues Spiel einrichten (Zielwert)
@@ -125,13 +167,24 @@ Scoreboard/
 │   ├── games.php              # GET/POST/PATCH/DELETE Spiele
 │   ├── rounds.php              # POST/PATCH/DELETE Runden (einfache Punkte)
 │   ├── rage-rounds.php         # POST/PATCH/DELETE Runden (RAGE: Ansage/Stiche/Sonderkarten)
+│   ├── settings.php            # GET/PATCH globale Einstellungen (Farben, Sprache)
 │   └── version.php
 ├── includes/
 │   ├── db.php                 # PDO-SQLite-Verbindung + Schema
 │   ├── state.php               # buildState(), Sieg-Erkennung, JSON-Helper
-│   └── rage.php                 # RAGE-Punkteformel
+│   ├── rage.php                 # RAGE-Punkteformel
+│   └── settings.php             # Defaults, Validierung, get/save/reset
+├── i18n/
+│   ├── de.json                 # deutsches Wörterbuch
+│   └── en.json                 # englisches Wörterbuch
 ├── css/style.css
-├── js/version.js
+├── js/
+│   ├── version.js              # Versionsanzeige unten rechts
+│   ├── theme.js                # wendet Farbeinstellungen als CSS-Variablen an
+│   ├── i18n.js                  # laedt Sprachwoerterbuch, stellt t() bereit
+│   ├── settings.js              # Logik der Einstellungen-Seite
+│   ├── players.js               # Logik der Spielerverwaltung
+│   └── history.js                # Logik des Spielverlaufs
 ├── data/                      # SQLite-Datei, per .htaccess geschützt
 ├── .htaccess
 └── VERSION

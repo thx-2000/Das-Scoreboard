@@ -4,6 +4,7 @@ function modeInfo() {
   return {
     points_to_target: { title: window.t('modes.pointsToTarget.title'), url: 'modes/points-to-target/game.html' },
     points_open: { title: window.t('modes.pointsOpen.title'), url: 'modes/points-open/game.html' },
+    fixed_rounds: { title: window.t('modes.fixedRounds.title'), url: 'modes/fixed-rounds/game.html' },
     rage: { title: window.t('modes.rage.title'), url: 'modes/rage/game.html' },
   };
 }
@@ -78,6 +79,9 @@ function renderHistory(games) {
     let metaText = `${formatDateTime(game.startedAt)} · ${players}`;
     if (game.targetScore > 0) {
       metaText += ` · ${window.t('history.meta.target', { score: game.targetScore })}`;
+    }
+    if (game.totalRounds > 0) {
+      metaText += ` · ${window.t('history.meta.rounds', { played: game.roundsPlayed, total: game.totalRounds })}`;
     }
     if (game.status === 'finished' && game.winners.length > 0) {
       metaText += ` · ${window.t('history.meta.winners', { names: game.winners.join(' & ') })}`;

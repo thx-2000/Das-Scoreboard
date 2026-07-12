@@ -7,8 +7,9 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
 ## Konzept
 
 - **Startseite**: Übersicht der verfügbaren Aufschreibmöglichkeiten
-  ("Modi"), aktuell drei: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto),
-  *Offene Punkterunde* (Beispiel: Doppelkopf) und *RAGE*.
+  ("Modi"), aktuell vier: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto),
+  *Offene Punkterunde* (Beispiel: Doppelkopf), *Punkterunde mit fester
+  Rundenzahl* und *RAGE*.
 - **Spielerverwaltung** (`players.html`): zentrale Namens-Datenbank, aus der
   bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
   tippen. Entfernen ist eine weiche Löschung (Spieler bleiben in
@@ -28,6 +29,15 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   die niedrigste Punktzahl gewinnt. Das Spiel wird manuell per Knopfdruck
   beendet (und kann genauso wieder fortgesetzt werden), es gibt keinen
   automatischen Sieg-Moment.
+- **Modus "Punkterunde mit fester Rundenzahl"** (`modes/fixed-rounds/`): wie
+  "Offene Punkterunde", aber mit einer beim Einrichten festgelegten
+  Rundenzahl (Sieg-Richtung ebenfalls wählbar). Sobald die vereinbarte
+  Rundenzahl erreicht ist, erscheint ein Hinweis mit der Wahl "Spiel
+  beenden" oder "Weiterspielen, noch X Runden" (verlängert die Zielzahl und
+  lässt das Spiel aktiv weiterlaufen, danach erscheint der Hinweis bei
+  Bedarf erneut). Optional (Checkbox beim Einrichten, standardmäßig aus)
+  zeigt eine schließbare Meldung "Runde X beendet" nach jeder gespeicherten
+  Runde.
 - **Tool "Wer fängt an?"** (`tools/finger-chooser.html`): Multitouch-
   Fingerauswahl für iPad/iPhone. Wartet auf den ersten Finger, zählt dann
   5 Sekunden runter (weitere Finger können in dieser Zeit dazukommen),
@@ -161,6 +171,11 @@ Scoreboard/
 │   │   ├── setup.html        # neues Spiel einrichten (Sieg-Richtung)
 │   │   ├── setup.js
 │   │   ├── game.html         # aktives/beendetes Spiel, manuelles Beenden
+│   │   └── game.js
+│   ├── fixed-rounds/
+│   │   ├── setup.html        # neues Spiel einrichten (Rundenzahl, Sieg-Richtung)
+│   │   ├── setup.js
+│   │   ├── game.html         # Runde X von Y, Zielerreicht-Hinweis (beenden/verlaengern)
 │   │   └── game.js
 │   └── rage/
 │       ├── setup.html        # neues Spiel einrichten (nur Spielerauswahl)

@@ -17,7 +17,13 @@
       "finish": "Finish game",
       "resume": "Resume game",
       "remove": "Remove",
-      "reactivate": "Reactivate"
+      "reactivate": "Reactivate",
+      "close": "Close"
+    },
+    "winDirection": {
+      "heading": "Who wins at the end?",
+      "highest": "Highest score",
+      "lowest": "Lowest score"
     },
     "table": {
       "rank": "Rank",
@@ -48,7 +54,8 @@
         "empty": "No rounds played yet.",
         "deleteConfirm": "Really delete this round?"
       },
-      "noPlayersHint": "No players yet — add one below."
+      "noPlayersHint": "No players yet — add one below.",
+      "roundEntryHintGeneric": "Enter this round's points per player (0 is normal)."
     },
     "setup": {
       "heading": "Set up game",
@@ -72,6 +79,8 @@
     "pointsToTargetGame": { "title": "Points to target — Scoreboard" },
     "pointsOpenSetup": { "title": "Open point round — New game" },
     "pointsOpenGame": { "title": "Open point round — Scoreboard" },
+    "fixedRoundsSetup": { "title": "Points round with fixed round count — New game" },
+    "fixedRoundsGame": { "title": "Points round with fixed round count — Scoreboard" },
     "rageSetup": { "title": "RAGE — New game" },
     "rageGame": { "title": "RAGE — Scoreboard" },
     "chooser": { "title": "Who starts? — Scoreboard" }
@@ -86,6 +95,10 @@
       "title": "Open point round",
       "description": "Points are added up round by round with no fixed target. You decide yourselves when to stop — highest or lowest score wins, as you set it up.",
       "examples": "e.g. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Points round with fixed round count",
+      "description": "You decide during setup how many rounds to play and whether the highest or lowest score wins at the end. After the last round, the game asks whether to finish or extend by more rounds."
     },
     "rage": {
       "title": "RAGE",
@@ -131,6 +144,7 @@
     },
     "meta": {
       "target": "Target: {score} points",
+      "rounds": "Round {played}/{total}",
       "winners": "Winner: {names}"
     }
   },
@@ -187,20 +201,32 @@
   "pointsOpen": {
     "setup": {
       "subtitle": "Set up new game (e.g. Doppelkopf)",
-      "labelPlaceholder": "e.g. Doppelkopf",
-      "winDirection": {
-        "heading": "Who wins at the end?",
-        "highest": "Highest score",
-        "lowest": "Lowest score"
-      }
+      "labelPlaceholder": "e.g. Doppelkopf"
     },
     "game": {
       "subtitle": "{direction} · {started}",
       "direction": {
         "highest": "highest score wins",
         "lowest": "lowest score wins"
-      },
-      "roundEntryHint": "Enter this round's points per player (0 is normal)."
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Set up new game",
+      "roundsLabel": "How many rounds should be played?",
+      "announceLabel": "Announce after every round that it has ended",
+      "announceHint": "Shows a short, dismissible notice after every saved round."
+    },
+    "game": {
+      "subtitleOngoing": "Round {round} of {total} · {started}",
+      "subtitleReached": "{played} of {total} rounds played · {started}",
+      "roundEndNotice": "Round {round} finished",
+      "targetReached": {
+        "heading": "You've played the agreed {total} rounds.",
+        "extendLabel": "Keep playing, this many more rounds:",
+        "extendButton": "Keep playing"
+      }
     }
   },
   "rage": {

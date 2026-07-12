@@ -17,7 +17,13 @@
       "finish": "Spiel beenden",
       "resume": "Spiel fortsetzen",
       "remove": "Entfernen",
-      "reactivate": "Reaktivieren"
+      "reactivate": "Reaktivieren",
+      "close": "Schließen"
+    },
+    "winDirection": {
+      "heading": "Wer gewinnt am Ende?",
+      "highest": "Höchste Punktzahl",
+      "lowest": "Niedrigste Punktzahl"
     },
     "table": {
       "rank": "Platz",
@@ -48,7 +54,8 @@
         "empty": "Noch keine Runde gespielt.",
         "deleteConfirm": "Diese Runde wirklich löschen?"
       },
-      "noPlayersHint": "Noch keine Spieler angelegt — rechts unten hinzufügen."
+      "noPlayersHint": "Noch keine Spieler angelegt — rechts unten hinzufügen.",
+      "roundEntryHintGeneric": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal)."
     },
     "setup": {
       "heading": "Spiel einrichten",
@@ -72,6 +79,8 @@
     "pointsToTargetGame": { "title": "Punkte bis Höchstwert — Scoreboard" },
     "pointsOpenSetup": { "title": "Offene Punkterunde — Neues Spiel" },
     "pointsOpenGame": { "title": "Offene Punkterunde — Scoreboard" },
+    "fixedRoundsSetup": { "title": "Punkterunde mit fester Rundenzahl — Neues Spiel" },
+    "fixedRoundsGame": { "title": "Punkterunde mit fester Rundenzahl — Scoreboard" },
     "rageSetup": { "title": "RAGE — Neues Spiel" },
     "rageGame": { "title": "RAGE — Scoreboard" },
     "chooser": { "title": "Wer fängt an? — Scoreboard" }
@@ -86,6 +95,10 @@
       "title": "Offene Punkterunde",
       "description": "Punkte werden rundenweise addiert, ohne festen Zielwert. Ihr entscheidet selbst, wann Schluss ist — höchste oder niedrigste Punktzahl gewinnt, wie ihr es beim Einrichten festlegt.",
       "examples": "z.B. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Punkterunde mit fester Rundenzahl",
+      "description": "Ihr legt beim Einrichten fest, wie viele Runden gespielt werden und ob am Ende die höchste oder niedrigste Punktzahl gewinnt. Nach der letzten Runde fragt das Spiel, ob beendet oder um weitere Runden verlängert werden soll."
     },
     "rage": {
       "title": "RAGE",
@@ -131,6 +144,7 @@
     },
     "meta": {
       "target": "Ziel: {score} Punkte",
+      "rounds": "Runde {played}/{total}",
       "winners": "Sieger: {names}"
     }
   },
@@ -187,20 +201,32 @@
   "pointsOpen": {
     "setup": {
       "subtitle": "Neues Spiel einrichten (z.B. Doppelkopf)",
-      "labelPlaceholder": "z.B. Doppelkopf",
-      "winDirection": {
-        "heading": "Wer gewinnt am Ende?",
-        "highest": "Höchste Punktzahl",
-        "lowest": "Niedrigste Punktzahl"
-      }
+      "labelPlaceholder": "z.B. Doppelkopf"
     },
     "game": {
       "subtitle": "{direction} · {started}",
       "direction": {
         "highest": "höchste Punktzahl gewinnt",
         "lowest": "niedrigste Punktzahl gewinnt"
-      },
-      "roundEntryHint": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal)."
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Neues Spiel einrichten",
+      "roundsLabel": "Wie viele Runden sollen gespielt werden?",
+      "announceLabel": "Nach jeder Runde ansagen, dass sie beendet ist",
+      "announceHint": "Zeigt nach jeder gespeicherten Runde einen kurzen, schließbaren Hinweis."
+    },
+    "game": {
+      "subtitleOngoing": "Runde {round} von {total} · {started}",
+      "subtitleReached": "{played} von {total} Runden gespielt · {started}",
+      "roundEndNotice": "Runde {round} beendet",
+      "targetReached": {
+        "heading": "Ihr habt die vereinbarten {total} Runden gespielt.",
+        "extendLabel": "Weiterspielen, noch so viele Runden:",
+        "extendButton": "Weiterspielen"
+      }
     }
   },
   "rage": {

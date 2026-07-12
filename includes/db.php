@@ -141,6 +141,25 @@ function migrations(): array
                 )
             ');
         },
+
+        // Modus "Punkterunde mit fester Rundenzahl": total_rounds ist die
+        // vereinbarte (verlaengerbare) Zielrundenzahl, 0 = nicht relevant
+        // fuer andere Modi. announce_round_end ist ein Opt-in je Spiel fuer
+        // die "Runde X beendet"-Meldung nach jeder Runde (Default aus).
+        6 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            $toAdd = [
+                'total_rounds' => 'ALTER TABLE games ADD COLUMN total_rounds INTEGER NOT NULL DEFAULT 0',
+                'announce_round_end' => 'ALTER TABLE games ADD COLUMN announce_round_end INTEGER NOT NULL DEFAULT 0',
+            ];
+            foreach ($toAdd as $columnName => $sql) {
+                if (!in_array($columnName, $existing, true)) {
+                    $pdo->exec($sql);
+                }
+            }
+        },
     ];
 }
 

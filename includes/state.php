@@ -199,9 +199,25 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'startedAt' => $game['started_at'],
         'endedAt' => $game['ended_at'],
         'startingPlayerId' => $game['starting_player_id'] !== null ? (int) $game['starting_player_id'] : null,
+        'totalRounds' => (int) $game['total_rounds'],
+        'announceRoundEnd' => (bool) $game['announce_round_end'],
         'players' => array_map(fn($p) => ['id' => (int) $p['id'], 'name' => $p['name']], $players),
         'rounds' => $roundsOut,
         'standings' => $standings,
         'winners' => $winners,
     ];
+}
+
+/**
+ * Verlaengert die vereinbarte Rundenzahl fuer den Modus "Punkterunde mit
+ * fester Rundenzahl" - Status/Endzeit bleiben unangetastet, das Spiel laeuft
+ * einfach mit dem neuen (hoeheren) Ziel weiter.
+ */
+function extend_total_rounds(PDO $pdo, int $gameId, int $additionalRounds): void
+{
+    if ($additionalRounds <= 0) {
+        return;
+    }
+    $update = $pdo->prepare('UPDATE games SET total_rounds = total_rounds + ? WHERE id = ?');
+    $update->execute([$additionalRounds, $gameId]);
 }

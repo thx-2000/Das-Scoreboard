@@ -46,11 +46,20 @@ if ($method === 'GET') {
             }
         }
 
+        $roundsPlayed = 0;
+        if ((int) $game['total_rounds'] > 0) {
+            $countStmt = $pdo->prepare('SELECT COUNT(*) AS c FROM rounds WHERE game_id = ?');
+            $countStmt->execute([$gameId]);
+            $roundsPlayed = (int) $countStmt->fetch(PDO::FETCH_ASSOC)['c'];
+        }
+
         return [
             'id' => $gameId,
             'mode' => $game['mode'],
             'label' => $game['label'],
             'targetScore' => (int) $game['target_score'],
+            'totalRounds' => (int) $game['total_rounds'],
+            'roundsPlayed' => $roundsPlayed,
             'status' => $game['status'],
             'startedAt' => $game['started_at'],
             'endedAt' => $game['ended_at'],
@@ -68,6 +77,8 @@ if ($method === 'POST') {
     $label = trim((string) ($body['label'] ?? ''));
     $targetScore = (int) ($body['targetScore'] ?? 0);
     $winDirection = ($body['winDirection'] ?? 'highest') === 'lowest' ? 'lowest' : 'highest';
+    $totalRounds = (int) ($body['totalRounds'] ?? 0);
+    $announceRoundEnd = !empty($body['announceRoundEnd']);
     $playerIds = array_map('intval', $body['playerIds'] ?? []);
     $playerIds = array_values(array_unique($playerIds));
 
@@ -79,6 +90,10 @@ if ($method === 'POST') {
     if ($mode === 'points_to_target' && $targetScore <= 0) {
         send_json(['error' => 'Zielwert muss groesser als 0 sein.'], 400);
     }
+    // "Punkterunde mit fester Rundenzahl" braucht zwingend eine Rundenzahl.
+    if ($mode === 'fixed_rounds' && $totalRounds <= 0) {
+        send_json(['error' => 'Rundenzahl muss groesser als 0 sein.'], 400);
+    }
     if (count($playerIds) < 2) {
         send_json(['error' => 'Mindestens 2 Spieler erforderlich.'], 400);
     }
@@ -89,10 +104,13 @@ if ($method === 'POST') {
     $pdo->beginTransaction();
 
     $insertGame = $pdo->prepare('
-        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id)
-        VALUES (?, ?, ?, ?, "active", ?, ?)
+        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end)
+        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?)
     ');
-    $insertGame->execute([$mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso(), $startingPlayerId]);
+    $insertGame->execute([
+        $mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso(), $startingPlayerId,
+        max(0, $totalRounds), $announceRoundEnd ? 1 : 0,
+    ]);
     $gameId = (int) $pdo->lastInsertId();
 
     $insertGamePlayer = $pdo->prepare('INSERT INTO game_players (game_id, player_id) VALUES (?, ?)');
@@ -115,6 +133,9 @@ if ($method === 'PATCH' && $id !== null) {
     $body = read_json_body();
     if (array_key_exists('finished', $body)) {
         set_game_finished($pdo, $id, (bool) $body['finished']);
+    }
+    if (array_key_exists('extendRounds', $body)) {
+        extend_total_rounds($pdo, $id, (int) $body['extendRounds']);
     }
 
     send_json(build_game_state($pdo, $id));

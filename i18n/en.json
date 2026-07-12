@@ -71,19 +71,19 @@
     }
   },
   "pages": {
-    "home": { "title": "Scoreboard — Game night scorekeeper" },
-    "players": { "title": "Manage players — Scoreboard" },
-    "history": { "title": "Game history — Scoreboard" },
-    "settings": { "title": "Settings — Scoreboard" },
+    "home": { "title": "Game night scorekeeper" },
+    "players": { "title": "Manage players" },
+    "history": { "title": "Game history" },
+    "settings": { "title": "Settings" },
     "pointsToTargetSetup": { "title": "Points to target — New game" },
-    "pointsToTargetGame": { "title": "Points to target — Scoreboard" },
+    "pointsToTargetGame": { "title": "Points to target" },
     "pointsOpenSetup": { "title": "Open point round — New game" },
-    "pointsOpenGame": { "title": "Open point round — Scoreboard" },
+    "pointsOpenGame": { "title": "Open point round" },
     "fixedRoundsSetup": { "title": "Points round with fixed round count — New game" },
-    "fixedRoundsGame": { "title": "Points round with fixed round count — Scoreboard" },
+    "fixedRoundsGame": { "title": "Points round with fixed round count" },
     "rageSetup": { "title": "RAGE — New game" },
-    "rageGame": { "title": "RAGE — Scoreboard" },
-    "chooser": { "title": "Who starts? — Scoreboard" }
+    "rageGame": { "title": "RAGE" },
+    "chooser": { "title": "Who starts?" }
   },
   "modes": {
     "pointsToTarget": {
@@ -151,6 +151,11 @@
   "settings": {
     "heading": "Settings",
     "subtitle": "Applies to everyone using this app (stored globally).",
+    "title": {
+      "heading": "Title",
+      "hint": "Shown in the header and in the browser tab title.",
+      "label": "Title"
+    },
     "language": {
       "heading": "Language",
       "hint": "More languages can be added later.",

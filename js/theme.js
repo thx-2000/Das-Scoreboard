@@ -1,10 +1,15 @@
 /**
- * Wendet die global gespeicherten Farbeinstellungen als CSS-Variablen an.
- * Wird auf jeder Seite eingebunden (wie version.js). Basis-Farben (Hell/
- * Dunkel getrennt) reagieren auf einen Wechsel des Systemfarbschemas zur
- * Laufzeit; Akzent-/Funktionsfarben gelten unveraendert in beiden Modi.
+ * Wendet die global gespeicherten Farbeinstellungen als CSS-Variablen und den
+ * konfigurierbaren Titel als Markennamen an. Wird auf jeder Seite eingebunden
+ * (wie version.js). Basis-Farben (Hell/Dunkel getrennt) reagieren auf einen
+ * Wechsel des Systemfarbschemas zur Laufzeit; Akzent-/Funktionsfarben gelten
+ * unveraendert in beiden Modi.
+ *
+ * window.scoreboardThemeReady ist ein Promise, das mit dem geladenen
+ * Settings-Objekt aufloest (oder mit null bei Fehler) - andere Skripte
+ * (i18n.js, version.js) warten darauf, um z.B. den Markennamen zu lesen.
  */
-(async function applyTheme() {
+window.scoreboardThemeReady = (async function applyTheme() {
   const root = document.documentElement;
 
   // Theme-Paare: Settings-Schluessel (ohne _light/_dark) -> CSS-Variable.
@@ -27,14 +32,18 @@
     color_danger: '--color-danger',
   };
 
-  let settings;
+  let settings = null;
   try {
     const response = await fetch('/api/settings.php');
     const data = await response.json();
     settings = data.settings;
   } catch (err) {
-    return; // Standardfarben aus style.css bleiben aktiv
+    return null; // Standardfarben aus style.css und Standardtitel bleiben aktiv
   }
+
+  document.querySelectorAll('[data-brand-name]').forEach((el) => {
+    el.textContent = settings.app_title || 'Das Scoreboard';
+  });
 
   const media = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -54,4 +63,5 @@
   media.addEventListener('change', apply);
 
   window.__scoreboardSettings = settings;
+  return settings;
 })();

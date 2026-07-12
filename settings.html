@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="pages.settings.title">Einstellungen — Scoreboard</title>
+  <title data-i18n-title-suffix="pages.settings.title">Das Scoreboard — Einstellungen</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
           <line x1="9" y1="21" x2="14" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           <path d="M21 8 L27 14 L18.5 22.5 L13.5 23.5 L14.5 18.5 Z" fill="var(--color-green)" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
         </svg>
-        <span>Scoreboard</span>
+        <span data-brand-name>Das Scoreboard</span>
       </a>
       <nav class="app-nav" aria-label="Hauptnavigation">
         <a href="index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
@@ -35,6 +35,15 @@
 
   <main id="main">
     <section class="card">
+      <h2 data-i18n="settings.title.heading">Titel</h2>
+      <p class="hint-text" data-i18n="settings.title.hint">Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.</p>
+      <form id="title-form" class="form">
+        <label for="app-title-input" data-i18n="settings.title.label">Titel</label>
+        <input type="text" id="app-title-input" maxlength="60">
+      </form>
+    </section>
+
+    <section class="card section-spacing">
       <h2 data-i18n="settings.language.heading">Sprache</h2>
       <p class="hint-text" data-i18n="settings.language.hint">Weitere Sprachen können später ergänzt werden.</p>
       <form id="language-form" class="form">
@@ -62,7 +71,7 @@
     <p id="settings-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
   </main>
 
-  <p class="app-version" id="app-version">Scoreboard</p>
+  <p class="app-version" id="app-version">Das Scoreboard</p>
 
   <script src="js/version.js"></script>
   <script src="js/theme.js"></script>

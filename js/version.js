@@ -77,12 +77,22 @@ async function showUpdateHintIfNewer(currentVersion, el) {
     const response = await fetch('/api/version.php');
     const data = await response.json();
     currentVersion = data.version;
-    el.textContent = `Scoreboard – v${currentVersion}`;
   } catch (err) {
     // Fallback-Text bleibt stehen, falls Anfrage fehlschlaegt.
   }
 
+  let brandName = 'Das Scoreboard';
+  if (window.scoreboardThemeReady) {
+    try {
+      const settings = await window.scoreboardThemeReady;
+      if (settings && settings.app_title) brandName = settings.app_title;
+    } catch (err) {
+      // Fallback-Markenname reicht
+    }
+  }
+
   if (currentVersion) {
+    el.textContent = `${brandName} – v${currentVersion}`;
     showUpdateHintIfNewer(currentVersion, el);
   }
 })();

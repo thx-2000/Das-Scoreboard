@@ -71,19 +71,19 @@
     }
   },
   "pages": {
-    "home": { "title": "Scoreboard — Spieleabend-Aufschreiber" },
-    "players": { "title": "Spieler verwalten — Scoreboard" },
-    "history": { "title": "Spielverlauf — Scoreboard" },
-    "settings": { "title": "Einstellungen — Scoreboard" },
+    "home": { "title": "Spieleabend-Aufschreiber" },
+    "players": { "title": "Spieler verwalten" },
+    "history": { "title": "Spielverlauf" },
+    "settings": { "title": "Einstellungen" },
     "pointsToTargetSetup": { "title": "Punkte bis Höchstwert — Neues Spiel" },
-    "pointsToTargetGame": { "title": "Punkte bis Höchstwert — Scoreboard" },
+    "pointsToTargetGame": { "title": "Punkte bis Höchstwert" },
     "pointsOpenSetup": { "title": "Offene Punkterunde — Neues Spiel" },
-    "pointsOpenGame": { "title": "Offene Punkterunde — Scoreboard" },
+    "pointsOpenGame": { "title": "Offene Punkterunde" },
     "fixedRoundsSetup": { "title": "Punkterunde mit fester Rundenzahl — Neues Spiel" },
-    "fixedRoundsGame": { "title": "Punkterunde mit fester Rundenzahl — Scoreboard" },
+    "fixedRoundsGame": { "title": "Punkterunde mit fester Rundenzahl" },
     "rageSetup": { "title": "RAGE — Neues Spiel" },
-    "rageGame": { "title": "RAGE — Scoreboard" },
-    "chooser": { "title": "Wer fängt an? — Scoreboard" }
+    "rageGame": { "title": "RAGE" },
+    "chooser": { "title": "Wer fängt an?" }
   },
   "modes": {
     "pointsToTarget": {
@@ -151,6 +151,11 @@
   "settings": {
     "heading": "Einstellungen",
     "subtitle": "Gilt für alle, die diese Seite nutzen (global gespeichert).",
+    "title": {
+      "heading": "Titel",
+      "hint": "Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.",
+      "label": "Titel"
+    },
     "language": {
       "heading": "Sprache",
       "hint": "Weitere Sprachen können später ergänzt werden.",

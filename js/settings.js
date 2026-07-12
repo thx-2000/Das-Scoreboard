@@ -1,3 +1,6 @@
+const appTitleInput = document.getElementById('app-title-input');
+document.getElementById('title-form').addEventListener('submit', (event) => event.preventDefault());
+
 const languageSelect = document.getElementById('language-select');
 const singleColorFields = document.getElementById('single-color-fields');
 const themePairFields = document.getElementById('theme-pair-fields');
@@ -111,12 +114,13 @@ async function loadSettings() {
   const response = await fetch('/api/settings.php');
   const data = await response.json();
   currentSettings = data.settings;
+  appTitleInput.value = data.settings.app_title || '';
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
 }
 
 function collectFormValues() {
-  const values = { language: languageSelect.value };
+  const values = { language: languageSelect.value, app_title: appTitleInput.value.trim() };
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;
   });
@@ -154,6 +158,7 @@ resetBtn.addEventListener('click', async () => {
   });
   const data = await response.json();
   currentSettings = data.settings;
+  appTitleInput.value = data.settings.app_title || '';
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   showStatus(window.t('settings.resetStatus'));

@@ -44,6 +44,28 @@ function applyDataI18n() {
   });
 }
 
+/**
+ * <title data-i18n-title-suffix="..."> bekommt nicht den reinen Wörterbuch-
+ * Text, sondern "{Markenname} — {Text}" - der Markenname kommt aus den
+ * globalen Einstellungen (theme.js), nicht aus dem Sprach-Wörterbuch, da er
+ * in jeder Sprache gleich bleiben soll.
+ */
+async function applyTitleWithBrand() {
+  let brandName = 'Das Scoreboard';
+  if (window.scoreboardThemeReady) {
+    try {
+      const settings = await window.scoreboardThemeReady;
+      if (settings && settings.app_title) brandName = settings.app_title;
+    } catch (err) {
+      // Fallback-Markenname reicht
+    }
+  }
+  document.querySelectorAll('[data-i18n-title-suffix]').forEach((el) => {
+    const suffix = window.t(el.getAttribute('data-i18n-title-suffix'));
+    el.textContent = `${brandName} — ${suffix}`;
+  });
+}
+
 async function initI18n() {
   let lang = FALLBACK_LANG;
   try {
@@ -64,6 +86,7 @@ async function initI18n() {
 
   document.documentElement.lang = currentLang;
   applyDataI18n();
+  await applyTitleWithBrand();
   return currentLang;
 }
 

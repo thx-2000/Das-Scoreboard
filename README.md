@@ -72,6 +72,12 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   grundsätzlich nicht möglich (Safari implementiert die Vibration-API
   nicht, auch nicht im PWA-Modus), der Ton funktioniert dort aber normal.
   In den Einstellungen abschaltbar (Standard: an).
+- **Zahlenfelder-UX**: Alle Punkte-/Zahleneingabefelder (Rundenerfassung,
+  Korrektur-Tabelle, Einrichten-Formulare) markieren ihren Inhalt
+  automatisch beim Fokussieren — direkt lostippen überschreibt den
+  bisherigen Wert, ohne ihn erst manuell markieren oder löschen zu müssen.
+  Auf Mobilgeräten öffnet sich dabei die numerische Tastatur
+  (`inputmode="numeric"`).
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -323,6 +329,11 @@ to work on iPad and iPhone.
   iPhone/iPad at all (Safari doesn't implement the Vibration API, even in
   PWA mode), but the sound works there normally. Toggleable in settings
   (default: on).
+- **Number field UX**: all point/number entry fields (round entry,
+  correction table, setup forms) auto-select their content on focus —
+  typing immediately overwrites the previous value without having to
+  select or delete it manually first. On mobile devices this also brings
+  up the numeric keyboard (`inputmode="numeric"`).
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

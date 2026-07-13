@@ -131,10 +131,10 @@ function renderRoundEntry(state) {
     row.dataset.playerId = player.id;
     row.innerHTML = `
       <td style="text-align:left;">${player.name}</td>
-      <td><input type="number" class="field-bid" min="0" max="${cards}" value="0"></td>
-      <td><input type="number" class="field-actual" min="0" max="${cards}" value="0"></td>
-      <td><input type="number" class="field-bonus" min="0" max="3" value="0"></td>
-      <td><input type="number" class="field-rache" min="0" max="3" value="0"></td>
+      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bid" value="0"></td>
+      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-actual" value="0"></td>
+      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bonus" value="0"></td>
+      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-rache" value="0"></td>
       <td class="field-preview">0</td>
     `;
     row.querySelectorAll('input').forEach((input) => {
@@ -235,32 +235,34 @@ function renderRoundsTable(state) {
       const details = round.rageDetails[player.id] || { bid: 0, actualTricks: 0, rageBonusCount: 0, rageRacheCount: 0 };
 
       const bidInput = document.createElement('input');
-      bidInput.type = 'number';
+      bidInput.type = 'text';
+      bidInput.inputMode = 'numeric';
+      bidInput.pattern = '[0-9]*';
       bidInput.className = 'field-bid';
-      bidInput.min = '0';
       bidInput.dataset.playerId = player.id;
       bidInput.value = details.bid ?? 0;
 
       const actualInput = document.createElement('input');
-      actualInput.type = 'number';
+      actualInput.type = 'text';
+      actualInput.inputMode = 'numeric';
+      actualInput.pattern = '[0-9]*';
       actualInput.className = 'field-actual';
-      actualInput.min = '0';
       actualInput.dataset.playerId = player.id;
       actualInput.value = details.actualTricks ?? 0;
 
       const bonusInput = document.createElement('input');
-      bonusInput.type = 'number';
+      bonusInput.type = 'text';
+      bonusInput.inputMode = 'numeric';
+      bonusInput.pattern = '[0-9]*';
       bonusInput.className = 'field-bonus';
-      bonusInput.min = '0';
-      bonusInput.max = '3';
       bonusInput.dataset.playerId = player.id;
       bonusInput.value = details.rageBonusCount ?? 0;
 
       const racheInput = document.createElement('input');
-      racheInput.type = 'number';
+      racheInput.type = 'text';
+      racheInput.inputMode = 'numeric';
+      racheInput.pattern = '[0-9]*';
       racheInput.className = 'field-rache';
-      racheInput.min = '0';
-      racheInput.max = '3';
       racheInput.dataset.playerId = player.id;
       racheInput.value = details.rageRacheCount ?? 0;
 

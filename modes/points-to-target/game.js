@@ -94,7 +94,9 @@ function renderRoundEntryForm(state) {
     label.textContent = player.name;
 
     const input = document.createElement('input');
-    input.type = 'number';
+    input.type = 'text';
+    input.inputMode = 'numeric';
+    input.pattern = '-?[0-9]*';
     input.id = `round-input-${player.id}`;
     input.dataset.playerId = player.id;
     input.value = '0';
@@ -142,7 +144,9 @@ function renderRoundsTable(state) {
     state.players.forEach((player) => {
       const cell = document.createElement('td');
       const input = document.createElement('input');
-      input.type = 'number';
+      input.type = 'text';
+      input.inputMode = 'numeric';
+      input.pattern = '-?[0-9]*';
       input.value = round.scores[player.id] ?? 0;
       input.dataset.playerId = player.id;
       input.addEventListener('change', () => correctRound(round.id, row));

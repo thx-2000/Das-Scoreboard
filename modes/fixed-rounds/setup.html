@@ -46,7 +46,7 @@
         <input type="text" id="game-label" maxlength="60" autocomplete="off">
 
         <label for="total-rounds" data-i18n="fixedRounds.setup.roundsLabel">Wie viele Runden sollen gespielt werden?</label>
-        <input type="number" id="total-rounds" min="1" value="10" required>
+        <input type="text" id="total-rounds" value="10" inputmode="numeric" pattern="[0-9]*" required>
 
         <label data-i18n="common.winDirection.heading">Wer gewinnt am Ende?</label>
         <div class="player-picker">
@@ -87,6 +87,7 @@
   <script src="../../js/version.js"></script>
   <script src="../../js/theme.js"></script>
   <script src="../../js/i18n.js"></script>
+  <script src="../../js/input-helpers.js"></script>
   <script src="setup.js"></script>
 </body>
 </html>

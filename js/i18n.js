@@ -76,8 +76,22 @@ async function initI18n() {
     // Fallback bleibt Deutsch
   }
 
+  // Cache-Buster ueber die App-Version: i18n/{lang}.json ist eine statische
+  // Datei, die der Browser sonst ueber ein Update hinweg im Cache behalten
+  // kann (neue Keys wuerden dann als roher Schluessel angezeigt, bis
+  // jemand hart neu laedt). Mit ?v=<version> zaehlt jede neue Version als
+  // eigene URL, der Cache wird automatisch bei jedem Release ungueltig.
+  let version = '';
   try {
-    const dictResponse = await fetch(`/i18n/${lang}.json`);
+    const versionResponse = await fetch('/api/version.php');
+    const versionData = await versionResponse.json();
+    version = versionData.version || '';
+  } catch (err) {
+    // Ohne Versionsnummer wird einfach ohne Cache-Buster geladen.
+  }
+
+  try {
+    const dictResponse = await fetch(`/i18n/${lang}.json${version ? `?v=${version}` : ''}`);
     dictionary = await dictResponse.json();
     currentLang = lang;
   } catch (err) {

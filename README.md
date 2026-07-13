@@ -62,10 +62,14 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   (`assets/icons/`) erlauben "Zum Home-Bildschirm hinzufügen" auf
   iPad/iPhone (Safari: Teilen-Symbol → "Zum Home-Bildschirm") sowie auf
   Android/Desktop-Chrome — die Seite öffnet sich danach wie eine eigene
-  App, ohne Adressleiste. Kurzer Hinweis dazu steht auch auf der
-  Startseite. Name/Icon im Manifest sind aktuell statisch (Standardtitel
-  "Das Scoreboard", Stift-Symbol) und folgen einem in den Einstellungen
-  geänderten Titel/Logo (noch) nicht automatisch.
+  App, ohne Adressleiste. Ein Hinweis dazu erscheint auf der Startseite,
+  aber nur, wenn eine Installation dort auch tatsächlich möglich ist (auf
+  iOS/iPadOS Safari immer, auf Chrome/Edge/Android nur wenn der Browser
+  das `beforeinstallprompt`-Event auslöst) — auf einem Desktop-Browser
+  ohne Installationsunterstützung bleibt er unsichtbar. Name/Icon im
+  Manifest sind aktuell statisch (Standardtitel "Das Scoreboard",
+  Stift-Symbol) und folgen einem in den Einstellungen geänderten
+  Titel/Logo (noch) nicht automatisch.
 - **Ton beim Speichern**: kurzer, per Web-Audio-API synthetisierter Ton
   (keine Audiodatei nötig) beim Speichern einer neuen Runde, in allen 4
   Modi. Zusätzlich Vibration, wo vom Gerät unterstützt — auf iPhone/iPad
@@ -251,7 +255,9 @@ Das-Scoreboard/
 │   ├── settings.js              # Logik der Einstellungen-Seite
 │   ├── players.js               # Logik der Spielerverwaltung
 │   ├── history.js                # Logik des Spielverlaufs
-│   └── feedback.js               # Ton/Vibration beim Rundenspeichern (nur Spielansichten)
+│   ├── feedback.js               # Ton/Vibration beim Rundenspeichern (nur Spielansichten)
+│   ├── input-helpers.js          # Auto-Select in Zahlenfeldern beim Fokussieren
+│   └── pwa-hint.js                # Blendet PWA-Hinweis nur bei moeglicher Installation ein (nur Startseite)
 ├── data/                      # SQLite-Datei + Logo-Uploads, per .htaccess geschützt
 ├── assets/
 │   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
@@ -319,10 +325,13 @@ to work on iPad and iPhone.
   (`assets/icons/`) enable "Add to Home Screen" on iPad/iPhone (Safari:
   Share icon → "Add to Home Screen") as well as on Android/desktop
   Chrome — the page then opens like its own app, without the address
-  bar. A short hint about this is also shown on the home page. Name/icon
-  in the manifest are currently static (default title "Das Scoreboard",
-  pen icon) and don't (yet) automatically follow a title/logo changed in
-  settings.
+  bar. A hint about this is shown on the home page, but only when
+  installation is actually possible there (always on iOS/iPadOS Safari,
+  on Chrome/Edge/Android only once the browser fires the
+  `beforeinstallprompt` event) — stays hidden on a desktop browser
+  without install support. Name/icon in the manifest are currently
+  static (default title "Das Scoreboard", pen icon) and don't (yet)
+  automatically follow a title/logo changed in settings.
 - **Sound on save**: short tone synthesized via the Web Audio API (no
   audio file needed) when saving a new round, in all 4 modes. Also
   triggers vibration where supported by the device — not possible on

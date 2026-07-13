@@ -227,6 +227,12 @@
   "settings": {
     "heading": "Settings",
     "subtitle": "Applies to everyone using this app (stored globally).",
+    "theme": {
+      "heading": "Appearance",
+      "hint": "Two independent looks to choose from. \"Bold Scorekeeper\" is being rolled out across all pages step by step — the colors chosen below only apply to \"Classic\".",
+      "classic": "Classic",
+      "bold": "Bold Scorekeeper"
+    },
     "title": {
       "heading": "Title",
       "hint": "Shown in the header and in the browser tab title.",

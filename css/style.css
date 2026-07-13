@@ -1223,3 +1223,67 @@ main {
     margin-bottom: 1rem;
   }
 }
+
+/* ==========================================================================
+   "Bold Scorekeeper" Theme (zweites, waehlbares Aussehen)
+   ==========================================================================
+   Aktiviert per [data-theme-style="bold"] auf <html> (js/theme.js). Eigene,
+   feste Farb-Tokens statt der individuell einstellbaren Classic-Farben -
+   immer dunkel, kein Hell/Dunkel-Wechsel. Ueberschreibt dieselben CSS-
+   Variablen wie Classic, deshalb recolort sich die komplette bestehende
+   Seiten-Struktur automatisch, ganz ohne HTML-Aenderungen - Layout-/
+   Bedienungs-Umbauten je Seite folgen in eigenen Schritten (siehe Roadmap).
+   Spielerfarben (--player-color-*) sind vorbereitet, aber noch nicht in
+   Markup verdrahtet. */
+:root[data-theme-style="bold"] {
+  --color-bg: #0b0d10;
+  --color-surface: #16191e;
+  --color-text: #f4f6f8;
+  --color-text-muted: #97a1ad;
+  --color-border: #262b32;
+
+  /* Neon-Lime als Hauptaktion/Akzent. */
+  --color-green: #b6ff1a;
+  --color-green-strong: #8fd400;
+
+  /* Amber-Slot wird zu Orange/Rot fuer RAGE- bzw. Warn-/Feuer-Akzente. */
+  --color-amber: #ff6a3d;
+  --color-amber-strong: #e0451c;
+
+  --color-on-accent: #0b0d10;
+  --color-focus: #22d3ee;
+  --color-danger: #ff3b5c;
+
+  /* Cyan/Purple als Spielerfarben, Lime/Orange ergaenzen den Zyklus. */
+  --player-color-1: #b6ff1a;
+  --player-color-2: #ff8a3d;
+  --player-color-3: #b088ff;
+  --player-color-4: #22d3ee;
+
+  --radius: 18px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme-style="bold"] body {
+  letter-spacing: -0.01em;
+}
+
+[data-theme-style="bold"] h1,
+[data-theme-style="bold"] h2,
+[data-theme-style="bold"] h3 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Grosse, klare Haupt-Aktionen statt zurueckhaltender Formular-Buttons. */
+[data-theme-style="bold"] .btn--primary,
+[data-theme-style="bold"] .btn--secondary,
+[data-theme-style="bold"] .btn--danger {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+[data-theme-style="bold"] .mode-card {
+  border-top-width: 6px;
+}

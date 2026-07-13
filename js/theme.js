@@ -73,22 +73,33 @@ window.scoreboardThemeReady = (async function applyTheme() {
 
   applyLogo(settings);
 
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  // "Bold Scorekeeper" ist ein zweites, komplett eigenstaendiges Aussehen mit
+  // fest vorgegebenen Farb-Tokens (siehe css/style.css
+  // [data-theme-style="bold"]) - die hier folgende individuelle Hell/Dunkel-
+  // Farbanwendung gilt bewusst nur fuer "classic", sonst wuerden Inline-
+  // Styles (hoehere Spezifitaet als CSS-Selektoren) die Bold-Tokens
+  // ueberschreiben.
+  const themeStyle = settings.theme_style === 'bold' ? 'bold' : 'classic';
+  root.dataset.themeStyle = themeStyle;
 
-  function apply() {
-    const suffix = media.matches ? '_dark' : '_light';
-    Object.entries(themePairs).forEach(([key, cssVar]) => {
-      const value = settings[key + suffix];
-      if (value) root.style.setProperty(cssVar, value);
-    });
-    Object.entries(singleValues).forEach(([key, cssVar]) => {
-      const value = settings[key];
-      if (value) root.style.setProperty(cssVar, value);
-    });
+  if (themeStyle === 'classic') {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const apply = () => {
+      const suffix = media.matches ? '_dark' : '_light';
+      Object.entries(themePairs).forEach(([key, cssVar]) => {
+        const value = settings[key + suffix];
+        if (value) root.style.setProperty(cssVar, value);
+      });
+      Object.entries(singleValues).forEach(([key, cssVar]) => {
+        const value = settings[key];
+        if (value) root.style.setProperty(cssVar, value);
+      });
+    };
+
+    apply();
+    media.addEventListener('change', apply);
   }
-
-  apply();
-  media.addEventListener('change', apply);
 
   window.__scoreboardSettings = settings;
   return settings;

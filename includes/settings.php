@@ -16,6 +16,13 @@ function default_settings(): array
         'app_title' => 'Das Scoreboard',
         'sound_enabled' => '1',
 
+        // 'classic' (Standard, heutiger Look) | 'bold' ("Bold Scorekeeper" -
+        // dunkles, hochkontrastiges zweites Aussehen). Bold nutzt eigene,
+        // feste Farb-Tokens (siehe css/style.css [data-theme-style="bold"])
+        // statt der unten stehenden individuell einstellbaren Farben - die
+        // gelten weiterhin ausschliesslich fuer Classic.
+        'theme_style' => 'classic',
+
         // 'none' (Standard) | 'square' | 'banner'. Die _ext-Werte ('' = kein
         // Logo hochgeladen, sonst 'png'/'jpg'/'svg') werden ausschliesslich
         // von api/logo.php gesetzt, nicht ueber das generische Settings-
@@ -103,6 +110,10 @@ function save_settings(PDO $pdo, array $updates): void
             }
         } elseif ($key === 'sound_enabled') {
             if (!in_array($value, ['0', '1'], true)) {
+                continue;
+            }
+        } elseif ($key === 'theme_style') {
+            if (!in_array($value, ['classic', 'bold'], true)) {
                 continue;
             }
         } elseif ($key === 'logo_square_ext' || $key === 'logo_banner_ext') {

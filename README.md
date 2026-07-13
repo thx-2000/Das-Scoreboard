@@ -156,6 +156,18 @@ anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifen
 angelegt.
 - **Einstellungen** (`settings.html`): global gespeicherte (serverseitige)
   Konfiguration, gilt für alle, die die Seite nutzen. Mehrere Bereiche:
+  - **Aussehen**: Wahl zwischen zwei eigenständigen Themes — "Classic"
+    (Standard, der bisherige Look, individuell per Hex-Farben anpassbar) und
+    "Bold Scorekeeper" (zweites, dunkles, hochkontrastiges Theme mit fest
+    vorgegebener Neon-Lime/Cyan/Purple/Orange-Palette, nicht per Hex
+    anpassbar). Technisch teilen sich beide Themes dieselbe HTML/JS-Struktur
+    je Seite — das Theme setzt nur `[data-theme-style]` auf `<html>`
+    (`js/theme.js`) und schaltet darüber CSS-Tokens um (`css/style.css`,
+    Abschnitt "Bold Scorekeeper Theme"); Classic bleibt dabei unverändert.
+    Layout-/Bedienungs-Umbauten je Seite (grosse Touch-Ziele, Karten statt
+    Tabellen, Stepper-Eingaben, …) für Bold Scorekeeper folgen schrittweise
+    in eigenen Releases — aktuell recolort das Theme nur die bestehende
+    Seiten-Struktur.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -168,13 +180,14 @@ angelegt.
     in `data/logo-{square,banner}.{ext}` (per `.htaccess` gesperrt) und
     werden über `api/logo.php?type=square|banner` ausgeliefert. "Entfernen"
     löscht Datei + Zuordnung wieder, unabhängig vom gerade aktiven Modus.
-  - **Farben**: komplette Palette einzeln per Hex-Eingabe + Farbwähler
-    konfigurierbar. Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …)
-    gelten unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund,
-    Fläche, Text, Rahmen) je einmal für Hell- und einmal für Dunkelmodus.
+  - **Farben** (nur für "Classic", bei aktivem "Bold Scorekeeper" ausgeblendet):
+    komplette Palette einzeln per Hex-Eingabe + Farbwähler konfigurierbar.
+    Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …) gelten
+    unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund, Fläche,
+    Text, Rahmen) je einmal für Hell- und einmal für Dunkelmodus.
     "Auf Standardfarben zurücksetzen" löscht alle Overrides wieder (inkl.
-    Titel, Logo-Auswahl und Sprache — hochgeladene Logo-Dateien selbst
-    bleiben aber liegen, bis sie explizit entfernt werden).
+    Titel, Logo-Auswahl, Sprache und Theme-Wahl — hochgeladene Logo-Dateien
+    selbst bleiben aber liegen, bis sie explizit entfernt werden).
   - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
     "Mehrsprachigkeit (i18n)" unten.
   - **Daten-Sicherung** (`api/backup.php`): "Backup herunterladen" erzeugt
@@ -492,6 +505,17 @@ as their own subfolders under `modes/`, without touching existing parts —
 the player database and game history are deliberately mode-agnostic.
 - **Settings** (`settings.html`): globally stored (server-side)
   configuration, applies to everyone using the page. Several areas:
+  - **Appearance**: choice between two independent themes — "Classic"
+    (default, the existing look, individually customizable via hex colors)
+    and "Bold Scorekeeper" (a second, dark, high-contrast theme with a
+    fixed neon-lime/cyan/purple/orange palette, not hex-customizable).
+    Technically both themes share the same HTML/JS structure per page — the
+    theme only sets `[data-theme-style]` on `<html>` (`js/theme.js`), which
+    switches CSS tokens (`css/style.css`, "Bold Scorekeeper Theme" section);
+    Classic stays unchanged. Layout/usability rework per page (large touch
+    targets, cards instead of tables, stepper inputs, …) for Bold
+    Scorekeeper follows step by step in its own releases — for now the
+    theme only recolors the existing page structure.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).
@@ -506,13 +530,14 @@ the player database and game history are deliberately mode-agnostic.
     `.htaccess`) and are served via `api/logo.php?type=square|banner`.
     "Remove" deletes the file and its reference regardless of which mode
     is currently active.
-  - **Colors**: the complete palette individually configurable via hex
-    input + color picker. Accent/function colors (green, amber, focus,
-    error, …) stay the same in light and dark mode; base colors
-    (background, surface, text, border) once each for light and dark
-    mode. "Reset to default colors" clears all overrides again (incl.
-    title, logo selection, and language — uploaded logo files themselves
-    stay in place until explicitly removed).
+  - **Colors** (only for "Classic", hidden while "Bold Scorekeeper" is
+    active): the complete palette individually configurable via hex input +
+    color picker. Accent/function colors (green, amber, focus, error, …)
+    stay the same in light and dark mode; base colors (background, surface,
+    text, border) once each for light and dark mode. "Reset to default
+    colors" clears all overrides again (incl. title, logo selection,
+    language, and theme choice — uploaded logo files themselves stay in
+    place until explicitly removed).
   - **Language**: currently German/English, see the "Multi-language
     support (i18n)" section below.
   - **Data backup** (`api/backup.php`): "Download backup" produces a ZIP

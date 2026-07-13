@@ -10,6 +10,20 @@ const saveBtn = document.getElementById('save-settings-btn');
 const resetBtn = document.getElementById('reset-settings-btn');
 const statusEl = document.getElementById('settings-status');
 
+const singleColorsSection = document.getElementById('single-colors-section');
+const pairColorsSection = document.getElementById('pair-colors-section');
+
+function updateColorSectionsVisibility() {
+  const checked = document.querySelector('input[name="theme-style"]:checked');
+  const isBold = Boolean(checked) && checked.value === 'bold';
+  singleColorsSection.hidden = isBold;
+  pairColorsSection.hidden = isBold;
+}
+
+document.querySelectorAll('input[name="theme-style"]').forEach((input) => {
+  input.addEventListener('change', updateColorSectionsVisibility);
+});
+
 const logoStatusEl = document.getElementById('logo-status');
 const logoSlots = {
   square: {
@@ -203,6 +217,10 @@ async function loadSettings() {
   currentSettings = data.settings;
   appTitleInput.value = data.settings.app_title || '';
   soundEnabledInput.checked = data.settings.sound_enabled !== '0';
+  document.querySelectorAll('input[name="theme-style"]').forEach((input) => {
+    input.checked = input.value === (data.settings.theme_style || 'classic');
+  });
+  updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   renderLogoPreviews(data.settings);
@@ -210,11 +228,13 @@ async function loadSettings() {
 
 function collectFormValues() {
   const logoModeInput = document.querySelector('input[name="logo-mode"]:checked');
+  const themeStyleInput = document.querySelector('input[name="theme-style"]:checked');
   const values = {
     language: languageSelect.value,
     app_title: appTitleInput.value.trim(),
     sound_enabled: soundEnabledInput.checked ? '1' : '0',
     logo_mode: logoModeInput ? logoModeInput.value : 'none',
+    theme_style: themeStyleInput ? themeStyleInput.value : 'classic',
   };
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;
@@ -256,6 +276,10 @@ resetBtn.addEventListener('click', async () => {
   currentSettings = data.settings;
   appTitleInput.value = data.settings.app_title || '';
   soundEnabledInput.checked = data.settings.sound_enabled !== '0';
+  document.querySelectorAll('input[name="theme-style"]').forEach((input) => {
+    input.checked = input.value === (data.settings.theme_style || 'classic');
+  });
+  updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   renderLogoPreviews(data.settings);

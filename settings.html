@@ -43,6 +43,21 @@
 
   <main id="main">
     <section class="card">
+      <h2 data-i18n="settings.theme.heading">Aussehen</h2>
+      <p class="hint-text" data-i18n="settings.theme.hint">Zwei eigenständige Optiken zur Wahl. "Bold Scorekeeper" wird schrittweise auf allen Seiten ausgebaut — bereits gewählte Farben unten gelten nur für "Classic".</p>
+      <div class="player-picker">
+        <label class="player-chip">
+          <input type="radio" name="theme-style" value="classic" checked>
+          <span data-i18n="settings.theme.classic">Classic</span>
+        </label>
+        <label class="player-chip">
+          <input type="radio" name="theme-style" value="bold">
+          <span data-i18n="settings.theme.bold">Bold Scorekeeper</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card section-spacing">
       <h2 data-i18n="settings.title.heading">Titel</h2>
       <p class="hint-text" data-i18n="settings.title.hint">Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.</p>
       <form id="title-form" class="form">
@@ -116,13 +131,13 @@
       </form>
     </section>
 
-    <section class="card section-spacing">
+    <section class="card section-spacing" id="single-colors-section">
       <h2 data-i18n="settings.colors.single.heading">Akzent- und Funktionsfarben</h2>
       <p class="hint-text" data-i18n="settings.colors.single.hint">Gelten unverändert in Hell- und Dunkelmodus.</p>
       <div class="color-field-grid" id="single-color-fields"></div>
     </section>
 
-    <section class="card section-spacing">
+    <section class="card section-spacing" id="pair-colors-section">
       <h2 data-i18n="settings.colors.pairs.heading">Basis-Farben (Hell- / Dunkelmodus getrennt)</h2>
       <p class="hint-text" data-i18n="settings.colors.pairs.hint">Hintergrund, Fläche, Text und Rahmen — je einmal für Hell- und einmal für Dunkelmodus.</p>
       <div id="theme-pair-fields"></div>

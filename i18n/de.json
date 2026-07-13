@@ -227,6 +227,12 @@
   "settings": {
     "heading": "Einstellungen",
     "subtitle": "Gilt für alle, die diese Seite nutzen (global gespeichert).",
+    "theme": {
+      "heading": "Aussehen",
+      "hint": "Zwei eigenständige Optiken zur Wahl. \"Bold Scorekeeper\" wird schrittweise auf allen Seiten ausgebaut — bereits gewählte Farben unten gelten nur für \"Classic\".",
+      "classic": "Classic",
+      "bold": "Bold Scorekeeper"
+    },
     "title": {
       "heading": "Titel",
       "hint": "Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.",

@@ -48,6 +48,19 @@
         <label for="target-score" data-i18n="pointsToTarget.setup.targetLabel">Bis zu welchem Punktewert wird gespielt?</label>
         <input type="text" id="target-score" value="200" inputmode="numeric" pattern="[0-9]*" required>
 
+        <label data-i18n="common.winDirection.heading">Wer gewinnt am Ende?</label>
+        <div class="player-picker">
+          <label class="player-chip">
+            <input type="radio" name="win-direction" value="highest" checked>
+            <span data-i18n="common.winDirection.highest">Höchste Punktzahl</span>
+          </label>
+          <label class="player-chip">
+            <input type="radio" name="win-direction" value="lowest">
+            <span data-i18n="common.winDirection.lowest">Niedrigste Punktzahl</span>
+          </label>
+        </div>
+        <p class="hint-text" data-i18n="pointsToTarget.setup.winDirectionHint">Bei den meisten Spielen gewinnt die höchste Punktzahl (z.B. Flip7, Tutto) — bei manchen wie Skyjo aber die niedrigste. Das Spiel endet trotzdem, sobald jemand den Zielwert erreicht oder überschreitet.</p>
+
         <label data-i18n="common.setup.whoPlays">Wer spielt mit?</label>
         <div class="player-picker" id="player-picker"></div>
 

@@ -320,7 +320,8 @@
     "setup": {
       "subtitle": "Neues Spiel einrichten (z.B. Flip7, Tutto)",
       "labelPlaceholder": "z.B. Flip7, Tutto",
-      "targetLabel": "Bis zu welchem Punktewert wird gespielt?"
+      "targetLabel": "Bis zu welchem Punktewert wird gespielt?",
+      "winDirectionHint": "Bei den meisten Spielen gewinnt die höchste Punktzahl (z.B. Flip7, Tutto) — bei manchen wie Skyjo aber die niedrigste. Das Spiel endet trotzdem, sobald jemand den Zielwert erreicht oder überschreitet."
     },
     "game": {
       "subtitle": "Ziel: {target} Punkte · {started}",

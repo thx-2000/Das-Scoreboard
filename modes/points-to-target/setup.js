@@ -102,6 +102,8 @@ setupForm.addEventListener('submit', async (event) => {
     return;
   }
 
+  const winDirection = document.querySelector('input[name="win-direction"]:checked').value;
+
   const response = await fetch('/api/games.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -109,6 +111,7 @@ setupForm.addEventListener('submit', async (event) => {
       mode: 'points_to_target',
       label: gameLabelInput.value.trim(),
       targetScore: Number(targetScoreInput.value),
+      winDirection,
       playerIds: Array.from(selectedPlayerIds),
       teamAssignments: teamSetup.getTeamAssignments(),
       teamNames: teamSetup.getTeamNames(),

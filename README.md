@@ -22,10 +22,13 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
 - **Modus "Punkte bis Höchstwert"** (`modes/points-to-target/`): Punkte
   werden rundenweise für alle Spieler gemeinsam erfasst (0 ist normal, z.B.
   bei einem Bust). Sobald jemand den Zielwert erreicht/überschreitet, endet
-  das Spiel automatisch; wer dann die meisten Punkte hat, gewinnt (bei
-  Gleichstand mehrere Sieger möglich). Korrektur ist jederzeit direkt in
-  der Rundenverlauf-Tabelle möglich und reaktiviert ein bereits beendetes
-  Spiel automatisch, falls der Zielwert dadurch unterschritten wird.
+  das Spiel automatisch — diese Ziel-Erreichung ist unabhängig von der
+  Sieg-Richtung. Beim Einrichten wird festgelegt, ob dann die höchste
+  (Standard, z.B. Flip7, Tutto) oder die niedrigste Punktzahl gewinnt (z.B.
+  Skyjo — bei Gleichstand mehrere Sieger möglich). Korrektur ist jederzeit
+  direkt in der Rundenverlauf-Tabelle möglich und reaktiviert ein bereits
+  beendetes Spiel automatisch, falls der Zielwert dadurch unterschritten
+  wird.
 - **Modus "Offene Punkterunde"** (`modes/points-open/`): wie oben, aber ohne
   Zielwert — beim Einrichten wird festgelegt, ob am Ende die höchste oder
   die niedrigste Punktzahl gewinnt. Das Spiel wird manuell per Knopfdruck
@@ -384,10 +387,12 @@ to work on iPad and iPhone.
 - **Mode "Points to target"** (`modes/points-to-target/`): points are
   entered round by round for all players together (0 is normal, e.g. on a
   bust). As soon as someone reaches/exceeds the target value, the game
-  ends automatically; whoever has the most points then wins (ties allow
-  multiple winners). Correction is always possible directly in the round
-  history table and automatically reactivates an already-finished game if
-  the target is no longer reached as a result.
+  ends automatically — this trigger is independent of the win direction.
+  During setup you decide whether the highest (default, e.g. Flip7, Tutto)
+  or the lowest score then wins (e.g. Skyjo — ties allow multiple
+  winners). Correction is always possible directly in the round history
+  table and automatically reactivates an already-finished game if the
+  target is no longer reached as a result.
 - **Mode "Open point round"** (`modes/points-open/`): like above, but
   without a target value — during setup you decide whether the highest or
   lowest score wins at the end. The game is finished manually via a

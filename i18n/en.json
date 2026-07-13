@@ -320,7 +320,8 @@
     "setup": {
       "subtitle": "Set up new game (e.g. Flip7, Tutto)",
       "labelPlaceholder": "e.g. Flip7, Tutto",
-      "targetLabel": "Play up to which point value?"
+      "targetLabel": "Play up to which point value?",
+      "winDirectionHint": "In most games the highest score wins (e.g. Flip7, Tutto) — but in some, like Skyjo, the lowest score wins instead. The game still ends as soon as anyone reaches or exceeds the target."
     },
     "game": {
       "subtitle": "Target: {target} points · {started}",

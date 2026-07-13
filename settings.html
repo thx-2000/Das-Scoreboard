@@ -9,10 +9,11 @@
 <body>
   <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
 
+  <div id="logo-banner-slot"></div>
   <header class="app-header">
     <div class="app-header__bar">
       <a href="index.html" class="app-header__brand">
-        <svg class="app-header__logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <svg id="app-header-logo-svg" class="app-header__logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
           <rect x="5" y="4" width="17" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
           <line x1="9" y1="11" x2="18" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           <line x1="9" y1="16" x2="18" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -41,6 +42,53 @@
         <label for="app-title-input" data-i18n="settings.title.label">Titel</label>
         <input type="text" id="app-title-input" maxlength="60">
       </form>
+    </section>
+
+    <section class="card section-spacing">
+      <h2 data-i18n="settings.logo.heading">Logo</h2>
+      <p class="hint-text" data-i18n="settings.logo.hint">Standardmäßig ist kein eigenes Logo aktiv, dann bleibt das Stift-Symbol sichtbar.</p>
+
+      <div class="form" style="margin-bottom:1rem;">
+        <label data-i18n="settings.logo.modeLabel">Anzeige</label>
+        <div class="player-picker">
+          <label class="player-chip">
+            <input type="radio" name="logo-mode" value="none" checked>
+            <span data-i18n="settings.logo.modeNone">Kein Logo</span>
+          </label>
+          <label class="player-chip">
+            <input type="radio" name="logo-mode" value="square">
+            <span data-i18n="settings.logo.modeSquare">Quadrat oben links</span>
+          </label>
+          <label class="player-chip">
+            <input type="radio" name="logo-mode" value="banner">
+            <span data-i18n="settings.logo.modeBanner">Banner über der ganzen Breite</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="logo-upload-field">
+        <h3 data-i18n="settings.logo.squareHeading">Quadratisches Logo</h3>
+        <p class="hint-text" data-i18n="settings.logo.squareHint">Empfohlen: 160×160 Pixel (quadratisch). PNG, JPEG oder SVG, max. 2 MB.</p>
+        <div class="logo-upload-field__controls">
+          <div class="logo-preview logo-preview--empty" id="logo-square-preview"></div>
+          <input type="file" id="logo-square-file" accept="image/png,image/jpeg,image/svg+xml">
+          <button type="button" id="logo-square-upload-btn" class="btn btn--ghost" data-i18n="settings.logo.uploadButton">Hochladen</button>
+          <button type="button" id="logo-square-remove-btn" class="btn btn--small btn--danger" data-i18n="common.buttons.remove" hidden>Entfernen</button>
+        </div>
+      </div>
+
+      <div class="logo-upload-field">
+        <h3 data-i18n="settings.logo.bannerHeading">Banner-Logo</h3>
+        <p class="hint-text" data-i18n="settings.logo.bannerHint">Empfohlen: ca. 1400×160 Pixel (breit, nicht zu hoch). PNG, JPEG oder SVG, max. 2 MB.</p>
+        <div class="logo-upload-field__controls">
+          <div class="logo-preview logo-preview--empty" id="logo-banner-preview"></div>
+          <input type="file" id="logo-banner-file" accept="image/png,image/jpeg,image/svg+xml">
+          <button type="button" id="logo-banner-upload-btn" class="btn btn--ghost" data-i18n="settings.logo.uploadButton">Hochladen</button>
+          <button type="button" id="logo-banner-remove-btn" class="btn btn--small btn--danger" data-i18n="common.buttons.remove" hidden>Entfernen</button>
+        </div>
+      </div>
+
+      <p id="logo-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
     </section>
 
     <section class="card section-spacing">

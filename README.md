@@ -1,5 +1,7 @@
 # Das Scoreboard
 
+*English below.*
+
 Aufschreibhilfe für Spieleabende. Reines PHP 8 + PDO/SQLite, kein Node,
 keine separate Datenbank nötig — läuft auf normalem Webhosting per FTP-
 Upload, Darstellung soll auf iPad und iPhone funktionieren.
@@ -217,3 +219,168 @@ Das-Scoreboard/
 ├── .htaccess
 └── VERSION
 ```
+
+---
+
+# Das Scoreboard (English)
+
+Scorekeeping helper for game nights. Pure PHP 8 + PDO/SQLite, no Node, no
+separate database needed — runs on plain webhosting via FTP upload, meant
+to work on iPad and iPhone.
+
+## Concept
+
+- **Home page**: overview of the available scorekeeping modes, currently
+  four: *Points to target* (examples: Flip7, Tutto), *Open point round*
+  (example: Doppelkopf), *Points round with fixed round count*, and
+  *RAGE*.
+- **Player management** (`players.html`): central name database to pick
+  from when starting new games instead of typing names every time.
+  Removing is a soft delete (players stay visible in past games).
+- **Game history** (`history.html`): all games (ongoing + finished),
+  distinguishable by start/end time, so multiple games on the same day
+  stay uniquely identifiable.
+- **Mode "Points to target"** (`modes/points-to-target/`): points are
+  entered round by round for all players together (0 is normal, e.g. on a
+  bust). As soon as someone reaches/exceeds the target value, the game
+  ends automatically; whoever has the most points then wins (ties allow
+  multiple winners). Correction is always possible directly in the round
+  history table and automatically reactivates an already-finished game if
+  the target is no longer reached as a result.
+- **Mode "Open point round"** (`modes/points-open/`): like above, but
+  without a target value — during setup you decide whether the highest or
+  lowest score wins at the end. The game is finished manually via a
+  button (and can be resumed the same way); there is no automatic win
+  moment.
+- **Mode "Points round with fixed round count"** (`modes/fixed-rounds/`):
+  like "Open point round", but with a round count fixed during setup (win
+  direction also selectable). Once the agreed round count is reached, a
+  prompt appears with the choice "Finish game" or "Keep playing, X more
+  rounds" (extends the target and keeps the game active; the prompt
+  reappears later if needed). Optionally (checkbox during setup, off by
+  default) a dismissible "Round X finished" notice appears after every
+  saved round.
+- **Tool "Who starts?"** (`tools/finger-chooser.html`): multitouch finger
+  picker for iPad/iPhone. Waits for the first finger, then counts down 5
+  seconds (more fingers can join during that time), then randomly picks
+  one of the fingers on screen (grows/turns green), the others disappear.
+  Purely client-side via the Touch Events API, no backend involved.
+- **Starting player**: every mode automatically picks a random starting
+  player among the selected players when a game is created. Their name
+  carries a small star (★) in the standings, explained at the bottom left
+  of the standings box ("Starting player (random)"). Games created before
+  this feature show no star (no starting player assigned retroactively).
+- **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
+  over a fixed 10 rounds (card count decreases from 10 to 1). Before each
+  round, each player's bid and actual tricks are entered, plus optional
+  Rage bonus (+5) and Rage revenge cards (−5); points are calculated
+  automatically (+1 per trick, +10 on a hit, −5 on a miss). Saving a round
+  warns if the sum of tricks doesn't match the card count (saving remains
+  possible anyway). After round 10 the game ends automatically; manual
+  finish/resume is also possible. Deleting a round reduces the round
+  count and reopens an automatically finished game if needed.
+
+Further modes (other scorekeeping mechanics) are meant to be added later
+as their own subfolders under `modes/`, without touching existing parts —
+the player database and game history are deliberately mode-agnostic.
+- **Settings** (`settings.html`): globally stored (server-side)
+  configuration, applies to everyone using the page. Three areas:
+  - **Title**: the displayed name ("Das Scoreboard" by default) —
+    appears in the header of every page and in the browser tab title,
+    identical regardless of the selected language (not translated).
+    Anyone running the page for their own group can enter a custom name
+    here.
+  - **Colors**: the complete palette individually configurable via hex
+    input + color picker. Accent/function colors (green, amber, focus,
+    error, …) stay the same in light and dark mode; base colors
+    (background, surface, text, border) once each for light and dark
+    mode. "Reset to default colors" clears all overrides again (incl.
+    title and language).
+  - **Language**: currently German/English, see the "Multi-language
+    support (i18n)" section below.
+
+## Multi-language support (i18n)
+
+The entire interface (all pages, all JS-generated text) is built to be
+translatable:
+
+- **Dictionaries**: `i18n/de.json` and `i18n/en.json`, nested keys by
+  area (`common.*` for cross-page reuse, `home.*`, `players.*`,
+  `history.*`, `settings.*`, `pointsToTarget.*`, `pointsOpen.*`,
+  `fixedRounds.*`, `rage.*`, `chooser.*`). Placeholders in curly braces
+  (`{name}`) are replaced by `t()` via an object.
+- **Loader** (`js/i18n.js`): loads the language selected in the global
+  settings on page load, applies it to all `[data-i18n]` (text content),
+  `[data-i18n-placeholder]`, `[data-i18n-title]`, and
+  `[data-i18n-title-suffix]` (browser tab title, composed as "{brand
+  name} — {text}") elements, and sets `<html lang="…">`. Provides
+  `window.t(key, vars)` globally for JS-generated text as well as
+  `window.scoreboardLocale()` (for `toLocaleString()` date formatting).
+- **Load order**: every page includes `js/theme.js` and `js/i18n.js`
+  before its own script. Page scripts that need `t()` during
+  initialization wait on `window.scoreboardI18nReady` (a promise) instead
+  of rendering immediately on load — otherwise `t()` might run with an
+  empty dictionary.
+
+**Adding a new language:**
+
+1. Create `i18n/{code}.json` (e.g. `i18n/fr.json`), copy the structure of
+   `de.json` 1:1 and translate every value.
+2. Add the new code with a display name in
+   `includes/settings.php::supported_languages()` (e.g.
+   `'fr' => 'Français'`).
+3. Done — the language automatically appears in the dropdown on the
+   settings page. Nothing needs to change in `js/i18n.js` or the pages.
+4. Also add a translated copy of this README as a new section below,
+   following the "English below" pattern (e.g. "## Das Scoreboard
+   (Français)"), so the docs cover every language the app supports.
+
+## Hosting requirements
+
+- PHP 8.x with the `pdo_sqlite` extension enabled.
+- Write permissions for the `data/` folder.
+- No mod_rewrite needed — the API runs on simple query parameters (e.g.
+  `/api/games.php?id=5`), no pretty URLs, but robust on practically any
+  hosting without `.htaccess` fine-tuning.
+
+## Deployment
+
+Upload the entire folder contents via FTP/SFTP to the webroot. The
+SQLite file `data/scoreboard.sqlite` is created automatically on the
+first request.
+
+## Upgrading an existing installation
+
+Every self-hosted installation can be safely updated without losing
+saved games:
+
+1. Upload the new code version via FTP/SFTP, making sure **not to
+   overwrite/delete the `data/` folder** (that's where the SQLite
+   database with all players, games, and rounds lives).
+2. Done — on the next page load, `includes/db.php` automatically aligns
+   the database schema (versioned migration system via `PRAGMA
+   user_version`, see the comment there). Migrations are purely additive
+   (new tables/columns), existing data is never deleted or overwritten.
+
+For developers: always add new schema changes as a **new** migration
+with the next-higher version number in `migrations()`, never modify an
+existing migration afterwards — otherwise already-updated installations
+would never run the change.
+
+## Maintaining the version number
+
+Set the `VERSION` file to the new value on every release — it's served
+to every page via `/api/version.php` and shown in the bottom right
+corner.
+
+`js/version.js` additionally checks client-side against the GitHub API
+(`releases/latest` of the repo configured in `UPDATE_CHECK_REPO`) for a
+newer version, and shows a red link in the bottom right if one exists.
+Results are cached per browser in `localStorage` for 1 day. As long as
+the repo is private, the request (404) simply fails silently — once it's
+made public, the notice works without any code change.
+
+## Structure
+
+See the tree above (folder layout is identical, only the code comments
+in this README are in English/German respectively).

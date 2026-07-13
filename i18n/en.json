@@ -112,6 +112,10 @@
     "newGame": {
       "heading": "Start a new game",
       "hint": "Choose a scoring mode for your game."
+    },
+    "pwaHint": {
+      "heading": "Use as an app",
+      "text": "On iPad/iPhone: tap the Share icon in Safari, then choose “Add to Home Screen” — the page will then appear like its own app, without the address bar."
     }
   },
   "players": {

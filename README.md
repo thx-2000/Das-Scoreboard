@@ -58,6 +58,14 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Versehen war, ohne dafür in der Korrektur-Tabelle nach unten scrollen zu
   müssen. Löscht technisch dieselbe Runde wie der "Löschen"-Knopf in der
   Tabelle.
+- **Als App installierbar (PWA)**: `manifest.json` + Icons
+  (`assets/icons/`) erlauben "Zum Home-Bildschirm hinzufügen" auf
+  iPad/iPhone (Safari: Teilen-Symbol → "Zum Home-Bildschirm") sowie auf
+  Android/Desktop-Chrome — die Seite öffnet sich danach wie eine eigene
+  App, ohne Adressleiste. Kurzer Hinweis dazu steht auch auf der
+  Startseite. Name/Icon im Manifest sind aktuell statisch (Standardtitel
+  "Das Scoreboard", Stift-Symbol) und folgen einem in den Einstellungen
+  geänderten Titel/Logo (noch) nicht automatisch.
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -231,7 +239,10 @@ Das-Scoreboard/
 │   ├── settings.js              # Logik der Einstellungen-Seite
 │   ├── players.js               # Logik der Spielerverwaltung
 │   └── history.js                # Logik des Spielverlaufs
-├── data/                      # SQLite-Datei, per .htaccess geschützt
+├── data/                      # SQLite-Datei + Logo-Uploads, per .htaccess geschützt
+├── assets/
+│   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
+├── manifest.json               # PWA-Manifest ("Zum Home-Bildschirm hinzufügen")
 ├── .htaccess
 └── VERSION
 ```
@@ -291,6 +302,14 @@ to work on iPad and iPhone.
   quick access for when the last entry was a mistake, without having to
   scroll down to the correction table. Technically deletes the same round
   as the "Delete" button in the table.
+- **Installable as an app (PWA)**: `manifest.json` + icons
+  (`assets/icons/`) enable "Add to Home Screen" on iPad/iPhone (Safari:
+  Share icon → "Add to Home Screen") as well as on Android/desktop
+  Chrome — the page then opens like its own app, without the address
+  bar. A short hint about this is also shown on the home page. Name/icon
+  in the manifest are currently static (default title "Das Scoreboard",
+  pen icon) and don't (yet) automatically follow a title/logo changed in
+  settings.
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

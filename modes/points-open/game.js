@@ -43,22 +43,28 @@ function renderHeader(state) {
 
 function renderStandings(state) {
   standingsBody.innerHTML = '';
-  let previousTotal = null;
+  let previousRankValue = null;
   let previousRank = 0;
 
   state.standings.forEach((player, index) => {
-    const rank = player.total === previousTotal ? previousRank : index + 1;
-    previousTotal = player.total;
+    const rank = player.rankValue === previousRankValue ? previousRank : index + 1;
+    previousRankValue = player.rankValue;
     previousRank = rank;
 
     const row = document.createElement('tr');
     if (rank === 1) row.className = 'rank-first';
 
     const displayName = player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name;
+    // teamLabel/teamTotal gibt es nur im team_scoring "individual" (Migration
+    // 9) - dort bleibt jeder Spieler eine eigene Zeile, zeigt aber zusaetzlich
+    // die Team-Zugehoerigkeit und -Summe an.
+    const teamHint = player.teamLabel
+      ? `<div class="hint-text standings-team-hint">${player.teamLabel} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
+      : '';
 
     row.innerHTML = `
       <td>${rank}</td>
-      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div></td>
+      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div>${teamHint}</td>
       <td>${player.total}</td>
     `;
     standingsBody.appendChild(row);
@@ -82,7 +88,7 @@ function renderRoundEntryForm(state) {
   roundEntryCard.hidden = state.status === 'finished';
   roundFormGrid.innerHTML = '';
 
-  window.groupPlayersByTeam(state.players).forEach((group) => {
+  window.groupPlayersByTeam(state.players, state.teamScoring).forEach((group) => {
     const field = document.createElement('div');
     field.className = 'round-form-field';
 
@@ -146,7 +152,10 @@ function renderRoundsTable(state) {
       input.pattern = '-?[0-9]*';
       input.value = round.scores[player.id] ?? 0;
       input.dataset.playerId = player.id;
-      if (player.teamNumber !== null && player.teamNumber !== undefined) {
+      // Der Korrektur-Sync gilt nur im team_scoring "shared" - im
+      // "individual"-Modus traegt jeder Spieler unabhaengige Punkte ein,
+      // daher hier bewusst kein dataset.teamNumber gesetzt.
+      if (state.teamScoring !== 'individual' && player.teamNumber !== null && player.teamNumber !== undefined) {
         input.dataset.teamNumber = player.teamNumber;
       }
       input.addEventListener('change', () => {

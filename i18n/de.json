@@ -41,7 +41,8 @@
       "standingsHeading": "Punktestand",
       "standings": {
         "collapse": "Einklappen",
-        "expand": "Anzeigen"
+        "expand": "Anzeigen",
+        "teamTotalSuffix": "Punkte gesamt"
       },
       "startingPlayerLegend": "★ Startspieler (zufällig)",
       "startedSuffix": "gestartet {date} Uhr",
@@ -72,7 +73,12 @@
       "addPlayerPlaceholder": "Name eingeben",
       "advancedOptions": "Erweiterte Optionen",
       "teamModeLabel": "Team-Modus aktivieren",
-      "teamModeHint": "Spieler im selben Team teilen sich pro Runde einen gemeinsamen Punktwert.",
+      "teamModeHint": "Spieler lassen sich zu Teams gruppieren, deren Punkte gemeinsam zählen.",
+      "teamScoringHeading": "Punkte-Erfassung für Teams",
+      "teamScoringShared": "Gemeinsamer Punktwert",
+      "teamScoringSharedHint": "Team-Mitglieder tragen zusammen einen Punktwert pro Runde ein.",
+      "teamScoringIndividual": "Einzelne Punkte, gemeinsame Summe",
+      "teamScoringIndividualHint": "Jeder Spieler trägt eigene Punkte ein — angezeigt werden sowohl die Einzelpunkte als auch die Team-Summe.",
       "teamNone": "Kein Team",
       "teamNumber": "Team {number}",
       "teamNameLabel": "Name für Team {number} (optional)",

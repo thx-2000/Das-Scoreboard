@@ -7,6 +7,7 @@
  */
 function initTeamSetup(container) {
   const enableCheckbox = container.querySelector('[data-team-enable]');
+  const scoringWrap = container.querySelector('[data-team-scoring]');
   const assignmentsWrap = container.querySelector('[data-team-assignments]');
   const namesWrap = container.querySelector('[data-team-names]');
 
@@ -89,6 +90,7 @@ function initTeamSetup(container) {
   }
 
   enableCheckbox.addEventListener('change', () => {
+    scoringWrap.hidden = !enableCheckbox.checked;
     assignmentsWrap.hidden = !enableCheckbox.checked;
     namesWrap.hidden = !enableCheckbox.checked;
   });
@@ -106,6 +108,11 @@ function initTeamSetup(container) {
     getTeamNames() {
       if (!enableCheckbox.checked) return {};
       return { ...names };
+    },
+    getTeamScoring() {
+      if (!enableCheckbox.checked) return 'shared';
+      const checked = scoringWrap.querySelector('input[name="team-scoring"]:checked');
+      return checked ? checked.value : 'shared';
     },
   };
 }

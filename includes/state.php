@@ -42,7 +42,7 @@ function recompute_game_status(PDO $pdo, int $gameId): void
         return;
     }
 
-    $totals = get_totals($pdo, $gameId);
+    $totals = get_effective_totals($pdo, $game);
     $maxTotal = count($totals) > 0 ? max($totals) : 0;
     $reachedTarget = $maxTotal >= (int) $game['target_score'] && count($totals) > 0;
 
@@ -71,12 +71,71 @@ function set_game_finished(PDO $pdo, int $gameId, bool $finished): void
 }
 
 /**
+ * Liefert je Spieler den fuer Rang/Sieg/Ziel-Erreichung massgeblichen Wert:
+ * im team_scoring "individual" (Migration 9) die Team-Summe fuer Team-
+ * Mitglieder, sonst (Standardfall "shared" sowie Solo-Spieler) unveraendert
+ * die eigenen Gesamtpunkte aus get_totals(). Zentrale Stelle fuer diese
+ * Berechnung, genutzt von recompute_game_status(), get_winner_ids() und
+ * build_game_state() - vermeidet, die Team-Summenbildung mehrfach zu
+ * duplizieren.
+ *
+ * @param array $game Zeile aus der games-Tabelle (mind. id, team_scoring)
+ * @return array<int,int> player_id => massgeblicher Wert
+ */
+function get_effective_totals(PDO $pdo, array $game): array
+{
+    $gameId = (int) $game['id'];
+    $totals = get_totals($pdo, $gameId);
+
+    $teamScoring = ($game['team_scoring'] ?? 'shared') === 'individual' ? 'individual' : 'shared';
+    if ($teamScoring !== 'individual') {
+        return $totals;
+    }
+
+    $rowsStmt = $pdo->prepare('SELECT player_id, team_number FROM game_players WHERE game_id = ?');
+    $rowsStmt->execute([$gameId]);
+    $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $teamMembers = [];
+    foreach ($rows as $r) {
+        if ($r['team_number'] === null) continue;
+        $teamMembers[(int) $r['team_number']][] = (int) $r['player_id'];
+    }
+
+    $teamSums = [];
+    foreach ($teamMembers as $teamNumber => $memberIds) {
+        // Team mit nur einem Mitglied gilt nicht als Team (Sicherheitsnetz,
+        // analog zu resolve_team_labels() - kann aktuell nicht ueber die UI
+        // entstehen).
+        if (count($memberIds) < 2) continue;
+        $sum = 0;
+        foreach ($memberIds as $pid) {
+            $sum += $totals[$pid] ?? 0;
+        }
+        $teamSums[$teamNumber] = $sum;
+    }
+
+    $effective = [];
+    foreach ($rows as $r) {
+        $pid = (int) $r['player_id'];
+        $teamNumber = $r['team_number'] !== null ? (int) $r['team_number'] : null;
+        $effective[$pid] = ($teamNumber !== null && isset($teamSums[$teamNumber]))
+            ? $teamSums[$teamNumber]
+            : ($totals[$pid] ?? 0);
+    }
+    return $effective;
+}
+
+/**
  * Ermittelt die Spieler-IDs der Sieger eines beendeten Spiels (Gleichstand
  * moeglich, dann mehrere Sieger). Leeres Array bei nicht beendeten Spielen.
- * Team-Mitglieder haben immer identische Totals (siehe Migration 7) und
- * erscheinen bei einem Team-Sieg folgerichtig beide als Sieger.
+ * Team-Mitglieder im team_scoring "shared" haben immer identische Totals
+ * (siehe Migration 7) und erscheinen bei einem Team-Sieg folgerichtig beide
+ * als Sieger; im "individual"-Modus sorgt get_effective_totals() dafuer,
+ * dass hierfuer die Team-Summe statt der (ggf. abweichenden) Einzelwerte
+ * zaehlt.
  *
- * @param array $game Zeile aus der games-Tabelle (mind. id, status, win_direction)
+ * @param array $game Zeile aus der games-Tabelle (mind. id, status, win_direction, team_scoring)
  * @return array<int,int> Spieler-IDs
  */
 function get_winner_ids(PDO $pdo, array $game): array
@@ -84,7 +143,7 @@ function get_winner_ids(PDO $pdo, array $game): array
     if ($game['status'] !== 'finished') {
         return [];
     }
-    $totals = get_totals($pdo, (int) $game['id']);
+    $totals = get_effective_totals($pdo, $game);
     if (count($totals) === 0) {
         return [];
     }
@@ -227,57 +286,100 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     $direction = $game['win_direction'] === 'lowest' ? 'lowest' : 'highest';
 
     $totals = get_totals($pdo, $gameId);
+    $teamScoring = ($game['team_scoring'] ?? 'shared') === 'individual' ? 'individual' : 'shared';
 
-    // Team-Mitglieder haben immer identische Rundenwerte (siehe Migration 7)
-    // und damit identische Gesamtpunkte - werden hier zu EINER Standings-
-    // Zeile zusammengefasst statt als redundante Einzelzeilen mit
-    // gleichem Wert angezeigt zu werden. memberIds gibt es bei Solo-Spielern
-    // ebenfalls (nur mit sich selbst), damit das Frontend Stern-/Startspieler-
-    // Logik einheitlich ueber memberIds statt id pruefen kann.
-    $standingsByTeam = [];
-    $soloStandings = [];
-    foreach ($players as $p) {
-        $playerId = (int) $p['id'];
-        $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
+    if ($teamScoring === 'individual') {
+        // Jeder Spieler traegt eigene Punkte ein (siehe Migration 9) - anders
+        // als im "shared"-Team-Modus keine identischen Rundenwerte. Das
+        // Team-Ergebnis ist die Summe der Mitglieder-Totals (siehe
+        // get_effective_totals()), wird aber NICHT zu einer Zeile
+        // zusammengefasst: jeder Spieler bleibt sichtbar, zeigt zusaetzlich
+        // teamLabel/teamTotal. rankValue ist der Wert, der fuer Rang/Sieg
+        // zaehlt (Team-Summe fuer Team-Mitglieder, sonst die eigenen Punkte)
+        // - Team-Mitglieder teilen sich dadurch denselben Rang, obwohl ihre
+        // einzelnen Punkte unterschiedlich sein koennen.
+        $effectiveTotals = get_effective_totals($pdo, $game);
 
-        if ($teamNumber !== null && isset($teamLabels[$teamNumber])) {
-            if (!isset($standingsByTeam[$teamNumber])) {
-                $standingsByTeam[$teamNumber] = [
-                    'id' => 'team-' . $teamNumber,
-                    'name' => $teamLabels[$teamNumber],
-                    'total' => $totals[$playerId] ?? 0,
-                    'memberIds' => [],
-                ];
-            }
-            $standingsByTeam[$teamNumber]['memberIds'][] = $playerId;
-        } else {
-            $soloStandings[] = [
+        $standings = [];
+        foreach ($players as $p) {
+            $playerId = (int) $p['id'];
+            $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
+            $hasTeam = $teamNumber !== null && isset($teamLabels[$teamNumber]);
+            $ownTotal = $totals[$playerId] ?? 0;
+            $rankValue = $effectiveTotals[$playerId] ?? $ownTotal;
+
+            $standings[] = [
                 'id' => $playerId,
                 'name' => $p['name'],
-                'total' => $totals[$playerId] ?? 0,
+                'total' => $ownTotal,
                 'memberIds' => [$playerId],
-                // Nur bei Solo-Zeilen gesetzt - bei Team-Zeilen unklar, wessen
-                // Foto stellvertretend gezeigt werden sollte, deshalb dort
-                // bewusst kein Avatar (siehe Team-Zeile weiter oben, kein
-                // avatarExt-Feld).
                 'avatarExt' => $p['avatar_ext'],
+                'teamLabel' => $hasTeam ? $teamLabels[$teamNumber] : null,
+                'teamTotal' => $hasTeam ? $rankValue : null,
+                'rankValue' => $rankValue,
             ];
         }
+    } else {
+        // Team-Mitglieder haben immer identische Rundenwerte (siehe
+        // Migration 7) und damit identische Gesamtpunkte - werden hier zu
+        // EINER Standings-Zeile zusammengefasst statt als redundante
+        // Einzelzeilen mit gleichem Wert angezeigt zu werden. memberIds gibt
+        // es bei Solo-Spielern ebenfalls (nur mit sich selbst), damit das
+        // Frontend Stern-/Startspieler-Logik einheitlich ueber memberIds
+        // statt id pruefen kann.
+        $standingsByTeam = [];
+        $soloStandings = [];
+        foreach ($players as $p) {
+            $playerId = (int) $p['id'];
+            $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
+
+            if ($teamNumber !== null && isset($teamLabels[$teamNumber])) {
+                if (!isset($standingsByTeam[$teamNumber])) {
+                    $standingsByTeam[$teamNumber] = [
+                        'id' => 'team-' . $teamNumber,
+                        'name' => $teamLabels[$teamNumber],
+                        'total' => $totals[$playerId] ?? 0,
+                        'memberIds' => [],
+                    ];
+                }
+                $standingsByTeam[$teamNumber]['memberIds'][] = $playerId;
+            } else {
+                $soloStandings[] = [
+                    'id' => $playerId,
+                    'name' => $p['name'],
+                    'total' => $totals[$playerId] ?? 0,
+                    'memberIds' => [$playerId],
+                    // Nur bei Solo-Zeilen gesetzt - bei Team-Zeilen unklar, wessen
+                    // Foto stellvertretend gezeigt werden sollte, deshalb dort
+                    // bewusst kein Avatar (siehe Team-Zeile weiter oben, kein
+                    // avatarExt-Feld).
+                    'avatarExt' => $p['avatar_ext'],
+                ];
+            }
+        }
+        $standings = array_merge(array_values($standingsByTeam), $soloStandings);
+        foreach ($standings as &$s) {
+            $s['rankValue'] = $s['total'];
+        }
+        unset($s);
     }
-    $standings = array_merge(array_values($standingsByTeam), $soloStandings);
 
     usort($standings, function ($a, $b) use ($direction) {
-        $diff = $direction === 'lowest' ? $a['total'] - $b['total'] : $b['total'] - $a['total'];
+        $diff = $direction === 'lowest' ? $a['rankValue'] - $b['rankValue'] : $b['rankValue'] - $a['rankValue'];
         if ($diff !== 0) return $diff;
         return strcmp($a['name'], $b['name']);
     });
 
     $winners = [];
     if ($game['status'] === 'finished' && count($standings) > 0) {
-        $bestTotal = $standings[0]['total'];
+        $bestRankValue = $standings[0]['rankValue'];
         foreach ($standings as $s) {
-            if ($s['total'] === $bestTotal) {
-                $winners[] = ['id' => $s['id'], 'name' => $s['name'], 'total' => $s['total']];
+            if ($s['rankValue'] === $bestRankValue) {
+                // 'total' im Sieger-Banner zeigt bewusst rankValue (bei einem
+                // Team im individual-Modus dessen Summe), nicht den ggf.
+                // abweichenden Einzelwert des Mitglieds - sonst wuerde der
+                // Banner nur die Punkte EINES Team-Mitglieds zeigen.
+                $winners[] = ['id' => $s['id'], 'name' => $s['name'], 'total' => $s['rankValue']];
             }
         }
     }
@@ -294,6 +396,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'startingPlayerId' => $game['starting_player_id'] !== null ? (int) $game['starting_player_id'] : null,
         'totalRounds' => (int) $game['total_rounds'],
         'announceRoundEnd' => (bool) $game['announce_round_end'],
+        'teamScoring' => $teamScoring,
         'players' => array_map(function ($p) use ($teamLabels) {
             $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
             $teamLabel = $teamNumber !== null ? ($teamLabels[$teamNumber] ?? null) : null;

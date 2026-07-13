@@ -83,6 +83,10 @@ if ($method === 'POST') {
     // teamAssignments: { "<playerId>": <teamNumber> }, teamNames: { "<teamNumber>": "<Name>" }
     $teamAssignments = $mode !== 'rage' && is_array($body['teamAssignments'] ?? null) ? $body['teamAssignments'] : [];
     $teamNames = $mode !== 'rage' && is_array($body['teamNames'] ?? null) ? $body['teamNames'] : [];
+    // "shared" (Standard): Team-Mitglieder tragen gemeinsam einen Punktwert
+    // pro Runde ein. "individual": jeder Spieler traegt eigene Punkte ein,
+    // das Team-Ergebnis ist die Summe - siehe build_game_state().
+    $teamScoring = ($body['teamScoring'] ?? 'shared') === 'individual' ? 'individual' : 'shared';
 
     if ($mode === '') {
         send_json(['error' => 'Modus fehlt.'], 400);
@@ -106,12 +110,12 @@ if ($method === 'POST') {
     $pdo->beginTransaction();
 
     $insertGame = $pdo->prepare('
-        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end)
-        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?)
+        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end, team_scoring)
+        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?, ?)
     ');
     $insertGame->execute([
         $mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso(), $startingPlayerId,
-        max(0, $totalRounds), $announceRoundEnd ? 1 : 0,
+        max(0, $totalRounds), $announceRoundEnd ? 1 : 0, $teamScoring,
     ]);
     $gameId = (int) $pdo->lastInsertId();
 

@@ -405,6 +405,17 @@ main {
   color: var(--color-text);
 }
 
+.team-setup__scoring {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.team-setup__scoring > label:first-child {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
 .team-setup__names {
   display: flex;
   flex-direction: column;
@@ -505,6 +516,11 @@ main {
   border-radius: 3px;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.standings-team-hint {
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
 }
 
 .standings-table .progress-cell {

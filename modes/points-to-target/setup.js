@@ -112,6 +112,7 @@ setupForm.addEventListener('submit', async (event) => {
       playerIds: Array.from(selectedPlayerIds),
       teamAssignments: teamSetup.getTeamAssignments(),
       teamNames: teamSetup.getTeamNames(),
+      teamScoring: teamSetup.getTeamScoring(),
     }),
   });
 

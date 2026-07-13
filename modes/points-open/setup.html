@@ -73,7 +73,20 @@
               <input type="checkbox" data-team-enable>
               <span data-i18n="common.setup.teamModeLabel">Team-Modus aktivieren</span>
             </label>
-            <p class="hint-text" data-i18n="common.setup.teamModeHint">Spieler im selben Team teilen sich pro Runde einen gemeinsamen Punktwert.</p>
+            <p class="hint-text" data-i18n="common.setup.teamModeHint">Spieler lassen sich zu Teams gruppieren, deren Punkte gemeinsam zählen.</p>
+            <div class="team-setup__scoring" data-team-scoring hidden>
+              <label data-i18n="common.setup.teamScoringHeading">Punkte-Erfassung für Teams</label>
+              <label class="player-chip">
+                <input type="radio" name="team-scoring" value="shared" checked>
+                <span data-i18n="common.setup.teamScoringShared">Gemeinsamer Punktwert</span>
+              </label>
+              <p class="hint-text" data-i18n="common.setup.teamScoringSharedHint">Team-Mitglieder tragen zusammen einen Punktwert pro Runde ein.</p>
+              <label class="player-chip">
+                <input type="radio" name="team-scoring" value="individual">
+                <span data-i18n="common.setup.teamScoringIndividual">Einzelne Punkte, gemeinsame Summe</span>
+              </label>
+              <p class="hint-text" data-i18n="common.setup.teamScoringIndividualHint">Jeder Spieler trägt eigene Punkte ein — angezeigt werden sowohl die Einzelpunkte als auch die Team-Summe.</p>
+            </div>
             <div class="team-setup__assignments" data-team-assignments hidden></div>
             <div class="team-setup__names" data-team-names hidden></div>
           </div>

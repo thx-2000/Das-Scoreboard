@@ -97,16 +97,27 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Spielerzahl weiterhin nötig — das ist strukturell bedingt und wurde
   nicht extra behoben.
 - **Team-Modus** (nur in den 3 Punkte-Modi, nicht bei RAGE): Beim Einrichten
-  lassen sich Spieler unter "Erweiterte Optionen" zu Teams gruppieren —
-  Team-Mitglieder tragen dann pro Runde nur noch einen gemeinsamen
-  Punktwert ein (ein Eingabefeld statt eines pro Spieler), der beim
-  Speichern für alle Mitglieder übernommen wird. Teamname wird automatisch
-  aus den Mitgliedsnamen gebildet ("Alice & Bob") oder lässt sich beim
-  Einrichten frei vergeben. In der Korrektur-Tabelle bleibt jeder Spieler
-  einzeln sichtbar (Transparenz), Korrekturen werden aber automatisch an
-  alle Team-Mitglieder der Runde angeglichen, damit die Werte nicht
-  auseinanderlaufen. Bestehende Spiele ohne Teams sind unverändert (jeder
-  spielt weiterhin solo).
+  lassen sich Spieler unter "Erweiterte Optionen" zu Teams gruppieren.
+  Teamname wird automatisch aus den Mitgliedsnamen gebildet ("Alice &
+  Bob") oder lässt sich beim Einrichten frei vergeben. Zwei Varianten der
+  Punkte-Erfassung stehen zur Wahl:
+  - **Gemeinsamer Punktwert** (Standard): Team-Mitglieder tragen pro
+    Runde nur noch einen gemeinsamen Punktwert ein (ein Eingabefeld statt
+    eines pro Spieler), der beim Speichern für alle Mitglieder übernommen
+    wird. In der Korrektur-Tabelle bleibt jeder Spieler einzeln sichtbar
+    (Transparenz), Korrekturen werden aber automatisch an alle
+    Team-Mitglieder der Runde angeglichen, damit die Werte nicht
+    auseinanderlaufen.
+  - **Einzelne Punkte, gemeinsame Summe**: jeder Spieler trägt weiterhin
+    eigene Punkte ein wie ohne Team-Modus (ein Eingabefeld pro Spieler,
+    unabhängige Werte, kein Korrektur-Sync). Im Punktestand bleibt jeder
+    Spieler eine eigene Zeile, zeigt zusätzlich die Team-Zugehörigkeit und
+    die Team-Summe an — Rang und Sieg werden anhand der Team-Summe
+    ermittelt, auch für die automatische Ziel-Erreichung bei "Punkte bis
+    Höchstwert".
+
+  Bestehende Spiele ohne Teams sind unverändert (jeder spielt weiterhin
+  solo).
 - **Spieler-Avatar**: In der Spielerverwaltung lässt sich pro Spieler ein
   Foto hochladen (PNG/JPEG, max. 2 MB) — nur im Passfoto-Hochformat 2:3
   möglich. Ein Ausschnitts-Auswahl-Dialog (Ziehen zum Verschieben, Regler
@@ -411,15 +422,25 @@ to work on iPad and iPhone.
   still needs horizontal scrolling depending on player count — that's a
   structural limitation and wasn't specifically addressed.
 - **Team mode** (only in the 3 point-based modes, not RAGE): during setup,
-  players can be grouped into teams under "Advanced options" — team
-  members then enter just one combined score per round (one input field
-  instead of one per player), which gets applied to every member on save.
-  The team name is auto-generated from member names ("Alice & Bob") or can
-  be set freely during setup. The correction table still shows every
-  player individually (for transparency), but correcting one team
-  member's score automatically syncs it to their teammates for that round
-  so the values can't drift apart. Existing games without teams are
-  unaffected (everyone still plays solo).
+  players can be grouped into teams under "Advanced options". The team
+  name is auto-generated from member names ("Alice & Bob") or can be set
+  freely during setup. Two team-scoring variants are available:
+  - **Combined score** (default): team members enter just one combined
+    score per round (one input field instead of one per player), which
+    gets applied to every member on save. The correction table still
+    shows every player individually (for transparency), but correcting
+    one team member's score automatically syncs it to their teammates for
+    that round so the values can't drift apart.
+  - **Individual scores, combined total**: each player still enters their
+    own score, just like without team mode (one input field per player,
+    independent values, no correction sync). In the standings, every
+    player keeps their own row but additionally shows their team
+    affiliation and the team's combined total — rank and winning are
+    determined by the team total, including the automatic target
+    detection in "Points to target".
+
+  Existing games without teams are unaffected (everyone still plays
+  solo).
 - **Player avatar**: player management lets you upload a photo per player
   (PNG/JPEG, max. 2 MB) — only allowed in passport-photo portrait format
   2:3. A crop-selection dialog (drag to pan, slider to zoom, plain canvas,

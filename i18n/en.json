@@ -41,7 +41,8 @@
       "standingsHeading": "Standings",
       "standings": {
         "collapse": "Collapse",
-        "expand": "Show"
+        "expand": "Show",
+        "teamTotalSuffix": "points total"
       },
       "startingPlayerLegend": "★ Starting player (random)",
       "startedSuffix": "started {date}",
@@ -72,7 +73,12 @@
       "addPlayerPlaceholder": "Enter name",
       "advancedOptions": "Advanced options",
       "teamModeLabel": "Enable team mode",
-      "teamModeHint": "Players on the same team share one combined score per round.",
+      "teamModeHint": "Players can be grouped into teams whose points count together.",
+      "teamScoringHeading": "Team scoring",
+      "teamScoringShared": "Combined score",
+      "teamScoringSharedHint": "Team members jointly enter one combined score per round.",
+      "teamScoringIndividual": "Individual scores, combined total",
+      "teamScoringIndividualHint": "Each player enters their own score — both individual scores and the team total are shown.",
       "teamNone": "No team",
       "teamNumber": "Team {number}",
       "teamNameLabel": "Name for team {number} (optional)",

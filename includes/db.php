@@ -197,6 +197,22 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE players ADD COLUMN avatar_ext TEXT');
             }
         },
+
+        // Zweite Team-Modus-Variante (nur die 3 Punkte-Modi, nicht RAGE):
+        // team_scoring legt je Spiel fest, wie Team-Punkte erfasst werden.
+        // "shared" (Standard, unveraendertes bisheriges Verhalten): Team-
+        // Mitglieder tragen gemeinsam einen Punktwert pro Runde ein.
+        // "individual": jeder Spieler traegt eigene Punkte ein, das Team-
+        // Ergebnis ist die Summe der Mitglieder - siehe build_game_state()
+        // in state.php fuer die Standings-Berechnung je nach Modus.
+        9 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            if (!in_array('team_scoring', $existing, true)) {
+                $pdo->exec('ALTER TABLE games ADD COLUMN team_scoring TEXT NOT NULL DEFAULT "shared"');
+            }
+        },
     ];
 }
 

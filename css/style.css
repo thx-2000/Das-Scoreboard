@@ -557,7 +557,6 @@ main {
 .rounds-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 420px;
 }
 
 .rounds-table th,
@@ -574,7 +573,7 @@ main {
   color: var(--color-text-muted);
 }
 
-.rounds-table input[type="number"] {
+.rounds-table input {
   width: 4.5rem;
   padding: 0.35rem 0.3rem;
   border-radius: 6px;
@@ -587,6 +586,35 @@ main {
 
 .rounds-table__row-actions {
   white-space: nowrap;
+}
+
+/* Kompaktere Rundentabelle auf schmalen Bildschirmen (z.B. iPhone Hochformat) -
+   weniger Innenabstand/Schrift spart Platz, negativer Rand laesst die Tabelle
+   bis an den Kartenrand reichen, damit moeglichst wenig seitlich gescrollt
+   werden muss. */
+@media (max-width: 480px) {
+  .rounds-table-wrap {
+    margin: 0 -1.75rem;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+  }
+
+  .rounds-table th,
+  .rounds-table td {
+    padding: 0.3rem 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .rounds-table input {
+    width: 3.2rem;
+    padding: 0.3rem 0.2rem;
+    font-size: 0.85rem;
+  }
+
+  .rounds-table__row-actions .btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+  }
 }
 
 /* Spielerverwaltung */

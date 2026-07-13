@@ -41,21 +41,26 @@
   <div class="scoreboard">
     <div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
       <section class="card scoreboard-card">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
           <h2 style="margin:0;" data-i18n="common.game.standingsHeading">Punktestand</h2>
-          <button type="button" id="toggle-finished-btn" class="btn btn--small btn--ghost"></button>
+          <div style="display:flex; gap:0.5rem;">
+            <button type="button" id="toggle-standings-btn" class="btn btn--small btn--ghost" aria-expanded="true" aria-controls="standings-collapsible" data-i18n="common.game.standings.collapse">Einklappen</button>
+            <button type="button" id="toggle-finished-btn" class="btn btn--small btn--ghost"></button>
+          </div>
         </div>
-        <table class="standings-table">
-          <thead>
-            <tr>
-              <th scope="col" data-i18n="common.table.rank">Platz</th>
-              <th scope="col" data-i18n="common.table.name">Name</th>
-              <th scope="col" data-i18n="common.table.points">Punkte</th>
-            </tr>
-          </thead>
-          <tbody id="standings-body"></tbody>
-        </table>
-        <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
+        <div id="standings-collapsible">
+          <table class="standings-table">
+            <thead>
+              <tr>
+                <th scope="col" data-i18n="common.table.rank">Platz</th>
+                <th scope="col" data-i18n="common.table.name">Name</th>
+                <th scope="col" data-i18n="common.table.points">Punkte</th>
+              </tr>
+            </thead>
+            <tbody id="standings-body"></tbody>
+          </table>
+          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
+        </div>
       </section>
     </div>
   </div>
@@ -94,6 +99,7 @@
   <script src="../../js/i18n.js"></script>
   <script src="../../js/input-helpers.js"></script>
   <script src="../../js/feedback.js"></script>
+  <script src="../../js/standings-toggle.js"></script>
   <script src="game.js"></script>
 </body>
 </html>

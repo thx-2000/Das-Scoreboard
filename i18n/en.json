@@ -37,6 +37,10 @@
       "loading": "Loading …",
       "notFound": "Game not found.",
       "standingsHeading": "Standings",
+      "standings": {
+        "collapse": "Collapse",
+        "expand": "Show"
+      },
       "startingPlayerLegend": "★ Starting player (random)",
       "startedSuffix": "started {date}",
       "dateTime": "{date}",

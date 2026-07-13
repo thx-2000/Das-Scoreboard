@@ -82,6 +82,20 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   bisherigen Wert, ohne ihn erst manuell markieren oder löschen zu müssen.
   Auf Mobilgeräten öffnet sich dabei die numerische Tastatur
   (`inputmode="numeric"`).
+- **Ein-/ausklappbarer Punktestand**: Der sticky Punktestand oben in der
+  Spielansicht lässt sich per Knopf einklappen (zeigt dann nur die
+  Überschrift) und wieder anzeigen — wichtig auf kleinen Bildschirmen
+  (z.B. iPhone Hochformat), wo die volle Tabelle sonst zu viel Platz für
+  die Rundenerfassung darunter wegnimmt. Zustand wird pro Gerät in
+  `localStorage` gemerkt, gilt modusübergreifend.
+- **Kompaktere Rundentabelle auf schmalen Bildschirmen**: Innenabstand,
+  Schrift und Eingabefeld-Breite in der Rundenverlauf-Tabelle schrumpfen
+  unterhalb 480px Breite, zusätzlich reicht die Tabelle bis an den
+  Kartenrand — reduziert bzw. vermeidet seitliches Scrollen bei den
+  ueblichen 2-4 Spielern in den 3 Punkte-Modi. Bei RAGE (5 Spalten pro
+  Spieler in der Korrektur-Tabelle) bleibt seitliches Scrollen je nach
+  Spielerzahl weiterhin nötig — das ist strukturell bedingt und wurde
+  nicht extra behoben.
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -343,6 +357,18 @@ to work on iPad and iPhone.
   typing immediately overwrites the previous value without having to
   select or delete it manually first. On mobile devices this also brings
   up the numeric keyboard (`inputmode="numeric"`).
+- **Collapsible standings**: the sticky standings card at the top of the
+  game view can be collapsed to just its heading and expanded again via a
+  button — useful on small screens (e.g. iPhone portrait), where the full
+  table otherwise leaves too little room for round entry below. State is
+  remembered per device in `localStorage`, shared across all modes.
+- **More compact round history table on narrow screens**: padding, font
+  size and input width in the round history/correction table shrink below
+  480px width, and the table also bleeds to the card edge — reduces or
+  avoids horizontal scrolling for the usual 2-4 players in the 3
+  point-based modes. RAGE (5 columns per player in the correction table)
+  still needs horizontal scrolling depending on player count — that's a
+  structural limitation and wasn't specifically addressed.
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

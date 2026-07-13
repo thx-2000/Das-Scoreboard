@@ -37,6 +37,10 @@
       "loading": "Lädt …",
       "notFound": "Spiel nicht gefunden.",
       "standingsHeading": "Punktestand",
+      "standings": {
+        "collapse": "Einklappen",
+        "expand": "Anzeigen"
+      },
       "startingPlayerLegend": "★ Startspieler (zufällig)",
       "startedSuffix": "gestartet {date} Uhr",
       "dateTime": "{date} Uhr",

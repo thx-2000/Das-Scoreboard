@@ -15,6 +15,14 @@ function default_settings(): array
         'language' => 'de',
         'app_title' => 'Das Scoreboard',
 
+        // 'none' (Standard) | 'square' | 'banner'. Die _ext-Werte ('' = kein
+        // Logo hochgeladen, sonst 'png'/'jpg'/'svg') werden ausschliesslich
+        // von api/logo.php gesetzt, nicht ueber das generische Settings-
+        // Formular - siehe save_settings().
+        'logo_mode' => 'none',
+        'logo_square_ext' => '',
+        'logo_banner_ext' => '',
+
         'color_bg_light' => '#f1f2f4',
         'color_bg_dark' => '#17181b',
         'color_surface_light' => '#ffffff',
@@ -88,6 +96,14 @@ function save_settings(PDO $pdo, array $updates): void
             if ($value === '' || mb_strlen($value) > 60) {
                 continue;
             }
+        } elseif ($key === 'logo_mode') {
+            if (!in_array($value, ['none', 'square', 'banner'], true)) {
+                continue;
+            }
+        } elseif ($key === 'logo_square_ext' || $key === 'logo_banner_ext') {
+            // Nur api/logo.php darf diese Werte setzen (direkter Upsert dort),
+            // nicht das generische Settings-Formular.
+            continue;
         } elseif (!is_valid_hex_color($value)) {
             continue;
         }

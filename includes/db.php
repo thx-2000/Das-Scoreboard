@@ -188,6 +188,11 @@ function get_db(): PDO
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec('PRAGMA journal_mode = WAL');
     $pdo->exec('PRAGMA foreign_keys = ON');
+    // Ohne busy_timeout schlaegt ein Schreibzugriff bei gleichzeitigen
+    // Requests (z.B. zwei Browsertabs speichern kurz hintereinander) sofort
+    // mit "database is locked" fehl, statt kurz zu warten und es erneut zu
+    // versuchen.
+    $pdo->exec('PRAGMA busy_timeout = 5000');
 
     run_migrations($pdo);
 

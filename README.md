@@ -52,6 +52,12 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   im Punktestand-Kasten erklärt wird ("Startspieler (zufällig)"). Bereits
   vor dieser Funktion angelegte Spiele zeigen keinen Stern (kein
   Startspieler nachträglich zugewiesen).
+- **Rückgängig**: Alle Modi zeigen neben "Rundenverlauf & Korrektur" einen
+  "Letzte Runde rückgängig"-Knopf, sobald mindestens eine Runde gespielt
+  wurde — schneller Zugriff für den Fall, dass die letzte Eingabe ein
+  Versehen war, ohne dafür in der Korrektur-Tabelle nach unten scrollen zu
+  müssen. Löscht technisch dieselbe Runde wie der "Löschen"-Knopf in der
+  Tabelle.
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -280,6 +286,11 @@ to work on iPad and iPhone.
   carries a small star (★) in the standings, explained at the bottom left
   of the standings box ("Starting player (random)"). Games created before
   this feature show no star (no starting player assigned retroactively).
+- **Undo**: every mode shows an "Undo last round" button next to "Round
+  history & correction" as soon as at least one round has been played —
+  quick access for when the last entry was a mistake, without having to
+  scroll down to the correction table. Technically deletes the same round
+  as the "Delete" button in the table.
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

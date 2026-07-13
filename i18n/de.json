@@ -52,7 +52,8 @@
         "heading": "Rundenverlauf & Korrektur",
         "hint": "Werte direkt anpassen, um Eintragungsfehler zu korrigieren.",
         "empty": "Noch keine Runde gespielt.",
-        "deleteConfirm": "Diese Runde wirklich löschen?"
+        "deleteConfirm": "Diese Runde wirklich löschen?",
+        "undoButton": "Letzte Runde rückgängig"
       },
       "noPlayersHint": "Noch keine Spieler angelegt — rechts unten hinzufügen.",
       "roundEntryHintGeneric": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal)."

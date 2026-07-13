@@ -52,7 +52,8 @@
         "heading": "Round history & correction",
         "hint": "Adjust values directly to correct entry mistakes.",
         "empty": "No rounds played yet.",
-        "deleteConfirm": "Really delete this round?"
+        "deleteConfirm": "Really delete this round?",
+        "undoButton": "Undo last round"
       },
       "noPlayersHint": "No players yet — add one below.",
       "roundEntryHintGeneric": "Enter this round's points per player (0 is normal)."

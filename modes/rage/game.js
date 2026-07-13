@@ -14,6 +14,7 @@ const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
 const toggleFinishedBtn = document.getElementById('toggle-finished-btn');
 const startingPlayerLegend = document.getElementById('starting-player-legend');
+const undoLastRoundBtn = document.getElementById('undo-last-round-btn');
 
 let currentState = null;
 
@@ -309,6 +310,10 @@ function renderRoundsTable(state) {
   roundsTableBody.appendChild(deleteRow);
 }
 
+function renderUndoButton(state) {
+  undoLastRoundBtn.hidden = state.rounds.length === 0;
+}
+
 function render(state) {
   renderHeader(state);
   renderStandings(state);
@@ -316,6 +321,13 @@ function render(state) {
   renderWinnerBanner(state);
   renderRoundEntry(state);
   renderRoundsTable(state);
+  renderUndoButton(state);
+}
+
+function undoLastRound() {
+  if (!currentState || currentState.rounds.length === 0) return;
+  const lastRound = currentState.rounds[currentState.rounds.length - 1];
+  deleteRound(lastRound.id);
 }
 
 async function saveNewRound() {
@@ -391,5 +403,6 @@ async function toggleFinished() {
 
 saveRoundBtn.addEventListener('click', saveNewRound);
 toggleFinishedBtn.addEventListener('click', toggleFinished);
+undoLastRoundBtn.addEventListener('click', undoLastRound);
 
 window.scoreboardI18nReady.then(loadGame);

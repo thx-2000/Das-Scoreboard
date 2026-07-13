@@ -29,20 +29,14 @@ if ($method === 'GET') {
         $namesStmt->execute([$gameId]);
         $names = array_column($namesStmt->fetchAll(PDO::FETCH_ASSOC), 'name');
 
+        $winnerIds = get_winner_ids($pdo, $game);
         $winners = [];
-        if ($game['status'] === 'finished') {
-            $totals = get_totals($pdo, $gameId);
-            if (count($totals) > 0) {
-                $direction = $game['win_direction'] === 'lowest' ? 'lowest' : 'highest';
-                $bestTotal = $direction === 'lowest' ? min($totals) : max($totals);
-                $namesById = $pdo->prepare('SELECT id, name FROM players WHERE id = ?');
-                foreach ($totals as $playerId => $total) {
-                    if ($total === $bestTotal) {
-                        $namesById->execute([$playerId]);
-                        $p = $namesById->fetch(PDO::FETCH_ASSOC);
-                        if ($p) $winners[] = $p['name'];
-                    }
-                }
+        if (count($winnerIds) > 0) {
+            $namesById = $pdo->prepare('SELECT name FROM players WHERE id = ?');
+            foreach ($winnerIds as $playerId) {
+                $namesById->execute([$playerId]);
+                $p = $namesById->fetch(PDO::FETCH_ASSOC);
+                if ($p) $winners[] = $p['name'];
             }
         }
 

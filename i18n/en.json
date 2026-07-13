@@ -5,6 +5,7 @@
       "home": "Home",
       "players": "Players",
       "history": "History",
+      "stats": "Statistics",
       "chooser": "Who starts?",
       "settings": "Settings"
     },
@@ -86,6 +87,7 @@
   "pages": {
     "home": { "title": "Game night scorekeeper" },
     "players": { "title": "Manage players" },
+    "stats": { "title": "Statistics" },
     "history": { "title": "Game history" },
     "settings": { "title": "Settings" },
     "pointsToTargetSetup": { "title": "Points to target — New game" },
@@ -153,6 +155,45 @@
       "removeConfirm": "Really remove this avatar?",
       "uploadFailed": "Photo could not be saved."
     }
+  },
+  "stats": {
+    "heading": "Statistics",
+    "filter": {
+      "heading": "Time range",
+      "hint": "Leave empty for stats across all games. For a game night that crosses midnight, e.g. enter 18:00 to 03:00 the next day.",
+      "fromLabel": "From",
+      "toLabel": "To",
+      "apply": "Apply",
+      "reset": "Reset"
+    },
+    "overall": {
+      "heading": "Overall",
+      "empty": "No games in this time range."
+    },
+    "byMode": {
+      "heading": "By mode"
+    },
+    "headToHead": {
+      "heading": "Head to head",
+      "empty": "No two players with shared finished games in this time range yet.",
+      "draws": "draws",
+      "gamesSuffix": "games"
+    },
+    "games": {
+      "heading": "Games in this time range",
+      "empty": "No games in this time range."
+    },
+    "table": {
+      "player": "Player",
+      "gamesPlayed": "Games",
+      "gamesFinished": "Finished",
+      "wins": "Wins",
+      "winRate": "Win rate",
+      "currentStreak": "Current streak",
+      "longestStreak": "Longest streak",
+      "avgScore": "Avg. score"
+    },
+    "print": "Print / PDF"
   },
   "avatarCropper": {
     "heading": "Choose image crop",

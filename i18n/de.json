@@ -5,6 +5,7 @@
       "home": "Startseite",
       "players": "Spieler",
       "history": "Verlauf",
+      "stats": "Statistiken",
       "chooser": "Wer fängt an?",
       "settings": "Einstellungen"
     },
@@ -87,6 +88,7 @@
     "home": { "title": "Spieleabend-Aufschreiber" },
     "players": { "title": "Spieler verwalten" },
     "history": { "title": "Spielverlauf" },
+    "stats": { "title": "Statistiken" },
     "settings": { "title": "Einstellungen" },
     "pointsToTargetSetup": { "title": "Punkte bis Höchstwert — Neues Spiel" },
     "pointsToTargetGame": { "title": "Punkte bis Höchstwert" },
@@ -153,6 +155,45 @@
       "removeConfirm": "Avatar wirklich entfernen?",
       "uploadFailed": "Foto konnte nicht gespeichert werden."
     }
+  },
+  "stats": {
+    "heading": "Statistiken",
+    "filter": {
+      "heading": "Zeitraum",
+      "hint": "Leer lassen für die Statistik über alle Spiele. Für einen Spieleabend, der über Mitternacht geht, z.B. 18:00 bis 03:00 des Folgetags eintragen.",
+      "fromLabel": "Von",
+      "toLabel": "Bis",
+      "apply": "Anwenden",
+      "reset": "Zurücksetzen"
+    },
+    "overall": {
+      "heading": "Gesamt",
+      "empty": "Keine Spiele in diesem Zeitraum."
+    },
+    "byMode": {
+      "heading": "Nach Modus"
+    },
+    "headToHead": {
+      "heading": "Kopf an Kopf",
+      "empty": "Noch keine zwei Spieler mit gemeinsamen beendeten Spielen in diesem Zeitraum.",
+      "draws": "Unentschieden",
+      "gamesSuffix": "Spiele"
+    },
+    "games": {
+      "heading": "Spiele in diesem Zeitraum",
+      "empty": "Keine Spiele in diesem Zeitraum."
+    },
+    "table": {
+      "player": "Spieler",
+      "gamesPlayed": "Spiele",
+      "gamesFinished": "Beendet",
+      "wins": "Siege",
+      "winRate": "Siegquote",
+      "currentStreak": "Aktuelle Serie",
+      "longestStreak": "Längste Serie",
+      "avgScore": "Punkteschnitt"
+    },
+    "print": "Drucken / PDF"
   },
   "avatarCropper": {
     "heading": "Bildausschnitt wählen",

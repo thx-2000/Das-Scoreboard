@@ -70,6 +70,36 @@ function set_game_finished(PDO $pdo, int $gameId, bool $finished): void
     }
 }
 
+/**
+ * Ermittelt die Spieler-IDs der Sieger eines beendeten Spiels (Gleichstand
+ * moeglich, dann mehrere Sieger). Leeres Array bei nicht beendeten Spielen.
+ * Team-Mitglieder haben immer identische Totals (siehe Migration 7) und
+ * erscheinen bei einem Team-Sieg folgerichtig beide als Sieger.
+ *
+ * @param array $game Zeile aus der games-Tabelle (mind. id, status, win_direction)
+ * @return array<int,int> Spieler-IDs
+ */
+function get_winner_ids(PDO $pdo, array $game): array
+{
+    if ($game['status'] !== 'finished') {
+        return [];
+    }
+    $totals = get_totals($pdo, (int) $game['id']);
+    if (count($totals) === 0) {
+        return [];
+    }
+    $direction = $game['win_direction'] === 'lowest' ? 'lowest' : 'highest';
+    $best = $direction === 'lowest' ? min($totals) : max($totals);
+
+    $winnerIds = [];
+    foreach ($totals as $playerId => $total) {
+        if ($total === $best) {
+            $winnerIds[] = (int) $playerId;
+        }
+    }
+    return $winnerIds;
+}
+
 /** @return array<int,int> player_id => Gesamtpunkte */
 function get_totals(PDO $pdo, int $gameId): array
 {
@@ -293,4 +323,193 @@ function extend_total_rounds(PDO $pdo, int $gameId, int $additionalRounds): void
     }
     $update = $pdo->prepare('UPDATE games SET total_rounds = total_rounds + ? WHERE id = ?');
     $update->execute([$additionalRounds, $gameId]);
+}
+
+/**
+ * Berechnet Statistiken ueber alle Spiele im optionalen Zeitfenster
+ * [$fromTs, $toTs] (Unix-Timestamps, jeweils optional/inklusiv). Der
+ * Vergleich laeuft bewusst ueber Timestamps statt String-Vergleich auf
+ * started_at, damit ein Spieleabend, der ueber Mitternacht geht (z.B.
+ * 18:00 bis 03:00 des Folgetags), korrekt als ein zusammenhaengender
+ * Zeitraum gefiltert werden kann.
+ *
+ * Liefert:
+ * - overall: Gesamt-Statistik je Spieler (modusuebergreifend), inkl.
+ *   aktueller und laengster Siegesserie innerhalb des Zeitfensters
+ * - byMode: dieselbe Statistik, aber getrennt je Modus (inkl. Punkte-
+ *   schnitt - modusuebergreifend waere das nicht aussagekraeftig, da die
+ *   Punkteskalen der Modi nicht vergleichbar sind)
+ * - headToHead: paarweiser direkter Vergleich aller Spieler, die
+ *   mindestens einmal gemeinsam in einem beendeten Spiel standen
+ * - games: Rohliste der Spiele im Zeitfenster, fuer eine druckbare
+ *   Zusammenfassung eines Spieleabends
+ *
+ * @return array{overall: array, byMode: array, headToHead: array, games: array}
+ */
+function build_stats(PDO $pdo, ?int $fromTs, ?int $toTs): array
+{
+    $namesStmt = $pdo->query('SELECT id, name FROM players');
+    $nameById = [];
+    foreach ($namesStmt->fetchAll(PDO::FETCH_ASSOC) as $p) {
+        $nameById[(int) $p['id']] = $p['name'];
+    }
+
+    $games = $pdo->query('SELECT * FROM games ORDER BY started_at ASC')->fetchAll(PDO::FETCH_ASSOC);
+
+    $overall = [];
+    $byMode = [];
+    $streaks = [];
+    $headToHead = [];
+    $gamesOut = [];
+
+    $participantsStmt = $pdo->prepare('SELECT player_id FROM game_players WHERE game_id = ?');
+
+    foreach ($games as $game) {
+        $startedTs = strtotime($game['started_at']);
+        if ($startedTs === false) {
+            continue;
+        }
+        if ($fromTs !== null && $startedTs < $fromTs) {
+            continue;
+        }
+        if ($toTs !== null && $startedTs > $toTs) {
+            continue;
+        }
+
+        $gameId = (int) $game['id'];
+        $mode = $game['mode'];
+        $isFinished = $game['status'] === 'finished';
+        $totals = get_totals($pdo, $gameId);
+        $winnerIds = get_winner_ids($pdo, $game);
+
+        $participantsStmt->execute([$gameId]);
+        $participantIds = array_map('intval', array_column($participantsStmt->fetchAll(PDO::FETCH_ASSOC), 'player_id'));
+        sort($participantIds);
+
+        foreach ($participantIds as $playerId) {
+            if (!isset($overall[$playerId])) {
+                $overall[$playerId] = ['gamesPlayed' => 0, 'gamesFinished' => 0, 'wins' => 0];
+            }
+            if (!isset($byMode[$mode][$playerId])) {
+                $byMode[$mode][$playerId] = ['gamesPlayed' => 0, 'gamesFinished' => 0, 'wins' => 0, 'scoreSum' => 0, 'scoreCount' => 0];
+            }
+            if (!isset($streaks[$playerId])) {
+                $streaks[$playerId] = ['current' => 0, 'longest' => 0];
+            }
+
+            $overall[$playerId]['gamesPlayed']++;
+            $byMode[$mode][$playerId]['gamesPlayed']++;
+
+            if ($isFinished) {
+                $won = in_array($playerId, $winnerIds, true);
+
+                $overall[$playerId]['gamesFinished']++;
+                $byMode[$mode][$playerId]['gamesFinished']++;
+                if ($won) {
+                    $overall[$playerId]['wins']++;
+                    $byMode[$mode][$playerId]['wins']++;
+                }
+                if (isset($totals[$playerId])) {
+                    $byMode[$mode][$playerId]['scoreSum'] += $totals[$playerId];
+                    $byMode[$mode][$playerId]['scoreCount']++;
+                }
+
+                if ($won) {
+                    $streaks[$playerId]['current']++;
+                    $streaks[$playerId]['longest'] = max($streaks[$playerId]['longest'], $streaks[$playerId]['current']);
+                } else {
+                    $streaks[$playerId]['current'] = 0;
+                }
+            }
+        }
+
+        if ($isFinished) {
+            foreach ($participantIds as $i => $a) {
+                foreach ($participantIds as $j => $b) {
+                    if ($j <= $i) {
+                        continue;
+                    }
+                    $key = $a . '-' . $b;
+                    if (!isset($headToHead[$key])) {
+                        $headToHead[$key] = ['aId' => $a, 'bId' => $b, 'aWins' => 0, 'bWins' => 0, 'draws' => 0, 'games' => 0];
+                    }
+                    $headToHead[$key]['games']++;
+                    $aWon = in_array($a, $winnerIds, true);
+                    $bWon = in_array($b, $winnerIds, true);
+                    if ($aWon && $bWon) {
+                        $headToHead[$key]['draws']++;
+                    } elseif ($aWon) {
+                        $headToHead[$key]['aWins']++;
+                    } elseif ($bWon) {
+                        $headToHead[$key]['bWins']++;
+                    }
+                }
+            }
+        }
+
+        $gamesOut[] = [
+            'id' => $gameId,
+            'mode' => $mode,
+            'label' => $game['label'],
+            'startedAt' => $game['started_at'],
+            'endedAt' => $game['ended_at'],
+            'status' => $game['status'],
+            'playerNames' => array_map(fn($id) => $nameById[$id] ?? '?', $participantIds),
+            'winnerNames' => array_map(fn($id) => $nameById[$id] ?? '?', $winnerIds),
+        ];
+    }
+
+    $overallOut = [];
+    foreach ($overall as $playerId => $stats) {
+        $overallOut[] = [
+            'playerId' => $playerId,
+            'name' => $nameById[$playerId] ?? '?',
+            'gamesPlayed' => $stats['gamesPlayed'],
+            'gamesFinished' => $stats['gamesFinished'],
+            'wins' => $stats['wins'],
+            'winRate' => $stats['gamesFinished'] > 0 ? $stats['wins'] / $stats['gamesFinished'] : null,
+            'currentStreak' => $streaks[$playerId]['current'],
+            'longestStreak' => $streaks[$playerId]['longest'],
+        ];
+    }
+    usort($overallOut, fn($a, $b) => $b['wins'] - $a['wins']);
+
+    $byModeOut = [];
+    foreach ($byMode as $mode => $playerStats) {
+        $rows = [];
+        foreach ($playerStats as $playerId => $stats) {
+            $rows[] = [
+                'playerId' => $playerId,
+                'name' => $nameById[$playerId] ?? '?',
+                'gamesPlayed' => $stats['gamesPlayed'],
+                'gamesFinished' => $stats['gamesFinished'],
+                'wins' => $stats['wins'],
+                'winRate' => $stats['gamesFinished'] > 0 ? $stats['wins'] / $stats['gamesFinished'] : null,
+                'avgScore' => $stats['scoreCount'] > 0 ? $stats['scoreSum'] / $stats['scoreCount'] : null,
+            ];
+        }
+        usort($rows, fn($a, $b) => $b['wins'] - $a['wins']);
+        $byModeOut[$mode] = $rows;
+    }
+
+    $headToHeadOut = array_values(array_map(function ($h) use ($nameById) {
+        return [
+            'aId' => $h['aId'],
+            'aName' => $nameById[$h['aId']] ?? '?',
+            'bId' => $h['bId'],
+            'bName' => $nameById[$h['bId']] ?? '?',
+            'aWins' => $h['aWins'],
+            'bWins' => $h['bWins'],
+            'draws' => $h['draws'],
+            'games' => $h['games'],
+        ];
+    }, $headToHead));
+    usort($headToHeadOut, fn($a, $b) => $b['games'] - $a['games']);
+
+    return [
+        'overall' => $overallOut,
+        'byMode' => $byModeOut,
+        'headToHead' => $headToHeadOut,
+        'games' => $gamesOut,
+    ];
 }

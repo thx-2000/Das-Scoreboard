@@ -115,6 +115,19 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Spielerverwaltung sowie im Punktestand aller 4 Modi (bei Team-Zeilen im
   Team-Modus bewusst nicht, da unklar wäre, wessen Foto stellvertretend
   gezeigt werden sollte). Ohne Foto bleibt es beim bisherigen Verhalten.
+- **Statistiken** (`stats.html`): modusübergreifende Auswertung aller
+  Spiele — Spiele/Siege/Siegquote/aktuelle und längste Sieges-Serie pro
+  Spieler, dieselbe Auswertung zusätzlich pro Modus (inkl.
+  Punkteschnitt, da die Punkteskalen der Modi nicht direkt vergleichbar
+  sind), Kopf-an-Kopf-Vergleich aller Spielerpaare mit gemeinsamen
+  Spielen, sowie eine Liste der Spiele im gewählten Zeitraum. Optionaler
+  Von/Bis-Zeitraumfilter (Datum + Uhrzeit) erlaubt eine Auswertung nur
+  für einen bestimmten Spieleabend — auch wenn dieser über die
+  Mitternachtsgrenze hinausgeht (z.B. 18:00 bis 03:00 des Folgetags),
+  da der Filter auf echten Zeitstempeln statt auf Kalendertagen
+  arbeitet. Ein "Drucken / PDF"-Knopf nutzt den normalen Browser-Druck
+  (eigenes Druck-Stylesheet blendet Navigation/Formulare aus) — direkter
+  Weg zu einem PDF-Ausdruck ohne zusätzliche Abhängigkeit.
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -239,6 +252,7 @@ Das-Scoreboard/
 ├── index.html               # Startseite: Modi-Auswahl
 ├── players.html             # Spielerverwaltung
 ├── history.html              # Spielverlauf
+├── stats.html                # Statistiken (Zeitraumfilter, Kopf-an-Kopf, Drucken/PDF)
 ├── settings.html              # globale Einstellungen (Farben, Sprache)
 ├── modes/
 │   ├── points-to-target/
@@ -272,6 +286,7 @@ Das-Scoreboard/
 │   ├── settings.php            # GET/PATCH globale Einstellungen (Titel, Logo, Farben, Sprache)
 │   ├── logo.php                 # GET/POST/DELETE Logo-Upload (Quadrat/Banner)
 │   ├── player-avatar.php         # GET/POST/DELETE Spieler-Avatar (Passfoto 2:3)
+│   ├── stats.php                 # GET Statistiken (optionaler from/to-Zeitfilter)
 │   └── version.php
 ├── includes/
 │   ├── db.php                 # PDO-SQLite-Verbindung + Schema
@@ -289,6 +304,7 @@ Das-Scoreboard/
 │   ├── settings.js              # Logik der Einstellungen-Seite
 │   ├── players.js               # Logik der Spielerverwaltung
 │   ├── history.js                # Logik des Spielverlaufs
+│   ├── stats.js                   # Logik der Statistik-Seite
 │   ├── feedback.js               # Ton/Vibration beim Rundenspeichern (nur Spielansichten)
 │   ├── input-helpers.js          # Auto-Select in Zahlenfeldern beim Fokussieren
 │   ├── pwa-hint.js                # Blendet PWA-Hinweis nur bei moeglicher Installation ein (nur Startseite)
@@ -412,6 +428,18 @@ to work on iPad and iPhone.
   all 4 modes (deliberately not on team rows in team mode, since it's
   unclear whose photo should represent the team). Without a photo,
   behavior is unchanged from before.
+- **Statistics** (`stats.html`): cross-mode evaluation of all games —
+  games/wins/win rate/current and longest win streak per player, the
+  same breakdown per mode as well (including average score, since score
+  scales aren't directly comparable across modes), head-to-head records
+  for every pair of players with shared games, and a list of the games
+  in the selected time range. An optional from/to time range filter
+  (date + time) lets you evaluate just one specific game night — even if
+  it crosses midnight (e.g. 18:00 to 03:00 the next day), since the
+  filter compares actual timestamps rather than calendar days. A "Print
+  / PDF" button uses the browser's normal print dialog (a dedicated
+  print stylesheet hides navigation/forms) — a direct path to a PDF
+  printout without an extra dependency.
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

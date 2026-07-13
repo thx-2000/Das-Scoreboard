@@ -362,6 +362,7 @@ async function saveNewRound() {
 
   currentState = data;
   render(currentState);
+  window.scoreboardPlaySaveFeedback();
 }
 
 async function correctRound(roundId, rowEl) {

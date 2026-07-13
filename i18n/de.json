@@ -161,6 +161,11 @@
       "hint": "Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.",
       "label": "Titel"
     },
+    "feedback": {
+      "heading": "Rückmeldung beim Speichern",
+      "hint": "Kurzer Ton (und Vibration, falls vom Gerät unterstützt) beim Speichern einer Runde. Auf iPhone/iPad ist Vibration aus technischen Gründen (Safari) nicht möglich, der Ton funktioniert aber.",
+      "label": "Ton beim Speichern"
+    },
     "logo": {
       "heading": "Logo",
       "hint": "Standardmäßig ist kein eigenes Logo aktiv, dann bleibt das Stift-Symbol sichtbar.",

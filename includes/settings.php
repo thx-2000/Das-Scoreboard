@@ -14,6 +14,7 @@ function default_settings(): array
     return [
         'language' => 'de',
         'app_title' => 'Das Scoreboard',
+        'sound_enabled' => '1',
 
         // 'none' (Standard) | 'square' | 'banner'. Die _ext-Werte ('' = kein
         // Logo hochgeladen, sonst 'png'/'jpg'/'svg') werden ausschliesslich
@@ -98,6 +99,10 @@ function save_settings(PDO $pdo, array $updates): void
             }
         } elseif ($key === 'logo_mode') {
             if (!in_array($value, ['none', 'square', 'banner'], true)) {
+                continue;
+            }
+        } elseif ($key === 'sound_enabled') {
+            if (!in_array($value, ['0', '1'], true)) {
                 continue;
             }
         } elseif ($key === 'logo_square_ext' || $key === 'logo_banner_ext') {

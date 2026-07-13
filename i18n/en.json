@@ -161,6 +161,11 @@
       "hint": "Shown in the header and in the browser tab title.",
       "label": "Title"
     },
+    "feedback": {
+      "heading": "Feedback on save",
+      "hint": "Short sound (and vibration, where supported by the device) when saving a round. On iPhone/iPad vibration isn't possible for technical reasons (Safari), but the sound works.",
+      "label": "Sound on save"
+    },
     "logo": {
       "heading": "Logo",
       "hint": "No custom logo is active by default, the pen icon stays visible.",

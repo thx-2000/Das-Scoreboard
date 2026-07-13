@@ -1,6 +1,8 @@
 const appTitleInput = document.getElementById('app-title-input');
 document.getElementById('title-form').addEventListener('submit', (event) => event.preventDefault());
 
+const soundEnabledInput = document.getElementById('sound-enabled-input');
+
 const languageSelect = document.getElementById('language-select');
 const singleColorFields = document.getElementById('single-color-fields');
 const themePairFields = document.getElementById('theme-pair-fields');
@@ -200,6 +202,7 @@ async function loadSettings() {
   const data = await response.json();
   currentSettings = data.settings;
   appTitleInput.value = data.settings.app_title || '';
+  soundEnabledInput.checked = data.settings.sound_enabled !== '0';
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   renderLogoPreviews(data.settings);
@@ -210,6 +213,7 @@ function collectFormValues() {
   const values = {
     language: languageSelect.value,
     app_title: appTitleInput.value.trim(),
+    sound_enabled: soundEnabledInput.checked ? '1' : '0',
     logo_mode: logoModeInput ? logoModeInput.value : 'none',
   };
   document.querySelectorAll('.color-field__hex').forEach((input) => {
@@ -251,6 +255,7 @@ resetBtn.addEventListener('click', async () => {
   const data = await response.json();
   currentSettings = data.settings;
   appTitleInput.value = data.settings.app_title || '';
+  soundEnabledInput.checked = data.settings.sound_enabled !== '0';
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   renderLogoPreviews(data.settings);

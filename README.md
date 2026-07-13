@@ -66,6 +66,12 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Startseite. Name/Icon im Manifest sind aktuell statisch (Standardtitel
   "Das Scoreboard", Stift-Symbol) und folgen einem in den Einstellungen
   geänderten Titel/Logo (noch) nicht automatisch.
+- **Ton beim Speichern**: kurzer, per Web-Audio-API synthetisierter Ton
+  (keine Audiodatei nötig) beim Speichern einer neuen Runde, in allen 4
+  Modi. Zusätzlich Vibration, wo vom Gerät unterstützt — auf iPhone/iPad
+  grundsätzlich nicht möglich (Safari implementiert die Vibration-API
+  nicht, auch nicht im PWA-Modus), der Ton funktioniert dort aber normal.
+  In den Einstellungen abschaltbar (Standard: an).
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -238,7 +244,8 @@ Das-Scoreboard/
 │   ├── i18n.js                  # laedt Sprachwoerterbuch, stellt t() bereit
 │   ├── settings.js              # Logik der Einstellungen-Seite
 │   ├── players.js               # Logik der Spielerverwaltung
-│   └── history.js                # Logik des Spielverlaufs
+│   ├── history.js                # Logik des Spielverlaufs
+│   └── feedback.js               # Ton/Vibration beim Rundenspeichern (nur Spielansichten)
 ├── data/                      # SQLite-Datei + Logo-Uploads, per .htaccess geschützt
 ├── assets/
 │   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
@@ -310,6 +317,12 @@ to work on iPad and iPhone.
   in the manifest are currently static (default title "Das Scoreboard",
   pen icon) and don't (yet) automatically follow a title/logo changed in
   settings.
+- **Sound on save**: short tone synthesized via the Web Audio API (no
+  audio file needed) when saving a new round, in all 4 modes. Also
+  triggers vibration where supported by the device — not possible on
+  iPhone/iPad at all (Safari doesn't implement the Vibration API, even in
+  PWA mode), but the sound works there normally. Toggleable in settings
+  (default: on).
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

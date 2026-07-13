@@ -156,6 +156,24 @@
       "hint": "Shown in the header and in the browser tab title.",
       "label": "Title"
     },
+    "logo": {
+      "heading": "Logo",
+      "hint": "No custom logo is active by default, the pen icon stays visible.",
+      "modeLabel": "Display",
+      "modeNone": "No logo",
+      "modeSquare": "Square, top left",
+      "modeBanner": "Banner across the full width",
+      "squareHeading": "Square logo",
+      "squareHint": "Recommended: 160×160 pixels (square). PNG, JPEG, or SVG, max. 2 MB.",
+      "bannerHeading": "Banner logo",
+      "bannerHint": "Recommended: approx. 1400×160 pixels (wide, not too tall). PNG, JPEG, or SVG, max. 2 MB.",
+      "uploadButton": "Upload",
+      "removeConfirm": "Really remove this logo?",
+      "uploadSuccess": "Logo uploaded.",
+      "removeSuccess": "Logo removed.",
+      "uploadFailed": "Could not upload logo.",
+      "noFileSelected": "Please select a file first."
+    },
     "language": {
       "heading": "Language",
       "hint": "More languages can be added later.",

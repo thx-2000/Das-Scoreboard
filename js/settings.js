@@ -8,6 +8,22 @@ const saveBtn = document.getElementById('save-settings-btn');
 const resetBtn = document.getElementById('reset-settings-btn');
 const statusEl = document.getElementById('settings-status');
 
+const logoStatusEl = document.getElementById('logo-status');
+const logoSlots = {
+  square: {
+    preview: document.getElementById('logo-square-preview'),
+    fileInput: document.getElementById('logo-square-file'),
+    uploadBtn: document.getElementById('logo-square-upload-btn'),
+    removeBtn: document.getElementById('logo-square-remove-btn'),
+  },
+  banner: {
+    preview: document.getElementById('logo-banner-preview'),
+    fileInput: document.getElementById('logo-banner-file'),
+    uploadBtn: document.getElementById('logo-banner-upload-btn'),
+    removeBtn: document.getElementById('logo-banner-remove-btn'),
+  },
+};
+
 function singleColors() {
   return [
     { key: 'color_green', label: window.t('settings.colorLabels.green') },
@@ -110,6 +126,75 @@ function renderColorFields(settings) {
   });
 }
 
+function renderLogoPreviews(settings) {
+  ['square', 'banner'].forEach((type) => {
+    const slot = logoSlots[type];
+    const hasLogo = Boolean(settings[`logo_${type}_ext`]);
+
+    slot.preview.innerHTML = '';
+    slot.preview.classList.toggle('logo-preview--empty', !hasLogo);
+    slot.removeBtn.hidden = !hasLogo;
+
+    if (hasLogo) {
+      const img = document.createElement('img');
+      img.src = `/api/logo.php?type=${type}&t=${Date.now()}`;
+      img.alt = '';
+      slot.preview.appendChild(img);
+    }
+  });
+
+  document.querySelectorAll('input[name="logo-mode"]').forEach((radio) => {
+    radio.checked = radio.value === (settings.logo_mode || 'none');
+  });
+}
+
+function showLogoStatus(message) {
+  logoStatusEl.textContent = message;
+  setTimeout(() => {
+    if (logoStatusEl.textContent === message) logoStatusEl.textContent = '';
+  }, 3000);
+}
+
+async function uploadLogo(type) {
+  const slot = logoSlots[type];
+  const file = slot.fileInput.files[0];
+  if (!file) {
+    showLogoStatus(window.t('settings.logo.noFileSelected'));
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('logo', file);
+
+  const response = await fetch(`/api/logo.php?type=${type}`, { method: 'POST', body: formData });
+  const data = await response.json();
+
+  if (!response.ok) {
+    showLogoStatus(data.error || window.t('settings.logo.uploadFailed'));
+    return;
+  }
+
+  slot.fileInput.value = '';
+  currentSettings[`logo_${type}_ext`] = data.ext;
+  renderLogoPreviews(currentSettings);
+  showLogoStatus(window.t('settings.logo.uploadSuccess'));
+}
+
+async function removeLogo(type) {
+  const confirmed = window.confirm(window.t('settings.logo.removeConfirm'));
+  if (!confirmed) return;
+
+  await fetch(`/api/logo.php?type=${type}`, { method: 'DELETE' });
+  currentSettings[`logo_${type}_ext`] = '';
+  renderLogoPreviews(currentSettings);
+  showLogoStatus(window.t('settings.logo.removeSuccess'));
+}
+
+logoSlots.square.uploadBtn.addEventListener('click', () => uploadLogo('square'));
+logoSlots.square.removeBtn.addEventListener('click', () => removeLogo('square'));
+logoSlots.banner.uploadBtn.addEventListener('click', () => uploadLogo('banner'));
+logoSlots.banner.removeBtn.addEventListener('click', () => removeLogo('banner'));
+
 async function loadSettings() {
   const response = await fetch('/api/settings.php');
   const data = await response.json();
@@ -117,10 +202,16 @@ async function loadSettings() {
   appTitleInput.value = data.settings.app_title || '';
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
+  renderLogoPreviews(data.settings);
 }
 
 function collectFormValues() {
-  const values = { language: languageSelect.value, app_title: appTitleInput.value.trim() };
+  const logoModeInput = document.querySelector('input[name="logo-mode"]:checked');
+  const values = {
+    language: languageSelect.value,
+    app_title: appTitleInput.value.trim(),
+    logo_mode: logoModeInput ? logoModeInput.value : 'none',
+  };
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;
   });
@@ -144,6 +235,7 @@ saveBtn.addEventListener('click', async () => {
   const data = await response.json();
   currentSettings = data.settings;
   renderColorFields(data.settings);
+  renderLogoPreviews(data.settings);
   showStatus(window.t('settings.savedStatus'));
 });
 
@@ -161,6 +253,7 @@ resetBtn.addEventListener('click', async () => {
   appTitleInput.value = data.settings.app_title || '';
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
+  renderLogoPreviews(data.settings);
   showStatus(window.t('settings.resetStatus'));
 });
 

@@ -101,6 +101,36 @@ function get_totals(PDO $pdo, int $gameId): array
     return $totals;
 }
 
+/**
+ * Ermittelt je team_number den Anzeigenamen eines Teams: manueller Name
+ * (falls von einem Mitglied gesetzt) hat Vorrang, sonst automatisch aus den
+ * Mitgliedsnamen gebildet ("Alice & Bob"). Teams mit nur noch einem
+ * Mitglied gelten nicht mehr als Team (Anzeige faellt auf Solo-Namen
+ * zurueck) - Sicherheitsnetz, kann aktuell nicht ueber die UI entstehen.
+ *
+ * @param array<int, array{id:int|string, name:string, team_number:?int, team_name:?string}> $players
+ * @return array<int, string> team_number => Anzeigename
+ */
+function resolve_team_labels(array $players): array
+{
+    $membersByTeam = [];
+    foreach ($players as $p) {
+        if ($p['team_number'] === null) continue;
+        $teamNumber = (int) $p['team_number'];
+        $membersByTeam[$teamNumber]['names'][] = $p['name'];
+        if (!empty($p['team_name']) && !isset($membersByTeam[$teamNumber]['customName'])) {
+            $membersByTeam[$teamNumber]['customName'] = $p['team_name'];
+        }
+    }
+
+    $teamLabels = [];
+    foreach ($membersByTeam as $teamNumber => $info) {
+        if (count($info['names']) < 2) continue;
+        $teamLabels[$teamNumber] = $info['customName'] ?? implode(' & ', $info['names']);
+    }
+    return $teamLabels;
+}
+
 function build_game_state(PDO $pdo, int $gameId): ?array
 {
     $gameStmt = $pdo->prepare('SELECT * FROM games WHERE id = ?');
@@ -111,7 +141,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     }
 
     $playersStmt = $pdo->prepare('
-        SELECT p.id, p.name FROM game_players gp
+        SELECT p.id, p.name, gp.team_number, gp.team_name FROM game_players gp
         JOIN players p ON p.id = gp.player_id
         WHERE gp.game_id = ?
         ORDER BY p.id
@@ -122,6 +152,8 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     foreach ($players as $p) {
         $nameById[$p['id']] = $p['name'];
     }
+
+    $teamLabels = resolve_team_labels($players);
 
     $roundsStmt = $pdo->prepare('SELECT * FROM rounds WHERE game_id = ? ORDER BY round_number');
     $roundsStmt->execute([$gameId]);
@@ -165,14 +197,40 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     $direction = $game['win_direction'] === 'lowest' ? 'lowest' : 'highest';
 
     $totals = get_totals($pdo, $gameId);
-    $standings = [];
+
+    // Team-Mitglieder haben immer identische Rundenwerte (siehe Migration 7)
+    // und damit identische Gesamtpunkte - werden hier zu EINER Standings-
+    // Zeile zusammengefasst statt als redundante Einzelzeilen mit
+    // gleichem Wert angezeigt zu werden. memberIds gibt es bei Solo-Spielern
+    // ebenfalls (nur mit sich selbst), damit das Frontend Stern-/Startspieler-
+    // Logik einheitlich ueber memberIds statt id pruefen kann.
+    $standingsByTeam = [];
+    $soloStandings = [];
     foreach ($players as $p) {
-        $standings[] = [
-            'id' => (int) $p['id'],
-            'name' => $p['name'],
-            'total' => $totals[$p['id']] ?? 0,
-        ];
+        $playerId = (int) $p['id'];
+        $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
+
+        if ($teamNumber !== null && isset($teamLabels[$teamNumber])) {
+            if (!isset($standingsByTeam[$teamNumber])) {
+                $standingsByTeam[$teamNumber] = [
+                    'id' => 'team-' . $teamNumber,
+                    'name' => $teamLabels[$teamNumber],
+                    'total' => $totals[$playerId] ?? 0,
+                    'memberIds' => [],
+                ];
+            }
+            $standingsByTeam[$teamNumber]['memberIds'][] = $playerId;
+        } else {
+            $soloStandings[] = [
+                'id' => $playerId,
+                'name' => $p['name'],
+                'total' => $totals[$playerId] ?? 0,
+                'memberIds' => [$playerId],
+            ];
+        }
     }
+    $standings = array_merge(array_values($standingsByTeam), $soloStandings);
+
     usort($standings, function ($a, $b) use ($direction) {
         $diff = $direction === 'lowest' ? $a['total'] - $b['total'] : $b['total'] - $a['total'];
         if ($diff !== 0) return $diff;
@@ -201,7 +259,16 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'startingPlayerId' => $game['starting_player_id'] !== null ? (int) $game['starting_player_id'] : null,
         'totalRounds' => (int) $game['total_rounds'],
         'announceRoundEnd' => (bool) $game['announce_round_end'],
-        'players' => array_map(fn($p) => ['id' => (int) $p['id'], 'name' => $p['name']], $players),
+        'players' => array_map(function ($p) use ($teamLabels) {
+            $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
+            $teamLabel = $teamNumber !== null ? ($teamLabels[$teamNumber] ?? null) : null;
+            return [
+                'id' => (int) $p['id'],
+                'name' => $p['name'],
+                'teamNumber' => $teamLabel !== null ? $teamNumber : null,
+                'teamLabel' => $teamLabel,
+            ];
+        }, $players),
         'rounds' => $roundsOut,
         'standings' => $standings,
         'winners' => $winners,

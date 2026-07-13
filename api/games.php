@@ -82,6 +82,14 @@ if ($method === 'POST') {
     $playerIds = array_map('intval', $body['playerIds'] ?? []);
     $playerIds = array_values(array_unique($playerIds));
 
+    // Team-Modus gibt es bewusst nur in den 3 Punkte-Modi, nicht bei RAGE
+    // (dort haben Ansage/Stiche eine ganz andere Struktur pro Spieler) -
+    // teamAssignments/teamNames werden bei RAGE deshalb ignoriert, auch wenn
+    // sie (fehlerhaft) mitgeschickt wuerden. Format:
+    // teamAssignments: { "<playerId>": <teamNumber> }, teamNames: { "<teamNumber>": "<Name>" }
+    $teamAssignments = $mode !== 'rage' && is_array($body['teamAssignments'] ?? null) ? $body['teamAssignments'] : [];
+    $teamNames = $mode !== 'rage' && is_array($body['teamNames'] ?? null) ? $body['teamNames'] : [];
+
     if ($mode === '') {
         send_json(['error' => 'Modus fehlt.'], 400);
     }
@@ -113,9 +121,15 @@ if ($method === 'POST') {
     ]);
     $gameId = (int) $pdo->lastInsertId();
 
-    $insertGamePlayer = $pdo->prepare('INSERT INTO game_players (game_id, player_id) VALUES (?, ?)');
+    $insertGamePlayer = $pdo->prepare('
+        INSERT INTO game_players (game_id, player_id, team_number, team_name) VALUES (?, ?, ?, ?)
+    ');
     foreach ($playerIds as $playerId) {
-        $insertGamePlayer->execute([$gameId, $playerId]);
+        $teamNumber = isset($teamAssignments[$playerId]) ? (int) $teamAssignments[$playerId] : null;
+        $teamName = $teamNumber !== null && !empty($teamNames[$teamNumber])
+            ? trim((string) $teamNames[$teamNumber])
+            : null;
+        $insertGamePlayer->execute([$gameId, $playerId, $teamNumber, $teamName !== '' ? $teamName : null]);
     }
 
     $pdo->commit();

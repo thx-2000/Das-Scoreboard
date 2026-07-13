@@ -67,7 +67,14 @@
       "labelOptional": "Bezeichnung (optional)",
       "whoPlays": "Wer spielt mit?",
       "addPlayerLabel": "Neuen Spieler hinzufügen",
-      "addPlayerPlaceholder": "Name eingeben"
+      "addPlayerPlaceholder": "Name eingeben",
+      "advancedOptions": "Erweiterte Optionen",
+      "teamModeLabel": "Team-Modus aktivieren",
+      "teamModeHint": "Spieler im selben Team teilen sich pro Runde einen gemeinsamen Punktwert.",
+      "teamNone": "Kein Team",
+      "teamNumber": "Team {number}",
+      "teamNameLabel": "Name für Team {number} (optional)",
+      "teamNamePlaceholder": "z.B. Die Adler"
     },
     "errors": {
       "minPlayers": "Mindestens 2 Spieler auswählen.",

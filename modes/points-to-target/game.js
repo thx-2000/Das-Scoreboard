@@ -52,7 +52,7 @@ function renderStandings(state) {
     if (rank === 1 && player.total > 0) row.className = 'rank-first';
 
     const percent = Math.max(0, Math.min(100, Math.round((player.total / state.targetScore) * 100)));
-    const displayName = player.id === state.startingPlayerId ? `${player.name} ★` : player.name;
+    const displayName = player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name;
 
     row.innerHTML = `
       <td>${rank}</td>
@@ -85,20 +85,20 @@ function renderRoundEntryForm(state) {
   roundEntryCard.hidden = state.status === 'finished';
   roundFormGrid.innerHTML = '';
 
-  state.players.forEach((player) => {
+  window.groupPlayersByTeam(state.players).forEach((group) => {
     const field = document.createElement('div');
     field.className = 'round-form-field';
 
     const label = document.createElement('label');
-    label.setAttribute('for', `round-input-${player.id}`);
-    label.textContent = player.name;
+    label.setAttribute('for', `round-input-${group.key}`);
+    label.textContent = group.label;
 
     const input = document.createElement('input');
     input.type = 'text';
     input.inputMode = 'numeric';
     input.pattern = '-?[0-9]*';
-    input.id = `round-input-${player.id}`;
-    input.dataset.playerId = player.id;
+    input.id = `round-input-${group.key}`;
+    input.dataset.playerIds = group.playerIds.join(',');
     input.value = '0';
 
     field.appendChild(label);
@@ -149,7 +149,20 @@ function renderRoundsTable(state) {
       input.pattern = '-?[0-9]*';
       input.value = round.scores[player.id] ?? 0;
       input.dataset.playerId = player.id;
-      input.addEventListener('change', () => correctRound(round.id, row));
+      if (player.teamNumber !== null && player.teamNumber !== undefined) {
+        input.dataset.teamNumber = player.teamNumber;
+      }
+      input.addEventListener('change', () => {
+        // Team-Mitglieder teilen sich einen Punktwert - bei Korrektur eines
+        // Mitglieds die anderen Eingabefelder derselben Runde mit angleichen,
+        // bevor correctRound() alle Werte der Zeile sammelt und sendet.
+        if (input.dataset.teamNumber) {
+          row.querySelectorAll(`input[data-team-number="${input.dataset.teamNumber}"]`).forEach((sibling) => {
+            sibling.value = input.value;
+          });
+        }
+        correctRound(round.id, row);
+      });
       cell.appendChild(input);
       row.appendChild(cell);
     });
@@ -194,8 +207,9 @@ function undoLastRound() {
 
 async function saveNewRound() {
   const scores = {};
-  roundFormGrid.querySelectorAll('input[data-player-id]').forEach((input) => {
-    scores[input.dataset.playerId] = Number(input.value) || 0;
+  roundFormGrid.querySelectorAll('input[data-player-ids]').forEach((input) => {
+    const value = Number(input.value) || 0;
+    input.dataset.playerIds.split(',').forEach((playerId) => { scores[playerId] = value; });
   });
 
   const response = await fetch(`/api/rounds.php?gameId=${gameId}`, {

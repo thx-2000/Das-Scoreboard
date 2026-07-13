@@ -4,8 +4,14 @@ const playerPicker = document.getElementById('player-picker');
 const newPlayerInlineInput = document.getElementById('new-player-inline');
 const addPlayerInlineBtn = document.getElementById('add-player-inline-btn');
 const setupError = document.getElementById('setup-error');
+const teamSetup = initTeamSetup(document.getElementById('team-setup'));
 
 const selectedPlayerIds = new Set();
+let knownPlayers = [];
+
+function refreshTeamSetup() {
+  teamSetup.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
+}
 
 function showError(message) {
   setupError.textContent = message;
@@ -33,6 +39,7 @@ function renderPlayerChip(player) {
       selectedPlayerIds.delete(player.id);
       label.classList.remove('player-chip--checked');
     }
+    refreshTeamSetup();
   });
 
   if (checkbox.checked) label.classList.add('player-chip--checked');
@@ -45,17 +52,20 @@ function renderPlayerChip(player) {
 async function loadPlayers() {
   const response = await fetch('/api/players.php');
   const players = await response.json();
+  knownPlayers = players;
   playerPicker.innerHTML = '';
   if (players.length === 0) {
     const hint = document.createElement('p');
     hint.className = 'hint-text';
     hint.textContent = window.t('common.game.noPlayersHint');
     playerPicker.appendChild(hint);
+    refreshTeamSetup();
     return;
   }
   players.forEach((player) => {
     playerPicker.appendChild(renderPlayerChip(player));
   });
+  refreshTeamSetup();
 }
 
 addPlayerInlineBtn.addEventListener('click', async () => {
@@ -101,6 +111,8 @@ setupForm.addEventListener('submit', async (event) => {
       label: gameLabelInput.value.trim(),
       winDirection,
       playerIds: Array.from(selectedPlayerIds),
+      teamAssignments: teamSetup.getTeamAssignments(),
+      teamNames: teamSetup.getTeamNames(),
     }),
   });
 

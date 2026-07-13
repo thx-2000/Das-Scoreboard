@@ -160,6 +160,31 @@ function migrations(): array
                 }
             }
         },
+
+        // Team-Modus (nur die 3 Punkte-Modi, nicht RAGE): team_number
+        // gruppiert Spieler eines Spiels zu Teams (NULL = kein Team, spielt
+        // solo - unveraendertes Verhalten fuer alle bisherigen Spiele).
+        // team_name ist ein optionaler manueller Name, der den automatisch
+        // aus den Mitgliedsnamen gebildeten Anzeigenamen ueberschreibt.
+        // Rundenwerte werden bewusst weiterhin pro Spieler in round_scores
+        // gespeichert (identisch fuer alle Team-Mitglieder) - dadurch
+        // bleiben get_totals()/recompute_game_status() unveraendert
+        // nutzbar, die Team-Logik lebt ausschliesslich im Frontend
+        // (ein Eingabefeld pro Team, Wert wird auf alle Mitglieder dupliziert).
+        7 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(game_players)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            $toAdd = [
+                'team_number' => 'ALTER TABLE game_players ADD COLUMN team_number INTEGER',
+                'team_name' => 'ALTER TABLE game_players ADD COLUMN team_name TEXT',
+            ];
+            foreach ($toAdd as $columnName => $sql) {
+                if (!in_array($columnName, $existing, true)) {
+                    $pdo->exec($sql);
+                }
+            }
+        },
     ];
 }
 

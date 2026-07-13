@@ -75,6 +75,19 @@
           <button type="button" id="add-player-inline-btn" class="btn btn--ghost" data-i18n="common.buttons.add">Hinzufügen</button>
         </div>
 
+        <details class="advanced-options">
+          <summary data-i18n="common.setup.advancedOptions">Erweiterte Optionen</summary>
+          <div class="team-setup" id="team-setup">
+            <label class="player-chip">
+              <input type="checkbox" data-team-enable>
+              <span data-i18n="common.setup.teamModeLabel">Team-Modus aktivieren</span>
+            </label>
+            <p class="hint-text" data-i18n="common.setup.teamModeHint">Spieler im selben Team teilen sich pro Runde einen gemeinsamen Punktwert.</p>
+            <div class="team-setup__assignments" data-team-assignments hidden></div>
+            <div class="team-setup__names" data-team-names hidden></div>
+          </div>
+        </details>
+
         <button type="submit" class="btn btn--primary" data-i18n="common.buttons.start">Spiel starten</button>
       </form>
 
@@ -88,6 +101,7 @@
   <script src="../../js/theme.js"></script>
   <script src="../../js/i18n.js"></script>
   <script src="../../js/input-helpers.js"></script>
+  <script src="../../js/team-setup.js"></script>
   <script src="setup.js"></script>
 </body>
 </html>

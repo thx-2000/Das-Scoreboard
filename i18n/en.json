@@ -67,7 +67,14 @@
       "labelOptional": "Label (optional)",
       "whoPlays": "Who is playing?",
       "addPlayerLabel": "Add new player",
-      "addPlayerPlaceholder": "Enter name"
+      "addPlayerPlaceholder": "Enter name",
+      "advancedOptions": "Advanced options",
+      "teamModeLabel": "Enable team mode",
+      "teamModeHint": "Players on the same team share one combined score per round.",
+      "teamNone": "No team",
+      "teamNumber": "Team {number}",
+      "teamNameLabel": "Name for team {number} (optional)",
+      "teamNamePlaceholder": "e.g. The Eagles"
     },
     "errors": {
       "minPlayers": "Select at least 2 players.",

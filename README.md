@@ -96,6 +96,17 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Spieler in der Korrektur-Tabelle) bleibt seitliches Scrollen je nach
   Spielerzahl weiterhin nötig — das ist strukturell bedingt und wurde
   nicht extra behoben.
+- **Team-Modus** (nur in den 3 Punkte-Modi, nicht bei RAGE): Beim Einrichten
+  lassen sich Spieler unter "Erweiterte Optionen" zu Teams gruppieren —
+  Team-Mitglieder tragen dann pro Runde nur noch einen gemeinsamen
+  Punktwert ein (ein Eingabefeld statt eines pro Spieler), der beim
+  Speichern für alle Mitglieder übernommen wird. Teamname wird automatisch
+  aus den Mitgliedsnamen gebildet ("Alice & Bob") oder lässt sich beim
+  Einrichten frei vergeben. In der Korrektur-Tabelle bleibt jeder Spieler
+  einzeln sichtbar (Transparenz), Korrekturen werden aber automatisch an
+  alle Team-Mitglieder der Runde angeglichen, damit die Werte nicht
+  auseinanderlaufen. Bestehende Spiele ohne Teams sind unverändert (jeder
+  spielt weiterhin solo).
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -271,7 +282,10 @@ Das-Scoreboard/
 │   ├── history.js                # Logik des Spielverlaufs
 │   ├── feedback.js               # Ton/Vibration beim Rundenspeichern (nur Spielansichten)
 │   ├── input-helpers.js          # Auto-Select in Zahlenfeldern beim Fokussieren
-│   └── pwa-hint.js                # Blendet PWA-Hinweis nur bei moeglicher Installation ein (nur Startseite)
+│   ├── pwa-hint.js                # Blendet PWA-Hinweis nur bei moeglicher Installation ein (nur Startseite)
+│   ├── standings-toggle.js        # Ein-/Ausklappen des Punktestands (nur Spielansichten)
+│   ├── team-setup.js              # Team-Zuordnung im Setup (nur 3 Punkte-Modi, nicht RAGE)
+│   └── team-helpers.js            # Spieler zu Team-Gruppen buendeln (nur 3 Punkte-Modi, nicht RAGE)
 ├── data/                      # SQLite-Datei + Logo-Uploads, per .htaccess geschützt
 ├── assets/
 │   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
@@ -369,6 +383,16 @@ to work on iPad and iPhone.
   point-based modes. RAGE (5 columns per player in the correction table)
   still needs horizontal scrolling depending on player count — that's a
   structural limitation and wasn't specifically addressed.
+- **Team mode** (only in the 3 point-based modes, not RAGE): during setup,
+  players can be grouped into teams under "Advanced options" — team
+  members then enter just one combined score per round (one input field
+  instead of one per player), which gets applied to every member on save.
+  The team name is auto-generated from member names ("Alice & Bob") or can
+  be set freely during setup. The correction table still shows every
+  player individually (for transparency), but correcting one team
+  member's score automatically syncs it to their teammates for that round
+  so the values can't drift apart. Existing games without teams are
+  unaffected (everyone still plays solo).
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

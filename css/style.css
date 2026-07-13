@@ -356,6 +356,78 @@ main {
   background: color-mix(in srgb, var(--color-green) 15%, var(--color-bg));
 }
 
+/* Aufklappbare Erweiterte Optionen (z.B. Team-Modus im Setup) */
+.advanced-options {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.advanced-options summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.advanced-options summary:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.advanced-options[open] summary {
+  margin-bottom: 0.75rem;
+}
+
+.team-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.team-setup__assignments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.team-setup__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.team-setup__row select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.team-setup__names {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.team-setup__name-field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.team-setup__name-field input {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
 /* Sticky Scoreboard */
 .scoreboard {
   position: sticky;

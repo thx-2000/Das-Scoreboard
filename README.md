@@ -68,17 +68,26 @@ Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
 anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifend
 angelegt.
 - **Einstellungen** (`settings.html`): global gespeicherte (serverseitige)
-  Konfiguration, gilt für alle, die die Seite nutzen. Drei Bereiche:
+  Konfiguration, gilt für alle, die die Seite nutzen. Vier Bereiche:
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
     eine eigene Gruppe betreibt, kann hier einen eigenen Namen eintragen.
+  - **Logo**: standardmäßig kein eigenes Logo (Stift-Symbol bleibt sichtbar).
+    Zwei unabhängige Upload-Slots (Quadrat, Banner) + eine Anzeige-Auswahl
+    (kein Logo / Quadrat oben links / Banner über der ganzen Breite) — nur
+    der gewählte Modus wird tatsächlich angezeigt. PNG, JPEG oder SVG, max.
+    2 MB, empfohlene Pixelmaße stehen jeweils im Hinweistext. Dateien liegen
+    in `data/logo-{square,banner}.{ext}` (per `.htaccess` gesperrt) und
+    werden über `api/logo.php?type=square|banner` ausgeliefert. "Entfernen"
+    löscht Datei + Zuordnung wieder, unabhängig vom gerade aktiven Modus.
   - **Farben**: komplette Palette einzeln per Hex-Eingabe + Farbwähler
     konfigurierbar. Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …)
     gelten unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund,
     Fläche, Text, Rahmen) je einmal für Hell- und einmal für Dunkelmodus.
     "Auf Standardfarben zurücksetzen" löscht alle Overrides wieder (inkl.
-    Titel und Sprache).
+    Titel, Logo-Auswahl und Sprache — hochgeladene Logo-Dateien selbst
+    bleiben aber liegen, bis sie explizit entfernt werden).
   - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
     "Mehrsprachigkeit (i18n)" unten.
 
@@ -197,7 +206,8 @@ Das-Scoreboard/
 │   ├── games.php              # GET/POST/PATCH/DELETE Spiele
 │   ├── rounds.php              # POST/PATCH/DELETE Runden (einfache Punkte)
 │   ├── rage-rounds.php         # POST/PATCH/DELETE Runden (RAGE: Ansage/Stiche/Sonderkarten)
-│   ├── settings.php            # GET/PATCH globale Einstellungen (Farben, Sprache)
+│   ├── settings.php            # GET/PATCH globale Einstellungen (Titel, Logo, Farben, Sprache)
+│   ├── logo.php                 # GET/POST/DELETE Logo-Upload (Quadrat/Banner)
 │   └── version.php
 ├── includes/
 │   ├── db.php                 # PDO-SQLite-Verbindung + Schema
@@ -284,18 +294,28 @@ Further modes (other scorekeeping mechanics) are meant to be added later
 as their own subfolders under `modes/`, without touching existing parts —
 the player database and game history are deliberately mode-agnostic.
 - **Settings** (`settings.html`): globally stored (server-side)
-  configuration, applies to everyone using the page. Three areas:
+  configuration, applies to everyone using the page. Four areas:
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).
     Anyone running the page for their own group can enter a custom name
     here.
+  - **Logo**: no custom logo by default (the pen icon stays visible). Two
+    independent upload slots (square, banner) plus a display selector (no
+    logo / square top left / banner across the full width) — only the
+    selected mode is actually shown. PNG, JPEG, or SVG, max. 2 MB,
+    recommended pixel dimensions are shown in the hint text for each.
+    Files live at `data/logo-{square,banner}.{ext}` (blocked by
+    `.htaccess`) and are served via `api/logo.php?type=square|banner`.
+    "Remove" deletes the file and its reference regardless of which mode
+    is currently active.
   - **Colors**: the complete palette individually configurable via hex
     input + color picker. Accent/function colors (green, amber, focus,
     error, …) stay the same in light and dark mode; base colors
     (background, surface, text, border) once each for light and dark
     mode. "Reset to default colors" clears all overrides again (incl.
-    title and language).
+    title, logo selection, and language — uploaded logo files themselves
+    stay in place until explicitly removed).
   - **Language**: currently German/English, see the "Multi-language
     support (i18n)" section below.
 

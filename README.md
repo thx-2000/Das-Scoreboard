@@ -107,6 +107,14 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   alle Team-Mitglieder der Runde angeglichen, damit die Werte nicht
   auseinanderlaufen. Bestehende Spiele ohne Teams sind unverändert (jeder
   spielt weiterhin solo).
+- **Spieler-Avatar**: In der Spielerverwaltung lässt sich pro Spieler ein
+  Foto hochladen (PNG/JPEG, max. 2 MB) — nur im Passfoto-Hochformat 2:3
+  möglich. Ein Ausschnitts-Auswahl-Dialog (Ziehen zum Verschieben, Regler
+  zum Zoomen, reines Canvas ohne externe Bibliothek) erzwingt das
+  Seitenverhältnis direkt beim Upload. Das Foto erscheint danach in der
+  Spielerverwaltung sowie im Punktestand aller 4 Modi (bei Team-Zeilen im
+  Team-Modus bewusst nicht, da unklar wäre, wessen Foto stellvertretend
+  gezeigt werden sollte). Ohne Foto bleibt es beim bisherigen Verhalten.
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -263,6 +271,7 @@ Das-Scoreboard/
 │   ├── rage-rounds.php         # POST/PATCH/DELETE Runden (RAGE: Ansage/Stiche/Sonderkarten)
 │   ├── settings.php            # GET/PATCH globale Einstellungen (Titel, Logo, Farben, Sprache)
 │   ├── logo.php                 # GET/POST/DELETE Logo-Upload (Quadrat/Banner)
+│   ├── player-avatar.php         # GET/POST/DELETE Spieler-Avatar (Passfoto 2:3)
 │   └── version.php
 ├── includes/
 │   ├── db.php                 # PDO-SQLite-Verbindung + Schema
@@ -285,8 +294,10 @@ Das-Scoreboard/
 │   ├── pwa-hint.js                # Blendet PWA-Hinweis nur bei moeglicher Installation ein (nur Startseite)
 │   ├── standings-toggle.js        # Ein-/Ausklappen des Punktestands (nur Spielansichten)
 │   ├── team-setup.js              # Team-Zuordnung im Setup (nur 3 Punkte-Modi, nicht RAGE)
-│   └── team-helpers.js            # Spieler zu Team-Gruppen buendeln (nur 3 Punkte-Modi, nicht RAGE)
-├── data/                      # SQLite-Datei + Logo-Uploads, per .htaccess geschützt
+│   ├── team-helpers.js            # Spieler zu Team-Gruppen buendeln (nur 3 Punkte-Modi, nicht RAGE)
+│   ├── avatar-cropper.js          # Pan/Zoom-Crop-Modal fuer Avatar-Upload (2:3)
+│   └── avatar-helpers.js          # Avatar-<img>-Markup fuer den Punktestand (alle 4 Modi)
+├── data/                      # SQLite-Datei + Logo-/Avatar-Uploads, per .htaccess geschützt
 ├── assets/
 │   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
 ├── manifest.json               # PWA-Manifest ("Zum Home-Bildschirm hinzufügen")
@@ -393,6 +404,14 @@ to work on iPad and iPhone.
   member's score automatically syncs it to their teammates for that round
   so the values can't drift apart. Existing games without teams are
   unaffected (everyone still plays solo).
+- **Player avatar**: player management lets you upload a photo per player
+  (PNG/JPEG, max. 2 MB) — only allowed in passport-photo portrait format
+  2:3. A crop-selection dialog (drag to pan, slider to zoom, plain canvas,
+  no external library) enforces that aspect ratio right at upload time.
+  The photo then shows up in player management and in the standings of
+  all 4 modes (deliberately not on team rows in team mode, since it's
+  unclear whose photo should represent the team). Without a photo,
+  behavior is unchanged from before.
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional

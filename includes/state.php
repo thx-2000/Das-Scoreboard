@@ -141,7 +141,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     }
 
     $playersStmt = $pdo->prepare('
-        SELECT p.id, p.name, gp.team_number, gp.team_name FROM game_players gp
+        SELECT p.id, p.name, p.avatar_ext, gp.team_number, gp.team_name FROM game_players gp
         JOIN players p ON p.id = gp.player_id
         WHERE gp.game_id = ?
         ORDER BY p.id
@@ -226,6 +226,11 @@ function build_game_state(PDO $pdo, int $gameId): ?array
                 'name' => $p['name'],
                 'total' => $totals[$playerId] ?? 0,
                 'memberIds' => [$playerId],
+                // Nur bei Solo-Zeilen gesetzt - bei Team-Zeilen unklar, wessen
+                // Foto stellvertretend gezeigt werden sollte, deshalb dort
+                // bewusst kein Avatar (siehe Team-Zeile weiter oben, kein
+                // avatarExt-Feld).
+                'avatarExt' => $p['avatar_ext'],
             ];
         }
     }
@@ -265,6 +270,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
             return [
                 'id' => (int) $p['id'],
                 'name' => $p['name'],
+                'avatarExt' => $p['avatar_ext'],
                 'teamNumber' => $teamLabel !== null ? $teamNumber : null,
                 'teamLabel' => $teamLabel,
             ];

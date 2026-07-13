@@ -185,6 +185,18 @@ function migrations(): array
                 }
             }
         },
+
+        // Spieler-Avatar (Passfoto-Ausschnitt, siehe api/player-avatar.php):
+        // avatar_ext haelt nur die Dateiendung (png/jpg) fest, analog zum
+        // Logo-Upload - NULL bedeutet kein Avatar gesetzt.
+        8 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(players)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            if (!in_array('avatar_ext', $existing, true)) {
+                $pdo->exec('ALTER TABLE players ADD COLUMN avatar_ext TEXT');
+            }
+        },
     ];
 }
 

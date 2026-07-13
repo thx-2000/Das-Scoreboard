@@ -18,7 +18,8 @@
       "resume": "Resume game",
       "remove": "Remove",
       "reactivate": "Reactivate",
-      "close": "Close"
+      "close": "Close",
+      "cancel": "Cancel"
     },
     "winDirection": {
       "heading": "Who wins at the end?",
@@ -144,7 +145,19 @@
       "heading": "Deactivated players",
       "hint": "Stay visible in past games but no longer appear in quick selection.",
       "empty": "No deactivated players."
+    },
+    "avatar": {
+      "uploadLabel": "Upload photo",
+      "changeLabel": "Change photo",
+      "removeLabel": "Remove photo",
+      "removeConfirm": "Really remove this avatar?",
+      "uploadFailed": "Photo could not be saved."
     }
+  },
+  "avatarCropper": {
+    "heading": "Choose image crop",
+    "hint": "Drag to pan, use the slider to zoom (passport-photo format 2:3).",
+    "apply": "Apply"
   },
   "history": {
     "heading": "Game history",

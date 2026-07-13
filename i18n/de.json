@@ -18,7 +18,8 @@
       "resume": "Spiel fortsetzen",
       "remove": "Entfernen",
       "reactivate": "Reaktivieren",
-      "close": "Schließen"
+      "close": "Schließen",
+      "cancel": "Abbrechen"
     },
     "winDirection": {
       "heading": "Wer gewinnt am Ende?",
@@ -144,7 +145,19 @@
       "heading": "Deaktivierte Spieler",
       "hint": "Bleiben in vergangenen Spielen sichtbar, erscheinen aber nicht mehr in der Schnellauswahl.",
       "empty": "Keine deaktivierten Spieler."
+    },
+    "avatar": {
+      "uploadLabel": "Foto hochladen",
+      "changeLabel": "Foto ändern",
+      "removeLabel": "Foto entfernen",
+      "removeConfirm": "Avatar wirklich entfernen?",
+      "uploadFailed": "Foto konnte nicht gespeichert werden."
     }
+  },
+  "avatarCropper": {
+    "heading": "Bildausschnitt wählen",
+    "hint": "Ziehen zum Verschieben, Regler zum Zoomen (Passfoto-Format 2:3).",
+    "apply": "Übernehmen"
   },
   "history": {
     "heading": "Spielverlauf",

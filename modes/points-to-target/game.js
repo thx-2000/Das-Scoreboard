@@ -56,7 +56,7 @@ function renderStandings(state) {
 
     row.innerHTML = `
       <td>${rank}</td>
-      <td>${displayName}</td>
+      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div></td>
       <td>${player.total}</td>
       <td class="progress-cell">
         <div class="mini-progress">

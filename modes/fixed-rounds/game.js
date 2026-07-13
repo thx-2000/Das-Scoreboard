@@ -66,7 +66,7 @@ function renderStandings(state) {
 
     row.innerHTML = `
       <td>${rank}</td>
-      <td>${displayName}</td>
+      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div></td>
       <td>${player.total}</td>
     `;
     standingsBody.appendChild(row);

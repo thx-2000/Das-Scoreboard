@@ -8,7 +8,7 @@ $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
 
 function all_players(PDO $pdo, bool $includeInactive): array
 {
-    $sql = 'SELECT id, name, active FROM players';
+    $sql = 'SELECT id, name, active, avatar_ext FROM players';
     if (!$includeInactive) {
         $sql .= ' WHERE active = 1';
     }
@@ -18,6 +18,7 @@ function all_players(PDO $pdo, bool $includeInactive): array
         'id' => (int) $p['id'],
         'name' => $p['name'],
         'active' => (bool) $p['active'],
+        'avatarExt' => $p['avatar_ext'],
     ], $rows);
 }
 

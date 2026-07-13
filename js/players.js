@@ -29,12 +29,95 @@ async function updatePlayer(id, patch) {
   loadPlayers();
 }
 
+async function uploadAvatar(playerId, blob) {
+  const formData = new FormData();
+  formData.append('avatar', blob, 'avatar.jpg');
+
+  const response = await fetch(`/api/player-avatar.php?id=${playerId}`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    showError(data.error || window.t('players.avatar.uploadFailed'));
+    return;
+  }
+
+  loadPlayers();
+}
+
+async function removeAvatar(playerId) {
+  const confirmed = window.confirm(window.t('players.avatar.removeConfirm'));
+  if (!confirmed) return;
+
+  await fetch(`/api/player-avatar.php?id=${playerId}`, { method: 'DELETE' });
+  loadPlayers();
+}
+
+function renderAvatarField(player) {
+  const wrap = document.createElement('div');
+  wrap.className = 'player-avatar-field';
+
+  const avatarBox = document.createElement('div');
+  avatarBox.className = 'player-avatar';
+  if (player.avatarExt) {
+    const img = document.createElement('img');
+    img.src = `/api/player-avatar.php?id=${player.id}&t=${Date.now()}`;
+    img.alt = '';
+    avatarBox.appendChild(img);
+  } else {
+    avatarBox.textContent = player.name.charAt(0).toUpperCase();
+  }
+
+  const buttons = document.createElement('div');
+  buttons.className = 'player-avatar-field__buttons';
+
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/png,image/jpeg';
+  fileInput.hidden = true;
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    window.openAvatarCropper(file, {
+      onCrop: (blob) => uploadAvatar(player.id, blob),
+      onCancel: () => {},
+    });
+    fileInput.value = '';
+  });
+
+  const uploadBtn = document.createElement('button');
+  uploadBtn.type = 'button';
+  uploadBtn.className = 'btn btn--small btn--ghost';
+  uploadBtn.textContent = player.avatarExt
+    ? window.t('players.avatar.changeLabel')
+    : window.t('players.avatar.uploadLabel');
+  uploadBtn.addEventListener('click', () => fileInput.click());
+  buttons.appendChild(uploadBtn);
+
+  if (player.avatarExt) {
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'btn btn--small btn--danger';
+    removeBtn.textContent = window.t('players.avatar.removeLabel');
+    removeBtn.addEventListener('click', () => removeAvatar(player.id));
+    buttons.appendChild(removeBtn);
+  }
+
+  wrap.appendChild(avatarBox);
+  wrap.appendChild(fileInput);
+  wrap.appendChild(buttons);
+  return wrap;
+}
+
 function renderPlayers(players) {
   activeList.innerHTML = '';
   inactiveList.innerHTML = '';
 
   players.forEach((player) => {
     const li = document.createElement('li');
+    li.appendChild(renderAvatarField(player));
 
     const nameInput = document.createElement('input');
     nameInput.type = 'text';

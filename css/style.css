@@ -493,6 +493,20 @@ main {
   padding-left: 0.6rem;
 }
 
+.standings-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.standings-avatar {
+  width: 22px;
+  height: 33px;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .standings-table .progress-cell {
   min-width: 120px;
 }
@@ -1019,4 +1033,97 @@ main {
 
 .logo-preview--empty {
   display: none;
+}
+
+/* Spieler-Avatar (Passfoto-Format 2:3) - Spielerverwaltung + Punktestand */
+.player-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-avatar-field {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.player-avatar-field__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.player-avatar-field__buttons .btn {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.5rem;
+}
+
+/* Avatar-Cropper-Modal */
+.avatar-cropper-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.avatar-cropper {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.avatar-cropper h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.avatar-cropper__canvas {
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  touch-action: none;
+  cursor: grab;
+  background: var(--color-bg);
+}
+
+.avatar-cropper__canvas:active {
+  cursor: grabbing;
+}
+
+.avatar-cropper__zoom {
+  width: 100%;
+  accent-color: var(--color-green-strong);
+}
+
+.avatar-cropper__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
 }

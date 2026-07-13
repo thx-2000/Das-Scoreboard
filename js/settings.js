@@ -262,4 +262,78 @@ resetBtn.addEventListener('click', async () => {
   showStatus(window.t('settings.resetStatus'));
 });
 
+const backupFileInput = document.getElementById('backup-file-input');
+const backupImportRevealBtn = document.getElementById('backup-import-reveal-btn');
+const backupImportConfirm = document.getElementById('backup-import-confirm');
+const backupConfirmInput = document.getElementById('backup-confirm-input');
+const backupImportSubmitBtn = document.getElementById('backup-import-submit-btn');
+const backupImportCancelBtn = document.getElementById('backup-import-cancel-btn');
+const backupStatusEl = document.getElementById('backup-status');
+
+const BACKUP_CONFIRM_PHRASE = 'ERSETZEN';
+
+function showBackupStatus(message) {
+  backupStatusEl.textContent = message;
+}
+
+function resetBackupImportConfirm() {
+  backupImportConfirm.hidden = true;
+  backupConfirmInput.value = '';
+  backupImportSubmitBtn.disabled = true;
+}
+
+backupImportRevealBtn.addEventListener('click', () => {
+  if (!backupFileInput.files[0]) {
+    showBackupStatus(window.t('settings.backup.noFileSelected'));
+    return;
+  }
+  backupImportConfirm.hidden = false;
+  backupConfirmInput.focus();
+});
+
+backupImportCancelBtn.addEventListener('click', () => {
+  resetBackupImportConfirm();
+});
+
+backupConfirmInput.addEventListener('input', () => {
+  backupImportSubmitBtn.disabled = backupConfirmInput.value !== BACKUP_CONFIRM_PHRASE;
+});
+
+backupImportSubmitBtn.addEventListener('click', async () => {
+  const file = backupFileInput.files[0];
+  if (!file) {
+    showBackupStatus(window.t('settings.backup.noFileSelected'));
+    return;
+  }
+
+  const confirmed = window.confirm(window.t('settings.backup.finalConfirm'));
+  if (!confirmed) return;
+
+  backupImportSubmitBtn.disabled = true;
+  showBackupStatus(window.t('settings.backup.importInProgress'));
+
+  const formData = new FormData();
+  formData.append('backup', file);
+  formData.append('confirm', backupConfirmInput.value);
+
+  try {
+    const response = await fetch('api/backup.php', { method: 'POST', body: formData });
+    const data = await response.json();
+
+    if (!response.ok) {
+      showBackupStatus(data.error || window.t('settings.backup.importFailed'));
+      backupImportSubmitBtn.disabled = false;
+      return;
+    }
+
+    showBackupStatus(window.t('settings.backup.importSuccess', { games: data.games, players: data.players }));
+    resetBackupImportConfirm();
+    backupFileInput.value = '';
+    setTimeout(() => window.location.reload(), 2000);
+  } catch (error) {
+    showBackupStatus(window.t('settings.backup.importFailed'));
+    backupImportSubmitBtn.disabled = false;
+  }
+});
+
 window.scoreboardI18nReady.then(loadSettings);

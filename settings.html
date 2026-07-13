@@ -133,6 +133,35 @@
       <button type="button" id="reset-settings-btn" class="btn btn--ghost" data-i18n="settings.resetButton">Auf Standardfarben zurücksetzen</button>
     </div>
     <p id="settings-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
+
+    <section class="card section-spacing">
+      <h2 data-i18n="settings.backup.heading">Daten-Sicherung</h2>
+      <p class="hint-text" data-i18n="settings.backup.hint">Vollständiges Backup aller Spieler, Spiele, Avatare und Logos als ZIP-Datei — z.B. um bei einem Server-Umzug sicherzugehen, dass nichts verloren geht.</p>
+
+      <h3 data-i18n="settings.backup.exportHeading">Backup herunterladen</h3>
+      <p class="hint-text" data-i18n="settings.backup.exportHint">Enthält die komplette Datenbank sowie alle Avatar-Bilder und das Logo.</p>
+      <a href="api/backup.php" class="btn btn--ghost" data-i18n="settings.backup.exportButton">Backup herunterladen</a>
+
+      <h3 class="section-spacing" data-i18n="settings.backup.importHeading">Backup wiederherstellen</h3>
+      <p class="hint-text" data-i18n="settings.backup.importWarning">Achtung: Ein Import ersetzt alle aktuellen Spieler, Spiele, Avatare und Logos unwiderruflich durch den Inhalt der Backup-Datei.</p>
+      <div class="form">
+        <label for="backup-file-input" data-i18n="settings.backup.fileLabel">Backup-Datei (.zip)</label>
+        <input type="file" id="backup-file-input" accept=".zip,application/zip">
+      </div>
+      <button type="button" id="backup-import-reveal-btn" class="btn btn--danger" data-i18n="settings.backup.importButton">Backup importieren</button>
+
+      <div id="backup-import-confirm" class="form" hidden>
+        <p class="hint-text" data-i18n="settings.backup.confirmHint">Zum Bestätigen unten genau ERSETZEN eingeben.</p>
+        <label for="backup-confirm-input" data-i18n="settings.backup.confirmLabel">Bestätigung</label>
+        <input type="text" id="backup-confirm-input" autocomplete="off">
+        <div class="dashboard-footer">
+          <button type="button" id="backup-import-submit-btn" class="btn btn--danger" disabled data-i18n="settings.backup.confirmButton">Jetzt endgültig ersetzen</button>
+          <button type="button" id="backup-import-cancel-btn" class="btn btn--ghost" data-i18n="common.buttons.cancel">Abbrechen</button>
+        </div>
+      </div>
+
+      <p id="backup-status" class="hint-text" role="status" aria-live="polite"></p>
+    </section>
   </main>
 
   <p class="app-version" id="app-version">Das Scoreboard</p>

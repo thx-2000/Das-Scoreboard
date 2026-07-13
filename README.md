@@ -155,7 +155,7 @@ Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
 anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifend
 angelegt.
 - **Einstellungen** (`settings.html`): global gespeicherte (serverseitige)
-  Konfiguration, gilt für alle, die die Seite nutzen. Vier Bereiche:
+  Konfiguration, gilt für alle, die die Seite nutzen. Mehrere Bereiche:
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -177,6 +177,22 @@ angelegt.
     bleiben aber liegen, bis sie explizit entfernt werden).
   - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
     "Mehrsprachigkeit (i18n)" unten.
+  - **Daten-Sicherung** (`api/backup.php`): "Backup herunterladen" erzeugt
+    eine ZIP-Datei mit einem konsistenten Snapshot der SQLite-Datenbank
+    (`VACUUM INTO`, respektiert den WAL-Mode statt die Datei roh zu
+    kopieren) sowie allen Avatar-Bildern und Logo-Dateien — gedacht für
+    einen Server-Umzug oder einfach als Sicherheitsnetz. "Backup
+    importieren" ERSETZT beim Hochladen einer solchen ZIP-Datei die
+    komplette aktuelle Datenbank samt Bildern; wegen dieser Tragweite ist
+    eine serverseitig geprüfte Textbestätigung (Eingabe von "ERSETZEN")
+    zusätzlich zur Bestätigung im Browser nötig. Vor dem Ersetzen wird der
+    bisherige Stand automatisch lokal unter
+    `data/pre-import-backup-{Zeitstempel}/` weggesichert (kein UI-Zugriff
+    darauf, rein als zusätzliches Sicherheitsnetz). Die hochgeladene Datei
+    wird auf Integrität geprüft (`PRAGMA integrity_check` + erwartete
+    Kern-Tabellen), bevor irgendetwas ersetzt wird; nach dem Import laufen
+    automatisch alle noch fehlenden Migrationen, falls das Backup von einer
+    älteren Version stammt.
 
 ## Mehrsprachigkeit (i18n)
 
@@ -475,7 +491,7 @@ Further modes (other scorekeeping mechanics) are meant to be added later
 as their own subfolders under `modes/`, without touching existing parts —
 the player database and game history are deliberately mode-agnostic.
 - **Settings** (`settings.html`): globally stored (server-side)
-  configuration, applies to everyone using the page. Four areas:
+  configuration, applies to everyone using the page. Several areas:
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).
@@ -499,6 +515,20 @@ the player database and game history are deliberately mode-agnostic.
     stay in place until explicitly removed).
   - **Language**: currently German/English, see the "Multi-language
     support (i18n)" section below.
+  - **Data backup** (`api/backup.php`): "Download backup" produces a ZIP
+    file with a consistent snapshot of the SQLite database (`VACUUM INTO`,
+    respects WAL mode instead of copying the raw file) plus all avatar
+    images and logo files — meant for moving to a new server or simply as
+    a safety net. "Import backup" REPLACES the entire current database
+    and its images with the contents of an uploaded ZIP file; given the
+    impact, a server-checked text confirmation (typing "ERSETZEN") is
+    required in addition to the browser confirmation. Before replacing
+    anything, the previous state is automatically backed up locally under
+    `data/pre-import-backup-{timestamp}/` (not exposed in the UI, purely
+    an extra safety net). The uploaded file is validated for integrity
+    (`PRAGMA integrity_check` plus the expected core tables) before
+    anything is replaced; any still-missing migrations run automatically
+    after the import in case the backup came from an older version.
 
 ## Multi-language support (i18n)
 

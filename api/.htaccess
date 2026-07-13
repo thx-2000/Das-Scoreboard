@@ -1,0 +1,7 @@
+# Groesserer Upload-Rahmen fuer den Backup-Import (ZIP mit DB + Avataren),
+# der Standard-Limit (haeufig 2M/8M) reicht dafuer nicht. Wird stillschweigend
+# ignoriert, falls der Host keine .htaccess-Overrides fuer PHP-Werte erlaubt.
+<IfModule mod_php.c>
+    php_value upload_max_filesize 50M
+    php_value post_max_size 55M
+</IfModule>

@@ -23,8 +23,20 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   `.php` mit den gemeinsamen Includes).
 - **Spielerverwaltung** (`players.php`): zentrale Namens-Datenbank, aus der
   bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
-  tippen. Entfernen ist eine weiche Löschung (Spieler bleiben in
-  vergangenen Spielen sichtbar).
+  tippen. Zwei unterschiedliche Stufen zum Entfernen:
+  - **Entfernen** (weiche Löschung): Spieler verschwindet aus der
+    Schnellauswahl, bleibt aber in der Spielerverwaltung (unter
+    "Deaktivierte Spieler") sichtbar und jederzeit per "Reaktivieren"
+    rückgängig machbar.
+  - **Löschen** (echte Löschung): Spieler verschwindet komplett aus der
+    Spielerverwaltung (weder Aktiv- noch Deaktiviert-Liste) — dafür gibt
+    es keinen Weg zurück in der Oberfläche. Vergangene Spiele/Verlauf/
+    Statistik zeigen den Namen trotzdem weiterhin an, da der Datensatz
+    selbst (wegen der Fremdschlüssel aus Spielen/Runden) erhalten bleibt,
+    nur mit `deleted_at` markiert. Ein erneut angelegter Spieler mit
+    gleichem Namen wird bewusst ohne Abgleich als komplett neuer,
+    unabhängiger Datensatz angelegt (keine Zusammenführungslogik) — im
+    Zweifel hilft die Datensicherung (siehe unten) beim Wiederherstellen.
 - **Spielverlauf** (`history.php`): alle Spiele (laufend + beendet),
   unterscheidbar über Start-/Endzeit, damit auch mehrere Spiele am selben
   Tag eindeutig auffindbar sind.
@@ -408,8 +420,19 @@ to work on iPad and iPhone.
   PWA home-screen icons working (pages used to be static HTML, now they're
   `.php` with the shared includes).
 - **Player management** (`players.php`): central name database to pick
-  from when starting new games instead of typing names every time.
-  Removing is a soft delete (players stay visible in past games).
+  from when starting new games instead of typing names every time. Two
+  different removal levels:
+  - **Remove** (soft delete): player disappears from quick selection but
+    stays visible in player management (under "Deactivated players") and
+    can be undone anytime via "Reactivate".
+  - **Delete** (hard delete): player disappears entirely from player
+    management (neither the active nor deactivated list) — there is no
+    way back in the UI. Past games/history/stats still show the name,
+    since the row itself is kept (due to foreign keys from games/rounds),
+    just marked with `deleted_at`. A newly added player with the same
+    name is deliberately created as a completely new, independent record
+    with no matching logic — if needed, the backup feature (see below)
+    helps restore a mistake.
 - **Game history** (`history.php`): all games (ongoing + finished),
   distinguishable by start/end time, so multiple games on the same day
   stay uniquely identifiable.

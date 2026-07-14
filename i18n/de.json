@@ -162,7 +162,8 @@
       "removeLabel": "Foto entfernen",
       "removeConfirm": "Avatar wirklich entfernen?",
       "uploadFailed": "Foto konnte nicht gespeichert werden."
-    }
+    },
+    "deleteConfirm": "\"{name}\" wirklich endgültig löschen? Anders als Entfernen gibt es dafür keinen Weg zurück in der Spielerverwaltung — vergangene Spiele zeigen den Namen aber weiterhin an."
   },
   "stats": {
     "heading": "Statistiken",

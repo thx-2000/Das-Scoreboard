@@ -213,6 +213,23 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE games ADD COLUMN team_scoring TEXT NOT NULL DEFAULT "shared"');
             }
         },
+
+        // Echtes Loeschen eines Spielers (zusaetzlich zum bisherigen weichen
+        // Aktiv/Inaktiv-Umschalten): deleted_at = NULL bedeutet nicht
+        // geloescht. Die Zeile bleibt bewusst in der Tabelle erhalten (wegen
+        // der Fremdschluessel aus game_players/round_scores/games), damit
+        // vergangene Spiele weiterhin den Namen anzeigen koennen - keine der
+        // bestehenden Namens-Joins in state.php/stats.php filtert nach
+        // active/deleted_at, das gilt ausschliesslich fuer die Listen in
+        // api/players.php (Schnellauswahl-Verwaltung).
+        10 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(players)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            if (!in_array('deleted_at', $existing, true)) {
+                $pdo->exec('ALTER TABLE players ADD COLUMN deleted_at TEXT');
+            }
+        },
     ];
 }
 

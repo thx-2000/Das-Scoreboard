@@ -162,7 +162,8 @@
       "removeLabel": "Remove photo",
       "removeConfirm": "Really remove this avatar?",
       "uploadFailed": "Photo could not be saved."
-    }
+    },
+    "deleteConfirm": "Really permanently delete \"{name}\"? Unlike removing, there is no way back in player management — past games will still show the name."
   },
   "stats": {
     "heading": "Statistics",

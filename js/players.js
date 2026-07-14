@@ -29,6 +29,14 @@ async function updatePlayer(id, patch) {
   loadPlayers();
 }
 
+async function deletePlayer(id, name) {
+  const confirmed = window.confirm(window.t('players.deleteConfirm', { name }));
+  if (!confirmed) return;
+
+  await fetch(`/api/players.php?id=${id}`, { method: 'DELETE' });
+  loadPlayers();
+}
+
 async function uploadAvatar(playerId, blob) {
   const formData = new FormData();
   formData.append('avatar', blob, 'avatar.jpg');
@@ -144,7 +152,14 @@ function renderPlayers(players) {
       updatePlayer(player.id, { active: !player.active });
     });
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.className = 'btn btn--small btn--danger';
+    deleteBtn.textContent = window.t('common.buttons.delete');
+    deleteBtn.addEventListener('click', () => deletePlayer(player.id, player.name));
+
     actions.appendChild(toggleBtn);
+    actions.appendChild(deleteBtn);
     li.appendChild(nameInput);
     li.appendChild(actions);
 

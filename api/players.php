@@ -8,9 +8,12 @@ $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
 
 function all_players(PDO $pdo, bool $includeInactive): array
 {
-    $sql = 'SELECT id, name, active, avatar_ext FROM players';
+    // Echt geloeschte Spieler (deleted_at gesetzt) erscheinen nie in dieser
+    // Liste, unabhaengig von includeInactive - sie bleiben nur ueber
+    // vergangene Spiele (Verlauf/Statistik) sichtbar, siehe Migration 10.
+    $sql = 'SELECT id, name, active, avatar_ext FROM players WHERE deleted_at IS NULL';
     if (!$includeInactive) {
-        $sql .= ' WHERE active = 1';
+        $sql .= ' AND active = 1';
     }
     $sql .= ' ORDER BY name COLLATE NOCASE';
     $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -72,9 +75,13 @@ if ($method === 'PATCH') {
 }
 
 if ($method === 'DELETE') {
-    // Weiche Loeschung: Spieler bleibt in vergangenen Spielen sichtbar,
-    // verschwindet aber aus der Schnellauswahl fuer neue Spiele.
-    $pdo->prepare('UPDATE players SET active = 0 WHERE id = ?')->execute([$id]);
+    // Echtes Loeschen: Spieler verschwindet komplett aus der Spieler-
+    // Verwaltung (weder Aktiv- noch Deaktiviert-Liste), bleibt aber ueber
+    // vergangene Spiele (Verlauf/Statistik) weiterhin mit Namen sichtbar -
+    // die Zeile selbst bleibt wegen der Fremdschluessel erhalten (siehe
+    // Migration 10). Anders als das bisherige Aktiv/Inaktiv-Umschalten
+    // (PATCH active) gibt es dafuer keinen Weg zurueck in der UI.
+    $pdo->prepare('UPDATE players SET deleted_at = ? WHERE id = ?')->execute([now_iso(), $id]);
     send_json(all_players($pdo, isset($_GET['all'])));
 }
 

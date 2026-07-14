@@ -124,7 +124,7 @@ setupForm.addEventListener('submit', async (event) => {
     return;
   }
 
-  window.location.href = `game.html?id=${data.id}`;
+  window.location.href = `game.php?id=${data.id}`;
 });
 
 window.scoreboardI18nReady.then(loadPlayers);

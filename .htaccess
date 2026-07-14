@@ -8,3 +8,14 @@
         Deny from all
     </IfModule>
 </FilesMatch>
+
+# Seiten wurden von .html auf .php umgestellt (gemeinsamer Header/Nav via
+# PHP-Includes statt Duplikat je Seite). Diese Weiterleitung haelt bereits
+# installierte PWA-Homescreen-Icons und alte Lesezeichen (start_url/Links
+# auf *.html) funktionsfaehig, ohne dass Nutzer die App neu installieren
+# muessten.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)\.html$ $1.php [L]
+</IfModule>

@@ -7,7 +7,9 @@
       "history": "History",
       "stats": "Statistics",
       "chooser": "Who starts?",
-      "settings": "Settings"
+      "settings": "Settings",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
     },
     "updateAvailable": "Update available ({version})",
     "buttons": {

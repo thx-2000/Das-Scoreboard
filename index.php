@@ -1,0 +1,44 @@
+<?php
+$page_title = 'pages.home.title';
+$active_nav = 'home';
+$page_h1 = '<h1 data-i18n="home.heading">Aufschreibhilfe für Spieleabende</h1>';
+require __DIR__ . '/includes/header.php';
+?>
+
+  <main id="main">
+    <section class="card">
+      <h2 data-i18n="home.newGame.heading">Neues Spiel starten</h2>
+      <p class="hint-text" data-i18n="home.newGame.hint">Wähle eine Aufschreibmöglichkeit für euer Spiel.</p>
+
+      <div class="mode-grid" id="mode-grid">
+        <a href="/modes/points-to-target/setup.php" class="mode-card">
+          <h2 data-i18n="modes.pointsToTarget.title">Punkte bis Höchstwert</h2>
+          <p data-i18n="modes.pointsToTarget.description">Punkte werden rundenweise addiert, bis jemand einen festgelegten Zielwert erreicht oder überschreitet. Wer dann am meisten Punkte hat, gewinnt.</p>
+          <p class="mode-card__examples" data-i18n="modes.pointsToTarget.examples">z.B. Flip7, Tutto</p>
+        </a>
+        <a href="/modes/points-open/setup.php" class="mode-card">
+          <h2 data-i18n="modes.pointsOpen.title">Offene Punkterunde</h2>
+          <p data-i18n="modes.pointsOpen.description">Punkte werden rundenweise addiert, ohne festen Zielwert. Ihr entscheidet selbst, wann Schluss ist — höchste oder niedrigste Punktzahl gewinnt, wie ihr es beim Einrichten festlegt.</p>
+          <p class="mode-card__examples" data-i18n="modes.pointsOpen.examples">z.B. Doppelkopf</p>
+        </a>
+        <a href="/modes/fixed-rounds/setup.php" class="mode-card">
+          <h2 data-i18n="modes.fixedRounds.title">Punkterunde mit fester Rundenzahl</h2>
+          <p data-i18n="modes.fixedRounds.description">Ihr legt beim Einrichten fest, wie viele Runden gespielt werden und ob am Ende die höchste oder niedrigste Punktzahl gewinnt. Nach der letzten Runde fragt das Spiel, ob beendet oder um weitere Runden verlängert werden soll.</p>
+        </a>
+        <a href="/modes/rage/setup.php" class="mode-card">
+          <h2 data-i18n="modes.rage.title">RAGE</h2>
+          <p data-i18n="modes.rage.description">Feste 10 Runden mit sinkender Kartenzahl (10 bis 1). Vor jeder Runde sagt ihr eure Stichzahl an, danach tragt ihr die tatsächlichen Stiche ein — Punkte werden automatisch nach den RAGE-Regeln berechnet (inkl. Rage-Bonus/-Rache).</p>
+          <p class="mode-card__examples" data-i18n="modes.rage.examples">Kartenspiel RAGE</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="card section-spacing" id="pwa-hint-section" hidden>
+      <h2 data-i18n="home.pwaHint.heading">Als App nutzen</h2>
+      <p class="hint-text" data-i18n="home.pwaHint.text">Auf dem iPad/iPhone: Teilen-Symbol in Safari antippen, dann „Zum Home-Bildschirm“ wählen — die Seite erscheint danach wie eine eigene App, ganz ohne Adressleiste.</p>
+    </section>
+  </main>
+
+<?php
+$page_scripts = ['js/pwa-hint.js'];
+require __DIR__ . '/includes/footer.php';

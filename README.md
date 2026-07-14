@@ -12,11 +12,20 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   ("Modi"), aktuell vier: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto),
   *Offene Punkterunde* (Beispiel: Doppelkopf), *Punkterunde mit fester
   Rundenzahl* und *RAGE*.
-- **Spielerverwaltung** (`players.html`): zentrale Namens-Datenbank, aus der
+- **Header/Navigation**: gemeinsam für alle Seiten aus `includes/header.php`
+  + `includes/nav.php` gerendert (PHP-Includes statt Markup-Duplikat je
+  Seite) — ein neuer/geänderter Nav-Eintrag wird nur an einer Stelle
+  gepflegt. Auf schmalen Bildschirmen (Smartphone) klappt die Navigation
+  hinter ein Burger-Menü zusammen (`js/nav.js`); auf iPad Portrait bleibt
+  sie in einer Zeile sichtbar. Eine `.htaccess`-Weiterleitung hält alte
+  `*.html`-Lesezeichen und bereits installierte PWA-Homescreen-Icons
+  funktionsfähig (Seiten liefen früher als statisches HTML, jetzt als
+  `.php` mit den gemeinsamen Includes).
+- **Spielerverwaltung** (`players.php`): zentrale Namens-Datenbank, aus der
   bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
   tippen. Entfernen ist eine weiche Löschung (Spieler bleiben in
   vergangenen Spielen sichtbar).
-- **Spielverlauf** (`history.html`): alle Spiele (laufend + beendet),
+- **Spielverlauf** (`history.php`): alle Spiele (laufend + beendet),
   unterscheidbar über Start-/Endzeit, damit auch mehrere Spiele am selben
   Tag eindeutig auffindbar sind.
 - **Modus "Punkte bis Höchstwert"** (`modes/points-to-target/`): Punkte
@@ -43,7 +52,7 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Bedarf erneut). Optional (Checkbox beim Einrichten, standardmäßig aus)
   zeigt eine schließbare Meldung "Runde X beendet" nach jeder gespeicherten
   Runde.
-- **Tool "Wer fängt an?"** (`tools/finger-chooser.html`): Multitouch-
+- **Tool "Wer fängt an?"** (`tools/finger-chooser.php`): Multitouch-
   Fingerauswahl für iPad/iPhone. Wartet auf den ersten Finger, zählt dann
   5 Sekunden runter (weitere Finger können in dieser Zeit dazukommen),
   wählt danach zufällig einen der aufliegenden Finger aus (wird groß/grün),
@@ -129,7 +138,7 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Spielerverwaltung sowie im Punktestand aller 4 Modi (bei Team-Zeilen im
   Team-Modus bewusst nicht, da unklar wäre, wessen Foto stellvertretend
   gezeigt werden sollte). Ohne Foto bleibt es beim bisherigen Verhalten.
-- **Statistiken** (`stats.html`): modusübergreifende Auswertung aller
+- **Statistiken** (`stats.php`): modusübergreifende Auswertung aller
   Spiele — Spiele/Siege/Siegquote/aktuelle und längste Sieges-Serie pro
   Spieler, dieselbe Auswertung zusätzlich pro Modus (inkl.
   Punkteschnitt, da die Punkteskalen der Modi nicht direkt vergleichbar
@@ -157,7 +166,7 @@ Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
 Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
 anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifend
 angelegt.
-- **Einstellungen** (`settings.html`): global gespeicherte (serverseitige)
+- **Einstellungen** (`settings.php`): global gespeicherte (serverseitige)
   Konfiguration, gilt für alle, die die Seite nutzen. Mehrere Bereiche:
   - **Aussehen**: Wahl zwischen zwei eigenständigen Themes — "Classic"
     (Standard, der bisherige Look, individuell per Hex-Farben anpassbar) und
@@ -292,34 +301,34 @@ Codeänderung.
 
 ```
 Das-Scoreboard/
-├── index.html               # Startseite: Modi-Auswahl
-├── players.html             # Spielerverwaltung
-├── history.html              # Spielverlauf
-├── stats.html                # Statistiken (Zeitraumfilter, Kopf-an-Kopf, Drucken/PDF)
-├── settings.html              # globale Einstellungen (Farben, Sprache)
+├── index.php                 # Startseite: Modi-Auswahl
+├── players.php               # Spielerverwaltung
+├── history.php                # Spielverlauf
+├── stats.php                  # Statistiken (Zeitraumfilter, Kopf-an-Kopf, Drucken/PDF)
+├── settings.php                # globale Einstellungen (Aussehen, Farben, Sprache, Backup)
 ├── modes/
 │   ├── points-to-target/
-│   │   ├── setup.html        # neues Spiel einrichten (Zielwert)
+│   │   ├── setup.php         # neues Spiel einrichten (Zielwert)
 │   │   ├── setup.js
-│   │   ├── game.html         # aktives/beendetes Spiel
+│   │   ├── game.php          # aktives/beendetes Spiel
 │   │   └── game.js
 │   ├── points-open/
-│   │   ├── setup.html        # neues Spiel einrichten (Sieg-Richtung)
+│   │   ├── setup.php         # neues Spiel einrichten (Sieg-Richtung)
 │   │   ├── setup.js
-│   │   ├── game.html         # aktives/beendetes Spiel, manuelles Beenden
+│   │   ├── game.php          # aktives/beendetes Spiel, manuelles Beenden
 │   │   └── game.js
 │   ├── fixed-rounds/
-│   │   ├── setup.html        # neues Spiel einrichten (Rundenzahl, Sieg-Richtung)
+│   │   ├── setup.php         # neues Spiel einrichten (Rundenzahl, Sieg-Richtung)
 │   │   ├── setup.js
-│   │   ├── game.html         # Runde X von Y, Zielerreicht-Hinweis (beenden/verlaengern)
+│   │   ├── game.php          # Runde X von Y, Zielerreicht-Hinweis (beenden/verlaengern)
 │   │   └── game.js
 │   └── rage/
-│       ├── setup.html        # neues Spiel einrichten (nur Spielerauswahl)
+│       ├── setup.php         # neues Spiel einrichten (nur Spielerauswahl)
 │       ├── setup.js
-│       ├── game.html         # Runde X von 10, Ansage/Stiche/Sonderkarten
+│       ├── game.php          # Runde X von 10, Ansage/Stiche/Sonderkarten
 │       └── game.js
 ├── tools/
-│   ├── finger-chooser.html   # "Wer fängt an?" Multitouch-Auswahl
+│   ├── finger-chooser.php    # "Wer fängt an?" Multitouch-Auswahl
 │   └── finger-chooser.js
 ├── api/
 │   ├── players.php           # GET/POST/PATCH Spieler-Roster
@@ -329,21 +338,26 @@ Das-Scoreboard/
 │   ├── settings.php            # GET/PATCH globale Einstellungen (Titel, Logo, Farben, Sprache)
 │   ├── logo.php                 # GET/POST/DELETE Logo-Upload (Quadrat/Banner)
 │   ├── player-avatar.php         # GET/POST/DELETE Spieler-Avatar (Passfoto 2:3)
-│   ├── stats.php                 # GET Statistiken (optionaler from/to-Zeitfilter)
+│   ├── backup.php                 # GET Backup-ZIP-Export, POST Backup-Import (ersetzend)
+│   ├── stats.php                   # GET Statistiken (optionaler from/to-Zeitfilter)
 │   └── version.php
 ├── includes/
 │   ├── db.php                 # PDO-SQLite-Verbindung + Schema
 │   ├── state.php               # buildState(), Sieg-Erkennung, JSON-Helper
 │   ├── rage.php                 # RAGE-Punkteformel
-│   └── settings.php             # Defaults, Validierung, get/save/reset
+│   ├── settings.php              # Defaults, Validierung, get/save/reset
+│   ├── nav.php                    # zentrale Nav-Konfiguration + render_nav()
+│   ├── header.php                  # gemeinsamer Head + <header> (Marke, Nav) fuer alle Seiten
+│   └── footer.php                   # gemeinsamer Seitenabschluss (Basis-Skripte, Versionsanzeige)
 ├── i18n/
 │   ├── de.json                 # deutsches Wörterbuch
 │   └── en.json                 # englisches Wörterbuch
 ├── css/style.css
 ├── js/
 │   ├── version.js              # Versionsanzeige unten rechts
-│   ├── theme.js                # wendet Farbeinstellungen als CSS-Variablen an
+│   ├── theme.js                # wendet Aussehen (Classic/Bold) + Farbeinstellungen als CSS-Variablen an
 │   ├── i18n.js                  # laedt Sprachwoerterbuch, stellt t() bereit
+│   ├── nav.js                    # Burger-Menue-Toggle fuer schmale Bildschirme
 │   ├── settings.js              # Logik der Einstellungen-Seite
 │   ├── players.js               # Logik der Spielerverwaltung
 │   ├── history.js                # Logik des Spielverlaufs
@@ -360,9 +374,16 @@ Das-Scoreboard/
 ├── assets/
 │   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
 ├── manifest.json               # PWA-Manifest ("Zum Home-Bildschirm hinzufügen")
-├── .htaccess
+├── .htaccess                   # Sicherheits-Blocks + .html→.php-Weiterleitung (alte Lesezeichen/PWA-Icons)
 └── VERSION
 ```
+
+Seiten liegen als `.php` vor (nicht statisches HTML): gemeinsamer Header/Nav via
+`includes/header.php`/`includes/nav.php`/`includes/footer.php`, damit
+Navigations-Änderungen nur an einer Stelle gepflegt werden müssen statt in
+jeder Seite dupliziert zu sein. Eine `.htaccess`-Weiterleitung leitet alte
+`*.html`-Aufrufe (Lesezeichen, bereits installierte PWA-Icons) transparent
+auf die passende `.php`-Datei um.
 
 ---
 
@@ -378,10 +399,18 @@ to work on iPad and iPhone.
   four: *Points to target* (examples: Flip7, Tutto), *Open point round*
   (example: Doppelkopf), *Points round with fixed round count*, and
   *RAGE*.
-- **Player management** (`players.html`): central name database to pick
+- **Header/navigation**: rendered for every page from `includes/header.php`
+  + `includes/nav.php` (PHP includes instead of duplicated markup per
+  page) — a new/changed nav entry only needs to be maintained in one
+  place. On narrow screens (phone) the navigation collapses behind a
+  burger menu (`js/nav.js`); on iPad portrait it stays visible in one row.
+  An `.htaccess` rewrite keeps old `*.html` bookmarks and already-installed
+  PWA home-screen icons working (pages used to be static HTML, now they're
+  `.php` with the shared includes).
+- **Player management** (`players.php`): central name database to pick
   from when starting new games instead of typing names every time.
   Removing is a soft delete (players stay visible in past games).
-- **Game history** (`history.html`): all games (ongoing + finished),
+- **Game history** (`history.php`): all games (ongoing + finished),
   distinguishable by start/end time, so multiple games on the same day
   stay uniquely identifiable.
 - **Mode "Points to target"** (`modes/points-to-target/`): points are
@@ -406,7 +435,7 @@ to work on iPad and iPhone.
   reappears later if needed). Optionally (checkbox during setup, off by
   default) a dismissible "Round X finished" notice appears after every
   saved round.
-- **Tool "Who starts?"** (`tools/finger-chooser.html`): multitouch finger
+- **Tool "Who starts?"** (`tools/finger-chooser.php`): multitouch finger
   picker for iPad/iPhone. Waits for the first finger, then counts down 5
   seconds (more fingers can join during that time), then randomly picks
   one of the fingers on screen (grows/turns green), the others disappear.
@@ -483,7 +512,7 @@ to work on iPad and iPhone.
   all 4 modes (deliberately not on team rows in team mode, since it's
   unclear whose photo should represent the team). Without a photo,
   behavior is unchanged from before.
-- **Statistics** (`stats.html`): cross-mode evaluation of all games —
+- **Statistics** (`stats.php`): cross-mode evaluation of all games —
   games/wins/win rate/current and longest win streak per player, the
   same breakdown per mode as well (including average score, since score
   scales aren't directly comparable across modes), head-to-head records
@@ -508,7 +537,7 @@ to work on iPad and iPhone.
 Further modes (other scorekeeping mechanics) are meant to be added later
 as their own subfolders under `modes/`, without touching existing parts —
 the player database and game history are deliberately mode-agnostic.
-- **Settings** (`settings.html`): globally stored (server-side)
+- **Settings** (`settings.php`): globally stored (server-side)
   configuration, applies to everyone using the page. Several areas:
   - **Appearance**: choice between two independent themes — "Classic"
     (default, the existing look, individually customizable via hex colors)

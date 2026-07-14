@@ -1,45 +1,10 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n-title-suffix="pages.settings.title">Das Scoreboard — Einstellungen</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Das Scoreboard">
-  <meta name="theme-color" content="#f1f2f4">
-</head>
-<body>
-  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
-
-  <div id="logo-banner-slot"></div>
-  <header class="app-header">
-    <div class="app-header__bar">
-      <a href="index.html" class="app-header__brand">
-        <svg id="app-header-logo-svg" class="app-header__logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-          <rect x="5" y="4" width="17" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
-          <line x1="9" y1="11" x2="18" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="9" y1="16" x2="18" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="9" y1="21" x2="14" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M21 8 L27 14 L18.5 22.5 L13.5 23.5 L14.5 18.5 Z" fill="var(--color-green)" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-        </svg>
-        <span data-brand-name>Das Scoreboard</span>
-      </a>
-      <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
-        <a href="players.html" class="btn btn--ghost" data-i18n="common.nav.players">Spieler</a>
-        <a href="history.html" class="btn btn--ghost" data-i18n="common.nav.history">Verlauf</a>
-        <a href="stats.html" class="btn btn--ghost" data-i18n="common.nav.stats">Statistiken</a>
-        <a href="tools/finger-chooser.html" class="btn btn--ghost" data-i18n="common.nav.chooser">Wer fängt an?</a>
-      </nav>
-    </div>
-    <h1 data-i18n="settings.heading">Einstellungen</h1>
-    <p class="app-header__subtitle" data-i18n="settings.subtitle">Gilt für alle, die diese Seite nutzen (global gespeichert).</p>
-    <div class="app-header__accent" aria-hidden="true"></div>
-  </header>
+<?php
+$page_title = 'pages.settings.title';
+$active_nav = 'settings';
+$page_h1 = '<h1 data-i18n="settings.heading">Einstellungen</h1>';
+$page_subtitle = '<p class="app-header__subtitle" data-i18n="settings.subtitle">Gilt für alle, die diese Seite nutzen (global gespeichert).</p>';
+require __DIR__ . '/includes/header.php';
+?>
 
   <main id="main">
     <section class="card">
@@ -155,7 +120,7 @@
 
       <h3 data-i18n="settings.backup.exportHeading">Backup herunterladen</h3>
       <p class="hint-text" data-i18n="settings.backup.exportHint">Enthält die komplette Datenbank sowie alle Avatar-Bilder und das Logo.</p>
-      <a href="api/backup.php" class="btn btn--ghost" data-i18n="settings.backup.exportButton">Backup herunterladen</a>
+      <a href="/api/backup.php" class="btn btn--ghost" data-i18n="settings.backup.exportButton">Backup herunterladen</a>
 
       <h3 class="section-spacing" data-i18n="settings.backup.importHeading">Backup wiederherstellen</h3>
       <p class="hint-text" data-i18n="settings.backup.importWarning">Achtung: Ein Import ersetzt alle aktuellen Spieler, Spiele, Avatare und Logos unwiderruflich durch den Inhalt der Backup-Datei.</p>
@@ -179,12 +144,6 @@
     </section>
   </main>
 
-  <p class="app-version" id="app-version">Das Scoreboard</p>
-
-  <script src="js/version.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/input-helpers.js"></script>
-  <script src="js/settings.js"></script>
-</body>
-</html>
+<?php
+$page_scripts = ['js/settings.js'];
+require __DIR__ . '/includes/footer.php';

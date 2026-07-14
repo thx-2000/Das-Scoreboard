@@ -42,6 +42,9 @@ function applyDataI18n() {
   document.querySelectorAll('[data-i18n-title]').forEach((el) => {
     el.title = window.t(el.getAttribute('data-i18n-title'));
   });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach((el) => {
+    el.setAttribute('aria-label', window.t(el.getAttribute('data-i18n-aria-label')));
+  });
 }
 
 /**

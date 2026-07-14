@@ -2,7 +2,7 @@
   "name": "Das Scoreboard",
   "short_name": "Scoreboard",
   "description": "Aufschreibhilfe für Spieleabende",
-  "start_url": "/index.html",
+  "start_url": "/index.php",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f1f2f4",

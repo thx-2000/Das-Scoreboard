@@ -1,41 +1,11 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n-title-suffix="pages.pointsOpenSetup.title">Das Scoreboard — Offene Punkterunde — Neues Spiel</title>
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Das Scoreboard">
-  <meta name="theme-color" content="#f1f2f4">
-</head>
-<body>
-  <a href="#main" class="skip-link" data-i18n="common.skipLink">Zum Inhalt springen</a>
-
-  <div id="logo-banner-slot"></div>
-  <header class="app-header">
-    <div class="app-header__bar">
-      <a href="../../index.html" class="app-header__brand">
-        <svg id="app-header-logo-svg" class="app-header__logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-          <rect x="5" y="4" width="17" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
-          <line x1="9" y1="11" x2="18" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="9" y1="16" x2="18" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="9" y1="21" x2="14" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M21 8 L27 14 L18.5 22.5 L13.5 23.5 L14.5 18.5 Z" fill="var(--color-green)" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-        </svg>
-        <span data-brand-name>Das Scoreboard</span>
-      </a>
-      <nav class="app-nav" aria-label="Hauptnavigation">
-        <a href="../../index.html" class="btn btn--ghost" data-i18n="common.nav.home">Startseite</a>
-      </nav>
-    </div>
-    <h1 data-i18n="modes.pointsOpen.title">Offene Punkterunde</h1>
-    <p class="app-header__subtitle" data-i18n="pointsOpen.setup.subtitle">Neues Spiel einrichten (z.B. Doppelkopf)</p>
-    <div class="app-header__accent" aria-hidden="true"></div>
-  </header>
+<?php
+$page_title = 'pages.pointsToTargetSetup.title';
+$active_nav = null;
+$nav_variant = 'setup';
+$page_h1 = '<h1 data-i18n="modes.pointsToTarget.title">Punkte bis Höchstwert</h1>';
+$page_subtitle = '<p class="app-header__subtitle" data-i18n="pointsToTarget.setup.subtitle">Neues Spiel einrichten (z.B. Flip7, Tutto)</p>';
+require __DIR__ . '/../../includes/header.php';
+?>
 
   <main id="main">
     <section class="card">
@@ -43,7 +13,10 @@
 
       <form id="setup-form" class="form">
         <label for="game-label" data-i18n="common.setup.labelOptional">Bezeichnung (optional)</label>
-        <input type="text" id="game-label" placeholder="z.B. Doppelkopf" data-i18n-placeholder="pointsOpen.setup.labelPlaceholder" maxlength="60" autocomplete="off">
+        <input type="text" id="game-label" placeholder="z.B. Flip7, Tutto" data-i18n-placeholder="pointsToTarget.setup.labelPlaceholder" maxlength="60" autocomplete="off">
+
+        <label for="target-score" data-i18n="pointsToTarget.setup.targetLabel">Bis zu welchem Punktewert wird gespielt?</label>
+        <input type="text" id="target-score" value="200" inputmode="numeric" pattern="[0-9]*" required>
 
         <label data-i18n="common.winDirection.heading">Wer gewinnt am Ende?</label>
         <div class="player-picker">
@@ -56,6 +29,7 @@
             <span data-i18n="common.winDirection.lowest">Niedrigste Punktzahl</span>
           </label>
         </div>
+        <p class="hint-text" data-i18n="pointsToTarget.setup.winDirectionHint">Bei den meisten Spielen gewinnt die höchste Punktzahl (z.B. Flip7, Tutto) — bei manchen wie Skyjo aber die niedrigste. Das Spiel endet trotzdem, sobald jemand den Zielwert erreicht oder überschreitet.</p>
 
         <label data-i18n="common.setup.whoPlays">Wer spielt mit?</label>
         <div class="player-picker" id="player-picker"></div>
@@ -99,13 +73,6 @@
     </section>
   </main>
 
-  <p class="app-version" id="app-version">Das Scoreboard</p>
-
-  <script src="../../js/version.js"></script>
-  <script src="../../js/theme.js"></script>
-  <script src="../../js/i18n.js"></script>
-  <script src="../../js/input-helpers.js"></script>
-  <script src="../../js/team-setup.js"></script>
-  <script src="setup.js"></script>
-</body>
-</html>
+<?php
+$page_scripts = ['js/team-setup.js', 'modes/points-to-target/setup.js'];
+require __DIR__ . '/../../includes/footer.php';

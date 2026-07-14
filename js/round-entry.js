@@ -110,10 +110,16 @@ function renderRoundEntryFields(container, groups) {
 
 /**
  * Verbindet den Umschalt-Knopf (Tippen <-> Schritt-Buttons) mit dem
- * gespeicherten Modus. rerender baut die aktuell aktive Runde im neuen Modus
- * neu auf - ohne Server-Roundtrip, da sich nur die Eingabe-UI aendert.
+ * gespeicherten Modus. rerenderGrid/rerenderPicker bauen die aktuell aktive
+ * Runde im neuen Modus neu auf - ohne Server-Roundtrip, da sich nur die
+ * Eingabe-UI aendert. Bereits eingetragene Werte bleiben dabei bewusst
+ * erhalten (nur der Neuaufbau nach dem Speichern einer Runde soll wieder
+ * bei 0 starten, nicht das blosse Umschalten der Eingabeart) - dazu werden
+ * die aktuellen Werte vor dem Neuaufbau des Rasters gesichert und danach
+ * in die frischen Felder zurueckgeschrieben, bevor der Picker (falls
+ * vorhanden) sie ausliest.
  */
-function wireRoundEntryModeToggle(buttonEl, rerender) {
+function wireRoundEntryModeToggle(buttonEl, rerenderGrid, rerenderPicker) {
   function updateLabel() {
     const mode = roundEntryGetMode();
     buttonEl.textContent = mode === 'buttons'
@@ -124,7 +130,20 @@ function wireRoundEntryModeToggle(buttonEl, rerender) {
   buttonEl.addEventListener('click', () => {
     roundEntrySetMode(roundEntryGetMode() === 'buttons' ? 'type' : 'buttons');
     updateLabel();
-    rerender();
+
+    const preserved = {};
+    document.querySelectorAll('#round-form-grid input[data-player-ids]').forEach((input) => {
+      preserved[input.id] = input.value;
+    });
+
+    rerenderGrid();
+
+    Object.entries(preserved).forEach(([id, value]) => {
+      const input = document.getElementById(id);
+      if (input) input.value = value;
+    });
+
+    if (rerenderPicker) rerenderPicker();
   });
 }
 
@@ -169,15 +188,28 @@ function buildRoundEntryPicker(container, groups, players) {
     name.textContent = group.label;
     detail.appendChild(name);
 
+    input.hidden = true;
+
     if (roundEntryGetMode() === 'buttons') {
-      input.hidden = true;
       const stepper = roundEntryBuildStepButtons(input);
       stepper.classList.add('round-sequence__stepper');
       detail.appendChild(stepper);
     } else {
-      input.hidden = false;
-      input.classList.add('round-picker__type-input');
-      detail.appendChild(input);
+      // Eigenes sichtbares Feld statt das echte input zu verschieben (siehe
+      // roundEntryBuildStepButtons oben) - haelt #round-input-<key> immer
+      // im Eingabe-Raster, damit saveNewRound() und der Werte-Erhalt beim
+      // Umschalten (wireRoundEntryModeToggle) es zuverlaessig wiederfinden.
+      const typeInput = document.createElement('input');
+      typeInput.type = 'text';
+      typeInput.inputMode = 'numeric';
+      typeInput.pattern = '-?[0-9]*';
+      typeInput.className = 'round-picker__type-input';
+      typeInput.value = input.value;
+      typeInput.addEventListener('input', () => {
+        input.value = typeInput.value;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      detail.appendChild(typeInput);
     }
   }
 

@@ -415,9 +415,10 @@ toggleFinishedBtn.addEventListener('click', () => toggleFinished());
 undoLastRoundBtn.addEventListener('click', undoLastRound);
 
 window.scoreboardI18nReady.then(() => {
-  window.wireRoundEntryModeToggle(roundEntryModeBtn, () => {
-    renderRoundEntryForm(currentState);
-    renderRoundEntrySequence(currentState);
-  });
+  window.wireRoundEntryModeToggle(
+    roundEntryModeBtn,
+    () => renderRoundEntryForm(currentState),
+    () => renderRoundEntrySequence(currentState),
+  );
   loadGame();
 });

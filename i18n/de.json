@@ -29,6 +29,10 @@
       "highest": "Höchste Punktzahl",
       "lowest": "Niedrigste Punktzahl"
     },
+    "stepper": {
+      "decrease": "Verringern",
+      "increase": "Erhöhen"
+    },
     "table": {
       "rank": "Platz",
       "name": "Name",

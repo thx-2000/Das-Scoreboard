@@ -17,11 +17,11 @@ require __DIR__ . '/../../includes/header.php';
 
         <label data-i18n="common.winDirection.heading">Wer gewinnt am Ende?</label>
         <div class="player-picker">
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="win-direction" value="highest" checked>
             <span data-i18n="common.winDirection.highest">Höchste Punktzahl</span>
           </label>
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="win-direction" value="lowest">
             <span data-i18n="common.winDirection.lowest">Niedrigste Punktzahl</span>
           </label>

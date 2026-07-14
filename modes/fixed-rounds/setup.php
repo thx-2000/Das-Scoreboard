@@ -16,15 +16,19 @@ require __DIR__ . '/../../includes/header.php';
         <input type="text" id="game-label" maxlength="60" autocomplete="off">
 
         <label for="total-rounds" data-i18n="fixedRounds.setup.roundsLabel">Wie viele Runden sollen gespielt werden?</label>
-        <input type="text" id="total-rounds" value="10" inputmode="numeric" pattern="[0-9]*" required>
+        <div class="stepper" data-stepper data-step="1" data-min="1">
+          <button type="button" class="stepper__btn stepper__btn--minus" data-i18n-aria-label="common.stepper.decrease" aria-label="Verringern">−</button>
+          <input type="text" id="total-rounds" value="10" inputmode="numeric" pattern="[0-9]*" required>
+          <button type="button" class="stepper__btn stepper__btn--plus" data-i18n-aria-label="common.stepper.increase" aria-label="Erhöhen">+</button>
+        </div>
 
         <label data-i18n="common.winDirection.heading">Wer gewinnt am Ende?</label>
         <div class="player-picker">
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="win-direction" value="highest" checked>
             <span data-i18n="common.winDirection.highest">Höchste Punktzahl</span>
           </label>
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="win-direction" value="lowest">
             <span data-i18n="common.winDirection.lowest">Niedrigste Punktzahl</span>
           </label>
@@ -79,5 +83,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'modes/fixed-rounds/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'modes/fixed-rounds/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

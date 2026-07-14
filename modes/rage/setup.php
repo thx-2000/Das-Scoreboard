@@ -10,7 +10,7 @@ require __DIR__ . '/../../includes/header.php';
   <main id="main">
     <section class="card">
       <h2 data-i18n="common.setup.heading">Spiel einrichten</h2>
-      <p class="hint-text" data-i18n="rage.setup.hint">Feste 10 Runden (10 bis 1 Karte), am Ende gewinnt die höchste Punktzahl.</p>
+      <p class="hint-text setup-callout" data-i18n="rage.setup.hint">Feste 10 Runden (10 bis 1 Karte), am Ende gewinnt die höchste Punktzahl.</p>
 
       <form id="setup-form" class="form">
         <label for="game-label" data-i18n="common.setup.labelOptional">Bezeichnung (optional)</label>

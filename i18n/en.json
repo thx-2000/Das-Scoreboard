@@ -29,6 +29,10 @@
       "highest": "Highest score",
       "lowest": "Lowest score"
     },
+    "stepper": {
+      "decrease": "Decrease",
+      "increase": "Increase"
+    },
     "table": {
       "rank": "Rank",
       "name": "Name",

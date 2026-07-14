@@ -194,7 +194,11 @@ angelegt.
     Theme, Classic bleibt unverändert): Startseite mit Icons je Modus-Karte
     und eigener "Wer fängt an?"-Schnellaktion; Spielerverwaltung mit
     zyklisch eingefärbten Spieler-Karten (`--player-color-1` bis `-4`);
-    Verlauf mit staerker abgesetzten, angehobenen Spiel-Karten.
+    Verlauf mit staerker abgesetzten, angehobenen Spiel-Karten; Setup-
+    Seiten aller 4 Modi mit Plus/Minus-Stepper für Zielpunkte/Rundenzahl
+    (`js/stepper.js`, generisch über `[data-stepper]`), Sieg-Richtung als
+    grössere Auswahlkarten statt kleiner Chips, zyklisch eingefärbten
+    Spielerchips und einem hervorgehobenen Hinweiskasten im RAGE-Setup.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -579,7 +583,11 @@ the player database and game history are deliberately mode-agnostic.
     with an icon per mode card and its own "Who starts?" quick action;
     player management with cyclically colored player cards
     (`--player-color-1` through `-4`); history with more strongly
-    separated, elevated game cards.
+    separated, elevated game cards; setup pages for all 4 modes with a
+    plus/minus stepper for target score/round count (`js/stepper.js`,
+    generic via `[data-stepper]`), win direction as larger choice cards
+    instead of small chips, cyclically colored player chips, and a
+    highlighted callout box in the RAGE setup hint.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

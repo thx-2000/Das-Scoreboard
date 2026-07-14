@@ -336,6 +336,19 @@ main {
   font-size: 1rem;
 }
 
+/* Plus/Minus-Stepper (Zielpunkte, Rundenzahl) - im Classic-Theme rendert
+   nur das eingebettete Input, der Wrapper selbst nimmt per "display:contents"
+   keinen eigenen Platz ein und die Buttons bleiben unsichtbar; im Bold-
+   Theme werden beide sichtbar (siehe [data-theme-style="bold"] weiter
+   unten). */
+.stepper {
+  display: contents;
+}
+
+.stepper__btn {
+  display: none;
+}
+
 .hint-text {
   color: var(--color-text-muted);
   font-size: 0.85rem;
@@ -1447,4 +1460,66 @@ main {
 [data-theme-style="bold"] .badge {
   padding: 0.25rem 0.7rem;
   font-size: 0.75rem;
+}
+
+/* ---- Setup-Seiten: Stepper, Gewinner-Karten, grosser Startbutton ---- */
+
+[data-theme-style="bold"] .stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+[data-theme-style="bold"] .stepper__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-green);
+  color: var(--color-on-accent);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+[data-theme-style="bold"] .stepper__btn:active {
+  transform: scale(0.94);
+}
+
+[data-theme-style="bold"] .stepper input {
+  flex: 1;
+  max-width: 140px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+[data-theme-style="bold"] .winner-card {
+  flex: 1;
+  min-width: 160px;
+  justify-content: center;
+  padding: 1.1rem;
+  border-width: 2px;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+[data-theme-style="bold"] #setup-form > button[type="submit"] {
+  width: 100%;
+  padding: 1.1rem;
+  font-size: 1.05rem;
+}
+
+[data-theme-style="bold"] .setup-callout {
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-amber);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-text);
 }

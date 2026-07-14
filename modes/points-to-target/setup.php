@@ -16,15 +16,19 @@ require __DIR__ . '/../../includes/header.php';
         <input type="text" id="game-label" placeholder="z.B. Flip7, Tutto" data-i18n-placeholder="pointsToTarget.setup.labelPlaceholder" maxlength="60" autocomplete="off">
 
         <label for="target-score" data-i18n="pointsToTarget.setup.targetLabel">Bis zu welchem Punktewert wird gespielt?</label>
-        <input type="text" id="target-score" value="200" inputmode="numeric" pattern="[0-9]*" required>
+        <div class="stepper" data-stepper data-step="10" data-min="10">
+          <button type="button" class="stepper__btn stepper__btn--minus" data-i18n-aria-label="common.stepper.decrease" aria-label="Verringern">−</button>
+          <input type="text" id="target-score" value="200" inputmode="numeric" pattern="[0-9]*" required>
+          <button type="button" class="stepper__btn stepper__btn--plus" data-i18n-aria-label="common.stepper.increase" aria-label="Erhöhen">+</button>
+        </div>
 
         <label data-i18n="common.winDirection.heading">Wer gewinnt am Ende?</label>
         <div class="player-picker">
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="win-direction" value="highest" checked>
             <span data-i18n="common.winDirection.highest">Höchste Punktzahl</span>
           </label>
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="win-direction" value="lowest">
             <span data-i18n="common.winDirection.lowest">Niedrigste Punktzahl</span>
           </label>
@@ -74,5 +78,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'modes/points-to-target/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'modes/points-to-target/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

@@ -25,9 +25,10 @@ function clearError() {
   setupError.textContent = '';
 }
 
-function renderPlayerChip(player) {
+function renderPlayerChip(player, index) {
   const label = document.createElement('label');
   label.className = 'player-chip';
+  label.dataset.playerColor = (index % 4) + 1;
 
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
@@ -64,8 +65,8 @@ async function loadPlayers() {
     refreshTeamSetup();
     return;
   }
-  players.forEach((player) => {
-    playerPicker.appendChild(renderPlayerChip(player));
+  players.forEach((player, index) => {
+    playerPicker.appendChild(renderPlayerChip(player, index));
   });
   refreshTeamSetup();
 }

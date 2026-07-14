@@ -411,6 +411,12 @@ main {
   display: none;
 }
 
+/* Nur im Bold-Theme sichtbar - in Classic sind die Modus-Karten direkt der
+   Einstieg, ein zusaetzlicher Sprungbutton waere dort redundant. */
+.home-start-btn {
+  display: none;
+}
+
 /* Spielerauswahl (Checkbox-Chips) */
 .player-picker {
   display: flex;
@@ -921,6 +927,10 @@ main {
   margin-bottom: 0.2rem;
 }
 
+.history-item__icon {
+  margin-right: 0.4rem;
+}
+
 .history-item__meta {
   color: var(--color-text-muted);
   font-size: 0.85rem;
@@ -1429,9 +1439,39 @@ main {
 
 /* ---- Startseite: starke Modus-Karten + Schnellaktion "Wer faengt an?" -- */
 
+[data-theme-style="bold"] .home-start-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--color-green);
+  color: var(--color-on-accent);
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 [data-theme-style="bold"] .mode-card {
   border-top-width: 6px;
   padding: 1.75rem;
+}
+
+/* Jede Modus-Karte in eigener Spielerfarbe, RAGE bewusst in Amber (Feuer-Optik
+   passt zum Icon) statt im Zyklus. */
+[data-theme-style="bold"] .mode-card:nth-of-type(1) {
+  border-top-color: var(--player-color-1);
+}
+
+[data-theme-style="bold"] .mode-card:nth-of-type(2) {
+  border-top-color: var(--player-color-2);
+}
+
+[data-theme-style="bold"] .mode-card:nth-of-type(3) {
+  border-top-color: var(--player-color-3);
 }
 
 [data-theme-style="bold"] .mode-card--rage {
@@ -1443,6 +1483,10 @@ main {
   font-size: 2rem;
   line-height: 1;
   margin-bottom: 0.6rem;
+}
+
+[data-theme-style="bold"] .history-item__icon {
+  font-size: 1.1rem;
 }
 
 [data-theme-style="bold"] .home-quick-action {

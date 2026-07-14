@@ -130,6 +130,12 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Spieler in der Korrektur-Tabelle) bleibt seitliches Scrollen je nach
   Spielerzahl weiterhin nötig — das ist strukturell bedingt und wurde
   nicht extra behoben.
+- **"Offene Spiele" auf der Startseite** (gilt für beide Themes): zeigt bis zu
+  5 laufende, nicht beendete Spiele mit Modus-Icon, Spielernamen und
+  Zielwert/Rundenzahl zum direkten Fortsetzen, samt Link "Alle anzeigen" zum
+  vollständigen Verlauf. Bleibt ausgeblendet, wenn kein Spiel läuft. Nutzt
+  denselben Endpunkt wie der Verlauf (`GET /api/games.php`), keine eigene
+  Backend-Route (`js/home.js`).
 - **Team-Modus** (nur in den 3 Punkte-Modi, nicht bei RAGE): Beim Einrichten
   lassen sich Spieler unter "Erweiterte Optionen" zu Teams gruppieren.
   Teamname wird automatisch aus den Mitgliedsnamen gebildet ("Alice &
@@ -201,7 +207,8 @@ angelegt.
     Layout-/Bedienungs-Umbauten je Seite (grosse Touch-Ziele, Karten statt
     Tabellen, Stepper-Eingaben, …) für Bold Scorekeeper folgen schrittweise
     in eigenen Releases. Bereits umgesetzt (nur sichtbar bei aktivem Bold-
-    Theme, Classic bleibt unverändert): Startseite mit Icons je Modus-Karte
+    Theme, Classic bleibt unverändert): Startseite mit Icons und je eigener
+    Akzentfarbe pro Modus-Karte, grossem Sprung-Button "Neues Spiel starten"
     und eigener "Wer fängt an?"-Schnellaktion; Spielerverwaltung mit
     zyklisch eingefärbten Spieler-Karten (`--player-color-1` bis `-4`);
     Verlauf mit staerker abgesetzten, angehobenen Spiel-Karten; Setup-
@@ -543,6 +550,12 @@ to work on iPad and iPhone.
   point-based modes. RAGE (5 columns per player in the correction table)
   still needs horizontal scrolling depending on player count — that's a
   structural limitation and wasn't specifically addressed.
+- **"Open games" on the home page** (applies to both themes): shows up to 5
+  in-progress, unfinished games with mode icon, player names, and target
+  score/round count for quick resume, plus a "View all" link to the full
+  history. Stays hidden when nothing is in progress. Reuses the same
+  endpoint as history (`GET /api/games.php`), no dedicated backend route
+  (`js/home.js`).
 - **Team mode** (only in the 3 point-based modes, not RAGE): during setup,
   players can be grouped into teams under "Advanced options". The team
   name is auto-generated from member names ("Alice & Bob") or can be set
@@ -609,7 +622,8 @@ the player database and game history are deliberately mode-agnostic.
     targets, cards instead of tables, stepper inputs, …) for Bold
     Scorekeeper follows step by step in its own releases. Already shipped
     (only visible with Bold active, Classic stays unchanged): home page
-    with an icon per mode card and its own "Who starts?" quick action;
+    with an icon and its own accent color per mode card, a large
+    "Start a new game" jump button, and its own "Who starts?" quick action;
     player management with cyclically colored player cards
     (`--player-color-1` through `-4`); history with more strongly
     separated, elevated game cards; setup pages for all 4 modes with a

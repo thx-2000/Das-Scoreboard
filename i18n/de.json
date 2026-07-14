@@ -143,7 +143,12 @@
     "heading": "Aufschreibhilfe für Spieleabende",
     "newGame": {
       "heading": "Neues Spiel starten",
-      "hint": "Wähle eine Aufschreibmöglichkeit für euer Spiel."
+      "hint": "Wähle eine Aufschreibmöglichkeit für euer Spiel.",
+      "startButton": "Neues Spiel starten"
+    },
+    "openGames": {
+      "heading": "Offene Spiele",
+      "viewAll": "Alle anzeigen"
     },
     "pwaHint": {
       "heading": "Als App nutzen",

@@ -9,6 +9,7 @@ require __DIR__ . '/includes/header.php';
     <section class="card">
       <h2 data-i18n="home.newGame.heading">Neues Spiel starten</h2>
       <p class="hint-text" data-i18n="home.newGame.hint">Wähle eine Aufschreibmöglichkeit für euer Spiel.</p>
+      <a href="#mode-grid" class="home-start-btn" data-i18n="home.newGame.startButton">Neues Spiel starten</a>
 
       <div class="mode-grid" id="mode-grid">
         <a href="/modes/points-to-target/setup.php" class="mode-card">
@@ -37,6 +38,14 @@ require __DIR__ . '/includes/header.php';
       </div>
     </section>
 
+    <section class="card section-spacing" id="open-games-section" hidden>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
+        <h2 style="margin:0;" data-i18n="home.openGames.heading">Offene Spiele</h2>
+        <a href="/history.php" data-i18n="home.openGames.viewAll">Alle anzeigen</a>
+      </div>
+      <ul class="history-list" id="open-games-list"></ul>
+    </section>
+
     <a href="/tools/finger-chooser.php" class="home-quick-action section-spacing">
       <span class="home-quick-action__icon" aria-hidden="true">👆</span>
       <span class="home-quick-action__text">
@@ -52,5 +61,5 @@ require __DIR__ . '/includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/pwa-hint.js'];
+$page_scripts = ['js/pwa-hint.js', 'js/home.js'];
 require __DIR__ . '/includes/footer.php';

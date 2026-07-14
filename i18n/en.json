@@ -143,7 +143,12 @@
     "heading": "Scorekeeping helper for game nights",
     "newGame": {
       "heading": "Start a new game",
-      "hint": "Choose a scoring mode for your game."
+      "hint": "Choose a scoring mode for your game.",
+      "startButton": "Start a new game"
+    },
+    "openGames": {
+      "heading": "Open games",
+      "viewAll": "View all"
     },
     "pwaHint": {
       "heading": "Use as an app",

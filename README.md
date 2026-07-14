@@ -117,7 +117,7 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   (`settings.round_entry_steps`). In Classic zwischen Tippen und
   Schritt-Buttons per Knopf umschaltbar (auch mitten im laufenden Spiel,
   Wahl pro Gerät in `localStorage` gemerkt); in Bold Scorekeeper immer aktiv
-  als Teil der Ein-Spieler-Sequenz (siehe Bold-Theme-Abschnitt unten)
+  als Teil des Spieler-Pickers (siehe Bold-Theme-Abschnitt unten)
   (`js/round-entry.js`).
 - **Ein-/ausklappbarer Punktestand**: Der sticky Punktestand oben in der
   Spielansicht lässt sich per Knopf einklappen (zeigt dann nur die
@@ -223,12 +223,14 @@ angelegt.
     kraeftig in der jeweiligen Spielerfarbe eingefaerbte Zeilen (Rang, Name,
     Prozent, grosse Punktzahl, Fortschrittsbalken) statt Tabelle - die Farbe
     haengt an der Spieler-Position im Spiel, nicht am aktuellen Rang, bleibt
-    also bei Rangwechseln stabil; Rundenerfassung als Ein-Spieler-Sequenz
-    (Name, grosser Stepper, Bestaetigen-Haken) statt Eingabe-Raster,
-    schaltet automatisch zum naechsten Spieler weiter und speichert die
-    Runde nach dem letzten Spieler automatisch (kein separater
-    "Runde speichern"-Klick); optisch zurückgenommener Verlauf/Korrektur-
-    Bereich darunter.
+    also bei Rangwechseln stabil; Rundenerfassung als frei anwaehlbarer
+    Spieler-Picker statt Eingabe-Raster - alle Spieler bleiben als farbige
+    Chips mit ihrem aktuellen Wert sichtbar, per Klick in beliebiger
+    Reihenfolge anwaehlbar (auch mehrfach zur Korrektur vor dem Speichern),
+    bewusst ohne automatische Weiterschaltung, da die Reihenfolge am
+    Spieltisch selten mit der Spielerliste uebereinstimmt; "Runde
+    speichern" bleibt ein expliziter Klick, gemeinsam mit Classic; optisch
+    zurückgenommener Verlauf/Korrektur-Bereich darunter.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -542,8 +544,8 @@ to work on iPad and iPhone.
   globally in settings (`settings.round_entry_steps`). In Classic, a button
   switches between typing and step buttons — even mid-game, remembered per
   device in `localStorage`; in Bold Scorekeeper they're always active as
-  part of the one-player-at-a-time sequence (see the Bold theme section
-  below) (`js/round-entry.js`).
+  part of the player picker (see the Bold theme section below)
+  (`js/round-entry.js`).
 - **Collapsible standings**: the sticky standings card at the top of the
   game view can be collapsed to just its heading and expanded again via a
   button — useful on small screens (e.g. iPhone portrait), where the full
@@ -641,11 +643,13 @@ the player database and game history are deliberately mode-agnostic.
     each player's own accent color (rank, name, percent, large score,
     progress bar) instead of a table - the color is tied to the player's
     position in the game, not their current rank, so it stays stable across
-    rank changes; round entry as a one-player-at-a-time sequence (name,
-    large stepper, confirm checkmark) instead of an input grid, advancing
-    automatically and auto-saving the round after the last player (no
-    separate "Save round" click); a visually toned-down round history/
-    correction section below it.
+    rank changes; round entry as a freely selectable player picker instead
+    of an input grid - every player stays visible as a colored chip showing
+    their current value, selectable in any order (and re-selectable to
+    correct a value before saving), deliberately without auto-advancing
+    since table play order rarely matches the player list order; "Save
+    round" stays an explicit click, shared with Classic; a visually
+    toned-down round history/correction section below it.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

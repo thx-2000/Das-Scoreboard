@@ -1704,12 +1704,21 @@ main {
   color: var(--row-color);
 }
 
-/* Rundenerfassung als Ein-Spieler-Sequenz statt Eingabe-Raster - ersetzt in
-   Bold vollstaendig das Tippen/Schritt-Buttons-Grid aus Classic. */
+/* Rundenerfassung als frei anwaehlbarer Spieler-Picker statt Eingabe-Raster -
+   ersetzt in Bold vollstaendig das Tippen/Schritt-Buttons-Grid aus Classic.
+   Keine feste Reihenfolge/Automatik: die Spielreihenfolge am Tisch stimmt
+   oft nicht mit der Spielerliste ueberein, daher bleiben alle Spieler als
+   Chips frei anwaehlbar (auch zur Korrektur vor dem Speichern). */
 [data-theme-style="bold"] #round-form-grid,
-[data-theme-style="bold"] #round-entry-card #save-round-btn,
 [data-theme-style="bold"] #round-entry-mode-btn {
   display: none;
+}
+
+[data-theme-style="bold"] #round-entry-card #save-round-btn {
+  width: 100%;
+  padding: 1.1rem;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 [data-theme-style="bold"] .round-entry-sequence {
@@ -1720,12 +1729,53 @@ main {
   padding: 1rem 0;
 }
 
-[data-theme-style="bold"] .round-sequence__progress {
-  color: var(--color-text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+[data-theme-style="bold"] .round-picker__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+[data-theme-style="bold"] .round-picker__chip {
+  --row-color: var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 5rem;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid var(--row-color);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+[data-theme-style="bold"] .round-picker__chip[data-player-color="1"] { --row-color: var(--player-color-1); }
+[data-theme-style="bold"] .round-picker__chip[data-player-color="2"] { --row-color: var(--player-color-2); }
+[data-theme-style="bold"] .round-picker__chip[data-player-color="3"] { --row-color: var(--player-color-3); }
+[data-theme-style="bold"] .round-picker__chip[data-player-color="4"] { --row-color: var(--player-color-4); }
+
+[data-theme-style="bold"] .round-picker__chip--active {
+  background: color-mix(in srgb, var(--row-color) 20%, var(--color-surface));
+}
+
+[data-theme-style="bold"] .round-picker__chip-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--row-color);
+}
+
+[data-theme-style="bold"] .round-picker__chip-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+[data-theme-style="bold"] .round-picker__detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 [data-theme-style="bold"] .round-sequence__name {
@@ -1747,27 +1797,6 @@ main {
 [data-theme-style="bold"] .round-sequence__stepper .round-steps__value {
   font-size: 2.2rem;
   min-width: 4rem;
-}
-
-[data-theme-style="bold"] .round-sequence__confirm {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--color-green);
-  color: var(--color-on-accent);
-  font-size: 1.6rem;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-[data-theme-style="bold"] .round-sequence__confirm:active {
-  transform: scale(0.94);
-}
-
-[data-theme-style="bold"] .round-sequence__confirm:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
 }
 
 [data-theme-style="bold"] #round-entry-card ~ .card {

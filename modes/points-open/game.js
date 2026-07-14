@@ -131,25 +131,17 @@ function renderRoundEntryForm(state) {
 }
 
 /**
- * Bold-Theme: Rundenerfassung als Ein-Spieler-Sequenz statt Eingabe-Raster
- * (siehe js/round-entry.js). Sendet nach der letzten Gruppe direkt die neue
- * Runde ans Backend - kein separater "Runde speichern"-Klick noetig.
+ * Bold-Theme: Rundenerfassung als frei anwaehlbarer Spieler-Picker statt
+ * Eingabe-Raster (siehe js/round-entry.js) - schreibt in dieselben Felder
+ * wie renderRoundEntryForm(), "Runde speichern" bleibt der gemeinsame
+ * Speichern-Weg fuer beide Themes.
  */
 function renderRoundEntrySequence(state) {
-  roundEntrySequence.innerHTML = '';
-  if (state.status === 'finished') return;
-
-  const groups = window.groupPlayersByTeam(state.players, state.teamScoring);
-  window.buildRoundEntrySequence(roundEntrySequence, groups, async (scores) => {
-    const response = await fetch(`/api/rounds.php?gameId=${gameId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ scores }),
-    });
-    currentState = await response.json();
-    render(currentState);
-    window.scoreboardPlaySaveFeedback();
-  });
+  if (state.status === 'finished') {
+    roundEntrySequence.innerHTML = '';
+    return;
+  }
+  window.buildRoundEntryPicker(roundEntrySequence, window.groupPlayersByTeam(state.players, state.teamScoring), state.players);
 }
 
 function renderRoundsTable(state) {

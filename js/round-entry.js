@@ -129,64 +129,90 @@ function wireRoundEntryModeToggle(buttonEl, rerender) {
 }
 
 /**
- * Bold-Theme: Rundenerfassung als Ein-Spieler-Sequenz statt Eingabe-Raster -
- * zeigt je Team-/Spieler-Gruppe nacheinander einen grossen Stepper, ein
- * Bestaetigen-Haken schaltet zur naechsten Gruppe weiter. Nach der letzten
- * Gruppe wird onComplete(scores) mit den gesammelten Werten aufgerufen
- * (dasselbe scores-Format wie beim klassischen Grid).
+ * Bold-Theme: Rundenerfassung als frei anwaehlbarer Spieler-Picker statt
+ * fester Reihenfolge - die Spielreihenfolge am Tisch stimmt oft nicht mit
+ * der Spielerliste ueberein, daher KEINE automatische Weiterschaltung.
+ * Jeder Spieler bleibt als Chip mit seinem aktuellen Wert sichtbar, per
+ * Klick beliebig oft anwaehlbar (auch zur nachtraeglichen Korrektur vor dem
+ * Speichern). Die Chips/Stepper schreiben direkt in die vom Eingabe-Raster
+ * (renderRoundEntryFields) bereits angelegten Felder - dieselben Felder,
+ * die auch "Runde speichern" (saveNewRound) ausliest. Muss deshalb nach
+ * renderRoundEntryFields() aufgerufen werden.
  */
-function buildRoundEntrySequence(container, groups, onComplete) {
-  let index = 0;
-  const scores = {};
+function buildRoundEntryPicker(container, groups, players) {
+  container.innerHTML = '';
+  if (groups.length === 0) return;
 
-  function renderStep() {
-    container.innerHTML = '';
-    if (groups.length === 0) return;
-    const group = groups[index];
+  function inputFor(key) {
+    return document.getElementById(`round-input-${key}`);
+  }
 
-    const progress = document.createElement('div');
-    progress.className = 'round-sequence__progress';
-    progress.textContent = window.t('common.game.roundEntry.sequenceProgress', { current: index + 1, total: groups.length });
+  const chipRow = document.createElement('div');
+  chipRow.className = 'round-picker__chips';
+
+  const detail = document.createElement('div');
+  detail.className = 'round-picker__detail';
+
+  const chipEls = {};
+  let activeKey = groups[0].key;
+
+  function renderDetail() {
+    detail.innerHTML = '';
+    const group = groups.find((g) => g.key === activeKey);
+    const input = inputFor(group.key);
+    if (!input) return;
 
     const name = document.createElement('div');
     name.className = 'round-sequence__name';
     name.textContent = group.label;
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.inputMode = 'numeric';
-    input.pattern = '-?[0-9]*';
-    input.hidden = true;
-    input.value = '0';
+    detail.appendChild(name);
 
     const stepper = roundEntryBuildStepButtons(input);
     stepper.classList.add('round-sequence__stepper');
-
-    const confirmBtn = document.createElement('button');
-    confirmBtn.type = 'button';
-    confirmBtn.className = 'round-sequence__confirm';
-    confirmBtn.textContent = '✓';
-    confirmBtn.setAttribute('aria-label', window.t('common.game.roundEntry.confirmPlayer', { name: group.label }));
-    confirmBtn.addEventListener('click', () => {
-      const value = Number(input.value) || 0;
-      group.playerIds.forEach((id) => { scores[id] = value; });
-      index += 1;
-      if (index >= groups.length) {
-        onComplete(scores);
-      } else {
-        renderStep();
-      }
+    input.addEventListener('input', () => {
+      if (chipEls[activeKey]) chipEls[activeKey].value.textContent = input.value;
     });
-
-    container.appendChild(progress);
-    container.appendChild(name);
-    container.appendChild(stepper);
-    container.appendChild(confirmBtn);
+    detail.appendChild(stepper);
   }
 
-  renderStep();
+  function setActive(key) {
+    activeKey = key;
+    Object.entries(chipEls).forEach(([k, el]) => {
+      el.button.classList.toggle('round-picker__chip--active', k === key);
+    });
+    renderDetail();
+  }
+
+  groups.forEach((group) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'round-picker__chip';
+    const anchorId = group.playerIds[0];
+    chip.dataset.playerColor = window.scoreboardPlayerColorIndex(players, anchorId);
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'round-picker__chip-name';
+    nameSpan.textContent = group.label;
+
+    const valueSpan = document.createElement('span');
+    valueSpan.className = 'round-picker__chip-value';
+    const existingInput = inputFor(group.key);
+    valueSpan.textContent = existingInput ? existingInput.value : '0';
+
+    chip.appendChild(nameSpan);
+    chip.appendChild(valueSpan);
+    chip.addEventListener('click', () => setActive(group.key));
+
+    chipEls[group.key] = { button: chip, value: valueSpan };
+    chipRow.appendChild(chip);
+  });
+
+  container.appendChild(chipRow);
+  container.appendChild(detail);
+
+  setActive(activeKey);
 }
 
 window.renderRoundEntryFields = renderRoundEntryFields;
 window.wireRoundEntryModeToggle = wireRoundEntryModeToggle;
-window.buildRoundEntrySequence = buildRoundEntrySequence;
+window.buildRoundEntryPicker = buildRoundEntryPicker;

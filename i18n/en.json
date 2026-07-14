@@ -63,9 +63,7 @@
         "heading": "Enter new round",
         "saveButton": "Save round",
         "switchToButtons": "Step buttons",
-        "switchToType": "Type",
-        "sequenceProgress": "Player {current} of {total}",
-        "confirmPlayer": "Confirm points for {name}"
+        "switchToType": "Type"
       },
       "roundsTable": {
         "heading": "Round history & correction",

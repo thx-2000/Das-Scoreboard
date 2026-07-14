@@ -24,13 +24,19 @@ require_once __DIR__ . '/nav.php';
 
 $navVariant = $nav_variant ?? 'full';
 $headerClass = 'app-header' . (!empty($header_class) ? ' ' . $header_class : '');
+// Cache-Buster ueber die App-Version - ohne das wuerden Browser CSS/JS nach
+// einem Release ggf. veraltet aus dem Cache bedienen, obwohl das HTML schon
+// neu ist (z.B. neue Funktion in game.js, die von altem gecachtem
+// round-entry.js nicht bereitgestellt wird) - siehe auch i18n.js, das
+// denselben Mechanismus fuer die Woerterbuecher nutzt.
+$appVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
 ?><!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0<?= $viewport_extra ?? '' ?>">
   <title data-i18n-title-suffix="<?= htmlspecialchars($page_title, ENT_QUOTES) ?>">Das Scoreboard</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css?v=<?= urlencode($appVersion) ?>">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">

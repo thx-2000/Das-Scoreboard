@@ -20,7 +20,10 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   sie in einer Zeile sichtbar. Eine `.htaccess`-Weiterleitung hält alte
   `*.html`-Lesezeichen und bereits installierte PWA-Homescreen-Icons
   funktionsfähig (Seiten liefen früher als statisches HTML, jetzt als
-  `.php` mit den gemeinsamen Includes).
+  `.php` mit den gemeinsamen Includes). Alle CSS-/JS-Dateien werden mit
+  `?v=<Version>` ausgeliefert (`includes/header.php`/`footer.php`, liest
+  `VERSION`) — ohne das würden Browser nach einem Release ggf. noch alte
+  JS-Dateien aus dem Cache verwenden, obwohl das HTML schon neu ist.
 - **Spielerverwaltung** (`players.php`): zentrale Namens-Datenbank, aus der
   bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
   tippen. Zwei unterschiedliche Stufen zum Entfernen:
@@ -452,7 +455,10 @@ to work on iPad and iPhone.
   burger menu (`js/nav.js`); on iPad portrait it stays visible in one row.
   An `.htaccess` rewrite keeps old `*.html` bookmarks and already-installed
   PWA home-screen icons working (pages used to be static HTML, now they're
-  `.php` with the shared includes).
+  `.php` with the shared includes). All CSS/JS files are served with
+  `?v=<version>` (`includes/header.php`/`footer.php`, reads `VERSION`) —
+  without it, browsers could keep serving an old cached JS file after a
+  release even though the HTML is already new.
 - **Player management** (`players.php`): central name database to pick
   from when starting new games instead of typing names every time. Two
   different removal levels:

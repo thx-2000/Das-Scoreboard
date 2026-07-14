@@ -788,6 +788,12 @@ main {
   text-align: center;
 }
 
+/* Ein-Spieler-Sequenz zur Rundenerfassung - nur im Bold-Theme sichtbar (siehe
+   unten), ersetzt dort das Tippen/Schritt-Buttons-Grid vollstaendig. */
+.round-entry-sequence {
+  display: none;
+}
+
 /* Rundenverlauf / Korrektur - immer sichtbar und direkt editierbar */
 .rounds-table-wrap {
   overflow-x: auto;
@@ -1576,8 +1582,11 @@ main {
   color: var(--color-text);
 }
 
-/* ---- Aktive Ansicht (3 Punkte-Modi): Karten-Punktestand + grosse
-   Rundenerfassung, Verlauf/Korrektur dezent darunter ---- */
+/* ---- Aktive Ansicht (3 Punkte-Modi): farbige Punktestand-Zeilen je Spieler,
+   Rundenerfassung als Ein-Spieler-Sequenz, Verlauf/Korrektur dezent darunter.
+   Spielerfarben (--player-color-1..4) durchgaengig auf Name/Punktzahl/
+   Fortschritt statt nur duennem Rahmen - Farbe haengt an der Spieler-Position
+   in state.players, nicht am aktuellen Rang (bleibt beim Ranguebergang stabil). ---- */
 
 [data-theme-style="bold"] .standings-table {
   display: none;
@@ -1586,40 +1595,36 @@ main {
 [data-theme-style="bold"] .standings-cards {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 [data-theme-style="bold"] .standings-card {
+  --row-color: var(--color-border);
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-surface);
+  padding: 0.85rem 1.1rem;
+  border-left: 4px solid var(--row-color);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--row-color) 12%, var(--color-surface));
 }
 
-[data-theme-style="bold"] .standings-card--first {
-  border-color: var(--color-green-strong);
-  box-shadow: var(--shadow-card);
-}
+[data-theme-style="bold"] .standings-card[data-player-color="1"] { --row-color: var(--player-color-1); }
+[data-theme-style="bold"] .standings-card[data-player-color="2"] { --row-color: var(--player-color-2); }
+[data-theme-style="bold"] .standings-card[data-player-color="3"] { --row-color: var(--player-color-3); }
+[data-theme-style="bold"] .standings-card[data-player-color="4"] { --row-color: var(--player-color-4); }
 
 [data-theme-style="bold"] .standings-card__rank {
   flex-shrink: 0;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   background: var(--color-bg);
   font-weight: 800;
-  font-size: 1.05rem;
-}
-
-[data-theme-style="bold"] .standings-card--first .standings-card__rank {
-  background: var(--color-green);
-  color: var(--color-on-accent);
+  font-size: 0.95rem;
 }
 
 [data-theme-style="bold"] .standings-card__info {
@@ -1627,33 +1632,98 @@ main {
   min-width: 0;
 }
 
+[data-theme-style="bold"] .standings-card .standings-name span {
+  color: var(--row-color);
+  font-weight: 700;
+}
+
+[data-theme-style="bold"] .standings-card .mini-progress__fill {
+  background: var(--row-color);
+}
+
+[data-theme-style="bold"] .standings-card__percent {
+  flex-shrink: 0;
+  min-width: 2.6rem;
+  text-align: right;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
 [data-theme-style="bold"] .standings-card__points {
   flex-shrink: 0;
-  font-size: 1.5rem;
+  min-width: 3.2rem;
+  text-align: right;
+  font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: -0.02em;
+  color: var(--row-color);
 }
 
-[data-theme-style="bold"] .standings-card--first .standings-card__points {
-  color: var(--color-green-strong);
+/* Rundenerfassung als Ein-Spieler-Sequenz statt Eingabe-Raster - ersetzt in
+   Bold vollstaendig das Tippen/Schritt-Buttons-Grid aus Classic. */
+[data-theme-style="bold"] #round-form-grid,
+[data-theme-style="bold"] #round-entry-card #save-round-btn,
+[data-theme-style="bold"] #round-entry-mode-btn {
+  display: none;
 }
 
-[data-theme-style="bold"] #round-entry-card #save-round-btn {
-  width: 100%;
-  padding: 1.1rem;
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
+[data-theme-style="bold"] .round-entry-sequence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-[data-theme-style="bold"] .round-steps__btn {
-  width: 3rem;
-  height: 3rem;
+[data-theme-style="bold"] .round-sequence__progress {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+[data-theme-style="bold"] .round-sequence__name {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+[data-theme-style="bold"] .round-sequence__stepper.round-steps {
+  gap: 0.75rem;
+}
+
+[data-theme-style="bold"] .round-sequence__stepper .round-steps__btn {
+  width: 3.2rem;
+  height: 3.2rem;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
-[data-theme-style="bold"] .round-steps__value {
+[data-theme-style="bold"] .round-sequence__stepper .round-steps__value {
+  font-size: 2.2rem;
+  min-width: 4rem;
+}
+
+[data-theme-style="bold"] .round-sequence__confirm {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-green);
+  color: var(--color-on-accent);
   font-size: 1.6rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+[data-theme-style="bold"] .round-sequence__confirm:active {
+  transform: scale(0.94);
+}
+
+[data-theme-style="bold"] .round-sequence__confirm:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 [data-theme-style="bold"] #round-entry-card ~ .card {

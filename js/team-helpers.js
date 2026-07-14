@@ -33,4 +33,16 @@ function groupPlayersByTeam(players, teamScoring) {
   return groups;
 }
 
+/**
+ * Liefert eine Zahl 1-4 fuer die zyklische Spielerfarbe (--player-color-1..4,
+ * siehe css/style.css Bold-Theme), basierend auf der Position von playerId
+ * in der players-Liste des Spiels - bleibt so ueber Rangwechsel in den
+ * Standings hinweg stabil (haengt nicht am aktuellen Platz).
+ */
+function scoreboardPlayerColorIndex(players, playerId) {
+  const idx = players.findIndex((p) => p.id === playerId);
+  return ((idx >= 0 ? idx : 0) % 4) + 1;
+}
+
 window.groupPlayersByTeam = groupPlayersByTeam;
+window.scoreboardPlayerColorIndex = scoreboardPlayerColorIndex;

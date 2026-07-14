@@ -106,16 +106,16 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   bisherigen Wert, ohne ihn erst manuell markieren oder löschen zu müssen.
   Auf Mobilgeräten öffnet sich dabei die numerische Tastatur
   (`inputmode="numeric"`).
-- **Schritt-Buttons zur Rundenerfassung** (themenunabhängig, gilt für Classic
-  und Bold Scorekeeper gleichermaßen; nicht bei RAGE): Alternative zur
-  Zahleneingabe — je Spieler/Team eine Reihe Plus- und eine Reihe
-  Minus-Buttons, die einen laufenden Wert hoch- bzw. runterzählen. Welche
-  Schrittweiten zur Auswahl stehen (1/5/10/50/100/500/1000, einzeln
+- **Schritt-Buttons zur Rundenerfassung** (themenunabhängig nutzbar; nicht bei
+  RAGE): Alternative zur Zahleneingabe — je Spieler/Team eine Reihe Plus- und
+  eine Reihe Minus-Buttons, die einen laufenden Wert hoch- bzw. runterzählen.
+  Welche Schrittweiten zur Auswahl stehen (1/5/10/50/100/500/1000, einzeln
   an-/abschaltbar) wird global in den Einstellungen festgelegt
-  (`settings.round_entry_steps`). Zwischen Tippen und Schritt-Buttons kann
-  über einen Knopf direkt über der Rundenerfassung umgeschaltet werden —
-  auch mitten in einem laufenden Spiel; der gewählte Modus wird pro Gerät in
-  `localStorage` gemerkt (`js/round-entry.js`).
+  (`settings.round_entry_steps`). In Classic zwischen Tippen und
+  Schritt-Buttons per Knopf umschaltbar (auch mitten im laufenden Spiel,
+  Wahl pro Gerät in `localStorage` gemerkt); in Bold Scorekeeper immer aktiv
+  als Teil der Ein-Spieler-Sequenz (siehe Bold-Theme-Abschnitt unten)
+  (`js/round-entry.js`).
 - **Ein-/ausklappbarer Punktestand**: Der sticky Punktestand oben in der
   Spielansicht lässt sich per Knopf einklappen (zeigt dann nur die
   Überschrift) und wieder anzeigen — wichtig auf kleinen Bildschirmen
@@ -209,10 +209,16 @@ angelegt.
     (`js/stepper.js`, generisch über `[data-stepper]`), Sieg-Richtung als
     grössere Auswahlkarten statt kleiner Chips, zyklisch eingefärbten
     Spielerchips und einem hervorgehobenen Hinweiskasten im RAGE-Setup;
-    aktive Spielansicht der 3 Punkte-Modi mit Punktestand als grosse Karten
-    (Rang, Name, Punktzahl, Fortschritt) statt Tabelle, übergrossem
-    "Runde speichern"-Hauptbutton und optisch zurückgenommenem Verlauf/
-    Korrektur-Bereich darunter.
+    aktive Spielansicht der 3 Punkte-Modi mit Punktestand als flache,
+    kraeftig in der jeweiligen Spielerfarbe eingefaerbte Zeilen (Rang, Name,
+    Prozent, grosse Punktzahl, Fortschrittsbalken) statt Tabelle - die Farbe
+    haengt an der Spieler-Position im Spiel, nicht am aktuellen Rang, bleibt
+    also bei Rangwechseln stabil; Rundenerfassung als Ein-Spieler-Sequenz
+    (Name, grosser Stepper, Bestaetigen-Haken) statt Eingabe-Raster,
+    schaltet automatisch zum naechsten Spieler weiter und speichert die
+    Runde nach dem letzten Spieler automatisch (kein separater
+    "Runde speichern"-Klick); optisch zurückgenommener Verlauf/Korrektur-
+    Bereich darunter.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -516,14 +522,15 @@ to work on iPad and iPhone.
   typing immediately overwrites the previous value without having to
   select or delete it manually first. On mobile devices this also brings
   up the numeric keyboard (`inputmode="numeric"`).
-- **Step buttons for round entry** (theme-independent, applies equally to
-  Classic and Bold Scorekeeper; not in RAGE): an alternative to typing
-  numbers — a row of plus and a row of minus buttons per player/team that
-  count a running value up or down. Which step sizes are offered
-  (1/5/10/50/100/500/1000, individually toggleable) is set globally in
-  settings (`settings.round_entry_steps`). A button right above round entry
-  switches between typing and step buttons — even mid-game; the chosen mode
-  is remembered per device in `localStorage` (`js/round-entry.js`).
+- **Step buttons for round entry** (usable in either theme; not in RAGE): an
+  alternative to typing numbers — a row of plus and a row of minus buttons
+  per player/team that count a running value up or down. Which step sizes
+  are offered (1/5/10/50/100/500/1000, individually toggleable) is set
+  globally in settings (`settings.round_entry_steps`). In Classic, a button
+  switches between typing and step buttons — even mid-game, remembered per
+  device in `localStorage`; in Bold Scorekeeper they're always active as
+  part of the one-player-at-a-time sequence (see the Bold theme section
+  below) (`js/round-entry.js`).
 - **Collapsible standings**: the sticky standings card at the top of the
   game view can be collapsed to just its heading and expanded again via a
   button — useful on small screens (e.g. iPhone portrait), where the full
@@ -610,10 +617,15 @@ the player database and game history are deliberately mode-agnostic.
     generic via `[data-stepper]`), win direction as larger choice cards
     instead of small chips, cyclically colored player chips, and a
     highlighted callout box in the RAGE setup hint; the active game view of
-    the 3 point-based modes with standings as large cards (rank, name,
-    score, progress) instead of a table, an oversized "Save round" main
-    action, and a visually toned-down round history/correction section
-    below it.
+    the 3 point-based modes with standings as flat rows boldly colored in
+    each player's own accent color (rank, name, percent, large score,
+    progress bar) instead of a table - the color is tied to the player's
+    position in the game, not their current rank, so it stays stable across
+    rank changes; round entry as a one-player-at-a-time sequence (name,
+    large stepper, confirm checkmark) instead of an input grid, advancing
+    automatically and auto-saving the round after the last player (no
+    separate "Save round" click); a visually toned-down round history/
+    correction section below it.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

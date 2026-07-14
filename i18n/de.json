@@ -63,7 +63,9 @@
         "heading": "Neue Runde eintragen",
         "saveButton": "Runde speichern",
         "switchToButtons": "Schritt-Buttons",
-        "switchToType": "Tippen"
+        "switchToType": "Tippen",
+        "sequenceProgress": "Spieler {current} von {total}",
+        "confirmPlayer": "Punkte für {name} bestätigen"
       },
       "roundsTable": {
         "heading": "Rundenverlauf & Korrektur",

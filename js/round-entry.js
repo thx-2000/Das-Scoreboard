@@ -128,5 +128,65 @@ function wireRoundEntryModeToggle(buttonEl, rerender) {
   });
 }
 
+/**
+ * Bold-Theme: Rundenerfassung als Ein-Spieler-Sequenz statt Eingabe-Raster -
+ * zeigt je Team-/Spieler-Gruppe nacheinander einen grossen Stepper, ein
+ * Bestaetigen-Haken schaltet zur naechsten Gruppe weiter. Nach der letzten
+ * Gruppe wird onComplete(scores) mit den gesammelten Werten aufgerufen
+ * (dasselbe scores-Format wie beim klassischen Grid).
+ */
+function buildRoundEntrySequence(container, groups, onComplete) {
+  let index = 0;
+  const scores = {};
+
+  function renderStep() {
+    container.innerHTML = '';
+    if (groups.length === 0) return;
+    const group = groups[index];
+
+    const progress = document.createElement('div');
+    progress.className = 'round-sequence__progress';
+    progress.textContent = window.t('common.game.roundEntry.sequenceProgress', { current: index + 1, total: groups.length });
+
+    const name = document.createElement('div');
+    name.className = 'round-sequence__name';
+    name.textContent = group.label;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.inputMode = 'numeric';
+    input.pattern = '-?[0-9]*';
+    input.hidden = true;
+    input.value = '0';
+
+    const stepper = roundEntryBuildStepButtons(input);
+    stepper.classList.add('round-sequence__stepper');
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.type = 'button';
+    confirmBtn.className = 'round-sequence__confirm';
+    confirmBtn.textContent = '✓';
+    confirmBtn.setAttribute('aria-label', window.t('common.game.roundEntry.confirmPlayer', { name: group.label }));
+    confirmBtn.addEventListener('click', () => {
+      const value = Number(input.value) || 0;
+      group.playerIds.forEach((id) => { scores[id] = value; });
+      index += 1;
+      if (index >= groups.length) {
+        onComplete(scores);
+      } else {
+        renderStep();
+      }
+    });
+
+    container.appendChild(progress);
+    container.appendChild(name);
+    container.appendChild(stepper);
+    container.appendChild(confirmBtn);
+  }
+
+  renderStep();
+}
+
 window.renderRoundEntryFields = renderRoundEntryFields;
 window.wireRoundEntryModeToggle = wireRoundEntryModeToggle;
+window.buildRoundEntrySequence = buildRoundEntrySequence;

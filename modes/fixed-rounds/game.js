@@ -11,6 +11,7 @@ const targetReachedWrap = document.getElementById('target-reached-wrap');
 const roundEntryCard = document.getElementById('round-entry-card');
 const roundEntryModeBtn = document.getElementById('round-entry-mode-btn');
 const roundFormGrid = document.getElementById('round-form-grid');
+const roundEntrySequence = document.getElementById('round-entry-sequence');
 const saveRoundBtn = document.getElementById('save-round-btn');
 const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
@@ -84,6 +85,8 @@ function renderStandings(state) {
 /**
  * Kartenansicht des Punktestands - nur im Bold-Theme sichtbar (siehe
  * css/style.css), parallel zur Tabelle aus renderStandings() aufgebaut.
+ * Farbe haengt an der Spieler-Position in state.players (stabil ueber
+ * Rangwechsel hinweg), nicht am aktuellen Rang.
  */
 function renderStandingsCards(state) {
   standingsCards.innerHTML = '';
@@ -99,9 +102,12 @@ function renderStandingsCards(state) {
     const teamHint = player.teamLabel
       ? `<div class="hint-text standings-team-hint">${player.teamLabel} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
       : '';
+    const anchorId = player.memberIds && player.memberIds.length ? player.memberIds[0] : player.id;
+    const colorIndex = window.scoreboardPlayerColorIndex(state.players, anchorId);
 
     const card = document.createElement('div');
-    card.className = `standings-card${rank === 1 ? ' standings-card--first' : ''}`;
+    card.className = 'standings-card';
+    card.dataset.playerColor = colorIndex;
     card.innerHTML = `
       <div class="standings-card__rank">${rank}</div>
       <div class="standings-card__info">
@@ -217,6 +223,29 @@ function renderRoundEntryForm(state) {
   window.renderRoundEntryFields(roundFormGrid, window.groupPlayersByTeam(state.players, state.teamScoring));
 }
 
+/**
+ * Bold-Theme: Rundenerfassung als Ein-Spieler-Sequenz statt Eingabe-Raster
+ * (siehe js/round-entry.js). Sendet nach der letzten Gruppe direkt die neue
+ * Runde ans Backend - kein separater "Runde speichern"-Klick noetig.
+ */
+function renderRoundEntrySequence(state) {
+  roundEntrySequence.innerHTML = '';
+  const playedRounds = state.rounds.length;
+  if (state.status === 'finished' || playedRounds >= state.totalRounds) return;
+
+  const groups = window.groupPlayersByTeam(state.players, state.teamScoring);
+  window.buildRoundEntrySequence(roundEntrySequence, groups, async (scores) => {
+    const response = await fetch(`/api/rounds.php?gameId=${gameId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scores }),
+    });
+    currentState = await response.json();
+    render(currentState);
+    window.scoreboardPlaySaveFeedback();
+  });
+}
+
 function renderRoundsTable(state) {
   roundsTableHead.innerHTML = `<th scope="col">${window.t('common.table.round')}</th>`;
   state.players.forEach((player) => {
@@ -307,6 +336,7 @@ function render(state) {
   renderRoundEndNotice(state);
   renderTargetReachedBanner(state);
   renderRoundEntryForm(state);
+  renderRoundEntrySequence(state);
   renderRoundsTable(state);
   renderUndoButton(state);
 }

@@ -114,11 +114,10 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   eine Reihe Minus-Buttons, die einen laufenden Wert hoch- bzw. runterzählen.
   Welche Schrittweiten zur Auswahl stehen (1/5/10/50/100/500/1000, einzeln
   an-/abschaltbar) wird global in den Einstellungen festgelegt
-  (`settings.round_entry_steps`). In Classic zwischen Tippen und
-  Schritt-Buttons per Knopf umschaltbar (auch mitten im laufenden Spiel,
-  Wahl pro Gerät in `localStorage` gemerkt); in Bold Scorekeeper immer aktiv
-  als Teil des Spieler-Pickers (siehe Bold-Theme-Abschnitt unten)
-  (`js/round-entry.js`).
+  (`settings.round_entry_steps`). Zwischen Tippen und Schritt-Buttons per
+  Knopf umschaltbar (auch mitten im laufenden Spiel, Wahl pro Gerät in
+  `localStorage` gemerkt) — in Classic am Eingabe-Raster, in Bold Scorekeeper
+  am Spieler-Picker (siehe Bold-Theme-Abschnitt unten) (`js/round-entry.js`).
 - **Ein-/ausklappbarer Punktestand**: Der sticky Punktestand oben in der
   Spielansicht lässt sich per Knopf einklappen (zeigt dann nur die
   Überschrift) und wieder anzeigen — wichtig auf kleinen Bildschirmen
@@ -541,11 +540,10 @@ to work on iPad and iPhone.
   alternative to typing numbers — a row of plus and a row of minus buttons
   per player/team that count a running value up or down. Which step sizes
   are offered (1/5/10/50/100/500/1000, individually toggleable) is set
-  globally in settings (`settings.round_entry_steps`). In Classic, a button
-  switches between typing and step buttons — even mid-game, remembered per
-  device in `localStorage`; in Bold Scorekeeper they're always active as
-  part of the player picker (see the Bold theme section below)
-  (`js/round-entry.js`).
+  globally in settings (`settings.round_entry_steps`). A button switches
+  between typing and step buttons — even mid-game, remembered per device in
+  `localStorage` — on the input grid in Classic, on the player picker in
+  Bold Scorekeeper (see the Bold theme section below) (`js/round-entry.js`).
 - **Collapsible standings**: the sticky standings card at the top of the
   game view can be collapsed to just its heading and expanded again via a
   button — useful on small screens (e.g. iPhone portrait), where the full

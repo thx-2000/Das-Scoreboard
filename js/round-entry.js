@@ -134,10 +134,12 @@ function wireRoundEntryModeToggle(buttonEl, rerender) {
  * der Spielerliste ueberein, daher KEINE automatische Weiterschaltung.
  * Jeder Spieler bleibt als Chip mit seinem aktuellen Wert sichtbar, per
  * Klick beliebig oft anwaehlbar (auch zur nachtraeglichen Korrektur vor dem
- * Speichern). Die Chips/Stepper schreiben direkt in die vom Eingabe-Raster
- * (renderRoundEntryFields) bereits angelegten Felder - dieselben Felder,
- * die auch "Runde speichern" (saveNewRound) ausliest. Muss deshalb nach
- * renderRoundEntryFields() aufgerufen werden.
+ * Speichern). Respektiert denselben Tippen/Schritt-Buttons-Modus wie das
+ * Eingabe-Raster (roundEntryGetMode()) - der Umschalt-Knopf ist in Bold
+ * ebenfalls sichtbar. Die Chips/Stepper/Zahlenfelder schreiben direkt in
+ * die vom Eingabe-Raster (renderRoundEntryFields) bereits angelegten
+ * Felder - dieselben Felder, die auch "Runde speichern" (saveNewRound)
+ * ausliest. Muss deshalb nach renderRoundEntryFields() aufgerufen werden.
  */
 function buildRoundEntryPicker(container, groups, players) {
   container.innerHTML = '';
@@ -167,12 +169,16 @@ function buildRoundEntryPicker(container, groups, players) {
     name.textContent = group.label;
     detail.appendChild(name);
 
-    const stepper = roundEntryBuildStepButtons(input);
-    stepper.classList.add('round-sequence__stepper');
-    input.addEventListener('input', () => {
-      if (chipEls[activeKey]) chipEls[activeKey].value.textContent = input.value;
-    });
-    detail.appendChild(stepper);
+    if (roundEntryGetMode() === 'buttons') {
+      input.hidden = true;
+      const stepper = roundEntryBuildStepButtons(input);
+      stepper.classList.add('round-sequence__stepper');
+      detail.appendChild(stepper);
+    } else {
+      input.hidden = false;
+      input.classList.add('round-picker__type-input');
+      detail.appendChild(input);
+    }
   }
 
   function setActive(key) {
@@ -202,6 +208,12 @@ function buildRoundEntryPicker(container, groups, players) {
     chip.appendChild(nameSpan);
     chip.appendChild(valueSpan);
     chip.addEventListener('click', () => setActive(group.key));
+
+    if (existingInput) {
+      existingInput.addEventListener('input', () => {
+        valueSpan.textContent = existingInput.value || '0';
+      });
+    }
 
     chipEls[group.key] = { button: chip, value: valueSpan };
     chipRow.appendChild(chip);

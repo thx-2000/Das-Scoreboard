@@ -1709,8 +1709,7 @@ main {
    Keine feste Reihenfolge/Automatik: die Spielreihenfolge am Tisch stimmt
    oft nicht mit der Spielerliste ueberein, daher bleiben alle Spieler als
    Chips frei anwaehlbar (auch zur Korrektur vor dem Speichern). */
-[data-theme-style="bold"] #round-form-grid,
-[data-theme-style="bold"] #round-entry-mode-btn {
+[data-theme-style="bold"] #round-form-grid {
   display: none;
 }
 
@@ -1797,6 +1796,18 @@ main {
 [data-theme-style="bold"] .round-sequence__stepper .round-steps__value {
   font-size: 2.2rem;
   min-width: 4rem;
+}
+
+[data-theme-style="bold"] .round-picker__type-input {
+  width: 8rem;
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
 }
 
 [data-theme-style="bold"] #round-entry-card ~ .card {

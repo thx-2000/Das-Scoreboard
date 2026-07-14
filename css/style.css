@@ -388,6 +388,16 @@ main {
   margin: 0.5rem 0 0;
 }
 
+/* Nur im Bold-Theme sichtbar (siehe [data-theme-style="bold"] weiter unten) -
+   im Classic-Theme rein dekorativ ungenutzt, deshalb per Default versteckt. */
+.mode-card__icon {
+  display: none;
+}
+
+.home-quick-action {
+  display: none;
+}
+
 /* Spielerauswahl (Checkbox-Chips) */
 .player-picker {
   display: flex;
@@ -1346,6 +1356,95 @@ main {
   letter-spacing: 0.03em;
 }
 
+/* ---- Startseite: starke Modus-Karten + Schnellaktion "Wer faengt an?" -- */
+
 [data-theme-style="bold"] .mode-card {
   border-top-width: 6px;
+  padding: 1.75rem;
+}
+
+[data-theme-style="bold"] .mode-card--rage {
+  border-top-color: var(--color-amber);
+}
+
+[data-theme-style="bold"] .mode-card__icon {
+  display: block;
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+[data-theme-style="bold"] .home-quick-action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-amber);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.1s ease;
+}
+
+[data-theme-style="bold"] .home-quick-action:hover {
+  transform: translateY(-2px);
+}
+
+[data-theme-style="bold"] .home-quick-action__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+[data-theme-style="bold"] .home-quick-action__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+[data-theme-style="bold"] .home-quick-action__title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+[data-theme-style="bold"] .home-quick-action__hint {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* ---- Spielerverwaltung: Spieler als farbige Chips/Karten ---- */
+
+[data-theme-style="bold"] .player-list li {
+  border-radius: var(--radius);
+  border-left-width: 5px;
+  border-left-style: solid;
+  padding: 0.85rem 1.1rem;
+}
+
+[data-theme-style="bold"] .player-list li[data-player-color="1"] { border-left-color: var(--player-color-1); }
+[data-theme-style="bold"] .player-list li[data-player-color="2"] { border-left-color: var(--player-color-2); }
+[data-theme-style="bold"] .player-list li[data-player-color="3"] { border-left-color: var(--player-color-3); }
+[data-theme-style="bold"] .player-list li[data-player-color="4"] { border-left-color: var(--player-color-4); }
+
+/* ---- Verlauf: Spiele als staerker abgesetzte Karten ---- */
+
+[data-theme-style="bold"] .history-item {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.1s ease;
+}
+
+[data-theme-style="bold"] .history-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-green-strong);
+}
+
+[data-theme-style="bold"] .badge {
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
 }

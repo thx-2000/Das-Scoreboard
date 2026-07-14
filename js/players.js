@@ -123,8 +123,16 @@ function renderPlayers(players) {
   activeList.innerHTML = '';
   inactiveList.innerHTML = '';
 
+  // Zyklische Spielerfarbe (1-4) je Liste - wird aktuell nur im Bold-Theme
+  // dargestellt (siehe css/style.css [data-theme-style="bold"] .player-list),
+  // im Classic-Theme bleibt das Attribut ungenutzt.
+  let activeColorIndex = 0;
+  let inactiveColorIndex = 0;
+
   players.forEach((player) => {
     const li = document.createElement('li');
+    const colorIndex = player.active ? (activeColorIndex++ % 4) + 1 : (inactiveColorIndex++ % 4) + 1;
+    li.dataset.playerColor = colorIndex;
     li.appendChild(renderAvatarField(player));
 
     const nameInput = document.createElement('input');

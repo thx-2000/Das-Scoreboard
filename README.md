@@ -190,8 +190,11 @@ angelegt.
     Abschnitt "Bold Scorekeeper Theme"); Classic bleibt dabei unverändert.
     Layout-/Bedienungs-Umbauten je Seite (grosse Touch-Ziele, Karten statt
     Tabellen, Stepper-Eingaben, …) für Bold Scorekeeper folgen schrittweise
-    in eigenen Releases — aktuell recolort das Theme nur die bestehende
-    Seiten-Struktur.
+    in eigenen Releases. Bereits umgesetzt (nur sichtbar bei aktivem Bold-
+    Theme, Classic bleibt unverändert): Startseite mit Icons je Modus-Karte
+    und eigener "Wer fängt an?"-Schnellaktion; Spielerverwaltung mit
+    zyklisch eingefärbten Spieler-Karten (`--player-color-1` bis `-4`);
+    Verlauf mit staerker abgesetzten, angehobenen Spiel-Karten.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -571,8 +574,12 @@ the player database and game history are deliberately mode-agnostic.
     switches CSS tokens (`css/style.css`, "Bold Scorekeeper Theme" section);
     Classic stays unchanged. Layout/usability rework per page (large touch
     targets, cards instead of tables, stepper inputs, …) for Bold
-    Scorekeeper follows step by step in its own releases — for now the
-    theme only recolors the existing page structure.
+    Scorekeeper follows step by step in its own releases. Already shipped
+    (only visible with Bold active, Classic stays unchanged): home page
+    with an icon per mode card and its own "Who starts?" quick action;
+    player management with cyclically colored player cards
+    (`--player-color-1` through `-4`); history with more strongly
+    separated, elevated game cards.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

@@ -28,6 +28,7 @@ require __DIR__ . '/../../includes/header.php';
             </thead>
             <tbody id="standings-body"></tbody>
           </table>
+          <div class="standings-cards" id="standings-cards"></div>
           <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
         </div>
       </section>
@@ -38,7 +39,10 @@ require __DIR__ . '/../../includes/header.php';
     <div id="winner-banner-wrap"></div>
 
     <section class="card section-spacing" id="round-entry-card">
-      <h2 data-i18n="common.game.roundEntry.heading">Neue Runde eintragen</h2>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
+        <h2 style="margin:0;" data-i18n="common.game.roundEntry.heading">Neue Runde eintragen</h2>
+        <button type="button" id="round-entry-mode-btn" class="btn btn--small btn--ghost"></button>
+      </div>
       <p class="hint-text" data-i18n="common.game.roundEntryHintGeneric">Punkte der aktuellen Runde je Spieler eingeben (0 ist normal).</p>
       <div class="round-form-grid" id="round-form-grid"></div>
       <button type="button" id="save-round-btn" class="btn btn--primary" data-i18n="common.game.roundEntry.saveButton">Runde speichern</button>
@@ -65,6 +69,7 @@ $page_scripts = [
     'js/standings-toggle.js',
     'js/avatar-helpers.js',
     'js/team-helpers.js',
+    'js/round-entry.js',
     'modes/points-open/game.js',
 ];
 require __DIR__ . '/../../includes/footer.php';

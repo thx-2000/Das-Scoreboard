@@ -612,6 +612,11 @@ main {
   min-width: 120px;
 }
 
+/* Kartenansicht des Punktestands - nur im Bold-Theme sichtbar, siehe unten */
+.standings-cards {
+  display: none;
+}
+
 .mini-progress {
   height: 8px;
   border-radius: 999px;
@@ -733,6 +738,53 @@ main {
   background: var(--color-bg);
   color: var(--color-text);
   font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Schritt-Buttons als Alternative zur Zahleneingabe - themenunabhaengig,
+   ueber Einstellungen konfigurierbar und pro Geraet umschaltbar. */
+.round-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.round-steps__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.round-steps__btn {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.round-steps__btn--plus {
+  border-color: var(--color-green-strong);
+}
+
+.round-steps__btn--minus {
+  border-color: var(--color-danger);
+}
+
+.round-steps__btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.round-steps__value {
+  font-weight: 800;
+  font-size: 1.3rem;
+  min-width: 2.5rem;
   text-align: center;
 }
 
@@ -1522,4 +1574,93 @@ main {
   border-radius: 10px;
   background: var(--color-surface);
   color: var(--color-text);
+}
+
+/* ---- Aktive Ansicht (3 Punkte-Modi): Karten-Punktestand + grosse
+   Rundenerfassung, Verlauf/Korrektur dezent darunter ---- */
+
+[data-theme-style="bold"] .standings-table {
+  display: none;
+}
+
+[data-theme-style="bold"] .standings-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-theme-style="bold"] .standings-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+[data-theme-style="bold"] .standings-card--first {
+  border-color: var(--color-green-strong);
+  box-shadow: var(--shadow-card);
+}
+
+[data-theme-style="bold"] .standings-card__rank {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-bg);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+[data-theme-style="bold"] .standings-card--first .standings-card__rank {
+  background: var(--color-green);
+  color: var(--color-on-accent);
+}
+
+[data-theme-style="bold"] .standings-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+[data-theme-style="bold"] .standings-card__points {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+[data-theme-style="bold"] .standings-card--first .standings-card__points {
+  color: var(--color-green-strong);
+}
+
+[data-theme-style="bold"] #round-entry-card #save-round-btn {
+  width: 100%;
+  padding: 1.1rem;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+[data-theme-style="bold"] .round-steps__btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+[data-theme-style="bold"] .round-steps__value {
+  font-size: 1.6rem;
+}
+
+[data-theme-style="bold"] #round-entry-card ~ .card {
+  opacity: 0.85;
+  font-size: 0.92rem;
+}
+
+[data-theme-style="bold"] #round-entry-card ~ .card:hover {
+  opacity: 1;
 }

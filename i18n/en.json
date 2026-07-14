@@ -31,7 +31,9 @@
     },
     "stepper": {
       "decrease": "Decrease",
-      "increase": "Increase"
+      "increase": "Increase",
+      "minusValue": "Subtract {value}",
+      "plusValue": "Add {value}"
     },
     "table": {
       "rank": "Rank",
@@ -59,7 +61,9 @@
       },
       "roundEntry": {
         "heading": "Enter new round",
-        "saveButton": "Save round"
+        "saveButton": "Save round",
+        "switchToButtons": "Step buttons",
+        "switchToType": "Type"
       },
       "roundsTable": {
         "heading": "Round history & correction",
@@ -249,6 +253,10 @@
       "heading": "Feedback on save",
       "hint": "Short sound (and vibration, where supported by the device) when saving a round. On iPhone/iPad vibration isn't possible for technical reasons (Safari), but the sound works.",
       "label": "Sound on save"
+    },
+    "roundEntry": {
+      "heading": "Round entry",
+      "hint": "Step buttons as an alternative to typing numbers when entering rounds (Points to target, Open point round, Fixed round count). Switch between typing and step buttons anytime, even mid-game."
     },
     "logo": {
       "heading": "Logo",

@@ -41,6 +41,12 @@ require __DIR__ . '/includes/header.php';
     </section>
 
     <section class="card section-spacing">
+      <h2 data-i18n="settings.roundEntry.heading">Rundenerfassung</h2>
+      <p class="hint-text" data-i18n="settings.roundEntry.hint">Schritt-Buttons als Alternative zur Zahleneingabe bei der Rundenerfassung (Punkte bis Höchstwert, Offene Punkterunde, Feste Rundenzahl). Zwischen Tippen und Schritt-Buttons kann direkt im laufenden Spiel umgeschaltet werden.</p>
+      <div class="player-picker" id="round-entry-steps-fields"></div>
+    </section>
+
+    <section class="card section-spacing">
       <h2 data-i18n="settings.logo.heading">Logo</h2>
       <p class="hint-text" data-i18n="settings.logo.hint">Standardmäßig ist kein eigenes Logo aktiv, dann bleibt das Stift-Symbol sichtbar.</p>
 

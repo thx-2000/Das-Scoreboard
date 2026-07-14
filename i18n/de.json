@@ -31,7 +31,9 @@
     },
     "stepper": {
       "decrease": "Verringern",
-      "increase": "Erhöhen"
+      "increase": "Erhöhen",
+      "minusValue": "{value} abziehen",
+      "plusValue": "{value} addieren"
     },
     "table": {
       "rank": "Platz",
@@ -59,7 +61,9 @@
       },
       "roundEntry": {
         "heading": "Neue Runde eintragen",
-        "saveButton": "Runde speichern"
+        "saveButton": "Runde speichern",
+        "switchToButtons": "Schritt-Buttons",
+        "switchToType": "Tippen"
       },
       "roundsTable": {
         "heading": "Rundenverlauf & Korrektur",
@@ -249,6 +253,10 @@
       "heading": "Rückmeldung beim Speichern",
       "hint": "Kurzer Ton (und Vibration, falls vom Gerät unterstützt) beim Speichern einer Runde. Auf iPhone/iPad ist Vibration aus technischen Gründen (Safari) nicht möglich, der Ton funktioniert aber.",
       "label": "Ton beim Speichern"
+    },
+    "roundEntry": {
+      "heading": "Rundenerfassung",
+      "hint": "Schritt-Buttons als Alternative zur Zahleneingabe bei der Rundenerfassung (Punkte bis Höchstwert, Offene Punkterunde, Feste Rundenzahl). Zwischen Tippen und Schritt-Buttons kann direkt im laufenden Spiel umgeschaltet werden."
     },
     "logo": {
       "heading": "Logo",

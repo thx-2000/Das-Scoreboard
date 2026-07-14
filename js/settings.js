@@ -12,6 +12,8 @@ const statusEl = document.getElementById('settings-status');
 
 const singleColorsSection = document.getElementById('single-colors-section');
 const pairColorsSection = document.getElementById('pair-colors-section');
+const roundEntryStepsFields = document.getElementById('round-entry-steps-fields');
+const ROUND_ENTRY_STEP_VALUES = [1, 5, 10, 50, 100, 500, 1000];
 
 function updateColorSectionsVisibility() {
   const checked = document.querySelector('input[name="theme-style"]:checked');
@@ -142,6 +144,24 @@ function renderColorFields(settings) {
   });
 }
 
+function renderRoundEntrySteps(settings) {
+  const enabled = (settings.round_entry_steps || '1,5,10').split(',').map(Number);
+  roundEntryStepsFields.innerHTML = '';
+  ROUND_ENTRY_STEP_VALUES.forEach((step) => {
+    const label = document.createElement('label');
+    label.className = 'player-chip';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.dataset.stepValue = String(step);
+    input.checked = enabled.includes(step);
+    const span = document.createElement('span');
+    span.textContent = `±${step}`;
+    label.appendChild(input);
+    label.appendChild(span);
+    roundEntryStepsFields.appendChild(label);
+  });
+}
+
 function renderLogoPreviews(settings) {
   ['square', 'banner'].forEach((type) => {
     const slot = logoSlots[type];
@@ -223,6 +243,7 @@ async function loadSettings() {
   updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
+  renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
 }
 
@@ -239,6 +260,10 @@ function collectFormValues() {
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;
   });
+  const checkedSteps = Array.from(roundEntryStepsFields.querySelectorAll('input[data-step-value]'))
+    .filter((input) => input.checked)
+    .map((input) => input.dataset.stepValue);
+  values.round_entry_steps = checkedSteps.join(',');
   return values;
 }
 
@@ -259,6 +284,7 @@ saveBtn.addEventListener('click', async () => {
   const data = await response.json();
   currentSettings = data.settings;
   renderColorFields(data.settings);
+  renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   showStatus(window.t('settings.savedStatus'));
 });
@@ -282,6 +308,7 @@ resetBtn.addEventListener('click', async () => {
   updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
+  renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   showStatus(window.t('settings.resetStatus'));
 });

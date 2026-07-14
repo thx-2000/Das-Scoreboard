@@ -4,10 +4,12 @@ const gameId = params.get('id');
 const gameTitle = document.getElementById('game-title');
 const gameSubtitle = document.getElementById('game-subtitle');
 const standingsBody = document.getElementById('standings-body');
+const standingsCards = document.getElementById('standings-cards');
 const winnerBannerWrap = document.getElementById('winner-banner-wrap');
 const roundEndNoticeWrap = document.getElementById('round-end-notice-wrap');
 const targetReachedWrap = document.getElementById('target-reached-wrap');
 const roundEntryCard = document.getElementById('round-entry-card');
+const roundEntryModeBtn = document.getElementById('round-entry-mode-btn');
 const roundFormGrid = document.getElementById('round-form-grid');
 const saveRoundBtn = document.getElementById('save-round-btn');
 const roundsTableHead = document.getElementById('rounds-table-head');
@@ -76,6 +78,39 @@ function renderStandings(state) {
       <td>${player.total}</td>
     `;
     standingsBody.appendChild(row);
+  });
+}
+
+/**
+ * Kartenansicht des Punktestands - nur im Bold-Theme sichtbar (siehe
+ * css/style.css), parallel zur Tabelle aus renderStandings() aufgebaut.
+ */
+function renderStandingsCards(state) {
+  standingsCards.innerHTML = '';
+  let previousRankValue = null;
+  let previousRank = 0;
+
+  state.standings.forEach((player, index) => {
+    const rank = player.rankValue === previousRankValue ? previousRank : index + 1;
+    previousRankValue = player.rankValue;
+    previousRank = rank;
+
+    const displayName = player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name;
+    const teamHint = player.teamLabel
+      ? `<div class="hint-text standings-team-hint">${player.teamLabel} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
+      : '';
+
+    const card = document.createElement('div');
+    card.className = `standings-card${rank === 1 ? ' standings-card--first' : ''}`;
+    card.innerHTML = `
+      <div class="standings-card__rank">${rank}</div>
+      <div class="standings-card__info">
+        <div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div>
+        ${teamHint}
+      </div>
+      <div class="standings-card__points">${player.total}</div>
+    `;
+    standingsCards.appendChild(card);
   });
 }
 
@@ -179,28 +214,7 @@ function renderTargetReachedBanner(state) {
 function renderRoundEntryForm(state) {
   const playedRounds = state.rounds.length;
   roundEntryCard.hidden = state.status === 'finished' || playedRounds >= state.totalRounds;
-  roundFormGrid.innerHTML = '';
-
-  window.groupPlayersByTeam(state.players, state.teamScoring).forEach((group) => {
-    const field = document.createElement('div');
-    field.className = 'round-form-field';
-
-    const label = document.createElement('label');
-    label.setAttribute('for', `round-input-${group.key}`);
-    label.textContent = group.label;
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.inputMode = 'numeric';
-    input.pattern = '-?[0-9]*';
-    input.id = `round-input-${group.key}`;
-    input.dataset.playerIds = group.playerIds.join(',');
-    input.value = '0';
-
-    field.appendChild(label);
-    field.appendChild(input);
-    roundFormGrid.appendChild(field);
-  });
+  window.renderRoundEntryFields(roundFormGrid, window.groupPlayersByTeam(state.players, state.teamScoring));
 }
 
 function renderRoundsTable(state) {
@@ -287,6 +301,7 @@ function renderUndoButton(state) {
 function render(state) {
   renderHeader(state);
   renderStandings(state);
+  renderStandingsCards(state);
   renderStartingPlayerLegend(state);
   renderWinnerBanner(state);
   renderRoundEndNotice(state);
@@ -377,4 +392,7 @@ saveRoundBtn.addEventListener('click', saveNewRound);
 toggleFinishedBtn.addEventListener('click', () => toggleFinished());
 undoLastRoundBtn.addEventListener('click', undoLastRound);
 
-window.scoreboardI18nReady.then(loadGame);
+window.scoreboardI18nReady.then(() => {
+  window.wireRoundEntryModeToggle(roundEntryModeBtn, () => renderRoundEntryForm(currentState));
+  loadGame();
+});

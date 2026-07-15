@@ -35,6 +35,22 @@ function applyLogo(settings) {
   }
 }
 
+// Gespiegelt aus includes/settings.php::accent_color_palette() /
+// bold_background_palette() - dort ist die eigentliche Quelle (auch fuer
+// die Server-Validierung), hier nur fuers Anwenden der CSS-Variablen.
+const ACCENT_COLOR_PALETTE = {
+  green: ['#b6ff1a', '#8fd400'],
+  orange: ['#ff8a3d', '#e0451c'],
+  pink: ['#ff3daa', '#d4008a'],
+  violet: ['#b088ff', '#8a5cf0'],
+  cyan: ['#22d3ee', '#0ea5c4'],
+};
+const BOLD_BACKGROUND_PALETTE = {
+  dark: ['#0b0d10', '#16191e', '#262b32'],
+  dark_blue: ['#0a0e1a', '#141a2b', '#232c42'],
+  black: ['#000000', '#121212', '#2a2a2a'],
+};
+
 window.scoreboardThemeReady = (async function applyTheme() {
   const root = document.documentElement;
 
@@ -99,6 +115,22 @@ window.scoreboardThemeReady = (async function applyTheme() {
 
     apply();
     media.addEventListener('change', apply);
+  } else {
+    // Bold: eigene, kuratierte Presets statt freier Hex-Eingabe (siehe
+    // accent_color_picker in settings.php). Inline-Styles ueberschreiben
+    // gezielt die festen Bold-Tokens aus css/style.css
+    // [data-theme-style="bold"] - bei den jeweiligen Standardwerten
+    // (green/dark) ist das wirkungsgleich zum bisherigen reinen CSS-Verhalten.
+    const accent = ACCENT_COLOR_PALETTE[settings.bold_accent] || ACCENT_COLOR_PALETTE.green;
+    root.style.setProperty('--color-green', accent[0]);
+    root.style.setProperty('--color-green-strong', accent[1]);
+
+    const background = BOLD_BACKGROUND_PALETTE[settings.bold_background] || BOLD_BACKGROUND_PALETTE.dark;
+    root.style.setProperty('--color-bg', background[0]);
+    root.style.setProperty('--color-surface', background[1]);
+    root.style.setProperty('--color-border', background[2]);
+
+    root.dataset.cardStyle = settings.bold_card_style === 'modern' ? 'modern' : 'classic';
   }
 
   window.__scoreboardSettings = settings;

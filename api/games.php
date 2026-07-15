@@ -76,6 +76,15 @@ if ($method === 'POST') {
     $playerIds = array_map('intval', $body['playerIds'] ?? []);
     $playerIds = array_values(array_unique($playerIds));
 
+    // Mockup-Abgleich: 3 neue Setup-Optionen (Migration 12). targetBonus nur
+    // bei "Punkte bis Hoechstwert" relevant (siehe get_effective_totals()),
+    // allowNegative bei den 3 Punkte-Modi (nicht RAGE, siehe api/rounds.php),
+    // rageShowBonusMalus nur bei RAGE (reine Anzeige-Einstellung, siehe
+    // modes/rage/game.js) - Defaults entsprechen dem bisherigen Verhalten.
+    $targetBonus = max(0, (int) ($body['targetBonus'] ?? 0));
+    $allowNegative = array_key_exists('allowNegative', $body) ? (bool) $body['allowNegative'] : true;
+    $rageShowBonusMalus = array_key_exists('rageShowBonusMalus', $body) ? (bool) $body['rageShowBonusMalus'] : true;
+
     // Team-Modus gibt es bewusst nur in den 3 Punkte-Modi, nicht bei RAGE
     // (dort haben Ansage/Stiche eine ganz andere Struktur pro Spieler) -
     // teamAssignments/teamNames werden bei RAGE deshalb ignoriert, auch wenn
@@ -110,12 +119,13 @@ if ($method === 'POST') {
     $pdo->beginTransaction();
 
     $insertGame = $pdo->prepare('
-        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end, team_scoring)
-        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?, ?)
+        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end, team_scoring, target_bonus, allow_negative, rage_show_bonus_malus)
+        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?, ?, ?, ?, ?)
     ');
     $insertGame->execute([
         $mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso(), $startingPlayerId,
         max(0, $totalRounds), $announceRoundEnd ? 1 : 0, $teamScoring,
+        $targetBonus, $allowNegative ? 1 : 0, $rageShowBonusMalus ? 1 : 0,
     ]);
     $gameId = (int) $pdo->lastInsertId();
 

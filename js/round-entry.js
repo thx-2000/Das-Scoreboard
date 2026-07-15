@@ -22,7 +22,7 @@ function roundEntryEnabledSteps() {
   return steps.length ? steps.sort((a, b) => a - b) : [1, 5, 10];
 }
 
-function roundEntryBuildStepButtons(input) {
+function roundEntryBuildStepButtons(input, allowNegative = true) {
   const wrap = document.createElement('div');
   wrap.className = 'round-steps';
 
@@ -31,7 +31,8 @@ function roundEntryBuildStepButtons(input) {
   valueDisplay.textContent = input.value;
 
   function adjust(delta) {
-    input.value = String((Number(input.value) || 0) + delta);
+    const next = (Number(input.value) || 0) + delta;
+    input.value = String(allowNegative ? next : Math.max(0, next));
     valueDisplay.textContent = input.value;
     input.dispatchEvent(new Event('input', { bubbles: true }));
   }
@@ -75,7 +76,7 @@ function roundEntryBuildStepButtons(input) {
  * Faellen im selben (bei Buttons ausgeblendeten) Zahlenfeld, damit
  * saveNewRound() unveraendert per data-player-ids ausliest.
  */
-function renderRoundEntryFields(container, groups) {
+function renderRoundEntryFields(container, groups, allowNegative = true) {
   container.innerHTML = '';
   const mode = roundEntryGetMode();
 
@@ -91,7 +92,7 @@ function renderRoundEntryFields(container, groups) {
     const input = document.createElement('input');
     input.type = 'text';
     input.inputMode = 'numeric';
-    input.pattern = '-?[0-9]*';
+    input.pattern = allowNegative ? '-?[0-9]*' : '[0-9]*';
     input.id = `round-input-${group.key}`;
     input.dataset.playerIds = group.playerIds.join(',');
     input.value = '0';
@@ -99,7 +100,7 @@ function renderRoundEntryFields(container, groups) {
     if (mode === 'buttons') {
       input.hidden = true;
       field.appendChild(input);
-      field.appendChild(roundEntryBuildStepButtons(input));
+      field.appendChild(roundEntryBuildStepButtons(input, allowNegative));
     } else {
       field.appendChild(input);
     }
@@ -160,7 +161,7 @@ function wireRoundEntryModeToggle(buttonEl, rerenderGrid, rerenderPicker) {
  * Felder - dieselben Felder, die auch "Runde speichern" (saveNewRound)
  * ausliest. Muss deshalb nach renderRoundEntryFields() aufgerufen werden.
  */
-function buildRoundEntryPicker(container, groups, players) {
+function buildRoundEntryPicker(container, groups, players, allowNegative = true) {
   container.innerHTML = '';
   if (groups.length === 0) return;
 
@@ -191,7 +192,7 @@ function buildRoundEntryPicker(container, groups, players) {
     input.hidden = true;
 
     if (roundEntryGetMode() === 'buttons') {
-      const stepper = roundEntryBuildStepButtons(input);
+      const stepper = roundEntryBuildStepButtons(input, allowNegative);
       stepper.classList.add('round-sequence__stepper');
       detail.appendChild(stepper);
     } else {
@@ -202,7 +203,7 @@ function buildRoundEntryPicker(container, groups, players) {
       const typeInput = document.createElement('input');
       typeInput.type = 'text';
       typeInput.inputMode = 'numeric';
-      typeInput.pattern = '-?[0-9]*';
+      typeInput.pattern = allowNegative ? '-?[0-9]*' : '[0-9]*';
       typeInput.className = 'round-picker__type-input';
       typeInput.value = input.value;
       typeInput.addEventListener('input', () => {

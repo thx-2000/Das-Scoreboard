@@ -208,7 +208,7 @@ function buildRageMiniStepper(input, label) {
  * dieselben 4 Felder wie die (im Bold-Theme per CSS ausgeblendete) Tabellen-
  * zeile, statt eigene Felder anzulegen.
  */
-function buildRageRoundCard(player, row, players) {
+function buildRageRoundCard(player, row, players, showBonusMalus) {
   const card = document.createElement('div');
   card.className = 'rage-round-card';
   card.dataset.playerId = player.id;
@@ -229,8 +229,10 @@ function buildRageRoundCard(player, row, players) {
   fields.className = 'rage-round-card__fields';
   fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bid'), window.t('rage.game.roundEntry.table.bid')));
   fields.appendChild(buildRageMiniStepper(row.querySelector('.field-actual'), window.t('rage.game.roundEntry.table.tricks')));
-  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bonus'), window.t('rage.game.roundEntry.table.plus5')));
-  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-rache'), window.t('rage.game.roundEntry.table.minus5')));
+  if (showBonusMalus) {
+    fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bonus'), window.t('rage.game.roundEntry.table.plus5')));
+    fields.appendChild(buildRageMiniStepper(row.querySelector('.field-rache'), window.t('rage.game.roundEntry.table.minus5')));
+  }
 
   card.appendChild(header);
   card.appendChild(fields);
@@ -250,6 +252,7 @@ function renderRoundEntry(state) {
 
   roundEntryBody.innerHTML = '';
   rageRoundCards.innerHTML = '';
+  const showBonusMalus = state.rageShowBonusMalus !== false;
   state.players.forEach((player) => {
     const row = document.createElement('tr');
     row.dataset.playerId = player.id;
@@ -257,15 +260,27 @@ function renderRoundEntry(state) {
       <td style="text-align:left;">${player.name}</td>
       <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bid" value="0"></td>
       <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-actual" value="0"></td>
-      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bonus" value="0"></td>
-      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-rache" value="0"></td>
+      <td class="col-bonus"><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bonus" value="0"></td>
+      <td class="col-rache"><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-rache" value="0"></td>
       <td class="field-preview">0</td>
     `;
     row.querySelectorAll('input').forEach((input) => {
       input.addEventListener('input', () => updateEntryRowPreview(row));
     });
     roundEntryBody.appendChild(row);
-    rageRoundCards.appendChild(buildRageRoundCard(player, row, state.players));
+    rageRoundCards.appendChild(buildRageRoundCard(player, row, state.players, showBonusMalus));
+  });
+
+  // "Bonus/Malus anzeigen" (Migration 12, Setup-Option) - reine Anzeige-
+  // Einstellung, Bonus/Rache werden unabhaengig davon immer verrechnet
+  // (siehe computeRagePoints). Felder bleiben im DOM (nur versteckt), damit
+  // bereits gesetzte Werte beim Speichern nicht verlorengehen.
+  const thBonus = document.getElementById('th-bonus');
+  const thRache = document.getElementById('th-rache');
+  if (thBonus) thBonus.hidden = !showBonusMalus;
+  if (thRache) thRache.hidden = !showBonusMalus;
+  roundEntryBody.querySelectorAll('.col-bonus, .col-rache').forEach((cell) => {
+    cell.hidden = !showBonusMalus;
   });
 }
 
@@ -312,7 +327,11 @@ function renderRoundsTable(state) {
     return;
   }
 
-  // Kopfzeile 1: Rundenspalte + Spielername ueber je 5 Unterspalten.
+  const showBonusMalus = state.rageShowBonusMalus !== false;
+  const columnsPerPlayer = showBonusMalus ? 5 : 3;
+
+  // Kopfzeile 1: Rundenspalte + Spielername ueber je Unterspalten (5, oder 3
+  // wenn Bonus/Malus in den Setup-Optionen ausgeblendet wurde).
   const headRow1 = document.createElement('tr');
   const roundTh = document.createElement('th');
   roundTh.scope = 'col';
@@ -322,7 +341,7 @@ function renderRoundsTable(state) {
   state.players.forEach((player) => {
     const th = document.createElement('th');
     th.scope = 'col';
-    th.colSpan = 5;
+    th.colSpan = columnsPerPlayer;
     th.textContent = player.name;
     headRow1.appendChild(th);
   });
@@ -333,8 +352,7 @@ function renderRoundsTable(state) {
   const fieldLabels = [
     window.t('rage.game.roundEntry.table.bid'),
     window.t('rage.game.roundEntry.table.tricks'),
-    window.t('rage.game.roundEntry.table.plus5'),
-    window.t('rage.game.roundEntry.table.minus5'),
+    ...(showBonusMalus ? [window.t('rage.game.roundEntry.table.plus5'), window.t('rage.game.roundEntry.table.minus5')] : []),
     window.t('rage.game.roundEntry.table.points'),
   ];
   state.players.forEach(() => {
@@ -406,9 +424,19 @@ function renderRoundsTable(state) {
         correctRound(round.id, row);
       };
 
-      [bidInput, actualInput, bonusInput, racheInput].forEach((input) => {
+      // Bonus/Rache-Zellen bleiben immer im DOM (nur per hidden versteckt),
+      // damit collectEntriesFromRoundRow() ihre Werte per querySelector()
+      // weiterhin findet - sonst wuerden bereits gespeicherte Bonus/Rache-
+      // Werte beim naechsten Speichern stillschweigend auf 0 zurueckfallen.
+      [
+        [bidInput, false],
+        [actualInput, false],
+        [bonusInput, !showBonusMalus],
+        [racheInput, !showBonusMalus],
+      ].forEach(([input, cellHidden]) => {
         input.addEventListener('change', onChange);
         const cell = document.createElement('td');
+        cell.hidden = cellHidden;
         cell.appendChild(input);
         row.appendChild(cell);
       });
@@ -425,7 +453,7 @@ function renderRoundsTable(state) {
   deleteRow.appendChild(deleteLabelCell);
   state.rounds.forEach((round) => {
     const cell = document.createElement('td');
-    cell.colSpan = 5;
+    cell.colSpan = columnsPerPlayer;
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.className = 'btn btn--small btn--danger';

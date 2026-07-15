@@ -110,6 +110,7 @@ setupForm.addEventListener('submit', async (event) => {
       mode: 'rage',
       label: gameLabelInput.value.trim(),
       playerIds: Array.from(selectedPlayerIds),
+      rageShowBonusMalus: document.getElementById('rage-show-bonus-malus').checked,
     }),
   });
 

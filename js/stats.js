@@ -10,8 +10,25 @@ const overallEmpty = document.getElementById('overall-empty');
 const byModeTables = document.getElementById('by-mode-tables');
 const h2hList = document.getElementById('h2h-list');
 const h2hEmpty = document.getElementById('h2h-empty');
+const h2hMatrixTable = document.getElementById('h2h-matrix-table');
+const h2hListDetails = document.getElementById('h2h-list-details');
 const gamesList = document.getElementById('games-list');
 const gamesEmpty = document.getElementById('games-empty');
+
+const kpiTotalGames = document.getElementById('kpi-total-games');
+const kpiFinishedGames = document.getElementById('kpi-finished-games');
+const kpiWinRate = document.getElementById('kpi-win-rate');
+const kpiAvgScore = document.getElementById('kpi-avg-score');
+
+const modeDonut = document.getElementById('mode-donut');
+const modeDonutLegend = document.getElementById('mode-donut-legend');
+const modeDistributionEmpty = document.getElementById('mode-distribution-empty');
+
+// Feste Reihenfolge/Farbzuordnung fuer den Donut-Chart - wiederverwendet die
+// vorhandenen Spielerfarben-Tokens (4 Modi = 4 Farben), damit keine fuenfte
+// Palette gepflegt werden muss.
+const MODE_DONUT_ORDER = ['points_to_target', 'points_open', 'fixed_rounds', 'rage'];
+const MODE_DONUT_COLORS = ['var(--player-color-1)', 'var(--player-color-2)', 'var(--player-color-3)', 'var(--player-color-4)'];
 
 function modeInfo() {
   return {
@@ -178,6 +195,118 @@ function renderHeadToHead(rows) {
     li.appendChild(meta);
     h2hList.appendChild(li);
   });
+
+  h2hListDetails.hidden = rows.length === 0;
+}
+
+/**
+ * Kopf-an-Kopf als Spieler-x-Spieler-Matrix (Mockup-Abgleich) - die
+ * bestehende Listenansicht (renderHeadToHead) bleibt zusaetzlich hinter
+ * "Als Liste anzeigen" verfuegbar, da eine Matrix ab ca. 6+ Spielern
+ * unuebersichtlich wird.
+ */
+function renderHeadToHeadMatrix(overall, headToHead) {
+  const thead = h2hMatrixTable.querySelector('thead');
+  const tbody = h2hMatrixTable.querySelector('tbody');
+  thead.innerHTML = '';
+  tbody.innerHTML = '';
+
+  if (headToHead.length === 0) {
+    h2hMatrixTable.hidden = true;
+    return;
+  }
+  h2hMatrixTable.hidden = false;
+
+  const lookup = {};
+  headToHead.forEach((h) => {
+    lookup[`${h.aId}-${h.bId}`] = h;
+  });
+
+  const headRow = document.createElement('tr');
+  headRow.appendChild(document.createElement('th'));
+  overall.forEach((p) => {
+    const th = document.createElement('th');
+    th.scope = 'col';
+    th.textContent = p.name;
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+
+  overall.forEach((rowPlayer) => {
+    const tr = document.createElement('tr');
+    const rowHeader = document.createElement('th');
+    rowHeader.scope = 'row';
+    rowHeader.textContent = rowPlayer.name;
+    tr.appendChild(rowHeader);
+
+    overall.forEach((colPlayer) => {
+      const td = document.createElement('td');
+      if (rowPlayer.playerId === colPlayer.playerId) {
+        td.textContent = '—';
+      } else {
+        const direct = lookup[`${rowPlayer.playerId}-${colPlayer.playerId}`];
+        const reversed = lookup[`${colPlayer.playerId}-${rowPlayer.playerId}`];
+        if (direct) {
+          td.textContent = `${direct.aWins}:${direct.bWins}`;
+        } else if (reversed) {
+          td.textContent = `${reversed.bWins}:${reversed.aWins}`;
+        } else {
+          td.textContent = '–';
+        }
+      }
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
+function renderSummary(summary) {
+  kpiTotalGames.textContent = summary.totalGames;
+  kpiFinishedGames.textContent = summary.finishedGames;
+  kpiWinRate.textContent = formatPercent(summary.winRate);
+  kpiAvgScore.textContent = formatScore(summary.avgScore);
+}
+
+/** Donut-Chart per CSS conic-gradient statt SVG-Arcs - einfacher zu warten. */
+function renderModeDistribution(games) {
+  if (games.length === 0) {
+    modeDistributionEmpty.hidden = false;
+    modeDonut.hidden = true;
+    modeDonutLegend.hidden = true;
+    return;
+  }
+  modeDistributionEmpty.hidden = true;
+  modeDonut.hidden = false;
+  modeDonutLegend.hidden = false;
+  modeDonutLegend.innerHTML = '';
+
+  const counts = {};
+  games.forEach((game) => {
+    counts[game.mode] = (counts[game.mode] || 0) + 1;
+  });
+
+  const total = games.length;
+  let cumulative = 0;
+  const stops = [];
+
+  MODE_DONUT_ORDER.forEach((mode, index) => {
+    const count = counts[mode] || 0;
+    if (count === 0) return;
+    const percent = (count / total) * 100;
+    const start = cumulative;
+    cumulative += percent;
+    stops.push(`${MODE_DONUT_COLORS[index]} ${start}% ${cumulative}%`);
+
+    const li = document.createElement('li');
+    const dot = document.createElement('span');
+    dot.className = 'legend-dot';
+    dot.style.background = MODE_DONUT_COLORS[index];
+    li.appendChild(dot);
+    li.appendChild(document.createTextNode(`${modeTitle(mode)} · ${Math.round(percent)}%`));
+    modeDonutLegend.appendChild(li);
+  });
+
+  modeDonut.style.background = `conic-gradient(${stops.join(', ')})`;
 }
 
 function renderGames(games) {
@@ -234,8 +363,11 @@ async function loadStats() {
   const data = await response.json();
 
   renderPrintHeading(data.range);
+  renderSummary(data.summary);
   renderOverall(data.overall);
   renderByMode(data.byMode);
+  renderModeDistribution(data.games);
+  renderHeadToHeadMatrix(data.overall, data.headToHead);
   renderHeadToHead(data.headToHead);
   renderGames(data.games);
 }

@@ -46,6 +46,21 @@ require __DIR__ . '/../../includes/header.php';
 
         <details class="advanced-options">
           <summary data-i18n="common.setup.advancedOptions">Erweiterte Optionen</summary>
+
+          <label for="target-bonus" data-i18n="pointsToTarget.setup.targetBonusLabel">Bonus bei Zielerreichung</label>
+          <div class="stepper" data-stepper data-step="10" data-min="0">
+            <button type="button" class="stepper__btn stepper__btn--minus" data-i18n-aria-label="common.stepper.decrease" aria-label="Verringern">−</button>
+            <input type="text" id="target-bonus" value="0" inputmode="numeric" pattern="[0-9]*">
+            <button type="button" class="stepper__btn stepper__btn--plus" data-i18n-aria-label="common.stepper.increase" aria-label="Erhöhen">+</button>
+          </div>
+          <p class="hint-text" data-i18n="common.setup.targetBonusHint">Zusätzliche Punkte, die der/die Sieger beim Erreichen des Zielwerts bekommen (0 = kein Bonus).</p>
+
+          <label class="player-chip">
+            <input type="checkbox" id="allow-negative" checked>
+            <span data-i18n="common.setup.allowNegativeLabel">Negativpunkte erlauben</span>
+          </label>
+          <p class="hint-text" data-i18n="common.setup.allowNegativeHint">Wenn deaktiviert, werden negative Rundeneingaben auf 0 begrenzt.</p>
+
           <div class="team-setup" id="team-setup">
             <label class="player-chip">
               <input type="checkbox" data-team-enable>

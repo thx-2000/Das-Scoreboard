@@ -12,18 +12,73 @@ const statusEl = document.getElementById('settings-status');
 
 const singleColorsSection = document.getElementById('single-colors-section');
 const pairColorsSection = document.getElementById('pair-colors-section');
+const boldColorsNote = document.getElementById('bold-colors-note');
+const boldBackgroundSection = document.getElementById('bold-background-section');
+const boldCardStyleSection = document.getElementById('bold-card-style-section');
 const roundEntryStepsFields = document.getElementById('round-entry-steps-fields');
 const ROUND_ENTRY_STEP_VALUES = [1, 5, 10, 50, 100, 500, 1000];
 
+// Die Akzentfarben-Praesets (bold-accent) gelten fuer beide Themes (siehe
+// includes/settings.php::accent_color_palette()) und bleiben deshalb immer
+// sichtbar - nur die Hex-Feinjustierung (Classic) bzw. Hintergrund/
+// Kartenstil-Presets (Bold) sind je nach gewaehltem Theme ein-/ausgeblendet.
 function updateColorSectionsVisibility() {
   const checked = document.querySelector('input[name="theme-style"]:checked');
   const isBold = Boolean(checked) && checked.value === 'bold';
   singleColorsSection.hidden = isBold;
   pairColorsSection.hidden = isBold;
+  boldColorsNote.hidden = !isBold;
+  boldBackgroundSection.hidden = !isBold;
+  boldCardStyleSection.hidden = !isBold;
 }
 
-document.querySelectorAll('input[name="theme-style"]').forEach((input) => {
-  input.addEventListener('change', updateColorSectionsVisibility);
+// Event-Delegation auf document statt Listener je Radio-Element - robuster
+// gegenueber Timing (Listener greift unabhaengig davon, wann genau die
+// Radios im DOM verfuegbar waren, als das Skript geladen wurde).
+document.addEventListener('change', (event) => {
+  if (event.target.name === 'theme-style') updateColorSectionsVisibility();
+});
+
+function applyBoldPresetChecks(settings) {
+  document.querySelectorAll('input[name="bold-accent"]').forEach((input) => {
+    input.checked = input.value === (settings.bold_accent || 'green');
+  });
+  document.querySelectorAll('input[name="bold-background"]').forEach((input) => {
+    input.checked = input.value === (settings.bold_background || 'dark');
+  });
+  document.querySelectorAll('input[name="bold-card-style"]').forEach((input) => {
+    input.checked = input.value === (settings.bold_card_style || 'classic');
+  });
+}
+
+// Gespiegelt aus includes/settings.php::accent_color_palette() - unter
+// Classic dient der Akzentfarben-Picker als Schnellwahl, die direkt die
+// bestehenden Hex-Felder color_green/color_green_strong ueberschreibt (die
+// Feinjustierung im Erweitert-Bereich bleibt danach weiterhin moeglich).
+const ACCENT_COLOR_PALETTE = {
+  green: ['#b6ff1a', '#8fd400'],
+  orange: ['#ff8a3d', '#e0451c'],
+  pink: ['#ff3daa', '#d4008a'],
+  violet: ['#b088ff', '#8a5cf0'],
+  cyan: ['#22d3ee', '#0ea5c4'],
+};
+
+document.addEventListener('change', (event) => {
+  if (event.target.name !== 'bold-accent') return;
+  const input = event.target;
+
+  const themeStyleInput = document.querySelector('input[name="theme-style"]:checked');
+  if (themeStyleInput && themeStyleInput.value === 'bold') return;
+
+  const pair = ACCENT_COLOR_PALETTE[input.value];
+  if (!pair) return;
+  ['color_green', 'color_green_strong'].forEach((key, index) => {
+    const hexInput = document.querySelector(`.color-field__hex[data-setting-key="${key}"]`);
+    if (hexInput) {
+      hexInput.value = pair[index];
+      hexInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
 });
 
 const logoStatusEl = document.getElementById('logo-status');
@@ -240,6 +295,7 @@ async function loadSettings() {
   document.querySelectorAll('input[name="theme-style"]').forEach((input) => {
     input.checked = input.value === (data.settings.theme_style || 'classic');
   });
+  applyBoldPresetChecks(data.settings);
   updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
@@ -250,12 +306,18 @@ async function loadSettings() {
 function collectFormValues() {
   const logoModeInput = document.querySelector('input[name="logo-mode"]:checked');
   const themeStyleInput = document.querySelector('input[name="theme-style"]:checked');
+  const boldAccentInput = document.querySelector('input[name="bold-accent"]:checked');
+  const boldBackgroundInput = document.querySelector('input[name="bold-background"]:checked');
+  const boldCardStyleInput = document.querySelector('input[name="bold-card-style"]:checked');
   const values = {
     language: languageSelect.value,
     app_title: appTitleInput.value.trim(),
     sound_enabled: soundEnabledInput.checked ? '1' : '0',
     logo_mode: logoModeInput ? logoModeInput.value : 'none',
     theme_style: themeStyleInput ? themeStyleInput.value : 'classic',
+    bold_accent: boldAccentInput ? boldAccentInput.value : 'green',
+    bold_background: boldBackgroundInput ? boldBackgroundInput.value : 'dark',
+    bold_card_style: boldCardStyleInput ? boldCardStyleInput.value : 'classic',
   };
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;

@@ -9,7 +9,7 @@ require __DIR__ . '/includes/header.php';
   <main id="main">
     <section class="card">
       <h2 data-i18n="settings.theme.heading">Aussehen</h2>
-      <p class="hint-text" data-i18n="settings.theme.hint">Zwei eigenständige Optiken zur Wahl. "Bold Scorekeeper" wird schrittweise auf allen Seiten ausgebaut — bereits gewählte Farben unten gelten nur für "Classic".</p>
+      <p class="hint-text" data-i18n="settings.theme.hint">Zwei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich "Farben im Detail".</p>
       <div class="player-picker">
         <label class="player-chip winner-card">
           <input type="radio" name="theme-style" value="classic" checked>
@@ -19,6 +19,64 @@ require __DIR__ . '/includes/header.php';
           <input type="radio" name="theme-style" value="bold">
           <span data-i18n="settings.theme.bold">Bold Scorekeeper</span>
         </label>
+      </div>
+
+      <div class="settings-subsection">
+        <label data-i18n="settings.theme.accentLabel">Akzentfarbe</label>
+        <div class="accent-color-picker" id="accent-color-picker">
+          <label class="accent-color-dot" style="--dot-color:#b6ff1a">
+            <input type="radio" name="bold-accent" value="green" checked>
+            <span class="visually-hidden" data-i18n="settings.theme.accent.green">Grün</span>
+          </label>
+          <label class="accent-color-dot" style="--dot-color:#ff8a3d">
+            <input type="radio" name="bold-accent" value="orange">
+            <span class="visually-hidden" data-i18n="settings.theme.accent.orange">Orange</span>
+          </label>
+          <label class="accent-color-dot" style="--dot-color:#ff3daa">
+            <input type="radio" name="bold-accent" value="pink">
+            <span class="visually-hidden" data-i18n="settings.theme.accent.pink">Pink</span>
+          </label>
+          <label class="accent-color-dot" style="--dot-color:#b088ff">
+            <input type="radio" name="bold-accent" value="violet">
+            <span class="visually-hidden" data-i18n="settings.theme.accent.violet">Violett</span>
+          </label>
+          <label class="accent-color-dot" style="--dot-color:#22d3ee">
+            <input type="radio" name="bold-accent" value="cyan">
+            <span class="visually-hidden" data-i18n="settings.theme.accent.cyan">Cyan</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-subsection" id="bold-background-section" hidden>
+        <label data-i18n="settings.theme.backgroundLabel">Hintergrund</label>
+        <div class="player-picker">
+          <label class="player-chip winner-card">
+            <input type="radio" name="bold-background" value="dark" checked>
+            <span data-i18n="settings.theme.background.dark">Dunkel</span>
+          </label>
+          <label class="player-chip winner-card">
+            <input type="radio" name="bold-background" value="dark_blue">
+            <span data-i18n="settings.theme.background.darkBlue">Dunkel Blau</span>
+          </label>
+          <label class="player-chip winner-card">
+            <input type="radio" name="bold-background" value="black">
+            <span data-i18n="settings.theme.background.black">Schwarz</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-subsection" id="bold-card-style-section" hidden>
+        <label data-i18n="settings.theme.cardStyleLabel">Kartenstil</label>
+        <div class="player-picker">
+          <label class="player-chip winner-card">
+            <input type="radio" name="bold-card-style" value="classic" checked>
+            <span data-i18n="settings.theme.cardStyle.classic">Klassisch</span>
+          </label>
+          <label class="player-chip winner-card">
+            <input type="radio" name="bold-card-style" value="modern">
+            <span data-i18n="settings.theme.cardStyle.modern">Modern</span>
+          </label>
+        </div>
       </div>
     </section>
 
@@ -102,16 +160,25 @@ require __DIR__ . '/includes/header.php';
       </form>
     </section>
 
-    <section class="card section-spacing" id="single-colors-section">
-      <h2 data-i18n="settings.colors.single.heading">Akzent- und Funktionsfarben</h2>
-      <p class="hint-text" data-i18n="settings.colors.single.hint">Gelten unverändert in Hell- und Dunkelmodus.</p>
-      <div class="color-field-grid" id="single-color-fields"></div>
-    </section>
+    <section class="card section-spacing">
+      <h2 data-i18n="settings.colors.advancedHeading">Farben im Detail</h2>
+      <details class="advanced-options">
+        <summary data-i18n="settings.colors.advancedSummary">Erweitert öffnen</summary>
 
-    <section class="card section-spacing" id="pair-colors-section">
-      <h2 data-i18n="settings.colors.pairs.heading">Basis-Farben (Hell- / Dunkelmodus getrennt)</h2>
-      <p class="hint-text" data-i18n="settings.colors.pairs.hint">Hintergrund, Fläche, Text und Rahmen — je einmal für Hell- und einmal für Dunkelmodus.</p>
-      <div id="theme-pair-fields"></div>
+        <p id="bold-colors-note" class="hint-text" hidden data-i18n="settings.colors.boldNote">Gilt nur für Classic — Bold nutzt die Voreinstellungen oben.</p>
+
+        <div id="single-colors-section">
+          <h3 data-i18n="settings.colors.single.heading">Akzent- und Funktionsfarben</h3>
+          <p class="hint-text" data-i18n="settings.colors.single.hint">Gelten unverändert in Hell- und Dunkelmodus.</p>
+          <div class="color-field-grid" id="single-color-fields"></div>
+        </div>
+
+        <div id="pair-colors-section" class="section-spacing">
+          <h3 data-i18n="settings.colors.pairs.heading">Basis-Farben (Hell- / Dunkelmodus getrennt)</h3>
+          <p class="hint-text" data-i18n="settings.colors.pairs.hint">Hintergrund, Fläche, Text und Rahmen — je einmal für Hell- und einmal für Dunkelmodus.</p>
+          <div id="theme-pair-fields"></div>
+        </div>
+      </details>
     </section>
 
     <div class="dashboard-footer">

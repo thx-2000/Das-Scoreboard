@@ -94,7 +94,10 @@
       "teamNameLabel": "Name for team {number} (optional)",
       "teamNamePlaceholder": "e.g. The Eagles",
       "selectAll": "Select all",
-      "selectNone": "Deselect all"
+      "selectNone": "Deselect all",
+      "allowNegativeLabel": "Allow negative points",
+      "allowNegativeHint": "When off, negative round entries are clamped to 0.",
+      "targetBonusHint": "Extra points the winner(s) get for reaching the target score (0 = no bonus)."
     },
     "errors": {
       "minPlayers": "Select at least 2 players.",
@@ -213,6 +216,12 @@
       "apply": "Apply",
       "reset": "Reset"
     },
+    "kpi": {
+      "games": "Games",
+      "finished": "Finished",
+      "winRate": "Share finished",
+      "avgScore": "Avg. points"
+    },
     "overall": {
       "heading": "Overall",
       "empty": "No games in this time range."
@@ -220,9 +229,14 @@
     "byMode": {
       "heading": "By mode"
     },
+    "modeDistribution": {
+      "heading": "Mode distribution",
+      "empty": "No games in this time range."
+    },
     "headToHead": {
       "heading": "Head to head",
       "empty": "No two players with shared finished games in this time range yet.",
+      "listSummary": "Show as list",
       "draws": "draws",
       "gamesSuffix": "games"
     },
@@ -253,7 +267,16 @@
       "heading": "All games",
       "hint": "Newest first. Ongoing games can be resumed, finished ones show the result."
     },
+    "filter": {
+      "all": "All",
+      "active": "Ongoing",
+      "finished": "Finished"
+    },
     "empty": "No games played yet.",
+    "filterEmpty": {
+      "active": "No ongoing games.",
+      "finished": "No finished games yet."
+    },
     "deleteConfirm": "Really permanently delete \"{label}\" from game history?",
     "badge": {
       "finished": "Finished",
@@ -270,9 +293,28 @@
     "subtitle": "Applies to everyone using this app (stored globally).",
     "theme": {
       "heading": "Appearance",
-      "hint": "Two independent looks to choose from. \"Bold Scorekeeper\" is being rolled out across all pages step by step — the colors chosen below only apply to \"Classic\".",
+      "hint": "Two independent looks to choose from. Fine-tuning of the colors can be found further below under \"Colors in detail\".",
       "classic": "Classic",
-      "bold": "Bold Scorekeeper"
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Accent color",
+      "accent": {
+        "green": "Green",
+        "orange": "Orange",
+        "pink": "Pink",
+        "violet": "Violet",
+        "cyan": "Cyan"
+      },
+      "backgroundLabel": "Background",
+      "background": {
+        "dark": "Dark",
+        "darkBlue": "Dark blue",
+        "black": "Black"
+      },
+      "cardStyleLabel": "Card style",
+      "cardStyle": {
+        "classic": "Classic",
+        "modern": "Modern"
+      }
     },
     "title": {
       "heading": "Title",
@@ -312,6 +354,9 @@
       "label": "Language"
     },
     "colors": {
+      "advancedHeading": "Colors in detail",
+      "advancedSummary": "Open advanced",
+      "boldNote": "Only applies to Classic — Bold uses the presets above.",
       "single": {
         "heading": "Accent and function colors",
         "hint": "Apply unchanged in light and dark mode."
@@ -366,7 +411,8 @@
       "subtitle": "Set up new game (e.g. Flip7, Tutto)",
       "labelPlaceholder": "e.g. Flip7, Tutto",
       "targetLabel": "Play up to which point value?",
-      "winDirectionHint": "In most games the highest score wins (e.g. Flip7, Tutto) — but in some, like Skyjo, the lowest score wins instead. The game still ends as soon as anyone reaches or exceeds the target."
+      "winDirectionHint": "In most games the highest score wins (e.g. Flip7, Tutto) — but in some, like Skyjo, the lowest score wins instead. The game still ends as soon as anyone reaches or exceeds the target.",
+      "targetBonusLabel": "Bonus for reaching target"
     },
     "game": {
       "subtitle": "Target: {target} points · {started}",
@@ -408,7 +454,9 @@
     "setup": {
       "subtitle": "Set up new game — 10 rounds, trick bidding",
       "hint": "Fixed 10 rounds (10 down to 1 card), highest score wins at the end.",
-      "labelPlaceholder": "e.g. RAGE night"
+      "labelPlaceholder": "e.g. RAGE night",
+      "showBonusMalusLabel": "Show bonus/malus",
+      "showBonusMalusHint": "Show/hide the +5/−5 special-card fields in round entry."
     },
     "game": {
       "cardSingular": "card",

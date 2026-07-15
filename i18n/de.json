@@ -94,7 +94,10 @@
       "teamNameLabel": "Name für Team {number} (optional)",
       "teamNamePlaceholder": "z.B. Die Adler",
       "selectAll": "Alle auswählen",
-      "selectNone": "Alle abwählen"
+      "selectNone": "Alle abwählen",
+      "allowNegativeLabel": "Negativpunkte erlauben",
+      "allowNegativeHint": "Wenn deaktiviert, werden negative Rundeneingaben auf 0 begrenzt.",
+      "targetBonusHint": "Zusätzliche Punkte, die der/die Sieger beim Erreichen des Zielwerts bekommen (0 = kein Bonus)."
     },
     "errors": {
       "minPlayers": "Mindestens 2 Spieler auswählen.",
@@ -213,6 +216,12 @@
       "apply": "Anwenden",
       "reset": "Zurücksetzen"
     },
+    "kpi": {
+      "games": "Spiele",
+      "finished": "Beendet",
+      "winRate": "Anteil beendet",
+      "avgScore": "Ø Punkte"
+    },
     "overall": {
       "heading": "Gesamt",
       "empty": "Keine Spiele in diesem Zeitraum."
@@ -220,9 +229,14 @@
     "byMode": {
       "heading": "Nach Modus"
     },
+    "modeDistribution": {
+      "heading": "Modus-Verteilung",
+      "empty": "Keine Spiele in diesem Zeitraum."
+    },
     "headToHead": {
       "heading": "Kopf an Kopf",
       "empty": "Noch keine zwei Spieler mit gemeinsamen beendeten Spielen in diesem Zeitraum.",
+      "listSummary": "Als Liste anzeigen",
       "draws": "Unentschieden",
       "gamesSuffix": "Spiele"
     },
@@ -253,7 +267,16 @@
       "heading": "Alle Spiele",
       "hint": "Neueste zuerst. Laufende Spiele können fortgesetzt werden, abgeschlossene zeigen das Ergebnis."
     },
+    "filter": {
+      "all": "Alle",
+      "active": "Laufend",
+      "finished": "Beendet"
+    },
     "empty": "Noch keine Spiele gespielt.",
+    "filterEmpty": {
+      "active": "Keine laufenden Spiele.",
+      "finished": "Noch keine beendeten Spiele."
+    },
     "deleteConfirm": "\"{label}\" wirklich unwiderruflich aus dem Spielverlauf löschen?",
     "badge": {
       "finished": "Beendet",
@@ -270,9 +293,28 @@
     "subtitle": "Gilt für alle, die diese Seite nutzen (global gespeichert).",
     "theme": {
       "heading": "Aussehen",
-      "hint": "Zwei eigenständige Optiken zur Wahl. \"Bold Scorekeeper\" wird schrittweise auf allen Seiten ausgebaut — bereits gewählte Farben unten gelten nur für \"Classic\".",
+      "hint": "Zwei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich \"Farben im Detail\".",
       "classic": "Classic",
-      "bold": "Bold Scorekeeper"
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Akzentfarbe",
+      "accent": {
+        "green": "Grün",
+        "orange": "Orange",
+        "pink": "Pink",
+        "violet": "Violett",
+        "cyan": "Cyan"
+      },
+      "backgroundLabel": "Hintergrund",
+      "background": {
+        "dark": "Dunkel",
+        "darkBlue": "Dunkel Blau",
+        "black": "Schwarz"
+      },
+      "cardStyleLabel": "Kartenstil",
+      "cardStyle": {
+        "classic": "Klassisch",
+        "modern": "Modern"
+      }
     },
     "title": {
       "heading": "Titel",
@@ -312,6 +354,9 @@
       "label": "Sprache"
     },
     "colors": {
+      "advancedHeading": "Farben im Detail",
+      "advancedSummary": "Erweitert öffnen",
+      "boldNote": "Gilt nur für Classic — Bold nutzt die Voreinstellungen oben.",
       "single": {
         "heading": "Akzent- und Funktionsfarben",
         "hint": "Gelten unverändert in Hell- und Dunkelmodus."
@@ -366,7 +411,8 @@
       "subtitle": "Neues Spiel einrichten (z.B. Flip7, Tutto)",
       "labelPlaceholder": "z.B. Flip7, Tutto",
       "targetLabel": "Bis zu welchem Punktewert wird gespielt?",
-      "winDirectionHint": "Bei den meisten Spielen gewinnt die höchste Punktzahl (z.B. Flip7, Tutto) — bei manchen wie Skyjo aber die niedrigste. Das Spiel endet trotzdem, sobald jemand den Zielwert erreicht oder überschreitet."
+      "winDirectionHint": "Bei den meisten Spielen gewinnt die höchste Punktzahl (z.B. Flip7, Tutto) — bei manchen wie Skyjo aber die niedrigste. Das Spiel endet trotzdem, sobald jemand den Zielwert erreicht oder überschreitet.",
+      "targetBonusLabel": "Bonus bei Zielerreichung"
     },
     "game": {
       "subtitle": "Ziel: {target} Punkte · {started}",
@@ -408,7 +454,9 @@
     "setup": {
       "subtitle": "Neues Spiel einrichten — 10 Runden, Stichansage",
       "hint": "Feste 10 Runden (10 bis 1 Karte), am Ende gewinnt die höchste Punktzahl.",
-      "labelPlaceholder": "z.B. RAGE-Abend"
+      "labelPlaceholder": "z.B. RAGE-Abend",
+      "showBonusMalusLabel": "Bonus/Malus anzeigen",
+      "showBonusMalusHint": "+5/−5-Felder für Sonderkarten in der Rundenerfassung ein-/ausblenden."
     },
     "game": {
       "cardSingular": "Karte",

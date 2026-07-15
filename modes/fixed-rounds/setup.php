@@ -51,6 +51,13 @@ require __DIR__ . '/../../includes/header.php';
 
         <details class="advanced-options">
           <summary data-i18n="common.setup.advancedOptions">Erweiterte Optionen</summary>
+
+          <label class="player-chip">
+            <input type="checkbox" id="allow-negative" checked>
+            <span data-i18n="common.setup.allowNegativeLabel">Negativpunkte erlauben</span>
+          </label>
+          <p class="hint-text" data-i18n="common.setup.allowNegativeHint">Wenn deaktiviert, werden negative Rundeneingaben auf 0 begrenzt.</p>
+
           <div class="team-setup" id="team-setup">
             <label class="player-chip">
               <input type="checkbox" data-team-enable>

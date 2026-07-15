@@ -384,6 +384,32 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         }
     }
 
+    // "Bonus bei Zielerreichung" (nur "Punkte bis Hoechstwert", Migration 12):
+    // wird bewusst ERST NACH der obigen Sieger-Ermittlung addiert, die auf
+    // den rohen Totals beruht (identisch zu recompute_game_status() /
+    // get_effective_totals()) - der Bonus darf nie beeinflussen, OB oder
+    // WANN das Ziel erreicht wird, sondern zeigt nur einen zusaetzlichen
+    // Bonus im Endergebnis der bereits ermittelten Sieger. Bei Gleichstand
+    // am Ziel bekommen alle gemeinsamen Sieger den Bonus. Bleibt dadurch
+    // automatisch korrektursicher: eine nachtraegliche Korrektur, die den
+    // Sieger unter das Ziel drueckt, loescht auch den Bonus wieder (dieser
+    // Codepfad greift ja nur noch fuer die NEU ermittelten Sieger).
+    $targetBonus = (int) ($game['target_bonus'] ?? 0);
+    if ($targetBonus > 0 && count($winners) > 0) {
+        $winnerIds = array_column($winners, 'id');
+        foreach ($standings as &$s) {
+            if (in_array($s['id'], $winnerIds, true)) {
+                $s['total'] += $targetBonus;
+                $s['rankValue'] += $targetBonus;
+            }
+        }
+        unset($s);
+        foreach ($winners as &$w) {
+            $w['total'] += $targetBonus;
+        }
+        unset($w);
+    }
+
     return [
         'id' => (int) $game['id'],
         'mode' => $game['mode'],
@@ -397,6 +423,9 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'totalRounds' => (int) $game['total_rounds'],
         'announceRoundEnd' => (bool) $game['announce_round_end'],
         'teamScoring' => $teamScoring,
+        'targetBonus' => (int) ($game['target_bonus'] ?? 0),
+        'allowNegative' => (bool) ($game['allow_negative'] ?? 1),
+        'rageShowBonusMalus' => (bool) ($game['rage_show_bonus_malus'] ?? 1),
         'players' => array_map(function ($p) use ($teamLabels) {
             $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
             $teamLabel = $teamNumber !== null ? ($teamLabels[$teamNumber] ?? null) : null;
@@ -609,7 +638,37 @@ function build_stats(PDO $pdo, ?int $fromTs, ?int $toTs): array
     }, $headToHead));
     usort($headToHeadOut, fn($a, $b) => $b['games'] - $a['games']);
 
+    // Kennzahlen-Kacheln (Mockup-Abgleich): totalGames/finishedGames zaehlen
+    // alle Spiele im Filterzeitraum unabhaengig vom Modus. winRate meint hier
+    // bewusst den Anteil bereits abgeschlossener Spiele (nicht die
+    // individuelle Sieg-% eines Spielers, die gibt es bereits pro Zeile in
+    // $overallOut) - Frontend beschriftet das entsprechend als "Beendet".
+    // avgScore mittelt nur ueber die 3 Punkte-basierten Modi (RAGE-Punkte
+    // sind wertemaessig nicht vergleichbar und wuerden den Schnitt verzerren).
+    $totalGames = count($gamesOut);
+    $finishedGames = count(array_filter($gamesOut, fn($g) => $g['status'] === 'finished'));
+
+    $pointBasedModes = ['points_to_target', 'points_open', 'fixed_rounds'];
+    $scoreSum = 0.0;
+    $scoreCount = 0;
+    foreach ($pointBasedModes as $mode) {
+        foreach ($byModeOut[$mode] ?? [] as $row) {
+            if ($row['avgScore'] !== null) {
+                $scoreSum += $row['avgScore'];
+                $scoreCount++;
+            }
+        }
+    }
+
+    $summary = [
+        'totalGames' => $totalGames,
+        'finishedGames' => $finishedGames,
+        'winRate' => $totalGames > 0 ? $finishedGames / $totalGames : null,
+        'avgScore' => $scoreCount > 0 ? $scoreSum / $scoreCount : null,
+    ];
+
     return [
+        'summary' => $summary,
         'overall' => $overallOut,
         'byMode' => $byModeOut,
         'headToHead' => $headToHeadOut,

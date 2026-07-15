@@ -125,6 +125,8 @@ setupForm.addEventListener('submit', async (event) => {
       teamAssignments: teamSetup.getTeamAssignments(),
       teamNames: teamSetup.getTeamNames(),
       teamScoring: teamSetup.getTeamScoring(),
+      targetBonus: Number(document.getElementById('target-bonus').value) || 0,
+      allowNegative: document.getElementById('allow-negative').checked,
     }),
   });
 

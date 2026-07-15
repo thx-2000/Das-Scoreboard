@@ -47,8 +47,8 @@ require __DIR__ . '/../../includes/header.php';
               <th scope="col" data-i18n="rage.game.roundEntry.table.player">Spieler</th>
               <th scope="col" data-i18n="rage.game.roundEntry.table.bid">Ansage</th>
               <th scope="col" data-i18n="rage.game.roundEntry.table.tricks">Stiche</th>
-              <th scope="col" data-i18n="rage.game.roundEntry.table.plus5">+5</th>
-              <th scope="col" data-i18n="rage.game.roundEntry.table.minus5">−5</th>
+              <th scope="col" id="th-bonus" data-i18n="rage.game.roundEntry.table.plus5">+5</th>
+              <th scope="col" id="th-rache" data-i18n="rage.game.roundEntry.table.minus5">−5</th>
               <th scope="col" data-i18n="rage.game.roundEntry.table.points">Punkte</th>
             </tr>
           </thead>

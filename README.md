@@ -57,7 +57,9 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   vier `setup.js`).
 - **Spielverlauf** (`history.php`): alle Spiele (laufend + beendet),
   unterscheidbar über Start-/Endzeit, damit auch mehrere Spiele am selben
-  Tag eindeutig auffindbar sind.
+  Tag eindeutig auffindbar sind. Filter-Tabs "Alle"/"Laufend"/"Beendet"
+  filtern die geladene Liste rein clientseitig (kein neuer Server-Request),
+  gelten in beiden Themes.
 - **Modus "Punkte bis Höchstwert"** (`modes/points-to-target/`): Punkte
   werden rundenweise für alle Spieler gemeinsam erfasst (0 ist normal, z.B.
   bei einem Bust). Sobald jemand den Zielwert erreicht/überschreitet, endet
@@ -67,12 +69,18 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   Skyjo — bei Gleichstand mehrere Sieger möglich). Korrektur ist jederzeit
   direkt in der Rundenverlauf-Tabelle möglich und reaktiviert ein bereits
   beendetes Spiel automatisch, falls der Zielwert dadurch unterschritten
-  wird.
+  wird. In den Erweiterten Optionen beim Einrichten: "Bonus bei
+  Zielerreichung" (Stepper, Standard 0) addiert beim Spielende automatisch
+  Zusatzpunkte zum/zu den bereits ermittelten Sieger(n) — beeinflusst nie,
+  ob/wann das Ziel erreicht wird, nur das angezeigte Endergebnis. "Negativpunkte
+  erlauben" (Standard an) sperrt bei Deaktivierung negative Rundeneingaben
+  serverseitig auf 0.
 - **Modus "Offene Punkterunde"** (`modes/points-open/`): wie oben, aber ohne
   Zielwert — beim Einrichten wird festgelegt, ob am Ende die höchste oder
   die niedrigste Punktzahl gewinnt. Das Spiel wird manuell per Knopfdruck
   beendet (und kann genauso wieder fortgesetzt werden), es gibt keinen
-  automatischen Sieg-Moment.
+  automatischen Sieg-Moment. "Negativpunkte erlauben" wie oben in den
+  Erweiterten Optionen wählbar.
 - **Modus "Punkterunde mit fester Rundenzahl"** (`modes/fixed-rounds/`): wie
   "Offene Punkterunde", aber mit einer beim Einrichten festgelegten
   Rundenzahl (Sieg-Richtung ebenfalls wählbar). Sobald die vereinbarte
@@ -81,7 +89,8 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   lässt das Spiel aktiv weiterlaufen, danach erscheint der Hinweis bei
   Bedarf erneut). Optional (Checkbox beim Einrichten, standardmäßig aus)
   zeigt eine schließbare Meldung "Runde X beendet" nach jeder gespeicherten
-  Runde.
+  Runde. "Negativpunkte erlauben" ebenfalls in den Erweiterten Optionen
+  wählbar.
 - **Tool "Wer fängt an?"** (`tools/finger-chooser.php`): Multitouch-
   Fingerauswahl für iPad/iPhone. Wartet auf den ersten Finger, zählt dann
   5 Sekunden runter (weitere Finger können in dieser Zeit dazukommen),
@@ -201,7 +210,15 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   da der Filter auf echten Zeitstempeln statt auf Kalendertagen
   arbeitet. Ein "Drucken / PDF"-Knopf nutzt den normalen Browser-Druck
   (eigenes Druck-Stylesheet blendet Navigation/Formulare aus) — direkter
-  Weg zu einem PDF-Ausdruck ohne zusätzliche Abhängigkeit.
+  Weg zu einem PDF-Ausdruck ohne zusätzliche Abhängigkeit. Vier
+  KPI-Kacheln oben (Spiele/Beendet/Anteil beendet/Ø Punkte — Letzteres
+  nur über die 3 Punkte-Modi gemittelt, RAGE ausgeschlossen, da die
+  Punkteskalen nicht vergleichbar sind) fassen den gefilterten Zeitraum
+  zusammen. Kopf-an-Kopf zeigt zusätzlich eine Spieler-x-Spieler-Matrix
+  (die bisherige Listenansicht bleibt hinter "Als Liste anzeigen"
+  verfügbar, da eine Matrix ab ca. 6+ Spielern unübersichtlich wird), dazu
+  ein Donut-Chart zur Modus-Verteilung (reines CSS `conic-gradient`, keine
+  Chart-Bibliothek).
 - **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
   10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
   Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
@@ -211,7 +228,10 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   der Kartenzahl entspricht (Speichern bleibt trotzdem möglich). Nach
   Runde 10 endet das Spiel automatisch; ein manuelles Beenden/Fortsetzen
   ist ebenfalls möglich. Löschen einer Runde reduziert die Rundenzahl und
-  öffnet ein automatisch beendetes Spiel bei Bedarf wieder.
+  öffnet ein automatisch beendetes Spiel bei Bedarf wieder. "Bonus/Malus
+  anzeigen" (Erweiterte Optionen beim Einrichten, Standard an) blendet die
+  +5/−5-Felder in der Rundenerfassung ein-/aus — reine Anzeige-Einstellung,
+  Bonus/Rache werden unabhängig davon immer verrechnet.
 
 Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
 Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
@@ -262,8 +282,27 @@ angelegt.
     ohnehin schon dieselben Verlaufs-Karten wie die Verlaufsseite);
     Einstellungen-Seite mit der Aussehen- und Logo-Anzeige-Auswahl als
     grössere Auswahlkarten statt kleiner Chips (derselbe Baustein wie die
-    Sieg-Richtung im Setup) — damit ist der schrittweise Bold-Ausbau über
-    alle Seiten hinweg abgeschlossen.
+    Sieg-Richtung im Setup). Nach Abgleich mit einer detaillierten
+    Bildschirm-Vorlage folgten weitere Anpassungen: Modus-Karten auf der
+    Startseite in Bold als kompakte Icon-Kacheln ohne Fliesstext (festes
+    2x2-Raster); Spielerverwaltung-Zeilen in Bold vollflächig statt nur am
+    linken Rand farblich getönt; ein Alle/Laufend/Beendet-Filter im Verlauf
+    (clientseitig, in beiden Themes gleich, nur die Tab-Optik unterscheidet
+    sich). Damit ist der schrittweise Bold-Ausbau über alle Seiten hinweg
+    abgeschlossen.
+  - **Akzentfarbe, Hintergrund, Kartenstil**: die Aussehen-Einstellung
+    zeigt als sichtbaren Hauptteil (in beiden Themes) 5 kuratierte
+    Akzentfarben-Punkte zum Antippen (Grün/Orange/Pink/Violett/Cyan) —
+    unter Bold wird direkt einer von 5 festen Presets übernommen, unter
+    Classic überschreibt die Wahl die bestehenden Hex-Felder
+    `color_green`/`color_green_strong` als Schnellwahl (Feinjustierung
+    bleibt weiterhin möglich). Nur unter Bold zusätzlich: Hintergrund
+    (Dunkel/Dunkel Blau/Schwarz) und Kartenstil (Klassisch/Modern, grösserer
+    Radius + weicherer Schatten ohne sichtbaren Rand). Die bisherige
+    vollständige Hex-Farbpalette (17 Felder) ist weiterhin unter "Farben im
+    Detail" (aufklappbarer Erweitert-Bereich) erreichbar — gilt technisch
+    weiterhin nur für Classic, unter Bold zeigt der Bereich stattdessen
+    einen Hinweistext.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -523,7 +562,9 @@ to work on iPad and iPhone.
   (`js/group-picker.js`, used by `js/groups.js` and all four `setup.js`).
 - **Game history** (`history.php`): all games (ongoing + finished),
   distinguishable by start/end time, so multiple games on the same day
-  stay uniquely identifiable.
+  stay uniquely identifiable. Filter tabs "All"/"Active"/"Finished" filter
+  the loaded list purely client-side (no extra server request), available
+  in both themes.
 - **Mode "Points to target"** (`modes/points-to-target/`): points are
   entered round by round for all players together (0 is normal, e.g. on a
   bust). As soon as someone reaches/exceeds the target value, the game
@@ -532,12 +573,18 @@ to work on iPad and iPhone.
   or the lowest score then wins (e.g. Skyjo — ties allow multiple
   winners). Correction is always possible directly in the round history
   table and automatically reactivates an already-finished game if the
-  target is no longer reached as a result.
+  target is no longer reached as a result. Under "Advanced options" in
+  setup: "Bonus on reaching target" (stepper, default 0) automatically
+  adds bonus points to the already-determined winner(s) once the game
+  ends — never affects whether/when the target is reached, only the
+  displayed final score. "Allow negative points" (default on) clamps
+  negative round entries to 0 server-side when disabled.
 - **Mode "Open point round"** (`modes/points-open/`): like above, but
   without a target value — during setup you decide whether the highest or
   lowest score wins at the end. The game is finished manually via a
   button (and can be resumed the same way); there is no automatic win
-  moment.
+  moment. "Allow negative points" selectable under "Advanced options" as
+  above.
 - **Mode "Points round with fixed round count"** (`modes/fixed-rounds/`):
   like "Open point round", but with a round count fixed during setup (win
   direction also selectable). Once the agreed round count is reached, a
@@ -545,7 +592,8 @@ to work on iPad and iPhone.
   rounds" (extends the target and keeps the game active; the prompt
   reappears later if needed). Optionally (checkbox during setup, off by
   default) a dismissible "Round X finished" notice appears after every
-  saved round.
+  saved round. "Allow negative points" also selectable under "Advanced
+  options".
 - **Tool "Who starts?"** (`tools/finger-chooser.php`): multitouch finger
   picker for iPad/iPhone. Waits for the first finger, then counts down 5
   seconds (more fingers can join during that time), then randomly picks
@@ -653,7 +701,14 @@ to work on iPad and iPhone.
   filter compares actual timestamps rather than calendar days. A "Print
   / PDF" button uses the browser's normal print dialog (a dedicated
   print stylesheet hides navigation/forms) — a direct path to a PDF
-  printout without an extra dependency.
+  printout without an extra dependency. Four KPI tiles up top (games/
+  finished/finished rate/avg. score — the latter averaged only across the
+  3 point-based modes, RAGE excluded since its score scale isn't
+  comparable) summarize the filtered time range. Head-to-head additionally
+  shows a player-by-player matrix (the previous list view stays available
+  behind "Show as list", since a matrix gets hard to read past ~6+
+  players), plus a donut chart of mode distribution (pure CSS
+  `conic-gradient`, no chart library).
 - **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
   over a fixed 10 rounds (card count decreases from 10 to 1). Before each
   round, each player's bid and actual tricks are entered, plus optional
@@ -662,7 +717,10 @@ to work on iPad and iPhone.
   warns if the sum of tricks doesn't match the card count (saving remains
   possible anyway). After round 10 the game ends automatically; manual
   finish/resume is also possible. Deleting a round reduces the round
-  count and reopens an automatically finished game if needed.
+  count and reopens an automatically finished game if needed. "Show
+  bonus/revenge" (advanced option during setup, default on) shows/hides
+  the +5/−5 fields in round entry — a purely visual setting; bonus/revenge
+  are always calculated regardless of it.
 
 Further modes (other scorekeeping mechanics) are meant to be added later
 as their own subfolders under `modes/`, without touching existing parts —
@@ -710,8 +768,24 @@ the player database and game history are deliberately mode-agnostic.
     already reuses the same history cards as the history page); the
     settings page with the appearance and logo-display pickers as larger
     choice cards instead of small chips (the same building block as win
-    direction in setup) - this completes the step-by-step Bold rollout
-    across every page.
+    direction in setup). After comparing against a detailed screen
+    reference, further adjustments followed: mode cards on the home page
+    in Bold as compact icon tiles without body text (fixed 2x2 grid);
+    player management rows in Bold tinted across their full width instead
+    of just a left border; an All/Active/Finished filter in history
+    (client-side, identical in both themes, only the tab styling differs).
+    This completes the step-by-step Bold rollout across every page.
+  - **Accent color, background, card style**: the appearance setting shows
+    (in both themes) 5 curated accent color dots as its main visible part
+    (green/orange/pink/violet/cyan) — under Bold, one of 5 fixed presets is
+    applied directly; under Classic, the choice overwrites the existing hex
+    fields `color_green`/`color_green_strong` as a quick pick (fine-tuning
+    remains possible afterward). Bold-only, additionally: background
+    (dark/dark blue/black) and card style (classic/modern, larger radius +
+    softer shadow with no visible border). The existing full hex color
+    palette (17 fields) stays reachable under "Colors in detail" (a
+    collapsible advanced section) — technically still Classic-only; under
+    Bold the section shows a hint text instead.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

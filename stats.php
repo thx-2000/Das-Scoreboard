@@ -28,6 +28,27 @@ require __DIR__ . '/includes/header.php';
     </section>
 
     <section class="card section-spacing">
+      <div class="kpi-row">
+        <div class="kpi-tile">
+          <span class="kpi-tile__value" id="kpi-total-games">–</span>
+          <span class="kpi-tile__label" data-i18n="stats.kpi.games">Spiele</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="kpi-tile__value" id="kpi-finished-games">–</span>
+          <span class="kpi-tile__label" data-i18n="stats.kpi.finished">Beendet</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="kpi-tile__value" id="kpi-win-rate">–</span>
+          <span class="kpi-tile__label" data-i18n="stats.kpi.winRate">Anteil beendet</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="kpi-tile__value" id="kpi-avg-score">–</span>
+          <span class="kpi-tile__label" data-i18n="stats.kpi.avgScore">Ø Punkte</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section-spacing">
       <h2 data-i18n="stats.overall.heading">Gesamt</h2>
       <div class="table-scroll">
         <table class="stats-table" id="overall-table">
@@ -43,10 +64,28 @@ require __DIR__ . '/includes/header.php';
       <div id="by-mode-tables"></div>
     </section>
 
+    <section class="card section-spacing" id="mode-distribution-section">
+      <h2 data-i18n="stats.modeDistribution.heading">Modus-Verteilung</h2>
+      <div class="donut-row">
+        <div class="donut-chart" id="mode-donut"></div>
+        <ul class="donut-legend" id="mode-donut-legend"></ul>
+      </div>
+      <p class="hint-text" id="mode-distribution-empty" data-i18n="stats.modeDistribution.empty" hidden>Keine Spiele in diesem Zeitraum.</p>
+    </section>
+
     <section class="card section-spacing">
       <h2 data-i18n="stats.headToHead.heading">Kopf an Kopf</h2>
-      <ul class="h2h-list" id="h2h-list"></ul>
+      <div class="table-scroll">
+        <table class="stats-table h2h-matrix" id="h2h-matrix-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
       <p class="hint-text" id="h2h-empty" data-i18n="stats.headToHead.empty" hidden>Noch keine zwei Spieler mit gemeinsamen beendeten Spielen in diesem Zeitraum.</p>
+      <details class="advanced-options section-spacing" id="h2h-list-details" hidden>
+        <summary data-i18n="stats.headToHead.listSummary">Als Liste anzeigen</summary>
+        <ul class="h2h-list" id="h2h-list"></ul>
+      </details>
     </section>
 
     <section class="card section-spacing">

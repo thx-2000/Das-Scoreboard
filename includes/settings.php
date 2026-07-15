@@ -23,6 +23,25 @@ function default_settings(): array
         // gelten weiterhin ausschliesslich fuer Classic.
         'theme_style' => 'classic',
 
+        // Vereinfachte Akzentfarben-Auswahl (5 Presets, siehe
+        // accent_color_palette()) - ist der sichtbare Hauptteil der
+        // Aussehen-Einstellung in BEIDEN Themes. Unter Bold wird direkt
+        // dieser Preset-Name gespeichert (Bold hat keine freien Hex-Felder).
+        // Unter Classic dient er nur als Schnellwahl, die beim Auswaehlen
+        // color_green/color_green_strong ueberschreibt - die eigentliche
+        // Quelle bleibt fuer Classic weiterhin die Hex-Farbe selbst, damit
+        // Fein-Anpassungen im aufklappbaren Erweitert-Bereich moeglich
+        // bleiben (siehe css/style.css Bold-Root fuer die Hex-Werte je Preset).
+        'bold_accent' => 'green',
+
+        // Nur fuer Bold relevant (Classic hat eigene Hell-/Dunkel-Basisfarben
+        // unten). 'dark' (Standard) | 'dark_blue' | 'black'.
+        'bold_background' => 'dark',
+
+        // Nur fuer Bold relevant. 'classic' (Standard, heutige Kartenoptik) |
+        // 'modern' (groesserer Radius, weicherer Schatten, dezenterer Rand).
+        'bold_card_style' => 'classic',
+
         // 'none' (Standard) | 'square' | 'banner'. Die _ext-Werte ('' = kein
         // Logo hochgeladen, sonst 'png'/'jpg'/'svg') werden ausschliesslich
         // von api/logo.php gesetzt, nicht ueber das generische Settings-
@@ -88,6 +107,37 @@ function round_entry_step_values(): array
 }
 
 /**
+ * 5 kuratierte Akzentfarben-Presets (Hauptfarbe + abgedunkelte "-strong"-
+ * Variante fuer Text/Kontrast, gleiches Prinzip wie die bestehenden Hex-Paare).
+ * Einzige Quelle fuer diese Werte - wird von js/theme.js (Bold) und der
+ * Settings-Seite (beide Themes, siehe accent_color_picker in settings.php)
+ * genutzt, damit Frontend und Backend nicht zwei Kopien pflegen.
+ */
+function accent_color_palette(): array
+{
+    return [
+        'green' => ['#b6ff1a', '#8fd400'],
+        'orange' => ['#ff8a3d', '#e0451c'],
+        'pink' => ['#ff3daa', '#d4008a'],
+        'violet' => ['#b088ff', '#8a5cf0'],
+        'cyan' => ['#22d3ee', '#0ea5c4'],
+    ];
+}
+
+/**
+ * 3 Hintergrund-Presets fuer Bold (bg, surface, border) - Classic hat
+ * weiterhin eigene, unabhaengige Hell-/Dunkel-Basisfarben.
+ */
+function bold_background_palette(): array
+{
+    return [
+        'dark' => ['#0b0d10', '#16191e', '#262b32'],
+        'dark_blue' => ['#0a0e1a', '#141a2b', '#232c42'],
+        'black' => ['#000000', '#121212', '#2a2a2a'],
+    ];
+}
+
+/**
  * Speichert nur bekannte Settings-Schluessel mit gueltigem Wert (Hex-Farbe
  * bzw. unterstuetzte Sprache) - unbekannte oder ungueltige Eintraege werden
  * stillschweigend uebersprungen, damit ein Tippfehler im Request nicht die
@@ -128,6 +178,18 @@ function save_settings(PDO $pdo, array $updates): void
             }
         } elseif ($key === 'theme_style') {
             if (!in_array($value, ['classic', 'bold'], true)) {
+                continue;
+            }
+        } elseif ($key === 'bold_accent') {
+            if (!array_key_exists($value, accent_color_palette())) {
+                continue;
+            }
+        } elseif ($key === 'bold_background') {
+            if (!array_key_exists($value, bold_background_palette())) {
+                continue;
+            }
+        } elseif ($key === 'bold_card_style') {
+            if (!in_array($value, ['classic', 'modern'], true)) {
                 continue;
             }
         } elseif ($key === 'round_entry_steps') {

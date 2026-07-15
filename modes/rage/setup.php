@@ -25,6 +25,15 @@ require __DIR__ . '/../../includes/header.php';
           <button type="button" id="add-player-inline-btn" class="btn btn--ghost" data-i18n="common.buttons.add">Hinzufügen</button>
         </div>
 
+        <details class="advanced-options">
+          <summary data-i18n="common.setup.advancedOptions">Erweiterte Optionen</summary>
+          <label class="player-chip">
+            <input type="checkbox" id="rage-show-bonus-malus" checked>
+            <span data-i18n="rage.setup.showBonusMalusLabel">Bonus/Malus anzeigen</span>
+          </label>
+          <p class="hint-text" data-i18n="rage.setup.showBonusMalusHint">+5/−5-Felder für Sonderkarten in der Rundenerfassung ein-/ausblenden.</p>
+        </details>
+
         <button type="submit" class="btn btn--primary" data-i18n="common.buttons.start">Spiel starten</button>
       </form>
 

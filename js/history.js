@@ -1,4 +1,8 @@
 const historyList = document.getElementById('history-list');
+const filterTabs = document.getElementById('history-filter-tabs');
+
+let allGames = [];
+let currentFilter = 'all';
 
 function modeInfo() {
   return {
@@ -24,8 +28,31 @@ function formatDateTime(iso) {
 
 async function loadHistory() {
   const response = await fetch('/api/games.php');
-  const games = await response.json();
-  renderHistory(games);
+  allGames = await response.json();
+  applyFilter();
+}
+
+// Filtert clientseitig ohne neuen Fetch, da game.status bereits im geladenen
+// Response steckt - reine Anzeige-Umschaltung per Tab-Klick.
+function applyFilter() {
+  const filtered = allGames.filter((game) => {
+    if (currentFilter === 'active') return game.status !== 'finished';
+    if (currentFilter === 'finished') return game.status === 'finished';
+    return true;
+  });
+  renderHistory(filtered);
+}
+
+if (filterTabs) {
+  filterTabs.querySelectorAll('.filter-tabs__btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.dataset.filter;
+      filterTabs.querySelectorAll('.filter-tabs__btn').forEach((b) => {
+        b.setAttribute('aria-selected', String(b === btn));
+      });
+      applyFilter();
+    });
+  });
 }
 
 async function deleteGame(gameId, label) {
@@ -41,7 +68,9 @@ function renderHistory(games) {
 
   if (games.length === 0) {
     const empty = document.createElement('li');
-    empty.textContent = window.t('history.empty');
+    empty.textContent = currentFilter === 'all'
+      ? window.t('history.empty')
+      : window.t(`history.filterEmpty.${currentFilter}`);
     empty.style.color = 'var(--color-text-muted)';
     historyList.appendChild(empty);
     return;

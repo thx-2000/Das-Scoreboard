@@ -18,7 +18,7 @@ if (!$game) {
     send_json(['error' => 'Spiel nicht gefunden.'], 404);
 }
 
-function valid_scores_for_game(PDO $pdo, int $gameId, array $scores): array
+function valid_scores_for_game(PDO $pdo, int $gameId, array $scores, bool $allowNegative): array
 {
     $playersStmt = $pdo->prepare('SELECT player_id FROM game_players WHERE game_id = ?');
     $playersStmt->execute([$gameId]);
@@ -26,14 +26,20 @@ function valid_scores_for_game(PDO $pdo, int $gameId, array $scores): array
 
     $result = [];
     foreach ($validIds as $playerId) {
-        $result[$playerId] = (int) ($scores[$playerId] ?? 0);
+        $points = (int) ($scores[$playerId] ?? 0);
+        // "Negativpunkte erlauben" (Migration 12) - Default true entspricht
+        // dem bisherigen, bereits unbeschraenkten Verhalten. Serverseitig
+        // durchgesetzt (nicht nur im Frontend), da direkte API-Aufrufe sonst
+        // die Sperre umgehen koennten.
+        $result[$playerId] = $allowNegative ? $points : max(0, $points);
     }
     return $result;
 }
 
 if ($method === 'POST' && $roundId === null) {
     $body = read_json_body();
-    $scores = valid_scores_for_game($pdo, $gameId, $body['scores'] ?? []);
+    $allowNegative = (bool) ($game['allow_negative'] ?? 1);
+    $scores = valid_scores_for_game($pdo, $gameId, $body['scores'] ?? [], $allowNegative);
 
     $countStmt = $pdo->prepare('SELECT COUNT(*) AS c FROM rounds WHERE game_id = ?');
     $countStmt->execute([$gameId]);
@@ -68,7 +74,8 @@ if (!$roundStmt->fetch(PDO::FETCH_ASSOC)) {
 
 if ($method === 'PATCH') {
     $body = read_json_body();
-    $scores = valid_scores_for_game($pdo, $gameId, $body['scores'] ?? []);
+    $allowNegative = (bool) ($game['allow_negative'] ?? 1);
+    $scores = valid_scores_for_game($pdo, $gameId, $body['scores'] ?? [], $allowNegative);
 
     $update = $pdo->prepare('UPDATE round_scores SET points = ? WHERE round_id = ? AND player_id = ?');
     foreach ($scores as $playerId => $points) {

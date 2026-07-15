@@ -254,6 +254,32 @@ function migrations(): array
                 )
             ');
         },
+
+        // Drei neue Setup-Optionen (Mockup-Abgleich): target_bonus (nur
+        // "Punkte bis Hoechstwert", Bonuspunkte bei Zielerreichung, wird
+        // on-the-fly in get_effective_totals() addiert statt in rounds
+        // gespeichert - bleibt so automatisch korrektursicher). allow_negative
+        // (3 Punkte-Modi, nicht RAGE) sperrt bei false negative Rundenwerte
+        // serverseitig in api/rounds.php - Default 1, damit sich am bisher
+        // bereits unbeschraenkt moeglichen Verhalten fuer laufende Spiele
+        // nichts aendert. rage_show_bonus_malus ist eine reine Anzeige-
+        // Einstellung fuer die RAGE-Mini-Stepper-Karten, keine Rechenlogik
+        // (Bonus/Rache werden unabhaengig davon immer verrechnet).
+        12 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+
+            $toAdd = [
+                'target_bonus' => 'ALTER TABLE games ADD COLUMN target_bonus INTEGER NOT NULL DEFAULT 0',
+                'allow_negative' => 'ALTER TABLE games ADD COLUMN allow_negative INTEGER NOT NULL DEFAULT 1',
+                'rage_show_bonus_malus' => 'ALTER TABLE games ADD COLUMN rage_show_bonus_malus INTEGER NOT NULL DEFAULT 1',
+            ];
+            foreach ($toAdd as $columnName => $sql) {
+                if (!in_array($columnName, $existing, true)) {
+                    $pdo->exec($sql);
+                }
+            }
+        },
     ];
 }
 

@@ -123,6 +123,7 @@ setupForm.addEventListener('submit', async (event) => {
       teamAssignments: teamSetup.getTeamAssignments(),
       teamNames: teamSetup.getTeamNames(),
       teamScoring: teamSetup.getTeamScoring(),
+      allowNegative: document.getElementById('allow-negative').checked,
     }),
   });
 

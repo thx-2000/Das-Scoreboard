@@ -11,11 +11,11 @@ require __DIR__ . '/includes/header.php';
       <h2 data-i18n="settings.theme.heading">Aussehen</h2>
       <p class="hint-text" data-i18n="settings.theme.hint">Zwei eigenständige Optiken zur Wahl. "Bold Scorekeeper" wird schrittweise auf allen Seiten ausgebaut — bereits gewählte Farben unten gelten nur für "Classic".</p>
       <div class="player-picker">
-        <label class="player-chip">
+        <label class="player-chip winner-card">
           <input type="radio" name="theme-style" value="classic" checked>
           <span data-i18n="settings.theme.classic">Classic</span>
         </label>
-        <label class="player-chip">
+        <label class="player-chip winner-card">
           <input type="radio" name="theme-style" value="bold">
           <span data-i18n="settings.theme.bold">Bold Scorekeeper</span>
         </label>
@@ -53,15 +53,15 @@ require __DIR__ . '/includes/header.php';
       <div class="form" style="margin-bottom:1rem;">
         <label data-i18n="settings.logo.modeLabel">Anzeige</label>
         <div class="player-picker">
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="logo-mode" value="none" checked>
             <span data-i18n="settings.logo.modeNone">Kein Logo</span>
           </label>
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="logo-mode" value="square">
             <span data-i18n="settings.logo.modeSquare">Quadrat oben links</span>
           </label>
-          <label class="player-chip">
+          <label class="player-chip winner-card">
             <input type="radio" name="logo-mode" value="banner">
             <span data-i18n="settings.logo.modeBanner">Banner über der ganzen Breite</span>
           </label>

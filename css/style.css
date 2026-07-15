@@ -1459,6 +1459,26 @@ main {
   letter-spacing: 0.03em;
 }
 
+/* Fuehrende Zeile (meiste Siege - Tabellen sind serverseitig danach
+   sortiert, siehe includes/state.php) farblich hervorheben, analog zu
+   .standings-table tr.rank-first in der aktiven Spielansicht. */
+.stats-table tr.rank-first {
+  background: color-mix(in srgb, var(--color-green) 12%, transparent);
+}
+
+.stats-table tr.rank-first td {
+  font-weight: 700;
+}
+
+.stats-table tr.rank-first td:nth-child(2) {
+  color: var(--color-green-strong);
+}
+
+.stats-table tr.rank-first td:first-child {
+  box-shadow: inset 4px 0 0 0 var(--color-green-strong);
+  padding-left: 0.6rem;
+}
+
 .h2h-list {
   list-style: none;
   margin: 0;
@@ -2055,4 +2075,21 @@ main {
   text-align: center;
   font-size: 1.15rem;
   font-weight: 800;
+}
+
+/* ---- Statistiken: Kopf-an-Kopf-Zeilen als angehobene Karten ---- */
+
+[data-theme-style="bold"] .h2h-row {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1rem 1.25rem;
+  transition: transform 0.1s ease;
+}
+
+[data-theme-style="bold"] .h2h-row:hover {
+  transform: translateY(-2px);
+}
+
+[data-theme-style="bold"] .h2h-row__names {
+  font-size: 1.05rem;
 }

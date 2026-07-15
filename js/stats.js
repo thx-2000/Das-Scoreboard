@@ -68,8 +68,12 @@ function renderOverall(rows) {
   });
   thead.appendChild(headRow);
 
-  rows.forEach((row) => {
+  rows.forEach((row, index) => {
     const tr = document.createElement('tr');
+    // Tabelle ist serverseitig nach Siegen absteigend sortiert (siehe
+    // includes/state.php) - die erste Zeile mit mindestens einem Sieg ist
+    // also die/der Fuehrende.
+    if (index === 0 && row.wins > 0) tr.className = 'rank-first';
     [
       row.name,
       row.gamesPlayed,
@@ -128,8 +132,9 @@ function renderByMode(byMode) {
     table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
-    rows.forEach((row) => {
+    rows.forEach((row, index) => {
       const tr = document.createElement('tr');
+      if (index === 0 && row.wins > 0) tr.className = 'rank-first';
       [
         row.name,
         row.gamesPlayed,

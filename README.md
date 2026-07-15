@@ -255,7 +255,15 @@ angelegt.
     sowie einer Mini-Stepper-Karte je Spieler zur Rundenerfassung (Ansage,
     Stiche, +5, −5, je ein Plus/Minus-Stepper) statt der Tabelle — referenziert
     dieselben Eingabefelder wie die (in Bold ausgeblendete) Classic-Tabelle,
-    live berechnete Punktzahl je Spieler-Karte.
+    live berechnete Punktzahl je Spieler-Karte; Statistiken-Seite mit
+    farblich hervorgehobener Führungs-Zeile (meiste Siege) in der
+    Gesamt- sowie den Nach-Modus-Tabellen und Kopf-an-Kopf-Zeilen als
+    angehobene Karten (die "Spiele in diesem Zeitraum"-Liste nutzt
+    ohnehin schon dieselben Verlaufs-Karten wie die Verlaufsseite);
+    Einstellungen-Seite mit der Aussehen- und Logo-Anzeige-Auswahl als
+    grössere Auswahlkarten statt kleiner Chips (derselbe Baustein wie die
+    Sieg-Richtung im Setup) — damit ist der schrittweise Bold-Ausbau über
+    alle Seiten hinweg abgeschlossen.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -696,7 +704,14 @@ the player database and game history are deliberately mode-agnostic.
     modes, plus a mini-stepper card per player for round entry (bid, tricks,
     +5, −5, each with its own plus/minus stepper) instead of the table -
     referencing the same input fields as the (in Bold hidden) Classic table,
-    with a live-computed score per player card.
+    with a live-computed score per player card; the stats page with a
+    colored leader row (most wins) in the overall and per-mode tables, and
+    head-to-head rows as elevated cards (the "games in this period" list
+    already reuses the same history cards as the history page); the
+    settings page with the appearance and logo-display pickers as larger
+    choice cards instead of small chips (the same building block as win
+    direction in setup) - this completes the step-by-step Bold rollout
+    across every page.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

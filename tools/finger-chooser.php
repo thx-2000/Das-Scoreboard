@@ -9,6 +9,14 @@ require __DIR__ . '/../includes/header.php';
 
   <main id="main">
     <section class="card chooser-card">
+      <div class="chooser-settings">
+        <label for="winner-count" data-i18n="chooser.winnerCountLabel">Anzahl Sieger</label>
+        <div class="stepper" data-stepper data-step="1" data-min="1">
+          <button type="button" class="stepper__btn stepper__btn--minus" data-i18n-aria-label="common.stepper.decrease" aria-label="Verringern">−</button>
+          <input type="text" id="winner-count" value="1" inputmode="numeric" pattern="[0-9]*">
+          <button type="button" class="stepper__btn stepper__btn--plus" data-i18n-aria-label="common.stepper.increase" aria-label="Erhöhen">+</button>
+        </div>
+      </div>
       <div id="chooser-area" class="chooser-area">
         <p class="chooser-hint" id="chooser-hint" data-i18n="chooser.hint">Finger auf den Bildschirm legen …</p>
       </div>
@@ -16,5 +24,5 @@ require __DIR__ . '/../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['tools/finger-chooser.js'];
+$page_scripts = ['js/stepper.js', 'tools/finger-chooser.js'];
 require __DIR__ . '/../includes/footer.php';

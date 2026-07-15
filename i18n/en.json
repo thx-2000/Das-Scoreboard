@@ -439,6 +439,8 @@
     "heading": "Who starts?",
     "subtitle": "Put all fingers on the screen at the same time — works via multitouch (iPad/iPhone).",
     "hint": "Place fingers on the screen …",
-    "result": "This person starts! Place fingers again for a new round."
+    "winnerCountLabel": "Number of winners",
+    "resultSingle": "This person starts! Place fingers again for a new round.",
+    "resultMulti": "These {count} people start! Place fingers again for a new round."
   }
 }

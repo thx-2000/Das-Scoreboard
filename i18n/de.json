@@ -439,6 +439,8 @@
     "heading": "Wer fängt an?",
     "subtitle": "Alle Finger gleichzeitig auf den Bildschirm legen — funktioniert per Multitouch (iPad/iPhone).",
     "hint": "Finger auf den Bildschirm legen …",
-    "result": "Diese Person fängt an! Für eine neue Runde erneut Finger auflegen."
+    "winnerCountLabel": "Anzahl Sieger",
+    "resultSingle": "Diese Person fängt an! Für eine neue Runde erneut Finger auflegen.",
+    "resultMulti": "Diese {count} Personen fangen an! Für eine neue Runde erneut Finger auflegen."
   }
 }

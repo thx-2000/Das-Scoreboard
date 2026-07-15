@@ -1,7 +1,19 @@
 const chooserArea = document.getElementById('chooser-area');
 const hintEl = document.getElementById('chooser-hint');
+const winnerCountInput = document.getElementById('winner-count');
 
 const COUNTDOWN_START = 4;
+const WINNER_COUNT_KEY = 'scoreboard_chooser_winner_count';
+
+// Zuletzt genutzte Anzahl Sieger merken (z.B. wer regelmaessig 2v2 spielt,
+// muss sie nicht bei jedem Besuch neu einstellen).
+const storedWinnerCount = Number(window.localStorage.getItem(WINNER_COUNT_KEY));
+if (storedWinnerCount >= 1) {
+  winnerCountInput.value = String(storedWinnerCount);
+}
+winnerCountInput.addEventListener('input', () => {
+  window.localStorage.setItem(WINNER_COUNT_KEY, winnerCountInput.value);
+});
 
 // activeTouches: Touch-Identifier -> { el: Kreis-Element }
 const activeTouches = new Map();
@@ -74,10 +86,22 @@ function pickWinner() {
   }
 
   state = 'selected';
-  const winnerId = ids[Math.floor(Math.random() * ids.length)];
+
+  // Mehr Sieger angefragt als Finger auf dem Bildschirm: dann gelten alle
+  // aufgelegten Finger als Sieger, statt einen Fehler zu werfen.
+  const requestedCount = Math.max(1, Number(winnerCountInput.value) || 1);
+  const winnerCount = Math.min(requestedCount, ids.length);
+
+  // Fisher-Yates-Teilshuffle fuer winnerCount eindeutige, zufaellige Sieger.
+  const shuffled = [...ids];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const winnerIds = new Set(shuffled.slice(0, winnerCount));
 
   activeTouches.forEach(({ el }, id) => {
-    if (id === winnerId) {
+    if (winnerIds.has(id)) {
       el.classList.add('finger-circle--selected');
     } else {
       el.classList.add('finger-circle--faded');
@@ -86,7 +110,9 @@ function pickWinner() {
 
   resultEl = document.createElement('p');
   resultEl.className = 'chooser-hint chooser-hint--result';
-  resultEl.textContent = window.t('chooser.result');
+  resultEl.textContent = winnerCount === 1
+    ? window.t('chooser.resultSingle')
+    : window.t('chooser.resultMulti', { count: winnerCount });
   chooserArea.appendChild(resultEl);
 }
 

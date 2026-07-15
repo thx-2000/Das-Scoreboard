@@ -1105,6 +1105,31 @@ main {
   padding: 0.75rem;
 }
 
+.chooser-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.5rem 0.25rem 0.75rem;
+}
+
+.chooser-settings label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.chooser-settings input[type="text"] {
+  width: 3.5rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  text-align: center;
+}
+
 .chooser-area {
   position: relative;
   width: 100%;

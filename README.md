@@ -85,8 +85,13 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
 - **Tool "Wer fängt an?"** (`tools/finger-chooser.php`): Multitouch-
   Fingerauswahl für iPad/iPhone. Wartet auf den ersten Finger, zählt dann
   5 Sekunden runter (weitere Finger können in dieser Zeit dazukommen),
-  wählt danach zufällig einen der aufliegenden Finger aus (wird groß/grün),
-  die anderen verschwinden. Rein clientseitig über die Touch-Events-API,
+  wählt danach zufällig unter den aufliegenden Fingern aus (werden groß/
+  grün), die restlichen verschwinden. Über einen Plus/Minus-Stepper
+  ("Anzahl Sieger") lässt sich einstellen, wie viele Finger ausgewählt
+  werden sollen (Standard: 1) — praktisch z.B. für 2v2-Teams; werden
+  weniger Finger aufgelegt als angefragt, gelten automatisch alle
+  aufliegenden als Sieger. Die zuletzt genutzte Anzahl wird pro Gerät
+  gemerkt (`localStorage`). Rein clientseitig über die Touch-Events-API,
   ohne Backend-Anbindung.
 - **Startspieler**: Alle Modi bestimmen beim Anlegen eines Spiels
   automatisch zufällig einen Startspieler unter den ausgewählten Spielern.
@@ -536,8 +541,12 @@ to work on iPad and iPhone.
 - **Tool "Who starts?"** (`tools/finger-chooser.php`): multitouch finger
   picker for iPad/iPhone. Waits for the first finger, then counts down 5
   seconds (more fingers can join during that time), then randomly picks
-  one of the fingers on screen (grows/turns green), the others disappear.
-  Purely client-side via the Touch Events API, no backend involved.
+  among the fingers on screen (grow/turn green), the rest disappear. A
+  plus/minus stepper ("number of winners") controls how many fingers get
+  picked (default: 1) — handy e.g. for 2v2 teams; if fewer fingers are on
+  screen than requested, all of them count as winners. The last-used count
+  is remembered per device (`localStorage`). Purely client-side via the
+  Touch Events API, no backend involved.
 - **Starting player**: every mode automatically picks a random starting
   player among the selected players when a game is created. Their name
   carries a small star (★) in the standings, explained at the bottom left

@@ -51,18 +51,13 @@ function applyBoldPresetChecks(settings) {
   });
 }
 
-// Gespiegelt aus includes/settings.php::accent_color_palette() - unter
-// Classic dient der Akzentfarben-Picker als Schnellwahl, die direkt die
-// bestehenden Hex-Felder color_green/color_green_strong ueberschreibt (die
-// Feinjustierung im Erweitert-Bereich bleibt danach weiterhin moeglich).
-const ACCENT_COLOR_PALETTE = {
-  green: ['#b6ff1a', '#8fd400'],
-  orange: ['#ff8a3d', '#e0451c'],
-  pink: ['#ff3daa', '#d4008a'],
-  violet: ['#b088ff', '#8a5cf0'],
-  cyan: ['#22d3ee', '#0ea5c4'],
-};
-
+// Nutzt die in js/theme.js bereits deklarierte ACCENT_COLOR_PALETTE (dort
+// vor settings.js eingebunden, siehe includes/footer.php) - unter Classic
+// dient der Akzentfarben-Picker als Schnellwahl, die direkt die bestehenden
+// Hex-Felder color_green/color_green_strong ueberschreibt (die Feinjustierung
+// im Erweitert-Bereich bleibt danach weiterhin moeglich). Eigene Kopie der
+// Palette hier wuerde als doppelte Top-Level-const im selben globalen Scope
+// wie theme.js einen SyntaxError verursachen und das ganze Skript lahmlegen.
 document.addEventListener('change', (event) => {
   if (event.target.name !== 'bold-accent') return;
   const input = event.target;

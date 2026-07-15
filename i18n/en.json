@@ -92,7 +92,9 @@
       "teamNone": "No team",
       "teamNumber": "Team {number}",
       "teamNameLabel": "Name for team {number} (optional)",
-      "teamNamePlaceholder": "e.g. The Eagles"
+      "teamNamePlaceholder": "e.g. The Eagles",
+      "selectAll": "Select all",
+      "selectNone": "Deselect all"
     },
     "errors": {
       "minPlayers": "Select at least 2 players.",
@@ -177,6 +179,29 @@
       "uploadFailed": "Photo could not be saved."
     },
     "deleteConfirm": "Really permanently delete \"{name}\"? Unlike removing, there is no way back in player management — past games will still show the name."
+  },
+  "groups": {
+    "hint": "Group players together (e.g. \"Family\", \"Regulars\") — when setting up a game, you can then select the whole group with one click. A person can be in multiple groups.",
+    "newGroup": {
+      "heading": "New group",
+      "nameLabel": "Group name",
+      "namePlaceholder": "e.g. Family",
+      "membersLabel": "Members"
+    },
+    "active": {
+      "heading": "Active groups",
+      "empty": "No groups created yet."
+    },
+    "inactive": {
+      "heading": "Deactivated groups",
+      "empty": "No deactivated groups."
+    },
+    "empty": "No members",
+    "editButton": "Edit",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
+    "deleteConfirm": "Really delete group \"{name}\"? The members themselves stay — only the grouping is removed.",
+    "createFailed": "Could not create group."
   },
   "stats": {
     "heading": "Statistics",

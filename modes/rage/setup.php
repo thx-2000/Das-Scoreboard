@@ -17,6 +17,7 @@ require __DIR__ . '/../../includes/header.php';
         <input type="text" id="game-label" placeholder="z.B. RAGE-Abend" data-i18n-placeholder="rage.setup.labelPlaceholder" maxlength="60" autocomplete="off">
 
         <label data-i18n="common.setup.whoPlays">Wer spielt mit?</label>
+        <div class="group-picker" id="group-picker"></div>
         <div class="player-picker" id="player-picker"></div>
 
         <label for="new-player-inline" data-i18n="common.setup.addPlayerLabel">Neuen Spieler hinzufügen</label>
@@ -33,5 +34,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['modes/rage/setup.js'];
+$page_scripts = ['js/group-picker.js', 'modes/rage/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

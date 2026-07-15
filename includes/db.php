@@ -230,6 +230,30 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE players ADD COLUMN deleted_at TEXT');
             }
         },
+
+        // Spielergruppen: Spieler lassen sich zu wiederverwendbaren Gruppen
+        // zusammenfassen (z.B. "Familie", "Stammtisch"), eine Person kann in
+        // mehreren Gruppen sein. player_group_members ist eine reine n:m-
+        // Zuordnungstabelle, ON DELETE CASCADE raeumt sie automatisch mit auf
+        // (PRAGMA foreign_keys ist bereits in get_db() aktiv). Gruppen haben
+        // anders als Spieler keine Historie-Verknuepfung zu Spielen - ein
+        // echtes Loeschen ist deshalb unproblematisch, kein deleted_at noetig.
+        11 => function (PDO $pdo) {
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS player_groups (
+                    id     INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name   TEXT NOT NULL,
+                    active INTEGER NOT NULL DEFAULT 1
+                )
+            ');
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS player_group_members (
+                    group_id  INTEGER NOT NULL REFERENCES player_groups(id) ON DELETE CASCADE,
+                    player_id INTEGER NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+                    PRIMARY KEY (group_id, player_id)
+                )
+            ');
+        },
     ];
 }
 

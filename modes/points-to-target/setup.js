@@ -1,6 +1,7 @@
 const setupForm = document.getElementById('setup-form');
 const gameLabelInput = document.getElementById('game-label');
 const targetScoreInput = document.getElementById('target-score');
+const groupPickerContainer = document.getElementById('group-picker');
 const playerPicker = document.getElementById('player-picker');
 const newPlayerInlineInput = document.getElementById('new-player-inline');
 const addPlayerInlineBtn = document.getElementById('add-player-inline-btn');
@@ -9,6 +10,7 @@ const teamSetup = initTeamSetup(document.getElementById('team-setup'));
 
 const selectedPlayerIds = new Set();
 let knownPlayers = [];
+let groupPicker = null;
 
 function refreshTeamSetup() {
   teamSetup.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
@@ -51,23 +53,29 @@ function renderPlayerChip(player, index) {
   return label;
 }
 
-async function loadPlayers() {
-  const response = await fetch('/api/players.php');
-  const players = await response.json();
-  knownPlayers = players;
+function refreshPlayerPicker() {
   playerPicker.innerHTML = '';
-  if (players.length === 0) {
+  if (knownPlayers.length === 0) {
     const hint = document.createElement('p');
     hint.className = 'hint-text';
     hint.textContent = window.t('common.game.noPlayersHint');
     playerPicker.appendChild(hint);
-    refreshTeamSetup();
-    return;
+  } else {
+    knownPlayers.forEach((player, index) => {
+      playerPicker.appendChild(renderPlayerChip(player, index));
+    });
   }
-  players.forEach((player, index) => {
-    playerPicker.appendChild(renderPlayerChip(player, index));
-  });
+  if (groupPicker) groupPicker.refreshLabel(knownPlayers.map((p) => p.id));
   refreshTeamSetup();
+}
+
+async function loadPlayers() {
+  const response = await fetch('/api/players.php');
+  knownPlayers = await response.json();
+  if (!groupPicker) {
+    groupPicker = await window.initGroupPicker(groupPickerContainer, selectedPlayerIds, refreshPlayerPicker);
+  }
+  refreshPlayerPicker();
 }
 
 addPlayerInlineBtn.addEventListener('click', async () => {

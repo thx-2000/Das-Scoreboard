@@ -92,7 +92,9 @@
       "teamNone": "Kein Team",
       "teamNumber": "Team {number}",
       "teamNameLabel": "Name für Team {number} (optional)",
-      "teamNamePlaceholder": "z.B. Die Adler"
+      "teamNamePlaceholder": "z.B. Die Adler",
+      "selectAll": "Alle auswählen",
+      "selectNone": "Alle abwählen"
     },
     "errors": {
       "minPlayers": "Mindestens 2 Spieler auswählen.",
@@ -177,6 +179,29 @@
       "uploadFailed": "Foto konnte nicht gespeichert werden."
     },
     "deleteConfirm": "\"{name}\" wirklich endgültig löschen? Anders als Entfernen gibt es dafür keinen Weg zurück in der Spielerverwaltung — vergangene Spiele zeigen den Namen aber weiterhin an."
+  },
+  "groups": {
+    "hint": "Fasse Spieler zu Gruppen zusammen (z.B. \"Familie\", \"Stammtisch\") — beim Einrichten eines Spiels lässt sich dann mit einem Klick die ganze Gruppe auswählen. Eine Person kann in mehreren Gruppen sein.",
+    "newGroup": {
+      "heading": "Neue Gruppe",
+      "nameLabel": "Gruppenname",
+      "namePlaceholder": "z.B. Familie",
+      "membersLabel": "Mitglieder"
+    },
+    "active": {
+      "heading": "Aktive Gruppen",
+      "empty": "Noch keine Gruppen angelegt."
+    },
+    "inactive": {
+      "heading": "Deaktivierte Gruppen",
+      "empty": "Keine deaktivierten Gruppen."
+    },
+    "empty": "Keine Mitglieder",
+    "editButton": "Bearbeiten",
+    "saveButton": "Speichern",
+    "cancelButton": "Abbrechen",
+    "deleteConfirm": "Gruppe \"{name}\" wirklich löschen? Die Mitglieder selbst bleiben erhalten, nur die Gruppierung wird entfernt.",
+    "createFailed": "Gruppe konnte nicht angelegt werden."
   },
   "stats": {
     "heading": "Statistiken",

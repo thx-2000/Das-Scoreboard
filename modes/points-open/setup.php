@@ -28,6 +28,7 @@ require __DIR__ . '/../../includes/header.php';
         </div>
 
         <label data-i18n="common.setup.whoPlays">Wer spielt mit?</label>
+        <div class="group-picker" id="group-picker"></div>
         <div class="player-picker" id="player-picker"></div>
 
         <label for="new-player-inline" data-i18n="common.setup.addPlayerLabel">Neuen Spieler hinzufügen</label>
@@ -70,5 +71,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'modes/points-open/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/group-picker.js', 'modes/points-open/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

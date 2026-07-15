@@ -40,6 +40,21 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
     gleichem Namen wird bewusst ohne Abgleich als komplett neuer,
     unabhängiger Datensatz angelegt (keine Zusammenführungslogik) — im
     Zweifel hilft die Datensicherung (siehe unten) beim Wiederherstellen.
+- **Spielergruppen** (`players.php`, Abschnitt "Spielergruppen";
+  `api/player-groups.php`): fassen Spieler zu wiederverwendbaren Gruppen
+  zusammen (z.B. "Familie", "Stammtisch") — eine Person kann in mehreren
+  Gruppen gleichzeitig sein (reine n:m-Zuordnung, `player_group_members`).
+  Jede Gruppe zeigt klein eine Mitglieder-Vorschau (Namen + Mini-Avatare,
+  sofern gesetzt) direkt unter dem Gruppennamen. Gruppen lassen sich analog
+  zu Spielern (de)aktivieren — nur aktive Gruppen erscheinen beim
+  Spiel-Einrichten — und zusätzlich (anders als Spieler) auch komplett
+  löschen, da keine Historie an Gruppen hängt. Beim Einrichten eines
+  Spiels (alle 4 Modi, auch RAGE) erscheinen aktive Gruppen als Chips
+  oberhalb der Spielerauswahl: ein Klick markiert alle Mitglieder
+  zusätzlich zur bestehenden Auswahl (nimmt nichts zurück). Daneben steht
+  ein "Alle auswählen"/"Alle abwählen"-Knopf für die komplette
+  Spielerliste (`js/group-picker.js`, genutzt von `js/groups.js` und allen
+  vier `setup.js`).
 - **Spielverlauf** (`history.php`): alle Spiele (laufend + beendet),
   unterscheidbar über Start-/Endzeit, damit auch mehrere Spiele am selben
   Tag eindeutig auffindbar sind.
@@ -475,6 +490,19 @@ to work on iPad and iPhone.
     name is deliberately created as a completely new, independent record
     with no matching logic — if needed, the backup feature (see below)
     helps restore a mistake.
+- **Player groups** (`players.php`, "Player groups" section;
+  `api/player-groups.php`): group players into reusable sets (e.g.
+  "Family", "Regulars") — a person can belong to multiple groups at once
+  (a plain many-to-many mapping, `player_group_members`). Each group shows
+  a small member preview (names + mini avatars where set) right under the
+  group name. Groups can be (de)activated just like players — only active
+  groups show up when setting up a game — and, unlike players, can also be
+  deleted outright, since no history depends on groups. When setting up a
+  game (all 4 modes, including RAGE), active groups appear as chips above
+  the player picker: clicking one checks all its members in addition to
+  the current selection (never unchecks anything). Next to it sits a
+  "Select all"/"Deselect all" button for the whole player list
+  (`js/group-picker.js`, used by `js/groups.js` and all four `setup.js`).
 - **Game history** (`history.php`): all games (ongoing + finished),
   distinguishable by start/end time, so multiple games on the same day
   stay uniquely identifiable.

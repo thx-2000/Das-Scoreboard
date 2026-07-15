@@ -36,6 +36,7 @@ require __DIR__ . '/../../includes/header.php';
         <p class="hint-text" data-i18n="pointsToTarget.setup.winDirectionHint">Bei den meisten Spielen gewinnt die höchste Punktzahl (z.B. Flip7, Tutto) — bei manchen wie Skyjo aber die niedrigste. Das Spiel endet trotzdem, sobald jemand den Zielwert erreicht oder überschreitet.</p>
 
         <label data-i18n="common.setup.whoPlays">Wer spielt mit?</label>
+        <div class="group-picker" id="group-picker"></div>
         <div class="player-picker" id="player-picker"></div>
 
         <label for="new-player-inline" data-i18n="common.setup.addPlayerLabel">Neuen Spieler hinzufügen</label>
@@ -78,5 +79,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'modes/points-to-target/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'js/group-picker.js', 'modes/points-to-target/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

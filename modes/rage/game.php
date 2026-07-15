@@ -27,6 +27,7 @@ require __DIR__ . '/../../includes/header.php';
             </thead>
             <tbody id="standings-body"></tbody>
           </table>
+          <div class="standings-cards" id="standings-cards"></div>
           <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
         </div>
       </section>
@@ -39,7 +40,7 @@ require __DIR__ . '/../../includes/header.php';
     <section class="card section-spacing" id="round-entry-card">
       <h2 id="round-entry-title" data-i18n="rage.game.roundEntry.staticHeading">Runde eintragen</h2>
       <p class="hint-text" id="round-entry-hint" data-i18n="rage.game.roundEntry.staticHint">Ansage und tatsächliche Stiche je Spieler eingeben, Sonderkarten falls vorhanden.</p>
-      <div class="rounds-table-wrap">
+      <div class="rounds-table-wrap" id="round-entry-table-wrap">
         <table class="rounds-table" id="round-entry-table">
           <thead>
             <tr>
@@ -54,6 +55,7 @@ require __DIR__ . '/../../includes/header.php';
           <tbody id="round-entry-body"></tbody>
         </table>
       </div>
+      <div class="rage-round-cards" id="rage-round-cards"></div>
       <button type="button" id="save-round-btn" class="btn btn--primary section-spacing" data-i18n="common.game.roundEntry.saveButton">Runde speichern</button>
     </section>
 
@@ -77,6 +79,7 @@ $page_scripts = [
     'js/feedback.js',
     'js/standings-toggle.js',
     'js/avatar-helpers.js',
+    'js/team-helpers.js',
     'modes/rage/game.js',
 ];
 require __DIR__ . '/../../includes/footer.php';

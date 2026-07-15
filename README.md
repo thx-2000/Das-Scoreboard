@@ -245,7 +245,12 @@ angelegt.
     bewusst ohne automatische Weiterschaltung, da die Reihenfolge am
     Spieltisch selten mit der Spielerliste uebereinstimmt; "Runde
     speichern" bleibt ein expliziter Klick, gemeinsam mit Classic; optisch
-    zurückgenommener Verlauf/Korrektur-Bereich darunter.
+    zurückgenommener Verlauf/Korrektur-Bereich darunter; RAGE-Aktivansicht
+    mit demselben farbigen Punktestand-Karten-Muster wie die 3 Punkte-Modi
+    sowie einer Mini-Stepper-Karte je Spieler zur Rundenerfassung (Ansage,
+    Stiche, +5, −5, je ein Plus/Minus-Stepper) statt der Tabelle — referenziert
+    dieselben Eingabefelder wie die (in Bold ausgeblendete) Classic-Tabelle,
+    live berechnete Punktzahl je Spieler-Karte.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -677,7 +682,12 @@ the player database and game history are deliberately mode-agnostic.
     correct a value before saving), deliberately without auto-advancing
     since table play order rarely matches the player list order; "Save
     round" stays an explicit click, shared with Classic; a visually
-    toned-down round history/correction section below it.
+    toned-down round history/correction section below it; the RAGE active
+    view with the same colored standings-card pattern as the 3 point-based
+    modes, plus a mini-stepper card per player for round entry (bid, tricks,
+    +5, −5, each with its own plus/minus stepper) instead of the table -
+    referencing the same input fields as the (in Bold hidden) Classic table,
+    with a live-computed score per player card.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).

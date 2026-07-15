@@ -623,6 +623,13 @@ main {
   display: none;
 }
 
+/* RAGE: Mini-Stepper-Karten je Spieler - nur im Bold-Theme sichtbar, siehe
+   unten. Referenzieren im Classic-Theme dieselben (dort weiterhin
+   sichtbaren) Tabellen-Felder aus #round-entry-table. */
+.rage-round-cards {
+  display: none;
+}
+
 .mini-progress {
   height: 8px;
   border-radius: 999px;
@@ -1920,4 +1927,107 @@ main {
 
 [data-theme-style="bold"] #round-entry-card ~ .card:hover {
   opacity: 1;
+}
+
+/* ---- RAGE-Aktivansicht: Mini-Stepper-Karten je Spieler statt Tabelle ---- */
+
+[data-theme-style="bold"] #round-entry-table-wrap {
+  display: none;
+}
+
+[data-theme-style="bold"] .rage-round-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-theme-style="bold"] .rage-round-card {
+  --row-color: var(--color-border);
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--row-color);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--row-color) 12%, var(--color-surface));
+}
+
+[data-theme-style="bold"] .rage-round-card[data-player-color="1"] { --row-color: var(--player-color-1); }
+[data-theme-style="bold"] .rage-round-card[data-player-color="2"] { --row-color: var(--player-color-2); }
+[data-theme-style="bold"] .rage-round-card[data-player-color="3"] { --row-color: var(--player-color-3); }
+[data-theme-style="bold"] .rage-round-card[data-player-color="4"] { --row-color: var(--player-color-4); }
+
+[data-theme-style="bold"] .rage-round-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme-style="bold"] .rage-round-card__name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--row-color);
+}
+
+[data-theme-style="bold"] .rage-round-card__preview {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+[data-theme-style="bold"] .rage-round-card__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+[data-theme-style="bold"] .rage-stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+[data-theme-style="bold"] .rage-stepper__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+}
+
+[data-theme-style="bold"] .rage-stepper__control {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+[data-theme-style="bold"] .rage-stepper__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-green);
+  color: var(--color-on-accent);
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+[data-theme-style="bold"] .rage-stepper__btn:active {
+  transform: scale(0.94);
+}
+
+[data-theme-style="bold"] .rage-stepper__value {
+  min-width: 1.6rem;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 800;
 }

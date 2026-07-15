@@ -4,11 +4,13 @@ const gameId = params.get('id');
 const gameTitle = document.getElementById('game-title');
 const gameSubtitle = document.getElementById('game-subtitle');
 const standingsBody = document.getElementById('standings-body');
+const standingsCards = document.getElementById('standings-cards');
 const winnerBannerWrap = document.getElementById('winner-banner-wrap');
 const roundEntryCard = document.getElementById('round-entry-card');
 const roundEntryTitle = document.getElementById('round-entry-title');
 const roundEntryHint = document.getElementById('round-entry-hint');
 const roundEntryBody = document.getElementById('round-entry-body');
+const rageRoundCards = document.getElementById('rage-round-cards');
 const saveRoundBtn = document.getElementById('save-round-btn');
 const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
@@ -89,6 +91,39 @@ function renderStandings(state) {
   });
 }
 
+/**
+ * Kartenansicht des Punktestands - nur im Bold-Theme sichtbar (siehe
+ * css/style.css), parallel zur Tabelle aus renderStandings() aufgebaut.
+ * Farbe haengt an der Spieler-Position in state.players (stabil ueber
+ * Rangwechsel hinweg), nicht am aktuellen Rang.
+ */
+function renderStandingsCards(state) {
+  standingsCards.innerHTML = '';
+  let previousTotal = null;
+  let previousRank = 0;
+
+  state.standings.forEach((player, index) => {
+    const rank = player.total === previousTotal ? previousRank : index + 1;
+    previousTotal = player.total;
+    previousRank = rank;
+
+    const displayName = player.id === state.startingPlayerId ? `${player.name} ★` : player.name;
+    const colorIndex = window.scoreboardPlayerColorIndex(state.players, player.id);
+
+    const card = document.createElement('div');
+    card.className = 'standings-card';
+    card.dataset.playerColor = colorIndex;
+    card.innerHTML = `
+      <div class="standings-card__rank">${rank}</div>
+      <div class="standings-card__info">
+        <div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div>
+      </div>
+      <div class="standings-card__points">${player.total}</div>
+    `;
+    standingsCards.appendChild(card);
+  });
+}
+
 function renderStartingPlayerLegend(state) {
   startingPlayerLegend.hidden = state.startingPlayerId === null || state.startingPlayerId === undefined;
 }
@@ -111,7 +146,95 @@ function updateEntryRowPreview(row) {
   const actual = Number(row.querySelector('.field-actual').value) || 0;
   const bonus = Number(row.querySelector('.field-bonus').value) || 0;
   const rache = Number(row.querySelector('.field-rache').value) || 0;
-  row.querySelector('.field-preview').textContent = computeRagePoints(bid, actual, bonus, rache);
+  const points = computeRagePoints(bid, actual, bonus, rache);
+  row.querySelector('.field-preview').textContent = points;
+
+  const card = rageRoundCards.querySelector(`[data-player-id="${row.dataset.playerId}"]`);
+  if (card) card.querySelector('.rage-round-card__preview').textContent = points;
+}
+
+/**
+ * Bold-Theme: Mini-Stepper (+/-1) fuer ein einzelnes Rundenerfassungs-Feld.
+ * Schreibt direkt in das echte Tabellen-input (row bleibt einzige Quelle,
+ * siehe Prinzip aus round-entry.js) und loest dessen 'input'-Event aus,
+ * statt das Feld zu verschieben oder zu duplizieren.
+ */
+function buildRageMiniStepper(input, label) {
+  const wrap = document.createElement('div');
+  wrap.className = 'rage-stepper';
+
+  const labelEl = document.createElement('span');
+  labelEl.className = 'rage-stepper__label';
+  labelEl.textContent = label;
+
+  const minusBtn = document.createElement('button');
+  minusBtn.type = 'button';
+  minusBtn.className = 'rage-stepper__btn rage-stepper__btn--minus';
+  minusBtn.textContent = '−';
+  minusBtn.setAttribute('aria-label', `${window.t('common.stepper.decrease')}: ${label}`);
+
+  const valueEl = document.createElement('span');
+  valueEl.className = 'rage-stepper__value';
+  valueEl.textContent = input.value;
+
+  const plusBtn = document.createElement('button');
+  plusBtn.type = 'button';
+  plusBtn.className = 'rage-stepper__btn rage-stepper__btn--plus';
+  plusBtn.textContent = '+';
+  plusBtn.setAttribute('aria-label', `${window.t('common.stepper.increase')}: ${label}`);
+
+  function adjust(delta) {
+    const next = Math.max(0, (Number(input.value) || 0) + delta);
+    input.value = String(next);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  minusBtn.addEventListener('click', () => adjust(-1));
+  plusBtn.addEventListener('click', () => adjust(1));
+  input.addEventListener('input', () => { valueEl.textContent = input.value; });
+
+  const control = document.createElement('div');
+  control.className = 'rage-stepper__control';
+  control.appendChild(minusBtn);
+  control.appendChild(valueEl);
+  control.appendChild(plusBtn);
+
+  wrap.appendChild(labelEl);
+  wrap.appendChild(control);
+  return wrap;
+}
+
+/**
+ * Bold-Theme: Mini-Stepper-Karte je Spieler statt Tabellenzeile - referenziert
+ * dieselben 4 Felder wie die (im Bold-Theme per CSS ausgeblendete) Tabellen-
+ * zeile, statt eigene Felder anzulegen.
+ */
+function buildRageRoundCard(player, row, players) {
+  const card = document.createElement('div');
+  card.className = 'rage-round-card';
+  card.dataset.playerId = player.id;
+  card.dataset.playerColor = window.scoreboardPlayerColorIndex(players, player.id);
+
+  const header = document.createElement('div');
+  header.className = 'rage-round-card__header';
+  const nameEl = document.createElement('span');
+  nameEl.className = 'rage-round-card__name';
+  nameEl.textContent = player.name;
+  const previewEl = document.createElement('span');
+  previewEl.className = 'rage-round-card__preview';
+  previewEl.textContent = row.querySelector('.field-preview').textContent;
+  header.appendChild(nameEl);
+  header.appendChild(previewEl);
+
+  const fields = document.createElement('div');
+  fields.className = 'rage-round-card__fields';
+  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bid'), window.t('rage.game.roundEntry.table.bid')));
+  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-actual'), window.t('rage.game.roundEntry.table.tricks')));
+  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bonus'), window.t('rage.game.roundEntry.table.plus5')));
+  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-rache'), window.t('rage.game.roundEntry.table.minus5')));
+
+  card.appendChild(header);
+  card.appendChild(fields);
+  return card;
 }
 
 function renderRoundEntry(state) {
@@ -126,6 +249,7 @@ function renderRoundEntry(state) {
   roundEntryHint.textContent = window.t('rage.game.roundEntry.hint', { cards });
 
   roundEntryBody.innerHTML = '';
+  rageRoundCards.innerHTML = '';
   state.players.forEach((player) => {
     const row = document.createElement('tr');
     row.dataset.playerId = player.id;
@@ -141,6 +265,7 @@ function renderRoundEntry(state) {
       input.addEventListener('input', () => updateEntryRowPreview(row));
     });
     roundEntryBody.appendChild(row);
+    rageRoundCards.appendChild(buildRageRoundCard(player, row, state.players));
   });
 }
 
@@ -319,6 +444,7 @@ function renderUndoButton(state) {
 function render(state) {
   renderHeader(state);
   renderStandings(state);
+  renderStandingsCards(state);
   renderStartingPlayerLegend(state);
   renderWinnerBanner(state);
   renderRoundEntry(state);

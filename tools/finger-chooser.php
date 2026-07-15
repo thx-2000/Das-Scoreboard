@@ -1,7 +1,6 @@
 <?php
 $page_title = 'pages.chooser.title';
 $active_nav = 'chooser';
-$nav_variant = 'chooser';
 $viewport_extra = ', maximum-scale=1.0, user-scalable=no';
 $page_h1 = '<h1 data-i18n="chooser.heading">Wer fängt an?</h1>';
 $page_subtitle = '<p class="app-header__subtitle" data-i18n="chooser.subtitle">Alle Finger gleichzeitig auf den Bildschirm legen — funktioniert per Multitouch (iPad/iPhone).</p>';

@@ -1,7 +1,6 @@
 <?php
 $page_title = 'pages.pointsToTargetGame.title';
 $active_nav = null;
-$nav_variant = 'game';
 $page_h1 = '<h1 id="game-title">Punkte bis Höchstwert</h1>';
 $page_subtitle = '<p class="app-header__subtitle" id="game-subtitle" data-i18n="common.game.loading">Lädt …</p>';
 require __DIR__ . '/../../includes/header.php';

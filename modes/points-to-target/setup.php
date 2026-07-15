@@ -1,7 +1,6 @@
 <?php
 $page_title = 'pages.pointsToTargetSetup.title';
 $active_nav = null;
-$nav_variant = 'setup';
 $page_h1 = '<h1 data-i18n="modes.pointsToTarget.title">Punkte bis Höchstwert</h1>';
 $page_subtitle = '<p class="app-header__subtitle" data-i18n="pointsToTarget.setup.subtitle">Neues Spiel einrichten (z.B. Flip7, Tutto)</p>';
 require __DIR__ . '/../../includes/header.php';

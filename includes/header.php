@@ -8,8 +8,8 @@
  * - $page_title    (string) i18n-Schluessel fuer den <title>-Zusatz
  *                   (z.B. 'pages.home.title')
  * - $active_nav    (string|null) Slug der aktuellen Seite, wird aus der
- *                   Nav ausgeblendet (siehe includes/nav.php)
- * - $nav_variant    (string) 'full' (Standard) | 'setup' | 'game' | 'chooser'
+ *                   Nav ausgeblendet (siehe includes/nav.php) - die Nav
+ *                   zeigt sonst auf jeder Seite dieselben Eintraege.
  * - $page_h1        (string) fertiges <h1>...</h1>-Markup
  * - $page_subtitle  (string, optional) fertiges <p>...</p>-Markup direkt
  *                    nach dem <h1>
@@ -22,7 +22,6 @@
 
 require_once __DIR__ . '/nav.php';
 
-$navVariant = $nav_variant ?? 'full';
 $headerClass = 'app-header' . (!empty($header_class) ? ' ' . $header_class : '');
 // Cache-Buster ueber die App-Version - ohne das wuerden Browser CSS/JS nach
 // einem Release ggf. veraltet aus dem Cache bedienen, obwohl das HTML schon
@@ -66,7 +65,7 @@ $appVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
         <span class="app-nav-toggle__bar"></span>
       </button>
       <nav class="app-nav" id="app-nav" aria-label="Hauptnavigation">
-<?= render_nav($active_nav ?? null, $navVariant) ?>      </nav>
+<?= render_nav($active_nav ?? null) ?>      </nav>
     </div>
     <?= $page_h1 ?? '' ?>
 

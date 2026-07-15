@@ -1,7 +1,6 @@
 <?php
 $page_title = 'pages.fixedRoundsSetup.title';
 $active_nav = null;
-$nav_variant = 'setup';
 $page_h1 = '<h1 data-i18n="modes.fixedRounds.title">Punkterunde mit fester Rundenzahl</h1>';
 $page_subtitle = '<p class="app-header__subtitle" data-i18n="fixedRounds.setup.subtitle">Neues Spiel einrichten</p>';
 require __DIR__ . '/../../includes/header.php';

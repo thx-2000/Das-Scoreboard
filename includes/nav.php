@@ -3,8 +3,10 @@
 /**
  * Zentrale Navigations-Konfiguration + Renderer. Frueher war die Nav in
  * jeder der ~17 Seiten dupliziert (Anpassungen mussten ueberall einzeln
- * nachgezogen werden) - jetzt gibt es genau eine Stelle. Die aktuelle Seite
- * wird nicht hervorgehoben, sondern (wie schon immer) komplett aus der Nav
+ * nachgezogen werden) - jetzt gibt es genau eine Stelle, die auf jeder
+ * Seite dieselben Eintraege zeigt (kein reduziertes Menue je Seitentyp
+ * mehr, das war eine Quelle fuer scheinbar "fehlende" Eintraege). Die
+ * aktuelle Seite wird nicht hervorgehoben, sondern komplett aus der Nav
  * ausgeblendet.
  */
 function nav_items(): array
@@ -19,30 +21,10 @@ function nav_items(): array
     ];
 }
 
-/**
- * Welche Slugs je Seiten-Typ ueberhaupt infrage kommen (unabhaengig von der
- * zusaetzlichen Ausblendung der aktuellen Seite selbst) - Setup-Seiten und
- * Spielansichten brauchten schon vor diesem Refactor bewusst eine kuerzere
- * Nav als die Hauptseiten.
- */
-function nav_variant_slugs(string $variant): array
+function render_nav(?string $activeNav): string
 {
-    return match ($variant) {
-        'setup' => ['home'],
-        'game' => ['home', 'history'],
-        'chooser' => ['home', 'players', 'history', 'settings'],
-        default => ['home', 'players', 'history', 'stats', 'chooser', 'settings'],
-    };
-}
-
-function render_nav(?string $activeNav, string $variant = 'full'): string
-{
-    $allowed = nav_variant_slugs($variant);
     $html = '';
     foreach (nav_items() as $item) {
-        if (!in_array($item['slug'], $allowed, true)) {
-            continue;
-        }
         if ($item['slug'] === $activeNav) {
             continue;
         }

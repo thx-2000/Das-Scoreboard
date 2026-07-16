@@ -16,12 +16,14 @@ function default_settings(): array
         'app_title' => 'Das Scoreboard',
         'sound_enabled' => '1',
 
-        // 'classic' (Standard, heutiger Look) | 'bold' ("Bold Scorekeeper" -
-        // dunkles, hochkontrastiges zweites Aussehen). Bold nutzt eigene,
-        // feste Farb-Tokens (siehe css/style.css [data-theme-style="bold"])
-        // statt der unten stehenden individuell einstellbaren Farben - die
-        // gelten weiterhin ausschliesslich fuer Classic.
-        'theme_style' => 'classic',
+        // 'classic' | 'bold' ("Bold Scorekeeper" - dunkles, hochkontrastiges
+        // zweites Aussehen) | 'flip' ("Flip Board" - Anzeigetafel-Optik,
+        // Standard seit dessen Einfuehrung). Bold nutzt eigene, feste
+        // Farb-Tokens (siehe css/style.css [data-theme-style="bold"]) statt
+        // der unten stehenden individuell einstellbaren Farben - die gelten
+        // nur fuer Classic. Flip Board hat eigene Hex-Felder (flip_color_*),
+        // parallel zu Classic, aber mit kleinerem Feldsatz.
+        'theme_style' => 'flip',
 
         // Vereinfachte Akzentfarben-Auswahl (5 Presets, siehe
         // accent_color_palette()) - ist der sichtbare Hauptteil der
@@ -41,6 +43,24 @@ function default_settings(): array
         // Nur fuer Bold relevant. 'classic' (Standard, heutige Kartenoptik) |
         // 'modern' (groesserer Radius, weicherer Schatten, dezenterer Rand).
         'bold_card_style' => 'classic',
+
+        // Vereinfachte Akzentfarben-Auswahl fuer Flip Board (5 Presets, siehe
+        // flip_accent_palette()) - aendert nur die beiden flip_color_accent_*
+        // Felder unten, Hintergrund/Flaeche/Text bleiben davon unberuehrt.
+        'flip_accent' => 'amber',
+
+        // Flip Board eigene Basisfarben (Hell/Dunkel getrennt wie bei
+        // Classic, aber kleinerer Feldsatz: kein eigenes Rand/Fokus/Fehler-Set,
+        // die Anzeigetafel-Optik leitet Rahmen/Trennlinien direkt aus der
+        // Textfarbe ab, siehe css/style.css [data-theme-style="flip"]).
+        'flip_color_bg_light' => '#edeef0',
+        'flip_color_bg_dark' => '#14171a',
+        'flip_color_surface_light' => '#ffffff',
+        'flip_color_surface_dark' => '#1e2226',
+        'flip_color_ink_light' => '#16181b',
+        'flip_color_ink_dark' => '#f2efe6',
+        'flip_color_accent_light' => '#c9761a',
+        'flip_color_accent_dark' => '#f2a93b',
 
         // 'none' (Standard) | 'square' | 'banner'. Die _ext-Werte ('' = kein
         // Logo hochgeladen, sonst 'png'/'jpg'/'svg') werden ausschliesslich
@@ -138,6 +158,22 @@ function bold_background_palette(): array
 }
 
 /**
+ * 5 kuratierte Akzentfarben-Presets fuer Flip Board (Hell-/Dunkel-Variante,
+ * gleiches Prinzip wie accent_color_palette() fuer Bold) - Auswahl ueberschreibt
+ * ausschliesslich flip_color_accent_light/_dark, nicht Hintergrund/Flaeche/Text.
+ */
+function flip_accent_palette(): array
+{
+    return [
+        'amber' => ['#c9761a', '#f2a93b'],
+        'petrol' => ['#1f7a6c', '#4fd6bd'],
+        'karmesin' => ['#b23a3a', '#ef6a6a'],
+        'waldgruen' => ['#3f7a4d', '#8bd17c'],
+        'violett' => ['#6a4fb2', '#b39ddb'],
+    ];
+}
+
+/**
  * Speichert nur bekannte Settings-Schluessel mit gueltigem Wert (Hex-Farbe
  * bzw. unterstuetzte Sprache) - unbekannte oder ungueltige Eintraege werden
  * stillschweigend uebersprungen, damit ein Tippfehler im Request nicht die
@@ -177,7 +213,7 @@ function save_settings(PDO $pdo, array $updates): void
                 continue;
             }
         } elseif ($key === 'theme_style') {
-            if (!in_array($value, ['classic', 'bold'], true)) {
+            if (!in_array($value, ['classic', 'bold', 'flip'], true)) {
                 continue;
             }
         } elseif ($key === 'bold_accent') {
@@ -190,6 +226,10 @@ function save_settings(PDO $pdo, array $updates): void
             }
         } elseif ($key === 'bold_card_style') {
             if (!in_array($value, ['classic', 'modern'], true)) {
+                continue;
+            }
+        } elseif ($key === 'flip_accent') {
+            if (!array_key_exists($value, flip_accent_palette())) {
                 continue;
             }
         } elseif ($key === 'round_entry_steps') {

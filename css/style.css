@@ -2338,3 +2338,688 @@ main {
   border-color: transparent;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 20px 48px rgba(0, 0, 0, 0.55);
 }
+
+/* ==========================================================================
+   "Flip Board" Theme (drittes, waehlbares Aussehen - seit Einfuehrung Standard)
+   ==========================================================================
+   Aktiviert per [data-theme-style="flip"] auf <html> (js/theme.js). Folgt wie
+   Classic dem System-Farbschema (nicht fest dunkel wie Bold), eigener,
+   kleinerer Feldsatz (bg/surface/text/akzent, siehe includes/settings.php).
+   Anzeigetafel-Konzept: flache, kantige Flaechen (kein Radius/Schatten-
+   Ueberladen wie Bold), Haarlinien-Trennstriche statt Kartenschatten,
+   Tabellen-Ziffern in Monospace, ein einzelner kuratierter Akzent statt
+   4 Spielerfarben im Punktestand. Nur Header + Punktestand sitzen auf einer
+   matten Glasflaeche (backdrop-filter), alles andere bleibt flach/matt.
+   Ueberschreibt dieselben CSS-Variablen wie Classic/Bold, deshalb recolort
+   sich die komplette bestehende Seiten-Struktur automatisch. */
+:root[data-theme-style="flip"] {
+  --color-bg: #edeef0;
+  --color-surface: #ffffff;
+  --color-text: #16181b;
+  --color-text-muted: color-mix(in srgb, var(--color-text) 60%, var(--color-bg));
+  --color-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+
+  /* Amber/Bernstein als kuratierter Standard-Akzent (siehe
+     includes/settings.php flip_accent_palette() fuer die 4 Alternativ-
+     Presets) - "-strong" rein per CSS aus dem Akzent abgeleitet, keine
+     eigene Einstellung noetig. Amber-Slot bewusst auf denselben Akzent
+     gemappt statt einer zweiten, nicht konfigurierbaren Farbe. */
+  --color-green: #c9761a;
+  --color-green-strong: color-mix(in srgb, var(--color-green) 75%, black);
+  --color-amber: var(--color-green);
+  --color-amber-strong: var(--color-green-strong);
+
+  --color-on-accent: #16181b;
+  --color-focus: var(--color-green);
+  --color-danger: #c0392b;
+
+  /* Feste Spielerfarben (nicht ueber Akzent-Presets konfigurierbar, gleiches
+     Prinzip wie Bolds --player-color-*) - nur fuer den Donut-Chart der
+     Modus-Verteilung genutzt, im Punktestand haelt Flip Board bewusst nur
+     die Fuehrungs-Zeile farblich fest (siehe .standings-card weiter unten). */
+  --player-color-1: #c9761a;
+  --player-color-2: #1f7a6c;
+  --player-color-3: #b23a3a;
+  --player-color-4: #6a4fb2;
+
+  --radius: 6px;
+  --shadow-card: 0 16px 32px -16px color-mix(in srgb, var(--color-text) 24%, transparent);
+
+  --font-display: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Roboto Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+[data-theme-style="flip"] h1,
+[data-theme-style="flip"] h2,
+[data-theme-style="flip"] h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+[data-theme-style="flip"] .btn {
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+[data-theme-style="flip"] .card {
+  border-radius: var(--radius);
+}
+
+/* Sticky Glas-Header (Blur) - einziger durchgaengiger "Glas"-Akzent, alles
+   andere bleibt flach/matt. */
+[data-theme-style="flip"] .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: color-mix(in srgb, var(--color-bg) 75%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.6rem;
+}
+
+[data-theme-style="flip"] .app-header__accent {
+  display: none;
+}
+
+/* ---- Startseite: kompakte Icon-Kacheln in einem Raster statt Karten mit
+   Fliesstext, "Wer faengt an?" als voller Balken statt Karte ---- */
+
+[data-theme-style="flip"] .mode-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+}
+
+@media (min-width: 700px) {
+  [data-theme-style="flip"] .mode-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+[data-theme-style="flip"] .mode-card {
+  border-top: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1rem 0.9rem;
+}
+
+[data-theme-style="flip"] .mode-card:hover {
+  transform: none;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--color-text) 4%, var(--color-surface));
+}
+
+[data-theme-style="flip"] .mode-card h2 {
+  font-size: 0.9rem;
+}
+
+[data-theme-style="flip"] .mode-card p,
+[data-theme-style="flip"] .mode-card__examples {
+  display: none;
+}
+
+[data-theme-style="flip"] .mode-card__icon {
+  display: block;
+  font-size: 1.7rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme-style="flip"] .home-quick-action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-text);
+  color: var(--color-bg);
+  box-shadow: none;
+  padding: 1rem 1.25rem;
+}
+
+[data-theme-style="flip"] .home-quick-action__icon {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+[data-theme-style="flip"] .home-quick-action__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+[data-theme-style="flip"] .home-quick-action__title {
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+[data-theme-style="flip"] .home-quick-action__hint {
+  color: color-mix(in srgb, var(--color-bg) 65%, var(--color-text));
+  font-size: 0.82rem;
+}
+
+/* ---- Spielerverwaltung: vollflaechig eingefaerbte Zeilen wie Bold, aber
+   kantig statt abgerundet ---- */
+
+[data-theme-style="flip"] .player-list li {
+  border-radius: 0;
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding: 0.75rem 1rem;
+}
+
+[data-theme-style="flip"] .player-list li[data-player-color="1"] { border-left-color: var(--player-color-1); background: color-mix(in srgb, var(--player-color-1) 14%, var(--color-surface)); }
+[data-theme-style="flip"] .player-list li[data-player-color="2"] { border-left-color: var(--player-color-2); background: color-mix(in srgb, var(--player-color-2) 14%, var(--color-surface)); }
+[data-theme-style="flip"] .player-list li[data-player-color="3"] { border-left-color: var(--player-color-3); background: color-mix(in srgb, var(--player-color-3) 14%, var(--color-surface)); }
+[data-theme-style="flip"] .player-list li[data-player-color="4"] { border-left-color: var(--player-color-4); background: color-mix(in srgb, var(--player-color-4) 14%, var(--color-surface)); }
+
+[data-theme-style="flip"] .player-avatar {
+  border-radius: 3px;
+}
+
+/* ---- Verlauf: Filter-Tabs mit Unterstrich-Akzent, Spiele als Ledger-Zeilen
+   statt Karten ---- */
+
+[data-theme-style="flip"] .filter-tabs {
+  gap: 0;
+}
+
+[data-theme-style="flip"] .filter-tabs__btn {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+[data-theme-style="flip"] .filter-tabs__btn[aria-selected="true"] {
+  background: color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+[data-theme-style="flip"] .history-item {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  padding: 0.85rem 0.25rem;
+}
+
+[data-theme-style="flip"] .history-item:hover {
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-text) 5%, transparent);
+}
+
+[data-theme-style="flip"] .badge {
+  border-radius: 3px;
+}
+
+/* ---- Setup-Seiten: kantiger Stepper, Auswahlkarten, Hinweiskasten ---- */
+
+[data-theme-style="flip"] .stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+[data-theme-style="flip"] .stepper__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+[data-theme-style="flip"] .stepper__btn:active {
+  background: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
+}
+
+[data-theme-style="flip"] .stepper input {
+  flex: 1;
+  max-width: 120px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+[data-theme-style="flip"] .player-chip {
+  border-radius: 4px;
+}
+
+[data-theme-style="flip"] .player-chip--checked {
+  box-shadow: inset 0 -2px 0 var(--color-green);
+}
+
+[data-theme-style="flip"] .winner-card {
+  flex: 1;
+  min-width: 150px;
+  justify-content: center;
+  padding: 0.9rem;
+  border-width: 1px;
+  font-size: 0.95rem;
+}
+
+[data-theme-style="flip"] #setup-form > button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+[data-theme-style="flip"] .setup-callout {
+  border-radius: 0;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-green);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+[data-theme-style="flip"] .advanced-options {
+  border-radius: 4px;
+}
+
+[data-theme-style="flip"] .group-chip {
+  border-radius: 4px;
+}
+
+[data-theme-style="flip"] .group-list__item {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+}
+
+/* ---- Aktive Ansicht (3 Punkte-Modi): Punktestand als Glas-Panel mit
+   Fuehrungs-Zeile, Rundenerfassung als kombiniertes Tipp-/Stepper-Muster
+   (siehe js/round-entry.js buildFlipRoundEntry() + #round-entry-flip) -
+   ersetzt in Flip Board vollstaendig das Tippen/Schritt-Buttons-Grid UND
+   die umschaltbare Ein-Spieler-Sequenz aus Classic/Bold: Tippen und
+   Schritt-Buttons sind hier gleichzeitig sichtbar, kein Umschalt-Knopf
+   noetig (siehe #round-entry-mode-btn unten). ---- */
+
+[data-theme-style="flip"] .standings-table {
+  display: none;
+}
+
+[data-theme-style="flip"] .standings-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+[data-theme-style="flip"] .standings-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-left: none;
+  border-radius: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  background: transparent;
+}
+
+[data-theme-style="flip"] .standings-card:last-child {
+  border-bottom: none;
+}
+
+/* Nur die Fuehrungs-Zeile farblich hervorgehoben (eine kuratierte
+   Akzentfarbe statt 4 Spielerfarben, anders als Bold) - .standings-cards
+   ist bereits nach Rang sortiert, daher reicht :first-child. */
+[data-theme-style="flip"] .standings-card:first-child {
+  background: color-mix(in srgb, var(--color-green) 10%, transparent);
+}
+
+[data-theme-style="flip"] .standings-card:first-child .standings-card__rank {
+  color: var(--color-green-strong);
+  font-weight: 800;
+}
+
+[data-theme-style="flip"] .standings-card__rank {
+  flex-shrink: 0;
+  width: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+[data-theme-style="flip"] .standings-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+[data-theme-style="flip"] .standings-card .standings-name span {
+  font-weight: 600;
+}
+
+[data-theme-style="flip"] .standings-card__percent {
+  display: none;
+}
+
+[data-theme-style="flip"] .standings-card__points {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+[data-theme-style="flip"] .mini-progress {
+  height: 3px;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+[data-theme-style="flip"] .standings-card .mini-progress__fill {
+  background: var(--color-green);
+  border-radius: 0;
+}
+
+[data-theme-style="flip"] #round-form-grid,
+[data-theme-style="flip"] .round-entry-sequence,
+[data-theme-style="flip"] #round-entry-mode-btn {
+  display: none;
+}
+
+[data-theme-style="flip"] #round-entry-card #save-round-btn {
+  width: 100%;
+  padding: 0.95rem;
+  font-size: 1rem;
+}
+
+[data-theme-style="flip"] .entry-row {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  padding: 0.65rem 0.1rem;
+}
+
+[data-theme-style="flip"] .entry-row:last-child {
+  border-bottom: none;
+}
+
+[data-theme-style="flip"] .entry-row__main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+[data-theme-style="flip"] .entry-row__name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-theme-style="flip"] .entry-row__step {
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+[data-theme-style="flip"] .entry-row__step:active {
+  background: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
+}
+
+[data-theme-style="flip"] .entry-row__value {
+  width: 4.5rem;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--color-text) 6%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.4rem 0.2rem;
+  color: var(--color-text);
+}
+
+[data-theme-style="flip"] .entry-row__chips {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.45rem 0 0 2.8rem;
+  flex-wrap: wrap;
+}
+
+[data-theme-style="flip"] .entry-row__chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+[data-theme-style="flip"] .entry-row__chip:active {
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+/* ---- RAGE-Aktivansicht: gleiches Glas-Punktestand-Muster (oben), Mini-
+   Stepper-Karten flach/kantig statt farbiger Karten je Spieler ---- */
+
+[data-theme-style="flip"] #round-entry-table-wrap {
+  display: none;
+}
+
+[data-theme-style="flip"] .rage-round-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--color-border);
+}
+
+[data-theme-style="flip"] .rage-round-card {
+  border-left: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 0.85rem 1rem;
+}
+
+[data-theme-style="flip"] .rage-round-card:last-child {
+  border-bottom: none;
+}
+
+[data-theme-style="flip"] .rage-round-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+[data-theme-style="flip"] .rage-round-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+[data-theme-style="flip"] .rage-round-card__preview {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+[data-theme-style="flip"] .rage-round-card__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+[data-theme-style="flip"] .rage-stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-text) 5%, transparent);
+}
+
+[data-theme-style="flip"] .rage-stepper__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+}
+
+[data-theme-style="flip"] .rage-stepper__control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-theme-style="flip"] .rage-stepper__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+[data-theme-style="flip"] .rage-stepper__btn:active {
+  background: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
+}
+
+[data-theme-style="flip"] .rage-stepper__value {
+  font-family: var(--font-mono);
+  min-width: 1.4rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ---- Statistiken: Monospace-Ziffern, Kopf-an-Kopf-Zeilen als Ledger statt
+   Karten ---- */
+
+[data-theme-style="flip"] .kpi-tile__value {
+  font-family: var(--font-mono);
+  color: var(--color-text);
+}
+
+[data-theme-style="flip"] .h2h-row {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  padding: 0.75rem 0.25rem;
+}
+
+[data-theme-style="flip"] .h2h-row:hover {
+  background: color-mix(in srgb, var(--color-text) 5%, transparent);
+}
+
+[data-theme-style="flip"] .stats-table tr.rank-first td:nth-child(2) {
+  color: var(--color-green-strong);
+}
+
+/* ---- Einstellungen: Flip-Board Farbvorschlaege (5 Presets als Vorschau-
+   Kacheln statt reiner Farbpunkte, siehe includes/settings.php
+   flip_accent_palette()). Theme-unabhaengig (nicht [data-theme-style="flip"]
+   gescoped) - der Abschnitt wird per JS ein-/ausgeblendet, unabhaengig vom
+   gerade AKTIVEN Theme waehrend man in den Einstellungen blaettert, genau
+   wie .accent-color-picker/.color-field-grid oben. ---- */
+
+.flip-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+@media (min-width: 700px) {
+  .flip-preset-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.flip-preset-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-preset-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.flip-preset-card:has(input:checked) {
+  outline: 2px solid var(--flip-preset-color, var(--color-green));
+  outline-offset: -1px;
+}
+
+.flip-preset-card:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.flip-preset-card__swatch {
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--flip-preset-color, var(--color-green)) 18%, var(--color-bg));
+  display: grid;
+  place-items: center;
+}
+
+.flip-preset-card__swatch::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--flip-preset-color, var(--color-green));
+}
+
+.flip-preset-card__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+}

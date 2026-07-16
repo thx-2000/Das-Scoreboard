@@ -10,6 +10,7 @@ const roundEntryCard = document.getElementById('round-entry-card');
 const roundEntryModeBtn = document.getElementById('round-entry-mode-btn');
 const roundFormGrid = document.getElementById('round-form-grid');
 const roundEntrySequence = document.getElementById('round-entry-sequence');
+const roundEntryFlip = document.getElementById('round-entry-flip');
 const saveRoundBtn = document.getElementById('save-round-btn');
 const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
@@ -144,6 +145,18 @@ function renderRoundEntrySequence(state) {
   window.buildRoundEntryPicker(roundEntrySequence, window.groupPlayersByTeam(state.players, state.teamScoring), state.players, state.allowNegative);
 }
 
+/**
+ * Flip Board: Tipp-Feld + Schritt-Buttons gleichzeitig statt Sequenz-Picker
+ * (siehe js/round-entry.js buildFlipRoundEntry()).
+ */
+function renderRoundEntryFlip(state) {
+  if (state.status === 'finished') {
+    roundEntryFlip.innerHTML = '';
+    return;
+  }
+  window.buildFlipRoundEntry(roundEntryFlip, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative);
+}
+
 function renderRoundsTable(state) {
   roundsTableHead.innerHTML = `<th scope="col">${window.t('common.table.round')}</th>`;
   state.players.forEach((player) => {
@@ -237,6 +250,7 @@ function render(state) {
   renderWinnerBanner(state);
   renderRoundEntryForm(state);
   renderRoundEntrySequence(state);
+  renderRoundEntryFlip(state);
   renderRoundsTable(state);
   renderUndoButton(state);
 }

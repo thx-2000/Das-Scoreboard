@@ -106,20 +106,48 @@
     }
   },
   "pages": {
-    "home": { "title": "Game night scorekeeper" },
-    "players": { "title": "Manage players" },
-    "stats": { "title": "Statistics" },
-    "history": { "title": "Game history" },
-    "settings": { "title": "Settings" },
-    "pointsToTargetSetup": { "title": "Points to target — New game" },
-    "pointsToTargetGame": { "title": "Points to target" },
-    "pointsOpenSetup": { "title": "Open point round — New game" },
-    "pointsOpenGame": { "title": "Open point round" },
-    "fixedRoundsSetup": { "title": "Points round with fixed round count — New game" },
-    "fixedRoundsGame": { "title": "Points round with fixed round count" },
-    "rageSetup": { "title": "RAGE — New game" },
-    "rageGame": { "title": "RAGE" },
-    "chooser": { "title": "Who starts?" }
+    "home": {
+      "title": "Game night scorekeeper"
+    },
+    "players": {
+      "title": "Manage players"
+    },
+    "stats": {
+      "title": "Statistics"
+    },
+    "history": {
+      "title": "Game history"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "pointsToTargetSetup": {
+      "title": "Points to target — New game"
+    },
+    "pointsToTargetGame": {
+      "title": "Points to target"
+    },
+    "pointsOpenSetup": {
+      "title": "Open point round — New game"
+    },
+    "pointsOpenGame": {
+      "title": "Open point round"
+    },
+    "fixedRoundsSetup": {
+      "title": "Points round with fixed round count — New game"
+    },
+    "fixedRoundsGame": {
+      "title": "Points round with fixed round count"
+    },
+    "rageSetup": {
+      "title": "RAGE — New game"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Who starts?"
+    }
   },
   "modes": {
     "pointsToTarget": {
@@ -293,7 +321,7 @@
     "subtitle": "Applies to everyone using this app (stored globally).",
     "theme": {
       "heading": "Appearance",
-      "hint": "Two independent looks to choose from. Fine-tuning of the colors can be found further below under \"Colors in detail\".",
+      "hint": "Three independent looks to choose from. Fine-tuning of the colors can be found further below under \"Colors in detail\".",
       "classic": "Classic",
       "bold": "Bold Scorekeeper",
       "accentLabel": "Accent color",
@@ -314,6 +342,15 @@
       "cardStyle": {
         "classic": "Classic",
         "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Color suggestion",
+      "flipPreset": {
+        "amber": "Amber",
+        "petrol": "Teal",
+        "karmesin": "Crimson",
+        "waldgruen": "Forest green",
+        "violett": "Violet"
       }
     },
     "title": {
@@ -366,6 +403,10 @@
         "hint": "Background, surface, text, and border — once each for light and dark mode.",
         "light": "Light",
         "dark": "Dark"
+      },
+      "flip": {
+        "heading": "Flip Board colors",
+        "hint": "Overrides the color suggestion selected above — once each for light and dark mode."
       }
     },
     "resetButton": "Reset to default colors",

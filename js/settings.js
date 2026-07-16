@@ -15,21 +15,47 @@ const pairColorsSection = document.getElementById('pair-colors-section');
 const boldColorsNote = document.getElementById('bold-colors-note');
 const boldBackgroundSection = document.getElementById('bold-background-section');
 const boldCardStyleSection = document.getElementById('bold-card-style-section');
+const sharedAccentSection = document.getElementById('shared-accent-section');
+const flipPresetSection = document.getElementById('flip-preset-section');
+const flipColorsSection = document.getElementById('flip-colors-section');
+const flipColorFields = document.getElementById('flip-color-fields');
 const roundEntryStepsFields = document.getElementById('round-entry-steps-fields');
 const ROUND_ENTRY_STEP_VALUES = [1, 5, 10, 50, 100, 500, 1000];
 
-// Die Akzentfarben-Praesets (bold-accent) gelten fuer beide Themes (siehe
-// includes/settings.php::accent_color_palette()) und bleiben deshalb immer
-// sichtbar - nur die Hex-Feinjustierung (Classic) bzw. Hintergrund/
-// Kartenstil-Presets (Bold) sind je nach gewaehltem Theme ein-/ausgeblendet.
+// Gespiegelt aus includes/settings.php::flip_accent_palette() - nur hier
+// benoetigt (Schnellwahl-Klick ueberschreibt flip_color_accent_light/_dark),
+// theme.js braucht die Palette nicht, da es die bereits gespeicherten
+// flip_color_accent_*-Felder direkt liest. Eigener Name (nicht
+// ACCENT_COLOR_PALETTE) vermeidet eine doppelte Top-Level-const im selben
+// globalen Skript-Scope wie theme.js.
+const FLIP_ACCENT_PALETTE = {
+  amber: ['#c9761a', '#f2a93b'],
+  petrol: ['#1f7a6c', '#4fd6bd'],
+  karmesin: ['#b23a3a', '#ef6a6a'],
+  waldgruen: ['#3f7a4d', '#8bd17c'],
+  violett: ['#6a4fb2', '#b39ddb'],
+};
+
+// Je nach gewaehltem Theme (classic/bold/flip) sind unterschiedliche
+// Unterabschnitte relevant: die gemeinsame 5-Punkte-Schnellwahl (Bold +
+// Classic-Quickset) und Classic-Hex-Feinjustierung nur bei Classic/Bold,
+// Flip Boards eigene Presets/Hex-Felder nur bei Flip, Bold-Hintergrund/
+// Kartenstil nur bei Bold.
 function updateColorSectionsVisibility() {
   const checked = document.querySelector('input[name="theme-style"]:checked');
-  const isBold = Boolean(checked) && checked.value === 'bold';
-  singleColorsSection.hidden = isBold;
-  pairColorsSection.hidden = isBold;
+  const theme = checked ? checked.value : 'classic';
+  const isBold = theme === 'bold';
+  const isFlip = theme === 'flip';
+
+  sharedAccentSection.hidden = isFlip;
+  singleColorsSection.hidden = isBold || isFlip;
+  pairColorsSection.hidden = isBold || isFlip;
   boldColorsNote.hidden = !isBold;
   boldBackgroundSection.hidden = !isBold;
   boldCardStyleSection.hidden = !isBold;
+
+  flipPresetSection.hidden = !isFlip;
+  flipColorsSection.hidden = !isFlip;
 }
 
 // Event-Delegation auf document statt Listener je Radio-Element - robuster
@@ -49,7 +75,26 @@ function applyBoldPresetChecks(settings) {
   document.querySelectorAll('input[name="bold-card-style"]').forEach((input) => {
     input.checked = input.value === (settings.bold_card_style || 'classic');
   });
+  document.querySelectorAll('input[name="flip-accent"]').forEach((input) => {
+    input.checked = input.value === (settings.flip_accent || 'amber');
+  });
 }
+
+// Flip-Board-Presetwahl ueberschreibt flip_color_accent_light/_dark direkt -
+// gleiches Schnellwahl-Prinzip wie der bold-accent-Listener unten fuer
+// Classic, nur fuer Flip Boards eigenen Feldsatz.
+document.addEventListener('change', (event) => {
+  if (event.target.name !== 'flip-accent') return;
+  const pair = FLIP_ACCENT_PALETTE[event.target.value];
+  if (!pair) return;
+  ['flip_color_accent_light', 'flip_color_accent_dark'].forEach((key, index) => {
+    const hexInput = document.querySelector(`.color-field__hex[data-setting-key="${key}"]`);
+    if (hexInput) {
+      hexInput.value = pair[index];
+      hexInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+});
 
 // Nutzt die in js/theme.js bereits deklarierte ACCENT_COLOR_PALETTE (dort
 // vor settings.js eingebunden, siehe includes/footer.php) - unter Classic
@@ -111,6 +156,15 @@ function themePairs() {
     { key: 'color_text', label: window.t('settings.colorLabels.text') },
     { key: 'color_text_muted', label: window.t('settings.colorLabels.textMuted') },
     { key: 'color_border', label: window.t('settings.colorLabels.border') },
+  ];
+}
+
+function flipColorPairs() {
+  return [
+    { key: 'flip_color_bg', label: window.t('settings.colorLabels.bg') },
+    { key: 'flip_color_surface', label: window.t('settings.colorLabels.surface') },
+    { key: 'flip_color_ink', label: window.t('settings.colorLabels.text') },
+    { key: 'flip_color_accent', label: window.t('settings.theme.accentLabel') },
   ];
 }
 
@@ -191,6 +245,14 @@ function renderColorFields(settings) {
     group.appendChild(row);
 
     themePairFields.appendChild(group);
+  });
+}
+
+function renderFlipColorFields(settings) {
+  flipColorFields.innerHTML = '';
+  flipColorPairs().forEach(({ key, label }) => {
+    flipColorFields.appendChild(createColorField(`${key}_light`, `${label} (${window.t('settings.colors.pairs.light')})`, settings[`${key}_light`]));
+    flipColorFields.appendChild(createColorField(`${key}_dark`, `${label} (${window.t('settings.colors.pairs.dark')})`, settings[`${key}_dark`]));
   });
 }
 
@@ -294,6 +356,7 @@ async function loadSettings() {
   updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
+  renderFlipColorFields(data.settings);
   renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
 }
@@ -304,6 +367,7 @@ function collectFormValues() {
   const boldAccentInput = document.querySelector('input[name="bold-accent"]:checked');
   const boldBackgroundInput = document.querySelector('input[name="bold-background"]:checked');
   const boldCardStyleInput = document.querySelector('input[name="bold-card-style"]:checked');
+  const flipAccentInput = document.querySelector('input[name="flip-accent"]:checked');
   const values = {
     language: languageSelect.value,
     app_title: appTitleInput.value.trim(),
@@ -313,6 +377,7 @@ function collectFormValues() {
     bold_accent: boldAccentInput ? boldAccentInput.value : 'green',
     bold_background: boldBackgroundInput ? boldBackgroundInput.value : 'dark',
     bold_card_style: boldCardStyleInput ? boldCardStyleInput.value : 'classic',
+    flip_accent: flipAccentInput ? flipAccentInput.value : 'amber',
   };
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;
@@ -341,6 +406,7 @@ saveBtn.addEventListener('click', async () => {
   const data = await response.json();
   currentSettings = data.settings;
   renderColorFields(data.settings);
+  renderFlipColorFields(data.settings);
   renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   showStatus(window.t('settings.savedStatus'));
@@ -362,9 +428,11 @@ resetBtn.addEventListener('click', async () => {
   document.querySelectorAll('input[name="theme-style"]').forEach((input) => {
     input.checked = input.value === (data.settings.theme_style || 'classic');
   });
+  applyBoldPresetChecks(data.settings);
   updateColorSectionsVisibility();
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
+  renderFlipColorFields(data.settings);
   renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   showStatus(window.t('settings.resetStatus'));

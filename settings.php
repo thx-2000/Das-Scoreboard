@@ -9,19 +9,23 @@ require __DIR__ . '/includes/header.php';
   <main id="main">
     <section class="card">
       <h2 data-i18n="settings.theme.heading">Aussehen</h2>
-      <p class="hint-text" data-i18n="settings.theme.hint">Zwei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich "Farben im Detail".</p>
+      <p class="hint-text" data-i18n="settings.theme.hint">Drei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich "Farben im Detail".</p>
       <div class="player-picker">
         <label class="player-chip winner-card">
-          <input type="radio" name="theme-style" value="classic" checked>
+          <input type="radio" name="theme-style" value="classic">
           <span data-i18n="settings.theme.classic">Classic</span>
         </label>
         <label class="player-chip winner-card">
           <input type="radio" name="theme-style" value="bold">
           <span data-i18n="settings.theme.bold">Bold Scorekeeper</span>
         </label>
+        <label class="player-chip winner-card">
+          <input type="radio" name="theme-style" value="flip" checked>
+          <span data-i18n="settings.theme.flip">Flip Board</span>
+        </label>
       </div>
 
-      <div class="settings-subsection">
+      <div class="settings-subsection" id="shared-accent-section">
         <label data-i18n="settings.theme.accentLabel">Akzentfarbe</label>
         <div class="accent-color-picker" id="accent-color-picker">
           <label class="accent-color-dot" style="--dot-color:#b6ff1a">
@@ -43,6 +47,37 @@ require __DIR__ . '/includes/header.php';
           <label class="accent-color-dot" style="--dot-color:#22d3ee">
             <input type="radio" name="bold-accent" value="cyan">
             <span class="visually-hidden" data-i18n="settings.theme.accent.cyan">Cyan</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-subsection" id="flip-preset-section" hidden>
+        <label data-i18n="settings.theme.flipPresetLabel">Farbvorschlag</label>
+        <div class="flip-preset-grid" id="flip-preset-picker">
+          <label class="flip-preset-card" style="--flip-preset-color:#c9761a">
+            <input type="radio" name="flip-accent" value="amber" checked>
+            <span class="flip-preset-card__swatch" aria-hidden="true"></span>
+            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.amber">Bernstein</span>
+          </label>
+          <label class="flip-preset-card" style="--flip-preset-color:#1f7a6c">
+            <input type="radio" name="flip-accent" value="petrol">
+            <span class="flip-preset-card__swatch" aria-hidden="true"></span>
+            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.petrol">Petrol</span>
+          </label>
+          <label class="flip-preset-card" style="--flip-preset-color:#b23a3a">
+            <input type="radio" name="flip-accent" value="karmesin">
+            <span class="flip-preset-card__swatch" aria-hidden="true"></span>
+            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.karmesin">Karmesin</span>
+          </label>
+          <label class="flip-preset-card" style="--flip-preset-color:#3f7a4d">
+            <input type="radio" name="flip-accent" value="waldgruen">
+            <span class="flip-preset-card__swatch" aria-hidden="true"></span>
+            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.waldgruen">Waldgrün</span>
+          </label>
+          <label class="flip-preset-card" style="--flip-preset-color:#6a4fb2">
+            <input type="radio" name="flip-accent" value="violett">
+            <span class="flip-preset-card__swatch" aria-hidden="true"></span>
+            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.violett">Violett</span>
           </label>
         </div>
       </div>
@@ -177,6 +212,12 @@ require __DIR__ . '/includes/header.php';
           <h3 data-i18n="settings.colors.pairs.heading">Basis-Farben (Hell- / Dunkelmodus getrennt)</h3>
           <p class="hint-text" data-i18n="settings.colors.pairs.hint">Hintergrund, Fläche, Text und Rahmen — je einmal für Hell- und einmal für Dunkelmodus.</p>
           <div id="theme-pair-fields"></div>
+        </div>
+
+        <div id="flip-colors-section" hidden>
+          <h3 data-i18n="settings.colors.flip.heading">Flip-Board-Farben</h3>
+          <p class="hint-text" data-i18n="settings.colors.flip.hint">Überschreibt den gewählten Farbvorschlag oben — je einmal für Hell- und einmal für Dunkelmodus.</p>
+          <div class="color-field-grid" id="flip-color-fields"></div>
         </div>
       </details>
     </section>

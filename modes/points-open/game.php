@@ -45,6 +45,7 @@ require __DIR__ . '/../../includes/header.php';
       <p class="hint-text" data-i18n="common.game.roundEntryHintGeneric">Punkte der aktuellen Runde je Spieler eingeben (0 ist normal).</p>
       <div class="round-form-grid" id="round-form-grid"></div>
       <div class="round-entry-sequence" id="round-entry-sequence"></div>
+      <div class="entry-list" id="round-entry-flip"></div>
       <button type="button" id="save-round-btn" class="btn btn--primary" data-i18n="common.game.roundEntry.saveButton">Runde speichern</button>
     </section>
 

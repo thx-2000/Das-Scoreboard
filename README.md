@@ -148,6 +148,9 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   `localStorage` gemerkt, bereits eingetragene Werte bleiben beim Umschalten
   erhalten) — in Classic am Eingabe-Raster, in Bold Scorekeeper am
   Spieler-Picker (siehe Bold-Theme-Abschnitt unten) (`js/round-entry.js`).
+  Flip Board nutzt dieselbe Schrittweiten-Konfiguration, aber ohne
+  Umschalt-Knopf — dort sind Tippen und Schritt-Buttons immer gleichzeitig
+  sichtbar (siehe Flip-Board-Theme-Abschnitt unten).
 - **Ein-/ausklappbarer Punktestand**: Der sticky Punktestand oben in der
   Spielansicht lässt sich per Knopf einklappen (zeigt dann nur die
   Überschrift) und wieder anzeigen — wichtig auf kleinen Bildschirmen
@@ -239,14 +242,19 @@ anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifen
 angelegt.
 - **Einstellungen** (`settings.php`): global gespeicherte (serverseitige)
   Konfiguration, gilt für alle, die die Seite nutzen. Mehrere Bereiche:
-  - **Aussehen**: Wahl zwischen zwei eigenständigen Themes — "Classic"
-    (Standard, der bisherige Look, individuell per Hex-Farben anpassbar) und
-    "Bold Scorekeeper" (zweites, dunkles, hochkontrastiges Theme mit fest
-    vorgegebener Neon-Lime/Cyan/Purple/Orange-Palette, nicht per Hex
-    anpassbar). Technisch teilen sich beide Themes dieselbe HTML/JS-Struktur
+  - **Aussehen**: Wahl zwischen drei eigenständigen Themes — "Classic"
+    (der bisherige Look, individuell per Hex-Farben anpassbar), "Bold
+    Scorekeeper" (dunkles, hochkontrastiges Theme mit fest vorgegebener
+    Neon-Lime/Cyan/Purple/Orange-Palette, nicht per Hex anpassbar) und "Flip
+    Board" (Standard seit Einführung — Anzeigetafel-Optik: flache, kantige
+    Flächen statt runder Karten, Haarlinien-Trennstriche statt
+    Kartenschatten, Ziffern in Monospace, folgt wie Classic dem
+    System-Farbschema statt fest dunkel zu sein wie Bold). Technisch teilen
+    sich alle drei Themes dieselbe HTML/JS-Struktur
     je Seite — das Theme setzt nur `[data-theme-style]` auf `<html>`
     (`js/theme.js`) und schaltet darüber CSS-Tokens um (`css/style.css`,
-    Abschnitt "Bold Scorekeeper Theme"); Classic bleibt dabei unverändert.
+    Abschnitte "Bold Scorekeeper Theme" bzw. "Flip Board Theme"); Classic
+    bleibt dabei unverändert.
     Layout-/Bedienungs-Umbauten je Seite (grosse Touch-Ziele, Karten statt
     Tabellen, Stepper-Eingaben, …) für Bold Scorekeeper folgen schrittweise
     in eigenen Releases. Bereits umgesetzt (nur sichtbar bei aktivem Bold-
@@ -290,19 +298,49 @@ angelegt.
     (clientseitig, in beiden Themes gleich, nur die Tab-Optik unterscheidet
     sich). Damit ist der schrittweise Bold-Ausbau über alle Seiten hinweg
     abgeschlossen.
+  - **Flip Board**: drittes Theme im Anzeigetafel-Stil, seit Einführung
+    Standard für neue Installationen. Startseite mit kompakten Icon-Kacheln
+    im festen Raster (2 Spalten Telefon, 4 Spalten ab iPad — iPad-first
+    entworfen, siehe `docs/original/flip-board-theme-mockup.html`) und
+    vollem Balken statt Karte für "Wer fängt an?"; Spielerverwaltung/Verlauf
+    mit denselben flachen, kantigen Zeilen wie Bold, nur ohne Rundung;
+    aktive Spielansicht der 3 Punkte-Modi mit Punktestand als mattes
+    Glas-Panel (`backdrop-filter`, einziger Glas-Akzent im Theme) mit
+    Fortschrittsbalken je Zeile — nur die Führungs-Zeile farblich
+    hervorgehoben (eine kuratierte Akzentfarbe statt 4 Spielerfarben wie in
+    Bold); Rundenerfassung als kombiniertes Tipp-/Stepper-Muster
+    (`js/round-entry.js::buildFlipRoundEntry()`) — jedes Zahlenfeld ist
+    gleichzeitig antippbar-zum-Tippen (automatisch markiert, direkt
+    überschreibbar) UND hat Plus/Minus-Buttons daneben sowie eine Chip-Reihe
+    für weitere Schrittweiten darunter, kein Umschalt-Knopf zwischen
+    "Tippen" und "Schritt-Buttons" wie bei Classic/Bold nötig — nutzt
+    dieselbe Schrittweiten-Konfiguration (`settings.round_entry_steps`) wie
+    die anderen Themes und schreibt in dieselben Felder, die "Runde
+    speichern" ausliest; RAGE-Aktivansicht mit demselben Glas-Punktestand
+    und flach/kantig reskinnten Mini-Stepper-Karten (gleiche Funktion wie
+    Bold, nur andere Optik); Einstellungen mit 5 kuratierten
+    Farbvorschlägen als Vorschau-Kacheln (Bernstein/Petrol/Karmesin/
+    Waldgrün/Violett, `includes/settings.php::flip_accent_palette()`) statt
+    reiner Farbpunkte — Klick überschreibt `flip_color_accent_light/_dark`
+    als Schnellwahl, Feinjustierung von Hintergrund/Fläche/Text/Akzent
+    (je hell/dunkel, 8 Felder) bleibt unter "Farben im Detail" möglich,
+    getrennt von Classics 17-Felder-Palette. Folgt wie Classic dem
+    System-Farbschema (hell/dunkel), anders als das fest dunkle Bold.
   - **Akzentfarbe, Hintergrund, Kartenstil**: die Aussehen-Einstellung
-    zeigt als sichtbaren Hauptteil (in beiden Themes) 5 kuratierte
+    zeigt als sichtbaren Hauptteil (in Classic und Bold) 5 kuratierte
     Akzentfarben-Punkte zum Antippen (Grün/Orange/Pink/Violett/Cyan) —
     unter Bold wird direkt einer von 5 festen Presets übernommen, unter
     Classic überschreibt die Wahl die bestehenden Hex-Felder
     `color_green`/`color_green_strong` als Schnellwahl (Feinjustierung
     bleibt weiterhin möglich). Nur unter Bold zusätzlich: Hintergrund
     (Dunkel/Dunkel Blau/Schwarz) und Kartenstil (Klassisch/Modern, grösserer
-    Radius + weicherer Schatten ohne sichtbaren Rand). Die bisherige
-    vollständige Hex-Farbpalette (17 Felder) ist weiterhin unter "Farben im
-    Detail" (aufklappbarer Erweitert-Bereich) erreichbar — gilt technisch
-    weiterhin nur für Classic, unter Bold zeigt der Bereich stattdessen
-    einen Hinweistext.
+    Radius + weicherer Schatten ohne sichtbaren Rand). Flip Board hat eine
+    eigene, separate Farbvorschlag-Auswahl (siehe oben) — dieser 5-Punkte-
+    Picker ist dort ausgeblendet. Die bisherige vollständige Hex-Farbpalette
+    (17 Felder) ist weiterhin unter "Farben im Detail" (aufklappbarer
+    Erweitert-Bereich) erreichbar — gilt technisch weiterhin nur für
+    Classic, unter Bold zeigt der Bereich stattdessen einen Hinweistext,
+    unter Flip Board zeigt er stattdessen die eigenen 8 Flip-Board-Felder.
   - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
     im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
     gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
@@ -315,7 +353,9 @@ angelegt.
     in `data/logo-{square,banner}.{ext}` (per `.htaccess` gesperrt) und
     werden über `api/logo.php?type=square|banner` ausgeliefert. "Entfernen"
     löscht Datei + Zuordnung wieder, unabhängig vom gerade aktiven Modus.
-  - **Farben** (nur für "Classic", bei aktivem "Bold Scorekeeper" ausgeblendet):
+  - **Farben** (nur für "Classic", bei aktivem "Bold Scorekeeper" oder "Flip
+    Board" ausgeblendet — Flip Board hat eine eigene, kleinere Farbauswahl
+    unter "Farbvorschlag" oben, siehe dort):
     komplette Palette einzeln per Hex-Eingabe + Farbwähler konfigurierbar.
     Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …) gelten
     unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund, Fläche,
@@ -643,7 +683,10 @@ to work on iPad and iPhone.
   between typing and step buttons — even mid-game, remembered per device in
   `localStorage`, values already entered are kept when switching — on the
   input grid in Classic, on the player picker in Bold Scorekeeper (see the
-  Bold theme section below) (`js/round-entry.js`).
+  Bold theme section below) (`js/round-entry.js`). Flip Board uses the same
+  step-size configuration but without the toggle button — there, typing and
+  step buttons are always visible at once (see the Flip Board theme section
+  below).
 - **Collapsible standings**: the sticky standings card at the top of the
   game view can be collapsed to just its heading and expanded again via a
   button — useful on small screens (e.g. iPhone portrait), where the full
@@ -727,14 +770,18 @@ as their own subfolders under `modes/`, without touching existing parts —
 the player database and game history are deliberately mode-agnostic.
 - **Settings** (`settings.php`): globally stored (server-side)
   configuration, applies to everyone using the page. Several areas:
-  - **Appearance**: choice between two independent themes — "Classic"
-    (default, the existing look, individually customizable via hex colors)
-    and "Bold Scorekeeper" (a second, dark, high-contrast theme with a
-    fixed neon-lime/cyan/purple/orange palette, not hex-customizable).
-    Technically both themes share the same HTML/JS structure per page — the
+  - **Appearance**: choice between three independent themes — "Classic"
+    (the existing look, individually customizable via hex colors), "Bold
+    Scorekeeper" (a dark, high-contrast theme with a fixed neon-lime/cyan/
+    purple/orange palette, not hex-customizable), and "Flip Board" (default
+    since its introduction — a departure-board look: flat, sharp-edged
+    surfaces instead of rounded cards, hairline dividers instead of card
+    shadows, digits in monospace, follows the system color scheme like
+    Classic instead of staying fixed-dark like Bold). Technically all three
+    themes share the same HTML/JS structure per page — the
     theme only sets `[data-theme-style]` on `<html>` (`js/theme.js`), which
-    switches CSS tokens (`css/style.css`, "Bold Scorekeeper Theme" section);
-    Classic stays unchanged. Layout/usability rework per page (large touch
+    switches CSS tokens (`css/style.css`, "Bold Scorekeeper Theme" and "Flip
+    Board Theme" sections); Classic stays unchanged. Layout/usability rework per page (large touch
     targets, cards instead of tables, stepper inputs, …) for Bold
     Scorekeeper follows step by step in its own releases. Already shipped
     (only visible with Bold active, Classic stays unchanged): home page
@@ -775,17 +822,46 @@ the player database and game history are deliberately mode-agnostic.
     of just a left border; an All/Active/Finished filter in history
     (client-side, identical in both themes, only the tab styling differs).
     This completes the step-by-step Bold rollout across every page.
+  - **Flip Board**: third theme in a departure-board style, default for new
+    installations since its introduction. Home page with compact icon tiles
+    in a fixed grid (2 columns on phone, 4 columns from iPad up — designed
+    iPad-first, see `docs/original/flip-board-theme-mockup.html`) and a full
+    bar instead of a card for "Who starts?"; player management/history use
+    the same flat, sharp-edged rows as Bold, just without rounding; the
+    active game view of the 3 point-based modes shows standings as a matte
+    glass panel (`backdrop-filter`, the only glass accent in the theme) with
+    a progress bar per row — only the leading row is highlighted in color
+    (one curated accent instead of 4 player colors like Bold); round entry
+    uses a combined typing/stepper pattern
+    (`js/round-entry.js::buildFlipRoundEntry()`) — every number field is
+    simultaneously tap-to-type (auto-selected, directly overwritable) AND
+    has plus/minus buttons next to it plus a chip row for further step sizes
+    below, no toggle button between "typing" and "step buttons" needed like
+    in Classic/Bold — uses the same step-size configuration
+    (`settings.round_entry_steps`) as the other themes and writes into the
+    same fields "Save round" reads; the RAGE active view uses the same glass
+    standings panel plus flat/sharp-edged mini-stepper cards (same function
+    as Bold, just different styling); settings show 5 curated color
+    suggestions as preview tiles (amber/teal/crimson/forest green/violet,
+    `includes/settings.php::flip_accent_palette()`) instead of plain color
+    dots — clicking overwrites `flip_color_accent_light/_dark` as a quick
+    pick, fine-tuning background/surface/text/accent (light/dark each, 8
+    fields) stays available under "Colors in detail", separate from
+    Classic's 17-field palette. Follows the system color scheme (light/dark)
+    like Classic, unlike the fixed-dark Bold.
   - **Accent color, background, card style**: the appearance setting shows
-    (in both themes) 5 curated accent color dots as its main visible part
+    (in Classic and Bold) 5 curated accent color dots as its main visible part
     (green/orange/pink/violet/cyan) — under Bold, one of 5 fixed presets is
     applied directly; under Classic, the choice overwrites the existing hex
     fields `color_green`/`color_green_strong` as a quick pick (fine-tuning
     remains possible afterward). Bold-only, additionally: background
     (dark/dark blue/black) and card style (classic/modern, larger radius +
-    softer shadow with no visible border). The existing full hex color
-    palette (17 fields) stays reachable under "Colors in detail" (a
-    collapsible advanced section) — technically still Classic-only; under
-    Bold the section shows a hint text instead.
+    softer shadow with no visible border). Flip Board has its own, separate
+    color-suggestion picker (see above) — this 5-dot picker stays hidden
+    there. The existing full hex color palette (17 fields) stays reachable
+    under "Colors in detail" (a collapsible advanced section) — technically
+    still Classic-only; under Bold the section shows a hint text instead,
+    under Flip Board it shows Flip Board's own 8 fields instead.
   - **Title**: the displayed name ("Das Scoreboard" by default) —
     appears in the header of every page and in the browser tab title,
     identical regardless of the selected language (not translated).
@@ -800,8 +876,9 @@ the player database and game history are deliberately mode-agnostic.
     `.htaccess`) and are served via `api/logo.php?type=square|banner`.
     "Remove" deletes the file and its reference regardless of which mode
     is currently active.
-  - **Colors** (only for "Classic", hidden while "Bold Scorekeeper" is
-    active): the complete palette individually configurable via hex input +
+  - **Colors** (only for "Classic", hidden while "Bold Scorekeeper" or "Flip
+    Board" is active — Flip Board has its own, smaller color picker under
+    "Color suggestion" above, see there): the complete palette individually configurable via hex input +
     color picker. Accent/function colors (green, amber, focus, error, …)
     stay the same in light and dark mode; base colors (background, surface,
     text, border) once each for light and dark mode. "Reset to default

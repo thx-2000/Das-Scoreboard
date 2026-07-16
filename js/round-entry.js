@@ -258,6 +258,110 @@ function buildRoundEntryPicker(container, groups, players, allowNegative = true)
   setActive(activeKey);
 }
 
+/**
+ * Flip Board: Tipp-Feld UND Schritt-Buttons gleichzeitig sichtbar statt
+ * umschaltbar (kein roundEntryGetMode()-Zweig noetig, ignoriert den
+ * Umschalt-Knopf bewusst - der bleibt per CSS ausgeblendet). Nutzt dieselbe
+ * Schrittweiten-Konfiguration wie die anderen Themes (roundEntryEnabledSteps(),
+ * Einstellungen -> Rundenerfassung): kleinste aktivierte Schrittweite als
+ * immer sichtbares Plus/Minus-Paar neben dem Zahlenfeld, weitere aktivierte
+ * Schrittweiten als Chip-Reihe darunter. Schreibt wie buildRoundEntryPicker()
+ * direkt in die von renderRoundEntryFields() angelegten #round-input-<key>-
+ * Felder, damit saveNewRound() unveraendert funktioniert.
+ */
+function buildFlipRoundEntry(container, groups, allowNegative = true) {
+  container.innerHTML = '';
+
+  function inputFor(key) {
+    return document.getElementById(`round-input-${key}`);
+  }
+
+  const steps = roundEntryEnabledSteps();
+  const primaryStep = steps[0];
+  const chipSteps = steps.slice(1);
+
+  groups.forEach((group) => {
+    const input = inputFor(group.key);
+    if (!input) return;
+    input.hidden = true;
+
+    function adjust(delta) {
+      const next = (Number(input.value) || 0) + delta;
+      input.value = String(allowNegative ? next : Math.max(0, next));
+      typeInput.value = input.value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    const row = document.createElement('div');
+    row.className = 'entry-row';
+
+    const main = document.createElement('div');
+    main.className = 'entry-row__main';
+
+    const name = document.createElement('span');
+    name.className = 'entry-row__name';
+    name.textContent = group.label;
+
+    const minusBtn = document.createElement('button');
+    minusBtn.type = 'button';
+    minusBtn.className = 'entry-row__step';
+    minusBtn.textContent = '−';
+    minusBtn.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: primaryStep }));
+    minusBtn.addEventListener('click', () => adjust(-primaryStep));
+
+    const typeInput = document.createElement('input');
+    typeInput.type = 'text';
+    typeInput.inputMode = 'numeric';
+    typeInput.pattern = allowNegative ? '-?[0-9]*' : '[0-9]*';
+    typeInput.className = 'entry-row__value';
+    typeInput.value = input.value;
+    typeInput.addEventListener('input', () => {
+      input.value = typeInput.value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    const plusBtn = document.createElement('button');
+    plusBtn.type = 'button';
+    plusBtn.className = 'entry-row__step';
+    plusBtn.textContent = '+';
+    plusBtn.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: primaryStep }));
+    plusBtn.addEventListener('click', () => adjust(primaryStep));
+
+    main.appendChild(name);
+    main.appendChild(minusBtn);
+    main.appendChild(typeInput);
+    main.appendChild(plusBtn);
+    row.appendChild(main);
+
+    if (chipSteps.length > 0) {
+      const chips = document.createElement('div');
+      chips.className = 'entry-row__chips';
+      chipSteps.forEach((step) => {
+        const plusChip = document.createElement('button');
+        plusChip.type = 'button';
+        plusChip.className = 'entry-row__chip';
+        plusChip.textContent = `+${step}`;
+        plusChip.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: step }));
+        plusChip.addEventListener('click', () => adjust(step));
+        chips.appendChild(plusChip);
+      });
+      [...chipSteps].reverse().forEach((step) => {
+        const minusChip = document.createElement('button');
+        minusChip.type = 'button';
+        minusChip.className = 'entry-row__chip';
+        minusChip.textContent = `−${step}`;
+        minusChip.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: step }));
+        minusChip.addEventListener('click', () => adjust(-step));
+        chips.appendChild(minusChip);
+      });
+      row.appendChild(chips);
+    }
+
+    container.appendChild(row);
+  });
+}
+
 window.renderRoundEntryFields = renderRoundEntryFields;
 window.wireRoundEntryModeToggle = wireRoundEntryModeToggle;
 window.buildRoundEntryPicker = buildRoundEntryPicker;
+window.buildFlipRoundEntry = buildFlipRoundEntry;

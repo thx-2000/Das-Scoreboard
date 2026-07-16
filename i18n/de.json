@@ -106,20 +106,48 @@
     }
   },
   "pages": {
-    "home": { "title": "Spieleabend-Aufschreiber" },
-    "players": { "title": "Spieler verwalten" },
-    "history": { "title": "Spielverlauf" },
-    "stats": { "title": "Statistiken" },
-    "settings": { "title": "Einstellungen" },
-    "pointsToTargetSetup": { "title": "Punkte bis Höchstwert — Neues Spiel" },
-    "pointsToTargetGame": { "title": "Punkte bis Höchstwert" },
-    "pointsOpenSetup": { "title": "Offene Punkterunde — Neues Spiel" },
-    "pointsOpenGame": { "title": "Offene Punkterunde" },
-    "fixedRoundsSetup": { "title": "Punkterunde mit fester Rundenzahl — Neues Spiel" },
-    "fixedRoundsGame": { "title": "Punkterunde mit fester Rundenzahl" },
-    "rageSetup": { "title": "RAGE — Neues Spiel" },
-    "rageGame": { "title": "RAGE" },
-    "chooser": { "title": "Wer fängt an?" }
+    "home": {
+      "title": "Spieleabend-Aufschreiber"
+    },
+    "players": {
+      "title": "Spieler verwalten"
+    },
+    "history": {
+      "title": "Spielverlauf"
+    },
+    "stats": {
+      "title": "Statistiken"
+    },
+    "settings": {
+      "title": "Einstellungen"
+    },
+    "pointsToTargetSetup": {
+      "title": "Punkte bis Höchstwert — Neues Spiel"
+    },
+    "pointsToTargetGame": {
+      "title": "Punkte bis Höchstwert"
+    },
+    "pointsOpenSetup": {
+      "title": "Offene Punkterunde — Neues Spiel"
+    },
+    "pointsOpenGame": {
+      "title": "Offene Punkterunde"
+    },
+    "fixedRoundsSetup": {
+      "title": "Punkterunde mit fester Rundenzahl — Neues Spiel"
+    },
+    "fixedRoundsGame": {
+      "title": "Punkterunde mit fester Rundenzahl"
+    },
+    "rageSetup": {
+      "title": "RAGE — Neues Spiel"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Wer fängt an?"
+    }
   },
   "modes": {
     "pointsToTarget": {
@@ -293,7 +321,7 @@
     "subtitle": "Gilt für alle, die diese Seite nutzen (global gespeichert).",
     "theme": {
       "heading": "Aussehen",
-      "hint": "Zwei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich \"Farben im Detail\".",
+      "hint": "Drei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich \"Farben im Detail\".",
       "classic": "Classic",
       "bold": "Bold Scorekeeper",
       "accentLabel": "Akzentfarbe",
@@ -314,6 +342,15 @@
       "cardStyle": {
         "classic": "Klassisch",
         "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Farbvorschlag",
+      "flipPreset": {
+        "amber": "Bernstein",
+        "petrol": "Petrol",
+        "karmesin": "Karmesin",
+        "waldgruen": "Waldgrün",
+        "violett": "Violett"
       }
     },
     "title": {
@@ -366,6 +403,10 @@
         "hint": "Hintergrund, Fläche, Text und Rahmen — je einmal für Hell- und einmal für Dunkelmodus.",
         "light": "Hell",
         "dark": "Dunkel"
+      },
+      "flip": {
+        "heading": "Flip-Board-Farben",
+        "hint": "Überschreibt den gewählten Farbvorschlag oben — je einmal für Hell- und einmal für Dunkelmodus."
       }
     },
     "resetButton": "Auf Standardfarben zurücksetzen",

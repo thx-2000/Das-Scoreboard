@@ -89,13 +89,15 @@ window.scoreboardThemeReady = (async function applyTheme() {
 
   applyLogo(settings);
 
-  // "Bold Scorekeeper" ist ein zweites, komplett eigenstaendiges Aussehen mit
-  // fest vorgegebenen Farb-Tokens (siehe css/style.css
-  // [data-theme-style="bold"]) - die hier folgende individuelle Hell/Dunkel-
-  // Farbanwendung gilt bewusst nur fuer "classic", sonst wuerden Inline-
-  // Styles (hoehere Spezifitaet als CSS-Selektoren) die Bold-Tokens
-  // ueberschreiben.
-  const themeStyle = settings.theme_style === 'bold' ? 'bold' : 'classic';
+  // "Bold Scorekeeper" und "Flip Board" sind komplett eigenstaendige Aussehen
+  // mit eigenen Farb-Tokens (siehe css/style.css [data-theme-style="bold"]
+  // bzw. [data-theme-style="flip"]) - die hier folgende individuelle
+  // Hell/Dunkel-Farbanwendung fuer "classic" gilt bewusst nur dort, sonst
+  // wuerden Inline-Styles (hoehere Spezifitaet als CSS-Selektoren) die
+  // Bold-/Flip-Tokens ueberschreiben.
+  const themeStyle = settings.theme_style === 'bold' || settings.theme_style === 'flip'
+    ? settings.theme_style
+    : 'classic';
   root.dataset.themeStyle = themeStyle;
 
   if (themeStyle === 'classic') {
@@ -115,7 +117,7 @@ window.scoreboardThemeReady = (async function applyTheme() {
 
     apply();
     media.addEventListener('change', apply);
-  } else {
+  } else if (themeStyle === 'bold') {
     // Bold: eigene, kuratierte Presets statt freier Hex-Eingabe (siehe
     // accent_color_picker in settings.php). Inline-Styles ueberschreiben
     // gezielt die festen Bold-Tokens aus css/style.css
@@ -131,6 +133,31 @@ window.scoreboardThemeReady = (async function applyTheme() {
     root.style.setProperty('--color-border', background[2]);
 
     root.dataset.cardStyle = settings.bold_card_style === 'modern' ? 'modern' : 'classic';
+  } else {
+    // Flip Board: eigener, kleinerer Feldsatz (bg/surface/ink/akzent je
+    // hell/dunkel, siehe includes/settings.php default_settings()) - folgt
+    // wie Classic dem System-Farbschema, nicht fest auf dunkel wie Bold.
+    // Die "-strong"-Variante des Akzents wird rein per CSS abgeleitet
+    // (siehe css/style.css [data-theme-style="flip"]), keine eigene
+    // Einstellung noetig.
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const flipPairs = {
+      flip_color_bg: '--color-bg',
+      flip_color_surface: '--color-surface',
+      flip_color_ink: '--color-text',
+      flip_color_accent: '--color-green',
+    };
+
+    const apply = () => {
+      const suffix = media.matches ? '_dark' : '_light';
+      Object.entries(flipPairs).forEach(([key, cssVar]) => {
+        const value = settings[key + suffix];
+        if (value) root.style.setProperty(cssVar, value);
+      });
+    };
+
+    apply();
+    media.addEventListener('change', apply);
   }
 
   window.__scoreboardSettings = settings;

@@ -200,6 +200,12 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   vollständigen Verlauf. Bleibt ausgeblendet, wenn kein Spiel läuft. Nutzt
   denselben Endpunkt wie der Verlauf (`GET /api/games.php`), keine eigene
   Backend-Route (`js/home.js`).
+- **Unterstützen-Link**: dezenter Button unten links, nur auf der Startseite,
+  verlinkt zu [buymeacoffee.com/thomashageleit](https://buymeacoffee.com/thomashageleit).
+  Bewusst ein einfacher lokal gestalteter Link statt des offiziellen
+  Buy-Me-a-Coffee-Widgets — keine externe Skript-Einbindung, kein
+  zusätzliches Tracking (siehe Abschnitt "Datenschutz" unten). Auf schmalen
+  Bildschirmen schrumpft er zu einem reinen Icon-Button.
 - **Team-Modus** (nur in den 3 Punkte-Modi, nicht bei RAGE): Beim Einrichten
   lassen sich Spieler unter "Erweiterte Optionen" zu Teams gruppieren.
   Teamname wird automatisch aus den Mitgliedsnamen gebildet ("Alice &
@@ -809,6 +815,13 @@ to work on iPad and iPhone.
   history. Stays hidden when nothing is in progress. Reuses the same
   endpoint as history (`GET /api/games.php`), no dedicated backend route
   (`js/home.js`).
+- **Support link**: a subtle button in the bottom-left corner, home page
+  only, linking to
+  [buymeacoffee.com/thomashageleit](https://buymeacoffee.com/thomashageleit).
+  Deliberately a simple, locally styled link instead of the official
+  Buy Me a Coffee widget — no external script, no added tracking (see the
+  "Privacy" section below). Collapses to an icon-only button on narrow
+  screens.
 - **Team mode** (only in the 3 point-based modes, not RAGE): during setup,
   players can be grouped into teams under "Advanced options". The team
   name is auto-generated from member names ("Alice & Bob") or can be set

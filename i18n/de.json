@@ -187,6 +187,10 @@
     "pwaHint": {
       "heading": "Als App nutzen",
       "text": "Auf dem iPad/iPhone: Teilen-Symbol in Safari antippen, dann „Zum Home-Bildschirm“ wählen — die Seite erscheint danach wie eine eigene App, ganz ohne Adressleiste."
+    },
+    "support": {
+      "label": "Unterstütze das Projekt",
+      "ariaLabel": "Unterstütze das Projekt auf Buy Me a Coffee"
     }
   },
   "players": {

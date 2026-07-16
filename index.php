@@ -64,6 +64,15 @@ require __DIR__ . '/includes/header.php';
     </section>
   </main>
 
+  <a href="https://buymeacoffee.com/thomashageleit" class="support-link" target="_blank" rel="noopener" data-i18n-aria-label="home.support.ariaLabel" aria-label="Unterstütze das Projekt auf Buy Me a Coffee">
+    <svg class="support-link__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M3 8h13v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Z"/>
+      <path d="M16 9h2a3 3 0 0 1 0 6h-2"/>
+      <path d="M6 2v2M10 2v2M14 2v2"/>
+    </svg>
+    <span class="support-link__text" data-i18n="home.support.label">Unterstütze das Projekt</span>
+  </a>
+
 <?php
 $page_scripts = ['js/pwa-hint.js', 'js/home.js'];
 require __DIR__ . '/includes/footer.php';

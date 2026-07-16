@@ -187,6 +187,10 @@
     "pwaHint": {
       "heading": "Use as an app",
       "text": "On iPad/iPhone: tap the Share icon in Safari, then choose “Add to Home Screen” — the page will then appear like its own app, without the address bar."
+    },
+    "support": {
+      "label": "Support this project",
+      "ariaLabel": "Support this project on Buy Me a Coffee"
     }
   },
   "players": {

@@ -2434,10 +2434,13 @@ main {
 
 /* Sticky Glas-Header (Blur) - einziger durchgaengiger "Glas"-Akzent, alles
    andere bleibt flach/matt. */
+/* Bewusst NICHT sticky: .scoreboard (Punktestand, aktive Spielansicht) ist
+   bereits themenuebergreifend sticky mit top:0 - ein zusaetzlich sticky
+   Header wuerde mit gleichem top:0 kollidieren und den (per Klick
+   einklappbaren) Punktestand optisch dahinter verschwinden lassen, statt
+   ihn wie gewohnt oben stehen zu lassen. Die Glas-Optik bleibt trotzdem
+   erhalten, nur ohne Fixierung beim Scrollen. */
 [data-theme-style="flip"] .app-header {
-  position: sticky;
-  top: 0;
-  z-index: 15;
   background: color-mix(in srgb, var(--color-bg) 75%, transparent);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
@@ -2820,6 +2823,19 @@ main {
   background: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
 }
 
+/* Dezente Gruen-/Rot-Toenung fuer Plus/Minus - gleiches Prinzip wie die
+   bestehenden .round-steps__btn--plus/--minus (Classic/Bold), nur als
+   Flaechenfarbe statt Rand, passend zur flachen Optik. */
+[data-theme-style="flip"] .entry-row__step--plus {
+  background: color-mix(in srgb, var(--color-green) 14%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-green) 45%, var(--color-border));
+}
+
+[data-theme-style="flip"] .entry-row__step--minus {
+  background: color-mix(in srgb, var(--color-danger) 14%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border));
+}
+
 [data-theme-style="flip"] .entry-row__value {
   width: 4.5rem;
   flex-shrink: 0;
@@ -2834,10 +2850,20 @@ main {
   color: var(--color-text);
 }
 
+/* Minus-Gruppe links (naeher am -1-Knopf), Plus-Gruppe rechts (naeher am
+   +1-Knopf, da Plus haeufiger genutzt wird) - space-between erzeugt
+   zugleich den Zwischenraum als Trenner zwischen den beiden Gruppen. */
 [data-theme-style="flip"] .entry-row__chips {
   display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+  flex-wrap: wrap;
+}
+
+[data-theme-style="flip"] .entry-row__chips-group {
+  display: flex;
   gap: 0.4rem;
-  margin: 0.45rem 0 0 2.8rem;
   flex-wrap: wrap;
 }
 
@@ -2854,6 +2880,18 @@ main {
 
 [data-theme-style="flip"] .entry-row__chip:active {
   background: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+[data-theme-style="flip"] .entry-row__chip--plus {
+  background: color-mix(in srgb, var(--color-green) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-green) 40%, var(--color-border));
+  color: var(--color-green-strong);
+}
+
+[data-theme-style="flip"] .entry-row__chip--minus {
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-danger) 40%, var(--color-border));
+  color: var(--color-danger);
 }
 
 /* ---- RAGE-Aktivansicht: gleiches Glas-Punktestand-Muster (oben), Mini-

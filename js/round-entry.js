@@ -304,7 +304,7 @@ function buildFlipRoundEntry(container, groups, allowNegative = true) {
 
     const minusBtn = document.createElement('button');
     minusBtn.type = 'button';
-    minusBtn.className = 'entry-row__step';
+    minusBtn.className = 'entry-row__step entry-row__step--minus';
     minusBtn.textContent = '−';
     minusBtn.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: primaryStep }));
     minusBtn.addEventListener('click', () => adjust(-primaryStep));
@@ -322,7 +322,7 @@ function buildFlipRoundEntry(container, groups, allowNegative = true) {
 
     const plusBtn = document.createElement('button');
     plusBtn.type = 'button';
-    plusBtn.className = 'entry-row__step';
+    plusBtn.className = 'entry-row__step entry-row__step--plus';
     plusBtn.textContent = '+';
     plusBtn.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: primaryStep }));
     plusBtn.addEventListener('click', () => adjust(primaryStep));
@@ -333,27 +333,41 @@ function buildFlipRoundEntry(container, groups, allowNegative = true) {
     main.appendChild(plusBtn);
     row.appendChild(main);
 
+    // Minus-Chips links (naeher am −1-Knopf), Plus-Chips rechts (naeher am
+    // +1-Knopf, da Plus haeufiger genutzt wird) - spiegelt die Anordnung
+    // der primaeren +/- Knoepfe. Der Zwischenraum (justify-content:
+    // space-between, siehe CSS) dient zugleich als Trenner zwischen den
+    // beiden Gruppen.
     if (chipSteps.length > 0) {
       const chips = document.createElement('div');
       chips.className = 'entry-row__chips';
-      chipSteps.forEach((step) => {
-        const plusChip = document.createElement('button');
-        plusChip.type = 'button';
-        plusChip.className = 'entry-row__chip';
-        plusChip.textContent = `+${step}`;
-        plusChip.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: step }));
-        plusChip.addEventListener('click', () => adjust(step));
-        chips.appendChild(plusChip);
-      });
+
+      const minusGroup = document.createElement('div');
+      minusGroup.className = 'entry-row__chips-group entry-row__chips-group--minus';
       [...chipSteps].reverse().forEach((step) => {
         const minusChip = document.createElement('button');
         minusChip.type = 'button';
-        minusChip.className = 'entry-row__chip';
+        minusChip.className = 'entry-row__chip entry-row__chip--minus';
         minusChip.textContent = `−${step}`;
         minusChip.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: step }));
         minusChip.addEventListener('click', () => adjust(-step));
-        chips.appendChild(minusChip);
+        minusGroup.appendChild(minusChip);
       });
+
+      const plusGroup = document.createElement('div');
+      plusGroup.className = 'entry-row__chips-group entry-row__chips-group--plus';
+      chipSteps.forEach((step) => {
+        const plusChip = document.createElement('button');
+        plusChip.type = 'button';
+        plusChip.className = 'entry-row__chip entry-row__chip--plus';
+        plusChip.textContent = `+${step}`;
+        plusChip.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: step }));
+        plusChip.addEventListener('click', () => adjust(step));
+        plusGroup.appendChild(plusChip);
+      });
+
+      chips.appendChild(minusGroup);
+      chips.appendChild(plusGroup);
       row.appendChild(chips);
     }
 

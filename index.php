@@ -14,23 +14,27 @@ require __DIR__ . '/includes/header.php';
       <div class="mode-grid" id="mode-grid">
         <a href="/modes/points-to-target/setup.php" class="mode-card">
           <span class="mode-card__icon" aria-hidden="true">🎯</span>
+          <svg class="mode-card__icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>
           <h2 data-i18n="modes.pointsToTarget.title">Punkte bis Höchstwert</h2>
           <p data-i18n="modes.pointsToTarget.description">Punkte werden rundenweise addiert, bis jemand einen festgelegten Zielwert erreicht oder überschreitet. Wer dann am meisten Punkte hat, gewinnt.</p>
           <p class="mode-card__examples" data-i18n="modes.pointsToTarget.examples">z.B. Flip7, Tutto</p>
         </a>
         <a href="/modes/points-open/setup.php" class="mode-card">
           <span class="mode-card__icon" aria-hidden="true">♾️</span>
+          <svg class="mode-card__icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
           <h2 data-i18n="modes.pointsOpen.title">Offene Punkterunde</h2>
           <p data-i18n="modes.pointsOpen.description">Punkte werden rundenweise addiert, ohne festen Zielwert. Ihr entscheidet selbst, wann Schluss ist — höchste oder niedrigste Punktzahl gewinnt, wie ihr es beim Einrichten festlegt.</p>
           <p class="mode-card__examples" data-i18n="modes.pointsOpen.examples">z.B. Doppelkopf</p>
         </a>
         <a href="/modes/fixed-rounds/setup.php" class="mode-card">
           <span class="mode-card__icon" aria-hidden="true">🔟</span>
+          <svg class="mode-card__icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16"/></svg>
           <h2 data-i18n="modes.fixedRounds.title">Punkterunde mit fester Rundenzahl</h2>
           <p data-i18n="modes.fixedRounds.description">Ihr legt beim Einrichten fest, wie viele Runden gespielt werden und ob am Ende die höchste oder niedrigste Punktzahl gewinnt. Nach der letzten Runde fragt das Spiel, ob beendet oder um weitere Runden verlängert werden soll.</p>
         </a>
         <a href="/modes/rage/setup.php" class="mode-card mode-card--rage">
           <span class="mode-card__icon" aria-hidden="true">🔥</span>
+          <svg class="mode-card__icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l6-16 4 10 4-6 2 12"/></svg>
           <h2 data-i18n="modes.rage.title">RAGE</h2>
           <p data-i18n="modes.rage.description">Feste 10 Runden mit sinkender Kartenzahl (10 bis 1). Vor jeder Runde sagt ihr eure Stichzahl an, danach tragt ihr die tatsächlichen Stiche ein — Punkte werden automatisch nach den RAGE-Regeln berechnet (inkl. Rage-Bonus/-Rache).</p>
           <p class="mode-card__examples" data-i18n="modes.rage.examples">Kartenspiel RAGE</p>

@@ -416,6 +416,13 @@ main {
   display: none;
 }
 
+/* Nur im Flip-Board-Theme sichtbar (siehe [data-theme-style="flip"] weiter
+   unten) - Bold nutzt weiterhin das Emoji aus .mode-card__icon, Flip Board
+   die schlichteren Linien-Icons hier. */
+.mode-card__icon-svg {
+  display: none;
+}
+
 .home-quick-action {
   display: none;
 }
@@ -2405,8 +2412,24 @@ main {
   font-size: 0.85rem;
 }
 
+/* Flip Board verzichtet bewusst auf die Karten-Box (Rand + Schatten) der
+   anderen Themes - Abschnitte sitzen flach auf der Seite, nur durch
+   Ueberschrift/Abstand getrennt (wie im Mockup). Ab dem zweiten Abschnitt
+   (".section-spacing") uebernimmt eine Haarlinie oben die Trennfunktion
+   statt einer eigenen Box. Elemente mit eigener Flaeche (z.B. die
+   Punktestand-Glasflaeche in .standings-cards) behalten ihre Optik, da sie
+   eigene Regeln haben und hier nicht betroffen sind. */
 [data-theme-style="flip"] .card {
-  border-radius: var(--radius);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+[data-theme-style="flip"] .card.section-spacing {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
 }
 
 /* Sticky Glas-Header (Blur) - einziger durchgaengiger "Glas"-Akzent, alles
@@ -2443,6 +2466,7 @@ main {
 }
 
 [data-theme-style="flip"] .mode-card {
+  border: none;
   border-top: none;
   border-radius: 0;
   box-shadow: none;
@@ -2465,9 +2489,14 @@ main {
 }
 
 [data-theme-style="flip"] .mode-card__icon {
+  display: none;
+}
+
+[data-theme-style="flip"] .mode-card__icon-svg {
   display: block;
-  font-size: 1.7rem;
-  line-height: 1;
+  width: 22px;
+  height: 22px;
+  color: var(--color-green);
   margin-bottom: 0.5rem;
 }
 
@@ -2511,9 +2540,9 @@ main {
    kantig statt abgerundet ---- */
 
 [data-theme-style="flip"] .player-list li {
+  border: none;
+  border-left: 4px solid var(--color-border);
   border-radius: 0;
-  border-left-width: 4px;
-  border-left-style: solid;
   padding: 0.75rem 1rem;
 }
 

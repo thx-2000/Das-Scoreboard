@@ -1126,15 +1126,23 @@ main {
   margin-top: 1.5rem;
 }
 
+/* Halbtransparente Flaeche dahinter, damit der Versions-Hinweis sich auch
+   dann absetzt, wenn darunter Zahlen/Knoepfe der Rundenerfassung sitzen
+   (v.a. auf schmalen Bildschirmen, wo unten wenig Platz bleibt). */
 .app-version {
   position: fixed;
   right: 0.75rem;
   bottom: 0.5rem;
   z-index: 50;
   margin: 0;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-bg) 75%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   font-size: 0.72rem;
+  line-height: 1.4;
   color: var(--color-text-muted);
-  opacity: 0.7;
   pointer-events: none;
   text-align: right;
 }

@@ -548,6 +548,13 @@ jeder Seite dupliziert zu sein. Eine `.htaccess`-Weiterleitung leitet alte
 `*.html`-Aufrufe (Lesezeichen, bereits installierte PWA-Icons) transparent
 auf die passende `.php`-Datei um.
 
+## Lizenz
+
+[PolyForm Noncommercial License 1.0.0](LICENSE) — freie Nutzung, Veränderung
+und Weitergabe für nicht-kommerzielle Zwecke (privates Hosting, Hobby-Projekte,
+gemeinnützige/Bildungseinrichtungen). Für kommerzielle Nutzung bitte vorher
+Kontakt aufnehmen.
+
 ---
 
 # Das Scoreboard (English)
@@ -987,3 +994,10 @@ made public, the notice works without any code change.
 
 See the tree above (folder layout is identical, only the code comments
 in this README are in English/German respectively).
+
+## License
+
+[PolyForm Noncommercial License 1.0.0](LICENSE) — free to use, modify, and
+share for noncommercial purposes (personal hosting, hobby projects,
+charitable/educational organizations). For commercial use, please get in
+touch first.

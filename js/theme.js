@@ -78,6 +78,9 @@ window.scoreboardThemeReady = (async function applyTheme() {
   try {
     const response = await fetch('/api/settings.php');
     const data = await response.json();
+    if (!response.ok || !data.settings) {
+      return null; // z.B. 401 auf login.php (nicht angemeldet) - Standardfarben bleiben aktiv
+    }
     settings = data.settings;
   } catch (err) {
     return null; // Standardfarben aus style.css und Standardtitel bleiben aktiv

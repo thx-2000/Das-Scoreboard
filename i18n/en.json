@@ -147,6 +147,9 @@
     },
     "chooser": {
       "title": "Who starts?"
+    },
+    "login": {
+      "title": "Log in"
     }
   },
   "modes": {
@@ -367,6 +370,17 @@
       "heading": "Round entry",
       "hint": "Step buttons as an alternative to typing numbers when entering rounds (Points to target, Open point round, Fixed round count). Switch between typing and step buttons anytime, even mid-game."
     },
+    "access": {
+      "heading": "Access protection",
+      "hint": "Protects the whole site with one shared password for everyone who knows the link. Without active protection, anyone with the link can use the site.",
+      "enableLabel": "Enable access protection",
+      "noPasswordSet": "No password is set yet — protection stays inactive until one is set.",
+      "passwordLabel": "New password",
+      "passwordConfirmLabel": "Confirm password",
+      "passwordHint": "Leave blank to keep the currently saved password. Forgot the password? See the README for the file-access reset instructions.",
+      "mismatchError": "The two passwords don't match.",
+      "logoutButton": "Log out on this device"
+    },
     "logo": {
       "heading": "Logo",
       "hint": "No custom logo is active by default, the pen icon stays visible.",
@@ -446,6 +460,13 @@
       "textMuted": "Muted text",
       "border": "Border"
     }
+  },
+  "login": {
+    "heading": "Log in",
+    "hint": "This site is password protected.",
+    "error": "Wrong password.",
+    "passwordLabel": "Password",
+    "submitButton": "Log in"
   },
   "pointsToTarget": {
     "setup": {

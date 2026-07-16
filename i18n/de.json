@@ -147,6 +147,9 @@
     },
     "chooser": {
       "title": "Wer fängt an?"
+    },
+    "login": {
+      "title": "Anmelden"
     }
   },
   "modes": {
@@ -367,6 +370,17 @@
       "heading": "Rundenerfassung",
       "hint": "Schritt-Buttons als Alternative zur Zahleneingabe bei der Rundenerfassung (Punkte bis Höchstwert, Offene Punkterunde, Feste Rundenzahl). Zwischen Tippen und Schritt-Buttons kann direkt im laufenden Spiel umgeschaltet werden."
     },
+    "access": {
+      "heading": "Zugangsschutz",
+      "hint": "Schützt die ganze Seite mit einem gemeinsamen Passwort für alle, die den Link kennen. Ohne aktiven Schutz ist die Seite für jeden mit dem Link nutzbar.",
+      "enableLabel": "Zugangsschutz aktivieren",
+      "noPasswordSet": "Es ist noch kein Passwort hinterlegt — der Schutz bleibt bis dahin wirkungslos.",
+      "passwordLabel": "Neues Passwort",
+      "passwordConfirmLabel": "Passwort wiederholen",
+      "passwordHint": "Leer lassen, um das aktuell gespeicherte Passwort beizubehalten. Passwort vergessen? Siehe README für die Reset-Anleitung per Datei-Zugriff.",
+      "mismatchError": "Die beiden Passwörter stimmen nicht überein.",
+      "logoutButton": "Auf diesem Gerät abmelden"
+    },
     "logo": {
       "heading": "Logo",
       "hint": "Standardmäßig ist kein eigenes Logo aktiv, dann bleibt das Stift-Symbol sichtbar.",
@@ -446,6 +460,13 @@
       "textMuted": "Text, gedämpft",
       "border": "Rahmen"
     }
+  },
+  "login": {
+    "heading": "Anmelden",
+    "hint": "Diese Seite ist passwortgeschützt.",
+    "error": "Falsches Passwort.",
+    "passwordLabel": "Passwort",
+    "submitButton": "Anmelden"
   },
   "pointsToTarget": {
     "setup": {

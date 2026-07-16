@@ -359,6 +359,7 @@ async function loadSettings() {
   renderFlipColorFields(data.settings);
   renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
+  renderAccessSettings(data.settings);
 }
 
 function collectFormValues() {
@@ -435,7 +436,54 @@ resetBtn.addEventListener('click', async () => {
   renderFlipColorFields(data.settings);
   renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
+  renderAccessSettings(data.settings);
   showStatus(window.t('settings.resetStatus'));
+});
+
+const accessEnabledInput = document.getElementById('access-enabled-input');
+const accessPasswordInput = document.getElementById('access-password-input');
+const accessPasswordConfirmInput = document.getElementById('access-password-confirm-input');
+const accessPasswordStatus = document.getElementById('access-password-status');
+const accessSaveBtn = document.getElementById('access-save-btn');
+const accessStatusEl = document.getElementById('access-status');
+
+function renderAccessSettings(settings) {
+  accessEnabledInput.checked = settings.access_enabled === '1';
+  accessPasswordStatus.hidden = settings.access_password_set === '1';
+}
+
+function showAccessStatus(message) {
+  accessStatusEl.textContent = message;
+  setTimeout(() => {
+    if (accessStatusEl.textContent === message) accessStatusEl.textContent = '';
+  }, 3000);
+}
+
+accessSaveBtn.addEventListener('click', async () => {
+  const password = accessPasswordInput.value;
+  const confirmPassword = accessPasswordConfirmInput.value;
+
+  if (password !== confirmPassword) {
+    showAccessStatus(window.t('settings.access.mismatchError'));
+    return;
+  }
+
+  const values = { access_enabled: accessEnabledInput.checked ? '1' : '0' };
+  if (password !== '') {
+    values.new_password = password;
+  }
+
+  const response = await fetch('/api/settings.php', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(values),
+  });
+  const data = await response.json();
+  currentSettings = data.settings;
+  renderAccessSettings(data.settings);
+  accessPasswordInput.value = '';
+  accessPasswordConfirmInput.value = '';
+  showAccessStatus(window.t('settings.savedStatus'));
 });
 
 const backupFileInput = document.getElementById('backup-file-input');

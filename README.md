@@ -6,6 +6,35 @@ Aufschreibhilfe für Spieleabende. Reines PHP 8 + PDO/SQLite, kein Node,
 keine separate Datenbank nötig — läuft auf normalem Webhosting per FTP-
 Upload, Darstellung soll auf iPad und iPhone funktionieren.
 
+## Für Eilige
+
+- **Was ist das?** Eine schlanke, selbst gehostete Web-App, um bei
+  Spieleabenden Punkte mitzuschreiben — kein Konto, keine Cloud, keine
+  Werbung, keine Tracking-Dienste. Vier Aufschreibmodi (siehe unten),
+  Spielerverwaltung, Verlauf und Statistiken sind bereits eingebaut.
+- **Kurz ausprobieren** (benötigt lokal installiertes PHP 8 mit
+  `pdo_sqlite`):
+  ```bash
+  php -S localhost:8090
+  ```
+  danach <http://localhost:8090> öffnen. Alternativ in einem Docker-
+  Container ganz ohne lokale PHP-Installation:
+  ```bash
+  docker run --rm -p 8090:80 -v "$PWD:/var/www/html" php:8.3-apache \
+    bash -c "docker-php-ext-install pdo_sqlite && apache2-foreground"
+  ```
+- **Auf einem eigenen Server betreiben**: kompletten Ordnerinhalt per
+  FTP/SFTP auf einen PHP-8-Webspace mit `pdo_sqlite`-Extension hochladen
+  — fertig, kein Build-Schritt, keine separate Datenbank einzurichten
+  (Details siehe "Voraussetzungen beim Hoster" und "Deployment" unten).
+- **Für eine geschlossene Gruppe absichern**: standardmäßig ist die
+  Seite für jeden mit dem Link nutzbar. Unter Einstellungen →
+  "Zugangsschutz" lässt sich ein gemeinsames Passwort aktivieren (mit
+  Datei-basierter Reset-Möglichkeit, falls es vergessen wird — siehe
+  Abschnitt "Zugangsschutz" unten).
+- **Lizenz**: kostenlos für nicht-kommerzielle Nutzung, siehe
+  [Lizenz](#lizenz) unten.
+
 ## Konzept
 
 - **Startseite**: Übersicht der verfügbaren Aufschreibmöglichkeiten
@@ -301,8 +330,7 @@ angelegt.
   - **Flip Board**: drittes Theme im Anzeigetafel-Stil, seit Einführung
     Standard für neue Installationen. Startseite mit kompakten Icon-Kacheln
     im festen Raster (2 Spalten Telefon, 4 Spalten ab iPad — iPad-first
-    entworfen, siehe `docs/original/flip-board-theme-mockup.html`) und
-    vollem Balken statt Karte für "Wer fängt an?"; Spielerverwaltung/Verlauf
+    entworfen) und vollem Balken statt Karte für "Wer fängt an?"; Spielerverwaltung/Verlauf
     mit denselben flachen, kantigen Zeilen wie Bold, nur ohne Rundung;
     aktive Spielansicht der 3 Punkte-Modi mit Punktestand als mattes
     Glas-Panel (`backdrop-filter`, einziger Glas-Akzent im Theme) mit
@@ -365,6 +393,21 @@ angelegt.
     selbst bleiben aber liegen, bis sie explizit entfernt werden).
   - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
     "Mehrsprachigkeit (i18n)" unten.
+  - **Zugangsschutz**: standardmäßig deaktiviert (Seite für jeden mit dem
+    Link nutzbar). Checkbox "Zugangsschutz aktivieren" + ein gemeinsames
+    Passwort (kein Konten-System, ein Passwort für alle) schützen dann
+    sowohl alle Seiten als auch alle API-Endpunkte (`includes/auth.php`,
+    per PHP-Session). Ohne aktivierten Schutz UND ohne gesetztes Passwort
+    bleibt die Seite offen — ein aktivierter Schutz ohne je gesetztes
+    Passwort sperrt also niemanden versehentlich aus. Passwort-Feld leer
+    lassen, um das aktuelle Passwort beizubehalten. **Passwort vergessen?**
+    Per FTP/SFTP/SSH (Datei-Zugriff, kein Web-Zugriff nötig) eine leere
+    Datei `data/reset-password.txt` anlegen — beim nächsten Seitenaufruf
+    wird der Zugangsschutz automatisch deaktiviert, das gespeicherte
+    Passwort gelöscht und die Marker-Datei wieder entfernt. `data/` ist
+    ohnehin per `.htaccess` komplett vom Web aus gesperrt, ein Website-
+    Besucher kann diese Datei also nie selbst anlegen. "Auf diesem Gerät
+    abmelden" beendet die eigene Sitzung wieder.
   - **Daten-Sicherung** (`api/backup.php`): "Backup herunterladen" erzeugt
     eine ZIP-Datei mit einem konsistenten Snapshot der SQLite-Datenbank
     (`VACUUM INTO`, respektiert den WAL-Mode statt die Datei roh zu
@@ -468,7 +511,9 @@ Das-Scoreboard/
 ├── players.php               # Spielerverwaltung
 ├── history.php                # Spielverlauf
 ├── stats.php                  # Statistiken (Zeitraumfilter, Kopf-an-Kopf, Drucken/PDF)
-├── settings.php                # globale Einstellungen (Aussehen, Farben, Sprache, Backup)
+├── settings.php                # globale Einstellungen (Aussehen, Farben, Sprache, Zugangsschutz, Backup)
+├── login.php                  # eigenstaendige Login-Seite (nur bei aktiviertem Zugangsschutz relevant)
+├── logout.php                 # beendet die eigene Sitzung
 ├── modes/
 │   ├── points-to-target/
 │   │   ├── setup.php         # neues Spiel einrichten (Zielwert)
@@ -509,6 +554,7 @@ Das-Scoreboard/
 │   ├── state.php               # buildState(), Sieg-Erkennung, JSON-Helper
 │   ├── rage.php                 # RAGE-Punkteformel
 │   ├── settings.php              # Defaults, Validierung, get/save/reset
+│   ├── auth.php                   # Zugangsschutz-Check (Session + Datei-Reset)
 │   ├── nav.php                    # zentrale Nav-Konfiguration + render_nav()
 │   ├── header.php                  # gemeinsamer Head + <header> (Marke, Nav) fuer alle Seiten
 │   └── footer.php                   # gemeinsamer Seitenabschluss (Basis-Skripte, Versionsanzeige)
@@ -548,6 +594,31 @@ jeder Seite dupliziert zu sein. Eine `.htaccess`-Weiterleitung leitet alte
 `*.html`-Aufrufe (Lesezeichen, bereits installierte PWA-Icons) transparent
 auf die passende `.php`-Datei um.
 
+## Datenschutz
+
+Diese Software ist zum Selbst-Hosten gedacht — es gibt keinen zentralen
+Anbieter, keine Cloud-Anbindung und keine externen Analyse- oder
+Tracking-Dienste. Alle Daten (Spielernamen, Spielstände, optionale
+Avatar-Fotos, Logo-Uploads, Einstellungen) landen ausschließlich in der
+lokalen SQLite-Datenbank (`data/scoreboard.sqlite`) auf dem jeweils
+eigenen Server und werden an keine dritte Stelle übertragen.
+
+- **Cookies/Speicherung im Browser**: ein Session-Cookie (`PHPSESSID`),
+  ausschließlich für den optionalen Zugangsschutz (siehe "Zugangsschutz"
+  oben) — ohne aktivierten Zugangsschutz wird kein Cookie gesetzt.
+  Zusätzlich einige rein clientseitige `localStorage`-Einträge (z.B.
+  gemerkte Anzeige-Einstellungen wie ein-/ausgeklappter Punktestand) ohne
+  Server-Bezug.
+- **Externe Anfragen**: einzig `js/version.js` fragt beim Laden die
+  öffentliche GitHub-API nach der neuesten Release-Version ab (kein
+  Tracking, keine personenbezogenen Daten in der Anfrage).
+- **Verantwortung**: Wer diese Software für eine eigene Gruppe betreibt,
+  ist selbst für die datenschutzrechtliche Einordnung (z.B. DSGVO)
+  verantwortlich — je nach Nutzungskontext kann z.B. ein Impressum oder
+  eine Datenschutzerklärung auf der eigenen Installation nötig sein.
+  Empfehlenswert für nicht-öffentliche Nutzung: den in den Einstellungen
+  verfügbaren Zugangsschutz (Passwort) aktivieren.
+
 ## Lizenz
 
 [PolyForm Noncommercial License 1.0.0](LICENSE) — freie Nutzung, Veränderung
@@ -562,6 +633,32 @@ Kontakt aufnehmen.
 Scorekeeping helper for game nights. Pure PHP 8 + PDO/SQLite, no Node, no
 separate database needed — runs on plain webhosting via FTP upload, meant
 to work on iPad and iPhone.
+
+## Quick start
+
+- **What is this?** A lightweight, self-hosted web app for keeping score
+  at game nights — no account, no cloud, no ads, no tracking services.
+  Four scorekeeping modes (see below), player management, history, and
+  statistics are already built in.
+- **Try it locally** (requires PHP 8 with `pdo_sqlite` installed):
+  ```bash
+  php -S localhost:8090
+  ```
+  then open <http://localhost:8090>. Or, without installing PHP locally,
+  run it in a Docker container:
+  ```bash
+  docker run --rm -p 8090:80 -v "$PWD:/var/www/html" php:8.3-apache \
+    bash -c "docker-php-ext-install pdo_sqlite && apache2-foreground"
+  ```
+- **Run it on your own server**: upload the entire folder via FTP/SFTP to
+  a PHP 8 webspace with the `pdo_sqlite` extension — done, no build
+  step, no separate database to set up (see "Hosting requirements" and
+  "Deployment" below for details).
+- **Lock it down for a private group**: by default the site is usable by
+  anyone with the link. Under Settings → "Access protection" you can
+  enable a shared password (with a file-based reset option if it's
+  forgotten — see the "Access protection" section below).
+- **License**: free for noncommercial use, see [License](#license) below.
 
 ## Concept
 
@@ -832,8 +929,8 @@ the player database and game history are deliberately mode-agnostic.
   - **Flip Board**: third theme in a departure-board style, default for new
     installations since its introduction. Home page with compact icon tiles
     in a fixed grid (2 columns on phone, 4 columns from iPad up — designed
-    iPad-first, see `docs/original/flip-board-theme-mockup.html`) and a full
-    bar instead of a card for "Who starts?"; player management/history use
+    iPad-first) and a full bar instead of a card for "Who starts?";
+    player management/history use
     the same flat, sharp-edged rows as Bold, just without rounding; the
     active game view of the 3 point-based modes shows standings as a matte
     glass panel (`backdrop-filter`, the only glass accent in the theme) with
@@ -894,6 +991,22 @@ the player database and game history are deliberately mode-agnostic.
     place until explicitly removed).
   - **Language**: currently German/English, see the "Multi-language
     support (i18n)" section below.
+  - **Access protection**: disabled by default (the site is usable by
+    anyone with the link). An "Enable access protection" checkbox plus
+    one shared password (no account system, one password for everyone)
+    then protect both every page and every API endpoint
+    (`includes/auth.php`, via a PHP session). Without protection enabled
+    AND without a password ever set, the site stays open — so enabling
+    protection without ever setting a password can't accidentally lock
+    anyone out. Leave the password field blank to keep the current
+    password. **Forgot the password?** Create an empty file
+    `data/reset-password.txt` via FTP/SFTP/SSH (file access, no web
+    access needed) — on the next page load, access protection is
+    automatically disabled, the stored password is cleared, and the
+    marker file is removed again. `data/` is already fully blocked from
+    the web via `.htaccess`, so a website visitor could never create
+    that file themselves. "Log out on this device" ends your own
+    session.
   - **Data backup** (`api/backup.php`): "Download backup" produces a ZIP
     file with a consistent snapshot of the SQLite database (`VACUUM INTO`,
     respects WAL mode instead of copying the raw file) plus all avatar
@@ -994,6 +1107,29 @@ made public, the notice works without any code change.
 
 See the tree above (folder layout is identical, only the code comments
 in this README are in English/German respectively).
+
+## Privacy
+
+This software is meant to be self-hosted — there is no central provider,
+no cloud connection, and no external analytics or tracking services. All
+data (player names, scores, optional avatar photos, logo uploads,
+settings) lives exclusively in the local SQLite database
+(`data/scoreboard.sqlite`) on your own server and is never sent anywhere
+else.
+
+- **Cookies/browser storage**: one session cookie (`PHPSESSID`), used
+  only for the optional access protection (see "Access protection"
+  above) — no cookie is set unless access protection is enabled. A few
+  purely client-side `localStorage` entries (e.g. remembered display
+  settings like a collapsed standings card) with no server involvement.
+- **External requests**: only `js/version.js` queries the public GitHub
+  API on load for the latest release version (no tracking, no personal
+  data in the request).
+- **Responsibility**: whoever runs this software for their own group is
+  responsible for its data-protection compliance (e.g. GDPR) —
+  depending on how it's used, your own installation may need an imprint
+  or privacy notice. For non-public use, enabling the password-based
+  access protection in settings is recommended.
 
 ## License
 

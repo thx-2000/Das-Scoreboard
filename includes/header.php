@@ -20,6 +20,7 @@
  *                    Finger-Chooser)
  */
 
+require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/nav.php';
 
 $headerClass = 'app-header' . (!empty($header_class) ? ' ' . $header_class : '');

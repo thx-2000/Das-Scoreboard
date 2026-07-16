@@ -229,6 +229,30 @@ require __DIR__ . '/includes/header.php';
     <p id="settings-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
 
     <section class="card section-spacing">
+      <h2 data-i18n="settings.access.heading">Zugangsschutz</h2>
+      <p class="hint-text" data-i18n="settings.access.hint">Schützt die ganze Seite mit einem gemeinsamen Passwort für alle, die den Link kennen. Ohne aktiven Schutz ist die Seite für jeden mit dem Link nutzbar.</p>
+
+      <label class="player-chip">
+        <input type="checkbox" id="access-enabled-input">
+        <span data-i18n="settings.access.enableLabel">Zugangsschutz aktivieren</span>
+      </label>
+      <p id="access-password-status" class="hint-text" data-i18n="settings.access.noPasswordSet">Es ist noch kein Passwort hinterlegt — der Schutz bleibt bis dahin wirkungslos.</p>
+
+      <div class="form section-spacing">
+        <label for="access-password-input" data-i18n="settings.access.passwordLabel">Neues Passwort</label>
+        <input type="password" id="access-password-input" autocomplete="new-password">
+        <label for="access-password-confirm-input" data-i18n="settings.access.passwordConfirmLabel">Passwort wiederholen</label>
+        <input type="password" id="access-password-confirm-input" autocomplete="new-password">
+        <p class="hint-text" data-i18n="settings.access.passwordHint">Leer lassen, um das aktuell gespeicherte Passwort beizubehalten. Passwort vergessen? Siehe README für die Reset-Anleitung per Datei-Zugriff.</p>
+      </div>
+
+      <button type="button" id="access-save-btn" class="btn btn--primary" data-i18n="common.buttons.save">Speichern</button>
+      <p id="access-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
+
+      <a href="/logout.php" class="btn btn--ghost section-spacing" data-i18n="settings.access.logoutButton">Auf diesem Gerät abmelden</a>
+    </section>
+
+    <section class="card section-spacing">
       <h2 data-i18n="settings.backup.heading">Daten-Sicherung</h2>
       <p class="hint-text" data-i18n="settings.backup.hint">Vollständiges Backup aller Spieler, Spiele, Avatare und Logos als ZIP-Datei — z.B. um bei einem Server-Umzug sicherzugehen, dass nichts verloren geht.</p>
 

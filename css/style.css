@@ -336,7 +336,8 @@ main {
 }
 
 .form input[type="number"],
-.form input[type="text"] {
+.form input[type="text"],
+.form input[type="password"] {
   padding: 0.6rem 0.75rem;
   border-radius: 8px;
   border: 1px solid var(--color-border);
@@ -3097,4 +3098,47 @@ main {
 .flip-preset-card__label {
   font-size: 0.72rem;
   font-weight: 700;
+}
+
+/* Login-Seite (login.php) - eigenstaendig, kein Header/Nav, daher zentrierte
+   Karte statt der ueblichen main-Breite. */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.login-card__logo {
+  width: 40px;
+  height: 40px;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.login-card h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+}
+
+.login-card .form {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.login-card .btn {
+  margin-top: 0.25rem;
+}
+
+.login-card__error {
+  color: var(--color-danger);
+  font-weight: 600;
+  font-size: 0.9rem;
 }

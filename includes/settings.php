@@ -16,6 +16,15 @@ function default_settings(): array
         'app_title' => 'Das Scoreboard',
         'sound_enabled' => '1',
 
+        // Einfacher, geteilter Passwortschutz fuer die ganze App (siehe
+        // includes/auth.php) - kein User-System, ein Passwort fuer alle.
+        // access_password_hash wird ausschliesslich serverseitig ueber
+        // password_hash() gesetzt (api/settings.php), nie direkt per PATCH
+        // beschreibbar, und nie an den Client ausgeliefert (siehe
+        // public_settings() weiter unten).
+        'access_enabled' => '0',
+        'access_password_hash' => '',
+
         // 'classic' | 'bold' ("Bold Scorekeeper" - dunkles, hochkontrastiges
         // zweites Aussehen) | 'flip' ("Flip Board" - Anzeigetafel-Optik,
         // Standard seit dessen Einfuehrung). Bold nutzt eigene, feste
@@ -110,6 +119,35 @@ function get_settings(PDO $pdo): array
 {
     $rows = $pdo->query('SELECT key, value FROM settings')->fetchAll(PDO::FETCH_KEY_PAIR);
     return array_merge(default_settings(), $rows);
+}
+
+/**
+ * Entfernt den Passwort-Hash aus einem Settings-Array, bevor es als JSON an
+ * den Client geht - der Hash hat serverseitig (includes/auth.php) zu bleiben,
+ * das Frontend braucht ihn nie.
+ */
+function public_settings(array $settings): array
+{
+    // Abgeleitetes Flag statt Hash - Frontend zeigt damit an, ob ueberhaupt
+    // schon ein Passwort hinterlegt ist, ohne den Hash selbst zu kennen.
+    $settings['access_password_set'] = $settings['access_password_hash'] !== '' ? '1' : '0';
+    unset($settings['access_password_hash']);
+    return $settings;
+}
+
+/**
+ * Setzt den Passwort-Hash direkt, unter Umgehung von save_settings() - dort
+ * wird der Schluessel bewusst per continue; abgewiesen, um Schreibzugriffe
+ * ueber den generischen PATCH-Weg zu verhindern. Einziger legitimer Aufrufer
+ * ist api/settings.php (new_password-Feld, dort per password_hash() erzeugt).
+ */
+function set_access_password_hash(PDO $pdo, string $hash): void
+{
+    $upsert = $pdo->prepare('
+        INSERT INTO settings (key, value) VALUES (?, ?)
+        ON CONFLICT(key) DO UPDATE SET value = excluded.value
+    ');
+    $upsert->execute(['access_password_hash', $hash]);
 }
 
 function is_valid_hex_color(string $value): bool
@@ -212,6 +250,15 @@ function save_settings(PDO $pdo, array $updates): void
             if (!in_array($value, ['0', '1'], true)) {
                 continue;
             }
+        } elseif ($key === 'access_enabled') {
+            if (!in_array($value, ['0', '1'], true)) {
+                continue;
+            }
+        } elseif ($key === 'access_password_hash') {
+            // Darf niemals direkt per PATCH gesetzt werden - nur
+            // api/settings.php via password_hash() ueber den eigenen
+            // (nicht-generischen) new_password-Weg, siehe dort.
+            continue;
         } elseif ($key === 'theme_style') {
             if (!in_array($value, ['classic', 'bold', 'flip'], true)) {
                 continue;

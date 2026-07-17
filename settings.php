@@ -431,7 +431,7 @@ require __DIR__ . '/includes/header.php';
 
     <div class="settings-save-bar" id="settings-save-bar">
       <button type="button" id="save-settings-btn" class="btn btn--primary" data-i18n="common.buttons.save">Speichern</button>
-      <button type="button" id="reset-settings-btn" class="btn btn--ghost" data-i18n="settings.resetButton">Auf Standardfarben zurücksetzen</button>
+      <button type="button" id="reset-settings-btn" class="btn btn--ghost" data-i18n="settings.resetButton" hidden>Auf Standardfarben zurücksetzen</button>
     </div>
     <p id="settings-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
   </main>

@@ -14,6 +14,12 @@
 // Reitern anzeigen.
 const SETTINGS_SAVE_BAR_TABS = ['allgemein', 'aussehen'];
 
+// Der "Auf Standardfarben zuruecksetzen"-Knopf wirkt laut reset_settings()
+// ausschliesslich auf Theme-/Farbschluessel - anders als "Speichern" gilt
+// er inhaltlich nicht fuer "allgemein" (Titel/Sound/Sprache). Deshalb enger
+// gefasst als die Speichern-Leiste: nur auf "aussehen" sichtbar.
+const SETTINGS_RESET_BUTTON_TABS = ['aussehen'];
+
 function switchSettingsTab(tab) {
   document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((b) => {
     b.setAttribute('aria-selected', String(b.dataset.tab === tab));
@@ -22,6 +28,7 @@ function switchSettingsTab(tab) {
     panel.hidden = panel.dataset.tabPanel !== tab;
   });
   document.getElementById('settings-save-bar').hidden = !SETTINGS_SAVE_BAR_TABS.includes(tab);
+  document.getElementById('reset-settings-btn').hidden = !SETTINGS_RESET_BUTTON_TABS.includes(tab);
 }
 
 document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((btn) => {

@@ -1,4 +1,4 @@
-const UPDATE_CHECK_REPO = 'GitteHubertus/Das-Scoreboard';
+const UPDATE_CHECK_REPO = 'thx-2000/Das-Scoreboard';
 const UPDATE_CHECK_CACHE_KEY = 'scoreboard_update_check';
 const UPDATE_CHECK_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 1 Tag
 

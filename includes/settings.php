@@ -295,6 +295,115 @@ function flip_accent_palette(): array
 }
 
 /**
+ * Loest die aktuelle Theme-Auswahl serverseitig zu konkreten CSS-Variablen
+ * auf - genutzt von includes/header.php, um Theme-Attribut und Farben schon
+ * im ersten Response mitzuliefern statt erst per JS nachzuladen (siehe
+ * js/theme.js: das fruehere clientseitige Nachladen sorgte fuer einen
+ * sichtbaren Wechsel vom Classic-Standardlook zum eigentlich eingestellten
+ * Theme, sobald die Einstellungen nach dem Seitenaufbau eintrafen).
+ * 'vars' gilt immer, 'darkVars' ueberschreibt bei aktivem System-Dunkelmodus
+ * per @media (siehe render_theme_style_css) - Bold hat bewusst kein
+ * darkVars, da es unabhaengig vom System-Farbschema fest dunkel bleibt
+ * (identisch zum bisherigen JS-Verhalten ohne matchMedia-Listener dort).
+ */
+function resolve_theme_style(array $settings): array
+{
+    $themeStyle = in_array($settings['theme_style'] ?? '', ['bold', 'flip'], true)
+        ? $settings['theme_style']
+        : 'classic';
+
+    $hex = static function (array $settings, string $key) {
+        $value = $settings[$key] ?? '';
+        return is_valid_hex_color($value) ? $value : (default_settings()[$key] ?? '#000000');
+    };
+
+    if ($themeStyle === 'bold') {
+        $accent = accent_color_palette()[$settings['bold_accent']] ?? accent_color_palette()['green'];
+        $background = bold_background_palette()[$settings['bold_background']] ?? bold_background_palette()['dark'];
+        return [
+            'themeStyle' => 'bold',
+            'cardStyle' => $settings['bold_card_style'] === 'modern' ? 'modern' : 'classic',
+            'vars' => [
+                '--color-green' => $accent[0],
+                '--color-green-strong' => $accent[1],
+                '--color-bg' => $background[0],
+                '--color-surface' => $background[1],
+                '--color-border' => $background[2],
+            ],
+            'darkVars' => null,
+        ];
+    }
+
+    if ($themeStyle === 'flip') {
+        return [
+            'themeStyle' => 'flip',
+            'cardStyle' => null,
+            'vars' => [
+                '--color-bg' => $hex($settings, 'flip_color_bg_light'),
+                '--color-surface' => $hex($settings, 'flip_color_surface_light'),
+                '--color-text' => $hex($settings, 'flip_color_ink_light'),
+                '--color-green' => $hex($settings, 'flip_color_accent_light'),
+            ],
+            'darkVars' => [
+                '--color-bg' => $hex($settings, 'flip_color_bg_dark'),
+                '--color-surface' => $hex($settings, 'flip_color_surface_dark'),
+                '--color-text' => $hex($settings, 'flip_color_ink_dark'),
+                '--color-green' => $hex($settings, 'flip_color_accent_dark'),
+            ],
+        ];
+    }
+
+    return [
+        'themeStyle' => 'classic',
+        'cardStyle' => null,
+        'vars' => [
+            '--color-bg' => $hex($settings, 'color_bg_light'),
+            '--color-surface' => $hex($settings, 'color_surface_light'),
+            '--color-text' => $hex($settings, 'color_text_light'),
+            '--color-text-muted' => $hex($settings, 'color_text_muted_light'),
+            '--color-border' => $hex($settings, 'color_border_light'),
+            '--color-green' => $hex($settings, 'color_green'),
+            '--color-green-strong' => $hex($settings, 'color_green_strong'),
+            '--color-amber' => $hex($settings, 'color_amber'),
+            '--color-amber-strong' => $hex($settings, 'color_amber_strong'),
+            '--color-on-accent' => $hex($settings, 'color_on_accent'),
+            '--color-focus' => $hex($settings, 'color_focus'),
+            '--color-danger' => $hex($settings, 'color_danger'),
+        ],
+        'darkVars' => [
+            '--color-bg' => $hex($settings, 'color_bg_dark'),
+            '--color-surface' => $hex($settings, 'color_surface_dark'),
+            '--color-text' => $hex($settings, 'color_text_dark'),
+            '--color-text-muted' => $hex($settings, 'color_text_muted_dark'),
+            '--color-border' => $hex($settings, 'color_border_dark'),
+        ],
+    ];
+}
+
+/**
+ * Baut aus resolve_theme_style() den fertigen <style>-Inhalt fuer den
+ * <head> - :root fuer den Normalfall, @media fuer den System-Dunkelmodus
+ * (ersetzt damit auch den frueheren JS-matchMedia-Listener: die Umschaltung
+ * geschieht jetzt rein per CSS, ganz ohne Skript).
+ */
+function render_theme_style_css(array $themeData): string
+{
+    $cssVars = static function (array $vars): string {
+        $lines = [];
+        foreach ($vars as $prop => $value) {
+            $lines[] = '  ' . $prop . ': ' . $value . ';';
+        }
+        return implode("\n", $lines);
+    };
+
+    $css = ":root {\n" . $cssVars($themeData['vars']) . "\n}";
+    if ($themeData['darkVars']) {
+        $css .= "\n@media (prefers-color-scheme: dark) {\n  :root {\n" . $cssVars($themeData['darkVars']) . "\n  }\n}";
+    }
+    return $css;
+}
+
+/**
  * Speichert nur bekannte Settings-Schluessel mit gueltigem Wert (Hex-Farbe
  * bzw. unterstuetzte Sprache) - unbekannte oder ungueltige Eintraege werden
  * stillschweigend uebersprungen, damit ein Tippfehler im Request nicht die

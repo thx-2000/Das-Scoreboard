@@ -30,13 +30,24 @@ $headerClass = 'app-header' . (!empty($header_class) ? ' ' . $header_class : '')
 // round-entry.js nicht bereitgestellt wird) - siehe auch i18n.js, das
 // denselben Mechanismus fuer die Woerterbuecher nutzt.
 $appVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+
+// Theme direkt serverseitig aufloesen (siehe resolve_theme_style()) statt
+// wie frueher nur per JS nach dem Laden - verhindert den sichtbaren
+// Wechsel vom Classic-Standardlook zum eigentlich eingestellten Theme.
+$themeSettings = get_settings(get_db());
+$themeData = resolve_theme_style($themeSettings);
+$htmlThemeAttrs = ' data-theme-style="' . htmlspecialchars($themeData['themeStyle'], ENT_QUOTES) . '"';
+if ($themeData['cardStyle']) {
+    $htmlThemeAttrs .= ' data-card-style="' . htmlspecialchars($themeData['cardStyle'], ENT_QUOTES) . '"';
+}
 ?><!DOCTYPE html>
-<html lang="de">
+<html lang="de"<?= $htmlThemeAttrs ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0<?= $viewport_extra ?? '' ?>">
   <title data-i18n-title-suffix="<?= htmlspecialchars($page_title, ENT_QUOTES) ?>">Das Scoreboard</title>
   <link rel="stylesheet" href="/css/style.css?v=<?= urlencode($appVersion) ?>">
+  <style><?= render_theme_style_css($themeData) ?></style>
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">

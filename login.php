@@ -46,13 +46,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $appVersion = trim(file_get_contents(__DIR__ . '/VERSION'));
+
+// Theme serverseitig aufloesen, siehe includes/header.php und
+// includes/settings.php::resolve_theme_style() fuer die Begruendung.
+$themeData = resolve_theme_style($settings);
+$htmlThemeAttrs = ' data-theme-style="' . htmlspecialchars($themeData['themeStyle'], ENT_QUOTES) . '"';
+if ($themeData['cardStyle']) {
+    $htmlThemeAttrs .= ' data-card-style="' . htmlspecialchars($themeData['cardStyle'], ENT_QUOTES) . '"';
+}
 ?><!DOCTYPE html>
-<html lang="de">
+<html lang="de"<?= $htmlThemeAttrs ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n-title-suffix="pages.login.title">Das Scoreboard</title>
   <link rel="stylesheet" href="/css/style.css?v=<?= urlencode($appVersion) ?>">
+  <style><?= render_theme_style_css($themeData) ?></style>
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <meta name="theme-color" content="#f1f2f4">
@@ -86,8 +95,8 @@ $appVersion = trim(file_get_contents(__DIR__ . '/VERSION'));
 
   <p class="app-version" id="app-version">Das Scoreboard</p>
 
-  <script src="/js/version.js?v=<?= urlencode($appVersion) ?>"></script>
-  <script src="/js/theme.js?v=<?= urlencode($appVersion) ?>"></script>
-  <script src="/js/i18n.js?v=<?= urlencode($appVersion) ?>"></script>
+  <script src="/js/version.js?v=<?= urlencode($appVersion) ?>" defer></script>
+  <script src="/js/theme.js?v=<?= urlencode($appVersion) ?>" defer></script>
+  <script src="/js/i18n.js?v=<?= urlencode($appVersion) ?>" defer></script>
 </body>
 </html>

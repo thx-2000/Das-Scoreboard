@@ -12,16 +12,16 @@ require __DIR__ . '/includes/header.php';
       <p class="hint-text" data-i18n="settings.theme.hint">Drei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich "Farben im Detail".</p>
       <div class="player-picker">
         <label class="player-chip winner-card">
+          <input type="radio" name="theme-style" value="flip" checked>
+          <span data-i18n="settings.theme.flip">Flip Board</span>
+        </label>
+        <label class="player-chip winner-card">
           <input type="radio" name="theme-style" value="classic">
           <span data-i18n="settings.theme.classic">Classic</span>
         </label>
         <label class="player-chip winner-card">
           <input type="radio" name="theme-style" value="bold">
           <span data-i18n="settings.theme.bold">Bold Scorekeeper</span>
-        </label>
-        <label class="player-chip winner-card">
-          <input type="radio" name="theme-style" value="flip" checked>
-          <span data-i18n="settings.theme.flip">Flip Board</span>
         </label>
       </div>
 

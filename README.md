@@ -4,14 +4,24 @@
 
 Aufschreibhilfe für Spieleabende. Reines PHP 8 + PDO/SQLite, kein Node,
 keine separate Datenbank nötig — läuft auf normalem Webhosting per FTP-
-Upload, Darstellung soll auf iPad und iPhone funktionieren.
+Upload, gemacht für iPad und iPhone.
+
+## Screenshots
+
+<p>
+  <img src="docs/screenshots/ipad-home.png" alt="Startseite: Auswahl der vier Spielmodi, offenes Spiel, Wer-fängt-an-Schnellzugriff" width="32%">
+  <img src="docs/screenshots/ipad-game.png" alt="Aktive Spielansicht mit Punktestand und Rundenerfassung" width="32%">
+  <img src="docs/screenshots/ipad-stats.png" alt="Statistik-Seite mit Zeitraumfilter, KPI-Kacheln und Spielerübersicht" width="32%">
+</p>
+
+*Aussehen "Flip Board" (Standard-Theme), Spielernamen im Screenshot sind
+Beispieldaten.*
 
 ## Für Eilige
 
 - **Was ist das?** Eine schlanke, selbst gehostete Web-App, um bei
   Spieleabenden Punkte mitzuschreiben — kein Konto, keine Cloud, keine
-  Werbung, keine Tracking-Dienste. Vier Aufschreibmodi (siehe unten),
-  Spielerverwaltung, Verlauf und Statistiken sind bereits eingebaut.
+  Werbung, keine Tracking-Dienste.
 - **Kurz ausprobieren** (benötigt lokal installiertes PHP 8 mit
   `pdo_sqlite`):
   ```bash
@@ -25,580 +35,76 @@ Upload, Darstellung soll auf iPad und iPhone funktionieren.
   ```
 - **Auf einem eigenen Server betreiben**: kompletten Ordnerinhalt per
   FTP/SFTP auf einen PHP-8-Webspace mit `pdo_sqlite`-Extension hochladen
-  — fertig, kein Build-Schritt, keine separate Datenbank einzurichten
-  (Details siehe "Voraussetzungen beim Hoster" und "Deployment" unten).
-- **Für eine geschlossene Gruppe absichern**: standardmäßig ist die
-  Seite für jeden mit dem Link nutzbar. Unter Einstellungen →
-  "Zugangsschutz" lässt sich ein gemeinsames Passwort aktivieren (mit
-  Datei-basierter Reset-Möglichkeit, falls es vergessen wird — siehe
+  — fertig, kein Build-Schritt.
+- **Für eine geschlossene Gruppe absichern**: unter Einstellungen →
+  "Zugangsschutz" lässt sich ein gemeinsames Passwort aktivieren (siehe
   Abschnitt "Zugangsschutz" unten).
 - **Lizenz**: kostenlos für nicht-kommerzielle Nutzung, siehe
   [Lizenz](#lizenz) unten.
 
-## Konzept
+## Was die App kann
 
-- **Startseite**: Übersicht der verfügbaren Aufschreibmöglichkeiten
-  ("Modi"), aktuell vier: *Punkte bis Höchstwert* (Beispiele: Flip7, Tutto),
-  *Offene Punkterunde* (Beispiel: Doppelkopf), *Punkterunde mit fester
-  Rundenzahl* und *RAGE*.
-- **Header/Navigation**: gemeinsam für alle Seiten aus `includes/header.php`
-  + `includes/nav.php` gerendert (PHP-Includes statt Markup-Duplikat je
-  Seite) — ein neuer/geänderter Nav-Eintrag wird nur an einer Stelle
-  gepflegt. Auf schmalen Bildschirmen (Smartphone) klappt die Navigation
-  hinter ein Burger-Menü zusammen (`js/nav.js`); auf iPad Portrait bleibt
-  sie in einer Zeile sichtbar. Eine `.htaccess`-Weiterleitung hält alte
-  `*.html`-Lesezeichen und bereits installierte PWA-Homescreen-Icons
-  funktionsfähig (Seiten liefen früher als statisches HTML, jetzt als
-  `.php` mit den gemeinsamen Includes). Alle CSS-/JS-Dateien werden mit
-  `?v=<Version>` ausgeliefert (`includes/header.php`/`footer.php`, liest
-  `VERSION`) — ohne das würden Browser nach einem Release ggf. noch alte
-  JS-Dateien aus dem Cache verwenden, obwohl das HTML schon neu ist.
-- **Spielerverwaltung** (`players.php`): zentrale Namens-Datenbank, aus der
-  bei neuen Spielen ausgewählt werden kann, statt Namen jedes Mal neu zu
-  tippen. Zwei unterschiedliche Stufen zum Entfernen:
-  - **Entfernen** (weiche Löschung): Spieler verschwindet aus der
-    Schnellauswahl, bleibt aber in der Spielerverwaltung (unter
-    "Deaktivierte Spieler") sichtbar und jederzeit per "Reaktivieren"
-    rückgängig machbar.
-  - **Löschen** (echte Löschung): Spieler verschwindet komplett aus der
-    Spielerverwaltung (weder Aktiv- noch Deaktiviert-Liste) — dafür gibt
-    es keinen Weg zurück in der Oberfläche. Vergangene Spiele/Verlauf/
-    Statistik zeigen den Namen trotzdem weiterhin an, da der Datensatz
-    selbst (wegen der Fremdschlüssel aus Spielen/Runden) erhalten bleibt,
-    nur mit `deleted_at` markiert. Ein erneut angelegter Spieler mit
-    gleichem Namen wird bewusst ohne Abgleich als komplett neuer,
-    unabhängiger Datensatz angelegt (keine Zusammenführungslogik) — im
-    Zweifel hilft die Datensicherung (siehe unten) beim Wiederherstellen.
-- **Spielergruppen** (`players.php`, Abschnitt "Spielergruppen";
-  `api/player-groups.php`): fassen Spieler zu wiederverwendbaren Gruppen
-  zusammen (z.B. "Familie", "Stammtisch") — eine Person kann in mehreren
-  Gruppen gleichzeitig sein (reine n:m-Zuordnung, `player_group_members`).
-  Jede Gruppe zeigt klein eine Mitglieder-Vorschau (Namen + Mini-Avatare,
-  sofern gesetzt) direkt unter dem Gruppennamen. Gruppen lassen sich analog
-  zu Spielern (de)aktivieren — nur aktive Gruppen erscheinen beim
-  Spiel-Einrichten — und zusätzlich (anders als Spieler) auch komplett
-  löschen, da keine Historie an Gruppen hängt. Beim Einrichten eines
-  Spiels (alle 4 Modi, auch RAGE) erscheinen aktive Gruppen als Chips
-  oberhalb der Spielerauswahl: ein Klick markiert alle Mitglieder
-  zusätzlich zur bestehenden Auswahl (nimmt nichts zurück). Daneben steht
-  ein "Alle auswählen"/"Alle abwählen"-Knopf für die komplette
-  Spielerliste (`js/group-picker.js`, genutzt von `js/groups.js` und allen
-  vier `setup.js`).
-- **Spielverlauf** (`history.php`): alle Spiele (laufend + beendet),
-  unterscheidbar über Start-/Endzeit, damit auch mehrere Spiele am selben
-  Tag eindeutig auffindbar sind. Filter-Tabs "Alle"/"Laufend"/"Beendet"
-  filtern die geladene Liste rein clientseitig (kein neuer Server-Request),
-  gelten in beiden Themes.
-- **Modus "Punkte bis Höchstwert"** (`modes/points-to-target/`): Punkte
-  werden rundenweise für alle Spieler gemeinsam erfasst (0 ist normal, z.B.
-  bei einem Bust). Sobald jemand den Zielwert erreicht/überschreitet, endet
-  das Spiel automatisch — diese Ziel-Erreichung ist unabhängig von der
-  Sieg-Richtung. Beim Einrichten wird festgelegt, ob dann die höchste
-  (Standard, z.B. Flip7, Tutto) oder die niedrigste Punktzahl gewinnt (z.B.
-  Skyjo — bei Gleichstand mehrere Sieger möglich). Korrektur ist jederzeit
-  direkt in der Rundenverlauf-Tabelle möglich und reaktiviert ein bereits
-  beendetes Spiel automatisch, falls der Zielwert dadurch unterschritten
-  wird. In den Erweiterten Optionen beim Einrichten: "Bonus bei
-  Zielerreichung" (Stepper, Standard 0) addiert beim Spielende automatisch
-  Zusatzpunkte zum/zu den bereits ermittelten Sieger(n) — beeinflusst nie,
-  ob/wann das Ziel erreicht wird, nur das angezeigte Endergebnis. "Negativpunkte
-  erlauben" (Standard an) sperrt bei Deaktivierung negative Rundeneingaben
-  serverseitig auf 0.
-- **Modus "Offene Punkterunde"** (`modes/points-open/`): wie oben, aber ohne
-  Zielwert — beim Einrichten wird festgelegt, ob am Ende die höchste oder
-  die niedrigste Punktzahl gewinnt. Das Spiel wird manuell per Knopfdruck
-  beendet (und kann genauso wieder fortgesetzt werden), es gibt keinen
-  automatischen Sieg-Moment. "Negativpunkte erlauben" wie oben in den
-  Erweiterten Optionen wählbar.
-- **Modus "Punkterunde mit fester Rundenzahl"** (`modes/fixed-rounds/`): wie
-  "Offene Punkterunde", aber mit einer beim Einrichten festgelegten
-  Rundenzahl (Sieg-Richtung ebenfalls wählbar). Sobald die vereinbarte
-  Rundenzahl erreicht ist, erscheint ein Hinweis mit der Wahl "Spiel
-  beenden" oder "Weiterspielen, noch X Runden" (verlängert die Zielzahl und
-  lässt das Spiel aktiv weiterlaufen, danach erscheint der Hinweis bei
-  Bedarf erneut). Optional (Checkbox beim Einrichten, standardmäßig aus)
-  zeigt eine schließbare Meldung "Runde X beendet" nach jeder gespeicherten
-  Runde. "Negativpunkte erlauben" ebenfalls in den Erweiterten Optionen
-  wählbar.
-- **Tool "Wer fängt an?"** (`tools/finger-chooser.php`): Multitouch-
-  Fingerauswahl für iPad/iPhone. Wartet auf den ersten Finger, zählt dann
-  5 Sekunden runter (weitere Finger können in dieser Zeit dazukommen),
-  wählt danach zufällig unter den aufliegenden Fingern aus (werden groß/
-  grün), die restlichen verschwinden. Über einen Plus/Minus-Stepper
-  ("Anzahl Sieger") lässt sich einstellen, wie viele Finger ausgewählt
-  werden sollen (Standard: 1) — praktisch z.B. für 2v2-Teams; werden
-  weniger Finger aufgelegt als angefragt, gelten automatisch alle
-  aufliegenden als Sieger. Die zuletzt genutzte Anzahl wird pro Gerät
-  gemerkt (`localStorage`). Rein clientseitig über die Touch-Events-API,
-  ohne Backend-Anbindung.
-- **Startspieler**: Alle Modi bestimmen beim Anlegen eines Spiels
-  automatisch zufällig einen Startspieler unter den ausgewählten Spielern.
-  Dessen Name trägt im Punktestand einen kleinen Stern (★), der unten links
-  im Punktestand-Kasten erklärt wird ("Startspieler (zufällig)"). Bereits
-  vor dieser Funktion angelegte Spiele zeigen keinen Stern (kein
-  Startspieler nachträglich zugewiesen).
-- **Rückgängig**: Alle Modi zeigen neben "Rundenverlauf & Korrektur" einen
-  "Letzte Runde rückgängig"-Knopf, sobald mindestens eine Runde gespielt
-  wurde — schneller Zugriff für den Fall, dass die letzte Eingabe ein
-  Versehen war, ohne dafür in der Korrektur-Tabelle nach unten scrollen zu
-  müssen. Löscht technisch dieselbe Runde wie der "Löschen"-Knopf in der
-  Tabelle.
-- **Als App installierbar (PWA)**: `manifest.json` + Icons
-  (`assets/icons/`) erlauben "Zum Home-Bildschirm hinzufügen" auf
-  iPad/iPhone (Safari: Teilen-Symbol → "Zum Home-Bildschirm") sowie auf
-  Android/Desktop-Chrome — die Seite öffnet sich danach wie eine eigene
-  App, ohne Adressleiste. Ein Hinweis dazu erscheint auf der Startseite,
-  aber nur, wenn eine Installation dort auch tatsächlich möglich ist (auf
-  iOS/iPadOS Safari immer, auf Chrome/Edge/Android nur wenn der Browser
-  das `beforeinstallprompt`-Event auslöst) — auf einem Desktop-Browser
-  ohne Installationsunterstützung bleibt er unsichtbar. Name/Icon im
-  Manifest sind aktuell statisch (Standardtitel "Das Scoreboard",
-  Stift-Symbol) und folgen einem in den Einstellungen geänderten
-  Titel/Logo (noch) nicht automatisch.
-- **Ton beim Speichern**: kurzer, per Web-Audio-API synthetisierter Ton
-  (keine Audiodatei nötig) beim Speichern einer neuen Runde, in allen 4
-  Modi. Zusätzlich Vibration, wo vom Gerät unterstützt — auf iPhone/iPad
-  grundsätzlich nicht möglich (Safari implementiert die Vibration-API
-  nicht, auch nicht im PWA-Modus), der Ton funktioniert dort aber normal.
-  In den Einstellungen abschaltbar (Standard: an).
-- **Zahlenfelder-UX**: Alle Punkte-/Zahleneingabefelder (Rundenerfassung,
-  Korrektur-Tabelle, Einrichten-Formulare) markieren ihren Inhalt
-  automatisch beim Fokussieren — direkt lostippen überschreibt den
-  bisherigen Wert, ohne ihn erst manuell markieren oder löschen zu müssen.
-  Auf Mobilgeräten öffnet sich dabei die numerische Tastatur
-  (`inputmode="numeric"`).
-- **Schritt-Buttons zur Rundenerfassung** (themenunabhängig nutzbar; nicht bei
-  RAGE): Alternative zur Zahleneingabe — je Spieler/Team eine Reihe Plus- und
-  eine Reihe Minus-Buttons, die einen laufenden Wert hoch- bzw. runterzählen.
-  Welche Schrittweiten zur Auswahl stehen (1/5/10/50/100/500/1000, einzeln
-  an-/abschaltbar) wird global in den Einstellungen festgelegt
-  (`settings.round_entry_steps`). Zwischen Tippen und Schritt-Buttons per
-  Knopf umschaltbar (auch mitten im laufenden Spiel, Wahl pro Gerät in
-  `localStorage` gemerkt, bereits eingetragene Werte bleiben beim Umschalten
-  erhalten) — in Classic am Eingabe-Raster, in Bold Scorekeeper am
-  Spieler-Picker (siehe Bold-Theme-Abschnitt unten) (`js/round-entry.js`).
-  Flip Board nutzt dieselbe Schrittweiten-Konfiguration, aber ohne
-  Umschalt-Knopf — dort sind Tippen und Schritt-Buttons immer gleichzeitig
-  sichtbar (siehe Flip-Board-Theme-Abschnitt unten).
-- **Ein-/ausklappbarer Punktestand**: Der sticky Punktestand oben in der
-  Spielansicht lässt sich per Knopf einklappen (zeigt dann nur die
-  Überschrift) und wieder anzeigen — wichtig auf kleinen Bildschirmen
-  (z.B. iPhone Hochformat), wo die volle Tabelle sonst zu viel Platz für
-  die Rundenerfassung darunter wegnimmt. Zustand wird pro Gerät in
-  `localStorage` gemerkt, gilt modusübergreifend.
-- **Kompaktere Rundentabelle auf schmalen Bildschirmen**: Innenabstand,
-  Schrift und Eingabefeld-Breite in der Rundenverlauf-Tabelle schrumpfen
-  unterhalb 480px Breite, zusätzlich reicht die Tabelle bis an den
-  Kartenrand — reduziert bzw. vermeidet seitliches Scrollen bei den
-  ueblichen 2-4 Spielern in den 3 Punkte-Modi. Bei RAGE (5 Spalten pro
-  Spieler in der Korrektur-Tabelle) bleibt seitliches Scrollen je nach
-  Spielerzahl weiterhin nötig — das ist strukturell bedingt und wurde
-  nicht extra behoben.
-- **"Offene Spiele" auf der Startseite** (gilt für beide Themes): zeigt bis zu
-  5 laufende, nicht beendete Spiele mit Modus-Icon, Spielernamen und
-  Zielwert/Rundenzahl zum direkten Fortsetzen, samt Link "Alle anzeigen" zum
-  vollständigen Verlauf. Bleibt ausgeblendet, wenn kein Spiel läuft. Nutzt
-  denselben Endpunkt wie der Verlauf (`GET /api/games.php`), keine eigene
-  Backend-Route (`js/home.js`).
-- **Unterstützen-Link**: dezenter Button unten links, nur auf der Startseite,
-  verlinkt zu [buymeacoffee.com/thomashageleit](https://buymeacoffee.com/thomashageleit).
-  Bewusst ein einfacher lokal gestalteter Link statt des offiziellen
-  Buy-Me-a-Coffee-Widgets — keine externe Skript-Einbindung, kein
-  zusätzliches Tracking (siehe Abschnitt "Datenschutz" unten). Auf schmalen
-  Bildschirmen schrumpft er zu einem reinen Icon-Button.
-- **Team-Modus** (nur in den 3 Punkte-Modi, nicht bei RAGE): Beim Einrichten
-  lassen sich Spieler unter "Erweiterte Optionen" zu Teams gruppieren.
-  Teamname wird automatisch aus den Mitgliedsnamen gebildet ("Alice &
-  Bob") oder lässt sich beim Einrichten frei vergeben. Zwei Varianten der
-  Punkte-Erfassung stehen zur Wahl:
-  - **Gemeinsamer Punktwert** (Standard): Team-Mitglieder tragen pro
-    Runde nur noch einen gemeinsamen Punktwert ein (ein Eingabefeld statt
-    eines pro Spieler), der beim Speichern für alle Mitglieder übernommen
-    wird. In der Korrektur-Tabelle bleibt jeder Spieler einzeln sichtbar
-    (Transparenz), Korrekturen werden aber automatisch an alle
-    Team-Mitglieder der Runde angeglichen, damit die Werte nicht
-    auseinanderlaufen.
-  - **Einzelne Punkte, gemeinsame Summe**: jeder Spieler trägt weiterhin
-    eigene Punkte ein wie ohne Team-Modus (ein Eingabefeld pro Spieler,
-    unabhängige Werte, kein Korrektur-Sync). Im Punktestand bleibt jeder
-    Spieler eine eigene Zeile, zeigt zusätzlich die Team-Zugehörigkeit und
-    die Team-Summe an — Rang und Sieg werden anhand der Team-Summe
-    ermittelt, auch für die automatische Ziel-Erreichung bei "Punkte bis
-    Höchstwert".
+- **Vier Aufschreibmodi**: *Punkte bis Höchstwert* (z.B. Flip7, Tutto),
+  *Offene Punkterunde* (z.B. Doppelkopf), *Punkterunde mit fester
+  Rundenzahl* und *RAGE* (Stichspiel mit automatischer Punkteberechnung).
+- **Spielerverwaltung**: zentrale Namensliste zur Schnellauswahl, dazu
+  optionale Spielergruppen (z.B. "Familie") für Ein-Klick-Auswahl.
+- **Team-Modus**: in den drei Punkte-Modi lassen sich Spieler zu Teams
+  zusammenfassen, wahlweise mit gemeinsamem oder individuellem Punktwert.
+- **Spieler-Avatare**: optionales Foto pro Spieler, direkt im Punktestand
+  sichtbar.
+- **Verlauf & Statistiken**: alle Spiele mit Filter nach Status, dazu eine
+  Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
+  Zeitraumfilter (inkl. Drucken/PDF).
+- **"Wer fängt an?"**: Multitouch-Fingerauswahl für iPad/iPhone.
+- **Mehrsprachig**: Deutsch und Englisch, umschaltbar in den
+  Einstellungen.
+- **Als App installierbar**: "Zum Home-Bildschirm hinzufügen" auf
+  iPad/iPhone — läuft danach wie eine eigene App, ohne Adressleiste.
+- **Backup & Wiederherstellung**: komplette Datensicherung als ZIP-Datei
+  herunterladen oder wiederherstellen, z.B. bei einem Server-Umzug.
 
-  Bestehende Spiele ohne Teams sind unverändert (jeder spielt weiterhin
-  solo).
-- **Spieler-Avatar**: In der Spielerverwaltung lässt sich pro Spieler ein
-  Foto hochladen (PNG/JPEG, max. 2 MB) — nur im Passfoto-Hochformat 2:3
-  möglich. Ein Ausschnitts-Auswahl-Dialog (Ziehen zum Verschieben, Regler
-  zum Zoomen, reines Canvas ohne externe Bibliothek) erzwingt das
-  Seitenverhältnis direkt beim Upload. Das Foto erscheint danach in der
-  Spielerverwaltung sowie im Punktestand aller 4 Modi (bei Team-Zeilen im
-  Team-Modus bewusst nicht, da unklar wäre, wessen Foto stellvertretend
-  gezeigt werden sollte). Ohne Foto bleibt es beim bisherigen Verhalten.
-- **Statistiken** (`stats.php`): modusübergreifende Auswertung aller
-  Spiele — Spiele/Siege/Siegquote/aktuelle und längste Sieges-Serie pro
-  Spieler, dieselbe Auswertung zusätzlich pro Modus (inkl.
-  Punkteschnitt, da die Punkteskalen der Modi nicht direkt vergleichbar
-  sind), Kopf-an-Kopf-Vergleich aller Spielerpaare mit gemeinsamen
-  Spielen, sowie eine Liste der Spiele im gewählten Zeitraum. Optionaler
-  Von/Bis-Zeitraumfilter (Datum + Uhrzeit) erlaubt eine Auswertung nur
-  für einen bestimmten Spieleabend — auch wenn dieser über die
-  Mitternachtsgrenze hinausgeht (z.B. 18:00 bis 03:00 des Folgetags),
-  da der Filter auf echten Zeitstempeln statt auf Kalendertagen
-  arbeitet. Ein "Drucken / PDF"-Knopf nutzt den normalen Browser-Druck
-  (eigenes Druck-Stylesheet blendet Navigation/Formulare aus) — direkter
-  Weg zu einem PDF-Ausdruck ohne zusätzliche Abhängigkeit. Vier
-  KPI-Kacheln oben (Spiele/Beendet/Anteil beendet/Ø Punkte — Letzteres
-  nur über die 3 Punkte-Modi gemittelt, RAGE ausgeschlossen, da die
-  Punkteskalen nicht vergleichbar sind) fassen den gefilterten Zeitraum
-  zusammen. Kopf-an-Kopf zeigt zusätzlich eine Spieler-x-Spieler-Matrix
-  (die bisherige Listenansicht bleibt hinter "Als Liste anzeigen"
-  verfügbar, da eine Matrix ab ca. 6+ Spielern unübersichtlich wird), dazu
-  ein Donut-Chart zur Modus-Verteilung (reines CSS `conic-gradient`, keine
-  Chart-Bibliothek).
-- **Modus "RAGE"** (`modes/rage/`): Kartenspiel mit Stichansage über feste
-  10 Runden (Kartenzahl sinkt von 10 auf 1). Vor jeder Runde werden je
-  Spieler Ansage und tatsächliche Stiche eingetragen, dazu optional
-  Rage-Bonus- (+5) und Rage-Rache-Karten (−5); die Punkte werden
-  automatisch berechnet (+1 pro Stich, +10 bei Treffer, −5 bei Fehlschuss).
-  Beim Speichern einer Runde wird gewarnt, falls die Summe der Stiche nicht
-  der Kartenzahl entspricht (Speichern bleibt trotzdem möglich). Nach
-  Runde 10 endet das Spiel automatisch; ein manuelles Beenden/Fortsetzen
-  ist ebenfalls möglich. Löschen einer Runde reduziert die Rundenzahl und
-  öffnet ein automatisch beendetes Spiel bei Bedarf wieder. "Bonus/Malus
-  anzeigen" (Erweiterte Optionen beim Einrichten, Standard an) blendet die
-  +5/−5-Felder in der Rundenerfassung ein-/aus — reine Anzeige-Einstellung,
-  Bonus/Rache werden unabhängig davon immer verrechnet.
+## Aussehen
 
-Weitere Modi (andere Aufschreib-Mechaniken) sollen später als eigene
-Unterordner unter `modes/` dazukommen, ohne die bestehenden Teile
-anzufassen — Spieler-Datenbank und Spielverlauf sind bewusst modusübergreifend
-angelegt.
-- **Einstellungen** (`settings.php`): global gespeicherte (serverseitige)
-  Konfiguration, gilt für alle, die die Seite nutzen. Mehrere Bereiche:
-  - **Aussehen**: Wahl zwischen drei eigenständigen Themes — "Classic"
-    (der bisherige Look, individuell per Hex-Farben anpassbar), "Bold
-    Scorekeeper" (dunkles, hochkontrastiges Theme mit fest vorgegebener
-    Neon-Lime/Cyan/Purple/Orange-Palette, nicht per Hex anpassbar) und "Flip
-    Board" (Standard seit Einführung — Anzeigetafel-Optik: flache, kantige
-    Flächen statt runder Karten, Haarlinien-Trennstriche statt
-    Kartenschatten, Ziffern in Monospace, folgt wie Classic dem
-    System-Farbschema statt fest dunkel zu sein wie Bold). Technisch teilen
-    sich alle drei Themes dieselbe HTML/JS-Struktur
-    je Seite — das Theme setzt nur `[data-theme-style]` auf `<html>`
-    (`js/theme.js`) und schaltet darüber CSS-Tokens um (`css/style.css`,
-    Abschnitte "Bold Scorekeeper Theme" bzw. "Flip Board Theme"); Classic
-    bleibt dabei unverändert.
-    Layout-/Bedienungs-Umbauten je Seite (grosse Touch-Ziele, Karten statt
-    Tabellen, Stepper-Eingaben, …) für Bold Scorekeeper folgen schrittweise
-    in eigenen Releases. Bereits umgesetzt (nur sichtbar bei aktivem Bold-
-    Theme, Classic bleibt unverändert): Startseite mit Icons und je eigener
-    Akzentfarbe pro Modus-Karte, grossem Sprung-Button "Neues Spiel starten"
-    und eigener "Wer fängt an?"-Schnellaktion; Spielerverwaltung mit
-    zyklisch eingefärbten Spieler-Karten (`--player-color-1` bis `-4`);
-    Verlauf mit staerker abgesetzten, angehobenen Spiel-Karten; Setup-
-    Seiten aller 4 Modi mit Plus/Minus-Stepper für Zielpunkte/Rundenzahl
-    (`js/stepper.js`, generisch über `[data-stepper]`), Sieg-Richtung als
-    grössere Auswahlkarten statt kleiner Chips, zyklisch eingefärbten
-    Spielerchips und einem hervorgehobenen Hinweiskasten im RAGE-Setup;
-    aktive Spielansicht der 3 Punkte-Modi mit Punktestand als flache,
-    kraeftig in der jeweiligen Spielerfarbe eingefaerbte Zeilen (Rang, Name,
-    Prozent, grosse Punktzahl, Fortschrittsbalken) statt Tabelle - die Farbe
-    haengt an der Spieler-Position im Spiel, nicht am aktuellen Rang, bleibt
-    also bei Rangwechseln stabil; Rundenerfassung als frei anwaehlbarer
-    Spieler-Picker statt Eingabe-Raster - alle Spieler bleiben als farbige
-    Chips mit ihrem aktuellen Wert sichtbar, per Klick in beliebiger
-    Reihenfolge anwaehlbar (auch mehrfach zur Korrektur vor dem Speichern),
-    bewusst ohne automatische Weiterschaltung, da die Reihenfolge am
-    Spieltisch selten mit der Spielerliste uebereinstimmt; "Runde
-    speichern" bleibt ein expliziter Klick, gemeinsam mit Classic; optisch
-    zurückgenommener Verlauf/Korrektur-Bereich darunter; RAGE-Aktivansicht
-    mit demselben farbigen Punktestand-Karten-Muster wie die 3 Punkte-Modi
-    sowie einer Mini-Stepper-Karte je Spieler zur Rundenerfassung (Ansage,
-    Stiche, +5, −5, je ein Plus/Minus-Stepper) statt der Tabelle — referenziert
-    dieselben Eingabefelder wie die (in Bold ausgeblendete) Classic-Tabelle,
-    live berechnete Punktzahl je Spieler-Karte; Statistiken-Seite mit
-    farblich hervorgehobener Führungs-Zeile (meiste Siege) in der
-    Gesamt- sowie den Nach-Modus-Tabellen und Kopf-an-Kopf-Zeilen als
-    angehobene Karten (die "Spiele in diesem Zeitraum"-Liste nutzt
-    ohnehin schon dieselben Verlaufs-Karten wie die Verlaufsseite);
-    Einstellungen-Seite mit der Aussehen- und Logo-Anzeige-Auswahl als
-    grössere Auswahlkarten statt kleiner Chips (derselbe Baustein wie die
-    Sieg-Richtung im Setup). Nach Abgleich mit einer detaillierten
-    Bildschirm-Vorlage folgten weitere Anpassungen: Modus-Karten auf der
-    Startseite in Bold als kompakte Icon-Kacheln ohne Fliesstext (festes
-    2x2-Raster); Spielerverwaltung-Zeilen in Bold vollflächig statt nur am
-    linken Rand farblich getönt; ein Alle/Laufend/Beendet-Filter im Verlauf
-    (clientseitig, in beiden Themes gleich, nur die Tab-Optik unterscheidet
-    sich). Damit ist der schrittweise Bold-Ausbau über alle Seiten hinweg
-    abgeschlossen.
-  - **Flip Board**: drittes Theme im Anzeigetafel-Stil, seit Einführung
-    Standard für neue Installationen. Startseite mit kompakten Icon-Kacheln
-    im festen Raster (2 Spalten Telefon, 4 Spalten ab iPad — iPad-first
-    entworfen) und vollem Balken statt Karte für "Wer fängt an?"; Spielerverwaltung/Verlauf
-    mit denselben flachen, kantigen Zeilen wie Bold, nur ohne Rundung;
-    aktive Spielansicht der 3 Punkte-Modi mit Punktestand als mattes
-    Glas-Panel (`backdrop-filter`, einziger Glas-Akzent im Theme) mit
-    Fortschrittsbalken je Zeile — nur die Führungs-Zeile farblich
-    hervorgehoben (eine kuratierte Akzentfarbe statt 4 Spielerfarben wie in
-    Bold); Rundenerfassung als kombiniertes Tipp-/Stepper-Muster
-    (`js/round-entry.js::buildFlipRoundEntry()`) — jedes Zahlenfeld ist
-    gleichzeitig antippbar-zum-Tippen (automatisch markiert, direkt
-    überschreibbar) UND hat Plus/Minus-Buttons daneben sowie eine Chip-Reihe
-    für weitere Schrittweiten darunter, kein Umschalt-Knopf zwischen
-    "Tippen" und "Schritt-Buttons" wie bei Classic/Bold nötig — nutzt
-    dieselbe Schrittweiten-Konfiguration (`settings.round_entry_steps`) wie
-    die anderen Themes und schreibt in dieselben Felder, die "Runde
-    speichern" ausliest; RAGE-Aktivansicht mit demselben Glas-Punktestand
-    und flach/kantig reskinnten Mini-Stepper-Karten (gleiche Funktion wie
-    Bold, nur andere Optik); Einstellungen mit 5 kuratierten
-    Farbvorschlägen als Vorschau-Kacheln (Bernstein/Petrol/Karmesin/
-    Knallorange/Violett, `includes/settings.php::flip_accent_palette()`) statt
-    reiner Farbpunkte — Klick überschreibt `flip_color_accent_light/_dark`
-    als Schnellwahl, Feinjustierung von Hintergrund/Fläche/Text/Akzent
-    (je hell/dunkel, 8 Felder) bleibt unter "Farben im Detail" möglich,
-    getrennt von Classics 17-Felder-Palette. Folgt wie Classic dem
-    System-Farbschema (hell/dunkel), anders als das fest dunkle Bold.
-  - **Akzentfarbe, Hintergrund, Kartenstil**: die Aussehen-Einstellung
-    zeigt als sichtbaren Hauptteil (in Classic und Bold) 5 kuratierte
-    Akzentfarben-Punkte zum Antippen (Grün/Orange/Pink/Violett/Cyan) —
-    unter Bold wird direkt einer von 5 festen Presets übernommen, unter
-    Classic überschreibt die Wahl die bestehenden Hex-Felder
-    `color_green`/`color_green_strong` als Schnellwahl (Feinjustierung
-    bleibt weiterhin möglich). Nur unter Bold zusätzlich: Hintergrund
-    (Dunkel/Dunkel Blau/Schwarz) und Kartenstil (Klassisch/Modern, grösserer
-    Radius + weicherer Schatten ohne sichtbaren Rand). Flip Board hat eine
-    eigene, separate Farbvorschlag-Auswahl (siehe oben) — dieser 5-Punkte-
-    Picker ist dort ausgeblendet. Die bisherige vollständige Hex-Farbpalette
-    (17 Felder) ist weiterhin unter "Farben im Detail" (aufklappbarer
-    Erweitert-Bereich) erreichbar — gilt technisch weiterhin nur für
-    Classic, unter Bold zeigt der Bereich stattdessen einen Hinweistext,
-    unter Flip Board zeigt er stattdessen die eigenen 8 Flip-Board-Felder.
-  - **Titel**: der angezeigte Name ("Das Scoreboard" als Standard) — erscheint
-    im Kopfbereich jeder Seite und im Browser-Tab-Titel, unabhängig von der
-    gewählten Sprache identisch (wird nicht übersetzt). Wer die Seite für
-    eine eigene Gruppe betreibt, kann hier einen eigenen Namen eintragen.
-  - **Logo**: standardmäßig kein eigenes Logo (Stift-Symbol bleibt sichtbar).
-    Zwei unabhängige Upload-Slots (Quadrat, Banner) + eine Anzeige-Auswahl
-    (kein Logo / Quadrat oben links / Banner über der ganzen Breite) — nur
-    der gewählte Modus wird tatsächlich angezeigt. PNG, JPEG oder SVG, max.
-    2 MB, empfohlene Pixelmaße stehen jeweils im Hinweistext. Dateien liegen
-    in `data/logo-{square,banner}.{ext}` (per `.htaccess` gesperrt) und
-    werden über `api/logo.php?type=square|banner` ausgeliefert. "Entfernen"
-    löscht Datei + Zuordnung wieder, unabhängig vom gerade aktiven Modus.
-  - **Farben** (nur für "Classic", bei aktivem "Bold Scorekeeper" oder "Flip
-    Board" ausgeblendet — Flip Board hat eine eigene, kleinere Farbauswahl
-    unter "Farbvorschlag" oben, siehe dort):
-    komplette Palette einzeln per Hex-Eingabe + Farbwähler konfigurierbar.
-    Akzent-/Funktionsfarben (Grün, Amber, Fokus, Fehler, …) gelten
-    unverändert in Hell- und Dunkelmodus; Basis-Farben (Hintergrund, Fläche,
-    Text, Rahmen) je einmal für Hell- und einmal für Dunkelmodus.
-    "Auf Standardfarben zurücksetzen" löscht alle Overrides wieder (inkl.
-    Titel, Logo-Auswahl, Sprache und Theme-Wahl — hochgeladene Logo-Dateien
-    selbst bleiben aber liegen, bis sie explizit entfernt werden).
-  - **Sprache**: aktuell Deutsch/Englisch, siehe Abschnitt
-    "Mehrsprachigkeit (i18n)" unten.
-  - **Zugangsschutz**: standardmäßig deaktiviert (Seite für jeden mit dem
-    Link nutzbar). Checkbox "Zugangsschutz aktivieren" + ein gemeinsames
-    Passwort (kein Konten-System, ein Passwort für alle) schützen dann
-    sowohl alle Seiten als auch alle API-Endpunkte (`includes/auth.php`,
-    per PHP-Session). Ohne aktivierten Schutz UND ohne gesetztes Passwort
-    bleibt die Seite offen — ein aktivierter Schutz ohne je gesetztes
-    Passwort sperrt also niemanden versehentlich aus. Passwort-Feld leer
-    lassen, um das aktuelle Passwort beizubehalten. **Passwort vergessen?**
-    Per FTP/SFTP/SSH (Datei-Zugriff, kein Web-Zugriff nötig) eine leere
-    Datei `data/reset-password.txt` anlegen — beim nächsten Seitenaufruf
-    wird der Zugangsschutz automatisch deaktiviert, das gespeicherte
-    Passwort gelöscht und die Marker-Datei wieder entfernt. `data/` ist
-    ohnehin per `.htaccess` komplett vom Web aus gesperrt, ein Website-
-    Besucher kann diese Datei also nie selbst anlegen. "Auf diesem Gerät
-    abmelden" beendet die eigene Sitzung wieder.
-  - **Daten-Sicherung** (`api/backup.php`): "Backup herunterladen" erzeugt
-    eine ZIP-Datei mit einem konsistenten Snapshot der SQLite-Datenbank
-    (`VACUUM INTO`, respektiert den WAL-Mode statt die Datei roh zu
-    kopieren) sowie allen Avatar-Bildern und Logo-Dateien — gedacht für
-    einen Server-Umzug oder einfach als Sicherheitsnetz. "Backup
-    importieren" ERSETZT beim Hochladen einer solchen ZIP-Datei die
-    komplette aktuelle Datenbank samt Bildern; wegen dieser Tragweite ist
-    eine serverseitig geprüfte Textbestätigung (Eingabe von "ERSETZEN")
-    zusätzlich zur Bestätigung im Browser nötig. Vor dem Ersetzen wird der
-    bisherige Stand automatisch lokal unter
-    `data/pre-import-backup-{Zeitstempel}/` weggesichert (kein UI-Zugriff
-    darauf, rein als zusätzliches Sicherheitsnetz). Die hochgeladene Datei
-    wird auf Integrität geprüft (`PRAGMA integrity_check` + erwartete
-    Kern-Tabellen), bevor irgendetwas ersetzt wird; nach dem Import laufen
-    automatisch alle noch fehlenden Migrationen, falls das Backup von einer
-    älteren Version stammt.
+Standard ist **Flip Board** — eine Anzeigetafel-Optik mit flachen,
+kantigen Flächen statt runder Karten. Zusätzlich stehen **Classic**
+(dezent, individuell per Hex-Farben anpassbar) und **Bold Scorekeeper**
+(dunkles, hochkontrastiges Theme) zur Wahl. Umschaltbar unter
+Einstellungen → Aussehen, jeweils mit eigener Akzentfarben-Auswahl.
 
-## Mehrsprachigkeit (i18n)
+## Zugangsschutz
 
-Die komplette Oberfläche (alle Seiten, alle JS-generierten Texte) ist
-übersetzbar aufgebaut:
-
-- **Wörterbücher**: `i18n/de.json` und `i18n/en.json`, verschachtelte Keys
-  nach Bereich (`common.*` für seitenübergreifend Wiederverwendetes,
-  `home.*`, `players.*`, `history.*`, `settings.*`, `pointsToTarget.*`,
-  `pointsOpen.*`, `rage.*`, `chooser.*`). Platzhalter in geschweiften
-  Klammern (`{name}`) werden von `t()` per Objekt ersetzt.
-- **Loader** (`js/i18n.js`): lädt beim Seitenaufruf die in den globalen
-  Einstellungen gewählte Sprache, wendet sie auf alle `[data-i18n]`
-  (Textinhalt), `[data-i18n-placeholder]` und `[data-i18n-title]`-Elemente
-  an und setzt `<html lang="…">`. Stellt global `window.t(key, vars)` für
-  JS-generierte Texte sowie `window.scoreboardLocale()` (für
-  `toLocaleString()`-Datumsformatierung) bereit.
-- **Ladereihenfolge**: jede Seite bindet `js/theme.js` und `js/i18n.js` vor
-  ihrem eigenen Skript ein. Eigene Skripte, die `t()` beim Initialisieren
-  brauchen, warten auf `window.scoreboardI18nReady` (ein Promise), statt
-  direkt beim Laden zu rendern — sonst liefe `t()` ggf. mit leerem
-  Wörterbuch.
-
-**Neue Sprache ergänzen:**
-
-1. `i18n/{code}.json` anlegen (z.B. `i18n/fr.json`), Struktur von `de.json`
-   1:1 übernehmen und alle Werte übersetzen.
-2. In `includes/settings.php::supported_languages()` den neuen Code mit
-   Anzeigename ergänzen (z.B. `'fr' => 'Français'`).
-3. Fertig — die Sprache erscheint automatisch in der Auswahl auf der
-   Einstellungen-Seite. An `js/i18n.js` oder den Seiten muss nichts
-   geändert werden.
+Standardmäßig deaktiviert (Seite für jeden mit dem Link nutzbar). Unter
+Einstellungen → Zugangsschutz lässt sich ein gemeinsames Passwort
+aktivieren (kein Konten-System, ein Passwort für alle) — schützt dann
+sowohl alle Seiten als auch alle API-Endpunkte. **Passwort vergessen?**
+Per FTP/SFTP/SSH (Datei-Zugriff, kein Web-Zugriff nötig) eine leere Datei
+`data/reset-password.txt` anlegen — beim nächsten Seitenaufruf wird der
+Zugangsschutz automatisch deaktiviert und die Marker-Datei entfernt.
 
 ## Voraussetzungen beim Hoster
 
 - PHP 8.x mit aktivierter `pdo_sqlite`-Extension.
 - Schreibrechte für den Ordner `data/`.
-- Kein mod_rewrite nötig — die API läuft über einfache Query-Parameter
-  (z.B. `/api/games.php?id=5`), keine hübschen URLs, dafür robust auf
-  praktisch jedem Hosting ohne `.htaccess`-Feinschliff.
+- Kein mod_rewrite nötig.
 
 ## Deployment
 
-Kompletten Ordnerinhalt per FTP/SFTP ins Webroot hochladen. Die SQLite-Datei
-`data/scoreboard.sqlite` wird beim ersten Request automatisch angelegt.
+Kompletten Ordnerinhalt per FTP/SFTP ins Webroot hochladen. Die SQLite-
+Datei `data/scoreboard.sqlite` wird beim ersten Request automatisch
+angelegt.
 
-## Upgrade einer bestehenden Installation
+## Aktualisieren
 
-Jede eigene Installation lässt sich gefahrlos aktualisieren, ohne
-gespeicherte Spiele zu verlieren:
+Neue Code-Version per FTP/SFTP hochladen, dabei **den `data/`-Ordner
+nicht überschreiben** (dort liegen alle Spieler, Spiele und Runden). Das
+Datenbankschema gleicht sich beim nächsten Seitenaufruf automatisch an,
+bestehende Daten gehen dabei nie verloren.
 
-1. Neue Code-Version per FTP/SFTP hochladen und dabei **den `data/`-Ordner
-   nicht überschreiben/löschen** (dort liegt die SQLite-Datenbank mit allen
-   Spielern, Spielen und Runden).
-2. Fertig — beim nächsten Seitenaufruf gleicht `includes/db.php` das
-   Datenbankschema automatisch an (versioniertes Migrationssystem über
-   `PRAGMA user_version`, siehe Kommentar dort). Migrationen sind rein
-   additiv (neue Tabellen/Spalten), bestehende Daten werden nie gelöscht
-   oder überschrieben.
+## Mehrsprachigkeit
 
-Für Entwickler: neue Schema-Änderungen immer als **neue** Migration mit der
-nächsthöheren Versionsnummer in `migrations()` ergänzen, niemals eine
-bestehende Migration nachträglich verändern — sonst würden bereits
-aktualisierte Installationen die Änderung nie ausführen.
-
-## Versionsnummer pflegen
-
-Bei jedem Release die Datei `VERSION` auf den neuen Stand setzen — wird
-über `/api/version.php` an alle Seiten ausgeliefert und unten rechts
-angezeigt.
-
-`js/version.js` prüft zusätzlich clientseitig gegen die GitHub-API
-(`releases/latest` des in `UPDATE_CHECK_REPO` hinterlegten Repos), ob eine
-neuere Version existiert, und zeigt dann unten rechts einen roten Link
-darauf an. Ergebnis wird 1 Tag pro Browser in `localStorage` gecacht.
-Solange das Repo privat ist, schlägt die Anfrage (404) einfach lautlos fehl
-— sobald es öffentlich geschaltet wird, funktioniert der Hinweis ohne
-Codeänderung.
-
-## Struktur
-
-```
-Das-Scoreboard/
-├── index.php                 # Startseite: Modi-Auswahl
-├── players.php               # Spielerverwaltung
-├── history.php                # Spielverlauf
-├── stats.php                  # Statistiken (Zeitraumfilter, Kopf-an-Kopf, Drucken/PDF)
-├── settings.php                # globale Einstellungen (Aussehen, Farben, Sprache, Zugangsschutz, Backup)
-├── login.php                  # eigenstaendige Login-Seite (nur bei aktiviertem Zugangsschutz relevant)
-├── logout.php                 # beendet die eigene Sitzung
-├── modes/
-│   ├── points-to-target/
-│   │   ├── setup.php         # neues Spiel einrichten (Zielwert)
-│   │   ├── setup.js
-│   │   ├── game.php          # aktives/beendetes Spiel
-│   │   └── game.js
-│   ├── points-open/
-│   │   ├── setup.php         # neues Spiel einrichten (Sieg-Richtung)
-│   │   ├── setup.js
-│   │   ├── game.php          # aktives/beendetes Spiel, manuelles Beenden
-│   │   └── game.js
-│   ├── fixed-rounds/
-│   │   ├── setup.php         # neues Spiel einrichten (Rundenzahl, Sieg-Richtung)
-│   │   ├── setup.js
-│   │   ├── game.php          # Runde X von Y, Zielerreicht-Hinweis (beenden/verlaengern)
-│   │   └── game.js
-│   └── rage/
-│       ├── setup.php         # neues Spiel einrichten (nur Spielerauswahl)
-│       ├── setup.js
-│       ├── game.php          # Runde X von 10, Ansage/Stiche/Sonderkarten
-│       └── game.js
-├── tools/
-│   ├── finger-chooser.php    # "Wer fängt an?" Multitouch-Auswahl
-│   └── finger-chooser.js
-├── api/
-│   ├── players.php           # GET/POST/PATCH Spieler-Roster
-│   ├── games.php              # GET/POST/PATCH/DELETE Spiele
-│   ├── rounds.php              # POST/PATCH/DELETE Runden (einfache Punkte)
-│   ├── rage-rounds.php         # POST/PATCH/DELETE Runden (RAGE: Ansage/Stiche/Sonderkarten)
-│   ├── settings.php            # GET/PATCH globale Einstellungen (Titel, Logo, Farben, Sprache)
-│   ├── logo.php                 # GET/POST/DELETE Logo-Upload (Quadrat/Banner)
-│   ├── player-avatar.php         # GET/POST/DELETE Spieler-Avatar (Passfoto 2:3)
-│   ├── backup.php                 # GET Backup-ZIP-Export, POST Backup-Import (ersetzend)
-│   ├── stats.php                   # GET Statistiken (optionaler from/to-Zeitfilter)
-│   └── version.php
-├── includes/
-│   ├── db.php                 # PDO-SQLite-Verbindung + Schema
-│   ├── state.php               # buildState(), Sieg-Erkennung, JSON-Helper
-│   ├── rage.php                 # RAGE-Punkteformel
-│   ├── settings.php              # Defaults, Validierung, get/save/reset
-│   ├── auth.php                   # Zugangsschutz-Check (Session + Datei-Reset)
-│   ├── nav.php                    # zentrale Nav-Konfiguration + render_nav()
-│   ├── header.php                  # gemeinsamer Head + <header> (Marke, Nav) fuer alle Seiten
-│   └── footer.php                   # gemeinsamer Seitenabschluss (Basis-Skripte, Versionsanzeige)
-├── i18n/
-│   ├── de.json                 # deutsches Wörterbuch
-│   └── en.json                 # englisches Wörterbuch
-├── css/style.css
-├── js/
-│   ├── version.js              # Versionsanzeige unten rechts
-│   ├── theme.js                # wendet Aussehen (Classic/Bold) + Farbeinstellungen als CSS-Variablen an
-│   ├── i18n.js                  # laedt Sprachwoerterbuch, stellt t() bereit
-│   ├── nav.js                    # Burger-Menue-Toggle fuer schmale Bildschirme
-│   ├── settings.js              # Logik der Einstellungen-Seite
-│   ├── players.js               # Logik der Spielerverwaltung
-│   ├── history.js                # Logik des Spielverlaufs
-│   ├── stats.js                   # Logik der Statistik-Seite
-│   ├── feedback.js               # Ton/Vibration beim Rundenspeichern (nur Spielansichten)
-│   ├── input-helpers.js          # Auto-Select in Zahlenfeldern beim Fokussieren
-│   ├── pwa-hint.js                # Blendet PWA-Hinweis nur bei moeglicher Installation ein (nur Startseite)
-│   ├── standings-toggle.js        # Ein-/Ausklappen des Punktestands (nur Spielansichten)
-│   ├── team-setup.js              # Team-Zuordnung im Setup (nur 3 Punkte-Modi, nicht RAGE)
-│   ├── team-helpers.js            # Spieler zu Team-Gruppen buendeln (nur 3 Punkte-Modi, nicht RAGE)
-│   ├── avatar-cropper.js          # Pan/Zoom-Crop-Modal fuer Avatar-Upload (2:3)
-│   └── avatar-helpers.js          # Avatar-<img>-Markup fuer den Punktestand (alle 4 Modi)
-├── data/                      # SQLite-Datei + Logo-/Avatar-Uploads, per .htaccess geschützt
-├── assets/
-│   └── icons/                 # PWA-Icons (icon-192.png, icon-512.png, apple-touch-icon.png)
-├── manifest.json               # PWA-Manifest ("Zum Home-Bildschirm hinzufügen")
-├── .htaccess                   # Sicherheits-Blocks + .html→.php-Weiterleitung (alte Lesezeichen/PWA-Icons)
-└── VERSION
-```
-
-Seiten liegen als `.php` vor (nicht statisches HTML): gemeinsamer Header/Nav via
-`includes/header.php`/`includes/nav.php`/`includes/footer.php`, damit
-Navigations-Änderungen nur an einer Stelle gepflegt werden müssen statt in
-jeder Seite dupliziert zu sein. Eine `.htaccess`-Weiterleitung leitet alte
-`*.html`-Aufrufe (Lesezeichen, bereits installierte PWA-Icons) transparent
-auf die passende `.php`-Datei um.
+Die komplette Oberfläche ist auf Deutsch und Englisch verfügbar,
+umschaltbar unter Einstellungen → Sprache.
 
 ## Datenschutz
 
@@ -606,59 +112,46 @@ Diese Software ist zum Selbst-Hosten gedacht — es gibt keinen zentralen
 Anbieter, keine Cloud-Anbindung und keine externen Analyse- oder
 Tracking-Dienste. Alle Daten (Spielernamen, Spielstände, optionale
 Avatar-Fotos, Logo-Uploads, Einstellungen) landen ausschließlich in der
-lokalen SQLite-Datenbank (`data/scoreboard.sqlite`) auf dem jeweils
-eigenen Server und werden an keine dritte Stelle übertragen.
+lokalen SQLite-Datenbank auf dem jeweils eigenen Server und werden an
+keine dritte Stelle übertragen.
 
-- **Cookies/Speicherung im Browser**: ein Session-Cookie (`PHPSESSID`),
-  ausschließlich für den optionalen Zugangsschutz (siehe "Zugangsschutz"
-  oben) — ohne aktivierten Zugangsschutz wird kein Cookie gesetzt.
-  Zusätzlich einige rein clientseitige `localStorage`-Einträge (z.B.
-  gemerkte Anzeige-Einstellungen wie ein-/ausgeklappter Punktestand) ohne
+- **Cookies/Speicherung im Browser**: ein Session-Cookie, ausschließlich
+  für den optionalen Zugangsschutz — ohne aktivierten Zugangsschutz wird
+  kein Cookie gesetzt. Zusätzlich einige rein clientseitige
+  `localStorage`-Einträge (z.B. gemerkte Anzeige-Einstellungen) ohne
   Server-Bezug.
-- **Externe Anfragen**: einzig `js/version.js` fragt beim Laden die
+- **Externe Anfragen**: einzig die Versionsanzeige fragt beim Laden die
   öffentliche GitHub-API nach der neuesten Release-Version ab (kein
   Tracking, keine personenbezogenen Daten in der Anfrage).
 - **Verantwortung**: Wer diese Software für eine eigene Gruppe betreibt,
   ist selbst für die datenschutzrechtliche Einordnung (z.B. DSGVO)
-  verantwortlich — je nach Nutzungskontext kann z.B. ein Impressum oder
-  eine Datenschutzerklärung auf der eigenen Installation nötig sein.
-  Empfehlenswert für nicht-öffentliche Nutzung: den in den Einstellungen
-  verfügbaren Zugangsschutz (Passwort) aktivieren.
+  verantwortlich. Empfehlenswert für nicht-öffentliche Nutzung: den
+  Zugangsschutz aktivieren.
 
 ## Sicherheit
 
-- **Ausgabe-Escaping**: alle nutzergenerierten Texte (Spieler-, Team- und
-  Gruppennamen), die per JS als HTML-Schnipsel gerendert werden, laufen
-  durch eine zentrale `escapeHtml()`-Funktion (`js/i18n.js`) — verhindert
-  gespeichertes XSS über z.B. einen absichtlich präparierten Spielernamen.
-- **SQL**: ausschließlich vorbereitete Anweisungen (PDO Prepared Statements)
-  mit gebundenen Parametern, keine String-Konkatenation von Nutzereingaben
-  in SQL-Text.
-- **Datei-Uploads** (Avatar/Logo): MIME-Typ wird serverseitig per
-  `finfo`/`getimagesize()` aus dem tatsächlichen Dateiinhalt geprüft (nicht
-  aus Dateiname/Client-Header übernommen), Zielverzeichnis und Dateiname
-  sind serverseitig fest vorgegeben (keine Pfad-Traversierung möglich).
-  SVG-Logos werden zusätzlich mit `Content-Security-Policy: script-src
-  'none'` ausgeliefert, falls die Datei direkt aufgerufen wird.
-- **Zugangsschutz-Session**: `HttpOnly`, `SameSite=Lax` und (unter HTTPS)
-  `Secure`-Cookie, `session.use_strict_mode`, sowie
-  `session_regenerate_id()` nach erfolgreichem Login (Schutz gegen
-  Session-Fixation). Passwort wird ausschließlich als bcrypt-Hash
-  gespeichert (`password_hash()`), nie im Klartext; Mindestlänge 8 Zeichen;
-  künstliche Verzögerung bei falschem Passwort bremst automatisiertes
-  Durchprobieren.
-- **Fehlerausgabe**: `display_errors` wird per `.htaccess` deaktiviert, um
-  keine Serverpfade oder SQL-Details in einer Fehlerseite preiszugeben.
-- **Kein Tracking, keine Cloud-Anbindung** — siehe Abschnitt "Datenschutz"
-  oben.
+Vor der Veröffentlichung wurde ein manueller Sicherheitscheck
+durchgeführt (Code-Review + gezielte Exploit-Versuche in isolierter
+Testumgebung). Unter anderem umgesetzt:
 
-Diese Software wurde vor der Erstveröffentlichung einem manuellen
-Sicherheitscheck unterzogen (Code-Review + gezielte Exploit-Versuche in
-einer isolierten Testumgebung, u.a. gespeichertes XSS, SQL-Injection,
-Zip-Slip beim Backup-Import, Session-Fixation, Datei-Upload-Validierung).
+- Konsequentes Escaping aller nutzergenerierten Texte (Spieler-, Team-
+  und Gruppennamen) gegen gespeichertes XSS.
+- Ausschließlich vorbereitete SQL-Anweisungen, keine Eingabe-
+  Konkatenation.
+- Datei-Uploads (Avatar/Logo) mit serverseitiger Inhaltsprüfung, keine
+  Pfad-Traversierung möglich.
+- Zugangsschutz-Session mit `HttpOnly`, `SameSite` und (unter HTTPS)
+  `Secure`-Cookie, Schutz gegen Session-Fixation, bcrypt-Passwort-Hash.
+
 Trotzdem gilt wie bei jeder Software: keine Garantie auf absolute
-Fehlerfreiheit. Sicherheitsrelevante Hinweise gerne als Issue oder direkt
-an die im Repository hinterlegten Kontaktwege.
+Fehlerfreiheit. Sicherheitsrelevante Hinweise gerne als Issue.
+
+## Unterstützen
+
+Wenn dir "Das Scoreboard" gefällt und du magst: über
+[buymeacoffee.com/thomashageleit](https://buymeacoffee.com/thomashageleit)
+kannst du das Projekt unterstützen. Völlig freiwillig, die Software
+bleibt davon unabhängig frei nutzbar.
 
 ## Lizenz
 
@@ -672,15 +165,24 @@ Kontakt aufnehmen.
 # Das Scoreboard (English)
 
 Scorekeeping helper for game nights. Pure PHP 8 + PDO/SQLite, no Node, no
-separate database needed — runs on plain webhosting via FTP upload, meant
-to work on iPad and iPhone.
+separate database needed — runs on plain webhosting via FTP upload, built
+for iPad and iPhone.
+
+## Screenshots
+
+<p>
+  <img src="docs/screenshots/ipad-home.png" alt="Home screen: mode selection, an open game, quick access to the finger-picker tool" width="32%">
+  <img src="docs/screenshots/ipad-game.png" alt="Active game view with standings and round entry" width="32%">
+  <img src="docs/screenshots/ipad-stats.png" alt="Statistics page with date filter, KPI tiles, and player overview" width="32%">
+</p>
+
+*"Flip Board" appearance (default theme), player names shown are sample
+data.*
 
 ## Quick start
 
 - **What is this?** A lightweight, self-hosted web app for keeping score
   at game nights — no account, no cloud, no ads, no tracking services.
-  Four scorekeeping modes (see below), player management, history, and
-  statistics are already built in.
 - **Try it locally** (requires PHP 8 with `pdo_sqlite` installed):
   ```bash
   php -S localhost:8090
@@ -692,427 +194,56 @@ to work on iPad and iPhone.
     bash -c "docker-php-ext-install pdo_sqlite && apache2-foreground"
   ```
 - **Run it on your own server**: upload the entire folder via FTP/SFTP to
-  a PHP 8 webspace with the `pdo_sqlite` extension — done, no build
-  step, no separate database to set up (see "Hosting requirements" and
-  "Deployment" below for details).
-- **Lock it down for a private group**: by default the site is usable by
-  anyone with the link. Under Settings → "Access protection" you can
-  enable a shared password (with a file-based reset option if it's
-  forgotten — see the "Access protection" section below).
+  a PHP 8 webspace with the `pdo_sqlite` extension — done, no build step.
+- **Lock it down for a private group**: under Settings → "Access
+  protection" you can enable a shared password (see the "Access
+  protection" section below).
 - **License**: free for noncommercial use, see [License](#license) below.
 
-## Concept
+## What it does
 
-- **Home page**: overview of the available scorekeeping modes, currently
-  four: *Points to target* (examples: Flip7, Tutto), *Open point round*
-  (example: Doppelkopf), *Points round with fixed round count*, and
-  *RAGE*.
-- **Header/navigation**: rendered for every page from `includes/header.php`
-  + `includes/nav.php` (PHP includes instead of duplicated markup per
-  page) — a new/changed nav entry only needs to be maintained in one
-  place. On narrow screens (phone) the navigation collapses behind a
-  burger menu (`js/nav.js`); on iPad portrait it stays visible in one row.
-  An `.htaccess` rewrite keeps old `*.html` bookmarks and already-installed
-  PWA home-screen icons working (pages used to be static HTML, now they're
-  `.php` with the shared includes). All CSS/JS files are served with
-  `?v=<version>` (`includes/header.php`/`footer.php`, reads `VERSION`) —
-  without it, browsers could keep serving an old cached JS file after a
-  release even though the HTML is already new.
-- **Player management** (`players.php`): central name database to pick
-  from when starting new games instead of typing names every time. Two
-  different removal levels:
-  - **Remove** (soft delete): player disappears from quick selection but
-    stays visible in player management (under "Deactivated players") and
-    can be undone anytime via "Reactivate".
-  - **Delete** (hard delete): player disappears entirely from player
-    management (neither the active nor deactivated list) — there is no
-    way back in the UI. Past games/history/stats still show the name,
-    since the row itself is kept (due to foreign keys from games/rounds),
-    just marked with `deleted_at`. A newly added player with the same
-    name is deliberately created as a completely new, independent record
-    with no matching logic — if needed, the backup feature (see below)
-    helps restore a mistake.
-- **Player groups** (`players.php`, "Player groups" section;
-  `api/player-groups.php`): group players into reusable sets (e.g.
-  "Family", "Regulars") — a person can belong to multiple groups at once
-  (a plain many-to-many mapping, `player_group_members`). Each group shows
-  a small member preview (names + mini avatars where set) right under the
-  group name. Groups can be (de)activated just like players — only active
-  groups show up when setting up a game — and, unlike players, can also be
-  deleted outright, since no history depends on groups. When setting up a
-  game (all 4 modes, including RAGE), active groups appear as chips above
-  the player picker: clicking one checks all its members in addition to
-  the current selection (never unchecks anything). Next to it sits a
-  "Select all"/"Deselect all" button for the whole player list
-  (`js/group-picker.js`, used by `js/groups.js` and all four `setup.js`).
-- **Game history** (`history.php`): all games (ongoing + finished),
-  distinguishable by start/end time, so multiple games on the same day
-  stay uniquely identifiable. Filter tabs "All"/"Active"/"Finished" filter
-  the loaded list purely client-side (no extra server request), available
-  in both themes.
-- **Mode "Points to target"** (`modes/points-to-target/`): points are
-  entered round by round for all players together (0 is normal, e.g. on a
-  bust). As soon as someone reaches/exceeds the target value, the game
-  ends automatically — this trigger is independent of the win direction.
-  During setup you decide whether the highest (default, e.g. Flip7, Tutto)
-  or the lowest score then wins (e.g. Skyjo — ties allow multiple
-  winners). Correction is always possible directly in the round history
-  table and automatically reactivates an already-finished game if the
-  target is no longer reached as a result. Under "Advanced options" in
-  setup: "Bonus on reaching target" (stepper, default 0) automatically
-  adds bonus points to the already-determined winner(s) once the game
-  ends — never affects whether/when the target is reached, only the
-  displayed final score. "Allow negative points" (default on) clamps
-  negative round entries to 0 server-side when disabled.
-- **Mode "Open point round"** (`modes/points-open/`): like above, but
-  without a target value — during setup you decide whether the highest or
-  lowest score wins at the end. The game is finished manually via a
-  button (and can be resumed the same way); there is no automatic win
-  moment. "Allow negative points" selectable under "Advanced options" as
-  above.
-- **Mode "Points round with fixed round count"** (`modes/fixed-rounds/`):
-  like "Open point round", but with a round count fixed during setup (win
-  direction also selectable). Once the agreed round count is reached, a
-  prompt appears with the choice "Finish game" or "Keep playing, X more
-  rounds" (extends the target and keeps the game active; the prompt
-  reappears later if needed). Optionally (checkbox during setup, off by
-  default) a dismissible "Round X finished" notice appears after every
-  saved round. "Allow negative points" also selectable under "Advanced
-  options".
-- **Tool "Who starts?"** (`tools/finger-chooser.php`): multitouch finger
-  picker for iPad/iPhone. Waits for the first finger, then counts down 5
-  seconds (more fingers can join during that time), then randomly picks
-  among the fingers on screen (grow/turn green), the rest disappear. A
-  plus/minus stepper ("number of winners") controls how many fingers get
-  picked (default: 1) — handy e.g. for 2v2 teams; if fewer fingers are on
-  screen than requested, all of them count as winners. The last-used count
-  is remembered per device (`localStorage`). Purely client-side via the
-  Touch Events API, no backend involved.
-- **Starting player**: every mode automatically picks a random starting
-  player among the selected players when a game is created. Their name
-  carries a small star (★) in the standings, explained at the bottom left
-  of the standings box ("Starting player (random)"). Games created before
-  this feature show no star (no starting player assigned retroactively).
-- **Undo**: every mode shows an "Undo last round" button next to "Round
-  history & correction" as soon as at least one round has been played —
-  quick access for when the last entry was a mistake, without having to
-  scroll down to the correction table. Technically deletes the same round
-  as the "Delete" button in the table.
-- **Installable as an app (PWA)**: `manifest.json` + icons
-  (`assets/icons/`) enable "Add to Home Screen" on iPad/iPhone (Safari:
-  Share icon → "Add to Home Screen") as well as on Android/desktop
-  Chrome — the page then opens like its own app, without the address
-  bar. A hint about this is shown on the home page, but only when
-  installation is actually possible there (always on iOS/iPadOS Safari,
-  on Chrome/Edge/Android only once the browser fires the
-  `beforeinstallprompt` event) — stays hidden on a desktop browser
-  without install support. Name/icon in the manifest are currently
-  static (default title "Das Scoreboard", pen icon) and don't (yet)
-  automatically follow a title/logo changed in settings.
-- **Sound on save**: short tone synthesized via the Web Audio API (no
-  audio file needed) when saving a new round, in all 4 modes. Also
-  triggers vibration where supported by the device — not possible on
-  iPhone/iPad at all (Safari doesn't implement the Vibration API, even in
-  PWA mode), but the sound works there normally. Toggleable in settings
-  (default: on).
-- **Number field UX**: all point/number entry fields (round entry,
-  correction table, setup forms) auto-select their content on focus —
-  typing immediately overwrites the previous value without having to
-  select or delete it manually first. On mobile devices this also brings
-  up the numeric keyboard (`inputmode="numeric"`).
-- **Step buttons for round entry** (usable in either theme; not in RAGE): an
-  alternative to typing numbers — a row of plus and a row of minus buttons
-  per player/team that count a running value up or down. Which step sizes
-  are offered (1/5/10/50/100/500/1000, individually toggleable) is set
-  globally in settings (`settings.round_entry_steps`). A button switches
-  between typing and step buttons — even mid-game, remembered per device in
-  `localStorage`, values already entered are kept when switching — on the
-  input grid in Classic, on the player picker in Bold Scorekeeper (see the
-  Bold theme section below) (`js/round-entry.js`). Flip Board uses the same
-  step-size configuration but without the toggle button — there, typing and
-  step buttons are always visible at once (see the Flip Board theme section
-  below).
-- **Collapsible standings**: the sticky standings card at the top of the
-  game view can be collapsed to just its heading and expanded again via a
-  button — useful on small screens (e.g. iPhone portrait), where the full
-  table otherwise leaves too little room for round entry below. State is
-  remembered per device in `localStorage`, shared across all modes.
-- **More compact round history table on narrow screens**: padding, font
-  size and input width in the round history/correction table shrink below
-  480px width, and the table also bleeds to the card edge — reduces or
-  avoids horizontal scrolling for the usual 2-4 players in the 3
-  point-based modes. RAGE (5 columns per player in the correction table)
-  still needs horizontal scrolling depending on player count — that's a
-  structural limitation and wasn't specifically addressed.
-- **"Open games" on the home page** (applies to both themes): shows up to 5
-  in-progress, unfinished games with mode icon, player names, and target
-  score/round count for quick resume, plus a "View all" link to the full
-  history. Stays hidden when nothing is in progress. Reuses the same
-  endpoint as history (`GET /api/games.php`), no dedicated backend route
-  (`js/home.js`).
-- **Support link**: a subtle button in the bottom-left corner, home page
-  only, linking to
-  [buymeacoffee.com/thomashageleit](https://buymeacoffee.com/thomashageleit).
-  Deliberately a simple, locally styled link instead of the official
-  Buy Me a Coffee widget — no external script, no added tracking (see the
-  "Privacy" section below). Collapses to an icon-only button on narrow
-  screens.
-- **Team mode** (only in the 3 point-based modes, not RAGE): during setup,
-  players can be grouped into teams under "Advanced options". The team
-  name is auto-generated from member names ("Alice & Bob") or can be set
-  freely during setup. Two team-scoring variants are available:
-  - **Combined score** (default): team members enter just one combined
-    score per round (one input field instead of one per player), which
-    gets applied to every member on save. The correction table still
-    shows every player individually (for transparency), but correcting
-    one team member's score automatically syncs it to their teammates for
-    that round so the values can't drift apart.
-  - **Individual scores, combined total**: each player still enters their
-    own score, just like without team mode (one input field per player,
-    independent values, no correction sync). In the standings, every
-    player keeps their own row but additionally shows their team
-    affiliation and the team's combined total — rank and winning are
-    determined by the team total, including the automatic target
-    detection in "Points to target".
+- **Four scorekeeping modes**: *Points to target* (e.g. Flip7, Tutto),
+  *Open point round* (e.g. Doppelkopf), *Points round with fixed round
+  count*, and *RAGE* (a trick-taking card game with automatic scoring).
+- **Player management**: a central name list for quick selection, plus
+  optional player groups (e.g. "Family") for one-click selection.
+- **Team mode**: in the three point-based modes, players can be grouped
+  into teams, with either a combined or an individual score.
+- **Player avatars**: an optional photo per player, shown right in the
+  standings.
+- **History & statistics**: all games with a status filter, plus a stats
+  page with win rates, head-to-head comparisons, and a date-range filter
+  (including print/PDF).
+- **"Who starts?"**: a multitouch finger-picker for iPad/iPhone.
+- **Multi-language**: German and English, switchable in settings.
+- **Installable as an app**: "Add to Home Screen" on iPad/iPhone — opens
+  afterward like its own app, without the address bar.
+- **Backup & restore**: download a complete backup as a ZIP file or
+  restore one, e.g. when moving to a new server.
 
-  Existing games without teams are unaffected (everyone still plays
-  solo).
-- **Player avatar**: player management lets you upload a photo per player
-  (PNG/JPEG, max. 2 MB) — only allowed in passport-photo portrait format
-  2:3. A crop-selection dialog (drag to pan, slider to zoom, plain canvas,
-  no external library) enforces that aspect ratio right at upload time.
-  The photo then shows up in player management and in the standings of
-  all 4 modes (deliberately not on team rows in team mode, since it's
-  unclear whose photo should represent the team). Without a photo,
-  behavior is unchanged from before.
-- **Statistics** (`stats.php`): cross-mode evaluation of all games —
-  games/wins/win rate/current and longest win streak per player, the
-  same breakdown per mode as well (including average score, since score
-  scales aren't directly comparable across modes), head-to-head records
-  for every pair of players with shared games, and a list of the games
-  in the selected time range. An optional from/to time range filter
-  (date + time) lets you evaluate just one specific game night — even if
-  it crosses midnight (e.g. 18:00 to 03:00 the next day), since the
-  filter compares actual timestamps rather than calendar days. A "Print
-  / PDF" button uses the browser's normal print dialog (a dedicated
-  print stylesheet hides navigation/forms) — a direct path to a PDF
-  printout without an extra dependency. Four KPI tiles up top (games/
-  finished/finished rate/avg. score — the latter averaged only across the
-  3 point-based modes, RAGE excluded since its score scale isn't
-  comparable) summarize the filtered time range. Head-to-head additionally
-  shows a player-by-player matrix (the previous list view stays available
-  behind "Show as list", since a matrix gets hard to read past ~6+
-  players), plus a donut chart of mode distribution (pure CSS
-  `conic-gradient`, no chart library).
-- **Mode "RAGE"** (`modes/rage/`): trick-taking card game with bidding
-  over a fixed 10 rounds (card count decreases from 10 to 1). Before each
-  round, each player's bid and actual tricks are entered, plus optional
-  Rage bonus (+5) and Rage revenge cards (−5); points are calculated
-  automatically (+1 per trick, +10 on a hit, −5 on a miss). Saving a round
-  warns if the sum of tricks doesn't match the card count (saving remains
-  possible anyway). After round 10 the game ends automatically; manual
-  finish/resume is also possible. Deleting a round reduces the round
-  count and reopens an automatically finished game if needed. "Show
-  bonus/revenge" (advanced option during setup, default on) shows/hides
-  the +5/−5 fields in round entry — a purely visual setting; bonus/revenge
-  are always calculated regardless of it.
+## Appearance
 
-Further modes (other scorekeeping mechanics) are meant to be added later
-as their own subfolders under `modes/`, without touching existing parts —
-the player database and game history are deliberately mode-agnostic.
-- **Settings** (`settings.php`): globally stored (server-side)
-  configuration, applies to everyone using the page. Several areas:
-  - **Appearance**: choice between three independent themes — "Classic"
-    (the existing look, individually customizable via hex colors), "Bold
-    Scorekeeper" (a dark, high-contrast theme with a fixed neon-lime/cyan/
-    purple/orange palette, not hex-customizable), and "Flip Board" (default
-    since its introduction — a departure-board look: flat, sharp-edged
-    surfaces instead of rounded cards, hairline dividers instead of card
-    shadows, digits in monospace, follows the system color scheme like
-    Classic instead of staying fixed-dark like Bold). Technically all three
-    themes share the same HTML/JS structure per page — the
-    theme only sets `[data-theme-style]` on `<html>` (`js/theme.js`), which
-    switches CSS tokens (`css/style.css`, "Bold Scorekeeper Theme" and "Flip
-    Board Theme" sections); Classic stays unchanged. Layout/usability rework per page (large touch
-    targets, cards instead of tables, stepper inputs, …) for Bold
-    Scorekeeper follows step by step in its own releases. Already shipped
-    (only visible with Bold active, Classic stays unchanged): home page
-    with an icon and its own accent color per mode card, a large
-    "Start a new game" jump button, and its own "Who starts?" quick action;
-    player management with cyclically colored player cards
-    (`--player-color-1` through `-4`); history with more strongly
-    separated, elevated game cards; setup pages for all 4 modes with a
-    plus/minus stepper for target score/round count (`js/stepper.js`,
-    generic via `[data-stepper]`), win direction as larger choice cards
-    instead of small chips, cyclically colored player chips, and a
-    highlighted callout box in the RAGE setup hint; the active game view of
-    the 3 point-based modes with standings as flat rows boldly colored in
-    each player's own accent color (rank, name, percent, large score,
-    progress bar) instead of a table - the color is tied to the player's
-    position in the game, not their current rank, so it stays stable across
-    rank changes; round entry as a freely selectable player picker instead
-    of an input grid - every player stays visible as a colored chip showing
-    their current value, selectable in any order (and re-selectable to
-    correct a value before saving), deliberately without auto-advancing
-    since table play order rarely matches the player list order; "Save
-    round" stays an explicit click, shared with Classic; a visually
-    toned-down round history/correction section below it; the RAGE active
-    view with the same colored standings-card pattern as the 3 point-based
-    modes, plus a mini-stepper card per player for round entry (bid, tricks,
-    +5, −5, each with its own plus/minus stepper) instead of the table -
-    referencing the same input fields as the (in Bold hidden) Classic table,
-    with a live-computed score per player card; the stats page with a
-    colored leader row (most wins) in the overall and per-mode tables, and
-    head-to-head rows as elevated cards (the "games in this period" list
-    already reuses the same history cards as the history page); the
-    settings page with the appearance and logo-display pickers as larger
-    choice cards instead of small chips (the same building block as win
-    direction in setup). After comparing against a detailed screen
-    reference, further adjustments followed: mode cards on the home page
-    in Bold as compact icon tiles without body text (fixed 2x2 grid);
-    player management rows in Bold tinted across their full width instead
-    of just a left border; an All/Active/Finished filter in history
-    (client-side, identical in both themes, only the tab styling differs).
-    This completes the step-by-step Bold rollout across every page.
-  - **Flip Board**: third theme in a departure-board style, default for new
-    installations since its introduction. Home page with compact icon tiles
-    in a fixed grid (2 columns on phone, 4 columns from iPad up — designed
-    iPad-first) and a full bar instead of a card for "Who starts?";
-    player management/history use
-    the same flat, sharp-edged rows as Bold, just without rounding; the
-    active game view of the 3 point-based modes shows standings as a matte
-    glass panel (`backdrop-filter`, the only glass accent in the theme) with
-    a progress bar per row — only the leading row is highlighted in color
-    (one curated accent instead of 4 player colors like Bold); round entry
-    uses a combined typing/stepper pattern
-    (`js/round-entry.js::buildFlipRoundEntry()`) — every number field is
-    simultaneously tap-to-type (auto-selected, directly overwritable) AND
-    has plus/minus buttons next to it plus a chip row for further step sizes
-    below, no toggle button between "typing" and "step buttons" needed like
-    in Classic/Bold — uses the same step-size configuration
-    (`settings.round_entry_steps`) as the other themes and writes into the
-    same fields "Save round" reads; the RAGE active view uses the same glass
-    standings panel plus flat/sharp-edged mini-stepper cards (same function
-    as Bold, just different styling); settings show 5 curated color
-    suggestions as preview tiles (amber/teal/crimson/vivid orange/violet,
-    `includes/settings.php::flip_accent_palette()`) instead of plain color
-    dots — clicking overwrites `flip_color_accent_light/_dark` as a quick
-    pick, fine-tuning background/surface/text/accent (light/dark each, 8
-    fields) stays available under "Colors in detail", separate from
-    Classic's 17-field palette. Follows the system color scheme (light/dark)
-    like Classic, unlike the fixed-dark Bold.
-  - **Accent color, background, card style**: the appearance setting shows
-    (in Classic and Bold) 5 curated accent color dots as its main visible part
-    (green/orange/pink/violet/cyan) — under Bold, one of 5 fixed presets is
-    applied directly; under Classic, the choice overwrites the existing hex
-    fields `color_green`/`color_green_strong` as a quick pick (fine-tuning
-    remains possible afterward). Bold-only, additionally: background
-    (dark/dark blue/black) and card style (classic/modern, larger radius +
-    softer shadow with no visible border). Flip Board has its own, separate
-    color-suggestion picker (see above) — this 5-dot picker stays hidden
-    there. The existing full hex color palette (17 fields) stays reachable
-    under "Colors in detail" (a collapsible advanced section) — technically
-    still Classic-only; under Bold the section shows a hint text instead,
-    under Flip Board it shows Flip Board's own 8 fields instead.
-  - **Title**: the displayed name ("Das Scoreboard" by default) —
-    appears in the header of every page and in the browser tab title,
-    identical regardless of the selected language (not translated).
-    Anyone running the page for their own group can enter a custom name
-    here.
-  - **Logo**: no custom logo by default (the pen icon stays visible). Two
-    independent upload slots (square, banner) plus a display selector (no
-    logo / square top left / banner across the full width) — only the
-    selected mode is actually shown. PNG, JPEG, or SVG, max. 2 MB,
-    recommended pixel dimensions are shown in the hint text for each.
-    Files live at `data/logo-{square,banner}.{ext}` (blocked by
-    `.htaccess`) and are served via `api/logo.php?type=square|banner`.
-    "Remove" deletes the file and its reference regardless of which mode
-    is currently active.
-  - **Colors** (only for "Classic", hidden while "Bold Scorekeeper" or "Flip
-    Board" is active — Flip Board has its own, smaller color picker under
-    "Color suggestion" above, see there): the complete palette individually configurable via hex input +
-    color picker. Accent/function colors (green, amber, focus, error, …)
-    stay the same in light and dark mode; base colors (background, surface,
-    text, border) once each for light and dark mode. "Reset to default
-    colors" clears all overrides again (incl. title, logo selection,
-    language, and theme choice — uploaded logo files themselves stay in
-    place until explicitly removed).
-  - **Language**: currently German/English, see the "Multi-language
-    support (i18n)" section below.
-  - **Access protection**: disabled by default (the site is usable by
-    anyone with the link). An "Enable access protection" checkbox plus
-    one shared password (no account system, one password for everyone)
-    then protect both every page and every API endpoint
-    (`includes/auth.php`, via a PHP session). Without protection enabled
-    AND without a password ever set, the site stays open — so enabling
-    protection without ever setting a password can't accidentally lock
-    anyone out. Leave the password field blank to keep the current
-    password. **Forgot the password?** Create an empty file
-    `data/reset-password.txt` via FTP/SFTP/SSH (file access, no web
-    access needed) — on the next page load, access protection is
-    automatically disabled, the stored password is cleared, and the
-    marker file is removed again. `data/` is already fully blocked from
-    the web via `.htaccess`, so a website visitor could never create
-    that file themselves. "Log out on this device" ends your own
-    session.
-  - **Data backup** (`api/backup.php`): "Download backup" produces a ZIP
-    file with a consistent snapshot of the SQLite database (`VACUUM INTO`,
-    respects WAL mode instead of copying the raw file) plus all avatar
-    images and logo files — meant for moving to a new server or simply as
-    a safety net. "Import backup" REPLACES the entire current database
-    and its images with the contents of an uploaded ZIP file; given the
-    impact, a server-checked text confirmation (typing "ERSETZEN") is
-    required in addition to the browser confirmation. Before replacing
-    anything, the previous state is automatically backed up locally under
-    `data/pre-import-backup-{timestamp}/` (not exposed in the UI, purely
-    an extra safety net). The uploaded file is validated for integrity
-    (`PRAGMA integrity_check` plus the expected core tables) before
-    anything is replaced; any still-missing migrations run automatically
-    after the import in case the backup came from an older version.
+The default is **Flip Board** — a departure-board look with flat,
+sharp-edged surfaces instead of rounded cards. Also available: **Classic**
+(understated, individually customizable via hex colors) and **Bold
+Scorekeeper** (a dark, high-contrast theme). Switchable under Settings →
+Appearance, each with its own accent color picker.
 
-## Multi-language support (i18n)
+## Access protection
 
-The entire interface (all pages, all JS-generated text) is built to be
-translatable:
-
-- **Dictionaries**: `i18n/de.json` and `i18n/en.json`, nested keys by
-  area (`common.*` for cross-page reuse, `home.*`, `players.*`,
-  `history.*`, `settings.*`, `pointsToTarget.*`, `pointsOpen.*`,
-  `fixedRounds.*`, `rage.*`, `chooser.*`). Placeholders in curly braces
-  (`{name}`) are replaced by `t()` via an object.
-- **Loader** (`js/i18n.js`): loads the language selected in the global
-  settings on page load, applies it to all `[data-i18n]` (text content),
-  `[data-i18n-placeholder]`, `[data-i18n-title]`, and
-  `[data-i18n-title-suffix]` (browser tab title, composed as "{brand
-  name} — {text}") elements, and sets `<html lang="…">`. Provides
-  `window.t(key, vars)` globally for JS-generated text as well as
-  `window.scoreboardLocale()` (for `toLocaleString()` date formatting).
-- **Load order**: every page includes `js/theme.js` and `js/i18n.js`
-  before its own script. Page scripts that need `t()` during
-  initialization wait on `window.scoreboardI18nReady` (a promise) instead
-  of rendering immediately on load — otherwise `t()` might run with an
-  empty dictionary.
-
-**Adding a new language:**
-
-1. Create `i18n/{code}.json` (e.g. `i18n/fr.json`), copy the structure of
-   `de.json` 1:1 and translate every value.
-2. Add the new code with a display name in
-   `includes/settings.php::supported_languages()` (e.g.
-   `'fr' => 'Français'`).
-3. Done — the language automatically appears in the dropdown on the
-   settings page. Nothing needs to change in `js/i18n.js` or the pages.
-4. Also add a translated copy of this README as a new section below,
-   following the "English below" pattern (e.g. "## Das Scoreboard
-   (Français)"), so the docs cover every language the app supports.
+Disabled by default (the site is usable by anyone with the link). Under
+Settings → Access protection you can enable a shared password (no
+account system, one password for everyone) — protects both every page
+and every API endpoint. **Forgot the password?** Create an empty file
+`data/reset-password.txt` via FTP/SFTP/SSH (file access, no web access
+needed) — on the next page load, access protection is automatically
+disabled and the marker file removed.
 
 ## Hosting requirements
 
 - PHP 8.x with the `pdo_sqlite` extension enabled.
 - Write permissions for the `data/` folder.
-- No mod_rewrite needed — the API runs on simple query parameters (e.g.
-  `/api/games.php?id=5`), no pretty URLs, but robust on practically any
-  hosting without `.htaccess` fine-tuning.
+- No mod_rewrite needed.
 
 ## Deployment
 
@@ -1120,96 +251,60 @@ Upload the entire folder contents via FTP/SFTP to the webroot. The
 SQLite file `data/scoreboard.sqlite` is created automatically on the
 first request.
 
-## Upgrading an existing installation
+## Upgrading
 
-Every self-hosted installation can be safely updated without losing
-saved games:
+Upload the new code version via FTP/SFTP, making sure **not to overwrite
+the `data/` folder** (that's where all players, games, and rounds live).
+The database schema aligns itself automatically on the next page load;
+existing data is never lost.
 
-1. Upload the new code version via FTP/SFTP, making sure **not to
-   overwrite/delete the `data/` folder** (that's where the SQLite
-   database with all players, games, and rounds lives).
-2. Done — on the next page load, `includes/db.php` automatically aligns
-   the database schema (versioned migration system via `PRAGMA
-   user_version`, see the comment there). Migrations are purely additive
-   (new tables/columns), existing data is never deleted or overwritten.
+## Multi-language support
 
-For developers: always add new schema changes as a **new** migration
-with the next-higher version number in `migrations()`, never modify an
-existing migration afterwards — otherwise already-updated installations
-would never run the change.
-
-## Maintaining the version number
-
-Set the `VERSION` file to the new value on every release — it's served
-to every page via `/api/version.php` and shown in the bottom right
-corner.
-
-`js/version.js` additionally checks client-side against the GitHub API
-(`releases/latest` of the repo configured in `UPDATE_CHECK_REPO`) for a
-newer version, and shows a red link in the bottom right if one exists.
-Results are cached per browser in `localStorage` for 1 day. As long as
-the repo is private, the request (404) simply fails silently — once it's
-made public, the notice works without any code change.
-
-## Structure
-
-See the tree above (folder layout is identical, only the code comments
-in this README are in English/German respectively).
+The entire interface is available in German and English, switchable
+under Settings → Language.
 
 ## Privacy
 
 This software is meant to be self-hosted — there is no central provider,
 no cloud connection, and no external analytics or tracking services. All
 data (player names, scores, optional avatar photos, logo uploads,
-settings) lives exclusively in the local SQLite database
-(`data/scoreboard.sqlite`) on your own server and is never sent anywhere
-else.
+settings) lives exclusively in the local SQLite database on your own
+server and is never sent anywhere else.
 
-- **Cookies/browser storage**: one session cookie (`PHPSESSID`), used
-  only for the optional access protection (see "Access protection"
-  above) — no cookie is set unless access protection is enabled. A few
-  purely client-side `localStorage` entries (e.g. remembered display
-  settings like a collapsed standings card) with no server involvement.
-- **External requests**: only `js/version.js` queries the public GitHub
-  API on load for the latest release version (no tracking, no personal
-  data in the request).
+- **Cookies/browser storage**: one session cookie, used only for the
+  optional access protection — no cookie is set unless access protection
+  is enabled. A few purely client-side `localStorage` entries (e.g.
+  remembered display settings) with no server involvement.
+- **External requests**: only the version display queries the public
+  GitHub API on load for the latest release version (no tracking, no
+  personal data in the request).
 - **Responsibility**: whoever runs this software for their own group is
-  responsible for its data-protection compliance (e.g. GDPR) —
-  depending on how it's used, your own installation may need an imprint
-  or privacy notice. For non-public use, enabling the password-based
-  access protection in settings is recommended.
+  responsible for its data-protection compliance (e.g. GDPR). For
+  non-public use, enabling access protection is recommended.
 
 ## Security
 
-- **Output escaping**: all user-generated text (player, team, and group
-  names) that gets rendered as an HTML snippet in JS goes through a
-  central `escapeHtml()` function (`js/i18n.js`) — prevents stored XSS via,
-  e.g., a deliberately crafted player name.
-- **SQL**: exclusively prepared statements (PDO) with bound parameters, no
-  string concatenation of user input into SQL text.
-- **File uploads** (avatar/logo): the MIME type is verified server-side
-  from the actual file content via `finfo`/`getimagesize()` (not taken
-  from the filename or client header), the target directory and filename
-  are fixed server-side (no path traversal possible). SVG logos are
-  additionally served with `Content-Security-Policy: script-src 'none'`
-  in case the file is opened directly.
-- **Access-protection session**: `HttpOnly`, `SameSite=Lax`, and (under
-  HTTPS) `Secure` cookie flags, `session.use_strict_mode`, and
-  `session_regenerate_id()` after a successful login (protects against
-  session fixation). The password is stored exclusively as a bcrypt hash
-  (`password_hash()`), never in plain text; minimum length 8 characters;
-  an artificial delay on a wrong password slows down automated guessing.
-- **Error output**: `display_errors` is disabled via `.htaccess` so a
-  server error page never leaks file paths or SQL details.
-- **No tracking, no cloud connection** — see the "Privacy" section above.
+A manual security review was performed before release (code review plus
+targeted exploit attempts in an isolated test environment). Among other
+things:
 
-This software went through a manual security review before its first
-public release (code review plus targeted exploit attempts in an isolated
-test environment, covering stored XSS, SQL injection, zip-slip in the
-backup import, session fixation, and file-upload validation, among
-others). As with any software, that's not a guarantee of being bug-free.
-Security-relevant reports are welcome as an issue or via the contact
-channels listed in the repository.
+- Consistent escaping of all user-generated text (player, team, and
+  group names) against stored XSS.
+- Exclusively prepared SQL statements, no input concatenation.
+- File uploads (avatar/logo) validated server-side by content, no path
+  traversal possible.
+- Access-protection session with `HttpOnly`, `SameSite`, and (under
+  HTTPS) `Secure` cookie flags, protection against session fixation,
+  bcrypt password hashing.
+
+As with any software, that's not a guarantee of being bug-free.
+Security-relevant reports are welcome as an issue.
+
+## Support
+
+If you like "Das Scoreboard" and want to support it: you can do so via
+[buymeacoffee.com/thomashageleit](https://buymeacoffee.com/thomashageleit).
+Entirely optional — the software stays free to use either way.
 
 ## License
 

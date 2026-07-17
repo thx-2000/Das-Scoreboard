@@ -1,8 +1,9 @@
 /**
  * Themenunabhaengiges Schritt-Buttons-Feature fuer die Rundenerfassung:
- * Alternative zur Zahleneingabe, global konfigurierbar (Einstellungen ->
- * Rundenerfassung) und pro Geraet umschaltbar (localStorage), auch waehrend
- * eines laufenden Spiels. Genutzt von den 3 Punkte-Modi (nicht RAGE).
+ * Alternative zur Zahleneingabe, pro Spiel festgelegt (Einrichten-Formular,
+ * seit Migration 13 - vorher eine globale Einstellung) und pro Geraet
+ * umschaltbar (localStorage), auch waehrend eines laufenden Spiels. Genutzt
+ * von den 3 Punkte-Modi (nicht RAGE).
  */
 
 const ROUND_ENTRY_MODE_KEY = 'scoreboard_round_entry_mode';
@@ -16,13 +17,18 @@ function roundEntrySetMode(mode) {
   window.localStorage.setItem(ROUND_ENTRY_MODE_KEY, mode === 'buttons' ? 'buttons' : 'type');
 }
 
-function roundEntryEnabledSteps() {
-  const raw = (window.__scoreboardSettings && window.__scoreboardSettings.round_entry_steps) || '1,5,10';
-  const steps = raw.split(',').map(Number).filter((n) => ROUND_ENTRY_ALLOWED_STEPS.includes(n));
+/**
+ * Parst eine kommagetrennte Schrittweiten-Liste (z.B. aus state.roundEntrySteps
+ * eines Spiels) - reine Funktion ohne globalen Zustand, damit jeder Aufrufer
+ * (Eingabe-Raster, Bold-Picker, Flip-Kombifeld) dieselben Werte fuer dasselbe
+ * Spiel sieht, unabhaengig von globalen Einstellungen.
+ */
+function roundEntryParseSteps(raw) {
+  const steps = String(raw || '1,5,10').split(',').map(Number).filter((n) => ROUND_ENTRY_ALLOWED_STEPS.includes(n));
   return steps.length ? steps.sort((a, b) => a - b) : [1, 5, 10];
 }
 
-function roundEntryBuildStepButtons(input, allowNegative = true) {
+function roundEntryBuildStepButtons(input, allowNegative, steps) {
   const wrap = document.createElement('div');
   wrap.className = 'round-steps';
 
@@ -36,8 +42,6 @@ function roundEntryBuildStepButtons(input, allowNegative = true) {
     valueDisplay.textContent = input.value;
     input.dispatchEvent(new Event('input', { bubbles: true }));
   }
-
-  const steps = roundEntryEnabledSteps();
 
   const minusRow = document.createElement('div');
   minusRow.className = 'round-steps__row';
@@ -76,9 +80,10 @@ function roundEntryBuildStepButtons(input, allowNegative = true) {
  * Faellen im selben (bei Buttons ausgeblendeten) Zahlenfeld, damit
  * saveNewRound() unveraendert per data-player-ids ausliest.
  */
-function renderRoundEntryFields(container, groups, allowNegative = true) {
+function renderRoundEntryFields(container, groups, allowNegative = true, roundEntrySteps = '1,5,10') {
   container.innerHTML = '';
   const mode = roundEntryGetMode();
+  const steps = roundEntryParseSteps(roundEntrySteps);
 
   groups.forEach((group) => {
     const field = document.createElement('div');
@@ -100,7 +105,7 @@ function renderRoundEntryFields(container, groups, allowNegative = true) {
     if (mode === 'buttons') {
       input.hidden = true;
       field.appendChild(input);
-      field.appendChild(roundEntryBuildStepButtons(input, allowNegative));
+      field.appendChild(roundEntryBuildStepButtons(input, allowNegative, steps));
     } else {
       field.appendChild(input);
     }
@@ -161,9 +166,11 @@ function wireRoundEntryModeToggle(buttonEl, rerenderGrid, rerenderPicker) {
  * Felder - dieselben Felder, die auch "Runde speichern" (saveNewRound)
  * ausliest. Muss deshalb nach renderRoundEntryFields() aufgerufen werden.
  */
-function buildRoundEntryPicker(container, groups, players, allowNegative = true) {
+function buildRoundEntryPicker(container, groups, players, allowNegative = true, roundEntrySteps = '1,5,10') {
   container.innerHTML = '';
   if (groups.length === 0) return;
+
+  const steps = roundEntryParseSteps(roundEntrySteps);
 
   function inputFor(key) {
     return document.getElementById(`round-input-${key}`);
@@ -192,7 +199,7 @@ function buildRoundEntryPicker(container, groups, players, allowNegative = true)
     input.hidden = true;
 
     if (roundEntryGetMode() === 'buttons') {
-      const stepper = roundEntryBuildStepButtons(input, allowNegative);
+      const stepper = roundEntryBuildStepButtons(input, allowNegative, steps);
       stepper.classList.add('round-sequence__stepper');
       detail.appendChild(stepper);
     } else {
@@ -262,21 +269,21 @@ function buildRoundEntryPicker(container, groups, players, allowNegative = true)
  * Flip Board: Tipp-Feld UND Schritt-Buttons gleichzeitig sichtbar statt
  * umschaltbar (kein roundEntryGetMode()-Zweig noetig, ignoriert den
  * Umschalt-Knopf bewusst - der bleibt per CSS ausgeblendet). Nutzt dieselbe
- * Schrittweiten-Konfiguration wie die anderen Themes (roundEntryEnabledSteps(),
- * Einstellungen -> Rundenerfassung): kleinste aktivierte Schrittweite als
+ * Schrittweiten-Konfiguration wie die anderen Themes (state.roundEntrySteps,
+ * beim Einrichten des Spiels festgelegt): kleinste aktivierte Schrittweite als
  * immer sichtbares Plus/Minus-Paar neben dem Zahlenfeld, weitere aktivierte
  * Schrittweiten als Chip-Reihe darunter. Schreibt wie buildRoundEntryPicker()
  * direkt in die von renderRoundEntryFields() angelegten #round-input-<key>-
  * Felder, damit saveNewRound() unveraendert funktioniert.
  */
-function buildFlipRoundEntry(container, groups, allowNegative = true) {
+function buildFlipRoundEntry(container, groups, allowNegative = true, roundEntrySteps = '1,5,10') {
   container.innerHTML = '';
 
   function inputFor(key) {
     return document.getElementById(`round-input-${key}`);
   }
 
-  const steps = roundEntryEnabledSteps();
+  const steps = roundEntryParseSteps(roundEntrySteps);
   const primaryStep = steps[0];
   const chipSteps = steps.slice(1);
 

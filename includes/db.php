@@ -280,6 +280,42 @@ function migrations(): array
                 }
             }
         },
+
+        // Eigene Spiele-Presets (Startseite "Meine Spiele"): eine gespeicherte
+        // Kombination aus Modus + Einrichten-Werten (z.B. "Flip7" = Punkte bis
+        // Hoechstwert, 200, hoechste Punktzahl, Schritte 1/5/10), die beim
+        // Anklicken das Einrichten-Formular vorausfuellt statt es leer zu
+        // zeigen. round_entry_steps zieht dabei von den globalen Einstellungen
+        // in games um (dort war es bisher fuer alle Spiele gleich) - jedes
+        // Spiel bekommt seine eigenen Schrittweiten, Presets koennen so
+        // unterschiedliche Werte vorschlagen (z.B. Flip7 1/5/10, Tutto
+        // 100/500/1000). Bestehende Spiele bekommen per DEFAULT weiterhin
+        // '1,5,10', kein Datenverlust.
+        13 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+            if (!in_array('round_entry_steps', $existing, true)) {
+                $pdo->exec("ALTER TABLE games ADD COLUMN round_entry_steps TEXT NOT NULL DEFAULT '1,5,10'");
+            }
+
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS game_presets (
+                    id                 INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name               TEXT NOT NULL,
+                    mode               TEXT NOT NULL,
+                    target_score       INTEGER NOT NULL DEFAULT 0,
+                    total_rounds       INTEGER NOT NULL DEFAULT 0,
+                    win_direction      TEXT NOT NULL DEFAULT "highest",
+                    round_entry_steps  TEXT NOT NULL DEFAULT "1,5,10",
+                    target_bonus       INTEGER NOT NULL DEFAULT 0,
+                    allow_negative     INTEGER NOT NULL DEFAULT 1,
+                    announce_round_end INTEGER NOT NULL DEFAULT 0,
+                    is_favorite        INTEGER NOT NULL DEFAULT 0,
+                    sort_order         INTEGER NOT NULL DEFAULT 0,
+                    created_at         TEXT NOT NULL
+                )
+            ');
+        },
     ];
 }
 

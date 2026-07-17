@@ -8,6 +8,8 @@ const newPlayerInlineInput = document.getElementById('new-player-inline');
 const addPlayerInlineBtn = document.getElementById('add-player-inline-btn');
 const setupError = document.getElementById('setup-error');
 const teamSetup = initTeamSetup(document.getElementById('team-setup'));
+const roundEntryStepsField = document.getElementById('round-entry-steps-field');
+window.renderRoundEntryStepsField(roundEntryStepsField, '1,5,10');
 
 const selectedPlayerIds = new Set();
 let knownPlayers = [];
@@ -128,6 +130,7 @@ setupForm.addEventListener('submit', async (event) => {
       teamNames: teamSetup.getTeamNames(),
       teamScoring: teamSetup.getTeamScoring(),
       allowNegative: document.getElementById('allow-negative').checked,
+      roundEntrySteps: window.collectRoundEntryStepsField(roundEntryStepsField),
     }),
   });
 
@@ -141,4 +144,26 @@ setupForm.addEventListener('submit', async (event) => {
   window.location.href = `game.php?id=${data.id}`;
 });
 
+/**
+ * Startseite "Meine Spiele" -> Klick auf ein Preset uebergibt ?presetId=<id>
+ * und fuellt hier die passenden Felder vor - die Spielerauswahl bleibt
+ * bewusst ein eigener, manueller Schritt (siehe den jeweiligen setup.js insgesamt).
+ */
+async function prefillFromPreset() {
+  const presetId = Number(new URLSearchParams(window.location.search).get('presetId'));
+  if (!presetId) return;
+
+  const response = await fetch('/api/game-presets.php');
+  const presets = await response.json();
+  const preset = presets.find((p) => p.id === presetId && p.mode === 'fixed_rounds');
+  if (!preset) return;
+
+  gameLabelInput.value = preset.name;
+  totalRoundsInput.value = String(preset.totalRounds);
+  document.querySelector(`input[name="win-direction"][value="${preset.winDirection}"]`).checked = true;
+  document.getElementById('allow-negative').checked = preset.allowNegative;
+  window.renderRoundEntryStepsField(roundEntryStepsField, preset.roundEntrySteps);
+}
+
 window.scoreboardI18nReady.then(loadPlayers);
+window.scoreboardI18nReady.then(prefillFromPreset);

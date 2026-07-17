@@ -79,4 +79,95 @@ async function loadOpenGames() {
   });
 }
 
+/**
+ * "Meine Spiele" (eigene Presets, siehe Einstellungen -> Reiter "Meine
+ * Spiele"): Favoriten in einer eigenen, vorangestellten Reihe (siehe
+ * Wunsch "darüber leicht zu erreichen"), alle uebrigen Presets zusammen
+ * mit der statischen RAGE-Karte im normalen Raster darunter. Klick fuehrt
+ * zur bekannten Einrichten-Seite des jeweiligen Modus mit vorausgefuellten
+ * Werten (?presetId=<id>, siehe den jeweiligen setup.js) - die Spielerauswahl
+ * bleibt bewusst ein letzter manueller Schritt statt komplett uebersprungen
+ * zu werden.
+ */
+const HOME_PRESET_MODE_PATHS = {
+  points_to_target: 'points-to-target',
+  points_open: 'points-open',
+  fixed_rounds: 'fixed-rounds',
+};
+
+const favoritePresetGrid = document.getElementById('favorite-preset-grid');
+const myGamesGrid = document.getElementById('my-games-grid');
+
+function presetCardMeta(preset) {
+  const modes = homeModeInfo();
+  const title = (modes[preset.mode] || {}).title || preset.mode;
+  if (preset.mode === 'points_to_target') {
+    return `${title} · ${window.t('home.myGames.metaTarget', { score: preset.targetScore })}`;
+  }
+  if (preset.mode === 'fixed_rounds') {
+    return `${title} · ${window.t('home.myGames.metaRounds', { rounds: preset.totalRounds })}`;
+  }
+  return title;
+}
+
+function buildPresetCard(preset) {
+  const modePath = HOME_PRESET_MODE_PATHS[preset.mode];
+  if (!modePath) return null;
+
+  const link = document.createElement('a');
+  link.className = 'mode-card';
+  link.href = `/modes/${modePath}/setup.php?presetId=${preset.id}`;
+
+  const icon = document.createElement('span');
+  icon.className = 'mode-card__icon';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = preset.isFavorite ? '⭐' : '🎲';
+
+  const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  iconSvg.setAttribute('class', 'mode-card__icon-svg');
+  iconSvg.setAttribute('aria-hidden', 'true');
+  iconSvg.setAttribute('viewBox', '0 0 24 24');
+  iconSvg.setAttribute('fill', 'none');
+  iconSvg.setAttribute('stroke', 'currentColor');
+  iconSvg.setAttribute('stroke-width', '2');
+  iconSvg.innerHTML = preset.isFavorite
+    ? '<path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3-5.6-3.4-5.6 3.4 1.4-6.3-4.8-4.3 6.4-.6z" stroke-linejoin="round"/>'
+    : '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"/>';
+
+  const heading = document.createElement('h2');
+  heading.textContent = preset.name;
+
+  const meta = document.createElement('p');
+  meta.className = 'mode-card__examples';
+  meta.textContent = presetCardMeta(preset);
+
+  link.appendChild(icon);
+  link.appendChild(iconSvg);
+  link.appendChild(heading);
+  link.appendChild(meta);
+  return link;
+}
+
+async function loadHomePresets() {
+  const response = await fetch('/api/game-presets.php');
+  const presets = await response.json();
+
+  const favorites = presets.filter((p) => p.isFavorite);
+  const rest = presets.filter((p) => !p.isFavorite);
+
+  if (favorites.length > 0) {
+    favoritePresetGrid.hidden = false;
+    favorites.forEach((preset) => {
+      const card = buildPresetCard(preset);
+      if (card) favoritePresetGrid.appendChild(card);
+    });
+  }
+
+  rest.forEach((preset) => {
+    const card = buildPresetCard(preset);
+    if (card) myGamesGrid.appendChild(card);
+  });
+}
+
 window.scoreboardI18nReady.then(loadOpenGames);
+window.scoreboardI18nReady.then(loadHomePresets);

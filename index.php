@@ -7,8 +7,8 @@ require __DIR__ . '/includes/header.php';
 
   <main id="main">
     <section class="card">
-      <h2 data-i18n="home.newGame.heading">Neues Spiel starten</h2>
-      <p class="hint-text" data-i18n="home.newGame.hint">Wähle eine Aufschreibmöglichkeit für euer Spiel.</p>
+      <h2 data-i18n="home.generalBoards.heading">Allgemeine Scoreboards</h2>
+      <p class="hint-text" data-i18n="home.generalBoards.hint">Frei einstellbar — Zielwert, Sieg-Richtung und Punkteschritte legst du beim Einrichten fest.</p>
       <a href="#mode-grid" class="home-start-btn" data-i18n="home.newGame.startButton">Neues Spiel starten</a>
 
       <div class="mode-grid" id="mode-grid">
@@ -32,6 +32,16 @@ require __DIR__ . '/includes/header.php';
           <h2 data-i18n="modes.fixedRounds.title">Punkterunde mit fester Rundenzahl</h2>
           <p data-i18n="modes.fixedRounds.description">Ihr legt beim Einrichten fest, wie viele Runden gespielt werden und ob am Ende die höchste oder niedrigste Punktzahl gewinnt. Nach der letzten Runde fragt das Spiel, ob beendet oder um weitere Runden verlängert werden soll.</p>
         </a>
+      </div>
+    </section>
+
+    <section class="card section-spacing">
+      <h2 data-i18n="home.myGames.heading">Meine Spiele</h2>
+      <p class="hint-text" data-i18n="home.myGames.hint">RAGE sowie deine eigenen, fertig konfigurierten Spiele (anlegen unter Einstellungen → Meine Spiele).</p>
+
+      <div class="mode-grid" id="favorite-preset-grid" hidden></div>
+
+      <div class="mode-grid" id="my-games-grid">
         <a href="/modes/rage/setup.php" class="mode-card mode-card--rage">
           <span class="mode-card__icon" aria-hidden="true">🔥</span>
           <svg class="mode-card__icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l6-16 4 10 4-6 2 12"/></svg>

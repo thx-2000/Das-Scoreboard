@@ -1,3 +1,19 @@
+// Reiter sind rein optisch (ein/ausblenden per hidden) - technisch bleibt
+// alles EIN Formular im Hintergrund, damit eine Aenderung auf Reiter A
+// beim Speichern auf Reiter B nicht verloren geht (der globale Speichern-
+// Button unten liest immer den kompletten, aktuellen DOM-Zustand aus,
+// unabhaengig davon, welcher Reiter gerade sichtbar ist).
+document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((b) => {
+      b.setAttribute('aria-selected', String(b === btn));
+    });
+    document.querySelectorAll('.settings-tab-panel').forEach((panel) => {
+      panel.hidden = panel.dataset.tabPanel !== btn.dataset.tab;
+    });
+  });
+});
+
 const appTitleInput = document.getElementById('app-title-input');
 document.getElementById('title-form').addEventListener('submit', (event) => event.preventDefault());
 
@@ -19,8 +35,6 @@ const sharedAccentSection = document.getElementById('shared-accent-section');
 const flipPresetSection = document.getElementById('flip-preset-section');
 const flipColorsSection = document.getElementById('flip-colors-section');
 const flipColorFields = document.getElementById('flip-color-fields');
-const roundEntryStepsFields = document.getElementById('round-entry-steps-fields');
-const ROUND_ENTRY_STEP_VALUES = [1, 5, 10, 50, 100, 500, 1000];
 
 // Gespiegelt aus includes/settings.php::flip_accent_palette() - nur hier
 // benoetigt (Schnellwahl-Klick ueberschreibt flip_color_accent_light/_dark),
@@ -256,24 +270,6 @@ function renderFlipColorFields(settings) {
   });
 }
 
-function renderRoundEntrySteps(settings) {
-  const enabled = (settings.round_entry_steps || '1,5,10').split(',').map(Number);
-  roundEntryStepsFields.innerHTML = '';
-  ROUND_ENTRY_STEP_VALUES.forEach((step) => {
-    const label = document.createElement('label');
-    label.className = 'player-chip';
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.dataset.stepValue = String(step);
-    input.checked = enabled.includes(step);
-    const span = document.createElement('span');
-    span.textContent = `±${step}`;
-    label.appendChild(input);
-    label.appendChild(span);
-    roundEntryStepsFields.appendChild(label);
-  });
-}
-
 function renderLogoPreviews(settings) {
   ['square', 'banner'].forEach((type) => {
     const slot = logoSlots[type];
@@ -357,7 +353,6 @@ async function loadSettings() {
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   renderFlipColorFields(data.settings);
-  renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   renderAccessSettings(data.settings);
 }
@@ -383,10 +378,6 @@ function collectFormValues() {
   document.querySelectorAll('.color-field__hex').forEach((input) => {
     values[input.dataset.settingKey] = input.value;
   });
-  const checkedSteps = Array.from(roundEntryStepsFields.querySelectorAll('input[data-step-value]'))
-    .filter((input) => input.checked)
-    .map((input) => input.dataset.stepValue);
-  values.round_entry_steps = checkedSteps.join(',');
   return values;
 }
 
@@ -408,7 +399,6 @@ saveBtn.addEventListener('click', async () => {
   currentSettings = data.settings;
   renderColorFields(data.settings);
   renderFlipColorFields(data.settings);
-  renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   showStatus(window.t('settings.savedStatus'));
 });
@@ -434,7 +424,6 @@ resetBtn.addEventListener('click', async () => {
   renderLanguages(data.settings, data.languages);
   renderColorFields(data.settings);
   renderFlipColorFields(data.settings);
-  renderRoundEntrySteps(data.settings);
   renderLogoPreviews(data.settings);
   renderAccessSettings(data.settings);
   showStatus(window.t('settings.resetStatus'));

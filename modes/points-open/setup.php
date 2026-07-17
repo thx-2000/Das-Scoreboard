@@ -45,6 +45,10 @@ require __DIR__ . '/../../includes/header.php';
           </label>
           <p class="hint-text" data-i18n="common.setup.allowNegativeHint">Wenn deaktiviert, werden negative Rundeneingaben auf 0 begrenzt.</p>
 
+          <label data-i18n="common.setup.roundEntryStepsLabel">Punkteschritte für die Rundenerfassung</label>
+          <p class="hint-text" data-i18n="common.setup.roundEntryStepsHint">Schritt-Buttons als Alternative zur Zahleneingabe. Zwischen Tippen und Schritt-Buttons kann direkt im laufenden Spiel umgeschaltet werden.</p>
+          <div class="player-picker" id="round-entry-steps-field"></div>
+
           <div class="team-setup" id="team-setup">
             <label class="player-chip">
               <input type="checkbox" data-team-enable>
@@ -77,5 +81,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'js/group-picker.js', 'modes/points-open/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/group-picker.js', 'js/round-entry-steps-field.js', 'modes/points-open/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

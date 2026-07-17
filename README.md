@@ -47,6 +47,11 @@ Beispieldaten.*
 - **Vier Aufschreibmodi**: *Punkte bis Höchstwert* (z.B. Flip7, Tutto),
   *Offene Punkterunde* (z.B. Doppelkopf), *Punkterunde mit fester
   Rundenzahl* und *RAGE* (Stichspiel mit automatischer Punkteberechnung).
+- **Eigene Spiele**: fertig konfigurierte Varianten der drei
+  Punkte-Modi (z.B. "Flip7" mit Zielwert 200 und eigenen
+  Punkteschritten) unter Einstellungen → Meine Spiele anlegen —
+  erscheinen auf der Startseite, Favoriten ganz oben, ein Klick füllt
+  das Einrichten-Formular direkt vor.
 - **Spielerverwaltung**: zentrale Namensliste zur Schnellauswahl, dazu
   optionale Spielergruppen (z.B. "Familie") für Ein-Klick-Auswahl.
 - **Team-Modus**: in den drei Punkte-Modi lassen sich Spieler zu Teams
@@ -205,6 +210,10 @@ data.*
 - **Four scorekeeping modes**: *Points to target* (e.g. Flip7, Tutto),
   *Open point round* (e.g. Doppelkopf), *Points round with fixed round
   count*, and *RAGE* (a trick-taking card game with automatic scoring).
+- **Custom games**: save fully configured variants of the three
+  point-based modes (e.g. "Flip7" with a target of 200 and its own
+  step sizes) under Settings → My games — they show up on the home
+  page, favorites first, and one click pre-fills the setup form.
 - **Player management**: a central name list for quick selection, plus
   optional player groups (e.g. "Family") for one-click selection.
 - **Team mode**: in the three point-based modes, players can be grouped

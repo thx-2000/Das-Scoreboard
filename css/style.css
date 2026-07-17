@@ -2511,16 +2511,10 @@ main {
    Fliesstext, "Wer faengt an?" als voller Balken statt Karte ---- */
 
 [data-theme-style="flip"] .mode-grid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 2px;
   background: var(--color-border);
   border: 1px solid var(--color-border);
-}
-
-@media (min-width: 700px) {
-  [data-theme-style="flip"] .mode-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 [data-theme-style="flip"] .mode-card {
@@ -3187,4 +3181,128 @@ main {
   color: var(--color-danger);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+/* Einstellungen: Reiter (settings.php) - rein optische Umschaltung, siehe
+   js/settings.js. Horizontal scrollbar auf schmalen Bildschirmen, da 5
+   Reiter auf iPhone-Breite nicht nebeneinander passen. */
+.settings-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.settings-tabs__btn {
+  flex: 0 0 auto;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.65rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.settings-tabs__btn[aria-selected="true"] {
+  color: var(--color-text);
+  border-bottom-color: var(--color-green-strong);
+}
+
+.settings-tabs__btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Bleibt beim Scrollen am unteren Bildschirmrand haengen, damit der
+   Speichern-Button immer erreichbar ist, egal wie lang der aktive Reiter
+   ist (siehe CLAUDE-Notiz zur "Reiter wechseln, Aenderung verlieren"-Sorge
+   - technisch bleibt es EIN Formular, dieser Bereich liegt nur ausserhalb
+   aller Reiter-Panels). */
+.settings-save-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+  margin-top: 1.5rem;
+}
+
+/* "Meine Spiele" (settings.php Reiter "spiele", js/settings-presets.js) */
+.preset-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.preset-item--dragging {
+  opacity: 0.5;
+}
+
+.preset-item__drag-handle {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0.4rem;
+  cursor: grab;
+  touch-action: none;
+}
+
+.preset-item__favorite {
+  background: none;
+  border: none;
+  color: var(--color-amber);
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.preset-item__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.preset-item__name {
+  font-weight: 600;
+}
+
+.preset-item__meta {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.preset-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.preset-item__move {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.preset-item__move:disabled {
+  opacity: 0.35;
+  cursor: default;
 }

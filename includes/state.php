@@ -426,6 +426,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'targetBonus' => (int) ($game['target_bonus'] ?? 0),
         'allowNegative' => (bool) ($game['allow_negative'] ?? 1),
         'rageShowBonusMalus' => (bool) ($game['rage_show_bonus_malus'] ?? 1),
+        'roundEntrySteps' => $game['round_entry_steps'] ?? '1,5,10',
         'players' => array_map(function ($p) use ($teamLabels) {
             $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
             $teamLabel = $teamNumber !== null ? ($teamLabels[$teamNumber] ?? null) : null;

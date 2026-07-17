@@ -136,7 +136,7 @@ function renderWinnerBanner(state) {
 
 function renderRoundEntryForm(state) {
   roundEntryCard.hidden = state.status === 'finished';
-  window.renderRoundEntryFields(roundFormGrid, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative);
+  window.renderRoundEntryFields(roundFormGrid, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative, state.roundEntrySteps);
 }
 
 /**
@@ -150,7 +150,7 @@ function renderRoundEntrySequence(state) {
     roundEntrySequence.innerHTML = '';
     return;
   }
-  window.buildRoundEntryPicker(roundEntrySequence, window.groupPlayersByTeam(state.players, state.teamScoring), state.players, state.allowNegative);
+  window.buildRoundEntryPicker(roundEntrySequence, window.groupPlayersByTeam(state.players, state.teamScoring), state.players, state.allowNegative, state.roundEntrySteps);
 }
 
 /**
@@ -162,7 +162,7 @@ function renderRoundEntryFlip(state) {
     roundEntryFlip.innerHTML = '';
     return;
   }
-  window.buildFlipRoundEntry(roundEntryFlip, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative);
+  window.buildFlipRoundEntry(roundEntryFlip, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative, state.roundEntrySteps);
 }
 
 function renderRoundsTable(state) {

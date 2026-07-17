@@ -97,7 +97,9 @@
       "selectNone": "Deselect all",
       "allowNegativeLabel": "Allow negative points",
       "allowNegativeHint": "When off, negative round entries are clamped to 0.",
-      "targetBonusHint": "Extra points the winner(s) get for reaching the target score (0 = no bonus)."
+      "targetBonusHint": "Extra points the winner(s) get for reaching the target score (0 = no bonus).",
+      "roundEntryStepsLabel": "Step sizes for round entry",
+      "roundEntryStepsHint": "Step buttons as an alternative to typing numbers — choose which step sizes (±) are available. You can switch between typing and step buttons anytime, even mid-game."
     },
     "errors": {
       "minPlayers": "Select at least 2 players.",
@@ -176,9 +178,17 @@
   "home": {
     "heading": "Scorekeeping helper for game nights",
     "newGame": {
-      "heading": "Start a new game",
-      "hint": "Choose a scoring mode for your game.",
       "startButton": "Start a new game"
+    },
+    "generalBoards": {
+      "heading": "General scoreboards",
+      "hint": "Freely configurable — set the target score, win direction, and step sizes during setup."
+    },
+    "myGames": {
+      "heading": "My games",
+      "hint": "RAGE plus your own, fully configured games (create them under Settings → My games).",
+      "metaTarget": "Target: {score} points",
+      "metaRounds": "{rounds} rounds"
     },
     "openGames": {
       "heading": "Open games",
@@ -326,6 +336,13 @@
   "settings": {
     "heading": "Settings",
     "subtitle": "Applies to everyone using this app (stored globally).",
+    "tabs": {
+      "aussehen": "Appearance",
+      "allgemein": "General",
+      "spiele": "My games",
+      "zugang": "Access protection",
+      "backup": "Backup"
+    },
     "theme": {
       "heading": "Appearance",
       "hint": "Three independent looks to choose from. Fine-tuning of the colors can be found further below under \"Colors in detail\".",
@@ -370,9 +387,23 @@
       "hint": "Short sound (and vibration, where supported by the device) when saving a round. On iPhone/iPad vibration isn't possible for technical reasons (Safari), but the sound works.",
       "label": "Sound on save"
     },
-    "roundEntry": {
-      "heading": "Round entry",
-      "hint": "Step buttons as an alternative to typing numbers when entering rounds (Points to target, Open point round, Fixed round count). Switch between typing and step buttons anytime, even mid-game."
+    "presets": {
+      "heading": "My games",
+      "hint": "Your own, fully configured games (e.g. \"Flip7\" with target 200) — appear on the home page under \"My games\" and pre-fill the setup form when clicked.",
+      "addButton": "Add new game",
+      "formHeadingNew": "New game",
+      "formHeadingEdit": "Edit {name}",
+      "nameLabel": "Name",
+      "modeLabel": "Mode",
+      "metaTarget": "Target: {target} points",
+      "metaRounds": "{rounds} rounds",
+      "saveFailed": "Could not save game.",
+      "deleteConfirm": "Really delete \"{name}\"?",
+      "empty": "No games created yet.",
+      "favoriteLabel": "Favorite",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "editButton": "Edit"
     },
     "access": {
       "heading": "Access protection",

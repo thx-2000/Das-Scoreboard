@@ -90,11 +90,6 @@ function default_settings(): array
         'color_border_light' => '#dfe1e5',
         'color_border_dark' => '#2d2f34',
 
-        // Kommagetrennte Liste erlaubter Schrittweiten (aus ROUND_ENTRY_STEP_VALUES)
-        // fuer die Schritt-Buttons bei der Rundenerfassung. Gilt fuer Punkte bis
-        // Hoechstwert, Offene Punkterunde und Feste Rundenzahl (nicht RAGE).
-        'round_entry_steps' => '1,5,10',
-
         'color_green' => '#39ff14',
         'color_green_strong' => '#16a34a',
         'color_amber' => '#ffb700',
@@ -162,6 +157,21 @@ function is_valid_hex_color(string $value): bool
 function round_entry_step_values(): array
 {
     return [1, 5, 10, 50, 100, 500, 1000];
+}
+
+/**
+ * Prueft/normalisiert eine kommagetrennte Schrittweiten-Liste gegen
+ * round_entry_step_values() - genutzt beim Anlegen eines Spiels
+ * (api/games.php) und beim Speichern eines Presets (api/game-presets.php).
+ * Seit Migration 13 pro Spiel/Preset statt global (siehe includes/db.php).
+ */
+function sanitize_round_entry_steps(string $value): string
+{
+    $allowed = round_entry_step_values();
+    $selected = array_filter(array_map('intval', explode(',', $value)), fn ($n) => in_array($n, $allowed, true));
+    $selected = array_values(array_unique($selected));
+    sort($selected);
+    return $selected === [] ? '1,5,10' : implode(',', $selected);
 }
 
 /**
@@ -279,12 +289,6 @@ function save_settings(PDO $pdo, array $updates): void
             if (!array_key_exists($value, flip_accent_palette())) {
                 continue;
             }
-        } elseif ($key === 'round_entry_steps') {
-            $allowed = round_entry_step_values();
-            $selected = array_filter(array_map('intval', explode(',', $value)), fn ($n) => in_array($n, $allowed, true));
-            $selected = array_values(array_unique($selected));
-            sort($selected);
-            $value = $selected === [] ? '1,5,10' : implode(',', $selected);
         } elseif ($key === 'logo_square_ext' || $key === 'logo_banner_ext') {
             // Nur api/logo.php darf diese Werte setzen (direkter Upsert dort),
             // nicht das generische Settings-Formular.

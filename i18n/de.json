@@ -97,7 +97,9 @@
       "selectNone": "Alle abwählen",
       "allowNegativeLabel": "Negativpunkte erlauben",
       "allowNegativeHint": "Wenn deaktiviert, werden negative Rundeneingaben auf 0 begrenzt.",
-      "targetBonusHint": "Zusätzliche Punkte, die der/die Sieger beim Erreichen des Zielwerts bekommen (0 = kein Bonus)."
+      "targetBonusHint": "Zusätzliche Punkte, die der/die Sieger beim Erreichen des Zielwerts bekommen (0 = kein Bonus).",
+      "roundEntryStepsLabel": "Punkteschritte für die Rundenerfassung",
+      "roundEntryStepsHint": "Schritt-Buttons als Alternative zur Zahleneingabe — hier auswählen, welche Schrittgrößen (±) zur Verfügung stehen. Zwischen Tippen und Schritt-Buttons kann im laufenden Spiel jederzeit umgeschaltet werden."
     },
     "errors": {
       "minPlayers": "Mindestens 2 Spieler auswählen.",
@@ -176,9 +178,17 @@
   "home": {
     "heading": "Aufschreibhilfe für Spieleabende",
     "newGame": {
-      "heading": "Neues Spiel starten",
-      "hint": "Wähle eine Aufschreibmöglichkeit für euer Spiel.",
       "startButton": "Neues Spiel starten"
+    },
+    "generalBoards": {
+      "heading": "Allgemeine Scoreboards",
+      "hint": "Frei einstellbar — Zielwert, Sieg-Richtung und Punkteschritte legst du beim Einrichten fest."
+    },
+    "myGames": {
+      "heading": "Meine Spiele",
+      "hint": "RAGE sowie deine eigenen, fertig konfigurierten Spiele (anlegen unter Einstellungen → Meine Spiele).",
+      "metaTarget": "Ziel: {score} Punkte",
+      "metaRounds": "{rounds} Runden"
     },
     "openGames": {
       "heading": "Offene Spiele",
@@ -326,6 +336,13 @@
   "settings": {
     "heading": "Einstellungen",
     "subtitle": "Gilt für alle, die diese Seite nutzen (global gespeichert).",
+    "tabs": {
+      "aussehen": "Aussehen",
+      "allgemein": "Allgemein",
+      "spiele": "Meine Spiele",
+      "zugang": "Zugangsschutz",
+      "backup": "Backup"
+    },
     "theme": {
       "heading": "Aussehen",
       "hint": "Drei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich \"Farben im Detail\".",
@@ -370,9 +387,23 @@
       "hint": "Kurzer Ton (und Vibration, falls vom Gerät unterstützt) beim Speichern einer Runde. Auf iPhone/iPad ist Vibration aus technischen Gründen (Safari) nicht möglich, der Ton funktioniert aber.",
       "label": "Ton beim Speichern"
     },
-    "roundEntry": {
-      "heading": "Rundenerfassung",
-      "hint": "Schritt-Buttons als Alternative zur Zahleneingabe bei der Rundenerfassung (Punkte bis Höchstwert, Offene Punkterunde, Feste Rundenzahl). Zwischen Tippen und Schritt-Buttons kann direkt im laufenden Spiel umgeschaltet werden."
+    "presets": {
+      "heading": "Meine Spiele",
+      "hint": "Eigene, fertig konfigurierte Spiele (z.B. \"Flip7\" mit Zielwert 200) — erscheinen auf der Startseite unter \"Meine Spiele\" und füllen beim Anklicken das Einrichten-Formular vorab aus.",
+      "addButton": "Neues Spiel anlegen",
+      "formHeadingNew": "Neues Spiel",
+      "formHeadingEdit": "{name} bearbeiten",
+      "nameLabel": "Name",
+      "modeLabel": "Modus",
+      "metaTarget": "Ziel: {target} Punkte",
+      "metaRounds": "{rounds} Runden",
+      "saveFailed": "Spiel konnte nicht gespeichert werden.",
+      "deleteConfirm": "\"{name}\" wirklich löschen?",
+      "empty": "Noch keine eigenen Spiele angelegt.",
+      "favoriteLabel": "Favorit",
+      "moveUp": "Nach oben verschieben",
+      "moveDown": "Nach unten verschieben",
+      "editButton": "Bearbeiten"
     },
     "access": {
       "heading": "Zugangsschutz",

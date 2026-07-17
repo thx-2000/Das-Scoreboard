@@ -1,5 +1,5 @@
 /**
- * Spielergruppen-Verwaltung (players.php): Gruppen anlegen, umbenennen,
+ * Spielergruppen-Verwaltung (settings.php, Reiter "Spieler"): Gruppen anlegen, umbenennen,
  * Mitglieder bearbeiten, (de)aktivieren und loeschen. Eine Person kann in
  * mehreren Gruppen sein - Mitgliedschaft ist eine reine n:m-Zuordnung
  * (siehe api/player-groups.php), unabhaengig vom Aktiv-Status der Gruppe

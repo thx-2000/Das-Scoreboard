@@ -3,7 +3,6 @@
     "skipLink": "Zum Inhalt springen",
     "nav": {
       "home": "Startseite",
-      "players": "Spieler",
       "history": "Verlauf",
       "stats": "Statistiken",
       "chooser": "Wer fängt an?",
@@ -110,9 +109,6 @@
   "pages": {
     "home": {
       "title": "Spieleabend-Aufschreiber"
-    },
-    "players": {
-      "title": "Spieler verwalten"
     },
     "history": {
       "title": "Spielverlauf"
@@ -341,6 +337,7 @@
     "tabs": {
       "aussehen": "Aussehen",
       "allgemein": "Allgemein",
+      "spieler": "Spieler",
       "spiele": "Meine Spiele",
       "zugang": "Zugangsschutz",
       "backup": "Backup"

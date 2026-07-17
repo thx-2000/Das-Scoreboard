@@ -326,6 +326,34 @@ function migrations(): array
                 $pdo->exec("ALTER TABLE game_presets ADD COLUMN icon TEXT NOT NULL DEFAULT '🎲'");
             }
         },
+
+        // Preset-Icons von bunten Emoji (Migration 14) auf einfarbige SVG-Icon-
+        // Schluessel umgestellt (siehe includes/settings.php::preset_icon_options())
+        // - bestehende Werte auf die neuen Schluessel ummappen, unbekannte auf
+        // den Standard "dice" zurueckfallen lassen.
+        15 => function (PDO $pdo) {
+            $emojiToKey = [
+                '🎲' => 'dice', '🃏' => 'gem', '🀄️' => 'grid', '♠️' => 'gem', '♥️' => 'gem',
+                '♦️' => 'gem', '♣️' => 'gem', '🎴' => 'grid', '🎯' => 'target', '🎳' => 'target',
+                '♟️' => 'crown', '🧩' => 'grid', '🎮' => 'controller', '🕹️' => 'controller',
+                '🎰' => 'dice', '🏆' => 'medal', '🥇' => 'medal', '🔢' => 'grid', '🧮' => 'grid',
+                '✏️' => 'book', '📝' => 'book', '🍀' => 'clover', '💰' => 'gem', '⚡' => 'bolt',
+                '🔥' => 'flame', '🌟' => 'star', '💎' => 'gem', '🎉' => 'star', '🎊' => 'star',
+                '🎪' => 'flag', '🦄' => 'star', '🐉' => 'flame',
+            ];
+            $allowed = ['dice', 'star', 'target', 'grid', 'flame', 'controller', 'bolt', 'clover',
+                'gem', 'crown', 'anchor', 'sun', 'flag', 'medal', 'hourglass', 'key',
+                'camera', 'music', 'compass', 'book', 'rocket'];
+            $rows = $pdo->query('SELECT id, icon FROM game_presets')->fetchAll(PDO::FETCH_ASSOC);
+            $update = $pdo->prepare('UPDATE game_presets SET icon = ? WHERE id = ?');
+            foreach ($rows as $row) {
+                if (in_array($row['icon'], $allowed, true)) {
+                    continue;
+                }
+                $newIcon = $emojiToKey[$row['icon']] ?? 'dice';
+                $update->execute([$newIcon, $row['id']]);
+            }
+        },
     ];
 }
 

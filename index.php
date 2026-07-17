@@ -86,5 +86,5 @@ require __DIR__ . '/includes/header.php';
   </a>
 
 <?php
-$page_scripts = ['js/pwa-hint.js', 'js/home.js'];
+$page_scripts = ['js/pwa-hint.js', 'js/preset-icons.js', 'js/home.js'];
 require __DIR__ . '/includes/footer.php';

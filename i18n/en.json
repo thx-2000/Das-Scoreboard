@@ -3,7 +3,6 @@
     "skipLink": "Skip to content",
     "nav": {
       "home": "Home",
-      "players": "Players",
       "history": "History",
       "stats": "Statistics",
       "chooser": "Who starts?",
@@ -110,9 +109,6 @@
   "pages": {
     "home": {
       "title": "Game night scorekeeper"
-    },
-    "players": {
-      "title": "Manage players"
     },
     "stats": {
       "title": "Statistics"
@@ -341,6 +337,7 @@
     "tabs": {
       "aussehen": "Appearance",
       "allgemein": "General",
+      "spieler": "Players",
       "spiele": "My games",
       "zugang": "Access protection",
       "backup": "Backup"

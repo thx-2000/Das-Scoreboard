@@ -259,8 +259,7 @@ function buildPresetRow(preset, { reorderable, index, count }) {
 
   const icon = document.createElement('span');
   icon.className = 'preset-item__icon';
-  icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = preset.icon;
+  icon.appendChild(window.presetIconSvg(preset.icon));
   item.appendChild(icon);
 
   const info = document.createElement('div');

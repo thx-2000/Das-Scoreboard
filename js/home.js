@@ -121,10 +121,8 @@ function buildPresetCard(preset) {
   link.className = 'mode-card mode-card--preset';
   link.href = `/modes/${modePath}/setup.php?presetId=${preset.id}`;
 
-  const icon = document.createElement('span');
-  icon.className = 'mode-card__icon';
-  icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = preset.icon;
+  const icon = window.presetIconSvg(preset.icon);
+  icon.classList.add('mode-card__icon-svg');
 
   const heading = document.createElement('h2');
   heading.textContent = preset.name;

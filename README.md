@@ -49,14 +49,15 @@ Beispieldaten.*
   Rundenzahl* und *RAGE* (Stichspiel mit automatischer Punkteberechnung).
 - **Eigene Spiele**: fertig konfigurierte Varianten der drei
   Punkte-Modi (z.B. "Flip7" mit Zielwert 200, eigenen Punkteschritten
-  und einem frei wählbaren Icon aus über 30 Symbolen) unter
-  Einstellungen → Meine Spiele anlegen. Favoriten erscheinen in einer
-  eigenen, manuell sortierbaren Reihe oben auf der Startseite,
+  und einem frei wählbaren, einfarbigen Icon aus über 20 Symbolen)
+  unter Einstellungen → Meine Spiele anlegen. Favoriten erscheinen in
+  einer eigenen, manuell sortierbaren Reihe oben auf der Startseite,
   zusätzlich alphabetisch in der vollständigen Liste aller Spiele
   (inkl. RAGE) darunter — ein Klick füllt das Einrichten-Formular
   direkt vor.
-- **Spielerverwaltung**: zentrale Namensliste zur Schnellauswahl, dazu
-  optionale Spielergruppen (z.B. "Familie") für Ein-Klick-Auswahl.
+- **Spielerverwaltung**: zentrale Namensliste zur Schnellauswahl (unter
+  Einstellungen → Spieler), dazu optionale Spielergruppen (z.B.
+  "Familie") für Ein-Klick-Auswahl.
 - **Team-Modus**: in den drei Punkte-Modi lassen sich Spieler zu Teams
   zusammenfassen, wahlweise mit gemeinsamem oder individuellem Punktwert.
 - **Spieler-Avatare**: optionales Foto pro Spieler, direkt im Punktestand
@@ -215,13 +216,14 @@ data.*
   count*, and *RAGE* (a trick-taking card game with automatic scoring).
 - **Custom games**: save fully configured variants of the three
   point-based modes (e.g. "Flip7" with a target of 200, its own step
-  sizes, and a freely chosen icon from over 30 symbols) under Settings
-  → My games. Favorites get their own, manually sortable row at the
-  top of the home page, and also appear alphabetically in the full
-  list of all games (incl. RAGE) below — one click pre-fills the setup
-  form.
-- **Player management**: a central name list for quick selection, plus
-  optional player groups (e.g. "Family") for one-click selection.
+  sizes, and a freely chosen, single-color icon from over 20 symbols)
+  under Settings → My games. Favorites get their own, manually
+  sortable row at the top of the home page, and also appear
+  alphabetically in the full list of all games (incl. RAGE) below —
+  one click pre-fills the setup form.
+- **Player management**: a central name list for quick selection
+  (under Settings → Players), plus optional player groups (e.g.
+  "Family") for one-click selection.
 - **Team mode**: in the three point-based modes, players can be grouped
   into teams, with either a combined or an individual score.
 - **Player avatars**: an optional photo per player, shown right in the

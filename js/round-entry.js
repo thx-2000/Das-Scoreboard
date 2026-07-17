@@ -28,23 +28,44 @@ function roundEntryParseSteps(raw) {
   return steps.length ? steps.sort((a, b) => a - b) : [1, 5, 10];
 }
 
-function roundEntryBuildStepButtons(input, allowNegative, steps) {
+/**
+ * Eine Zeile, symmetrisch um den aktuellen Wert zentriert:
+ * [-10][-5][-1] [Wert] [+1][+5][+10] - je nach Spiel nur die aktivierten
+ * Schrittweiten. options.editable rendert den Wert als echtes Zahlenfeld
+ * statt als reinen Anzeigetext (fuer Flip Board, das Tippen UND Buttons
+ * gleichzeitig anbietet statt einer umschaltbaren Anzeige wie Classic/Bold).
+ */
+function roundEntryBuildStepButtons(input, allowNegative, steps, options = {}) {
+  const editable = Boolean(options.editable);
   const wrap = document.createElement('div');
   wrap.className = 'round-steps';
 
-  const valueDisplay = document.createElement('span');
-  valueDisplay.className = 'round-steps__value';
-  valueDisplay.textContent = input.value;
+  let valueDisplay;
+  if (editable) {
+    valueDisplay = document.createElement('input');
+    valueDisplay.type = 'text';
+    valueDisplay.inputMode = 'numeric';
+    valueDisplay.pattern = allowNegative ? '-?[0-9]*' : '[0-9]*';
+    valueDisplay.className = 'round-steps__value round-steps__value--input';
+    valueDisplay.value = input.value;
+    valueDisplay.addEventListener('input', () => {
+      input.value = valueDisplay.value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  } else {
+    valueDisplay = document.createElement('span');
+    valueDisplay.className = 'round-steps__value';
+    valueDisplay.textContent = input.value;
+  }
 
   function adjust(delta) {
     const next = (Number(input.value) || 0) + delta;
     input.value = String(allowNegative ? next : Math.max(0, next));
-    valueDisplay.textContent = input.value;
+    if (editable) valueDisplay.value = input.value;
+    else valueDisplay.textContent = input.value;
     input.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
-  const minusRow = document.createElement('div');
-  minusRow.className = 'round-steps__row';
   [...steps].reverse().forEach((step) => {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -52,11 +73,11 @@ function roundEntryBuildStepButtons(input, allowNegative, steps) {
     btn.textContent = `−${step}`;
     btn.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: step }));
     btn.addEventListener('click', () => adjust(-step));
-    minusRow.appendChild(btn);
+    wrap.appendChild(btn);
   });
 
-  const plusRow = document.createElement('div');
-  plusRow.className = 'round-steps__row';
+  wrap.appendChild(valueDisplay);
+
   steps.forEach((step) => {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -64,12 +85,9 @@ function roundEntryBuildStepButtons(input, allowNegative, steps) {
     btn.textContent = `+${step}`;
     btn.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: step }));
     btn.addEventListener('click', () => adjust(step));
-    plusRow.appendChild(btn);
+    wrap.appendChild(btn);
   });
 
-  wrap.appendChild(minusRow);
-  wrap.appendChild(valueDisplay);
-  wrap.appendChild(plusRow);
   return wrap;
 }
 
@@ -269,12 +287,8 @@ function buildRoundEntryPicker(container, groups, players, allowNegative = true,
  * Flip Board: Tipp-Feld UND Schritt-Buttons gleichzeitig sichtbar statt
  * umschaltbar (kein roundEntryGetMode()-Zweig noetig, ignoriert den
  * Umschalt-Knopf bewusst - der bleibt per CSS ausgeblendet). Nutzt dieselbe
- * Schrittweiten-Konfiguration wie die anderen Themes (state.roundEntrySteps,
- * beim Einrichten des Spiels festgelegt): kleinste aktivierte Schrittweite als
- * immer sichtbares Plus/Minus-Paar neben dem Zahlenfeld, weitere aktivierte
- * Schrittweiten als Chip-Reihe darunter. Schreibt wie buildRoundEntryPicker()
- * direkt in die von renderRoundEntryFields() angelegten #round-input-<key>-
- * Felder, damit saveNewRound() unveraendert funktioniert.
+ * symmetrische Zeile wie Classic/Bold (roundEntryBuildStepButtons), nur mit
+ * editierbarem Zahlenfeld in der Mitte statt reiner Anzeige.
  */
 function buildFlipRoundEntry(container, groups, allowNegative = true, roundEntrySteps = '1,5,10') {
   container.innerHTML = '';
@@ -284,99 +298,21 @@ function buildFlipRoundEntry(container, groups, allowNegative = true, roundEntry
   }
 
   const steps = roundEntryParseSteps(roundEntrySteps);
-  const primaryStep = steps[0];
-  const chipSteps = steps.slice(1);
 
   groups.forEach((group) => {
     const input = inputFor(group.key);
     if (!input) return;
     input.hidden = true;
 
-    function adjust(delta) {
-      const next = (Number(input.value) || 0) + delta;
-      input.value = String(allowNegative ? next : Math.max(0, next));
-      typeInput.value = input.value;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    }
-
     const row = document.createElement('div');
     row.className = 'entry-row';
-
-    const main = document.createElement('div');
-    main.className = 'entry-row__main';
 
     const name = document.createElement('span');
     name.className = 'entry-row__name';
     name.textContent = group.label;
+    row.appendChild(name);
 
-    const minusBtn = document.createElement('button');
-    minusBtn.type = 'button';
-    minusBtn.className = 'entry-row__step entry-row__step--minus';
-    minusBtn.textContent = '−';
-    minusBtn.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: primaryStep }));
-    minusBtn.addEventListener('click', () => adjust(-primaryStep));
-
-    const typeInput = document.createElement('input');
-    typeInput.type = 'text';
-    typeInput.inputMode = 'numeric';
-    typeInput.pattern = allowNegative ? '-?[0-9]*' : '[0-9]*';
-    typeInput.className = 'entry-row__value';
-    typeInput.value = input.value;
-    typeInput.addEventListener('input', () => {
-      input.value = typeInput.value;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-
-    const plusBtn = document.createElement('button');
-    plusBtn.type = 'button';
-    plusBtn.className = 'entry-row__step entry-row__step--plus';
-    plusBtn.textContent = '+';
-    plusBtn.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: primaryStep }));
-    plusBtn.addEventListener('click', () => adjust(primaryStep));
-
-    main.appendChild(name);
-    main.appendChild(minusBtn);
-    main.appendChild(typeInput);
-    main.appendChild(plusBtn);
-    row.appendChild(main);
-
-    // Minus-Chips links (naeher am −1-Knopf), Plus-Chips rechts (naeher am
-    // +1-Knopf, da Plus haeufiger genutzt wird) - spiegelt die Anordnung
-    // der primaeren +/- Knoepfe. Der Zwischenraum (justify-content:
-    // space-between, siehe CSS) dient zugleich als Trenner zwischen den
-    // beiden Gruppen.
-    if (chipSteps.length > 0) {
-      const chips = document.createElement('div');
-      chips.className = 'entry-row__chips';
-
-      const minusGroup = document.createElement('div');
-      minusGroup.className = 'entry-row__chips-group entry-row__chips-group--minus';
-      [...chipSteps].reverse().forEach((step) => {
-        const minusChip = document.createElement('button');
-        minusChip.type = 'button';
-        minusChip.className = 'entry-row__chip entry-row__chip--minus';
-        minusChip.textContent = `−${step}`;
-        minusChip.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: step }));
-        minusChip.addEventListener('click', () => adjust(-step));
-        minusGroup.appendChild(minusChip);
-      });
-
-      const plusGroup = document.createElement('div');
-      plusGroup.className = 'entry-row__chips-group entry-row__chips-group--plus';
-      chipSteps.forEach((step) => {
-        const plusChip = document.createElement('button');
-        plusChip.type = 'button';
-        plusChip.className = 'entry-row__chip entry-row__chip--plus';
-        plusChip.textContent = `+${step}`;
-        plusChip.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: step }));
-        plusChip.addEventListener('click', () => adjust(step));
-        plusGroup.appendChild(plusChip);
-      });
-
-      chips.appendChild(minusGroup);
-      chips.appendChild(plusGroup);
-      row.appendChild(chips);
-    }
+    row.appendChild(roundEntryBuildStepButtons(input, allowNegative, steps, { editable: true }));
 
     container.appendChild(row);
   });

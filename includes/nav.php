@@ -13,7 +13,6 @@ function nav_items(): array
 {
     return [
         ['slug' => 'home', 'href' => '/index.php', 'i18n' => 'common.nav.home', 'label' => 'Startseite'],
-        ['slug' => 'players', 'href' => '/players.php', 'i18n' => 'common.nav.players', 'label' => 'Spieler'],
         ['slug' => 'history', 'href' => '/history.php', 'i18n' => 'common.nav.history', 'label' => 'Verlauf'],
         ['slug' => 'stats', 'href' => '/stats.php', 'i18n' => 'common.nav.stats', 'label' => 'Statistiken'],
         ['slug' => 'chooser', 'href' => '/tools/finger-chooser.php', 'i18n' => 'common.nav.chooser', 'label' => 'Wer fängt an?'],

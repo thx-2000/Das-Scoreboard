@@ -3,16 +3,29 @@
 // beim Speichern auf Reiter B nicht verloren geht (der globale Speichern-
 // Button unten liest immer den kompletten, aktuellen DOM-Zustand aus,
 // unabhaengig davon, welcher Reiter gerade sichtbar ist).
-document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((b) => {
-      b.setAttribute('aria-selected', String(b === btn));
-    });
-    document.querySelectorAll('.settings-tab-panel').forEach((panel) => {
-      panel.hidden = panel.dataset.tabPanel !== btn.dataset.tab;
-    });
+// Der Zugangsschutz-Reiter hat einen eigenen Speichern-Button (siehe
+// accessSaveBtn weiter unten) - Passwort/Aktivierung laufen bewusst NICHT
+// ueber die globale Speichern-Leiste (eigene Validierung noetig). Ohne
+// Ausblenden waeren dort zwei "Speichern"-Buttons untereinander sichtbar,
+// von denen einer nichts bewirkt - daher hier aktiv verstecken.
+function switchSettingsTab(tab) {
+  document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((b) => {
+    b.setAttribute('aria-selected', String(b.dataset.tab === tab));
   });
+  document.querySelectorAll('.settings-tab-panel').forEach((panel) => {
+    panel.hidden = panel.dataset.tabPanel !== tab;
+  });
+  document.getElementById('settings-save-bar').hidden = tab === 'zugang';
+}
+
+document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((btn) => {
+  btn.addEventListener('click', () => switchSettingsTab(btn.dataset.tab));
 });
+
+const requestedTab = new URLSearchParams(window.location.search).get('tab');
+if (requestedTab && document.querySelector(`.settings-tab-panel[data-tab-panel="${requestedTab}"]`)) {
+  switchSettingsTab(requestedTab);
+}
 
 const appTitleInput = document.getElementById('app-title-input');
 document.getElementById('title-form').addEventListener('submit', (event) => event.preventDefault());

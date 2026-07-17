@@ -8,14 +8,44 @@ require __DIR__ . '/includes/header.php';
 
   <main id="main">
     <nav class="settings-tabs" role="tablist" aria-label="Einstellungs-Bereiche" id="settings-tabs">
-      <button type="button" class="settings-tabs__btn" data-tab="aussehen" role="tab" aria-selected="true" data-i18n="settings.tabs.aussehen">Aussehen</button>
-      <button type="button" class="settings-tabs__btn" data-tab="allgemein" role="tab" aria-selected="false" data-i18n="settings.tabs.allgemein">Allgemein</button>
+      <button type="button" class="settings-tabs__btn" data-tab="allgemein" role="tab" aria-selected="true" data-i18n="settings.tabs.allgemein">Allgemein</button>
+      <button type="button" class="settings-tabs__btn" data-tab="aussehen" role="tab" aria-selected="false" data-i18n="settings.tabs.aussehen">Aussehen</button>
+      <button type="button" class="settings-tabs__btn" data-tab="spieler" role="tab" aria-selected="false" data-i18n="settings.tabs.spieler">Spieler</button>
       <button type="button" class="settings-tabs__btn" data-tab="spiele" role="tab" aria-selected="false" data-i18n="settings.tabs.spiele">Meine Spiele</button>
       <button type="button" class="settings-tabs__btn" data-tab="zugang" role="tab" aria-selected="false" data-i18n="settings.tabs.zugang">Zugangsschutz</button>
       <button type="button" class="settings-tabs__btn" data-tab="backup" role="tab" aria-selected="false" data-i18n="settings.tabs.backup">Backup</button>
     </nav>
 
-    <div class="settings-tab-panel" data-tab-panel="aussehen">
+    <div class="settings-tab-panel" data-tab-panel="allgemein">
+      <section class="card">
+        <h2 data-i18n="settings.title.heading">Titel</h2>
+        <p class="hint-text" data-i18n="settings.title.hint">Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.</p>
+        <form id="title-form" class="form">
+          <label for="app-title-input" data-i18n="settings.title.label">Titel</label>
+          <input type="text" id="app-title-input" maxlength="60">
+        </form>
+      </section>
+
+      <section class="card section-spacing">
+        <h2 data-i18n="settings.feedback.heading">Rückmeldung beim Speichern</h2>
+        <p class="hint-text" data-i18n="settings.feedback.hint">Kurzer Ton (und Vibration, falls vom Gerät unterstützt) beim Speichern einer Runde. Auf iPhone/iPad ist Vibration aus technischen Gründen (Safari) nicht möglich, der Ton funktioniert aber.</p>
+        <label class="player-chip">
+          <input type="checkbox" id="sound-enabled-input">
+          <span data-i18n="settings.feedback.label">Ton beim Speichern</span>
+        </label>
+      </section>
+
+      <section class="card section-spacing">
+        <h2 data-i18n="settings.language.heading">Sprache</h2>
+        <p class="hint-text" data-i18n="settings.language.hint">Weitere Sprachen können später ergänzt werden.</p>
+        <form id="language-form" class="form">
+          <label for="language-select" data-i18n="settings.language.label">Sprache</label>
+          <select id="language-select"></select>
+        </form>
+      </section>
+    </div>
+
+    <div class="settings-tab-panel" data-tab-panel="aussehen" hidden>
       <section class="card">
         <h2 data-i18n="settings.theme.heading">Aussehen</h2>
         <p class="hint-text" data-i18n="settings.theme.hint">Drei eigenständige Optiken zur Wahl. Feinjustierung der Farben findet sich weiter unten im Bereich "Farben im Detail".</p>
@@ -150,26 +180,6 @@ require __DIR__ . '/includes/header.php';
           </div>
         </details>
       </section>
-    </div>
-
-    <div class="settings-tab-panel" data-tab-panel="allgemein" hidden>
-      <section class="card">
-        <h2 data-i18n="settings.title.heading">Titel</h2>
-        <p class="hint-text" data-i18n="settings.title.hint">Wird im Kopfbereich und im Browser-Tab-Titel angezeigt.</p>
-        <form id="title-form" class="form">
-          <label for="app-title-input" data-i18n="settings.title.label">Titel</label>
-          <input type="text" id="app-title-input" maxlength="60">
-        </form>
-      </section>
-
-      <section class="card section-spacing">
-        <h2 data-i18n="settings.feedback.heading">Rückmeldung beim Speichern</h2>
-        <p class="hint-text" data-i18n="settings.feedback.hint">Kurzer Ton (und Vibration, falls vom Gerät unterstützt) beim Speichern einer Runde. Auf iPhone/iPad ist Vibration aus technischen Gründen (Safari) nicht möglich, der Ton funktioniert aber.</p>
-        <label class="player-chip">
-          <input type="checkbox" id="sound-enabled-input">
-          <span data-i18n="settings.feedback.label">Ton beim Speichern</span>
-        </label>
-      </section>
 
       <section class="card section-spacing">
         <h2 data-i18n="settings.logo.heading">Logo</h2>
@@ -217,14 +227,52 @@ require __DIR__ . '/includes/header.php';
 
         <p id="logo-status" class="hint-text" style="text-align:center;" role="status" aria-live="polite"></p>
       </section>
+    </div>
+
+    <div class="settings-tab-panel" data-tab-panel="spieler" hidden>
+      <section class="card">
+        <h2 data-i18n="players.newPlayer.heading">Neuer Spieler</h2>
+        <form id="add-player-form" class="form">
+          <label for="new-player-name" data-i18n="players.newPlayer.nameLabel">Name</label>
+          <input type="text" id="new-player-name" maxlength="40" required autocomplete="off">
+          <button type="submit" class="btn btn--primary" data-i18n="common.buttons.add">Hinzufügen</button>
+        </form>
+        <p id="add-player-error" class="error-text" role="alert" hidden></p>
+      </section>
 
       <section class="card section-spacing">
-        <h2 data-i18n="settings.language.heading">Sprache</h2>
-        <p class="hint-text" data-i18n="settings.language.hint">Weitere Sprachen können später ergänzt werden.</p>
-        <form id="language-form" class="form">
-          <label for="language-select" data-i18n="settings.language.label">Sprache</label>
-          <select id="language-select"></select>
+        <h2 data-i18n="players.active.heading">Aktive Spieler</h2>
+        <p class="hint-text" data-i18n="players.active.hint">Diese Spieler stehen bei neuen Spielen zur Schnellauswahl bereit.</p>
+        <ul class="player-list" id="active-player-list"></ul>
+      </section>
+
+      <section class="card section-spacing">
+        <h2 data-i18n="players.inactive.heading">Deaktivierte Spieler</h2>
+        <p class="hint-text" data-i18n="players.inactive.hint">Bleiben in vergangenen Spielen sichtbar, erscheinen aber nicht mehr in der Schnellauswahl.</p>
+        <ul class="player-list" id="inactive-player-list"></ul>
+      </section>
+
+      <section class="card section-spacing">
+        <h2 data-i18n="groups.newGroup.heading">Neue Gruppe</h2>
+        <p class="hint-text" data-i18n="groups.hint">Fasse Spieler zu Gruppen zusammen (z.B. "Familie", "Stammtisch") — beim Einrichten eines Spiels lässt sich dann mit einem Klick die ganze Gruppe auswählen. Eine Person kann in mehreren Gruppen sein.</p>
+        <form id="add-group-form" class="form">
+          <label for="new-group-name" data-i18n="groups.newGroup.nameLabel">Gruppenname</label>
+          <input type="text" id="new-group-name" maxlength="40" placeholder="z.B. Familie" data-i18n-placeholder="groups.newGroup.namePlaceholder" required autocomplete="off">
+          <label data-i18n="groups.newGroup.membersLabel">Mitglieder</label>
+          <div class="player-picker" id="new-group-members"></div>
+          <button type="submit" class="btn btn--primary" data-i18n="common.buttons.add">Hinzufügen</button>
         </form>
+        <p id="add-group-error" class="error-text" role="alert" hidden></p>
+      </section>
+
+      <section class="card section-spacing">
+        <h2 data-i18n="groups.active.heading">Aktive Gruppen</h2>
+        <ul class="group-list" id="active-group-list"></ul>
+      </section>
+
+      <section class="card section-spacing">
+        <h2 data-i18n="groups.inactive.heading">Deaktivierte Gruppen</h2>
+        <ul class="group-list" id="inactive-group-list"></ul>
       </section>
     </div>
 
@@ -254,10 +302,11 @@ require __DIR__ . '/includes/header.php';
 
           <label data-i18n="settings.presets.iconLabel">Icon</label>
           <div class="icon-picker" id="preset-icon-picker">
-<?php foreach (preset_icon_options() as $index => $icon): ?>
+<?php $presetIconSvgPaths = preset_icon_svg_paths(); ?>
+<?php foreach (preset_icon_options() as $index => $iconKey): ?>
             <label class="icon-picker__option">
-              <input type="radio" name="preset-icon" value="<?= htmlspecialchars($icon, ENT_QUOTES) ?>"<?= $index === 0 ? ' checked' : '' ?>>
-              <span aria-hidden="true"><?= htmlspecialchars($icon, ENT_QUOTES) ?></span>
+              <input type="radio" name="preset-icon" value="<?= htmlspecialchars($iconKey, ENT_QUOTES) ?>"<?= $index === 0 ? ' checked' : '' ?>>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><?= $presetIconSvgPaths[$iconKey] ?></svg>
             </label>
 <?php endforeach; ?>
           </div>
@@ -388,5 +437,5 @@ require __DIR__ . '/includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/round-entry-steps-field.js', 'js/settings.js', 'js/settings-presets.js'];
+$page_scripts = ['js/avatar-cropper.js', 'js/players.js', 'js/groups.js', 'js/round-entry-steps-field.js', 'js/preset-icons.js', 'js/settings.js', 'js/settings-presets.js'];
 require __DIR__ . '/includes/footer.php';

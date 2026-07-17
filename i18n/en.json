@@ -187,6 +187,8 @@
     "myGames": {
       "heading": "My games",
       "hint": "RAGE plus your own, fully configured games (create them under Settings → My games).",
+      "favoritesHeading": "Favorites",
+      "allHeading": "All games",
       "metaTarget": "Target: {score} points",
       "metaRounds": "{rounds} rounds"
     },
@@ -390,10 +392,15 @@
     "presets": {
       "heading": "My games",
       "hint": "Your own, fully configured games (e.g. \"Flip7\" with target 200) — appear on the home page under \"My games\" and pre-fill the setup form when clicked.",
+      "favoritesHeading": "Favorites",
+      "favoritesHint": "Adjust the order with the arrows or drag & drop — sets the order of the favorites row on the home page.",
+      "allHeading": "All games",
+      "allHint": "Sorted alphabetically — favorites also appear here too, so they stay findable either way.",
       "addButton": "Add new game",
       "formHeadingNew": "New game",
       "formHeadingEdit": "Edit {name}",
       "nameLabel": "Name",
+      "iconLabel": "Icon",
       "modeLabel": "Mode",
       "metaTarget": "Target: {target} points",
       "metaRounds": "{rounds} rounds",

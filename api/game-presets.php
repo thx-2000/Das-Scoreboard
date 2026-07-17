@@ -16,11 +16,17 @@ const PRESET_ALLOWED_MODES = ['points_to_target', 'points_open', 'fixed_rounds']
 
 function all_presets(PDO $pdo): array
 {
+    // sort_order gilt nur fuer die manuelle Reihenfolge der Favoriten (Pfeile/
+    // Drag&Drop in Einstellungen -> Meine Spiele bzw. die Favoriten-Reihe auf
+    // der Startseite). Die vollstaendige Liste aller Spiele wird davon
+    // unabhaengig alphabetisch angezeigt (clientseitig sortiert), damit auch
+    // favorisierte Spiele dort weiterhin auffindbar bleiben.
     $rows = $pdo->query('SELECT * FROM game_presets ORDER BY sort_order, id')->fetchAll(PDO::FETCH_ASSOC);
     return array_map(fn ($p) => [
         'id' => (int) $p['id'],
         'name' => $p['name'],
         'mode' => $p['mode'],
+        'icon' => $p['icon'],
         'targetScore' => (int) $p['target_score'],
         'totalRounds' => (int) $p['total_rounds'],
         'winDirection' => $p['win_direction'],
@@ -29,7 +35,6 @@ function all_presets(PDO $pdo): array
         'allowNegative' => (bool) $p['allow_negative'],
         'announceRoundEnd' => (bool) $p['announce_round_end'],
         'isFavorite' => (bool) $p['is_favorite'],
-        'sortOrder' => (int) $p['sort_order'],
     ], $rows);
 }
 
@@ -52,6 +57,7 @@ if ($method === 'POST') {
     $targetBonus = max(0, (int) ($body['targetBonus'] ?? 0));
     $allowNegative = array_key_exists('allowNegative', $body) ? (bool) $body['allowNegative'] : true;
     $announceRoundEnd = !empty($body['announceRoundEnd']);
+    $icon = sanitize_preset_icon((string) ($body['icon'] ?? '🎲'));
 
     if ($name === '') {
         send_json(['error' => 'Name darf nicht leer sein.'], 400);
@@ -69,11 +75,11 @@ if ($method === 'POST') {
     $nextOrder = (int) $pdo->query('SELECT COALESCE(MAX(sort_order), -1) + 1 FROM game_presets')->fetchColumn();
 
     $pdo->prepare('
-        INSERT INTO game_presets (name, mode, target_score, total_rounds, win_direction, round_entry_steps, target_bonus, allow_negative, announce_round_end, is_favorite, sort_order, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?)
+        INSERT INTO game_presets (name, mode, target_score, total_rounds, win_direction, round_entry_steps, target_bonus, allow_negative, announce_round_end, is_favorite, sort_order, icon, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?)
     ')->execute([
         $name, $mode, $targetScore, $totalRounds, $winDirection, $roundEntrySteps,
-        $targetBonus, $allowNegative ? 1 : 0, $announceRoundEnd ? 1 : 0, $nextOrder, now_iso(),
+        $targetBonus, $allowNegative ? 1 : 0, $announceRoundEnd ? 1 : 0, $nextOrder, $icon, now_iso(),
     ]);
 
     send_json(all_presets($pdo), 201);
@@ -83,7 +89,8 @@ if ($method === 'PATCH' && isset($_GET['reorder'])) {
     // Komplette neue Reihenfolge auf einmal (Drag&Drop liefert die volle
     // Liste, die Auf/Ab-Pfeile im Frontend berechnen die neue Reihenfolge
     // clientseitig und schicken sie genauso mit) - einfacher als ein
-    // separater Swap-Endpunkt, deckt beide Bedienwege mit einem Codepfad ab.
+    // separater Swap-Endpunkt. Wird ausschliesslich aus dem Favoriten-
+    // Bereich heraus aufgerufen, siehe js/settings-presets.js.
     $body = read_json_body();
     $order = array_map('intval', $body['order'] ?? []);
     if (count($order) === 0) {
@@ -154,6 +161,10 @@ if ($method === 'PATCH') {
     if (array_key_exists('isFavorite', $body)) {
         $fields[] = 'is_favorite = ?';
         $params[] = $body['isFavorite'] ? 1 : 0;
+    }
+    if (array_key_exists('icon', $body)) {
+        $fields[] = 'icon = ?';
+        $params[] = sanitize_preset_icon((string) $body['icon']);
     }
 
     if (count($fields) > 0) {

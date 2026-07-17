@@ -233,7 +233,15 @@ require __DIR__ . '/includes/header.php';
         <h2 data-i18n="settings.presets.heading">Meine Spiele</h2>
         <p class="hint-text" data-i18n="settings.presets.hint">Eigene, fertig konfigurierte Spiele (z.B. "Flip7" mit Zielwert 200) — erscheinen auf der Startseite unter "Meine Spiele" und füllen beim Anklicken das Einrichten-Formular vorab aus.</p>
 
-        <div id="preset-list"></div>
+        <div id="preset-favorites-section" hidden>
+          <h3 data-i18n="settings.presets.favoritesHeading">Favoriten</h3>
+          <p class="hint-text" data-i18n="settings.presets.favoritesHint">Reihenfolge per Pfeilen oder Drag&amp;Drop anpassen — bestimmt die Reihenfolge der Favoriten-Reihe auf der Startseite.</p>
+          <div id="preset-list-favorites"></div>
+        </div>
+
+        <h3 class="section-spacing" data-i18n="settings.presets.allHeading">Alle Spiele</h3>
+        <p class="hint-text" data-i18n="settings.presets.allHint">Alphabetisch sortiert — Favoriten erscheinen zusätzlich hier, damit sie auf jeden Fall auffindbar bleiben.</p>
+        <div id="preset-list-all"></div>
 
         <button type="button" id="preset-add-btn" class="btn btn--ghost section-spacing" data-i18n="settings.presets.addButton">Neues Spiel anlegen</button>
       </section>
@@ -243,6 +251,16 @@ require __DIR__ . '/includes/header.php';
         <form id="preset-form" class="form">
           <label for="preset-name" data-i18n="settings.presets.nameLabel">Name</label>
           <input type="text" id="preset-name" placeholder="z.B. Flip7" maxlength="40" autocomplete="off" required>
+
+          <label data-i18n="settings.presets.iconLabel">Icon</label>
+          <div class="icon-picker" id="preset-icon-picker">
+<?php foreach (preset_icon_options() as $index => $icon): ?>
+            <label class="icon-picker__option">
+              <input type="radio" name="preset-icon" value="<?= htmlspecialchars($icon, ENT_QUOTES) ?>"<?= $index === 0 ? ' checked' : '' ?>>
+              <span aria-hidden="true"><?= htmlspecialchars($icon, ENT_QUOTES) ?></span>
+            </label>
+<?php endforeach; ?>
+          </div>
 
           <label data-i18n="settings.presets.modeLabel">Modus</label>
           <div class="player-picker">

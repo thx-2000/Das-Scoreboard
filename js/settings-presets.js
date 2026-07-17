@@ -1,18 +1,27 @@
 /**
  * "Meine Spiele" (Einstellungen -> Reiter "Meine Spiele"): eigene, fertig
- * konfigurierte Spiele-Presets verwalten (anlegen/bearbeiten/löschen,
- * Favorit markieren, sortieren per Pfeil-Buttons ODER Drag&Drop per
- * Pointer-Events). Ein Formular fuer alle 3 generischen Punkte-Modi,
- * Sichtbarkeit von Zielwert-/Rundenzahl-Feld haengt vom gewaehlten Modus ab
- * (dieselbe Unterscheidung wie die 3 separaten Einrichten-Seiten).
+ * konfigurierte Spiele-Presets verwalten (anlegen/bearbeiten/löschen, Icon
+ * waehlen, Favorit markieren). Zwei Listen:
+ * - Favoriten: nur favorisierte Presets, Reihenfolge manuell per Pfeilen
+ *   oder Drag&Drop (Pointer-Events) - bestimmt die Favoriten-Reihe auf der
+ *   Startseite.
+ * - Alle Spiele: vollstaendige, alphabetisch sortierte Liste (inkl. der
+ *   Favoriten), damit jedes Spiel unabhaengig vom Favoriten-Status
+ *   auffindbar bleibt - ohne eigene Reihenfolge-Kontrollen.
+ * Ein Formular fuer alle 3 generischen Punkte-Modi, Sichtbarkeit von
+ * Zielwert-/Rundenzahl-Feld haengt vom gewaehlten Modus ab (dieselbe
+ * Unterscheidung wie die 3 separaten Einrichten-Seiten).
  */
 
-const presetListEl = document.getElementById('preset-list');
+const presetFavoritesSection = document.getElementById('preset-favorites-section');
+const presetListFavoritesEl = document.getElementById('preset-list-favorites');
+const presetListAllEl = document.getElementById('preset-list-all');
 const presetAddBtn = document.getElementById('preset-add-btn');
 const presetFormCard = document.getElementById('preset-form-card');
 const presetFormHeading = document.getElementById('preset-form-heading');
 const presetForm = document.getElementById('preset-form');
 const presetNameInput = document.getElementById('preset-name');
+const presetIconPicker = document.getElementById('preset-icon-picker');
 const presetTargetScoreField = document.getElementById('preset-target-score-field');
 const presetTargetScoreInput = document.getElementById('preset-target-score');
 const presetTotalRoundsField = document.getElementById('preset-total-rounds-field');
@@ -52,6 +61,11 @@ document.querySelectorAll('input[name="preset-mode"]').forEach((input) => {
   input.addEventListener('change', updatePresetModeFieldVisibility);
 });
 
+function setPresetIcon(icon) {
+  const input = document.querySelector(`input[name="preset-icon"][value="${icon}"]`);
+  if (input) input.checked = true;
+}
+
 function resetPresetForm() {
   editingPresetId = null;
   presetFormHeading.textContent = window.t('settings.presets.formHeadingNew');
@@ -62,6 +76,7 @@ function resetPresetForm() {
   document.querySelector('input[name="preset-win-direction"][value="highest"]').checked = true;
   presetTargetBonusInput.value = '0';
   presetAllowNegativeInput.checked = true;
+  setPresetIcon(document.querySelector('input[name="preset-icon"]').value);
   window.renderRoundEntryStepsField(presetRoundEntryStepsField, '1,5,10');
   updatePresetModeFieldVisibility();
 }
@@ -76,6 +91,7 @@ function fillPresetForm(preset) {
   document.querySelector(`input[name="preset-win-direction"][value="${preset.winDirection}"]`).checked = true;
   presetTargetBonusInput.value = String(preset.targetBonus || 0);
   presetAllowNegativeInput.checked = preset.allowNegative;
+  setPresetIcon(preset.icon);
   window.renderRoundEntryStepsField(presetRoundEntryStepsField, preset.roundEntrySteps);
   updatePresetModeFieldVisibility();
 }
@@ -104,6 +120,7 @@ presetForm.addEventListener('submit', async (event) => {
   const body = {
     name: presetNameInput.value.trim(),
     mode: document.querySelector('input[name="preset-mode"]:checked').value,
+    icon: document.querySelector('input[name="preset-icon"]:checked').value,
     targetScore: Number(presetTargetScoreInput.value) || 0,
     totalRounds: Number(presetTotalRoundsInput.value) || 0,
     winDirection: document.querySelector('input[name="preset-win-direction"]:checked').value,
@@ -129,7 +146,7 @@ presetForm.addEventListener('submit', async (event) => {
 
   presets = data;
   hidePresetForm();
-  renderPresetList();
+  renderPresetLists();
 });
 
 async function toggleFavorite(preset) {
@@ -139,7 +156,7 @@ async function toggleFavorite(preset) {
     body: JSON.stringify({ isFavorite: !preset.isFavorite }),
   });
   presets = await response.json();
-  renderPresetList();
+  renderPresetLists();
 }
 
 async function deletePreset(preset) {
@@ -148,7 +165,7 @@ async function deletePreset(preset) {
 
   const response = await fetch(`/api/game-presets.php?id=${preset.id}`, { method: 'DELETE' });
   presets = await response.json();
-  renderPresetList();
+  renderPresetLists();
 }
 
 async function sendReorder(order) {
@@ -160,23 +177,26 @@ async function sendReorder(order) {
   presets = await response.json();
 }
 
+/** Reihenfolge-Berechnung bezieht sich ausschliesslich auf die Favoriten. */
 function movePreset(preset, direction) {
-  const index = presets.findIndex((p) => p.id === preset.id);
+  const favorites = presets.filter((p) => p.isFavorite);
+  const index = favorites.findIndex((p) => p.id === preset.id);
   const swapWith = direction === 'up' ? index - 1 : index + 1;
-  if (swapWith < 0 || swapWith >= presets.length) return;
+  if (swapWith < 0 || swapWith >= favorites.length) return;
 
-  const order = presets.map((p) => p.id);
+  const order = favorites.map((p) => p.id);
   [order[index], order[swapWith]] = [order[swapWith], order[index]];
-  sendReorder(order).then(renderPresetList);
+  sendReorder(order).then(renderPresetLists);
 }
 
 /**
  * Drag&Drop per Pointer-Events (kein externes Paket, wie der Rest der App) -
- * die Pfeile oben bleiben als zuverlaessige Grundfunktion parallel bestehen
- * (auch per Tastatur/Screenreader bedienbar), Drag ist ein Zusatzangebot
- * fuer Touch-Geraete. Waehrend des Ziehens wird die Liste rein visuell im
- * DOM umsortiert, die tatsaechliche Sortierposition wird erst beim Loslassen
- * (pointerup) an den Server geschickt.
+ * die Pfeile daneben bleiben als zuverlaessige Grundfunktion parallel
+ * bestehen (auch per Tastatur/Screenreader bedienbar), Drag ist ein
+ * Zusatzangebot fuer Touch-Geraete. Gilt nur innerhalb der Favoriten-Liste.
+ * Waehrend des Ziehens wird die Liste rein visuell im DOM umsortiert, die
+ * tatsaechliche Sortierposition wird erst beim Loslassen (pointerup) an den
+ * Server geschickt.
  */
 function wireDragHandle(handle, item) {
   handle.addEventListener('pointerdown', (event) => {
@@ -185,15 +205,15 @@ function wireDragHandle(handle, item) {
     item.classList.add('preset-item--dragging');
 
     function onMove(moveEvent) {
-      const afterEl = Array.from(presetListEl.querySelectorAll('.preset-item:not(.preset-item--dragging)'))
+      const afterEl = Array.from(presetListFavoritesEl.querySelectorAll('.preset-item:not(.preset-item--dragging)'))
         .find((sibling) => {
           const rect = sibling.getBoundingClientRect();
           return moveEvent.clientY < rect.top + rect.height / 2;
         });
       if (afterEl) {
-        presetListEl.insertBefore(item, afterEl);
+        presetListFavoritesEl.insertBefore(item, afterEl);
       } else {
-        presetListEl.appendChild(item);
+        presetListFavoritesEl.appendChild(item);
       }
     }
 
@@ -203,8 +223,8 @@ function wireDragHandle(handle, item) {
       handle.removeEventListener('pointermove', onMove);
       handle.removeEventListener('pointerup', onUp);
 
-      const order = Array.from(presetListEl.querySelectorAll('.preset-item')).map((el) => Number(el.dataset.presetId));
-      sendReorder(order).then(renderPresetList);
+      const order = Array.from(presetListFavoritesEl.querySelectorAll('.preset-item')).map((el) => Number(el.dataset.presetId));
+      sendReorder(order).then(renderPresetLists);
     }
 
     handle.addEventListener('pointermove', onMove);
@@ -212,22 +232,12 @@ function wireDragHandle(handle, item) {
   });
 }
 
-function renderPresetList() {
-  presetListEl.innerHTML = '';
+function buildPresetRow(preset, { reorderable, index, count }) {
+  const item = document.createElement('div');
+  item.className = 'preset-item';
+  item.dataset.presetId = preset.id;
 
-  if (presets.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'hint-text';
-    empty.textContent = window.t('settings.presets.empty');
-    presetListEl.appendChild(empty);
-    return;
-  }
-
-  presets.forEach((preset, index) => {
-    const item = document.createElement('div');
-    item.className = 'preset-item';
-    item.dataset.presetId = preset.id;
-
+  if (reorderable) {
     const handle = document.createElement('button');
     handle.type = 'button';
     handle.className = 'preset-item__drag-handle';
@@ -235,29 +245,40 @@ function renderPresetList() {
     handle.tabIndex = -1;
     handle.textContent = '⠿';
     wireDragHandle(handle, item);
+    item.appendChild(handle);
+  }
 
-    const favoriteBtn = document.createElement('button');
-    favoriteBtn.type = 'button';
-    favoriteBtn.className = 'preset-item__favorite';
-    favoriteBtn.setAttribute('aria-label', window.t('settings.presets.favoriteLabel'));
-    favoriteBtn.setAttribute('aria-pressed', String(preset.isFavorite));
-    favoriteBtn.textContent = preset.isFavorite ? '★' : '☆';
-    favoriteBtn.addEventListener('click', () => toggleFavorite(preset));
+  const favoriteBtn = document.createElement('button');
+  favoriteBtn.type = 'button';
+  favoriteBtn.className = 'preset-item__favorite';
+  favoriteBtn.setAttribute('aria-label', window.t('settings.presets.favoriteLabel'));
+  favoriteBtn.setAttribute('aria-pressed', String(preset.isFavorite));
+  favoriteBtn.textContent = preset.isFavorite ? '★' : '☆';
+  favoriteBtn.addEventListener('click', () => toggleFavorite(preset));
+  item.appendChild(favoriteBtn);
 
-    const info = document.createElement('div');
-    info.className = 'preset-item__info';
-    const name = document.createElement('span');
-    name.className = 'preset-item__name';
-    name.textContent = preset.name;
-    const meta = document.createElement('span');
-    meta.className = 'preset-item__meta';
-    meta.textContent = presetMeta(preset);
-    info.appendChild(name);
-    info.appendChild(meta);
+  const icon = document.createElement('span');
+  icon.className = 'preset-item__icon';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = preset.icon;
+  item.appendChild(icon);
 
-    const actions = document.createElement('div');
-    actions.className = 'preset-item__actions';
+  const info = document.createElement('div');
+  info.className = 'preset-item__info';
+  const name = document.createElement('span');
+  name.className = 'preset-item__name';
+  name.textContent = preset.name;
+  const meta = document.createElement('span');
+  meta.className = 'preset-item__meta';
+  meta.textContent = presetMeta(preset);
+  info.appendChild(name);
+  info.appendChild(meta);
+  item.appendChild(info);
 
+  const actions = document.createElement('div');
+  actions.className = 'preset-item__actions';
+
+  if (reorderable) {
     const upBtn = document.createElement('button');
     upBtn.type = 'button';
     upBtn.className = 'preset-item__move';
@@ -271,41 +292,61 @@ function renderPresetList() {
     downBtn.className = 'preset-item__move';
     downBtn.setAttribute('aria-label', window.t('settings.presets.moveDown'));
     downBtn.textContent = '↓';
-    downBtn.disabled = index === presets.length - 1;
+    downBtn.disabled = index === count - 1;
     downBtn.addEventListener('click', () => movePreset(preset, 'down'));
-
-    const editBtn = document.createElement('button');
-    editBtn.type = 'button';
-    editBtn.className = 'btn btn--ghost btn--small';
-    editBtn.textContent = window.t('settings.presets.editButton');
-    editBtn.addEventListener('click', () => {
-      fillPresetForm(preset);
-      showPresetForm();
-    });
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.type = 'button';
-    deleteBtn.className = 'btn btn--small btn--danger';
-    deleteBtn.textContent = window.t('common.buttons.delete');
-    deleteBtn.addEventListener('click', () => deletePreset(preset));
 
     actions.appendChild(upBtn);
     actions.appendChild(downBtn);
-    actions.appendChild(editBtn);
-    actions.appendChild(deleteBtn);
+  }
 
-    item.appendChild(handle);
-    item.appendChild(favoriteBtn);
-    item.appendChild(info);
-    item.appendChild(actions);
-    presetListEl.appendChild(item);
+  const editBtn = document.createElement('button');
+  editBtn.type = 'button';
+  editBtn.className = 'btn btn--ghost btn--small';
+  editBtn.textContent = window.t('settings.presets.editButton');
+  editBtn.addEventListener('click', () => {
+    fillPresetForm(preset);
+    showPresetForm();
+  });
+  actions.appendChild(editBtn);
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.type = 'button';
+  deleteBtn.className = 'btn btn--small btn--danger';
+  deleteBtn.textContent = window.t('common.buttons.delete');
+  deleteBtn.addEventListener('click', () => deletePreset(preset));
+  actions.appendChild(deleteBtn);
+
+  item.appendChild(actions);
+  return item;
+}
+
+function renderPresetLists() {
+  const favorites = presets.filter((p) => p.isFavorite);
+  presetFavoritesSection.hidden = favorites.length === 0;
+  presetListFavoritesEl.innerHTML = '';
+  favorites.forEach((preset, index) => {
+    presetListFavoritesEl.appendChild(buildPresetRow(preset, { reorderable: true, index, count: favorites.length }));
+  });
+
+  presetListAllEl.innerHTML = '';
+  if (presets.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'hint-text';
+    empty.textContent = window.t('settings.presets.empty');
+    presetListAllEl.appendChild(empty);
+    return;
+  }
+
+  const all = presets.slice().sort((a, b) => a.name.localeCompare(b.name, window.scoreboardLocale()));
+  all.forEach((preset) => {
+    presetListAllEl.appendChild(buildPresetRow(preset, { reorderable: false }));
   });
 }
 
 async function loadPresets() {
   const response = await fetch('/api/game-presets.php');
   presets = await response.json();
-  renderPresetList();
+  renderPresetLists();
 }
 
 window.scoreboardI18nReady.then(loadPresets);

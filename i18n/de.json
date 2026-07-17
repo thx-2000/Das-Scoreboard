@@ -187,6 +187,8 @@
     "myGames": {
       "heading": "Meine Spiele",
       "hint": "RAGE sowie deine eigenen, fertig konfigurierten Spiele (anlegen unter Einstellungen → Meine Spiele).",
+      "favoritesHeading": "Favoriten",
+      "allHeading": "Alle Spiele",
       "metaTarget": "Ziel: {score} Punkte",
       "metaRounds": "{rounds} Runden"
     },
@@ -390,10 +392,15 @@
     "presets": {
       "heading": "Meine Spiele",
       "hint": "Eigene, fertig konfigurierte Spiele (z.B. \"Flip7\" mit Zielwert 200) — erscheinen auf der Startseite unter \"Meine Spiele\" und füllen beim Anklicken das Einrichten-Formular vorab aus.",
+      "favoritesHeading": "Favoriten",
+      "favoritesHint": "Reihenfolge per Pfeilen oder Drag & Drop anpassen — bestimmt die Reihenfolge der Favoriten-Reihe auf der Startseite.",
+      "allHeading": "Alle Spiele",
+      "allHint": "Alphabetisch sortiert — Favoriten erscheinen zusätzlich hier, damit sie auf jeden Fall auffindbar bleiben.",
       "addButton": "Neues Spiel anlegen",
       "formHeadingNew": "Neues Spiel",
       "formHeadingEdit": "{name} bearbeiten",
       "nameLabel": "Name",
+      "iconLabel": "Icon",
       "modeLabel": "Modus",
       "metaTarget": "Ziel: {target} Punkte",
       "metaRounds": "{rounds} Runden",

@@ -48,10 +48,13 @@ Beispieldaten.*
   *Offene Punkterunde* (z.B. Doppelkopf), *Punkterunde mit fester
   Rundenzahl* und *RAGE* (Stichspiel mit automatischer Punkteberechnung).
 - **Eigene Spiele**: fertig konfigurierte Varianten der drei
-  Punkte-Modi (z.B. "Flip7" mit Zielwert 200 und eigenen
-  Punkteschritten) unter Einstellungen → Meine Spiele anlegen —
-  erscheinen auf der Startseite, Favoriten ganz oben, ein Klick füllt
-  das Einrichten-Formular direkt vor.
+  Punkte-Modi (z.B. "Flip7" mit Zielwert 200, eigenen Punkteschritten
+  und einem frei wählbaren Icon aus über 30 Symbolen) unter
+  Einstellungen → Meine Spiele anlegen. Favoriten erscheinen in einer
+  eigenen, manuell sortierbaren Reihe oben auf der Startseite,
+  zusätzlich alphabetisch in der vollständigen Liste aller Spiele
+  (inkl. RAGE) darunter — ein Klick füllt das Einrichten-Formular
+  direkt vor.
 - **Spielerverwaltung**: zentrale Namensliste zur Schnellauswahl, dazu
   optionale Spielergruppen (z.B. "Familie") für Ein-Klick-Auswahl.
 - **Team-Modus**: in den drei Punkte-Modi lassen sich Spieler zu Teams
@@ -211,9 +214,12 @@ data.*
   *Open point round* (e.g. Doppelkopf), *Points round with fixed round
   count*, and *RAGE* (a trick-taking card game with automatic scoring).
 - **Custom games**: save fully configured variants of the three
-  point-based modes (e.g. "Flip7" with a target of 200 and its own
-  step sizes) under Settings → My games — they show up on the home
-  page, favorites first, and one click pre-fills the setup form.
+  point-based modes (e.g. "Flip7" with a target of 200, its own step
+  sizes, and a freely chosen icon from over 30 symbols) under Settings
+  → My games. Favorites get their own, manually sortable row at the
+  top of the home page, and also appear alphabetically in the full
+  list of all games (incl. RAGE) below — one click pre-fills the setup
+  form.
 - **Player management**: a central name list for quick selection, plus
   optional player groups (e.g. "Family") for one-click selection.
 - **Team mode**: in the three point-based modes, players can be grouped

@@ -39,8 +39,10 @@ require __DIR__ . '/includes/header.php';
       <h2 data-i18n="home.myGames.heading">Meine Spiele</h2>
       <p class="hint-text" data-i18n="home.myGames.hint">RAGE sowie deine eigenen, fertig konfigurierten Spiele (anlegen unter Einstellungen → Meine Spiele).</p>
 
+      <h3 id="favorite-preset-heading" class="mode-grid-heading" data-i18n="home.myGames.favoritesHeading" hidden>Favoriten</h3>
       <div class="mode-grid" id="favorite-preset-grid" hidden></div>
 
+      <h3 class="mode-grid-heading section-spacing" data-i18n="home.myGames.allHeading">Alle Spiele</h3>
       <div class="mode-grid" id="my-games-grid">
         <a href="/modes/rage/setup.php" class="mode-card mode-card--rage">
           <span class="mode-card__icon" aria-hidden="true">🔥</span>

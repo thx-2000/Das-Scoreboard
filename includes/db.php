@@ -316,6 +316,16 @@ function migrations(): array
                 )
             ');
         },
+
+        // Icon-Auswahl fuer Presets (siehe includes/settings.php::preset_icon_options())
+        // statt der bisherigen fest verdrahteten Favorit-Stern/Wuerfel-Unterscheidung.
+        14 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(game_presets)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+            if (!in_array('icon', $existing, true)) {
+                $pdo->exec("ALTER TABLE game_presets ADD COLUMN icon TEXT NOT NULL DEFAULT '🎲'");
+            }
+        },
     ];
 }
 

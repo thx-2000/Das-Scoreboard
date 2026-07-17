@@ -175,6 +175,26 @@ function sanitize_round_entry_steps(string $value): string
 }
 
 /**
+ * Auswahl an Emoji-Icons fuer eigene Spiele-Presets (Einstellungen -> Meine
+ * Spiele) - zentrale Liste, damit Formular (settings.php) und Validierung
+ * (api/game-presets.php) synchron bleiben.
+ */
+function preset_icon_options(): array
+{
+    return [
+        '🎲', '🃏', '🀄️', '♠️', '♥️', '♦️', '♣️', '🎴',
+        '🎯', '🎳', '♟️', '🧩', '🎮', '🕹️', '🎰', '🏆',
+        '🥇', '🔢', '🧮', '✏️', '📝', '🍀', '💰', '⚡',
+        '🔥', '🌟', '💎', '🎉', '🎊', '🎪', '🦄', '🐉',
+    ];
+}
+
+function sanitize_preset_icon(string $value): string
+{
+    return in_array($value, preset_icon_options(), true) ? $value : '🎲';
+}
+
+/**
  * 5 kuratierte Akzentfarben-Presets (Hauptfarbe + abgedunkelte "-strong"-
  * Variante fuer Text/Kontrast, gleiches Prinzip wie die bestehenden Hex-Paare).
  * Einzige Quelle fuer diese Werte - wird von js/theme.js (Bold) und der

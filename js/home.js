@@ -81,13 +81,15 @@ async function loadOpenGames() {
 
 /**
  * "Meine Spiele" (eigene Presets, siehe Einstellungen -> Reiter "Meine
- * Spiele"): Favoriten in einer eigenen, vorangestellten Reihe (siehe
- * Wunsch "darüber leicht zu erreichen"), alle uebrigen Presets zusammen
- * mit der statischen RAGE-Karte im normalen Raster darunter. Klick fuehrt
- * zur bekannten Einrichten-Seite des jeweiligen Modus mit vorausgefuellten
- * Werten (?presetId=<id>, siehe den jeweiligen setup.js) - die Spielerauswahl
- * bleibt bewusst ein letzter manueller Schritt statt komplett uebersprungen
- * zu werden.
+ * Spiele"): Favoriten in einer eigenen, vorangestellten Reihe mit manueller
+ * Reihenfolge (siehe Wunsch "darüber leicht zu erreichen", Pfeile/Drag&Drop
+ * in den Einstellungen). Darunter "Alle Spiele": die komplette, alphabetisch
+ * sortierte Liste inkl. RAGE UND der Favoriten selbst - damit jedes Spiel
+ * unabhaengig vom Favoriten-Status ueber die Gesamtliste auffindbar bleibt.
+ * Klick fuehrt zur bekannten Einrichten-Seite des jeweiligen Modus mit
+ * vorausgefuellten Werten (?presetId=<id>, siehe den jeweiligen setup.js) -
+ * die Spielerauswahl bleibt bewusst ein letzter manueller Schritt statt
+ * komplett uebersprungen zu werden.
  */
 const HOME_PRESET_MODE_PATHS = {
   points_to_target: 'points-to-target',
@@ -95,6 +97,7 @@ const HOME_PRESET_MODE_PATHS = {
   fixed_rounds: 'fixed-rounds',
 };
 
+const favoritePresetHeading = document.getElementById('favorite-preset-heading');
 const favoritePresetGrid = document.getElementById('favorite-preset-grid');
 const myGamesGrid = document.getElementById('my-games-grid');
 
@@ -115,24 +118,13 @@ function buildPresetCard(preset) {
   if (!modePath) return null;
 
   const link = document.createElement('a');
-  link.className = 'mode-card';
+  link.className = 'mode-card mode-card--preset';
   link.href = `/modes/${modePath}/setup.php?presetId=${preset.id}`;
 
   const icon = document.createElement('span');
   icon.className = 'mode-card__icon';
   icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = preset.isFavorite ? '⭐' : '🎲';
-
-  const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  iconSvg.setAttribute('class', 'mode-card__icon-svg');
-  iconSvg.setAttribute('aria-hidden', 'true');
-  iconSvg.setAttribute('viewBox', '0 0 24 24');
-  iconSvg.setAttribute('fill', 'none');
-  iconSvg.setAttribute('stroke', 'currentColor');
-  iconSvg.setAttribute('stroke-width', '2');
-  iconSvg.innerHTML = preset.isFavorite
-    ? '<path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3-5.6-3.4-5.6 3.4 1.4-6.3-4.8-4.3 6.4-.6z" stroke-linejoin="round"/>'
-    : '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"/>';
+  icon.textContent = preset.icon;
 
   const heading = document.createElement('h2');
   heading.textContent = preset.name;
@@ -142,10 +134,22 @@ function buildPresetCard(preset) {
   meta.textContent = presetCardMeta(preset);
 
   link.appendChild(icon);
-  link.appendChild(iconSvg);
   link.appendChild(heading);
   link.appendChild(meta);
   return link;
+}
+
+/** Sortiert die Kind-Elemente eines Rasters alphabetisch nach ihrer <h2> -
+ * so reiht sich die statische RAGE-Karte automatisch korrekt zwischen die
+ * per JS ergaenzten Preset-Karten ein, ohne dass RAGE ein Preset waere. */
+function sortModeGridAlphabetically(grid) {
+  const nodes = Array.from(grid.children);
+  nodes.sort((a, b) => {
+    const nameA = a.querySelector('h2').textContent;
+    const nameB = b.querySelector('h2').textContent;
+    return nameA.localeCompare(nameB, window.scoreboardLocale());
+  });
+  nodes.forEach((node) => grid.appendChild(node));
 }
 
 async function loadHomePresets() {
@@ -153,9 +157,8 @@ async function loadHomePresets() {
   const presets = await response.json();
 
   const favorites = presets.filter((p) => p.isFavorite);
-  const rest = presets.filter((p) => !p.isFavorite);
-
   if (favorites.length > 0) {
+    favoritePresetHeading.hidden = false;
     favoritePresetGrid.hidden = false;
     favorites.forEach((preset) => {
       const card = buildPresetCard(preset);
@@ -163,10 +166,11 @@ async function loadHomePresets() {
     });
   }
 
-  rest.forEach((preset) => {
+  presets.forEach((preset) => {
     const card = buildPresetCard(preset);
     if (card) myGamesGrid.appendChild(card);
   });
+  sortModeGridAlphabetically(myGamesGrid);
 }
 
 window.scoreboardI18nReady.then(loadOpenGames);

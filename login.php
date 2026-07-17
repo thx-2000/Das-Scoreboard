@@ -63,6 +63,7 @@ if ($themeData['cardStyle']) {
   <link rel="stylesheet" href="/css/style.css?v=<?= urlencode($appVersion) ?>">
   <style><?= render_theme_style_css($themeData) ?></style>
   <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" href="/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <meta name="theme-color" content="#f1f2f4">
 </head>

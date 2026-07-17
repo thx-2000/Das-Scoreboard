@@ -66,26 +66,59 @@ function roundEntryBuildStepButtons(input, allowNegative, steps, options = {}) {
     input.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
-  [...steps].reverse().forEach((step) => {
+  const minusBtns = [...steps].reverse().map((step) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'round-steps__btn round-steps__btn--minus';
     btn.textContent = `−${step}`;
     btn.setAttribute('aria-label', window.t('common.stepper.minusValue', { value: step }));
     btn.addEventListener('click', () => adjust(-step));
-    wrap.appendChild(btn);
+    return btn;
   });
 
-  wrap.appendChild(valueDisplay);
-
-  steps.forEach((step) => {
+  const plusBtns = steps.map((step) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'round-steps__btn round-steps__btn--plus';
     btn.textContent = `+${step}`;
     btn.setAttribute('aria-label', window.t('common.stepper.plusValue', { value: step }));
     btn.addEventListener('click', () => adjust(step));
-    wrap.appendChild(btn);
+    return btn;
+  });
+
+  minusBtns.forEach((btn) => wrap.appendChild(btn));
+  wrap.appendChild(valueDisplay);
+  plusBtns.forEach((btn) => wrap.appendChild(btn));
+
+  // Grosse Schrittweiten (z.B. 100/500/1000 bei "Tutto") passen auf
+  // schmalen Handy-Breiten oft nicht mehr in eine Zeile, selbst nach dem
+  // Verschmalern - ein Umbruch mitten in der Zeile sieht dann unschoen
+  // aus. Statt eines festen Breakpoints (der je nach Schrittweiten und
+  // Spielername unterschiedlich greifen muesste) wird hier tatsaechlich
+  // gemessen, ob die Zeile in ihren verfuegbaren Platz passt - wenn nicht,
+  // auf eine senkrechte Anordnung umgeschaltet: Plus-Knoepfe oben, Wert,
+  // Minus-Knoepfe unten (siehe .round-steps--stacked).
+  requestAnimationFrame(() => {
+    const gapPx = parseFloat(getComputedStyle(wrap).gap) || 0;
+    const children = Array.from(wrap.children);
+    const naturalWidth = children.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0)
+      + gapPx * Math.max(0, children.length - 1);
+
+    if (naturalWidth > wrap.clientWidth + 1) {
+      const minusGroup = document.createElement('div');
+      minusGroup.className = 'round-steps__group round-steps__group--minus';
+      minusBtns.forEach((btn) => minusGroup.appendChild(btn));
+
+      const plusGroup = document.createElement('div');
+      plusGroup.className = 'round-steps__group round-steps__group--plus';
+      plusBtns.forEach((btn) => plusGroup.appendChild(btn));
+
+      wrap.innerHTML = '';
+      wrap.appendChild(plusGroup);
+      wrap.appendChild(valueDisplay);
+      wrap.appendChild(minusGroup);
+      wrap.classList.add('round-steps--stacked');
+    }
   });
 
   return wrap;

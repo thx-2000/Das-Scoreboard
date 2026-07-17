@@ -789,12 +789,28 @@ main {
    js/round-entry.js::roundEntryBuildStepButtons). Grosszuegige Mindest-
    groesse fuer zuverlaessiges Treffen per Finger. */
 .round-steps {
+  --round-steps-gap: 0.5rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--round-steps-gap);
+}
+
+/* Passt eine Zeile nicht in ihren verfuegbaren Platz (grosse Schrittweiten
+   wie 100/500/1000, siehe js/round-entry.js), schaltet JS auf diese
+   senkrechte Anordnung um: Plus-Knoepfe oben, Wert, Minus-Knoepfe unten -
+   statt eines unschoenen Umbruchs mitten in der Zeile. */
+.round-steps--stacked {
+  flex-direction: column;
+}
+
+.round-steps__group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--round-steps-gap);
 }
 
 .round-steps__btn {
@@ -2286,7 +2302,8 @@ main {
 }
 
 [data-theme-style="bold"] .round-sequence__stepper.round-steps {
-  gap: 0.75rem;
+  --round-steps-gap: 0.75rem;
+  gap: var(--round-steps-gap);
 }
 
 [data-theme-style="bold"] .round-sequence__stepper .round-steps__btn {
@@ -2958,7 +2975,8 @@ main {
    Abstand hier nochmal etwas enger, bleiben aber weiterhin gut treffbar. */
 @media (max-width: 400px) {
   [data-theme-style="flip"] .entry-row .round-steps {
-    gap: 0.35rem;
+    --round-steps-gap: 0.35rem;
+    gap: var(--round-steps-gap);
   }
 
   [data-theme-style="flip"] .entry-row .round-steps__btn {

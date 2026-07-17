@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Kalo te përmbajtja",
+    "nav": {
+      "home": "Kryefaqja",
+      "history": "Historiku",
+      "stats": "Statistikat",
+      "chooser": "Kush fillon?",
+      "settings": "Cilësimet",
+      "openMenu": "Hap menynë",
+      "closeMenu": "Mbyll menynë"
+    },
+    "updateAvailable": "Përditësim i disponueshëm ({version})",
+    "buttons": {
+      "add": "Shto",
+      "save": "Ruaj",
+      "delete": "Fshi",
+      "start": "Fillo lojën",
+      "finish": "Përfundo lojën",
+      "resume": "Vazhdo lojën",
+      "remove": "Hiq",
+      "reactivate": "Riaktivizo",
+      "close": "Mbyll",
+      "cancel": "Anulo"
+    },
+    "winDirection": {
+      "heading": "Kush fiton në fund?",
+      "highest": "Rezultati më i lartë",
+      "lowest": "Rezultati më i ulët"
+    },
+    "stepper": {
+      "decrease": "Zvogëlo",
+      "increase": "Rrit",
+      "minusValue": "Zbrit {value}",
+      "plusValue": "Shto {value}"
+    },
+    "table": {
+      "rank": "Vendi",
+      "name": "Emri",
+      "points": "Pikët",
+      "progress": "Përparimi",
+      "actions": "Veprime",
+      "round": "Raundi"
+    },
+    "game": {
+      "loading": "Duke ngarkuar …",
+      "notFound": "Loja nuk u gjet.",
+      "standingsHeading": "Renditja",
+      "standings": {
+        "collapse": "Mbyll",
+        "expand": "Shfaq",
+        "teamTotalSuffix": "pikë gjithsej"
+      },
+      "startingPlayerLegend": "★ Lojtari fillestar (rastësisht)",
+      "startedSuffix": "filluar më {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Loja mbaroi! {names} fitojnë së bashku me {points} pikë.",
+        "single": "🏆 Loja mbaroi! {names} fitoi me {points} pikë."
+      },
+      "roundEntry": {
+        "heading": "Shto raund të ri",
+        "saveButton": "Ruaj raundin",
+        "switchToButtons": "Butonat e hapave",
+        "switchToType": "Shkrimi"
+      },
+      "roundsTable": {
+        "heading": "Historiku i raundeve dhe korrigjimi",
+        "hint": "Ndryshoni vlerat drejtpërdrejt për të korrigjuar gabimet e futjes.",
+        "empty": "Ende nuk është luajtur asnjë raund.",
+        "deleteConfirm": "Vërtet të fshihet ky raund?",
+        "undoButton": "Zhbëj raundin e fundit"
+      },
+      "noPlayersHint": "Ende nuk ka lojtarë — shtoni një më poshtë.",
+      "roundEntryHintGeneric": "Fusni pikët e këtij raundi për çdo lojtar (0 është normale)."
+    },
+    "setup": {
+      "heading": "Konfiguro lojën",
+      "labelOptional": "Etiketa (opsionale)",
+      "whoPlays": "Kush luan?",
+      "addPlayerLabel": "Shto lojtar të ri",
+      "addPlayerPlaceholder": "Fut emrin",
+      "advancedOptions": "Opsione të avancuara",
+      "teamModeLabel": "Aktivizo modalitetin e ekipeve",
+      "teamModeHint": "Lojtarët mund të grupohen në ekipe, pikët e të cilëve mblidhen së bashku.",
+      "teamScoringHeading": "Pikëzimi i ekipit",
+      "teamScoringShared": "Rezultat i kombinuar",
+      "teamScoringSharedHint": "Anëtarët e ekipit fusin së bashku një rezultat të kombinuar për raund.",
+      "teamScoringIndividual": "Rezultate individuale, shumë e kombinuar",
+      "teamScoringIndividualHint": "Çdo lojtar fut rezultatin e vet — shfaqen si rezultatet individuale ashtu edhe totali i ekipit.",
+      "teamNone": "Pa ekip",
+      "teamNumber": "Ekipi {number}",
+      "teamNameLabel": "Emri i ekipit {number} (opsionale)",
+      "teamNamePlaceholder": "p.sh. Shqiponjat",
+      "selectAll": "Zgjidh të gjithë",
+      "selectNone": "Hiq zgjedhjen e të gjithëve",
+      "allowNegativeLabel": "Lejo pikë negative",
+      "allowNegativeHint": "Nëse është çaktivizuar, vlerat negative të raundit kufizohen në 0.",
+      "targetBonusHint": "Pikë shtesë që fituesi(t) marrin për arritjen e rezultatit të synuar (0 = pa bonus).",
+      "roundEntryStepsLabel": "Madhësitë e hapave për futjen e raundit",
+      "roundEntryStepsHint": "Butonat e hapave si alternativë e shkrimit të numrave — zgjidhni cilat madhësi hapash (±) do të jenë të disponueshme. Mund të kaloni në çdo kohë midis shkrimit dhe butonave të hapave, edhe në mes të lojës."
+    },
+    "errors": {
+      "minPlayers": "Zgjidhni të paktën 2 lojtarë.",
+      "createPlayerFailed": "Lojtari nuk mund të krijohej.",
+      "startGameFailed": "Loja nuk mund të fillonte."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Ndihmës pikëzimi për mbrëmje lojërash"
+    },
+    "stats": {
+      "title": "Statistikat"
+    },
+    "history": {
+      "title": "Historiku i lojërave"
+    },
+    "settings": {
+      "title": "Cilësimet"
+    },
+    "pointsToTargetSetup": {
+      "title": "Pikë deri në cak — Lojë e re"
+    },
+    "pointsToTargetGame": {
+      "title": "Pikë deri në cak"
+    },
+    "pointsOpenSetup": {
+      "title": "Raund pikësh i hapur — Lojë e re"
+    },
+    "pointsOpenGame": {
+      "title": "Raund pikësh i hapur"
+    },
+    "fixedRoundsSetup": {
+      "title": "Raund pikësh me numër fiks raundesh — Lojë e re"
+    },
+    "fixedRoundsGame": {
+      "title": "Raund pikësh me numër fiks raundesh"
+    },
+    "rageSetup": {
+      "title": "RAGE — Lojë e re"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Kush fillon?"
+    },
+    "login": {
+      "title": "Hyr"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Pikë deri në cak",
+      "description": "Pikët mblidhen raund pas raundi derisa dikush arrin ose kalon një vlerë të fiksuar caku. Fiton ai që ka atëherë më shumë pikë.",
+      "examples": "p.sh. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Raund pikësh i hapur",
+      "description": "Pikët mblidhen raund pas raundi pa cak të fiksuar. Ju vetë vendosni kur të ndaloni — fiton rezultati më i lartë ose më i ulët, sipas konfigurimit.",
+      "examples": "p.sh. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Raund pikësh me numër fiks raundesh",
+      "description": "Gjatë konfigurimit vendosni sa raunde do të luhen dhe nëse në fund fiton rezultati më i lartë ose më i ulët. Pas raundit të fundit, loja pyet nëse doni ta përfundoni apo të vazhdoni me më shumë raunde."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "10 raunde fikse me numër zbritës kartash (nga 10 deri në 1). Para çdo raundi shpallni numrin e pritur të bazave, pastaj futni bazat reale — pikët llogariten automatikisht sipas rregullave të RAGE (përfshirë bonusin Rage/hakmarrjen).",
+      "examples": "Loja me letra RAGE"
+    }
+  },
+  "home": {
+    "heading": "Ndihmës pikëzimi për mbrëmje lojërash",
+    "newGame": {
+      "startButton": "Fillo një lojë të re"
+    },
+    "generalBoards": {
+      "heading": "Tabela të përgjithshme rezultatesh",
+      "hint": "E konfigurueshme lirshëm — vendosni rezultatin e synuar, drejtimin e fitores dhe madhësitë e hapave gjatë konfigurimit."
+    },
+    "myGames": {
+      "heading": "Lojërat e mia",
+      "hint": "RAGE plus lojërat tuaja të konfiguruara plotësisht (krijojini te Cilësimet → Lojërat e mia).",
+      "favoritesHeading": "Të preferuarat",
+      "allHeading": "Të gjitha lojërat",
+      "metaTarget": "Caku: {score} pikë",
+      "metaRounds": "{rounds} raunde"
+    },
+    "openGames": {
+      "heading": "Lojëra në vazhdim",
+      "viewAll": "Shiko të gjitha"
+    },
+    "pwaHint": {
+      "heading": "Përdor si aplikacion",
+      "text": "Në iPad/iPhone: prekni ikonën Share në Safari, pastaj zgjidhni „Shto në ekranin kryesor” — faqja do të shfaqet atëherë si aplikacioni i vet, pa shiritin e adresës."
+    },
+    "support": {
+      "label": "Mbështetni këtë projekt",
+      "ariaLabel": "Mbështetni këtë projekt në Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Menaxho lojtarët",
+    "newPlayer": {
+      "heading": "Lojtar i ri",
+      "nameLabel": "Emri"
+    },
+    "active": {
+      "heading": "Lojtarë aktivë",
+      "hint": "Këta lojtarë janë të disponueshëm për zgjedhje të shpejtë në lojëra të reja.",
+      "empty": "Ende nuk ka lojtarë aktivë."
+    },
+    "inactive": {
+      "heading": "Lojtarë të çaktivizuar",
+      "hint": "Mbeten të dukshëm në lojëra të mëparshme, por nuk shfaqen më në zgjedhjen e shpejtë.",
+      "empty": "Nuk ka lojtarë të çaktivizuar."
+    },
+    "avatar": {
+      "uploadLabel": "Ngarko foto",
+      "changeLabel": "Ndrysho foton",
+      "removeLabel": "Hiq foton",
+      "removeConfirm": "Vërtet të hiqet ky avatar?",
+      "uploadFailed": "Fotoja nuk mund të ruhej."
+    },
+    "deleteConfirm": "Vërtet të fshihet përgjithmonë \"{name}\"? Ndryshe nga heqja, në menaxhimin e lojtarëve nuk ka kthim mbrapa — lojërat e mëparshme do të vazhdojnë ta shfaqin emrin."
+  },
+  "groups": {
+    "hint": "Gruponi lojtarët (p.sh. „Familja”, „Të rregullt”) — gjatë konfigurimit të një loje, atëherë mund të zgjidhni të gjithë grupin me një klik. Një person mund të jetë në disa grupe.",
+    "newGroup": {
+      "heading": "Grup i ri",
+      "nameLabel": "Emri i grupit",
+      "namePlaceholder": "p.sh. Familja",
+      "membersLabel": "Anëtarët"
+    },
+    "active": {
+      "heading": "Grupe aktive",
+      "empty": "Ende nuk është krijuar asnjë grup."
+    },
+    "inactive": {
+      "heading": "Grupe të çaktivizuara",
+      "empty": "Nuk ka grupe të çaktivizuara."
+    },
+    "empty": "Pa anëtarë",
+    "editButton": "Redakto",
+    "saveButton": "Ruaj",
+    "cancelButton": "Anulo",
+    "deleteConfirm": "Vërtet të fshihet grupi \"{name}\"? Vetë anëtarët mbeten — hiqet vetëm grupimi.",
+    "createFailed": "Grupi nuk mund të krijohej."
+  },
+  "stats": {
+    "heading": "Statistikat",
+    "filter": {
+      "heading": "Periudha kohore",
+      "hint": "Lëreni bosh për statistika për të gjitha lojërat. Për një mbrëmje lojërash që zgjatet përtej mesnatës, futni p.sh. 18:00 deri 03:00 ditën tjetër.",
+      "fromLabel": "Nga",
+      "toLabel": "Deri",
+      "apply": "Apliko",
+      "reset": "Rivendos"
+    },
+    "kpi": {
+      "games": "Lojëra",
+      "finished": "Të përfunduara",
+      "winRate": "Përqindja e përfunduara",
+      "avgScore": "Pikë mesatare"
+    },
+    "overall": {
+      "heading": "Gjithsej",
+      "empty": "Nuk ka lojëra në këtë periudhë."
+    },
+    "byMode": {
+      "heading": "Sipas modalitetit"
+    },
+    "modeDistribution": {
+      "heading": "Shpërndarja sipas modalitetit",
+      "empty": "Nuk ka lojëra në këtë periudhë."
+    },
+    "headToHead": {
+      "heading": "Ballë për ballë",
+      "empty": "Ende nuk ka dy lojtarë me lojëra të përfunduara të përbashkëta në këtë periudhë.",
+      "listSummary": "Shfaq si listë",
+      "draws": "barazime",
+      "gamesSuffix": "lojëra"
+    },
+    "games": {
+      "heading": "Lojëra në këtë periudhë",
+      "empty": "Nuk ka lojëra në këtë periudhë."
+    },
+    "table": {
+      "player": "Lojtari",
+      "gamesPlayed": "Lojëra",
+      "gamesFinished": "Të përfunduara",
+      "wins": "Fitore",
+      "winRate": "Përqindja e fitoreve",
+      "currentStreak": "Seria aktuale",
+      "longestStreak": "Seria më e gjatë",
+      "avgScore": "Rezultati mesatar"
+    },
+    "print": "Printo / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Zgjidhni prerjen e imazhit",
+    "hint": "Zvarritni për të lëvizur, përdorni rrëshqitësin për zmadhim (formati i fotos si dokument 2:3).",
+    "apply": "Apliko"
+  },
+  "history": {
+    "heading": "Historiku i lojërave",
+    "all": {
+      "heading": "Të gjitha lojërat",
+      "hint": "Më të fundit së pari. Lojërat në vazhdim mund të vazhdohen, të përfunduarat shfaqin rezultatin."
+    },
+    "filter": {
+      "all": "Të gjitha",
+      "active": "Në vazhdim",
+      "finished": "Të përfunduara"
+    },
+    "empty": "Ende nuk është luajtur asnjë lojë.",
+    "filterEmpty": {
+      "active": "Nuk ka lojëra në vazhdim.",
+      "finished": "Ende nuk ka lojëra të përfunduara."
+    },
+    "deleteConfirm": "Vërtet të fshihet përgjithmonë \"{label}\" nga historiku i lojërave?",
+    "badge": {
+      "finished": "Përfunduar",
+      "active": "Në vazhdim"
+    },
+    "meta": {
+      "target": "Caku: {score} pikë",
+      "rounds": "Raundi {played}/{total}",
+      "winners": "Fituesi: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Cilësimet",
+    "subtitle": "Vlen për të gjithë ata që përdorin këtë aplikacion (ruhet globalisht).",
+    "tabs": {
+      "aussehen": "Pamja",
+      "allgemein": "Të përgjithshme",
+      "spieler": "Lojtarët",
+      "spiele": "Lojërat e mia",
+      "zugang": "Mbrojtja e aksesit",
+      "backup": "Kopje rezervë"
+    },
+    "theme": {
+      "heading": "Pamja",
+      "hint": "Tre stile të pavarura për të zgjedhur. Rregullimi i imët i ngjyrave gjendet më poshtë te „Ngjyrat në detaje”.",
+      "classic": "Klasike",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Ngjyra e theksit",
+      "accent": {
+        "green": "Jeshile",
+        "orange": "Portokalli",
+        "pink": "Rozë",
+        "violet": "Vjollcë",
+        "cyan": "Bruz"
+      },
+      "backgroundLabel": "Sfondi",
+      "background": {
+        "dark": "E errët",
+        "darkBlue": "Blu e errët",
+        "black": "E zezë"
+      },
+      "cardStyleLabel": "Stili i kartës",
+      "cardStyle": {
+        "classic": "Klasike",
+        "modern": "Moderne"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Sugjerim ngjyre",
+      "flipPreset": {
+        "amber": "Qelibar",
+        "petrol": "Blu nafte",
+        "karmesin": "Bordo e ndritshme",
+        "knallorange": "Portokalli e ndezur",
+        "violett": "Vjollcë"
+      }
+    },
+    "title": {
+      "heading": "Titulli",
+      "hint": "Shfaqet në krye dhe në titullin e skedës së shfletuesit.",
+      "label": "Titulli"
+    },
+    "feedback": {
+      "heading": "Konfirmim gjatë ruajtjes",
+      "hint": "Zë i shkurtër (dhe dridhje, nëse mbështetet nga pajisja) gjatë ruajtjes së një raundi. Në iPhone/iPad dridhja nuk është e mundur për arsye teknike (Safari), por zëri funksionon.",
+      "label": "Zëri gjatë ruajtjes"
+    },
+    "presets": {
+      "heading": "Lojërat e mia",
+      "hint": "Lojërat tuaja të konfiguruara plotësisht (p.sh. „Flip7” me cak 200) — shfaqen në faqen kryesore te „Lojërat e mia” dhe plotësojnë paraprakisht formularin e konfigurimit kur klikohen.",
+      "favoritesHeading": "Të preferuarat",
+      "favoritesHint": "Rregulloni rendin me shigjetat ose duke zvarritur — përcakton rendin e rreshtit të të preferuarave në faqen kryesore.",
+      "allHeading": "Të gjitha lojërat",
+      "allHint": "Të renditura sipas alfabetit — të preferuarat shfaqen edhe këtu, që të mbeten gjithmonë të gjendshme.",
+      "addButton": "Shto lojë të re",
+      "formHeadingNew": "Lojë e re",
+      "formHeadingEdit": "Redakto {name}",
+      "nameLabel": "Emri",
+      "iconLabel": "Ikona",
+      "modeLabel": "Modaliteti",
+      "metaTarget": "Caku: {target} pikë",
+      "metaRounds": "{rounds} raunde",
+      "saveFailed": "Loja nuk mund të ruhej.",
+      "deleteConfirm": "Vërtet të fshihet \"{name}\"?",
+      "empty": "Ende nuk është krijuar asnjë lojë.",
+      "favoriteLabel": "E preferuar",
+      "moveUp": "Lëviz lart",
+      "moveDown": "Lëviz poshtë",
+      "editButton": "Redakto"
+    },
+    "access": {
+      "heading": "Mbrojtja e aksesit",
+      "hint": "Mbron të gjithë faqen me një fjalëkalim të përbashkët për të gjithë ata që dinë lidhjen. Pa mbrojtje aktive, kushdo me lidhjen mund ta përdorë faqen.",
+      "enableLabel": "Aktivizo mbrojtjen e aksesit",
+      "noPasswordSet": "Ende nuk është vendosur asnjë fjalëkalim — mbrojtja mbetet joaktive derisa të vendoset një.",
+      "passwordLabel": "Fjalëkalim i ri",
+      "passwordConfirmLabel": "Konfirmo fjalëkalimin",
+      "passwordHint": "Të paktën 8 karaktere. Lëreni bosh për të mbajtur fjalëkalimin aktualisht të ruajtur. Keni harruar fjalëkalimin? Shihni README-në për udhëzimet e rivendosjes përmes qasjes në skedarë.",
+      "mismatchError": "Dy fjalëkalimet nuk përputhen.",
+      "tooShortError": "Fjalëkalimi duhet të ketë të paktën 8 karaktere.",
+      "saveFailed": "Ruajtja dështoi.",
+      "logoutButton": "Dilni në këtë pajisje"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Si parazgjedhje nuk është aktive asnjë logo e personalizuar, ikona e stilolapsit mbetet e dukshme.",
+      "modeLabel": "Shfaqja",
+      "modeNone": "Pa logo",
+      "modeSquare": "Katrore, sipër majtas",
+      "modeBanner": "Banderolë në gjithë gjerësinë",
+      "squareHeading": "Logo katrore",
+      "squareHint": "Rekomandohet: 160×160 piksela (katrore). PNG, JPEG ose SVG, maks. 2 MB.",
+      "bannerHeading": "Logo banderolë",
+      "bannerHint": "Rekomandohet: rreth 1400×160 piksela (e gjerë, jo shumë e lartë). PNG, JPEG ose SVG, maks. 2 MB.",
+      "uploadButton": "Ngarko",
+      "removeConfirm": "Vërtet të hiqet kjo logo?",
+      "uploadSuccess": "Logoja u ngarkua.",
+      "removeSuccess": "Logoja u hoq.",
+      "uploadFailed": "Logoja nuk mund të ngarkohej.",
+      "noFileSelected": "Zgjidhni fillimisht një skedar."
+    },
+    "language": {
+      "heading": "Gjuha",
+      "hint": "Më vonë mund të shtohen më shumë gjuhë.",
+      "label": "Gjuha"
+    },
+    "colors": {
+      "advancedHeading": "Ngjyrat në detaje",
+      "advancedSummary": "Hap opsionet e avancuara",
+      "boldNote": "Vlen vetëm për Klasiken — Bold përdor paracaktimet e mësipërme.",
+      "single": {
+        "heading": "Ngjyrat e theksit dhe funksionit",
+        "hint": "Vlejnë të pandryshuara në modalitetin e ndritshëm dhe të errët."
+      },
+      "pairs": {
+        "heading": "Ngjyrat bazë (të veçanta për modalitetin e ndritshëm/të errët)",
+        "hint": "Sfondi, sipërfaqja, teksti dhe kufiri — nga një herë për modalitetin e ndritshëm dhe të errët.",
+        "light": "E ndritshme",
+        "dark": "E errët"
+      },
+      "flip": {
+        "heading": "Ngjyrat e Flip Board",
+        "hint": "Zëvendëson sugjerimin e ngjyrës të zgjedhur më sipër — nga një herë për modalitetin e ndritshëm dhe të errët."
+      }
+    },
+    "resetButton": "Rivendos ngjyrat e parazgjedhura",
+    "resetConfirm": "Vërtet të rivendosen të gjitha ngjyrat në vlerat e parazgjedhura?",
+    "savedStatus": "U ruajt. Faqet e tjera do ta marrin ndryshimin në vizitën e tyre tjetër.",
+    "resetStatus": "U rivendos në ngjyrat e parazgjedhura.",
+    "backup": {
+      "heading": "Kopje rezervë e të dhënave",
+      "hint": "Kopje rezervë e plotë e të gjithë lojtarëve, lojërave, avatarëve dhe logove si skedar ZIP — p.sh. që të mos humbë asgjë gjatë kalimit në një server të ri.",
+      "exportHeading": "Shkarko kopjen rezervë",
+      "exportHint": "Përmban bazën e plotë të të dhënave plus të gjitha imazhet e avatarëve dhe logon.",
+      "exportButton": "Shkarko kopjen rezervë",
+      "importHeading": "Rikthe kopjen rezervë",
+      "importWarning": "Kujdes: importimi zëvendëson pakthyeshëm të gjithë lojtarët, lojërat, avatarët dhe logot aktuale me përmbajtjen e skedarit të kopjes rezervë.",
+      "fileLabel": "Skedari i kopjes rezervë (.zip)",
+      "importButton": "Importo kopjen rezervë",
+      "confirmHint": "Për të konfirmuar, shkruani saktësisht ERSETZEN më poshtë.",
+      "confirmLabel": "Konfirmimi",
+      "confirmButton": "Zëvendëso tani, përgjithmonë",
+      "noFileSelected": "Zgjidhni fillimisht një skedar kopjeje rezervë.",
+      "finalConfirm": "Vërtet të zëvendësohen pakthyeshëm të gjitha të dhënat aktuale të lojës me kopjen rezervë?",
+      "importInProgress": "Duke rikthyer kopjen rezervë …",
+      "importSuccess": "Kopja rezervë u rikthye: {games} lojëra, {players} lojtarë. Duke ringarkuar faqen …",
+      "importFailed": "Importimi dështoi."
+    },
+    "colorLabels": {
+      "green": "E gjelbër neoni (theksi kryesor)",
+      "greenStrong": "E gjelbër neoni, e errësuar (tekst/vija)",
+      "amber": "Qelibar (theksi dytësor)",
+      "amberStrong": "Qelibar, e errësuar (tekst/vija)",
+      "onAccent": "Teksti mbi sipërfaqet e theksuara",
+      "focus": "Kontura e fokusit (navigimi me tastierë)",
+      "danger": "Gabim / rrezik (p.sh. butonat e fshirjes)",
+      "bg": "Sfondi",
+      "surface": "Sipërfaqja (kartat)",
+      "text": "Teksti",
+      "textMuted": "Tekst i zbehur",
+      "border": "Kufiri"
+    }
+  },
+  "login": {
+    "heading": "Hyr",
+    "hint": "Kjo faqe është e mbrojtur me fjalëkalim.",
+    "error": "Fjalëkalim i gabuar.",
+    "passwordLabel": "Fjalëkalimi",
+    "submitButton": "Hyr"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Konfiguro lojë të re (p.sh. Flip7, Tutto)",
+      "labelPlaceholder": "p.sh. Flip7, Tutto",
+      "targetLabel": "Deri në cilën vlerë pikësh të luhet?",
+      "winDirectionHint": "Në shumicën e lojërave fiton rezultati më i lartë (p.sh. Flip7, Tutto) — por në disa, si Skyjo, fiton përkundrazi rezultati më i ulët. Loja gjithsesi mbaron sapo dikush arrin ose kalon cakun.",
+      "targetBonusLabel": "Bonus për arritjen e cakut"
+    },
+    "game": {
+      "subtitle": "Caku: {target} pikë · {started}",
+      "roundEntryHint": "Fusni pikët e këtij raundi për çdo lojtar (0 është normale, p.sh. kur kalohet kufiri)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Konfiguro lojë të re (p.sh. Doppelkopf)",
+      "labelPlaceholder": "p.sh. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "fiton rezultati më i lartë",
+        "lowest": "fiton rezultati më i ulët"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Konfiguro lojë të re",
+      "roundsLabel": "Sa raunde duhet të luhen?",
+      "announceLabel": "Njofto pas çdo raundi që ka përfunduar",
+      "announceHint": "Shfaq një njoftim të shkurtër, që mund të mbyllet, pas çdo raundi të ruajtur."
+    },
+    "game": {
+      "subtitleOngoing": "Raundi {round} nga {total} · {started}",
+      "subtitleReached": "{played} nga {total} raunde të luajtura · {started}",
+      "roundEndNotice": "Raundi {round} përfundoi",
+      "targetReached": {
+        "heading": "Keni luajtur {total} raundet e rëna dakord.",
+        "extendLabel": "Vazhdo lojën, me kaq raunde më shumë:",
+        "extendButton": "Vazhdo lojën"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Konfiguro lojë të re — 10 raunde, shpallja e bazave",
+      "hint": "10 raunde fikse (nga 10 deri në 1 kartë), në fund fiton rezultati më i lartë.",
+      "labelPlaceholder": "p.sh. Mbrëmje RAGE",
+      "showBonusMalusLabel": "Shfaq bonus/malus",
+      "showBonusMalusHint": "Shfaq/fshih fushat e kartave speciale +5/−5 në futjen e raundit."
+    },
+    "game": {
+      "cardSingular": "kartë",
+      "cardPlural": "karta",
+      "subtitleFinished": "{played} nga 10 raunde të luajtura · {started}",
+      "subtitleOngoing": "Raundi {round} nga 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Fut raundin",
+        "staticHint": "Fusni shpalljen dhe bazat reale për çdo lojtar, kartat speciale nëse ka.",
+        "heading": "Fut raundin {round} ({cards} {cardWord})",
+        "hint": "Fusni shpalljen dhe bazat reale për çdo lojtar (0 është e vlefshme). Bazat e të gjithë lojtarëve duhet të japin shumën {cards}.",
+        "table": {
+          "player": "Lojtari",
+          "bid": "Shpallja",
+          "tricks": "Bazat",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Pikët"
+        }
+      },
+      "roundsTableHint": "Ndryshoni vlerat drejtpërdrejt për të korrigjuar gabimet e futjes. Shpallja / bazat / +5 / −5 / pikët (llogaritur) për çdo lojtar dhe raund.",
+      "deleteRoundButton": "Fshi R{round}",
+      "mismatchConfirm": "Shuma e bazave të futura ({actual}) nuk përputhet me numrin e kartave të këtij raundi ({expected}). Ta ruaj gjithsesi?",
+      "saveFailed": "Raundi nuk mund të ruhej."
+    }
+  },
+  "chooser": {
+    "heading": "Kush fillon?",
+    "subtitle": "Vendosni të gjitha gishtat në ekran njëkohësisht — funksionon me prekje të shumëfishtë (iPad/iPhone).",
+    "hint": "Vendosni gishtat në ekran …",
+    "winnerCountLabel": "Numri i fituesve",
+    "resultSingle": "Ky person fillon! Vendosni sërish gishtat për një raund të ri.",
+    "resultMulti": "Këta {count} persona fillojnë! Vendosni sërish gishtat për një raund të ri."
+  }
+}

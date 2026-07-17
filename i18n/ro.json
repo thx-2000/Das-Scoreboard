@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Sari la conținut",
+    "nav": {
+      "home": "Acasă",
+      "history": "Istoric",
+      "stats": "Statistici",
+      "chooser": "Cine începe?",
+      "settings": "Setări",
+      "openMenu": "Deschide meniul",
+      "closeMenu": "Închide meniul"
+    },
+    "updateAvailable": "Actualizare disponibilă ({version})",
+    "buttons": {
+      "add": "Adaugă",
+      "save": "Salvează",
+      "delete": "Șterge",
+      "start": "Începe jocul",
+      "finish": "Termină jocul",
+      "resume": "Reia jocul",
+      "remove": "Elimină",
+      "reactivate": "Reactivează",
+      "close": "Închide",
+      "cancel": "Anulează"
+    },
+    "winDirection": {
+      "heading": "Cine câștigă la final?",
+      "highest": "Scorul cel mai mare",
+      "lowest": "Scorul cel mai mic"
+    },
+    "stepper": {
+      "decrease": "Micșorează",
+      "increase": "Mărește",
+      "minusValue": "Scade {value}",
+      "plusValue": "Adaugă {value}"
+    },
+    "table": {
+      "rank": "Loc",
+      "name": "Nume",
+      "points": "Puncte",
+      "progress": "Progres",
+      "actions": "Acțiuni",
+      "round": "Rundă"
+    },
+    "game": {
+      "loading": "Se încarcă …",
+      "notFound": "Jocul nu a fost găsit.",
+      "standingsHeading": "Clasament",
+      "standings": {
+        "collapse": "Restrânge",
+        "expand": "Afișează",
+        "teamTotalSuffix": "puncte în total"
+      },
+      "startingPlayerLegend": "★ Jucător de start (aleatoriu)",
+      "startedSuffix": "început la {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Joc încheiat! {names} câștigă împreună cu {points} puncte.",
+        "single": "🏆 Joc încheiat! {names} a câștigat cu {points} puncte."
+      },
+      "roundEntry": {
+        "heading": "Introdu o rundă nouă",
+        "saveButton": "Salvează runda",
+        "switchToButtons": "Butoane de pas",
+        "switchToType": "Scriere"
+      },
+      "roundsTable": {
+        "heading": "Istoric runde și corecție",
+        "hint": "Ajustează valorile direct pentru a corecta erorile de introducere.",
+        "empty": "Nicio rundă jucată încă.",
+        "deleteConfirm": "Chiar vrei să ștergi această rundă?",
+        "undoButton": "Anulează ultima rundă"
+      },
+      "noPlayersHint": "Încă niciun jucător — adaugă unul mai jos.",
+      "roundEntryHintGeneric": "Introdu punctele acestei runde per jucător (0 este normal)."
+    },
+    "setup": {
+      "heading": "Configurează jocul",
+      "labelOptional": "Etichetă (opțional)",
+      "whoPlays": "Cine joacă?",
+      "addPlayerLabel": "Adaugă jucător nou",
+      "addPlayerPlaceholder": "Introdu numele",
+      "advancedOptions": "Opțiuni avansate",
+      "teamModeLabel": "Activează modul echipă",
+      "teamModeHint": "Jucătorii pot fi grupați în echipe ale căror puncte se însumează.",
+      "teamScoringHeading": "Punctaj de echipă",
+      "teamScoringShared": "Scor combinat",
+      "teamScoringSharedHint": "Membrii echipei introduc împreună un scor combinat pe rundă.",
+      "teamScoringIndividual": "Scoruri individuale, total combinat",
+      "teamScoringIndividualHint": "Fiecare jucător își introduce propriul scor — sunt afișate atât scorurile individuale, cât și totalul echipei.",
+      "teamNone": "Fără echipă",
+      "teamNumber": "Echipa {number}",
+      "teamNameLabel": "Numele echipei {number} (opțional)",
+      "teamNamePlaceholder": "de ex. Vulturii",
+      "selectAll": "Selectează tot",
+      "selectNone": "Deselectează tot",
+      "allowNegativeLabel": "Permite puncte negative",
+      "allowNegativeHint": "Dacă este dezactivat, valorile negative introduse pe rundă sunt limitate la 0.",
+      "targetBonusHint": "Puncte suplimentare pe care câștigătorul(ii) le primesc pentru atingerea scorului țintă (0 = fără bonus).",
+      "roundEntryStepsLabel": "Mărimi de pas pentru introducerea rundei",
+      "roundEntryStepsHint": "Butoane de pas ca alternativă la scrierea numerelor — alege ce mărimi de pas (±) vor fi disponibile. Poți comuta oricând între scriere și butoane de pas, chiar și în timpul jocului."
+    },
+    "errors": {
+      "minPlayers": "Selectează cel puțin 2 jucători.",
+      "createPlayerFailed": "Jucătorul nu a putut fi creat.",
+      "startGameFailed": "Jocul nu a putut fi început."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Ajutor de scor pentru seri de jocuri"
+    },
+    "stats": {
+      "title": "Statistici"
+    },
+    "history": {
+      "title": "Istoric jocuri"
+    },
+    "settings": {
+      "title": "Setări"
+    },
+    "pointsToTargetSetup": {
+      "title": "Puncte până la țintă — Joc nou"
+    },
+    "pointsToTargetGame": {
+      "title": "Puncte până la țintă"
+    },
+    "pointsOpenSetup": {
+      "title": "Rundă de puncte deschisă — Joc nou"
+    },
+    "pointsOpenGame": {
+      "title": "Rundă de puncte deschisă"
+    },
+    "fixedRoundsSetup": {
+      "title": "Rundă de puncte cu număr fix de runde — Joc nou"
+    },
+    "fixedRoundsGame": {
+      "title": "Rundă de puncte cu număr fix de runde"
+    },
+    "rageSetup": {
+      "title": "RAGE — Joc nou"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Cine începe?"
+    },
+    "login": {
+      "title": "Autentificare"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Puncte până la țintă",
+      "description": "Punctele se adună rundă după rundă până când cineva atinge sau depășește o valoare țintă fixă. Câștigă cel care are atunci cele mai multe puncte.",
+      "examples": "de ex. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Rundă de puncte deschisă",
+      "description": "Punctele se adună rundă după rundă fără un obiectiv fix. Voi decideți când să vă opriți — câștigă scorul cel mai mare sau cel mai mic, în funcție de configurare.",
+      "examples": "de ex. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Rundă de puncte cu număr fix de runde",
+      "description": "La configurare decideți câte runde se joacă și dacă la final câștigă scorul cel mai mare sau cel mai mic. După ultima rundă, jocul întreabă dacă vreți să încheiați sau să continuați cu mai multe runde."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "10 runde fixe cu un număr descrescător de cărți (de la 10 la 1). Înainte de fiecare rundă anunți numărul așteptat de levate, apoi introduci levatele reale — punctele se calculează automat conform regulilor RAGE (incl. bonus Rage/răzbunare).",
+      "examples": "Jocul de cărți RAGE"
+    }
+  },
+  "home": {
+    "heading": "Ajutor de scor pentru seri de jocuri",
+    "newGame": {
+      "startButton": "Începe un joc nou"
+    },
+    "generalBoards": {
+      "heading": "Tabele de scor generale",
+      "hint": "Configurabil liber — setezi scorul țintă, direcția de câștig și mărimile de pas la configurare."
+    },
+    "myGames": {
+      "heading": "Jocurile mele",
+      "hint": "RAGE plus jocurile tale proprii, complet configurate (creează-le la Setări → Jocurile mele).",
+      "favoritesHeading": "Favorite",
+      "allHeading": "Toate jocurile",
+      "metaTarget": "Țintă: {score} puncte",
+      "metaRounds": "{rounds} runde"
+    },
+    "openGames": {
+      "heading": "Jocuri în desfășurare",
+      "viewAll": "Vezi toate"
+    },
+    "pwaHint": {
+      "heading": "Folosește ca aplicație",
+      "text": "Pe iPad/iPhone: atinge pictograma Distribuie din Safari, apoi alege „Adaugă pe ecranul principal” — pagina va apărea apoi ca propria aplicație, fără bară de adresă."
+    },
+    "support": {
+      "label": "Susține acest proiect",
+      "ariaLabel": "Susține acest proiect pe Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Administrează jucătorii",
+    "newPlayer": {
+      "heading": "Jucător nou",
+      "nameLabel": "Nume"
+    },
+    "active": {
+      "heading": "Jucători activi",
+      "hint": "Acești jucători sunt disponibili pentru selecție rapidă în jocuri noi.",
+      "empty": "Încă niciun jucător activ."
+    },
+    "inactive": {
+      "heading": "Jucători dezactivați",
+      "hint": "Rămân vizibili în jocurile trecute, dar nu mai apar în selecția rapidă.",
+      "empty": "Niciun jucător dezactivat."
+    },
+    "avatar": {
+      "uploadLabel": "Încarcă fotografia",
+      "changeLabel": "Schimbă fotografia",
+      "removeLabel": "Elimină fotografia",
+      "removeConfirm": "Chiar vrei să elimini acest avatar?",
+      "uploadFailed": "Fotografia nu a putut fi salvată."
+    },
+    "deleteConfirm": "Chiar vrei să ștergi definitiv \"{name}\"? Spre deosebire de eliminare, nu există cale de întoarcere în administrarea jucătorilor — jocurile trecute vor arăta în continuare numele."
+  },
+  "groups": {
+    "hint": "Grupează jucătorii (de ex. „Familie”, „Obișnuiți”) — la configurarea unui joc poți apoi selecta întregul grup cu un singur clic. O persoană poate face parte din mai multe grupuri.",
+    "newGroup": {
+      "heading": "Grup nou",
+      "nameLabel": "Numele grupului",
+      "namePlaceholder": "de ex. Familie",
+      "membersLabel": "Membri"
+    },
+    "active": {
+      "heading": "Grupuri active",
+      "empty": "Niciun grup creat încă."
+    },
+    "inactive": {
+      "heading": "Grupuri dezactivate",
+      "empty": "Niciun grup dezactivat."
+    },
+    "empty": "Niciun membru",
+    "editButton": "Editează",
+    "saveButton": "Salvează",
+    "cancelButton": "Anulează",
+    "deleteConfirm": "Chiar vrei să ștergi grupul \"{name}\"? Membrii în sine rămân — se elimină doar gruparea.",
+    "createFailed": "Grupul nu a putut fi creat."
+  },
+  "stats": {
+    "heading": "Statistici",
+    "filter": {
+      "heading": "Perioadă",
+      "hint": "Lasă necompletat pentru statistici din toate jocurile. Pentru o seară de joc care se prelungește peste miezul nopții, introdu de ex. 18:00 până la 03:00 a doua zi.",
+      "fromLabel": "De la",
+      "toLabel": "Până la",
+      "apply": "Aplică",
+      "reset": "Resetează"
+    },
+    "kpi": {
+      "games": "Jocuri",
+      "finished": "Finalizate",
+      "winRate": "Proporție finalizate",
+      "avgScore": "Puncte medii"
+    },
+    "overall": {
+      "heading": "Total",
+      "empty": "Niciun joc în această perioadă."
+    },
+    "byMode": {
+      "heading": "După mod"
+    },
+    "modeDistribution": {
+      "heading": "Distribuție după mod",
+      "empty": "Niciun joc în această perioadă."
+    },
+    "headToHead": {
+      "heading": "Față în față",
+      "empty": "Încă nu există doi jucători cu jocuri finalizate în comun în această perioadă.",
+      "listSummary": "Afișează ca listă",
+      "draws": "egaluri",
+      "gamesSuffix": "jocuri"
+    },
+    "games": {
+      "heading": "Jocuri în această perioadă",
+      "empty": "Niciun joc în această perioadă."
+    },
+    "table": {
+      "player": "Jucător",
+      "gamesPlayed": "Jocuri",
+      "gamesFinished": "Finalizate",
+      "wins": "Victorii",
+      "winRate": "Rată de victorii",
+      "currentStreak": "Serie curentă",
+      "longestStreak": "Cea mai lungă serie",
+      "avgScore": "Scor mediu"
+    },
+    "print": "Tipărește / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Alege decuparea imaginii",
+    "hint": "Trage pentru a deplasa, folosește cursorul pentru a mări (format tip poză de act 2:3).",
+    "apply": "Aplică"
+  },
+  "history": {
+    "heading": "Istoric jocuri",
+    "all": {
+      "heading": "Toate jocurile",
+      "hint": "Cele mai noi primele. Jocurile în desfășurare pot fi reluate, cele finalizate arată rezultatul."
+    },
+    "filter": {
+      "all": "Toate",
+      "active": "În desfășurare",
+      "finished": "Finalizate"
+    },
+    "empty": "Niciun joc jucat încă.",
+    "filterEmpty": {
+      "active": "Niciun joc în desfășurare.",
+      "finished": "Niciun joc finalizat încă."
+    },
+    "deleteConfirm": "Chiar vrei să ștergi definitiv \"{label}\" din istoricul jocurilor?",
+    "badge": {
+      "finished": "Finalizat",
+      "active": "În desfășurare"
+    },
+    "meta": {
+      "target": "Țintă: {score} puncte",
+      "rounds": "Runda {played}/{total}",
+      "winners": "Câștigător: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Setări",
+    "subtitle": "Se aplică tuturor celor care folosesc această aplicație (salvat global).",
+    "tabs": {
+      "aussehen": "Aspect",
+      "allgemein": "General",
+      "spieler": "Jucători",
+      "spiele": "Jocurile mele",
+      "zugang": "Protecția accesului",
+      "backup": "Copie de rezervă"
+    },
+    "theme": {
+      "heading": "Aspect",
+      "hint": "Trei stiluri independente la alegere. Reglajul fin al culorilor se găsește mai jos, la „Culori în detaliu”.",
+      "classic": "Clasic",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Culoare de accent",
+      "accent": {
+        "green": "Verde",
+        "orange": "Portocaliu",
+        "pink": "Roz",
+        "violet": "Violet",
+        "cyan": "Cyan"
+      },
+      "backgroundLabel": "Fundal",
+      "background": {
+        "dark": "Întunecat",
+        "darkBlue": "Albastru închis",
+        "black": "Negru"
+      },
+      "cardStyleLabel": "Stil de card",
+      "cardStyle": {
+        "classic": "Clasic",
+        "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Sugestie de culoare",
+      "flipPreset": {
+        "amber": "Chihlimbar",
+        "petrol": "Bleumarin petrol",
+        "karmesin": "Carmin",
+        "knallorange": "Portocaliu intens",
+        "violett": "Violet"
+      }
+    },
+    "title": {
+      "heading": "Titlu",
+      "hint": "Afișat în antet și în titlul filei browserului.",
+      "label": "Titlu"
+    },
+    "feedback": {
+      "heading": "Feedback la salvare",
+      "hint": "Sunet scurt (și vibrație, dacă dispozitivul o suportă) la salvarea unei runde. Pe iPhone/iPad vibrația nu este posibilă din motive tehnice (Safari), dar sunetul funcționează.",
+      "label": "Sunet la salvare"
+    },
+    "presets": {
+      "heading": "Jocurile mele",
+      "hint": "Jocurile tale proprii, complet configurate (de ex. „Flip7” cu ținta 200) — apar pe pagina principală la „Jocurile mele” și precompletează formularul de configurare la clic.",
+      "favoritesHeading": "Favorite",
+      "favoritesHint": "Ajustează ordinea cu săgețile sau prin tragere — stabilește ordinea rândului de favorite pe pagina principală.",
+      "allHeading": "Toate jocurile",
+      "allHint": "Sortate alfabetic — favoritele apar și aici, pentru a rămâne oricum ușor de găsit.",
+      "addButton": "Adaugă joc nou",
+      "formHeadingNew": "Joc nou",
+      "formHeadingEdit": "Editează {name}",
+      "nameLabel": "Nume",
+      "iconLabel": "Pictogramă",
+      "modeLabel": "Mod",
+      "metaTarget": "Țintă: {target} puncte",
+      "metaRounds": "{rounds} runde",
+      "saveFailed": "Jocul nu a putut fi salvat.",
+      "deleteConfirm": "Chiar vrei să ștergi \"{name}\"?",
+      "empty": "Niciun joc creat încă.",
+      "favoriteLabel": "Favorit",
+      "moveUp": "Mută în sus",
+      "moveDown": "Mută în jos",
+      "editButton": "Editează"
+    },
+    "access": {
+      "heading": "Protecția accesului",
+      "hint": "Protejează întregul site cu o parolă comună pentru toți cei care cunosc linkul. Fără protecție activă, oricine are linkul poate folosi site-ul.",
+      "enableLabel": "Activează protecția accesului",
+      "noPasswordSet": "Nu a fost setată încă nicio parolă — protecția rămâne inactivă până când este setată una.",
+      "passwordLabel": "Parolă nouă",
+      "passwordConfirmLabel": "Confirmă parola",
+      "passwordHint": "Cel puțin 8 caractere. Lasă necompletat pentru a păstra parola salvată în prezent. Ai uitat parola? Consultă README pentru instrucțiunile de resetare prin acces la fișiere.",
+      "mismatchError": "Cele două parole nu coincid.",
+      "tooShortError": "Parola trebuie să aibă cel puțin 8 caractere.",
+      "saveFailed": "Salvarea a eșuat.",
+      "logoutButton": "Deconectează-te pe acest dispozitiv"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Implicit nu este activ niciun logo personalizat, pictograma cu stiloul rămâne vizibilă.",
+      "modeLabel": "Afișare",
+      "modeNone": "Fără logo",
+      "modeSquare": "Pătrat, sus stânga",
+      "modeBanner": "Banner pe toată lățimea",
+      "squareHeading": "Logo pătrat",
+      "squareHint": "Recomandat: 160×160 pixeli (pătrat). PNG, JPEG sau SVG, max. 2 MB.",
+      "bannerHeading": "Logo tip banner",
+      "bannerHint": "Recomandat: aprox. 1400×160 pixeli (lat, nu prea înalt). PNG, JPEG sau SVG, max. 2 MB.",
+      "uploadButton": "Încarcă",
+      "removeConfirm": "Chiar vrei să elimini acest logo?",
+      "uploadSuccess": "Logo încărcat.",
+      "removeSuccess": "Logo eliminat.",
+      "uploadFailed": "Logo-ul nu a putut fi încărcat.",
+      "noFileSelected": "Selectează mai întâi un fișier."
+    },
+    "language": {
+      "heading": "Limbă",
+      "hint": "Mai multe limbi pot fi adăugate ulterior.",
+      "label": "Limbă"
+    },
+    "colors": {
+      "advancedHeading": "Culori în detaliu",
+      "advancedSummary": "Deschide opțiunile avansate",
+      "boldNote": "Se aplică doar la Clasic — Bold folosește presetările de mai sus.",
+      "single": {
+        "heading": "Culori de accent și funcționale",
+        "hint": "Se aplică neschimbate în modul luminos și întunecat."
+      },
+      "pairs": {
+        "heading": "Culori de bază (separate pentru mod luminos/întunecat)",
+        "hint": "Fundal, suprafață, text și margine — câte una pentru mod luminos și întunecat.",
+        "light": "Luminos",
+        "dark": "Întunecat"
+      },
+      "flip": {
+        "heading": "Culori Flip Board",
+        "hint": "Suprascrie sugestia de culoare selectată mai sus — câte una pentru mod luminos și întunecat."
+      }
+    },
+    "resetButton": "Resetează la culorile implicite",
+    "resetConfirm": "Chiar vrei să resetezi toate culorile la valorile implicite?",
+    "savedStatus": "Salvat. Celelalte pagini vor prelua modificarea la următoarea vizită.",
+    "resetStatus": "Resetat la culorile implicite.",
+    "backup": {
+      "heading": "Copie de rezervă a datelor",
+      "hint": "Copie de rezervă completă a tuturor jucătorilor, jocurilor, avatarurilor și logo-urilor ca fișier ZIP — de ex. pentru a te asigura că nimic nu se pierde la mutarea pe un server nou.",
+      "exportHeading": "Descarcă copia de rezervă",
+      "exportHint": "Conține baza de date completă plus toate imaginile avatarurilor și logo-ul.",
+      "exportButton": "Descarcă copia de rezervă",
+      "importHeading": "Restaurează copia de rezervă",
+      "importWarning": "Atenție: o importare înlocuiește ireversibil toți jucătorii, jocurile, avatarurile și logo-urile actuale cu conținutul fișierului de rezervă.",
+      "fileLabel": "Fișier de rezervă (.zip)",
+      "importButton": "Importă copia de rezervă",
+      "confirmHint": "Pentru confirmare, scrie exact ERSETZEN mai jos.",
+      "confirmLabel": "Confirmare",
+      "confirmButton": "Înlocuiește acum, definitiv",
+      "noFileSelected": "Selectează mai întâi un fișier de rezervă.",
+      "finalConfirm": "Chiar vrei să înlocuiești ireversibil toate datele de joc actuale cu copia de rezervă?",
+      "importInProgress": "Se restaurează copia de rezervă …",
+      "importSuccess": "Copie de rezervă restaurată: {games} jocuri, {players} jucători. Se reîncarcă pagina …",
+      "importFailed": "Importul a eșuat."
+    },
+    "colorLabels": {
+      "green": "Verde neon (accent principal)",
+      "greenStrong": "Verde neon, întunecat (text/linii)",
+      "amber": "Chihlimbar (accent secundar)",
+      "amberStrong": "Chihlimbar, întunecat (text/linii)",
+      "onAccent": "Text pe suprafețe de accent",
+      "focus": "Contur de focalizare (navigare cu tastatura)",
+      "danger": "Eroare / pericol (de ex. butoane de ștergere)",
+      "bg": "Fundal",
+      "surface": "Suprafață (carduri)",
+      "text": "Text",
+      "textMuted": "Text estompat",
+      "border": "Margine"
+    }
+  },
+  "login": {
+    "heading": "Autentificare",
+    "hint": "Acest site este protejat prin parolă.",
+    "error": "Parolă greșită.",
+    "passwordLabel": "Parolă",
+    "submitButton": "Autentificare"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Configurează joc nou (de ex. Flip7, Tutto)",
+      "labelPlaceholder": "de ex. Flip7, Tutto",
+      "targetLabel": "Se joacă până la ce valoare de puncte?",
+      "winDirectionHint": "În majoritatea jocurilor câștigă scorul cel mai mare (de ex. Flip7, Tutto) — dar în unele, precum Skyjo, câștigă în schimb scorul cel mai mic. Jocul se termină oricum de îndată ce cineva atinge sau depășește ținta.",
+      "targetBonusLabel": "Bonus pentru atingerea țintei"
+    },
+    "game": {
+      "subtitle": "Țintă: {target} puncte · {started}",
+      "roundEntryHint": "Introdu punctele acestei runde per jucător (0 este normal, de ex. la depășire)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Configurează joc nou (de ex. Doppelkopf)",
+      "labelPlaceholder": "de ex. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "câștigă scorul cel mai mare",
+        "lowest": "câștigă scorul cel mai mic"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Configurează joc nou",
+      "roundsLabel": "Câte runde trebuie jucate?",
+      "announceLabel": "Anunță după fiecare rundă că s-a încheiat",
+      "announceHint": "Afișează o notificare scurtă, care poate fi închisă, după fiecare rundă salvată."
+    },
+    "game": {
+      "subtitleOngoing": "Runda {round} din {total} · {started}",
+      "subtitleReached": "{played} din {total} runde jucate · {started}",
+      "roundEndNotice": "Runda {round} încheiată",
+      "targetReached": {
+        "heading": "Ați jucat cele {total} runde stabilite.",
+        "extendLabel": "Continuă jocul, cu încă atâtea runde:",
+        "extendButton": "Continuă jocul"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Configurează joc nou — 10 runde, licitație de levate",
+      "hint": "10 runde fixe (de la 10 la 1 carte), câștigă scorul cel mai mare la final.",
+      "labelPlaceholder": "de ex. Seară RAGE",
+      "showBonusMalusLabel": "Afișează bonus/malus",
+      "showBonusMalusHint": "Afișează/ascunde câmpurile de cărți speciale +5/−5 la introducerea rundei."
+    },
+    "game": {
+      "cardSingular": "carte",
+      "cardPlural": "cărți",
+      "subtitleFinished": "{played} din 10 runde jucate · {started}",
+      "subtitleOngoing": "Runda {round} din 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Introdu runda",
+        "staticHint": "Introdu licitația și levatele reale per jucător, cărțile speciale dacă există.",
+        "heading": "Introdu runda {round} ({cards} {cardWord})",
+        "hint": "Introdu licitația și levatele reale per jucător (0 este valid). Levatele tuturor jucătorilor ar trebui să însumeze {cards}.",
+        "table": {
+          "player": "Jucător",
+          "bid": "Licitație",
+          "tricks": "Levate",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Puncte"
+        }
+      },
+      "roundsTableHint": "Ajustează valorile direct pentru a corecta erorile de introducere. Licitație / levate / +5 / −5 / puncte (calculate) per jucător și rundă.",
+      "deleteRoundButton": "Șterge R{round}",
+      "mismatchConfirm": "Suma levatelor introduse ({actual}) nu corespunde numărului de cărți al acestei runde ({expected}). Salvezi oricum?",
+      "saveFailed": "Runda nu a putut fi salvată."
+    }
+  },
+  "chooser": {
+    "heading": "Cine începe?",
+    "subtitle": "Puneți toate degetele pe ecran în același timp — funcționează prin multitouch (iPad/iPhone).",
+    "hint": "Puneți degetele pe ecran …",
+    "winnerCountLabel": "Numărul de câștigători",
+    "resultSingle": "Această persoană începe! Puneți degetele din nou pentru o rundă nouă.",
+    "resultMulti": "Aceste {count} persoane încep! Puneți degetele din nou pentru o rundă nouă."
+  }
+}

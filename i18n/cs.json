@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Přejít na obsah",
+    "nav": {
+      "home": "Domů",
+      "history": "Historie",
+      "stats": "Statistiky",
+      "chooser": "Kdo začíná?",
+      "settings": "Nastavení",
+      "openMenu": "Otevřít nabídku",
+      "closeMenu": "Zavřít nabídku"
+    },
+    "updateAvailable": "K dispozici je aktualizace ({version})",
+    "buttons": {
+      "add": "Přidat",
+      "save": "Uložit",
+      "delete": "Smazat",
+      "start": "Zahájit hru",
+      "finish": "Ukončit hru",
+      "resume": "Pokračovat ve hře",
+      "remove": "Odebrat",
+      "reactivate": "Znovu aktivovat",
+      "close": "Zavřít",
+      "cancel": "Zrušit"
+    },
+    "winDirection": {
+      "heading": "Kdo nakonec vyhrává?",
+      "highest": "Nejvyšší skóre",
+      "lowest": "Nejnižší skóre"
+    },
+    "stepper": {
+      "decrease": "Snížit",
+      "increase": "Zvýšit",
+      "minusValue": "Odečíst {value}",
+      "plusValue": "Přičíst {value}"
+    },
+    "table": {
+      "rank": "Pořadí",
+      "name": "Jméno",
+      "points": "Body",
+      "progress": "Průběh",
+      "actions": "Akce",
+      "round": "Kolo"
+    },
+    "game": {
+      "loading": "Načítání …",
+      "notFound": "Hra nebyla nalezena.",
+      "standingsHeading": "Pořadí",
+      "standings": {
+        "collapse": "Sbalit",
+        "expand": "Zobrazit",
+        "teamTotalSuffix": "bodů celkem"
+      },
+      "startingPlayerLegend": "★ Začínající hráč (náhodně)",
+      "startedSuffix": "zahájeno {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Hra skončila! {names} vyhrávají společně s {points} body.",
+        "single": "🏆 Hra skončila! {names} vyhrál(a) s {points} body."
+      },
+      "roundEntry": {
+        "heading": "Zadat nové kolo",
+        "saveButton": "Uložit kolo",
+        "switchToButtons": "Krokovací tlačítka",
+        "switchToType": "Psaní"
+      },
+      "roundsTable": {
+        "heading": "Historie kol a oprava",
+        "hint": "Upravte hodnoty přímo pro opravu chyb při zadávání.",
+        "empty": "Zatím nebylo odehráno žádné kolo.",
+        "deleteConfirm": "Opravdu smazat toto kolo?",
+        "undoButton": "Vrátit poslední kolo"
+      },
+      "noPlayersHint": "Zatím žádní hráči — přidejte jednoho níže.",
+      "roundEntryHintGeneric": "Zadejte body tohoto kola pro každého hráče (0 je normální)."
+    },
+    "setup": {
+      "heading": "Nastavit hru",
+      "labelOptional": "Popisek (volitelné)",
+      "whoPlays": "Kdo hraje?",
+      "addPlayerLabel": "Přidat nového hráče",
+      "addPlayerPlaceholder": "Zadejte jméno",
+      "advancedOptions": "Pokročilé možnosti",
+      "teamModeLabel": "Aktivovat týmový režim",
+      "teamModeHint": "Hráči mohou být seskupeni do týmů, jejichž body se sčítají dohromady.",
+      "teamScoringHeading": "Týmové bodování",
+      "teamScoringShared": "Kombinované skóre",
+      "teamScoringSharedHint": "Členové týmu společně zadávají jedno kombinované skóre za kolo.",
+      "teamScoringIndividual": "Individuální skóre, kombinovaný součet",
+      "teamScoringIndividualHint": "Každý hráč zadává své vlastní skóre — zobrazují se jak individuální skóre, tak celkový součet týmu.",
+      "teamNone": "Žádný tým",
+      "teamNumber": "Tým {number}",
+      "teamNameLabel": "Název týmu {number} (volitelné)",
+      "teamNamePlaceholder": "např. Orli",
+      "selectAll": "Vybrat vše",
+      "selectNone": "Zrušit výběr",
+      "allowNegativeLabel": "Povolit záporné body",
+      "allowNegativeHint": "Pokud je vypnuto, záporné zápisy kola jsou omezeny na 0.",
+      "targetBonusHint": "Body navíc, které vítěz(ové) dostanou za dosažení cílového skóre (0 = žádný bonus).",
+      "roundEntryStepsLabel": "Velikosti kroků pro zadávání kola",
+      "roundEntryStepsHint": "Krokovací tlačítka jako alternativa k zadávání čísel — vyberte, které velikosti kroků (±) budou k dispozici. Mezi psaním a krokovacími tlačítky můžete kdykoli přepínat, i uprostřed hry."
+    },
+    "errors": {
+      "minPlayers": "Vyberte alespoň 2 hráče.",
+      "createPlayerFailed": "Hráče se nepodařilo vytvořit.",
+      "startGameFailed": "Hru se nepodařilo zahájit."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Pomůcka pro počítání bodů na herní večery"
+    },
+    "stats": {
+      "title": "Statistiky"
+    },
+    "history": {
+      "title": "Historie her"
+    },
+    "settings": {
+      "title": "Nastavení"
+    },
+    "pointsToTargetSetup": {
+      "title": "Body do cíle — Nová hra"
+    },
+    "pointsToTargetGame": {
+      "title": "Body do cíle"
+    },
+    "pointsOpenSetup": {
+      "title": "Otevřené bodové kolo — Nová hra"
+    },
+    "pointsOpenGame": {
+      "title": "Otevřené bodové kolo"
+    },
+    "fixedRoundsSetup": {
+      "title": "Bodové kolo s pevným počtem kol — Nová hra"
+    },
+    "fixedRoundsGame": {
+      "title": "Bodové kolo s pevným počtem kol"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nová hra"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Kdo začíná?"
+    },
+    "login": {
+      "title": "Přihlásit se"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Body do cíle",
+      "description": "Body se sčítají kolo po kole, dokud někdo nedosáhne nebo nepřekročí pevnou cílovou hodnotu. Vyhrává ten, kdo má tehdy nejvíc bodů.",
+      "examples": "např. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Otevřené bodové kolo",
+      "description": "Body se sčítají kolo po kole bez pevného cíle. Sami se rozhodnete, kdy skončit — vyhrává nejvyšší nebo nejnižší skóre, podle nastavení.",
+      "examples": "např. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Bodové kolo s pevným počtem kol",
+      "description": "Při nastavení se rozhodnete, kolik kol se odehraje a zda na konci vyhrává nejvyšší nebo nejnižší skóre. Po posledním kole se hra zeptá, zda ukončit, nebo pokračovat dalšími koly."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Pevných 10 kol s klesajícím počtem karet (od 10 do 1). Před každým kolem oznámíte předpokládaný počet zdvihů, poté zadáte skutečné zdvihy — body se počítají automaticky podle pravidel RAGE (vč. bonusu Rage/pomsty).",
+      "examples": "Karetní hra RAGE"
+    }
+  },
+  "home": {
+    "heading": "Pomůcka pro počítání bodů na herní večery",
+    "newGame": {
+      "startButton": "Zahájit novou hru"
+    },
+    "generalBoards": {
+      "heading": "Obecné výsledkové tabule",
+      "hint": "Volně nastavitelné — cílové skóre, směr vítězství a velikosti kroků nastavíte při konfiguraci."
+    },
+    "myGames": {
+      "heading": "Moje hry",
+      "hint": "RAGE plus vaše vlastní, plně nastavené hry (vytvořte je v Nastavení → Moje hry).",
+      "favoritesHeading": "Oblíbené",
+      "allHeading": "Všechny hry",
+      "metaTarget": "Cíl: {score} bodů",
+      "metaRounds": "{rounds} kol"
+    },
+    "openGames": {
+      "heading": "Probíhající hry",
+      "viewAll": "Zobrazit vše"
+    },
+    "pwaHint": {
+      "heading": "Použít jako aplikaci",
+      "text": "Na iPadu/iPhonu: klepněte na ikonu Sdílet v Safari a poté zvolte „Přidat na plochu“ — stránka se pak zobrazí jako samostatná aplikace bez adresního řádku."
+    },
+    "support": {
+      "label": "Podpořte tento projekt",
+      "ariaLabel": "Podpořte tento projekt na Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Spravovat hráče",
+    "newPlayer": {
+      "heading": "Nový hráč",
+      "nameLabel": "Jméno"
+    },
+    "active": {
+      "heading": "Aktivní hráči",
+      "hint": "Tito hráči jsou k dispozici pro rychlý výběr v nových hrách.",
+      "empty": "Zatím žádní aktivní hráči."
+    },
+    "inactive": {
+      "heading": "Deaktivovaní hráči",
+      "hint": "Zůstávají viditelní v minulých hrách, ale již se neobjevují v rychlém výběru.",
+      "empty": "Žádní deaktivovaní hráči."
+    },
+    "avatar": {
+      "uploadLabel": "Nahrát fotku",
+      "changeLabel": "Změnit fotku",
+      "removeLabel": "Odebrat fotku",
+      "removeConfirm": "Opravdu odebrat tento avatar?",
+      "uploadFailed": "Fotku se nepodařilo uložit."
+    },
+    "deleteConfirm": "Opravdu trvale smazat \"{name}\"? Na rozdíl od odebrání není ve správě hráčů cesty zpět — minulé hry budou jméno stále zobrazovat."
+  },
+  "groups": {
+    "hint": "Seskupte hráče (např. „Rodina“, „Stálí hráči“) — při nastavování hry pak můžete jedním kliknutím vybrat celou skupinu. Jedna osoba může být ve více skupinách.",
+    "newGroup": {
+      "heading": "Nová skupina",
+      "nameLabel": "Název skupiny",
+      "namePlaceholder": "např. Rodina",
+      "membersLabel": "Členové"
+    },
+    "active": {
+      "heading": "Aktivní skupiny",
+      "empty": "Zatím nebyla vytvořena žádná skupina."
+    },
+    "inactive": {
+      "heading": "Deaktivované skupiny",
+      "empty": "Žádné deaktivované skupiny."
+    },
+    "empty": "Žádní členové",
+    "editButton": "Upravit",
+    "saveButton": "Uložit",
+    "cancelButton": "Zrušit",
+    "deleteConfirm": "Opravdu smazat skupinu \"{name}\"? Samotní členové zůstanou zachováni — odstraní se pouze seskupení.",
+    "createFailed": "Skupinu se nepodařilo vytvořit."
+  },
+  "stats": {
+    "heading": "Statistiky",
+    "filter": {
+      "heading": "Časové období",
+      "hint": "Ponechte prázdné pro statistiky ze všech her. Pro herní večer přesahující půlnoc zadejte např. 18:00 až 03:00 následujícího dne.",
+      "fromLabel": "Od",
+      "toLabel": "Do",
+      "apply": "Použít",
+      "reset": "Obnovit"
+    },
+    "kpi": {
+      "games": "Hry",
+      "finished": "Dokončeno",
+      "winRate": "Podíl dokončených",
+      "avgScore": "Prům. body"
+    },
+    "overall": {
+      "heading": "Celkem",
+      "empty": "V tomto období žádné hry."
+    },
+    "byMode": {
+      "heading": "Podle režimu"
+    },
+    "modeDistribution": {
+      "heading": "Rozložení podle režimu",
+      "empty": "V tomto období žádné hry."
+    },
+    "headToHead": {
+      "heading": "Přímé souboje",
+      "empty": "V tomto období zatím žádní dva hráči se společnými dokončenými hrami.",
+      "listSummary": "Zobrazit jako seznam",
+      "draws": "remízy",
+      "gamesSuffix": "her"
+    },
+    "games": {
+      "heading": "Hry v tomto období",
+      "empty": "V tomto období žádné hry."
+    },
+    "table": {
+      "player": "Hráč",
+      "gamesPlayed": "Hry",
+      "gamesFinished": "Dokončeno",
+      "wins": "Výhry",
+      "winRate": "Úspěšnost",
+      "currentStreak": "Aktuální série",
+      "longestStreak": "Nejdelší série",
+      "avgScore": "Prům. skóre"
+    },
+    "print": "Tisk / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Vybrat oříznutí obrázku",
+    "hint": "Tažením posunete, posuvníkem přiblížíte (formát pasové fotografie 2:3).",
+    "apply": "Použít"
+  },
+  "history": {
+    "heading": "Historie her",
+    "all": {
+      "heading": "Všechny hry",
+      "hint": "Nejnovější první. Probíhající hry lze obnovit, dokončené zobrazují výsledek."
+    },
+    "filter": {
+      "all": "Vše",
+      "active": "Probíhající",
+      "finished": "Dokončené"
+    },
+    "empty": "Zatím nebyla odehrána žádná hra.",
+    "filterEmpty": {
+      "active": "Žádné probíhající hry.",
+      "finished": "Zatím žádné dokončené hry."
+    },
+    "deleteConfirm": "Opravdu trvale smazat \"{label}\" z historie her?",
+    "badge": {
+      "finished": "Dokončeno",
+      "active": "Probíhá"
+    },
+    "meta": {
+      "target": "Cíl: {score} bodů",
+      "rounds": "Kolo {played}/{total}",
+      "winners": "Vítěz: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Nastavení",
+    "subtitle": "Platí pro všechny, kdo tuto aplikaci používají (ukládá se globálně).",
+    "tabs": {
+      "aussehen": "Vzhled",
+      "allgemein": "Obecné",
+      "spieler": "Hráči",
+      "spiele": "Moje hry",
+      "zugang": "Ochrana přístupu",
+      "backup": "Záloha"
+    },
+    "theme": {
+      "heading": "Vzhled",
+      "hint": "Na výběr tři nezávislé styly. Jemné doladění barev najdete níže v sekci „Barvy podrobně“.",
+      "classic": "Klasický",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Barva zvýraznění",
+      "accent": {
+        "green": "Zelená",
+        "orange": "Oranžová",
+        "pink": "Růžová",
+        "violet": "Fialová",
+        "cyan": "Azurová"
+      },
+      "backgroundLabel": "Pozadí",
+      "background": {
+        "dark": "Tmavé",
+        "darkBlue": "Tmavě modré",
+        "black": "Černé"
+      },
+      "cardStyleLabel": "Styl karty",
+      "cardStyle": {
+        "classic": "Klasický",
+        "modern": "Moderní"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Návrh barvy",
+      "flipPreset": {
+        "amber": "Jantarová",
+        "petrol": "Petrolejová",
+        "karmesin": "Karmínová",
+        "knallorange": "Sytě oranžová",
+        "violett": "Fialová"
+      }
+    },
+    "title": {
+      "heading": "Název",
+      "hint": "Zobrazuje se v záhlaví a v názvu karty prohlížeče.",
+      "label": "Název"
+    },
+    "feedback": {
+      "heading": "Zpětná vazba při ukládání",
+      "hint": "Krátký zvuk (a vibrace, pokud to zařízení podporuje) při uložení kola. Na iPhonu/iPadu není vibrace z technických důvodů možná (Safari), ale zvuk funguje.",
+      "label": "Zvuk při ukládání"
+    },
+    "presets": {
+      "heading": "Moje hry",
+      "hint": "Vaše vlastní, plně nastavené hry (např. „Flip7“ s cílem 200) — objevují se na hlavní stránce v „Moje hry“ a po kliknutí předvyplní konfigurační formulář.",
+      "favoritesHeading": "Oblíbené",
+      "favoritesHint": "Upravte pořadí šipkami nebo přetažením — určuje pořadí řádku oblíbených na hlavní stránce.",
+      "allHeading": "Všechny hry",
+      "allHint": "Seřazeno abecedně — oblíbené se zobrazují i zde, aby byly vždy dohledatelné.",
+      "addButton": "Přidat novou hru",
+      "formHeadingNew": "Nová hra",
+      "formHeadingEdit": "Upravit {name}",
+      "nameLabel": "Název",
+      "iconLabel": "Ikona",
+      "modeLabel": "Režim",
+      "metaTarget": "Cíl: {target} bodů",
+      "metaRounds": "{rounds} kol",
+      "saveFailed": "Hru se nepodařilo uložit.",
+      "deleteConfirm": "Opravdu smazat \"{name}\"?",
+      "empty": "Zatím nebyla vytvořena žádná hra.",
+      "favoriteLabel": "Oblíbené",
+      "moveUp": "Posunout nahoru",
+      "moveDown": "Posunout dolů",
+      "editButton": "Upravit"
+    },
+    "access": {
+      "heading": "Ochrana přístupu",
+      "hint": "Chrání celý web jedním sdíleným heslem pro všechny, kdo znají odkaz. Bez aktivní ochrany může web používat kdokoli s odkazem.",
+      "enableLabel": "Aktivovat ochranu přístupu",
+      "noPasswordSet": "Zatím není nastaveno žádné heslo — ochrana zůstává neaktivní, dokud nebude nastaveno.",
+      "passwordLabel": "Nové heslo",
+      "passwordConfirmLabel": "Potvrdit heslo",
+      "passwordHint": "Alespoň 8 znaků. Ponechte prázdné pro zachování aktuálně uloženého hesla. Zapomněli jste heslo? Návod na reset přes přístup k souborům najdete v README.",
+      "mismatchError": "Obě hesla se neshodují.",
+      "tooShortError": "Heslo musí mít alespoň 8 znaků.",
+      "saveFailed": "Uložení se nezdařilo.",
+      "logoutButton": "Odhlásit se na tomto zařízení"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Ve výchozím nastavení není aktivní žádné vlastní logo, ikona pera zůstává viditelná.",
+      "modeLabel": "Zobrazení",
+      "modeNone": "Žádné logo",
+      "modeSquare": "Čtvercové, vlevo nahoře",
+      "modeBanner": "Banner přes celou šířku",
+      "squareHeading": "Čtvercové logo",
+      "squareHint": "Doporučeno: 160×160 pixelů (čtverec). PNG, JPEG nebo SVG, max. 2 MB.",
+      "bannerHeading": "Bannerové logo",
+      "bannerHint": "Doporučeno: cca 1400×160 pixelů (široké, ne příliš vysoké). PNG, JPEG nebo SVG, max. 2 MB.",
+      "uploadButton": "Nahrát",
+      "removeConfirm": "Opravdu odebrat toto logo?",
+      "uploadSuccess": "Logo nahráno.",
+      "removeSuccess": "Logo odebráno.",
+      "uploadFailed": "Logo se nepodařilo nahrát.",
+      "noFileSelected": "Nejprve vyberte soubor."
+    },
+    "language": {
+      "heading": "Jazyk",
+      "hint": "Další jazyky lze přidat později.",
+      "label": "Jazyk"
+    },
+    "colors": {
+      "advancedHeading": "Barvy podrobně",
+      "advancedSummary": "Otevřít pokročilé možnosti",
+      "boldNote": "Platí pouze pro Klasický vzhled — Bold používá přednastavení výše.",
+      "single": {
+        "heading": "Barvy zvýraznění a funkcí",
+        "hint": "Platí beze změny ve světlém i tmavém režimu."
+      },
+      "pairs": {
+        "heading": "Základní barvy (odděleně pro světlý/tmavý režim)",
+        "hint": "Pozadí, plocha, text a okraj — jednou pro světlý a jednou pro tmavý režim.",
+        "light": "Světlý",
+        "dark": "Tmavý"
+      },
+      "flip": {
+        "heading": "Barvy Flip Board",
+        "hint": "Přepíše výše vybraný návrh barvy — jednou pro světlý a jednou pro tmavý režim."
+      }
+    },
+    "resetButton": "Obnovit výchozí barvy",
+    "resetConfirm": "Opravdu obnovit všechny barvy na výchozí hodnoty?",
+    "savedStatus": "Uloženo. Ostatní stránky změnu převezmou při další návštěvě.",
+    "resetStatus": "Obnoveny výchozí barvy.",
+    "backup": {
+      "heading": "Záloha dat",
+      "hint": "Úplná záloha všech hráčů, her, avatarů a log jako soubor ZIP — např. aby nic nechybělo při přechodu na nový server.",
+      "exportHeading": "Stáhnout zálohu",
+      "exportHint": "Obsahuje kompletní databázi a všechny obrázky avatarů a logo.",
+      "exportButton": "Stáhnout zálohu",
+      "importHeading": "Obnovit ze zálohy",
+      "importWarning": "Upozornění: import nevratně nahradí všechny současné hráče, hry, avatary a loga obsahem záložního souboru.",
+      "fileLabel": "Záložní soubor (.zip)",
+      "importButton": "Importovat zálohu",
+      "confirmHint": "Pro potvrzení napište přesně ERSETZEN níže.",
+      "confirmLabel": "Potvrzení",
+      "confirmButton": "Nyní trvale nahradit",
+      "noFileSelected": "Nejprve vyberte záložní soubor.",
+      "finalConfirm": "Opravdu nevratně nahradit všechna aktuální herní data zálohou?",
+      "importInProgress": "Obnovování zálohy …",
+      "importSuccess": "Záloha obnovena: {games} her, {players} hráčů. Stránka se znovu načítá …",
+      "importFailed": "Import se nezdařil."
+    },
+    "colorLabels": {
+      "green": "Neonově zelená (hlavní zvýraznění)",
+      "greenStrong": "Neonově zelená, ztmavená (text/čáry)",
+      "amber": "Jantarová (vedlejší zvýraznění)",
+      "amberStrong": "Jantarová, ztmavená (text/čáry)",
+      "onAccent": "Text na zvýrazněných plochách",
+      "focus": "Obrys zaměření (navigace klávesnicí)",
+      "danger": "Chyba / nebezpečí (např. tlačítka mazání)",
+      "bg": "Pozadí",
+      "surface": "Plocha (karty)",
+      "text": "Text",
+      "textMuted": "Ztlumený text",
+      "border": "Okraj"
+    }
+  },
+  "login": {
+    "heading": "Přihlásit se",
+    "hint": "Tento web je chráněn heslem.",
+    "error": "Nesprávné heslo.",
+    "passwordLabel": "Heslo",
+    "submitButton": "Přihlásit se"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Nastavit novou hru (např. Flip7, Tutto)",
+      "labelPlaceholder": "např. Flip7, Tutto",
+      "targetLabel": "Hrát do jaké bodové hodnoty?",
+      "winDirectionHint": "Ve většině her vyhrává nejvyšší skóre (např. Flip7, Tutto) — ale v některých, jako je Skyjo, vyhrává naopak nejnižší skóre. Hra každopádně skončí, jakmile někdo dosáhne nebo překročí cíl.",
+      "targetBonusLabel": "Bonus za dosažení cíle"
+    },
+    "game": {
+      "subtitle": "Cíl: {target} bodů · {started}",
+      "roundEntryHint": "Zadejte body tohoto kola pro každého hráče (0 je normální, např. při přetažení)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Nastavit novou hru (např. Doppelkopf)",
+      "labelPlaceholder": "např. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "vyhrává nejvyšší skóre",
+        "lowest": "vyhrává nejnižší skóre"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Nastavit novou hru",
+      "roundsLabel": "Kolik kol se má odehrát?",
+      "announceLabel": "Po každém kole oznámit, že skončilo",
+      "announceHint": "Po každém uloženém kole zobrazí krátké oznámení, které lze zavřít."
+    },
+    "game": {
+      "subtitleOngoing": "Kolo {round} z {total} · {started}",
+      "subtitleReached": "{played} z {total} kol odehráno · {started}",
+      "roundEndNotice": "Kolo {round} dokončeno",
+      "targetReached": {
+        "heading": "Odehráli jste dohodnutých {total} kol.",
+        "extendLabel": "Pokračovat ve hře, tolik kol navíc:",
+        "extendButton": "Pokračovat ve hře"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Nastavit novou hru — 10 kol, licitace zdvihů",
+      "hint": "Pevných 10 kol (od 10 do 1 karty), na konci vyhrává nejvyšší skóre.",
+      "labelPlaceholder": "např. Večer RAGE",
+      "showBonusMalusLabel": "Zobrazit bonus/malus",
+      "showBonusMalusHint": "Zobrazit/skrýt pole speciálních karet +5/−5 při zadávání kola."
+    },
+    "game": {
+      "cardSingular": "karta",
+      "cardPlural": "karet",
+      "subtitleFinished": "{played} z 10 kol odehráno · {started}",
+      "subtitleOngoing": "Kolo {round} z 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Zadat kolo",
+        "staticHint": "Zadejte licitaci a skutečné zdvihy pro každého hráče, případné speciální karty.",
+        "heading": "Zadat kolo {round} ({cards} {cardWord})",
+        "hint": "Zadejte licitaci a skutečné zdvihy pro každého hráče (0 je platné). Zdvihy všech hráčů by se měly sečíst na {cards}.",
+        "table": {
+          "player": "Hráč",
+          "bid": "Licitace",
+          "tricks": "Zdvihy",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Body"
+        }
+      },
+      "roundsTableHint": "Upravte hodnoty přímo pro opravu chyb při zadávání. Licitace / zdvihy / +5 / −5 / body (vypočteno) pro každého hráče a kolo.",
+      "deleteRoundButton": "Smazat K{round}",
+      "mismatchConfirm": "Součet zadaných zdvihů ({actual}) neodpovídá počtu karet tohoto kola ({expected}). Přesto uložit?",
+      "saveFailed": "Kolo se nepodařilo uložit."
+    }
+  },
+  "chooser": {
+    "heading": "Kdo začíná?",
+    "subtitle": "Položte všechny prsty na obrazovku současně — funguje díky multidotyku (iPad/iPhone).",
+    "hint": "Položte prsty na obrazovku …",
+    "winnerCountLabel": "Počet vítězů",
+    "resultSingle": "Tato osoba začíná! Pro nové kolo položte prsty znovu.",
+    "resultMulti": "Těchto {count} osob začíná! Pro nové kolo položte prsty znovu."
+  }
+}

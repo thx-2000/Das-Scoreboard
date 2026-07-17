@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Spring til indhold",
+    "nav": {
+      "home": "Forside",
+      "history": "Historik",
+      "stats": "Statistik",
+      "chooser": "Hvem starter?",
+      "settings": "Indstillinger",
+      "openMenu": "Åbn menu",
+      "closeMenu": "Luk menu"
+    },
+    "updateAvailable": "Opdatering tilgængelig ({version})",
+    "buttons": {
+      "add": "Tilføj",
+      "save": "Gem",
+      "delete": "Slet",
+      "start": "Start spil",
+      "finish": "Afslut spil",
+      "resume": "Fortsæt spil",
+      "remove": "Fjern",
+      "reactivate": "Genaktivér",
+      "close": "Luk",
+      "cancel": "Annullér"
+    },
+    "winDirection": {
+      "heading": "Hvem vinder til sidst?",
+      "highest": "Højeste score",
+      "lowest": "Laveste score"
+    },
+    "stepper": {
+      "decrease": "Formindsk",
+      "increase": "Forøg",
+      "minusValue": "Træk {value} fra",
+      "plusValue": "Læg {value} til"
+    },
+    "table": {
+      "rank": "Placering",
+      "name": "Navn",
+      "points": "Point",
+      "progress": "Fremgang",
+      "actions": "Handlinger",
+      "round": "Runde"
+    },
+    "game": {
+      "loading": "Indlæser …",
+      "notFound": "Spillet blev ikke fundet.",
+      "standingsHeading": "Stilling",
+      "standings": {
+        "collapse": "Fold sammen",
+        "expand": "Vis",
+        "teamTotalSuffix": "point i alt"
+      },
+      "startingPlayerLegend": "★ Startspiller (tilfældig)",
+      "startedSuffix": "startet {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Spillet er slut! {names} vinder sammen med {points} point.",
+        "single": "🏆 Spillet er slut! {names} vandt med {points} point."
+      },
+      "roundEntry": {
+        "heading": "Indtast ny runde",
+        "saveButton": "Gem runde",
+        "switchToButtons": "Trin-knapper",
+        "switchToType": "Indtastning"
+      },
+      "roundsTable": {
+        "heading": "Rundeoversigt & rettelse",
+        "hint": "Justér værdier direkte for at rette indtastningsfejl.",
+        "empty": "Ingen runder spillet endnu.",
+        "deleteConfirm": "Vil du virkelig slette denne runde?",
+        "undoButton": "Fortryd seneste runde"
+      },
+      "noPlayersHint": "Ingen spillere endnu — tilføj en herunder.",
+      "roundEntryHintGeneric": "Indtast denne rundes point pr. spiller (0 er normalt)."
+    },
+    "setup": {
+      "heading": "Opsæt spil",
+      "labelOptional": "Etiket (valgfri)",
+      "whoPlays": "Hvem spiller med?",
+      "addPlayerLabel": "Tilføj ny spiller",
+      "addPlayerPlaceholder": "Indtast navn",
+      "advancedOptions": "Avancerede indstillinger",
+      "teamModeLabel": "Aktivér holdtilstand",
+      "teamModeHint": "Spillere kan grupperes i hold, hvis point tælles sammen.",
+      "teamScoringHeading": "Holdpointtælling",
+      "teamScoringShared": "Fælles score",
+      "teamScoringSharedHint": "Holdmedlemmerne indtaster i fællesskab én kombineret score pr. runde.",
+      "teamScoringIndividual": "Individuelle scorer, samlet total",
+      "teamScoringIndividualHint": "Hver spiller indtaster sin egen score — både individuelle scorer og holdets samlede total vises.",
+      "teamNone": "Intet hold",
+      "teamNumber": "Hold {number}",
+      "teamNameLabel": "Navn på hold {number} (valgfri)",
+      "teamNamePlaceholder": "f.eks. Ørnene",
+      "selectAll": "Vælg alle",
+      "selectNone": "Fravælg alle",
+      "allowNegativeLabel": "Tillad negative point",
+      "allowNegativeHint": "Hvis slået fra, begrænses negative rundeindtastninger til 0.",
+      "targetBonusHint": "Ekstra point som vinderen/vinderne får for at nå målscoren (0 = ingen bonus).",
+      "roundEntryStepsLabel": "Trinstørrelser til rundeindtastning",
+      "roundEntryStepsHint": "Trin-knapper som alternativ til at skrive tal — vælg hvilke trinstørrelser (±) der skal være tilgængelige. Du kan altid skifte mellem indtastning og trin-knapper, også midt i spillet."
+    },
+    "errors": {
+      "minPlayers": "Vælg mindst 2 spillere.",
+      "createPlayerFailed": "Spilleren kunne ikke oprettes.",
+      "startGameFailed": "Spillet kunne ikke startes."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Pointhjælp til spilaftener"
+    },
+    "stats": {
+      "title": "Statistik"
+    },
+    "history": {
+      "title": "Spilhistorik"
+    },
+    "settings": {
+      "title": "Indstillinger"
+    },
+    "pointsToTargetSetup": {
+      "title": "Point til mål — Nyt spil"
+    },
+    "pointsToTargetGame": {
+      "title": "Point til mål"
+    },
+    "pointsOpenSetup": {
+      "title": "Åben pointrunde — Nyt spil"
+    },
+    "pointsOpenGame": {
+      "title": "Åben pointrunde"
+    },
+    "fixedRoundsSetup": {
+      "title": "Pointrunde med fast antal runder — Nyt spil"
+    },
+    "fixedRoundsGame": {
+      "title": "Pointrunde med fast antal runder"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nyt spil"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Hvem starter?"
+    },
+    "login": {
+      "title": "Log ind"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Point til mål",
+      "description": "Point lægges sammen runde for runde, indtil nogen når eller overskrider en fast målværdi. Den, der så har flest point, vinder.",
+      "examples": "f.eks. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Åben pointrunde",
+      "description": "Point lægges sammen runde for runde uden et fast mål. I bestemmer selv, hvornår I vil stoppe — højeste eller laveste score vinder, alt efter hvordan I sætter det op.",
+      "examples": "f.eks. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Pointrunde med fast antal runder",
+      "description": "Under opsætningen bestemmer I, hvor mange runder der skal spilles, og om højeste eller laveste score vinder til sidst. Efter sidste runde spørger spillet, om I vil afslutte eller spille flere runder."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Faste 10 runder med et faldende antal kort (10 ned til 1). Før hver runde melder du dit forventede antal stik, hvorefter du indtaster de faktiske stik — point beregnes automatisk efter RAGE-reglerne (inkl. Rage-bonus/hævn).",
+      "examples": "Kortspillet RAGE"
+    }
+  },
+  "home": {
+    "heading": "Pointhjælp til spilaftener",
+    "newGame": {
+      "startButton": "Start et nyt spil"
+    },
+    "generalBoards": {
+      "heading": "Generelle scoreboards",
+      "hint": "Frit konfigurerbart — indstil målscore, vinderretning og trinstørrelser under opsætningen."
+    },
+    "myGames": {
+      "heading": "Mine spil",
+      "hint": "RAGE plus dine egne, fuldt konfigurerede spil (oprettes under Indstillinger → Mine spil).",
+      "favoritesHeading": "Favoritter",
+      "allHeading": "Alle spil",
+      "metaTarget": "Mål: {score} point",
+      "metaRounds": "{rounds} runder"
+    },
+    "openGames": {
+      "heading": "Igangværende spil",
+      "viewAll": "Vis alle"
+    },
+    "pwaHint": {
+      "heading": "Brug som app",
+      "text": "På iPad/iPhone: tryk på del-ikonet i Safari, og vælg derefter \"Føj til hjemmeskærm\" — siden vises herefter som sin egen app, uden adresselinje."
+    },
+    "support": {
+      "label": "Støt dette projekt",
+      "ariaLabel": "Støt dette projekt på Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Administrér spillere",
+    "newPlayer": {
+      "heading": "Ny spiller",
+      "nameLabel": "Navn"
+    },
+    "active": {
+      "heading": "Aktive spillere",
+      "hint": "Disse spillere er tilgængelige til hurtigt valg i nye spil.",
+      "empty": "Ingen aktive spillere endnu."
+    },
+    "inactive": {
+      "heading": "Deaktiverede spillere",
+      "hint": "Forbliver synlige i tidligere spil, men vises ikke længere i hurtigvalget.",
+      "empty": "Ingen deaktiverede spillere."
+    },
+    "avatar": {
+      "uploadLabel": "Upload foto",
+      "changeLabel": "Skift foto",
+      "removeLabel": "Fjern foto",
+      "removeConfirm": "Vil du virkelig fjerne denne avatar?",
+      "uploadFailed": "Fotoet kunne ikke gemmes."
+    },
+    "deleteConfirm": "Vil du virkelig slette \"{name}\" permanent? I modsætning til fjernelse er der ingen vej tilbage i spillerhåndteringen — tidligere spil vil stadig vise navnet."
+  },
+  "groups": {
+    "hint": "Gruppér spillere (f.eks. \"Familie\", \"Faste spillere\") — når I opsætter et spil, kan I derefter vælge hele gruppen med ét klik. En person kan være i flere grupper.",
+    "newGroup": {
+      "heading": "Ny gruppe",
+      "nameLabel": "Gruppenavn",
+      "namePlaceholder": "f.eks. Familie",
+      "membersLabel": "Medlemmer"
+    },
+    "active": {
+      "heading": "Aktive grupper",
+      "empty": "Ingen grupper oprettet endnu."
+    },
+    "inactive": {
+      "heading": "Deaktiverede grupper",
+      "empty": "Ingen deaktiverede grupper."
+    },
+    "empty": "Ingen medlemmer",
+    "editButton": "Redigér",
+    "saveButton": "Gem",
+    "cancelButton": "Annullér",
+    "deleteConfirm": "Vil du virkelig slette gruppen \"{name}\"? Medlemmerne selv bevares — kun grupperingen fjernes.",
+    "createFailed": "Gruppen kunne ikke oprettes."
+  },
+  "stats": {
+    "heading": "Statistik",
+    "filter": {
+      "heading": "Tidsperiode",
+      "hint": "Lad stå tomt for statistik over alle spil. Til en spilaften, der strækker sig forbi midnat, kan du f.eks. angive 18:00 til 03:00 dagen efter.",
+      "fromLabel": "Fra",
+      "toLabel": "Til",
+      "apply": "Anvend",
+      "reset": "Nulstil"
+    },
+    "kpi": {
+      "games": "Spil",
+      "finished": "Afsluttet",
+      "winRate": "Andel afsluttet",
+      "avgScore": "Gns. point"
+    },
+    "overall": {
+      "heading": "Samlet",
+      "empty": "Ingen spil i denne periode."
+    },
+    "byMode": {
+      "heading": "Efter tilstand"
+    },
+    "modeDistribution": {
+      "heading": "Fordeling efter tilstand",
+      "empty": "Ingen spil i denne periode."
+    },
+    "headToHead": {
+      "heading": "Direkte møder",
+      "empty": "Ingen to spillere med fælles afsluttede spil i denne periode endnu.",
+      "listSummary": "Vis som liste",
+      "draws": "uafgjorte",
+      "gamesSuffix": "spil"
+    },
+    "games": {
+      "heading": "Spil i denne periode",
+      "empty": "Ingen spil i denne periode."
+    },
+    "table": {
+      "player": "Spiller",
+      "gamesPlayed": "Spil",
+      "gamesFinished": "Afsluttet",
+      "wins": "Sejre",
+      "winRate": "Sejrsrate",
+      "currentStreak": "Aktuel stribe",
+      "longestStreak": "Længste stribe",
+      "avgScore": "Gns. score"
+    },
+    "print": "Udskriv / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Vælg billedbeskæring",
+    "hint": "Træk for at panorere, brug skyderen til at zoome (pasfotoformat 2:3).",
+    "apply": "Anvend"
+  },
+  "history": {
+    "heading": "Spilhistorik",
+    "all": {
+      "heading": "Alle spil",
+      "hint": "Nyeste først. Igangværende spil kan genoptages, afsluttede viser resultatet."
+    },
+    "filter": {
+      "all": "Alle",
+      "active": "Igangværende",
+      "finished": "Afsluttet"
+    },
+    "empty": "Ingen spil spillet endnu.",
+    "filterEmpty": {
+      "active": "Ingen igangværende spil.",
+      "finished": "Ingen afsluttede spil endnu."
+    },
+    "deleteConfirm": "Vil du virkelig slette \"{label}\" permanent fra spilhistorikken?",
+    "badge": {
+      "finished": "Afsluttet",
+      "active": "Igangværende"
+    },
+    "meta": {
+      "target": "Mål: {score} point",
+      "rounds": "Runde {played}/{total}",
+      "winners": "Vinder: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Indstillinger",
+    "subtitle": "Gælder for alle, der bruger denne app (gemmes globalt).",
+    "tabs": {
+      "aussehen": "Udseende",
+      "allgemein": "Generelt",
+      "spieler": "Spillere",
+      "spiele": "Mine spil",
+      "zugang": "Adgangsbeskyttelse",
+      "backup": "Sikkerhedskopi"
+    },
+    "theme": {
+      "heading": "Udseende",
+      "hint": "Tre uafhængige stilarter at vælge imellem. Finjustering af farverne findes længere nede under \"Farver i detaljer\".",
+      "classic": "Klassisk",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Accentfarve",
+      "accent": {
+        "green": "Grøn",
+        "orange": "Orange",
+        "pink": "Pink",
+        "violet": "Violet",
+        "cyan": "Cyan"
+      },
+      "backgroundLabel": "Baggrund",
+      "background": {
+        "dark": "Mørk",
+        "darkBlue": "Mørkeblå",
+        "black": "Sort"
+      },
+      "cardStyleLabel": "Kortstil",
+      "cardStyle": {
+        "classic": "Klassisk",
+        "modern": "Moderne"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Farveforslag",
+      "flipPreset": {
+        "amber": "Rav",
+        "petrol": "Petroleumsblå",
+        "karmesin": "Karmoisin",
+        "knallorange": "Kraftig orange",
+        "violett": "Violet"
+      }
+    },
+    "title": {
+      "heading": "Titel",
+      "hint": "Vises i sidehovedet og i browserfanens titel.",
+      "label": "Titel"
+    },
+    "feedback": {
+      "heading": "Tilbagemelding ved gemning",
+      "hint": "Kort lyd (og vibration, hvis enheden understøtter det) når en runde gemmes. På iPhone/iPad er vibration ikke muligt af tekniske årsager (Safari), men lyden virker.",
+      "label": "Lyd ved gemning"
+    },
+    "presets": {
+      "heading": "Mine spil",
+      "hint": "Dine egne, fuldt konfigurerede spil (f.eks. \"Flip7\" med mål 200) — vises på forsiden under \"Mine spil\" og udfylder opsætningsformularen på forhånd ved klik.",
+      "favoritesHeading": "Favoritter",
+      "favoritesHint": "Justér rækkefølgen med pilene eller ved at trække — bestemmer rækkefølgen på favoritrækken på forsiden.",
+      "allHeading": "Alle spil",
+      "allHint": "Sorteret alfabetisk — favoritter vises også her, så de stadig kan findes under alle omstændigheder.",
+      "addButton": "Tilføj nyt spil",
+      "formHeadingNew": "Nyt spil",
+      "formHeadingEdit": "Redigér {name}",
+      "nameLabel": "Navn",
+      "iconLabel": "Ikon",
+      "modeLabel": "Tilstand",
+      "metaTarget": "Mål: {target} point",
+      "metaRounds": "{rounds} runder",
+      "saveFailed": "Spillet kunne ikke gemmes.",
+      "deleteConfirm": "Vil du virkelig slette \"{name}\"?",
+      "empty": "Ingen spil oprettet endnu.",
+      "favoriteLabel": "Favorit",
+      "moveUp": "Flyt op",
+      "moveDown": "Flyt ned",
+      "editButton": "Redigér"
+    },
+    "access": {
+      "heading": "Adgangsbeskyttelse",
+      "hint": "Beskytter hele siden med ét fælles kodeord for alle, der kender linket. Uden aktiv beskyttelse kan alle med linket bruge siden.",
+      "enableLabel": "Aktivér adgangsbeskyttelse",
+      "noPasswordSet": "Der er endnu ikke angivet et kodeord — beskyttelsen forbliver inaktiv, indtil et er angivet.",
+      "passwordLabel": "Nyt kodeord",
+      "passwordConfirmLabel": "Bekræft kodeord",
+      "passwordHint": "Mindst 8 tegn. Lad stå tomt for at bevare det aktuelt gemte kodeord. Glemt kodeordet? Se README for instruktioner til nulstilling via filadgang.",
+      "mismatchError": "De to kodeord stemmer ikke overens.",
+      "tooShortError": "Kodeordet skal være mindst 8 tegn langt.",
+      "saveFailed": "Kunne ikke gemme.",
+      "logoutButton": "Log ud på denne enhed"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Som standard er der ikke aktivt et brugerdefineret logo, pen-ikonet forbliver synligt.",
+      "modeLabel": "Visning",
+      "modeNone": "Intet logo",
+      "modeSquare": "Kvadratisk, øverst til venstre",
+      "modeBanner": "Banner i fuld bredde",
+      "squareHeading": "Kvadratisk logo",
+      "squareHint": "Anbefalet: 160×160 pixels (kvadratisk). PNG, JPEG eller SVG, maks. 2 MB.",
+      "bannerHeading": "Bannerlogo",
+      "bannerHint": "Anbefalet: ca. 1400×160 pixels (bredt, ikke for højt). PNG, JPEG eller SVG, maks. 2 MB.",
+      "uploadButton": "Upload",
+      "removeConfirm": "Vil du virkelig fjerne dette logo?",
+      "uploadSuccess": "Logo uploadet.",
+      "removeSuccess": "Logo fjernet.",
+      "uploadFailed": "Logoet kunne ikke uploades.",
+      "noFileSelected": "Vælg venligst en fil først."
+    },
+    "language": {
+      "heading": "Sprog",
+      "hint": "Flere sprog kan tilføjes senere.",
+      "label": "Sprog"
+    },
+    "colors": {
+      "advancedHeading": "Farver i detaljer",
+      "advancedSummary": "Åbn avancerede indstillinger",
+      "boldNote": "Gælder kun for Klassisk — Bold bruger forudindstillingerne ovenfor.",
+      "single": {
+        "heading": "Accent- og funktionsfarver",
+        "hint": "Gælder uændret i lys og mørk tilstand."
+      },
+      "pairs": {
+        "heading": "Basisfarver (separate for lys/mørk tilstand)",
+        "hint": "Baggrund, overflade, tekst og kant — én gang hver for lys og mørk tilstand.",
+        "light": "Lys",
+        "dark": "Mørk"
+      },
+      "flip": {
+        "heading": "Flip Board-farver",
+        "hint": "Tilsidesætter farveforslaget valgt ovenfor — én gang hver for lys og mørk tilstand."
+      }
+    },
+    "resetButton": "Nulstil til standardfarver",
+    "resetConfirm": "Vil du virkelig nulstille alle farver til deres standardværdier?",
+    "savedStatus": "Gemt. Andre sider overtager ændringen ved deres næste besøg.",
+    "resetStatus": "Nulstillet til standardfarver.",
+    "backup": {
+      "heading": "Datasikkerhedskopi",
+      "hint": "Fuld sikkerhedskopi af alle spillere, spil, avatarer og logoer som en ZIP-fil — f.eks. for at sikre, at intet går tabt ved skift af server.",
+      "exportHeading": "Download sikkerhedskopi",
+      "exportHint": "Indeholder den komplette database samt alle avatarbilleder og logoet.",
+      "exportButton": "Download sikkerhedskopi",
+      "importHeading": "Gendan sikkerhedskopi",
+      "importWarning": "Advarsel: en import erstatter uigenkaldeligt alle nuværende spillere, spil, avatarer og logoer med indholdet af sikkerhedskopien.",
+      "fileLabel": "Sikkerhedskopifil (.zip)",
+      "importButton": "Importér sikkerhedskopi",
+      "confirmHint": "Skriv præcis ERSETZEN nedenfor for at bekræfte.",
+      "confirmLabel": "Bekræftelse",
+      "confirmButton": "Erstat nu, permanent",
+      "noFileSelected": "Vælg venligst en sikkerhedskopifil først.",
+      "finalConfirm": "Vil du virkelig uigenkaldeligt erstatte alle nuværende speldata med sikkerhedskopien?",
+      "importInProgress": "Gendanner sikkerhedskopi …",
+      "importSuccess": "Sikkerhedskopi gendannet: {games} spil, {players} spillere. Genindlæser siden …",
+      "importFailed": "Import mislykkedes."
+    },
+    "colorLabels": {
+      "green": "Neongrøn (hovedaccent)",
+      "greenStrong": "Neongrøn, mørkere (tekst/linjer)",
+      "amber": "Rav (sekundær accent)",
+      "amberStrong": "Rav, mørkere (tekst/linjer)",
+      "onAccent": "Tekst på accentflader",
+      "focus": "Fokuskontur (tastaturnavigation)",
+      "danger": "Fejl / fare (f.eks. slet-knapper)",
+      "bg": "Baggrund",
+      "surface": "Overflade (kort)",
+      "text": "Tekst",
+      "textMuted": "Dæmpet tekst",
+      "border": "Kant"
+    }
+  },
+  "login": {
+    "heading": "Log ind",
+    "hint": "Denne side er beskyttet med et kodeord.",
+    "error": "Forkert kodeord.",
+    "passwordLabel": "Kodeord",
+    "submitButton": "Log ind"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Opsæt nyt spil (f.eks. Flip7, Tutto)",
+      "labelPlaceholder": "f.eks. Flip7, Tutto",
+      "targetLabel": "Spil op til hvilken pointværdi?",
+      "winDirectionHint": "I de fleste spil vinder den højeste score (f.eks. Flip7, Tutto) — men i nogle, som Skyjo, vinder den laveste score i stedet. Spillet slutter alligevel, så snart nogen når eller overskrider målet.",
+      "targetBonusLabel": "Bonus for at nå målet"
+    },
+    "game": {
+      "subtitle": "Mål: {target} point · {started}",
+      "roundEntryHint": "Indtast denne rundes point pr. spiller (0 er normalt, f.eks. ved en bust)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Opsæt nyt spil (f.eks. Doppelkopf)",
+      "labelPlaceholder": "f.eks. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "højeste score vinder",
+        "lowest": "laveste score vinder"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Opsæt nyt spil",
+      "roundsLabel": "Hvor mange runder skal der spilles?",
+      "announceLabel": "Meddel efter hver runde, at den er slut",
+      "announceHint": "Viser en kort besked, der kan lukkes, efter hver gemt runde."
+    },
+    "game": {
+      "subtitleOngoing": "Runde {round} af {total} · {started}",
+      "subtitleReached": "{played} af {total} runder spillet · {started}",
+      "roundEndNotice": "Runde {round} afsluttet",
+      "targetReached": {
+        "heading": "I har spillet de aftalte {total} runder.",
+        "extendLabel": "Fortsæt med at spille, dette antal runder ekstra:",
+        "extendButton": "Fortsæt med at spille"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Opsæt nyt spil — 10 runder, stikmelding",
+      "hint": "Faste 10 runder (10 ned til 1 kort), højeste score vinder til sidst.",
+      "labelPlaceholder": "f.eks. RAGE-aften",
+      "showBonusMalusLabel": "Vis bonus/malus",
+      "showBonusMalusHint": "Vis/skjul felterne til specialkort +5/−5 i rundeindtastningen."
+    },
+    "game": {
+      "cardSingular": "kort",
+      "cardPlural": "kort",
+      "subtitleFinished": "{played} af 10 runder spillet · {started}",
+      "subtitleOngoing": "Runde {round} af 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Indtast runde",
+        "staticHint": "Indtast melding og faktiske stik pr. spiller, evt. specialkort.",
+        "heading": "Indtast runde {round} ({cards} {cardWord})",
+        "hint": "Indtast melding og faktiske stik pr. spiller (0 er gyldigt). Alle spilleres stik bør give {cards} i alt.",
+        "table": {
+          "player": "Spiller",
+          "bid": "Melding",
+          "tricks": "Stik",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Point"
+        }
+      },
+      "roundsTableHint": "Justér værdier direkte for at rette indtastningsfejl. Melding / stik / +5 / −5 / point (beregnet) pr. spiller og runde.",
+      "deleteRoundButton": "Slet R{round}",
+      "mismatchConfirm": "Summen af indtastede stik ({actual}) matcher ikke denne rundes antal kort ({expected}). Gem alligevel?",
+      "saveFailed": "Runden kunne ikke gemmes."
+    }
+  },
+  "chooser": {
+    "heading": "Hvem starter?",
+    "subtitle": "Læg alle fingre på skærmen samtidig — fungerer via multitouch (iPad/iPhone).",
+    "hint": "Læg fingrene på skærmen …",
+    "winnerCountLabel": "Antal vindere",
+    "resultSingle": "Denne person starter! Læg fingrene igen for en ny runde.",
+    "resultMulti": "Disse {count} personer starter! Læg fingrene igen for en ny runde."
+  }
+}

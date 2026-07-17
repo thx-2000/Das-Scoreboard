@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Aqbeż għall-kontenut",
+    "nav": {
+      "home": "Home",
+      "history": "Storja",
+      "stats": "Statistika",
+      "chooser": "Min jibda?",
+      "settings": "Settings",
+      "openMenu": "Iftaħ il-menu",
+      "closeMenu": "Agħlaq il-menu"
+    },
+    "updateAvailable": "Aġġornament disponibbli ({version})",
+    "buttons": {
+      "add": "Żid",
+      "save": "Issejvja",
+      "delete": "Ħassar",
+      "start": "Ibda l-logħba",
+      "finish": "Spiċċa l-logħba",
+      "resume": "Kompli l-logħba",
+      "remove": "Neħħi",
+      "reactivate": "Riattiva",
+      "close": "Agħlaq",
+      "cancel": "Ikkanċella"
+    },
+    "winDirection": {
+      "heading": "Min jirbaħ fl-aħħar?",
+      "highest": "L-ogħla punteġġ",
+      "lowest": "L-inqas punteġġ"
+    },
+    "stepper": {
+      "decrease": "Naqqas",
+      "increase": "Żid",
+      "minusValue": "Naqqas {value}",
+      "plusValue": "Żid {value}"
+    },
+    "table": {
+      "rank": "Post",
+      "name": "Isem",
+      "points": "Punti",
+      "progress": "Progress",
+      "actions": "Azzjonijiet",
+      "round": "Rawnd"
+    },
+    "game": {
+      "loading": "Qed jgħabbi …",
+      "notFound": "Il-logħba ma nstabitx.",
+      "standingsHeading": "Klassifika",
+      "standings": {
+        "collapse": "Għalaq",
+        "expand": "Uri",
+        "teamTotalSuffix": "punt total"
+      },
+      "startingPlayerLegend": "★ Plejer li jibda (b'mod każwali)",
+      "startedSuffix": "bdiet {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Il-logħba spiċċat! {names} jirbħu flimkien b'{points} punt.",
+        "single": "🏆 Il-logħba spiċċat! {names} rebaħ/rebħet b'{points} punt."
+      },
+      "roundEntry": {
+        "heading": "Daħħal rawnd ġdid",
+        "saveButton": "Issejvja r-rawnd",
+        "switchToButtons": "Buttuni tal-pass",
+        "switchToType": "Ittajpja"
+      },
+      "roundsTable": {
+        "heading": "Storja tar-rawndijiet u korrezzjoni",
+        "hint": "Biddel il-valuri direttament biex tikkoreġi żbalji fid-dħul.",
+        "empty": "Għadu ma ntlagħab l-ebda rawnd.",
+        "deleteConfirm": "Tassew tħassar dan ir-rawnd?",
+        "undoButton": "Ħassar l-aħħar rawnd"
+      },
+      "noPlayersHint": "Għad m'hemm l-ebda plejer — żid wieħed hawn taħt.",
+      "roundEntryHintGeneric": "Daħħal il-punti ta' dan ir-rawnd għal kull plejer (0 hu normali)."
+    },
+    "setup": {
+      "heading": "Issettja l-logħba",
+      "labelOptional": "Tikketta (mhux obbligatorja)",
+      "whoPlays": "Min qed jilgħab?",
+      "addPlayerLabel": "Żid plejer ġdid",
+      "addPlayerPlaceholder": "Daħħal isem",
+      "advancedOptions": "Għażliet avvanzati",
+      "teamModeLabel": "Attiva l-mod tat-timijiet",
+      "teamModeHint": "Il-plejers jistgħu jitqassmu f'timijiet li l-punti tagħhom jingħaddu flimkien.",
+      "teamScoringHeading": "Punteġġ tat-tim",
+      "teamScoringShared": "Punteġġ kombinat",
+      "teamScoringSharedHint": "Il-membri tat-tim jdaħħlu flimkien punteġġ kombinat wieħed għal kull rawnd.",
+      "teamScoringIndividual": "Punteġġi individwali, total kombinat",
+      "teamScoringIndividualHint": "Kull plejer idaħħal il-punteġġ tiegħu stess — jintwerew kemm il-punteġġi individwali kif ukoll it-total tat-tim.",
+      "teamNone": "L-ebda tim",
+      "teamNumber": "Tim {number}",
+      "teamNameLabel": "Isem it-tim {number} (mhux obbligatorju)",
+      "teamNamePlaceholder": "eż. L-Ajkli",
+      "selectAll": "Agħżel kollha",
+      "selectNone": "Neħħi l-għażla ta' kollha",
+      "allowNegativeLabel": "Ippermetti punti negattivi",
+      "allowNegativeHint": "Jekk mitfi, id-dħul negattiv tar-rawnd jiġi limitat għal 0.",
+      "targetBonusHint": "Punti addizzjonali li jirċievi/jirċievu r-rebbieħ(a) talli laħaq/laħqu l-punteġġ mira (0 = l-ebda bonus).",
+      "roundEntryStepsLabel": "Daqsijiet tal-pass għad-dħul tar-rawnd",
+      "roundEntryStepsHint": "Buttuni tal-pass bħala alternattiva għat-tajpjar tan-numri — agħżel liema daqsijiet tal-pass (±) ikunu disponibbli. Tista' taqleb bejn it-tajpjar u l-buttuni tal-pass f'kull ħin, anke f'nofs il-logħba."
+    },
+    "errors": {
+      "minPlayers": "Agħżel mill-inqas 2 plejers.",
+      "createPlayerFailed": "Ma setax jinħoloq il-plejer.",
+      "startGameFailed": "Ma setgħetx tinbeda l-logħba."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Għajnuna għall-punteġġ għal-lejliet tal-logħob"
+    },
+    "stats": {
+      "title": "Statistika"
+    },
+    "history": {
+      "title": "Storja tal-logħob"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "pointsToTargetSetup": {
+      "title": "Punti sal-mira — Logħba ġdida"
+    },
+    "pointsToTargetGame": {
+      "title": "Punti sal-mira"
+    },
+    "pointsOpenSetup": {
+      "title": "Rawnd tal-punti miftuħ — Logħba ġdida"
+    },
+    "pointsOpenGame": {
+      "title": "Rawnd tal-punti miftuħ"
+    },
+    "fixedRoundsSetup": {
+      "title": "Rawnd tal-punti b'numru fiss ta' rawndijiet — Logħba ġdida"
+    },
+    "fixedRoundsGame": {
+      "title": "Rawnd tal-punti b'numru fiss ta' rawndijiet"
+    },
+    "rageSetup": {
+      "title": "RAGE — Logħba ġdida"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Min jibda?"
+    },
+    "login": {
+      "title": "Idħol"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Punti sal-mira",
+      "description": "Il-punti jiżdiedu rawnd wara rawnd sakemm xi ħadd jilħaq jew jaqbeż valur mira fiss. Jirbaħ min ikollu l-aktar punti f'dak il-mument.",
+      "examples": "eż. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Rawnd tal-punti miftuħ",
+      "description": "Il-punti jiżdiedu rawnd wara rawnd mingħajr mira fissa. Intom stess tiddeċiedu meta twaqqfu — jirbaħ l-ogħla jew l-inqas punteġġ, skont kif issettjawh.",
+      "examples": "eż. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Rawnd tal-punti b'numru fiss ta' rawndijiet",
+      "description": "Fis-settings tiddeċiedu kemm-il rawnd se jintlagħab u jekk l-ogħla jew l-inqas punteġġ jirbaħx fl-aħħar. Wara l-aħħar rawnd, il-logħba tistaqsi jekk tridux tispiċċaw jew tkomplu b'aktar rawndijiet."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "10 rawndijiet fissi b'numru dejjem inqas ta' karti (minn 10 sa 1). Qabel kull rawnd tħabbar in-numru mistenni ta' teħid, imbagħad iddaħħal it-teħid attwali — il-punti jiġu kkalkulati awtomatikament skont ir-regoli ta' RAGE (inkluż bonus Rage/vendikazzjoni).",
+      "examples": "Logħba tal-karti RAGE"
+    }
+  },
+  "home": {
+    "heading": "Għajnuna għall-punteġġ għal-lejliet tal-logħob",
+    "newGame": {
+      "startButton": "Ibda logħba ġdida"
+    },
+    "generalBoards": {
+      "heading": "Bordijiet tal-punteġġ ġenerali",
+      "hint": "Konfigurabbli liberament — issettja l-punteġġ mira, id-direzzjoni tar-rebħ u d-daqsijiet tal-pass matul is-setup."
+    },
+    "myGames": {
+      "heading": "Il-logħob tiegħi",
+      "hint": "RAGE flimkien mal-logħob tiegħek stess, ikkonfigurat kompletament (oħolqhom taħt Settings → Il-logħob tiegħi).",
+      "favoritesHeading": "Favoriti",
+      "allHeading": "Il-logħob kollu",
+      "metaTarget": "Mira: {score} punt",
+      "metaRounds": "{rounds} rawnd"
+    },
+    "openGames": {
+      "heading": "Logħob għaddej",
+      "viewAll": "Uri kollox"
+    },
+    "pwaHint": {
+      "heading": "Uża bħala app",
+      "text": "Fuq iPad/iPhone: mess l-ikona Share f'Safari, imbagħad agħżel „Żid mal-Iskrin Ewlieni” — il-paġna mbagħad tidher bħala app għaliha, mingħajr il-bar tal-indirizz."
+    },
+    "support": {
+      "label": "Appoġġa dan il-proġett",
+      "ariaLabel": "Appoġġa dan il-proġett fuq Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Ġestixxi l-plejers",
+    "newPlayer": {
+      "heading": "Plejer ġdid",
+      "nameLabel": "Isem"
+    },
+    "active": {
+      "heading": "Plejers attivi",
+      "hint": "Dawn il-plejers huma disponibbli għal għażla mgħaġġla f'logħob ġdid.",
+      "empty": "Għad m'hemm l-ebda plejer attiv."
+    },
+    "inactive": {
+      "heading": "Plejers diżattivati",
+      "hint": "Jibqgħu jidhru f'logħob preċedenti, iżda ma jidhrux aktar fl-għażla mgħaġġla.",
+      "empty": "L-ebda plejer diżattivat."
+    },
+    "avatar": {
+      "uploadLabel": "Uploadja ritratt",
+      "changeLabel": "Biddel ir-ritratt",
+      "removeLabel": "Neħħi r-ritratt",
+      "removeConfirm": "Tassew tneħħi dan l-avatar?",
+      "uploadFailed": "Ir-ritratt ma setax jiġi ssejvjat."
+    },
+    "deleteConfirm": "Tassew tħassar \"{name}\" b'mod permanenti? B'differenza min-neħħija, m'hemmx lura fil-ġestjoni tal-plejers — logħob preċedenti xorta jkompli juri l-isem."
+  },
+  "groups": {
+    "hint": "Iġġrupja l-plejers (eż. „Familja”, „Regolari”) — meta ssettja logħba, imbagħad tkun tista' tagħżel il-grupp kollu b'klikk waħda. Persuna waħda tista' tkun f'diversi gruppi.",
+    "newGroup": {
+      "heading": "Grupp ġdid",
+      "nameLabel": "Isem il-grupp",
+      "namePlaceholder": "eż. Familja",
+      "membersLabel": "Membri"
+    },
+    "active": {
+      "heading": "Gruppi attivi",
+      "empty": "Għadu ma nħoloq l-ebda grupp."
+    },
+    "inactive": {
+      "heading": "Gruppi diżattivati",
+      "empty": "L-ebda grupp diżattivat."
+    },
+    "empty": "L-ebda membru",
+    "editButton": "Editja",
+    "saveButton": "Issejvja",
+    "cancelButton": "Ikkanċella",
+    "deleteConfirm": "Tassew tħassar il-grupp \"{name}\"? Il-membri nfushom jibqgħu — jitneħħa biss il-grupp.",
+    "createFailed": "Il-grupp ma setax jinħoloq."
+  },
+  "stats": {
+    "heading": "Statistika",
+    "filter": {
+      "heading": "Perjodu ta' żmien",
+      "hint": "Ħalli vojt għal statistika dwar il-logħob kollu. Għal lejla tal-logħob li ddum wara nofsillejl, daħħal eż. 18:00 sa 03:00 tal-għada.",
+      "fromLabel": "Minn",
+      "toLabel": "Sa",
+      "apply": "Applika",
+      "reset": "Irrisettja"
+    },
+    "kpi": {
+      "games": "Logħob",
+      "finished": "Spiċċat",
+      "winRate": "Sehem spiċċat",
+      "avgScore": "Punti medji"
+    },
+    "overall": {
+      "heading": "Total",
+      "empty": "L-ebda logħba f'dan il-perjodu."
+    },
+    "byMode": {
+      "heading": "Skont il-mod"
+    },
+    "modeDistribution": {
+      "heading": "Distribuzzjoni skont il-mod",
+      "empty": "L-ebda logħba f'dan il-perjodu."
+    },
+    "headToHead": {
+      "heading": "Wiċċ imb'wiċċ",
+      "empty": "Għad m'hemm l-ebda żewġ plejers b'logħob komuni spiċċat f'dan il-perjodu.",
+      "listSummary": "Uri bħala lista",
+      "draws": "draws",
+      "gamesSuffix": "logħob"
+    },
+    "games": {
+      "heading": "Logħob f'dan il-perjodu",
+      "empty": "L-ebda logħba f'dan il-perjodu."
+    },
+    "table": {
+      "player": "Plejer",
+      "gamesPlayed": "Logħob",
+      "gamesFinished": "Spiċċat",
+      "wins": "Rebħiet",
+      "winRate": "Rata ta' rebħ",
+      "currentStreak": "Streak attwali",
+      "longestStreak": "L-itwal streak",
+      "avgScore": "Punteġġ medju"
+    },
+    "print": "Ipprintja / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Agħżel il-qtugħ tal-immaġni",
+    "hint": "Iġbed biex tċaqlaq, uża l-iscroller biex tkabbar (format ta' ritratt tal-pass 2:3).",
+    "apply": "Applika"
+  },
+  "history": {
+    "heading": "Storja tal-logħob",
+    "all": {
+      "heading": "Il-logħob kollu",
+      "hint": "L-aktar riċenti l-ewwel. Logħob għaddej jista' jitkompla, logħob spiċċat juri r-riżultat."
+    },
+    "filter": {
+      "all": "Kollox",
+      "active": "Għaddej",
+      "finished": "Spiċċat"
+    },
+    "empty": "Għadha ma ntlagħbet l-ebda logħba.",
+    "filterEmpty": {
+      "active": "L-ebda logħba għaddejja.",
+      "finished": "Għad m'hemm l-ebda logħba spiċċata."
+    },
+    "deleteConfirm": "Tassew tħassar \"{label}\" b'mod permanenti mill-istorja tal-logħob?",
+    "badge": {
+      "finished": "Spiċċat",
+      "active": "Għaddej"
+    },
+    "meta": {
+      "target": "Mira: {score} punt",
+      "rounds": "Rawnd {played}/{total}",
+      "winners": "Rebbieħ: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Settings",
+    "subtitle": "Tapplika għal kulħadd li juża din l-app (issejvjata b'mod globali).",
+    "tabs": {
+      "aussehen": "Dehra",
+      "allgemein": "Ġenerali",
+      "spieler": "Plejers",
+      "spiele": "Il-logħob tiegħi",
+      "zugang": "Protezzjoni tal-aċċess",
+      "backup": "Backup"
+    },
+    "theme": {
+      "heading": "Dehra",
+      "hint": "Tliet stili indipendenti biex tagħżel minnhom. L-irfinar tal-kuluri jinsab hawn taħt taħt „Kuluri fid-dettall”.",
+      "classic": "Klassiku",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Kulur ta' aċċent",
+      "accent": {
+        "green": "Aħdar",
+        "orange": "Oranġjo",
+        "pink": "Roża",
+        "violet": "Vjola",
+        "cyan": "Ċjan"
+      },
+      "backgroundLabel": "Sfond",
+      "background": {
+        "dark": "Skur",
+        "darkBlue": "Blu skur",
+        "black": "Iswed"
+      },
+      "cardStyleLabel": "Stil tal-karta",
+      "cardStyle": {
+        "classic": "Klassiku",
+        "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Suġġeriment tal-kulur",
+      "flipPreset": {
+        "amber": "Ambra",
+        "petrol": "Blu petrol",
+        "karmesin": "Kremżi",
+        "knallorange": "Oranġjo qawwi",
+        "violett": "Vjola"
+      }
+    },
+    "title": {
+      "heading": "Titlu",
+      "hint": "Jidher fil-header u fit-titlu tat-tab tal-browser.",
+      "label": "Titlu"
+    },
+    "feedback": {
+      "heading": "Feedback meta jiġi ssejvjat",
+      "hint": "Ħoss qasir (u vibrazzjoni, jekk l-apparat jappoġġaha) meta jiġi ssejvjat rawnd. Fuq l-iPhone/iPad il-vibrazzjoni mhix possibbli għal raġunijiet tekniċi (Safari), iżda l-ħoss jaħdem.",
+      "label": "Ħoss meta jiġi ssejvjat"
+    },
+    "presets": {
+      "heading": "Il-logħob tiegħi",
+      "hint": "Il-logħob tiegħek stess, ikkonfigurat kompletament (eż. „Flip7” b'mira ta' 200) — jidhru fil-paġna ewlenija taħt „Il-logħob tiegħi” u jimlew minn qabel il-formola tas-setup meta jiġu kklikkjati.",
+      "favoritesHeading": "Favoriti",
+      "favoritesHint": "Aġġusta l-ordni bil-vleġeġ jew billi tiġbed — jistabbilixxi l-ordni tar-ringiela tal-favoriti fil-paġna ewlenija.",
+      "allHeading": "Il-logħob kollu",
+      "allHint": "Ordnati alfabetikament — il-favoriti jidhru wkoll hawn, biex jibqgħu jinstabu fi kwalunkwe każ.",
+      "addButton": "Żid logħba ġdida",
+      "formHeadingNew": "Logħba ġdida",
+      "formHeadingEdit": "Editja {name}",
+      "nameLabel": "Isem",
+      "iconLabel": "Ikona",
+      "modeLabel": "Mod",
+      "metaTarget": "Mira: {target} punt",
+      "metaRounds": "{rounds} rawnd",
+      "saveFailed": "Il-logħba ma setgħetx tiġi ssejvjata.",
+      "deleteConfirm": "Tassew tħassar \"{name}\"?",
+      "empty": "Għadha ma nħolqot l-ebda logħba.",
+      "favoriteLabel": "Favorit",
+      "moveUp": "Mexxi 'l fuq",
+      "moveDown": "Mexxi 'l isfel",
+      "editButton": "Editja"
+    },
+    "access": {
+      "heading": "Protezzjoni tal-aċċess",
+      "hint": "Tipproteġi s-sit kollu b'password kondiviża waħda għal kulħadd li jaf il-link. Mingħajr protezzjoni attiva, kulħadd bil-link jista' juża s-sit.",
+      "enableLabel": "Attiva l-protezzjoni tal-aċċess",
+      "noPasswordSet": "Għadha ma ġiet issettjata l-ebda password — il-protezzjoni tibqa' inattiva sakemm tiġi ssettjata waħda.",
+      "passwordLabel": "Password ġdida",
+      "passwordConfirmLabel": "Ikkonferma l-password",
+      "passwordHint": "Mill-inqas 8 karattri. Ħalli vojt biex iżżomm il-password issejvjata bħalissa. Insejt il-password? Ara r-README għal struzzjonijiet ta' reset permezz ta' aċċess għall-fajls.",
+      "mismatchError": "Iż-żewġ passwords ma jaqblux.",
+      "tooShortError": "Il-password trid tkun mill-inqas 8 karattri twal.",
+      "saveFailed": "Is-sejvjar falla.",
+      "logoutButton": "Oħroġ minn dan l-apparat"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "B'mod prestabbilit l-ebda logo personalizzat mhu attiv, l-ikona tal-pinna tibqa' viżibbli.",
+      "modeLabel": "Wiri",
+      "modeNone": "L-ebda logo",
+      "modeSquare": "Kwadru, fuq ix-xellug",
+      "modeBanner": "Banner tul il-wisa' kollha",
+      "squareHeading": "Logo kwadru",
+      "squareHint": "Rakkomandat: 160×160 pixel (kwadru). PNG, JPEG jew SVG, massimu 2 MB.",
+      "bannerHeading": "Logo banner",
+      "bannerHint": "Rakkomandat: madwar 1400×160 pixel (wiesa', mhux għoli wisq). PNG, JPEG jew SVG, massimu 2 MB.",
+      "uploadButton": "Uploadja",
+      "removeConfirm": "Tassew tneħħi dan il-logo?",
+      "uploadSuccess": "Logo uploadjat.",
+      "removeSuccess": "Logo mneħħi.",
+      "uploadFailed": "Il-logo ma setax jiġi uploadjat.",
+      "noFileSelected": "Agħżel fajl l-ewwel."
+    },
+    "language": {
+      "heading": "Lingwa",
+      "hint": "Aktar lingwi jistgħu jiżdiedu aktar 'il quddiem.",
+      "label": "Lingwa"
+    },
+    "colors": {
+      "advancedHeading": "Kuluri fid-dettall",
+      "advancedSummary": "Iftaħ għażliet avvanzati",
+      "boldNote": "Tapplika biss għall-Klassiku — Bold juża l-presets ta' hawn fuq.",
+      "single": {
+        "heading": "Kuluri ta' aċċent u funzjoni",
+        "hint": "Japplikaw mingħajr tibdil fil-mod ċar u skur."
+      },
+      "pairs": {
+        "heading": "Kuluri bażiċi (separati għall-mod ċar/skur)",
+        "hint": "Sfond, superfiċje, test u border — darba għal kull mod ċar u skur.",
+        "light": "Ċar",
+        "dark": "Skur"
+      },
+      "flip": {
+        "heading": "Kuluri ta' Flip Board",
+        "hint": "Jissostitwixxi s-suġġeriment tal-kulur magħżul hawn fuq — darba għal kull mod ċar u skur."
+      }
+    },
+    "resetButton": "Irrisettja għall-kuluri prestabbiliti",
+    "resetConfirm": "Tassew tirrisettja l-kuluri kollha għall-valuri prestabbiliti tagħhom?",
+    "savedStatus": "Issejvjat. Paġni oħra jieħdu t-tibdil fiż-żjara li jmiss tagħhom.",
+    "resetStatus": "Irrisettjat għall-kuluri prestabbiliti.",
+    "backup": {
+      "heading": "Backup tad-data",
+      "hint": "Backup sħiħ tal-plejers, il-logħob, l-avatars u l-logos kollha bħala fajl ZIP — eż. biex tiżgura li xejn ma jintilef meta tmur fuq server ġdid.",
+      "exportHeading": "Niżżel il-backup",
+      "exportHint": "Fih id-database sħiħ flimkien mal-immaġini tal-avatars kollha u l-logo.",
+      "exportButton": "Niżżel il-backup",
+      "importHeading": "Irrestawra l-backup",
+      "importWarning": "Attenzjoni: importazzjoni tissostitwixxi b'mod irriversibbli l-plejers, il-logħob, l-avatars u l-logos attwali kollha bil-kontenut tal-fajl tal-backup.",
+      "fileLabel": "Fajl tal-backup (.zip)",
+      "importButton": "Importa l-backup",
+      "confirmHint": "Biex tikkonferma, ittajpja eżatt ERSETZEN hawn taħt.",
+      "confirmLabel": "Konferma",
+      "confirmButton": "Ibdel issa, b'mod permanenti",
+      "noFileSelected": "Agħżel fajl tal-backup l-ewwel.",
+      "finalConfirm": "Tassew tissostitwixxi b'mod irriversibbli d-data kollha attwali tal-logħob bil-backup?",
+      "importInProgress": "Qed jiġi restawrat il-backup …",
+      "importSuccess": "Backup restawrat: {games} logħba, {players} plejer. Qed terġa' tgħabbi l-paġna …",
+      "importFailed": "L-importazzjoni falliet."
+    },
+    "colorLabels": {
+      "green": "Aħdar newon (aċċent ewlieni)",
+      "greenStrong": "Aħdar newon, iddellel (test/linji)",
+      "amber": "Ambra (aċċent sekondarju)",
+      "amberStrong": "Ambra, iddellel (test/linji)",
+      "onAccent": "Test fuq superfiċji ta' aċċent",
+      "focus": "Kontorn tal-fokus (navigazzjoni bit-tastiera)",
+      "danger": "Żball / periklu (eż. buttuni ta' tħassir)",
+      "bg": "Sfond",
+      "surface": "Superfiċje (karti)",
+      "text": "Test",
+      "textMuted": "Test iddgħajjef",
+      "border": "Border"
+    }
+  },
+  "login": {
+    "heading": "Idħol",
+    "hint": "Dan is-sit hu protett b'password.",
+    "error": "Password ħażina.",
+    "passwordLabel": "Password",
+    "submitButton": "Idħol"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Issettja logħba ġdida (eż. Flip7, Tutto)",
+      "labelPlaceholder": "eż. Flip7, Tutto",
+      "targetLabel": "Tilgħab sa liema valur ta' punti?",
+      "winDirectionHint": "Fil-parti l-kbira tal-logħob jirbaħ l-ogħla punteġġ (eż. Flip7, Tutto) — iżda f'xi wħud, bħal Skyjo, minflok jirbaħ l-inqas punteġġ. Il-logħba tispiċċa b'kollox hekk kif xi ħadd jilħaq jew jaqbeż il-mira.",
+      "targetBonusLabel": "Bonus talli tilħaq il-mira"
+    },
+    "game": {
+      "subtitle": "Mira: {target} punt · {started}",
+      "roundEntryHint": "Daħħal il-punti ta' dan ir-rawnd għal kull plejer (0 hu normali, eż. meta taqbeż il-limitu)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Issettja logħba ġdida (eż. Doppelkopf)",
+      "labelPlaceholder": "eż. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "jirbaħ l-ogħla punteġġ",
+        "lowest": "jirbaħ l-inqas punteġġ"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Issettja logħba ġdida",
+      "roundsLabel": "Kemm-il rawnd għandu jintlagħab?",
+      "announceLabel": "Ħabbar wara kull rawnd li spiċċa",
+      "announceHint": "Turi avviż qasir, li jista' jingħalaq, wara kull rawnd issejvjat."
+    },
+    "game": {
+      "subtitleOngoing": "Rawnd {round} minn {total} · {started}",
+      "subtitleReached": "{played} minn {total} rawnd intlagħbu · {started}",
+      "roundEndNotice": "Rawnd {round} spiċċa",
+      "targetReached": {
+        "heading": "Lagħabtu r-{total} rawnd miftiehma.",
+        "extendLabel": "Kompli lagħab, b'dan in-numru ta' rawndijiet oħra:",
+        "extendButton": "Kompli lagħab"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Issettja logħba ġdida — 10 rawndijiet, offerta tat-teħid",
+      "hint": "10 rawndijiet fissi (minn 10 sa karta waħda), fl-aħħar jirbaħ l-ogħla punteġġ.",
+      "labelPlaceholder": "eż. Lejl RAGE",
+      "showBonusMalusLabel": "Uri bonus/malus",
+      "showBonusMalusHint": "Uri/aħbi l-oqsma tal-karti speċjali +5/−5 fid-dħul tar-rawnd."
+    },
+    "game": {
+      "cardSingular": "karta",
+      "cardPlural": "karti",
+      "subtitleFinished": "{played} minn 10 rawnd intlagħbu · {started}",
+      "subtitleOngoing": "Rawnd {round} minn 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Daħħal rawnd",
+        "staticHint": "Daħħal l-offerta u t-teħid attwali għal kull plejer, karti speċjali jekk hemm.",
+        "heading": "Daħħal rawnd {round} ({cards} {cardWord})",
+        "hint": "Daħħal l-offerta u t-teħid attwali għal kull plejer (0 hu validu). It-teħid tal-plejers kollha għandu jgħodd {cards}.",
+        "table": {
+          "player": "Plejer",
+          "bid": "Offerta",
+          "tricks": "Teħid",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Punti"
+        }
+      },
+      "roundsTableHint": "Biddel il-valuri direttament biex tikkoreġi żbalji fid-dħul. Offerta / teħid / +5 / −5 / punti (ikkalkulati) għal kull plejer u rawnd.",
+      "deleteRoundButton": "Ħassar R{round}",
+      "mismatchConfirm": "It-total tat-teħid imdaħħal ({actual}) ma jaqbilx man-numru ta' karti ta' dan ir-rawnd ({expected}). Issejvja xorta?",
+      "saveFailed": "Ir-rawnd ma setax jiġi ssejvjat."
+    }
+  },
+  "chooser": {
+    "heading": "Min jibda?",
+    "subtitle": "Poġġu s-swaba' kollha fuq l-iskrin fl-istess ħin — jaħdem permezz ta' multitouch (iPad/iPhone).",
+    "hint": "Poġġi s-swaba' fuq l-iskrin …",
+    "winnerCountLabel": "Numru ta' rebbieħa",
+    "resultSingle": "Din il-persuna tibda! Erġa' poġġi s-swaba' għal rawnd ġdid.",
+    "resultMulti": "Dawn il-{count} persuni jibdew! Erġa' poġġi s-swaba' għal rawnd ġdid."
+  }
+}

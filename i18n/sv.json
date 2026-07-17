@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Hoppa till innehållet",
+    "nav": {
+      "home": "Start",
+      "history": "Historik",
+      "stats": "Statistik",
+      "chooser": "Vem börjar?",
+      "settings": "Inställningar",
+      "openMenu": "Öppna menyn",
+      "closeMenu": "Stäng menyn"
+    },
+    "updateAvailable": "Uppdatering tillgänglig ({version})",
+    "buttons": {
+      "add": "Lägg till",
+      "save": "Spara",
+      "delete": "Ta bort",
+      "start": "Starta spel",
+      "finish": "Avsluta spel",
+      "resume": "Fortsätt spel",
+      "remove": "Ta bort",
+      "reactivate": "Återaktivera",
+      "close": "Stäng",
+      "cancel": "Avbryt"
+    },
+    "winDirection": {
+      "heading": "Vem vinner till slut?",
+      "highest": "Högst poäng",
+      "lowest": "Lägst poäng"
+    },
+    "stepper": {
+      "decrease": "Minska",
+      "increase": "Öka",
+      "minusValue": "Dra ifrån {value}",
+      "plusValue": "Lägg till {value}"
+    },
+    "table": {
+      "rank": "Placering",
+      "name": "Namn",
+      "points": "Poäng",
+      "progress": "Förlopp",
+      "actions": "Åtgärder",
+      "round": "Runda"
+    },
+    "game": {
+      "loading": "Laddar …",
+      "notFound": "Spelet hittades inte.",
+      "standingsHeading": "Ställning",
+      "standings": {
+        "collapse": "Fäll ihop",
+        "expand": "Visa",
+        "teamTotalSuffix": "poäng totalt"
+      },
+      "startingPlayerLegend": "★ Startspelare (slumpmässig)",
+      "startedSuffix": "startade {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Spelet är slut! {names} vinner tillsammans med {points} poäng.",
+        "single": "🏆 Spelet är slut! {names} vann med {points} poäng."
+      },
+      "roundEntry": {
+        "heading": "Registrera ny runda",
+        "saveButton": "Spara runda",
+        "switchToButtons": "Stegknappar",
+        "switchToType": "Skriv in"
+      },
+      "roundsTable": {
+        "heading": "Rundhistorik & korrigering",
+        "hint": "Justera värden direkt för att rätta inmatningsfel.",
+        "empty": "Inga rundor spelade ännu.",
+        "deleteConfirm": "Ta verkligen bort den här rundan?",
+        "undoButton": "Ångra senaste rundan"
+      },
+      "noPlayersHint": "Inga spelare ännu — lägg till en nedan.",
+      "roundEntryHintGeneric": "Ange den här rundans poäng per spelare (0 är normalt)."
+    },
+    "setup": {
+      "heading": "Ställ in spel",
+      "labelOptional": "Etikett (valfritt)",
+      "whoPlays": "Vem spelar?",
+      "addPlayerLabel": "Lägg till ny spelare",
+      "addPlayerPlaceholder": "Ange namn",
+      "advancedOptions": "Avancerade alternativ",
+      "teamModeLabel": "Aktivera lagläge",
+      "teamModeHint": "Spelare kan grupperas i lag vars poäng räknas samman.",
+      "teamScoringHeading": "Lagpoängräkning",
+      "teamScoringShared": "Kombinerad poäng",
+      "teamScoringSharedHint": "Lagmedlemmarna anger gemensamt en kombinerad poäng per runda.",
+      "teamScoringIndividual": "Individuella poäng, kombinerad summa",
+      "teamScoringIndividualHint": "Varje spelare anger sin egen poäng — både individuella poäng och lagets totalsumma visas.",
+      "teamNone": "Inget lag",
+      "teamNumber": "Lag {number}",
+      "teamNameLabel": "Namn på lag {number} (valfritt)",
+      "teamNamePlaceholder": "t.ex. Örnarna",
+      "selectAll": "Markera alla",
+      "selectNone": "Avmarkera alla",
+      "allowNegativeLabel": "Tillåt negativa poäng",
+      "allowNegativeHint": "Om avstängt begränsas negativa rundinmatningar till 0.",
+      "targetBonusHint": "Extrapoäng som vinnaren/vinnarna får för att ha nått målpoängen (0 = ingen bonus).",
+      "roundEntryStepsLabel": "Stegstorlekar för rundregistrering",
+      "roundEntryStepsHint": "Stegknappar som alternativ till att skriva in siffror — välj vilka stegstorlekar (±) som ska vara tillgängliga. Du kan när som helst växla mellan att skriva in och stegknappar, även mitt i spelet."
+    },
+    "errors": {
+      "minPlayers": "Välj minst 2 spelare.",
+      "createPlayerFailed": "Spelaren kunde inte skapas.",
+      "startGameFailed": "Spelet kunde inte startas."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Poänghjälp för spelkvällar"
+    },
+    "stats": {
+      "title": "Statistik"
+    },
+    "history": {
+      "title": "Spelhistorik"
+    },
+    "settings": {
+      "title": "Inställningar"
+    },
+    "pointsToTargetSetup": {
+      "title": "Poäng till mål — Nytt spel"
+    },
+    "pointsToTargetGame": {
+      "title": "Poäng till mål"
+    },
+    "pointsOpenSetup": {
+      "title": "Öppen poängrunda — Nytt spel"
+    },
+    "pointsOpenGame": {
+      "title": "Öppen poängrunda"
+    },
+    "fixedRoundsSetup": {
+      "title": "Poängrunda med fast antal rundor — Nytt spel"
+    },
+    "fixedRoundsGame": {
+      "title": "Poängrunda med fast antal rundor"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nytt spel"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Vem börjar?"
+    },
+    "login": {
+      "title": "Logga in"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Poäng till mål",
+      "description": "Poäng läggs samman runda efter runda tills någon når eller överskrider ett fast målvärde. Den som då har flest poäng vinner.",
+      "examples": "t.ex. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Öppen poängrunda",
+      "description": "Poäng läggs samman runda efter runda utan fast mål. Ni bestämmer själva när ni ska avsluta — högst eller lägst poäng vinner, beroende på hur ni ställer in det.",
+      "examples": "t.ex. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Poängrunda med fast antal rundor",
+      "description": "Vid inställningen bestämmer ni hur många rundor som ska spelas och om högst eller lägst poäng vinner till slut. Efter sista rundan frågar spelet om ni vill avsluta eller fortsätta med fler rundor."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fasta 10 rundor med minskande antal kort (10 ner till 1). Före varje runda bjuder du ditt förväntade antal stick, sedan anger du de faktiska sticken — poängen räknas automatiskt ut enligt RAGE-reglerna (inkl. Rage-bonus/hämnd).",
+      "examples": "Kortspelet RAGE"
+    }
+  },
+  "home": {
+    "heading": "Poänghjälp för spelkvällar",
+    "newGame": {
+      "startButton": "Starta ett nytt spel"
+    },
+    "generalBoards": {
+      "heading": "Allmänna scoreboards",
+      "hint": "Fritt konfigurerbart — ställ in målpoäng, vinstriktning och stegstorlekar vid inställningen."
+    },
+    "myGames": {
+      "heading": "Mina spel",
+      "hint": "RAGE plus dina egna, helt konfigurerade spel (skapas under Inställningar → Mina spel).",
+      "favoritesHeading": "Favoriter",
+      "allHeading": "Alla spel",
+      "metaTarget": "Mål: {score} poäng",
+      "metaRounds": "{rounds} rundor"
+    },
+    "openGames": {
+      "heading": "Pågående spel",
+      "viewAll": "Visa alla"
+    },
+    "pwaHint": {
+      "heading": "Använd som app",
+      "text": "På iPad/iPhone: tryck på dela-ikonen i Safari och välj sedan \"Lägg till på hemskärmen\" — sidan visas då som en egen app, utan adressfält."
+    },
+    "support": {
+      "label": "Stöd det här projektet",
+      "ariaLabel": "Stöd det här projektet på Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Hantera spelare",
+    "newPlayer": {
+      "heading": "Ny spelare",
+      "nameLabel": "Namn"
+    },
+    "active": {
+      "heading": "Aktiva spelare",
+      "hint": "Dessa spelare finns tillgängliga för snabbval i nya spel.",
+      "empty": "Inga aktiva spelare ännu."
+    },
+    "inactive": {
+      "heading": "Inaktiverade spelare",
+      "hint": "Förblir synliga i tidigare spel men visas inte längre i snabbvalet.",
+      "empty": "Inga inaktiverade spelare."
+    },
+    "avatar": {
+      "uploadLabel": "Ladda upp foto",
+      "changeLabel": "Byt foto",
+      "removeLabel": "Ta bort foto",
+      "removeConfirm": "Ta verkligen bort den här avataren?",
+      "uploadFailed": "Fotot kunde inte sparas."
+    },
+    "deleteConfirm": "Ta verkligen bort \"{name}\" permanent? Till skillnad från att ta bort finns det ingen väg tillbaka i spelarhanteringen — tidigare spel visar fortfarande namnet."
+  },
+  "groups": {
+    "hint": "Gruppera spelare (t.ex. \"Familj\", \"Stamgäster\") — när ni ställer in ett spel kan ni sedan välja hela gruppen med ett klick. En person kan tillhöra flera grupper.",
+    "newGroup": {
+      "heading": "Ny grupp",
+      "nameLabel": "Gruppnamn",
+      "namePlaceholder": "t.ex. Familj",
+      "membersLabel": "Medlemmar"
+    },
+    "active": {
+      "heading": "Aktiva grupper",
+      "empty": "Inga grupper skapade ännu."
+    },
+    "inactive": {
+      "heading": "Inaktiverade grupper",
+      "empty": "Inga inaktiverade grupper."
+    },
+    "empty": "Inga medlemmar",
+    "editButton": "Redigera",
+    "saveButton": "Spara",
+    "cancelButton": "Avbryt",
+    "deleteConfirm": "Ta verkligen bort gruppen \"{name}\"? Medlemmarna själva finns kvar — bara grupperingen tas bort.",
+    "createFailed": "Gruppen kunde inte skapas."
+  },
+  "stats": {
+    "heading": "Statistik",
+    "filter": {
+      "heading": "Tidsperiod",
+      "hint": "Lämna tomt för statistik över alla spel. För en spelkväll som sträcker sig förbi midnatt, ange t.ex. 18:00 till 03:00 nästa dag.",
+      "fromLabel": "Från",
+      "toLabel": "Till",
+      "apply": "Tillämpa",
+      "reset": "Återställ"
+    },
+    "kpi": {
+      "games": "Spel",
+      "finished": "Avslutade",
+      "winRate": "Andel avslutade",
+      "avgScore": "Snittpoäng"
+    },
+    "overall": {
+      "heading": "Totalt",
+      "empty": "Inga spel under den här perioden."
+    },
+    "byMode": {
+      "heading": "Per läge"
+    },
+    "modeDistribution": {
+      "heading": "Fördelning per läge",
+      "empty": "Inga spel under den här perioden."
+    },
+    "headToHead": {
+      "heading": "Direktmöten",
+      "empty": "Inga två spelare med gemensamma avslutade spel under den här perioden än.",
+      "listSummary": "Visa som lista",
+      "draws": "oavgjorda",
+      "gamesSuffix": "spel"
+    },
+    "games": {
+      "heading": "Spel under den här perioden",
+      "empty": "Inga spel under den här perioden."
+    },
+    "table": {
+      "player": "Spelare",
+      "gamesPlayed": "Spel",
+      "gamesFinished": "Avslutade",
+      "wins": "Vinster",
+      "winRate": "Vinstandel",
+      "currentStreak": "Aktuell svit",
+      "longestStreak": "Längsta svit",
+      "avgScore": "Snittpoäng"
+    },
+    "print": "Skriv ut / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Välj bildbeskärning",
+    "hint": "Dra för att panorera, använd reglaget för att zooma (passfotoformat 2:3).",
+    "apply": "Tillämpa"
+  },
+  "history": {
+    "heading": "Spelhistorik",
+    "all": {
+      "heading": "Alla spel",
+      "hint": "Nyaste först. Pågående spel kan återupptas, avslutade visar resultatet."
+    },
+    "filter": {
+      "all": "Alla",
+      "active": "Pågående",
+      "finished": "Avslutade"
+    },
+    "empty": "Inga spel spelade ännu.",
+    "filterEmpty": {
+      "active": "Inga pågående spel.",
+      "finished": "Inga avslutade spel ännu."
+    },
+    "deleteConfirm": "Ta verkligen bort \"{label}\" permanent från spelhistoriken?",
+    "badge": {
+      "finished": "Avslutat",
+      "active": "Pågående"
+    },
+    "meta": {
+      "target": "Mål: {score} poäng",
+      "rounds": "Runda {played}/{total}",
+      "winners": "Vinnare: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Inställningar",
+    "subtitle": "Gäller för alla som använder den här appen (sparas globalt).",
+    "tabs": {
+      "aussehen": "Utseende",
+      "allgemein": "Allmänt",
+      "spieler": "Spelare",
+      "spiele": "Mina spel",
+      "zugang": "Åtkomstskydd",
+      "backup": "Säkerhetskopia"
+    },
+    "theme": {
+      "heading": "Utseende",
+      "hint": "Tre oberoende stilar att välja mellan. Finjustering av färgerna finns längre ner under \"Färger i detalj\".",
+      "classic": "Klassisk",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Accentfärg",
+      "accent": {
+        "green": "Grön",
+        "orange": "Orange",
+        "pink": "Rosa",
+        "violet": "Violett",
+        "cyan": "Cyan"
+      },
+      "backgroundLabel": "Bakgrund",
+      "background": {
+        "dark": "Mörk",
+        "darkBlue": "Mörkblå",
+        "black": "Svart"
+      },
+      "cardStyleLabel": "Kortstil",
+      "cardStyle": {
+        "classic": "Klassisk",
+        "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Färgförslag",
+      "flipPreset": {
+        "amber": "Bärnsten",
+        "petrol": "Petroleumblå",
+        "karmesin": "Karmosinröd",
+        "knallorange": "Klarorange",
+        "violett": "Violett"
+      }
+    },
+    "title": {
+      "heading": "Titel",
+      "hint": "Visas i sidhuvudet och i webbläsarflikens titel.",
+      "label": "Titel"
+    },
+    "feedback": {
+      "heading": "Återkoppling vid sparande",
+      "hint": "Kort ljud (och vibration, om enheten stödjer det) när en runda sparas. På iPhone/iPad är vibration inte möjligt av tekniska skäl (Safari), men ljudet fungerar.",
+      "label": "Ljud vid sparande"
+    },
+    "presets": {
+      "heading": "Mina spel",
+      "hint": "Dina egna, helt konfigurerade spel (t.ex. \"Flip7\" med mål 200) — visas på startsidan under \"Mina spel\" och förifyller inställningsformuläret vid klick.",
+      "favoritesHeading": "Favoriter",
+      "favoritesHint": "Justera ordningen med pilarna eller dra och släpp — bestämmer ordningen på favoritraden på startsidan.",
+      "allHeading": "Alla spel",
+      "allHint": "Sorterade i bokstavsordning — favoriter visas även här, så de förblir hittbara ändå.",
+      "addButton": "Lägg till nytt spel",
+      "formHeadingNew": "Nytt spel",
+      "formHeadingEdit": "Redigera {name}",
+      "nameLabel": "Namn",
+      "iconLabel": "Ikon",
+      "modeLabel": "Läge",
+      "metaTarget": "Mål: {target} poäng",
+      "metaRounds": "{rounds} rundor",
+      "saveFailed": "Spelet kunde inte sparas.",
+      "deleteConfirm": "Ta verkligen bort \"{name}\"?",
+      "empty": "Inga spel skapade ännu.",
+      "favoriteLabel": "Favorit",
+      "moveUp": "Flytta upp",
+      "moveDown": "Flytta ner",
+      "editButton": "Redigera"
+    },
+    "access": {
+      "heading": "Åtkomstskydd",
+      "hint": "Skyddar hela sidan med ett gemensamt lösenord för alla som känner till länken. Utan aktivt skydd kan vem som helst med länken använda sidan.",
+      "enableLabel": "Aktivera åtkomstskydd",
+      "noPasswordSet": "Inget lösenord är inställt ännu — skyddet förblir inaktivt tills ett har ställts in.",
+      "passwordLabel": "Nytt lösenord",
+      "passwordConfirmLabel": "Bekräfta lösenord",
+      "passwordHint": "Minst 8 tecken. Lämna tomt för att behålla det nuvarande sparade lösenordet. Glömt lösenordet? Se README för instruktioner om återställning via filåtkomst.",
+      "mismatchError": "De två lösenorden matchar inte.",
+      "tooShortError": "Lösenordet måste vara minst 8 tecken långt.",
+      "saveFailed": "Det gick inte att spara.",
+      "logoutButton": "Logga ut på den här enheten"
+    },
+    "logo": {
+      "heading": "Logotyp",
+      "hint": "Ingen egen logotyp är aktiv som standard, pennikonen förblir synlig.",
+      "modeLabel": "Visning",
+      "modeNone": "Ingen logotyp",
+      "modeSquare": "Kvadratisk, uppe till vänster",
+      "modeBanner": "Banderoll över hela bredden",
+      "squareHeading": "Kvadratisk logotyp",
+      "squareHint": "Rekommenderas: 160×160 pixlar (kvadrat). PNG, JPEG eller SVG, max 2 MB.",
+      "bannerHeading": "Banderollogotyp",
+      "bannerHint": "Rekommenderas: ca 1400×160 pixlar (bred, inte för hög). PNG, JPEG eller SVG, max 2 MB.",
+      "uploadButton": "Ladda upp",
+      "removeConfirm": "Ta verkligen bort den här logotypen?",
+      "uploadSuccess": "Logotyp uppladdad.",
+      "removeSuccess": "Logotyp borttagen.",
+      "uploadFailed": "Logotypen kunde inte laddas upp.",
+      "noFileSelected": "Välj en fil först."
+    },
+    "language": {
+      "heading": "Språk",
+      "hint": "Fler språk kan läggas till senare.",
+      "label": "Språk"
+    },
+    "colors": {
+      "advancedHeading": "Färger i detalj",
+      "advancedSummary": "Öppna avancerat",
+      "boldNote": "Gäller endast Klassisk — Bold använder förinställningarna ovan.",
+      "single": {
+        "heading": "Accent- och funktionsfärger",
+        "hint": "Gäller oförändrat i ljust och mörkt läge."
+      },
+      "pairs": {
+        "heading": "Baskonfigurationsfärger (separata för ljust/mörkt läge)",
+        "hint": "Bakgrund, yta, text och kant — en gång vardera för ljust och mörkt läge.",
+        "light": "Ljust",
+        "dark": "Mörkt"
+      },
+      "flip": {
+        "heading": "Flip Board-färger",
+        "hint": "Åsidosätter färgförslaget som valts ovan — en gång vardera för ljust och mörkt läge."
+      }
+    },
+    "resetButton": "Återställ till standardfärger",
+    "resetConfirm": "Verkligen återställa alla färger till standardvärdena?",
+    "savedStatus": "Sparat. Andra sidor uppdateras vid nästa besök.",
+    "resetStatus": "Återställt till standardfärger.",
+    "backup": {
+      "heading": "Säkerhetskopiering av data",
+      "hint": "Fullständig säkerhetskopia av alla spelare, spel, avatarer och logotyper som en ZIP-fil — t.ex. för att inget ska gå förlorat vid ett serverbyte.",
+      "exportHeading": "Ladda ner säkerhetskopia",
+      "exportHint": "Innehåller hela databasen plus alla avatarbilder och logotypen.",
+      "exportButton": "Ladda ner säkerhetskopia",
+      "importHeading": "Återställ säkerhetskopia",
+      "importWarning": "Varning: en import ersätter oåterkalleligen alla nuvarande spelare, spel, avatarer och logotyper med innehållet i säkerhetskopian.",
+      "fileLabel": "Säkerhetskopiefil (.zip)",
+      "importButton": "Importera säkerhetskopia",
+      "confirmHint": "Skriv exakt ERSETZEN nedan för att bekräfta.",
+      "confirmLabel": "Bekräftelse",
+      "confirmButton": "Ersätt nu, permanent",
+      "noFileSelected": "Välj en säkerhetskopiefil först.",
+      "finalConfirm": "Verkligen ersätta all nuvarande speldata oåterkalleligen med säkerhetskopian?",
+      "importInProgress": "Återställer säkerhetskopia …",
+      "importSuccess": "Säkerhetskopia återställd: {games} spel, {players} spelare. Sidan laddas om …",
+      "importFailed": "Importen misslyckades."
+    },
+    "colorLabels": {
+      "green": "Neongrön (huvudaccent)",
+      "greenStrong": "Neongrön, mörkare (text/linjer)",
+      "amber": "Bärnsten (sekundär accent)",
+      "amberStrong": "Bärnsten, mörkare (text/linjer)",
+      "onAccent": "Text på accentytor",
+      "focus": "Fokuskontur (tangentbordsnavigering)",
+      "danger": "Fel / fara (t.ex. borttagningsknappar)",
+      "bg": "Bakgrund",
+      "surface": "Yta (kort)",
+      "text": "Text",
+      "textMuted": "Nedtonad text",
+      "border": "Kant"
+    }
+  },
+  "login": {
+    "heading": "Logga in",
+    "hint": "Den här sidan är lösenordsskyddad.",
+    "error": "Fel lösenord.",
+    "passwordLabel": "Lösenord",
+    "submitButton": "Logga in"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Ställ in nytt spel (t.ex. Flip7, Tutto)",
+      "labelPlaceholder": "t.ex. Flip7, Tutto",
+      "targetLabel": "Spela upp till vilket poängvärde?",
+      "winDirectionHint": "I de flesta spel vinner högst poäng (t.ex. Flip7, Tutto) — men i vissa, som Skyjo, vinner istället lägst poäng. Spelet avslutas ändå så snart någon når eller överskrider målet.",
+      "targetBonusLabel": "Bonus för att nå målet"
+    },
+    "game": {
+      "subtitle": "Mål: {target} poäng · {started}",
+      "roundEntryHint": "Ange den här rundans poäng per spelare (0 är normalt, t.ex. vid en bust)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Ställ in nytt spel (t.ex. Doppelkopf)",
+      "labelPlaceholder": "t.ex. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "högst poäng vinner",
+        "lowest": "lägst poäng vinner"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Ställ in nytt spel",
+      "roundsLabel": "Hur många rundor ska spelas?",
+      "announceLabel": "Meddela efter varje runda att den är slut",
+      "announceHint": "Visar ett kort meddelande, som kan stängas, efter varje sparad runda."
+    },
+    "game": {
+      "subtitleOngoing": "Runda {round} av {total} · {started}",
+      "subtitleReached": "{played} av {total} rundor spelade · {started}",
+      "roundEndNotice": "Runda {round} avslutad",
+      "targetReached": {
+        "heading": "Ni har spelat de överenskomna {total} rundorna.",
+        "extendLabel": "Fortsätt spela, med så här många fler rundor:",
+        "extendButton": "Fortsätt spela"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Ställ in nytt spel — 10 rundor, stickbud",
+      "hint": "Fasta 10 rundor (10 ner till 1 kort), högst poäng vinner till slut.",
+      "labelPlaceholder": "t.ex. RAGE-kväll",
+      "showBonusMalusLabel": "Visa bonus/malus",
+      "showBonusMalusHint": "Visa/dölj fälten för specialkort +5/−5 i rundregistreringen."
+    },
+    "game": {
+      "cardSingular": "kort",
+      "cardPlural": "kort",
+      "subtitleFinished": "{played} av 10 rundor spelade · {started}",
+      "subtitleOngoing": "Runda {round} av 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Registrera runda",
+        "staticHint": "Ange bud och faktiska stick per spelare, ev. specialkort.",
+        "heading": "Registrera runda {round} ({cards} {cardWord})",
+        "hint": "Ange bud och faktiska stick per spelare (0 är giltigt). Alla spelares stick bör summera till {cards}.",
+        "table": {
+          "player": "Spelare",
+          "bid": "Bud",
+          "tricks": "Stick",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Poäng"
+        }
+      },
+      "roundsTableHint": "Justera värden direkt för att rätta inmatningsfel. Bud / stick / +5 / −5 / poäng (beräknade) per spelare och runda.",
+      "deleteRoundButton": "Ta bort R{round}",
+      "mismatchConfirm": "Summan av angivna stick ({actual}) matchar inte den här rundans antal kort ({expected}). Spara ändå?",
+      "saveFailed": "Rundan kunde inte sparas."
+    }
+  },
+  "chooser": {
+    "heading": "Vem börjar?",
+    "subtitle": "Lägg alla fingrar på skärmen samtidigt — fungerar via multitouch (iPad/iPhone).",
+    "hint": "Lägg fingrarna på skärmen …",
+    "winnerCountLabel": "Antal vinnare",
+    "resultSingle": "Den här personen börjar! Lägg fingrarna igen för en ny runda.",
+    "resultMulti": "Dessa {count} personer börjar! Lägg fingrarna igen för en ny runda."
+  }
+}

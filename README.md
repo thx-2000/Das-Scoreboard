@@ -67,8 +67,9 @@ Beispieldaten.*
   Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
   Zeitraumfilter (inkl. Drucken/PDF).
 - **"Wer fängt an?"**: Multitouch-Fingerauswahl für iPad/iPhone.
-- **Mehrsprachig**: Deutsch und Englisch, umschaltbar in den
-  Einstellungen.
+- **Mehrsprachig**: 32 Sprachen (u.a. Deutsch, Englisch, Französisch,
+  Spanisch, Italienisch und die meisten weiteren europäischen Sprachen),
+  umschaltbar in den Einstellungen.
 - **Als App installierbar**: "Zum Home-Bildschirm hinzufügen" auf
   iPad/iPhone — läuft danach wie eine eigene App, ohne Adressleiste.
 - **Backup & Wiederherstellung**: komplette Datensicherung als ZIP-Datei
@@ -113,7 +114,12 @@ bestehende Daten gehen dabei nie verloren.
 
 ## Mehrsprachigkeit
 
-Die komplette Oberfläche ist auf Deutsch und Englisch verfügbar,
+Die komplette Oberfläche ist in 32 Sprachen verfügbar — Deutsch, Englisch,
+Französisch, Italienisch, Spanisch, Portugiesisch, Niederländisch,
+Schwedisch, Norwegisch, Dänisch, Finnisch, Isländisch, Polnisch,
+Tschechisch, Slowakisch, Ungarisch, Rumänisch, Bulgarisch, Griechisch,
+Kroatisch, Slowenisch, Estnisch, Lettisch, Litauisch, Ukrainisch, Serbisch,
+Bosnisch, Mazedonisch, Belarussisch, Albanisch, Irisch und Maltesisch —
 umschaltbar unter Einstellungen → Sprache.
 
 ## Datenschutz
@@ -234,7 +240,8 @@ data.*
   page with win rates, head-to-head comparisons, and a date-range filter
   (including print/PDF).
 - **"Who starts?"**: a multitouch finger-picker for iPad/iPhone.
-- **Multi-language**: German and English, switchable in settings.
+- **Multi-language**: 32 languages (German, English, French, Spanish,
+  Italian, and most other European languages), switchable in settings.
 - **Installable as an app**: "Add to Home Screen" on iPad/iPhone — opens
   afterward like its own app, without the address bar.
 - **Backup & restore**: download a complete backup as a ZIP file or
@@ -279,8 +286,12 @@ existing data is never lost.
 
 ## Multi-language support
 
-The entire interface is available in German and English, switchable
-under Settings → Language.
+The entire interface is available in 32 languages — German, English,
+French, Italian, Spanish, Portuguese, Dutch, Swedish, Norwegian, Danish,
+Finnish, Icelandic, Polish, Czech, Slovak, Hungarian, Romanian, Bulgarian,
+Greek, Croatian, Slovenian, Estonian, Latvian, Lithuanian, Ukrainian,
+Serbian, Bosnian, Macedonian, Belarusian, Albanian, Irish, and Maltese —
+switchable under Settings → Language.
 
 ## Privacy
 

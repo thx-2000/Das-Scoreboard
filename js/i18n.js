@@ -41,8 +41,46 @@ window.t = function t(key, vars) {
   return interpolate(value, vars);
 };
 
+// BCP-47-Locale je unterstuetzter Sprache, fuer toLocaleString()/localeCompare()
+// (Datumsformatierung, alphabetische Sortierung) - siehe supported_languages()
+// in includes/settings.php fuer die Sprachliste selbst.
+const LOCALE_BY_LANG = {
+  de: 'de-DE',
+  en: 'en-US',
+  fr: 'fr-FR',
+  it: 'it-IT',
+  es: 'es-ES',
+  pt: 'pt-PT',
+  nl: 'nl-NL',
+  sv: 'sv-SE',
+  nb: 'nb-NO',
+  da: 'da-DK',
+  fi: 'fi-FI',
+  is: 'is-IS',
+  pl: 'pl-PL',
+  cs: 'cs-CZ',
+  sk: 'sk-SK',
+  hu: 'hu-HU',
+  ro: 'ro-RO',
+  bg: 'bg-BG',
+  el: 'el-GR',
+  hr: 'hr-HR',
+  sl: 'sl-SI',
+  et: 'et-EE',
+  lv: 'lv-LV',
+  lt: 'lt-LT',
+  uk: 'uk-UA',
+  sr: 'sr-RS',
+  bs: 'bs-BA',
+  mk: 'mk-MK',
+  be: 'be-BY',
+  sq: 'sq-AL',
+  ga: 'ga-IE',
+  mt: 'mt-MT',
+};
+
 window.scoreboardLocale = function scoreboardLocale() {
-  return currentLang === 'en' ? 'en-US' : 'de-DE';
+  return LOCALE_BY_LANG[currentLang] || 'de-DE';
 };
 
 function applyDataI18n() {

@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Siirry sisältöön",
+    "nav": {
+      "home": "Etusivu",
+      "history": "Historia",
+      "stats": "Tilastot",
+      "chooser": "Kuka aloittaa?",
+      "settings": "Asetukset",
+      "openMenu": "Avaa valikko",
+      "closeMenu": "Sulje valikko"
+    },
+    "updateAvailable": "Päivitys saatavilla ({version})",
+    "buttons": {
+      "add": "Lisää",
+      "save": "Tallenna",
+      "delete": "Poista",
+      "start": "Aloita peli",
+      "finish": "Lopeta peli",
+      "resume": "Jatka peliä",
+      "remove": "Poista",
+      "reactivate": "Aktivoi uudelleen",
+      "close": "Sulje",
+      "cancel": "Peruuta"
+    },
+    "winDirection": {
+      "heading": "Kuka voittaa lopussa?",
+      "highest": "Korkein pistemäärä",
+      "lowest": "Matalin pistemäärä"
+    },
+    "stepper": {
+      "decrease": "Vähennä",
+      "increase": "Lisää",
+      "minusValue": "Vähennä {value}",
+      "plusValue": "Lisää {value}"
+    },
+    "table": {
+      "rank": "Sija",
+      "name": "Nimi",
+      "points": "Pisteet",
+      "progress": "Eteneminen",
+      "actions": "Toiminnot",
+      "round": "Kierros"
+    },
+    "game": {
+      "loading": "Ladataan …",
+      "notFound": "Peliä ei löytynyt.",
+      "standingsHeading": "Tilanne",
+      "standings": {
+        "collapse": "Pienennä",
+        "expand": "Näytä",
+        "teamTotalSuffix": "pistettä yhteensä"
+      },
+      "startingPlayerLegend": "★ Aloittava pelaaja (satunnainen)",
+      "startedSuffix": "aloitettu {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Peli päättyi! {names} voittavat yhdessä {points} pisteellä.",
+        "single": "🏆 Peli päättyi! {names} voitti {points} pisteellä."
+      },
+      "roundEntry": {
+        "heading": "Syötä uusi kierros",
+        "saveButton": "Tallenna kierros",
+        "switchToButtons": "Askelpainikkeet",
+        "switchToType": "Kirjoita"
+      },
+      "roundsTable": {
+        "heading": "Kierroshistoria ja korjaus",
+        "hint": "Muuta arvoja suoraan korjataksesi syöttövirheitä.",
+        "empty": "Ei vielä pelattuja kierroksia.",
+        "deleteConfirm": "Poistetaanko tämä kierros varmasti?",
+        "undoButton": "Kumoa viimeisin kierros"
+      },
+      "noPlayersHint": "Ei vielä pelaajia — lisää yksi alta.",
+      "roundEntryHintGeneric": "Syötä tämän kierroksen pisteet pelaajaa kohden (0 on normaali)."
+    },
+    "setup": {
+      "heading": "Pelin asetukset",
+      "labelOptional": "Nimike (valinnainen)",
+      "whoPlays": "Ketkä pelaavat?",
+      "addPlayerLabel": "Lisää uusi pelaaja",
+      "addPlayerPlaceholder": "Syötä nimi",
+      "advancedOptions": "Lisäasetukset",
+      "teamModeLabel": "Ota joukkuetila käyttöön",
+      "teamModeHint": "Pelaajat voidaan jakaa joukkueisiin, joiden pisteet lasketaan yhteen.",
+      "teamScoringHeading": "Joukkuepisteytys",
+      "teamScoringShared": "Yhteinen pistemäärä",
+      "teamScoringSharedHint": "Joukkueen jäsenet syöttävät yhdessä yhden yhteisen pistemäärän kierrosta kohden.",
+      "teamScoringIndividual": "Yksilölliset pisteet, yhdistetty kokonaissumma",
+      "teamScoringIndividualHint": "Jokainen pelaaja syöttää omat pisteensä — sekä yksilölliset pisteet että joukkueen kokonaissumma näytetään.",
+      "teamNone": "Ei joukkuetta",
+      "teamNumber": "Joukkue {number}",
+      "teamNameLabel": "Joukkueen {number} nimi (valinnainen)",
+      "teamNamePlaceholder": "esim. Kotkat",
+      "selectAll": "Valitse kaikki",
+      "selectNone": "Poista kaikki valinnat",
+      "allowNegativeLabel": "Salli negatiiviset pisteet",
+      "allowNegativeHint": "Jos pois päältä, negatiiviset kierrossyötöt rajataan nollaan.",
+      "targetBonusHint": "Ylimääräiset pisteet, jotka voittaja(t) saavat tavoitepistemäärän saavuttamisesta (0 = ei bonusta).",
+      "roundEntryStepsLabel": "Kierroksen syötön askelkoot",
+      "roundEntryStepsHint": "Askelpainikkeet vaihtoehtona numeroiden kirjoittamiselle — valitse, mitkä askelkoot (±) ovat käytettävissä. Voit vaihtaa kirjoittamisen ja askelpainikkeiden välillä milloin tahansa, myös kesken pelin."
+    },
+    "errors": {
+      "minPlayers": "Valitse vähintään 2 pelaajaa.",
+      "createPlayerFailed": "Pelaajaa ei voitu luoda.",
+      "startGameFailed": "Peliä ei voitu aloittaa."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Pisteapuri peli-illoille"
+    },
+    "stats": {
+      "title": "Tilastot"
+    },
+    "history": {
+      "title": "Pelihistoria"
+    },
+    "settings": {
+      "title": "Asetukset"
+    },
+    "pointsToTargetSetup": {
+      "title": "Pisteet tavoitteeseen — Uusi peli"
+    },
+    "pointsToTargetGame": {
+      "title": "Pisteet tavoitteeseen"
+    },
+    "pointsOpenSetup": {
+      "title": "Avoin pistekierros — Uusi peli"
+    },
+    "pointsOpenGame": {
+      "title": "Avoin pistekierros"
+    },
+    "fixedRoundsSetup": {
+      "title": "Pistekierros kiinteällä kierrosmäärällä — Uusi peli"
+    },
+    "fixedRoundsGame": {
+      "title": "Pistekierros kiinteällä kierrosmäärällä"
+    },
+    "rageSetup": {
+      "title": "RAGE — Uusi peli"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Kuka aloittaa?"
+    },
+    "login": {
+      "title": "Kirjaudu sisään"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Pisteet tavoitteeseen",
+      "description": "Pisteet lasketaan yhteen kierros kierrokselta, kunnes joku saavuttaa tai ylittää kiinteän tavoitearvon. Eniten pisteitä saanut voittaa.",
+      "examples": "esim. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Avoin pistekierros",
+      "description": "Pisteet lasketaan yhteen kierros kierrokselta ilman kiinteää tavoitetta. Päätätte itse, milloin lopettaa — korkein tai matalin pistemäärä voittaa, sen mukaan miten asetatte pelin.",
+      "examples": "esim. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Pistekierros kiinteällä kierrosmäärällä",
+      "description": "Asetuksissa päätätte, kuinka monta kierrosta pelataan ja voittaako lopussa korkein vai matalin pistemäärä. Viimeisen kierroksen jälkeen peli kysyy, halutaanko lopettaa vai jatkaa lisäkierroksilla."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Kiinteät 10 kierrosta vähenevällä korttimäärällä (10:stä 1:een). Ennen jokaista kierrosta ilmoitat arvioidun tikkimääräsi, sitten syötät todelliset tikit — pisteet lasketaan automaattisesti RAGE-sääntöjen mukaan (sis. Rage-bonus/kosto).",
+      "examples": "Korttipeli RAGE"
+    }
+  },
+  "home": {
+    "heading": "Pisteapuri peli-illoille",
+    "newGame": {
+      "startButton": "Aloita uusi peli"
+    },
+    "generalBoards": {
+      "heading": "Yleiset pistetaulut",
+      "hint": "Vapaasti muokattavissa — aseta tavoitepistemäärä, voittosuunta ja askelkoot asetuksissa."
+    },
+    "myGames": {
+      "heading": "Omat pelit",
+      "hint": "RAGE sekä omat, täysin määritetyt pelisi (luo ne kohdassa Asetukset → Omat pelit).",
+      "favoritesHeading": "Suosikit",
+      "allHeading": "Kaikki pelit",
+      "metaTarget": "Tavoite: {score} pistettä",
+      "metaRounds": "{rounds} kierrosta"
+    },
+    "openGames": {
+      "heading": "Käynnissä olevat pelit",
+      "viewAll": "Näytä kaikki"
+    },
+    "pwaHint": {
+      "heading": "Käytä sovelluksena",
+      "text": "iPadilla/iPhonella: napauta Safarin jakokuvaketta ja valitse sitten \"Lisää Koti-valikkoon\" — sivu näkyy sen jälkeen omana sovelluksenaan, ilman osoiteriviä."
+    },
+    "support": {
+      "label": "Tue tätä projektia",
+      "ariaLabel": "Tue tätä projektia Buy Me a Coffeessa"
+    }
+  },
+  "players": {
+    "heading": "Hallinnoi pelaajia",
+    "newPlayer": {
+      "heading": "Uusi pelaaja",
+      "nameLabel": "Nimi"
+    },
+    "active": {
+      "heading": "Aktiiviset pelaajat",
+      "hint": "Nämä pelaajat ovat käytettävissä pikavalintaan uusissa peleissä.",
+      "empty": "Ei vielä aktiivisia pelaajia."
+    },
+    "inactive": {
+      "heading": "Poistetut käytöstä",
+      "hint": "Pysyvät näkyvissä menneissä peleissä, mutta eivät enää pikavalinnassa.",
+      "empty": "Ei käytöstä poistettuja pelaajia."
+    },
+    "avatar": {
+      "uploadLabel": "Lataa kuva",
+      "changeLabel": "Vaihda kuva",
+      "removeLabel": "Poista kuva",
+      "removeConfirm": "Poistetaanko tämä avatar varmasti?",
+      "uploadFailed": "Kuvaa ei voitu tallentaa."
+    },
+    "deleteConfirm": "Poistetaanko \"{name}\" varmasti pysyvästi? Toisin kuin käytöstä poistaminen, tätä ei voi peruuttaa pelaajahallinnassa — menneet pelit näyttävät nimen silti."
+  },
+  "groups": {
+    "hint": "Ryhmittele pelaajia (esim. \"Perhe\", \"Vakiokävijät\") — peliä asettaessa voit sitten valita koko ryhmän yhdellä klikkauksella. Henkilö voi kuulua useaan ryhmään.",
+    "newGroup": {
+      "heading": "Uusi ryhmä",
+      "nameLabel": "Ryhmän nimi",
+      "namePlaceholder": "esim. Perhe",
+      "membersLabel": "Jäsenet"
+    },
+    "active": {
+      "heading": "Aktiiviset ryhmät",
+      "empty": "Ei vielä luotuja ryhmiä."
+    },
+    "inactive": {
+      "heading": "Käytöstä poistetut ryhmät",
+      "empty": "Ei käytöstä poistettuja ryhmiä."
+    },
+    "empty": "Ei jäseniä",
+    "editButton": "Muokkaa",
+    "saveButton": "Tallenna",
+    "cancelButton": "Peruuta",
+    "deleteConfirm": "Poistetaanko ryhmä \"{name}\" varmasti? Jäsenet itsessään säilyvät — vain ryhmittely poistetaan.",
+    "createFailed": "Ryhmää ei voitu luoda."
+  },
+  "stats": {
+    "heading": "Tilastot",
+    "filter": {
+      "heading": "Ajanjakso",
+      "hint": "Jätä tyhjäksi saadaksesi tilastot kaikista peleistä. Jos peli-ilta jatkuu keskiyön yli, syötä esim. 18:00–03:00 seuraavana päivänä.",
+      "fromLabel": "Alkaen",
+      "toLabel": "Päättyen",
+      "apply": "Käytä",
+      "reset": "Nollaa"
+    },
+    "kpi": {
+      "games": "Pelit",
+      "finished": "Päättyneet",
+      "winRate": "Päättyneiden osuus",
+      "avgScore": "Keskim. pisteet"
+    },
+    "overall": {
+      "heading": "Yhteensä",
+      "empty": "Ei pelejä tällä ajanjaksolla."
+    },
+    "byMode": {
+      "heading": "Pelimuodoittain"
+    },
+    "modeDistribution": {
+      "heading": "Jakauma pelimuodoittain",
+      "empty": "Ei pelejä tällä ajanjaksolla."
+    },
+    "headToHead": {
+      "heading": "Suoraan vastakkain",
+      "empty": "Ei vielä kahta pelaajaa, joilla olisi yhteisiä päättyneitä pelejä tällä ajanjaksolla.",
+      "listSummary": "Näytä luettelona",
+      "draws": "tasapelit",
+      "gamesSuffix": "peliä"
+    },
+    "games": {
+      "heading": "Pelit tällä ajanjaksolla",
+      "empty": "Ei pelejä tällä ajanjaksolla."
+    },
+    "table": {
+      "player": "Pelaaja",
+      "gamesPlayed": "Pelit",
+      "gamesFinished": "Päättyneet",
+      "wins": "Voitot",
+      "winRate": "Voittoprosentti",
+      "currentStreak": "Nykyinen putki",
+      "longestStreak": "Pisin putki",
+      "avgScore": "Keskim. pistemäärä"
+    },
+    "print": "Tulosta / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Valitse kuvan rajaus",
+    "hint": "Vedä siirtääksesi, käytä liukusäädintä zoomataksesi (passikuvamuoto 2:3).",
+    "apply": "Käytä"
+  },
+  "history": {
+    "heading": "Pelihistoria",
+    "all": {
+      "heading": "Kaikki pelit",
+      "hint": "Uusimmat ensin. Käynnissä olevia pelejä voi jatkaa, päättyneet näyttävät tuloksen."
+    },
+    "filter": {
+      "all": "Kaikki",
+      "active": "Käynnissä",
+      "finished": "Päättyneet"
+    },
+    "empty": "Ei vielä pelattuja pelejä.",
+    "filterEmpty": {
+      "active": "Ei käynnissä olevia pelejä.",
+      "finished": "Ei vielä päättyneitä pelejä."
+    },
+    "deleteConfirm": "Poistetaanko \"{label}\" varmasti pysyvästi pelihistoriasta?",
+    "badge": {
+      "finished": "Päättynyt",
+      "active": "Käynnissä"
+    },
+    "meta": {
+      "target": "Tavoite: {score} pistettä",
+      "rounds": "Kierros {played}/{total}",
+      "winners": "Voittaja: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Asetukset",
+    "subtitle": "Koskee kaikkia, jotka käyttävät tätä sovellusta (tallennetaan yleisesti).",
+    "tabs": {
+      "aussehen": "Ulkoasu",
+      "allgemein": "Yleiset",
+      "spieler": "Pelaajat",
+      "spiele": "Omat pelit",
+      "zugang": "Käyttöoikeussuojaus",
+      "backup": "Varmuuskopio"
+    },
+    "theme": {
+      "heading": "Ulkoasu",
+      "hint": "Kolme itsenäistä tyyliä valittavana. Värien hienosäätö löytyy alempaa kohdasta \"Värit yksityiskohtaisesti\".",
+      "classic": "Klassinen",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Korostusväri",
+      "accent": {
+        "green": "Vihreä",
+        "orange": "Oranssi",
+        "pink": "Pinkki",
+        "violet": "Violetti",
+        "cyan": "Syaani"
+      },
+      "backgroundLabel": "Tausta",
+      "background": {
+        "dark": "Tumma",
+        "darkBlue": "Tummansininen",
+        "black": "Musta"
+      },
+      "cardStyleLabel": "Korttityyli",
+      "cardStyle": {
+        "classic": "Klassinen",
+        "modern": "Moderni"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Väriehdotus",
+      "flipPreset": {
+        "amber": "Meripihka",
+        "petrol": "Petrooli",
+        "karmesin": "Karmiini",
+        "knallorange": "Räikeä oranssi",
+        "violett": "Violetti"
+      }
+    },
+    "title": {
+      "heading": "Otsikko",
+      "hint": "Näytetään ylätunnisteessa ja selaimen välilehden otsikossa.",
+      "label": "Otsikko"
+    },
+    "feedback": {
+      "heading": "Palaute tallennettaessa",
+      "hint": "Lyhyt ääni (ja värinä, jos laite tukee sitä) kierroksen tallennuksen yhteydessä. iPhonessa/iPadissa värinä ei ole teknisistä syistä mahdollinen (Safari), mutta ääni toimii.",
+      "label": "Ääni tallennettaessa"
+    },
+    "presets": {
+      "heading": "Omat pelit",
+      "hint": "Omat, täysin määritetyt pelisi (esim. \"Flip7\" tavoitteella 200) — näkyvät etusivulla kohdassa \"Omat pelit\" ja täyttävät asetuslomakkeen valmiiksi klikattaessa.",
+      "favoritesHeading": "Suosikit",
+      "favoritesHint": "Muokkaa järjestystä nuolilla tai raahaamalla — määrittää etusivun suosikkirivin järjestyksen.",
+      "allHeading": "Kaikki pelit",
+      "allHint": "Aakkosjärjestyksessä — suosikit näkyvät myös täällä, jotta ne löytyvät joka tapauksessa.",
+      "addButton": "Lisää uusi peli",
+      "formHeadingNew": "Uusi peli",
+      "formHeadingEdit": "Muokkaa: {name}",
+      "nameLabel": "Nimi",
+      "iconLabel": "Kuvake",
+      "modeLabel": "Pelimuoto",
+      "metaTarget": "Tavoite: {target} pistettä",
+      "metaRounds": "{rounds} kierrosta",
+      "saveFailed": "Peliä ei voitu tallentaa.",
+      "deleteConfirm": "Poistetaanko \"{name}\" varmasti?",
+      "empty": "Ei vielä luotuja pelejä.",
+      "favoriteLabel": "Suosikki",
+      "moveUp": "Siirrä ylös",
+      "moveDown": "Siirrä alas",
+      "editButton": "Muokkaa"
+    },
+    "access": {
+      "heading": "Käyttöoikeussuojaus",
+      "hint": "Suojaa koko sivuston yhdellä jaetulla salasanalla kaikille, jotka tuntevat linkin. Ilman aktiivista suojausta kuka tahansa linkin omaava voi käyttää sivustoa.",
+      "enableLabel": "Ota käyttöoikeussuojaus käyttöön",
+      "noPasswordSet": "Salasanaa ei ole vielä asetettu — suojaus pysyy pois käytöstä, kunnes yksi asetetaan.",
+      "passwordLabel": "Uusi salasana",
+      "passwordConfirmLabel": "Vahvista salasana",
+      "passwordHint": "Vähintään 8 merkkiä. Jätä tyhjäksi säilyttääksesi nykyisen tallennetun salasanan. Unohditko salasanan? Katso README-tiedostosta ohjeet nollaamiseen tiedostoyhteyden kautta.",
+      "mismatchError": "Kaksi salasanaa eivät täsmää.",
+      "tooShortError": "Salasanan on oltava vähintään 8 merkkiä pitkä.",
+      "saveFailed": "Tallennus epäonnistui.",
+      "logoutButton": "Kirjaudu ulos tällä laitteella"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Oletuksena mitään omaa logoa ei ole käytössä, kynäkuvake pysyy näkyvissä.",
+      "modeLabel": "Näyttötapa",
+      "modeNone": "Ei logoa",
+      "modeSquare": "Neliö, vasemmassa yläkulmassa",
+      "modeBanner": "Banneri koko leveydellä",
+      "squareHeading": "Neliömäinen logo",
+      "squareHint": "Suositus: 160×160 pikseliä (neliö). PNG, JPEG tai SVG, enint. 2 Mt.",
+      "bannerHeading": "Bannerilogo",
+      "bannerHint": "Suositus: n. 1400×160 pikseliä (leveä, ei liian korkea). PNG, JPEG tai SVG, enint. 2 Mt.",
+      "uploadButton": "Lataa",
+      "removeConfirm": "Poistetaanko tämä logo varmasti?",
+      "uploadSuccess": "Logo ladattu.",
+      "removeSuccess": "Logo poistettu.",
+      "uploadFailed": "Logoa ei voitu ladata.",
+      "noFileSelected": "Valitse ensin tiedosto."
+    },
+    "language": {
+      "heading": "Kieli",
+      "hint": "Lisää kieliä voidaan lisätä myöhemmin.",
+      "label": "Kieli"
+    },
+    "colors": {
+      "advancedHeading": "Värit yksityiskohtaisesti",
+      "advancedSummary": "Avaa lisäasetukset",
+      "boldNote": "Koskee vain Klassista — Bold käyttää yllä olevia esiasetuksia.",
+      "single": {
+        "heading": "Korostus- ja toimintavärit",
+        "hint": "Koskevat muuttumattomina sekä vaaleaa että tummaa tilaa."
+      },
+      "pairs": {
+        "heading": "Perusvärit (erikseen vaalealle/tummalle tilalle)",
+        "hint": "Tausta, pinta, teksti ja reuna — kerran kummallekin, vaalealle ja tummalle tilalle.",
+        "light": "Vaalea",
+        "dark": "Tumma"
+      },
+      "flip": {
+        "heading": "Flip Board -värit",
+        "hint": "Korvaa yllä valitun väriehdotuksen — kerran kummallekin, vaalealle ja tummalle tilalle."
+      }
+    },
+    "resetButton": "Palauta oletusvärit",
+    "resetConfirm": "Palautetaanko kaikki värit oletusarvoihinsa varmasti?",
+    "savedStatus": "Tallennettu. Muut sivut ottavat muutoksen käyttöön seuraavalla käynnillä.",
+    "resetStatus": "Palautettu oletusväreihin.",
+    "backup": {
+      "heading": "Tietojen varmuuskopiointi",
+      "hint": "Täydellinen varmuuskopio kaikista pelaajista, peleistä, avatareista ja logoista ZIP-tiedostona — esim. jotta mitään ei katoa palvelinvaihdon yhteydessä.",
+      "exportHeading": "Lataa varmuuskopio",
+      "exportHint": "Sisältää koko tietokannan sekä kaikki avatarkuvat ja logon.",
+      "exportButton": "Lataa varmuuskopio",
+      "importHeading": "Palauta varmuuskopio",
+      "importWarning": "Varoitus: tuonti korvaa peruuttamattomasti kaikki nykyiset pelaajat, pelit, avatarit ja logot varmuuskopiotiedoston sisällöllä.",
+      "fileLabel": "Varmuuskopiotiedosto (.zip)",
+      "importButton": "Tuo varmuuskopio",
+      "confirmHint": "Vahvista kirjoittamalla alle täsmälleen ERSETZEN.",
+      "confirmLabel": "Vahvistus",
+      "confirmButton": "Korvaa nyt, pysyvästi",
+      "noFileSelected": "Valitse ensin varmuuskopiotiedosto.",
+      "finalConfirm": "Korvataanko kaikki nykyiset pelitiedot varmasti peruuttamattomasti varmuuskopiolla?",
+      "importInProgress": "Palautetaan varmuuskopiota …",
+      "importSuccess": "Varmuuskopio palautettu: {games} peliä, {players} pelaajaa. Ladataan sivu uudelleen …",
+      "importFailed": "Tuonti epäonnistui."
+    },
+    "colorLabels": {
+      "green": "Neonvihreä (pääkorostus)",
+      "greenStrong": "Neonvihreä, tummennettu (teksti/viivat)",
+      "amber": "Meripihka (toissijainen korostus)",
+      "amberStrong": "Meripihka, tummennettu (teksti/viivat)",
+      "onAccent": "Teksti korostuspinnoilla",
+      "focus": "Kohdistuksen ääriviiva (näppäimistönavigointi)",
+      "danger": "Virhe / vaara (esim. poistopainikkeet)",
+      "bg": "Tausta",
+      "surface": "Pinta (kortit)",
+      "text": "Teksti",
+      "textMuted": "Vaimennettu teksti",
+      "border": "Reuna"
+    }
+  },
+  "login": {
+    "heading": "Kirjaudu sisään",
+    "hint": "Tämä sivusto on salasanasuojattu.",
+    "error": "Väärä salasana.",
+    "passwordLabel": "Salasana",
+    "submitButton": "Kirjaudu sisään"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Uuden pelin asetukset (esim. Flip7, Tutto)",
+      "labelPlaceholder": "esim. Flip7, Tutto",
+      "targetLabel": "Mihin pistemäärään asti pelataan?",
+      "winDirectionHint": "Useimmissa peleissä korkein pistemäärä voittaa (esim. Flip7, Tutto) — mutta joissakin, kuten Skyjossa, matalin pistemäärä voittaa. Peli päättyy joka tapauksessa heti, kun joku saavuttaa tai ylittää tavoitteen.",
+      "targetBonusLabel": "Bonus tavoitteen saavuttamisesta"
+    },
+    "game": {
+      "subtitle": "Tavoite: {target} pistettä · {started}",
+      "roundEntryHint": "Syötä tämän kierroksen pisteet pelaajaa kohden (0 on normaali, esim. ylimenossa)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Uuden pelin asetukset (esim. Doppelkopf)",
+      "labelPlaceholder": "esim. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "korkein pistemäärä voittaa",
+        "lowest": "matalin pistemäärä voittaa"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Uuden pelin asetukset",
+      "roundsLabel": "Kuinka monta kierrosta pelataan?",
+      "announceLabel": "Ilmoita jokaisen kierroksen jälkeen sen päättyneen",
+      "announceHint": "Näyttää lyhyen, suljettavan ilmoituksen jokaisen tallennetun kierroksen jälkeen."
+    },
+    "game": {
+      "subtitleOngoing": "Kierros {round}/{total} · {started}",
+      "subtitleReached": "{played}/{total} kierrosta pelattu · {started}",
+      "roundEndNotice": "Kierros {round} päättyi",
+      "targetReached": {
+        "heading": "Olette pelanneet sovitut {total} kierrosta.",
+        "extendLabel": "Jatka pelaamista, tämän verran lisää kierroksia:",
+        "extendButton": "Jatka pelaamista"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Uuden pelin asetukset — 10 kierrosta, tikkien tarjous",
+      "hint": "Kiinteät 10 kierrosta (10:stä 1 korttiin), korkein pistemäärä voittaa lopussa.",
+      "labelPlaceholder": "esim. RAGE-ilta",
+      "showBonusMalusLabel": "Näytä bonus/malus",
+      "showBonusMalusHint": "Näytä/piilota erikoiskorttien +5/−5-kentät kierroksen syötössä."
+    },
+    "game": {
+      "cardSingular": "kortti",
+      "cardPlural": "korttia",
+      "subtitleFinished": "{played}/10 kierrosta pelattu · {started}",
+      "subtitleOngoing": "Kierros {round}/10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Syötä kierros",
+        "staticHint": "Syötä tarjous ja todelliset tikit pelaajaa kohden, erikoiskortit tarvittaessa.",
+        "heading": "Syötä kierros {round} ({cards} {cardWord})",
+        "hint": "Syötä tarjous ja todelliset tikit pelaajaa kohden (0 kelpaa). Kaikkien pelaajien tikkien pitäisi olla yhteensä {cards}.",
+        "table": {
+          "player": "Pelaaja",
+          "bid": "Tarjous",
+          "tricks": "Tikit",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Pisteet"
+        }
+      },
+      "roundsTableHint": "Muuta arvoja suoraan korjataksesi syöttövirheitä. Tarjous / tikit / +5 / −5 / pisteet (laskettu) pelaajaa ja kierrosta kohden.",
+      "deleteRoundButton": "Poista K{round}",
+      "mismatchConfirm": "Syötettyjen tikkien summa ({actual}) ei vastaa tämän kierroksen korttimäärää ({expected}). Tallennetaanko silti?",
+      "saveFailed": "Kierrosta ei voitu tallentaa."
+    }
+  },
+  "chooser": {
+    "heading": "Kuka aloittaa?",
+    "subtitle": "Laita kaikki sormet näytölle samanaikaisesti — toimii kosketusnäytön monikosketuksella (iPad/iPhone).",
+    "hint": "Aseta sormet näytölle …",
+    "winnerCountLabel": "Voittajien määrä",
+    "resultSingle": "Tämä henkilö aloittaa! Aseta sormet uudelleen uutta kierrosta varten.",
+    "resultMulti": "Nämä {count} henkilöä aloittavat! Aseta sormet uudelleen uutta kierrosta varten."
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Pereiti prie turinio",
+    "nav": {
+      "home": "Pradžia",
+      "history": "Istorija",
+      "stats": "Statistika",
+      "chooser": "Kas pradeda?",
+      "settings": "Nustatymai",
+      "openMenu": "Atidaryti meniu",
+      "closeMenu": "Uždaryti meniu"
+    },
+    "updateAvailable": "Yra atnaujinimas ({version})",
+    "buttons": {
+      "add": "Pridėti",
+      "save": "Išsaugoti",
+      "delete": "Ištrinti",
+      "start": "Pradėti žaidimą",
+      "finish": "Baigti žaidimą",
+      "resume": "Tęsti žaidimą",
+      "remove": "Pašalinti",
+      "reactivate": "Iš naujo aktyvuoti",
+      "close": "Uždaryti",
+      "cancel": "Atšaukti"
+    },
+    "winDirection": {
+      "heading": "Kas laimi pabaigoje?",
+      "highest": "Didžiausias rezultatas",
+      "lowest": "Mažiausias rezultatas"
+    },
+    "stepper": {
+      "decrease": "Sumažinti",
+      "increase": "Padidinti",
+      "minusValue": "Atimti {value}",
+      "plusValue": "Pridėti {value}"
+    },
+    "table": {
+      "rank": "Vieta",
+      "name": "Vardas",
+      "points": "Taškai",
+      "progress": "Pažanga",
+      "actions": "Veiksmai",
+      "round": "Raundas"
+    },
+    "game": {
+      "loading": "Kraunama …",
+      "notFound": "Žaidimas nerastas.",
+      "standingsHeading": "Rezultatai",
+      "standings": {
+        "collapse": "Suskleisti",
+        "expand": "Rodyti",
+        "teamTotalSuffix": "taškai iš viso"
+      },
+      "startingPlayerLegend": "★ Pradedantis žaidėjas (atsitiktinai)",
+      "startedSuffix": "pradėta {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Žaidimas baigtas! {names} laimi kartu su {points} taškų.",
+        "single": "🏆 Žaidimas baigtas! {names} laimėjo su {points} taškų."
+      },
+      "roundEntry": {
+        "heading": "Įvesti naują raundą",
+        "saveButton": "Išsaugoti raundą",
+        "switchToButtons": "Žingsnio mygtukai",
+        "switchToType": "Rašymas"
+      },
+      "roundsTable": {
+        "heading": "Raundų istorija ir taisymas",
+        "hint": "Keiskite reikšmes tiesiogiai, kad ištaisytumėte įvedimo klaidas.",
+        "empty": "Dar nesužaistas nė vienas raundas.",
+        "deleteConfirm": "Ar tikrai norite ištrinti šį raundą?",
+        "undoButton": "Anuliuoti paskutinį raundą"
+      },
+      "noPlayersHint": "Dar nėra žaidėjų — pridėkite vieną žemiau.",
+      "roundEntryHintGeneric": "Įveskite šio raundo taškus kiekvienam žaidėjui (0 yra normalu)."
+    },
+    "setup": {
+      "heading": "Nustatyti žaidimą",
+      "labelOptional": "Žymė (neprivaloma)",
+      "whoPlays": "Kas žaidžia?",
+      "addPlayerLabel": "Pridėti naują žaidėją",
+      "addPlayerPlaceholder": "Įveskite vardą",
+      "advancedOptions": "Papildomi nustatymai",
+      "teamModeLabel": "Įjungti komandų režimą",
+      "teamModeHint": "Žaidėjus galima grupuoti į komandas, kurių taškai sumuojami kartu.",
+      "teamScoringHeading": "Komandos taškų skaičiavimas",
+      "teamScoringShared": "Bendras rezultatas",
+      "teamScoringSharedHint": "Komandos nariai kartu įveda vieną bendrą rezultatą per raundą.",
+      "teamScoringIndividual": "Individualūs rezultatai, bendra suma",
+      "teamScoringIndividualHint": "Kiekvienas žaidėjas įveda savo rezultatą — rodomi tiek individualūs rezultatai, tiek bendra komandos suma.",
+      "teamNone": "Be komandos",
+      "teamNumber": "{number} komanda",
+      "teamNameLabel": "{number} komandos pavadinimas (neprivaloma)",
+      "teamNamePlaceholder": "pvz., Ereliai",
+      "selectAll": "Pažymėti visus",
+      "selectNone": "Panaikinti visų žymėjimą",
+      "allowNegativeLabel": "Leisti neigiamus taškus",
+      "allowNegativeHint": "Jei išjungta, neigiami raundo įrašai apribojami iki 0.",
+      "targetBonusHint": "Papildomi taškai, kuriuos laimėtojas(-ai) gauna pasiekus tikslinį rezultatą (0 = be premijos).",
+      "roundEntryStepsLabel": "Žingsnio dydžiai raundo įvedimui",
+      "roundEntryStepsHint": "Žingsnio mygtukai kaip alternatyva skaičių rašymui — pasirinkite, kurie žingsnio dydžiai (±) bus prieinami. Bet kuriuo metu galite perjungti tarp rašymo ir žingsnio mygtukų, net ir žaidimo metu."
+    },
+    "errors": {
+      "minPlayers": "Pasirinkite bent 2 žaidėjus.",
+      "createPlayerFailed": "Nepavyko sukurti žaidėjo.",
+      "startGameFailed": "Nepavyko pradėti žaidimo."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Taškų skaičiavimo pagalbininkas žaidimų vakarams"
+    },
+    "stats": {
+      "title": "Statistika"
+    },
+    "history": {
+      "title": "Žaidimų istorija"
+    },
+    "settings": {
+      "title": "Nustatymai"
+    },
+    "pointsToTargetSetup": {
+      "title": "Taškai iki tikslo — Naujas žaidimas"
+    },
+    "pointsToTargetGame": {
+      "title": "Taškai iki tikslo"
+    },
+    "pointsOpenSetup": {
+      "title": "Atviras taškų raundas — Naujas žaidimas"
+    },
+    "pointsOpenGame": {
+      "title": "Atviras taškų raundas"
+    },
+    "fixedRoundsSetup": {
+      "title": "Taškų raundas su fiksuotu raundų skaičiumi — Naujas žaidimas"
+    },
+    "fixedRoundsGame": {
+      "title": "Taškų raundas su fiksuotu raundų skaičiumi"
+    },
+    "rageSetup": {
+      "title": "RAGE — Naujas žaidimas"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Kas pradeda?"
+    },
+    "login": {
+      "title": "Prisijungti"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Taškai iki tikslo",
+      "description": "Taškai sumuojami raundas po raundo, kol kas nors pasiekia arba viršija fiksuotą tikslinę vertę. Laimi tas, kuris tuomet turi daugiausiai taškų.",
+      "examples": "pvz., Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Atviras taškų raundas",
+      "description": "Taškai sumuojami raundas po raundo be fiksuoto tikslo. Jūs patys nusprendžiate, kada sustoti — laimi didžiausias arba mažiausias rezultatas, priklausomai nuo nustatymo.",
+      "examples": "pvz., Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Taškų raundas su fiksuotu raundų skaičiumi",
+      "description": "Nustatymo metu nusprendžiate, kiek raundų bus žaidžiama ir ar pabaigoje laimi didžiausias, ar mažiausias rezultatas. Po paskutinio raundo žaidimas klausia, ar baigti, ar tęsti su daugiau raundų."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fiksuoti 10 raundų su mažėjančiu kortų skaičiumi (nuo 10 iki 1). Prieš kiekvieną raundą paskelbiate numatomą lėkčių skaičių, tada įvedate faktines lėktes — taškai automatiškai apskaičiuojami pagal RAGE taisykles (įsk. Rage premiją / atkeršijimą).",
+      "examples": "Kortų žaidimas RAGE"
+    }
+  },
+  "home": {
+    "heading": "Taškų skaičiavimo pagalbininkas žaidimų vakarams",
+    "newGame": {
+      "startButton": "Pradėti naują žaidimą"
+    },
+    "generalBoards": {
+      "heading": "Bendros rezultatų lentos",
+      "hint": "Laisvai konfigūruojama — nustatykite tikslinį rezultatą, laimėjimo kryptį ir žingsnio dydžius nustatymo metu."
+    },
+    "myGames": {
+      "heading": "Mano žaidimai",
+      "hint": "RAGE ir jūsų pačių, visiškai sukonfigūruoti žaidimai (sukurkite juos Nustatymai → Mano žaidimai).",
+      "favoritesHeading": "Mėgstamiausi",
+      "allHeading": "Visi žaidimai",
+      "metaTarget": "Tikslas: {score} taškų",
+      "metaRounds": "{rounds} raundų"
+    },
+    "openGames": {
+      "heading": "Vykstantys žaidimai",
+      "viewAll": "Rodyti visus"
+    },
+    "pwaHint": {
+      "heading": "Naudoti kaip programėlę",
+      "text": "„iPad“/„iPhone“: „Safari“ paspauskite bendrinimo piktogramą, tada pasirinkite „Įtraukti į pradžios ekraną“ — puslapis tada rodomas kaip savarankiška programėlė, be adreso juostos."
+    },
+    "support": {
+      "label": "Paremkite šį projektą",
+      "ariaLabel": "Paremkite šį projektą „Buy Me a Coffee“ platformoje"
+    }
+  },
+  "players": {
+    "heading": "Tvarkyti žaidėjus",
+    "newPlayer": {
+      "heading": "Naujas žaidėjas",
+      "nameLabel": "Vardas"
+    },
+    "active": {
+      "heading": "Aktyvūs žaidėjai",
+      "hint": "Šie žaidėjai prieinami greitam pasirinkimui naujuose žaidimuose.",
+      "empty": "Dar nėra aktyvių žaidėjų."
+    },
+    "inactive": {
+      "heading": "Deaktyvuoti žaidėjai",
+      "hint": "Lieka matomi ankstesniuose žaidimuose, bet nebepasirodo greitajame pasirinkime.",
+      "empty": "Nėra deaktyvuotų žaidėjų."
+    },
+    "avatar": {
+      "uploadLabel": "Įkelti nuotrauką",
+      "changeLabel": "Keisti nuotrauką",
+      "removeLabel": "Pašalinti nuotrauką",
+      "removeConfirm": "Ar tikrai norite pašalinti šį avatarą?",
+      "uploadFailed": "Nepavyko išsaugoti nuotraukos."
+    },
+    "deleteConfirm": "Ar tikrai norite negrįžtamai ištrinti „{name}“? Skirtingai nuo pašalinimo, žaidėjų valdyme nėra kelio atgal — ankstesni žaidimai vis tiek rodys vardą."
+  },
+  "groups": {
+    "hint": "Grupuokite žaidėjus (pvz., „Šeima“, „Nuolatiniai“) — nustatydami žaidimą tada galėsite pasirinkti visą grupę vienu paspaudimu. Vienas asmuo gali priklausyti keliems grupėms.",
+    "newGroup": {
+      "heading": "Nauja grupė",
+      "nameLabel": "Grupės pavadinimas",
+      "namePlaceholder": "pvz., Šeima",
+      "membersLabel": "Nariai"
+    },
+    "active": {
+      "heading": "Aktyvios grupės",
+      "empty": "Dar nesukurta nė viena grupė."
+    },
+    "inactive": {
+      "heading": "Deaktyvuotos grupės",
+      "empty": "Nėra deaktyvuotų grupių."
+    },
+    "empty": "Nėra narių",
+    "editButton": "Redaguoti",
+    "saveButton": "Išsaugoti",
+    "cancelButton": "Atšaukti",
+    "deleteConfirm": "Ar tikrai norite ištrinti grupę „{name}“? Patys nariai lieka — pašalinamas tik grupavimas.",
+    "createFailed": "Nepavyko sukurti grupės."
+  },
+  "stats": {
+    "heading": "Statistika",
+    "filter": {
+      "heading": "Laikotarpis",
+      "hint": "Palikite tuščią, jei norite statistikos apie visus žaidimus. Žaidimų vakarui, kuris tęsiasi po vidurnakčio, įveskite, pvz., nuo 18:00 iki kitos dienos 03:00.",
+      "fromLabel": "Nuo",
+      "toLabel": "Iki",
+      "apply": "Taikyti",
+      "reset": "Atstatyti"
+    },
+    "kpi": {
+      "games": "Žaidimai",
+      "finished": "Baigti",
+      "winRate": "Baigtų dalis",
+      "avgScore": "Vid. taškai"
+    },
+    "overall": {
+      "heading": "Iš viso",
+      "empty": "Šiuo laikotarpiu žaidimų nėra."
+    },
+    "byMode": {
+      "heading": "Pagal režimą"
+    },
+    "modeDistribution": {
+      "heading": "Pasiskirstymas pagal režimą",
+      "empty": "Šiuo laikotarpiu žaidimų nėra."
+    },
+    "headToHead": {
+      "heading": "Tiesioginės dvikovos",
+      "empty": "Šiuo laikotarpiu dar nėra dviejų žaidėjų su bendrais baigtais žaidimais.",
+      "listSummary": "Rodyti kaip sąrašą",
+      "draws": "lygiosios",
+      "gamesSuffix": "žaidimai"
+    },
+    "games": {
+      "heading": "Žaidimai šiuo laikotarpiu",
+      "empty": "Šiuo laikotarpiu žaidimų nėra."
+    },
+    "table": {
+      "player": "Žaidėjas",
+      "gamesPlayed": "Žaidimai",
+      "gamesFinished": "Baigti",
+      "wins": "Pergalės",
+      "winRate": "Pergalių dalis",
+      "currentStreak": "Dabartinė serija",
+      "longestStreak": "Ilgiausia serija",
+      "avgScore": "Vid. rezultatas"
+    },
+    "print": "Spausdinti / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Pasirinkite nuotraukos apkarpymą",
+    "hint": "Vilkite, kad perkeltumėte, naudokite slankiklį priartinimui (pasą nuotraukos formatas 2:3).",
+    "apply": "Taikyti"
+  },
+  "history": {
+    "heading": "Žaidimų istorija",
+    "all": {
+      "heading": "Visi žaidimai",
+      "hint": "Naujausi pirmiausia. Vykstančius žaidimus galima tęsti, baigti rodo rezultatą."
+    },
+    "filter": {
+      "all": "Visi",
+      "active": "Vykstantys",
+      "finished": "Baigti"
+    },
+    "empty": "Dar nesužaistas nė vienas žaidimas.",
+    "filterEmpty": {
+      "active": "Nėra vykstančių žaidimų.",
+      "finished": "Dar nėra baigtų žaidimų."
+    },
+    "deleteConfirm": "Ar tikrai norite negrįžtamai ištrinti „{label}“ iš žaidimų istorijos?",
+    "badge": {
+      "finished": "Baigtas",
+      "active": "Vyksta"
+    },
+    "meta": {
+      "target": "Tikslas: {score} taškų",
+      "rounds": "Raundas {played}/{total}",
+      "winners": "Laimėtojas: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Nustatymai",
+    "subtitle": "Taikoma visiems, kurie naudoja šią programėlę (saugoma visuotinai).",
+    "tabs": {
+      "aussehen": "Išvaizda",
+      "allgemein": "Bendra",
+      "spieler": "Žaidėjai",
+      "spiele": "Mano žaidimai",
+      "zugang": "Prieigos apsauga",
+      "backup": "Atsarginė kopija"
+    },
+    "theme": {
+      "heading": "Išvaizda",
+      "hint": "Yra trys nepriklausomi stiliai. Detalus spalvų derinimas yra žemiau, skiltyje „Spalvos išsamiai“.",
+      "classic": "Klasikinis",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Akcentinė spalva",
+      "accent": {
+        "green": "Žalia",
+        "orange": "Oranžinė",
+        "pink": "Rožinė",
+        "violet": "Violetinė",
+        "cyan": "Žydra"
+      },
+      "backgroundLabel": "Fonas",
+      "background": {
+        "dark": "Tamsus",
+        "darkBlue": "Tamsiai mėlynas",
+        "black": "Juodas"
+      },
+      "cardStyleLabel": "Kortelės stilius",
+      "cardStyle": {
+        "classic": "Klasikinis",
+        "modern": "Modernus"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Spalvos pasiūlymas",
+      "flipPreset": {
+        "amber": "Gintarinė",
+        "petrol": "Naftos mėlynumo",
+        "karmesin": "Karmazino",
+        "knallorange": "Ryški oranžinė",
+        "violett": "Violetinė"
+      }
+    },
+    "title": {
+      "heading": "Pavadinimas",
+      "hint": "Rodomas antraštėje ir naršyklės skirtuko pavadinime.",
+      "label": "Pavadinimas"
+    },
+    "feedback": {
+      "heading": "Grįžtamasis ryšys išsaugant",
+      "hint": "Trumpas garsas (ir vibracija, jei įrenginys tai palaiko) išsaugant raundą. „iPhone“/„iPad“ vibracija neįmanoma dėl techninių priežasčių („Safari“), tačiau garsas veikia.",
+      "label": "Garsas išsaugant"
+    },
+    "presets": {
+      "heading": "Mano žaidimai",
+      "hint": "Jūsų pačių, visiškai sukonfigūruoti žaidimai (pvz., „Flip7“ su tikslu 200) — jie rodomi pradžios puslapyje skiltyje „Mano žaidimai“ ir paspaudus iš anksto užpildo nustatymo formą.",
+      "favoritesHeading": "Mėgstamiausi",
+      "favoritesHint": "Pakoreguokite tvarką rodyklėmis arba tempdami — nustato mėgstamiausių eilutės tvarką pradžios puslapyje.",
+      "allHeading": "Visi žaidimai",
+      "allHint": "Surūšiuoti abėcėlės tvarka — mėgstamiausi taip pat rodomi čia, kad juos visada būtų galima rasti.",
+      "addButton": "Pridėti naują žaidimą",
+      "formHeadingNew": "Naujas žaidimas",
+      "formHeadingEdit": "Redaguoti {name}",
+      "nameLabel": "Pavadinimas",
+      "iconLabel": "Piktograma",
+      "modeLabel": "Režimas",
+      "metaTarget": "Tikslas: {target} taškų",
+      "metaRounds": "{rounds} raundų",
+      "saveFailed": "Nepavyko išsaugoti žaidimo.",
+      "deleteConfirm": "Ar tikrai norite ištrinti „{name}“?",
+      "empty": "Dar nesukurtas nė vienas žaidimas.",
+      "favoriteLabel": "Mėgstamiausias",
+      "moveUp": "Perkelti aukštyn",
+      "moveDown": "Perkelti žemyn",
+      "editButton": "Redaguoti"
+    },
+    "access": {
+      "heading": "Prieigos apsauga",
+      "hint": "Apsaugo visą svetainę vienu bendru slaptažodžiu visiems, žinantiems nuorodą. Be aktyvios apsaugos, svetaine gali naudotis bet kas, turintis nuorodą.",
+      "enableLabel": "Įjungti prieigos apsaugą",
+      "noPasswordSet": "Slaptažodis dar nenustatytas — apsauga lieka neaktyvi, kol jis bus nustatytas.",
+      "passwordLabel": "Naujas slaptažodis",
+      "passwordConfirmLabel": "Patvirtinti slaptažodį",
+      "passwordHint": "Bent 8 simboliai. Palikite tuščią, jei norite išlaikyti šiuo metu išsaugotą slaptažodį. Pamiršote slaptažodį? Žr. README instrukcijas, kaip atkurti per prieigą prie failų.",
+      "mismatchError": "Du slaptažodžiai nesutampa.",
+      "tooShortError": "Slaptažodis turi būti bent 8 simbolių ilgio.",
+      "saveFailed": "Išsaugoti nepavyko.",
+      "logoutButton": "Atsijungti šiame įrenginyje"
+    },
+    "logo": {
+      "heading": "Logotipas",
+      "hint": "Numatytuoju atveju nėra aktyvaus jokio individualaus logotipo, pieštuko piktograma lieka matoma.",
+      "modeLabel": "Rodymas",
+      "modeNone": "Be logotipo",
+      "modeSquare": "Kvadratinis, viršuje kairėje",
+      "modeBanner": "Juosta per visą plotį",
+      "squareHeading": "Kvadratinis logotipas",
+      "squareHint": "Rekomenduojama: 160×160 pikselių (kvadratas). PNG, JPEG arba SVG, maks. 2 MB.",
+      "bannerHeading": "Juostos logotipas",
+      "bannerHint": "Rekomenduojama: apie 1400×160 pikselių (platus, ne per aukštas). PNG, JPEG arba SVG, maks. 2 MB.",
+      "uploadButton": "Įkelti",
+      "removeConfirm": "Ar tikrai norite pašalinti šį logotipą?",
+      "uploadSuccess": "Logotipas įkeltas.",
+      "removeSuccess": "Logotipas pašalintas.",
+      "uploadFailed": "Nepavyko įkelti logotipo.",
+      "noFileSelected": "Pirmiausia pasirinkite failą."
+    },
+    "language": {
+      "heading": "Kalba",
+      "hint": "Vėliau galima pridėti daugiau kalbų.",
+      "label": "Kalba"
+    },
+    "colors": {
+      "advancedHeading": "Spalvos išsamiai",
+      "advancedSummary": "Atverti papildomus nustatymus",
+      "boldNote": "Taikoma tik Klasikiniam — Bold naudoja aukščiau pateiktus išankstinius nustatymus.",
+      "single": {
+        "heading": "Akcentinės ir funkcinės spalvos",
+        "hint": "Galioja nepakitusios šviesiame ir tamsiame režimuose."
+      },
+      "pairs": {
+        "heading": "Pagrindinės spalvos (atskirai šviesiam/tamsiam režimui)",
+        "hint": "Fonas, paviršius, tekstas ir kraštas — po vieną šviesiam ir tamsiam režimui.",
+        "light": "Šviesus",
+        "dark": "Tamsus"
+      },
+      "flip": {
+        "heading": "„Flip Board“ spalvos",
+        "hint": "Pakeičia aukščiau pasirinktą spalvos pasiūlymą — po vieną šviesiam ir tamsiam režimui."
+      }
+    },
+    "resetButton": "Atstatyti numatytąsias spalvas",
+    "resetConfirm": "Ar tikrai norite atstatyti visas spalvas į numatytąsias reikšmes?",
+    "savedStatus": "Išsaugota. Kiti puslapiai pakeitimą perims kito apsilankymo metu.",
+    "resetStatus": "Atstatyta į numatytąsias spalvas.",
+    "backup": {
+      "heading": "Duomenų atsarginė kopija",
+      "hint": "Pilna atsarginė kopija visų žaidėjų, žaidimų, avatarų ir logotipų kaip ZIP failas — pvz., kad nieko nebūtų prarasta perkeliant į naują serverį.",
+      "exportHeading": "Atsisiųsti atsarginę kopiją",
+      "exportHint": "Yra pilna duomenų bazė bei visos avatarų nuotraukos ir logotipas.",
+      "exportButton": "Atsisiųsti atsarginę kopiją",
+      "importHeading": "Atkurti atsarginę kopiją",
+      "importWarning": "Įspėjimas: importavimas negrįžtamai pakeičia visus dabartinius žaidėjus, žaidimus, avatarus ir logotipus atsarginės kopijos failo turiniu.",
+      "fileLabel": "Atsarginės kopijos failas (.zip)",
+      "importButton": "Importuoti atsarginę kopiją",
+      "confirmHint": "Norėdami patvirtinti, žemiau įveskite tiksliai ERSETZEN.",
+      "confirmLabel": "Patvirtinimas",
+      "confirmButton": "Pakeisti dabar, negrįžtamai",
+      "noFileSelected": "Pirmiausia pasirinkite atsarginės kopijos failą.",
+      "finalConfirm": "Ar tikrai norite negrįžtamai pakeisti visus dabartinius žaidimo duomenis atsargine kopija?",
+      "importInProgress": "Atkuriama atsarginė kopija …",
+      "importSuccess": "Atsarginė kopija atkurta: {games} žaidimų, {players} žaidėjų. Puslapis įkeliamas iš naujo …",
+      "importFailed": "Importavimas nepavyko."
+    },
+    "colorLabels": {
+      "green": "Neoninė žalia (pagrindinis akcentas)",
+      "greenStrong": "Neoninė žalia, patamsinta (tekstas/linijos)",
+      "amber": "Gintarinė (antrinis akcentas)",
+      "amberStrong": "Gintarinė, patamsinta (tekstas/linijos)",
+      "onAccent": "Tekstas ant akcentuotų paviršių",
+      "focus": "Fokuso kontūras (navigacija klaviatūra)",
+      "danger": "Klaida / pavojus (pvz., trynimo mygtukai)",
+      "bg": "Fonas",
+      "surface": "Paviršius (kortelės)",
+      "text": "Tekstas",
+      "textMuted": "Prislopintas tekstas",
+      "border": "Kraštas"
+    }
+  },
+  "login": {
+    "heading": "Prisijungti",
+    "hint": "Ši svetainė apsaugota slaptažodžiu.",
+    "error": "Neteisingas slaptažodis.",
+    "passwordLabel": "Slaptažodis",
+    "submitButton": "Prisijungti"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Nustatyti naują žaidimą (pvz., Flip7, Tutto)",
+      "labelPlaceholder": "pvz., Flip7, Tutto",
+      "targetLabel": "Iki kokios taškų vertės žaisti?",
+      "winDirectionHint": "Daugumoje žaidimų laimi didžiausias rezultatas (pvz., Flip7, Tutto) — tačiau kai kuriuose, pvz., Skyjo, laimi mažiausias rezultatas. Žaidimas vis tiek baigiasi, kai tik kas nors pasiekia ar viršija tikslą.",
+      "targetBonusLabel": "Premija už tikslo pasiekimą"
+    },
+    "game": {
+      "subtitle": "Tikslas: {target} taškų · {started}",
+      "roundEntryHint": "Įveskite šio raundo taškus kiekvienam žaidėjui (0 yra normalu, pvz., viršijus ribą)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Nustatyti naują žaidimą (pvz., Doppelkopf)",
+      "labelPlaceholder": "pvz., Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "laimi didžiausias rezultatas",
+        "lowest": "laimi mažiausias rezultatas"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Nustatyti naują žaidimą",
+      "roundsLabel": "Kiek raundų turi būti žaidžiama?",
+      "announceLabel": "Po kiekvieno raundo pranešti, kad jis baigėsi",
+      "announceHint": "Po kiekvieno išsaugoto raundo rodo trumpą, uždaromą pranešimą."
+    },
+    "game": {
+      "subtitleOngoing": "Raundas {round} iš {total} · {started}",
+      "subtitleReached": "{played} iš {total} raundų sužaista · {started}",
+      "roundEndNotice": "Raundas {round} baigtas",
+      "targetReached": {
+        "heading": "Sužaidėte sutartus {total} raundų.",
+        "extendLabel": "Tęsti žaidimą dar tiek raundų:",
+        "extendButton": "Tęsti žaidimą"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Nustatyti naują žaidimą — 10 raundų, lėkčių skelbimas",
+      "hint": "Fiksuoti 10 raundų (nuo 10 iki 1 kortos), pabaigoje laimi didžiausias rezultatas.",
+      "labelPlaceholder": "pvz., RAGE vakaras",
+      "showBonusMalusLabel": "Rodyti premiją/nuobaudą",
+      "showBonusMalusHint": "Rodyti/slėpti specialiųjų kortų +5/−5 laukus raundo įvedime."
+    },
+    "game": {
+      "cardSingular": "korta",
+      "cardPlural": "kortos",
+      "subtitleFinished": "{played} iš 10 raundų sužaista · {started}",
+      "subtitleOngoing": "Raundas {round} iš 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Įvesti raundą",
+        "staticHint": "Įveskite kiekvieno žaidėjo skelbimą ir faktines lėktes, jei yra — specialiąsias kortas.",
+        "heading": "Įvesti raundą {round} ({cards} {cardWord})",
+        "hint": "Įveskite kiekvieno žaidėjo skelbimą ir faktines lėktes (0 galioja). Visų žaidėjų lėkčių suma turėtų būti {cards}.",
+        "table": {
+          "player": "Žaidėjas",
+          "bid": "Skelbimas",
+          "tricks": "Lėktės",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Taškai"
+        }
+      },
+      "roundsTableHint": "Keiskite reikšmes tiesiogiai, kad ištaisytumėte įvedimo klaidas. Skelbimas / lėktės / +5 / −5 / taškai (apskaičiuoti) kiekvienam žaidėjui ir raundui.",
+      "deleteRoundButton": "Ištrinti R{round}",
+      "mismatchConfirm": "Įvestų lėkčių suma ({actual}) neatitinka šio raundo kortų skaičiaus ({expected}). Vis tiek išsaugoti?",
+      "saveFailed": "Nepavyko išsaugoti raundo."
+    }
+  },
+  "chooser": {
+    "heading": "Kas pradeda?",
+    "subtitle": "Vienu metu uždėkite visus pirštus ant ekrano — veikia daugiataškiu lietimu („iPad“/„iPhone“).",
+    "hint": "Uždėkite pirštus ant ekrano …",
+    "winnerCountLabel": "Laimėtojų skaičius",
+    "resultSingle": "Šis asmuo pradeda! Naujam raundui vėl uždėkite pirštus.",
+    "resultMulti": "Šie {count} asmenys pradeda! Naujam raundui vėl uždėkite pirštus."
+  }
+}

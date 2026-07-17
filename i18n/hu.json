@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Ugrás a tartalomhoz",
+    "nav": {
+      "home": "Kezdőlap",
+      "history": "Előzmények",
+      "stats": "Statisztikák",
+      "chooser": "Ki kezd?",
+      "settings": "Beállítások",
+      "openMenu": "Menü megnyitása",
+      "closeMenu": "Menü bezárása"
+    },
+    "updateAvailable": "Frissítés elérhető ({version})",
+    "buttons": {
+      "add": "Hozzáadás",
+      "save": "Mentés",
+      "delete": "Törlés",
+      "start": "Játék indítása",
+      "finish": "Játék befejezése",
+      "resume": "Játék folytatása",
+      "remove": "Eltávolítás",
+      "reactivate": "Újraaktiválás",
+      "close": "Bezárás",
+      "cancel": "Mégse"
+    },
+    "winDirection": {
+      "heading": "Ki nyer a végén?",
+      "highest": "Legmagasabb pontszám",
+      "lowest": "Legalacsonyabb pontszám"
+    },
+    "stepper": {
+      "decrease": "Csökkentés",
+      "increase": "Növelés",
+      "minusValue": "{value} levonása",
+      "plusValue": "{value} hozzáadása"
+    },
+    "table": {
+      "rank": "Helyezés",
+      "name": "Név",
+      "points": "Pontok",
+      "progress": "Haladás",
+      "actions": "Műveletek",
+      "round": "Kör"
+    },
+    "game": {
+      "loading": "Betöltés …",
+      "notFound": "A játék nem található.",
+      "standingsHeading": "Állás",
+      "standings": {
+        "collapse": "Összecsukás",
+        "expand": "Megjelenítés",
+        "teamTotalSuffix": "pont összesen"
+      },
+      "startingPlayerLegend": "★ Kezdőjátékos (véletlenszerű)",
+      "startedSuffix": "kezdve: {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Vége a játéknak! {names} együtt nyertek {points} ponttal.",
+        "single": "🏆 Vége a játéknak! {names} nyert {points} ponttal."
+      },
+      "roundEntry": {
+        "heading": "Új kör rögzítése",
+        "saveButton": "Kör mentése",
+        "switchToButtons": "Léptető gombok",
+        "switchToType": "Beírás"
+      },
+      "roundsTable": {
+        "heading": "Kör-előzmények és javítás",
+        "hint": "Módosítsd az értékeket közvetlenül a beviteli hibák javításához.",
+        "empty": "Még nem játszottak egyetlen kört sem.",
+        "deleteConfirm": "Tényleg törlöd ezt a kört?",
+        "undoButton": "Utolsó kör visszavonása"
+      },
+      "noPlayersHint": "Még nincs játékos — adj hozzá egyet alább.",
+      "roundEntryHintGeneric": "Add meg ennek a körnek a pontjait játékosonként (0 normális)."
+    },
+    "setup": {
+      "heading": "Játék beállítása",
+      "labelOptional": "Cím (opcionális)",
+      "whoPlays": "Ki játszik?",
+      "addPlayerLabel": "Új játékos hozzáadása",
+      "addPlayerPlaceholder": "Add meg a nevet",
+      "advancedOptions": "Speciális beállítások",
+      "teamModeLabel": "Csapatmód bekapcsolása",
+      "teamModeHint": "A játékosok csapatokba sorolhatók, amelyek pontjait összeadják.",
+      "teamScoringHeading": "Csapat-pontozás",
+      "teamScoringShared": "Közös eredmény",
+      "teamScoringSharedHint": "A csapattagok közösen adnak meg egy közös eredményt körönként.",
+      "teamScoringIndividual": "Egyéni eredmények, közös összeg",
+      "teamScoringIndividualHint": "Minden játékos megadja saját eredményét — mind az egyéni eredmények, mind a csapat összesített eredménye megjelenik.",
+      "teamNone": "Nincs csapat",
+      "teamNumber": "{number}. csapat",
+      "teamNameLabel": "{number}. csapat neve (opcionális)",
+      "teamNamePlaceholder": "pl. A Sasok",
+      "selectAll": "Összes kijelölése",
+      "selectNone": "Kijelölés törlése",
+      "allowNegativeLabel": "Negatív pontok engedélyezése",
+      "allowNegativeHint": "Ha ki van kapcsolva, a negatív köradatok 0-ra korlátozódnak.",
+      "targetBonusHint": "Extra pontok, amelyeket a nyertes(ek) kapnak a célpontszám eléréséért (0 = nincs bónusz).",
+      "roundEntryStepsLabel": "Lépésközök a kör rögzítéséhez",
+      "roundEntryStepsHint": "Léptető gombok a számok beírása helyett — válaszd ki, mely lépésközök (±) legyenek elérhetők. Bármikor válthatsz beírás és léptető gombok között, akár játék közben is."
+    },
+    "errors": {
+      "minPlayers": "Válassz ki legalább 2 játékost.",
+      "createPlayerFailed": "A játékost nem sikerült létrehozni.",
+      "startGameFailed": "A játékot nem sikerült elindítani."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Pontszámláló segédlet játékestékhez"
+    },
+    "stats": {
+      "title": "Statisztikák"
+    },
+    "history": {
+      "title": "Játéktörténet"
+    },
+    "settings": {
+      "title": "Beállítások"
+    },
+    "pointsToTargetSetup": {
+      "title": "Pontok a célig — Új játék"
+    },
+    "pointsToTargetGame": {
+      "title": "Pontok a célig"
+    },
+    "pointsOpenSetup": {
+      "title": "Nyitott pontkör — Új játék"
+    },
+    "pointsOpenGame": {
+      "title": "Nyitott pontkör"
+    },
+    "fixedRoundsSetup": {
+      "title": "Pontkör fix körszámmal — Új játék"
+    },
+    "fixedRoundsGame": {
+      "title": "Pontkör fix körszámmal"
+    },
+    "rageSetup": {
+      "title": "RAGE — Új játék"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Ki kezd?"
+    },
+    "login": {
+      "title": "Bejelentkezés"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Pontok a célig",
+      "description": "A pontok körről körre összeadódnak, amíg valaki el nem éri vagy túl nem lépi a rögzített célértéket. Az nyer, akinek akkor a legtöbb pontja van.",
+      "examples": "pl. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Nyitott pontkör",
+      "description": "A pontok körről körre összeadódnak, rögzített cél nélkül. Ti döntitek el, mikor álltok meg — a legmagasabb vagy a legalacsonyabb pontszám nyer, a beállítástól függően.",
+      "examples": "pl. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Pontkör fix körszámmal",
+      "description": "A beállításnál döntitek el, hány kört játszotok, és hogy a végén a legmagasabb vagy a legalacsonyabb pontszám nyer. Az utolsó kör után a játék megkérdezi, befejezitek-e, vagy folytatjátok további körökkel."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fix 10 kör, csökkenő lapszámmal (10-től 1-ig). Minden kör előtt megmondod a várható ütésszámodat, majd megadod a tényleges ütéseket — a pontokat automatikusan számolja a RAGE szabályai szerint (Rage-bónusszal/bosszúval együtt).",
+      "examples": "RAGE kártyajáték"
+    }
+  },
+  "home": {
+    "heading": "Pontszámláló segédlet játékestékhez",
+    "newGame": {
+      "startButton": "Új játék indítása"
+    },
+    "generalBoards": {
+      "heading": "Általános eredményjelzők",
+      "hint": "Szabadon beállítható — a célpontszámot, a győzelmi irányt és a lépésközöket a beállításnál add meg."
+    },
+    "myGames": {
+      "heading": "Saját játékok",
+      "hint": "RAGE, valamint a saját, teljesen beállított játékaid (hozd létre őket a Beállítások → Saját játékok menüben).",
+      "favoritesHeading": "Kedvencek",
+      "allHeading": "Összes játék",
+      "metaTarget": "Cél: {score} pont",
+      "metaRounds": "{rounds} kör"
+    },
+    "openGames": {
+      "heading": "Folyamatban lévő játékok",
+      "viewAll": "Összes megtekintése"
+    },
+    "pwaHint": {
+      "heading": "Használat alkalmazásként",
+      "text": "iPaden/iPhone-on: koppints a Megosztás ikonra a Safariban, majd válaszd a „Kezdőképernyőhöz adás” lehetőséget — az oldal ezután önálló alkalmazásként jelenik meg, cím nélküli sáv nélkül."
+    },
+    "support": {
+      "label": "Támogasd ezt a projektet",
+      "ariaLabel": "Támogasd ezt a projektet a Buy Me a Coffee oldalon"
+    }
+  },
+  "players": {
+    "heading": "Játékosok kezelése",
+    "newPlayer": {
+      "heading": "Új játékos",
+      "nameLabel": "Név"
+    },
+    "active": {
+      "heading": "Aktív játékosok",
+      "hint": "Ezek a játékosok gyors kiválasztásra elérhetők az új játékokban.",
+      "empty": "Még nincs aktív játékos."
+    },
+    "inactive": {
+      "heading": "Deaktivált játékosok",
+      "hint": "A korábbi játékokban láthatók maradnak, de a gyors kiválasztásban már nem jelennek meg.",
+      "empty": "Nincs deaktivált játékos."
+    },
+    "avatar": {
+      "uploadLabel": "Fénykép feltöltése",
+      "changeLabel": "Fénykép módosítása",
+      "removeLabel": "Fénykép eltávolítása",
+      "removeConfirm": "Tényleg eltávolítod ezt az avatart?",
+      "uploadFailed": "A fényképet nem sikerült menteni."
+    },
+    "deleteConfirm": "Tényleg véglegesen törlöd: „{name}”? Az eltávolítással ellentétben a játékoskezelésben ez nem visszavonható — a korábbi játékok továbbra is a nevet fogják mutatni."
+  },
+  "groups": {
+    "hint": "Csoportosítsd a játékosokat (pl. „Család”, „Törzsvendégek”) — egy játék beállításakor így egy kattintással kiválaszthatod az egész csoportot. Egy személy több csoportban is lehet.",
+    "newGroup": {
+      "heading": "Új csoport",
+      "nameLabel": "Csoport neve",
+      "namePlaceholder": "pl. Család",
+      "membersLabel": "Tagok"
+    },
+    "active": {
+      "heading": "Aktív csoportok",
+      "empty": "Még nem hoztak létre csoportot."
+    },
+    "inactive": {
+      "heading": "Deaktivált csoportok",
+      "empty": "Nincs deaktivált csoport."
+    },
+    "empty": "Nincs tag",
+    "editButton": "Szerkesztés",
+    "saveButton": "Mentés",
+    "cancelButton": "Mégse",
+    "deleteConfirm": "Tényleg törlöd a(z) „{name}” csoportot? Maguk a tagok megmaradnak — csak a csoportosítás szűnik meg.",
+    "createFailed": "A csoportot nem sikerült létrehozni."
+  },
+  "stats": {
+    "heading": "Statisztikák",
+    "filter": {
+      "heading": "Időszak",
+      "hint": "Hagyd üresen az összes játék statisztikájához. Éjfél utánig tartó játékestéhez add meg pl. 18:00-tól másnap 03:00-ig.",
+      "fromLabel": "Ettől",
+      "toLabel": "Eddig",
+      "apply": "Alkalmaz",
+      "reset": "Visszaállítás"
+    },
+    "kpi": {
+      "games": "Játékok",
+      "finished": "Befejezve",
+      "winRate": "Befejezett arány",
+      "avgScore": "Átl. pont"
+    },
+    "overall": {
+      "heading": "Összesített",
+      "empty": "Nincs játék ebben az időszakban."
+    },
+    "byMode": {
+      "heading": "Mód szerint"
+    },
+    "modeDistribution": {
+      "heading": "Eloszlás mód szerint",
+      "empty": "Nincs játék ebben az időszakban."
+    },
+    "headToHead": {
+      "heading": "Egymás elleni mérleg",
+      "empty": "Ebben az időszakban még nincs két játékos közös befejezett játékokkal.",
+      "listSummary": "Megjelenítés listaként",
+      "draws": "döntetlen",
+      "gamesSuffix": "játék"
+    },
+    "games": {
+      "heading": "Játékok ebben az időszakban",
+      "empty": "Nincs játék ebben az időszakban."
+    },
+    "table": {
+      "player": "Játékos",
+      "gamesPlayed": "Játékok",
+      "gamesFinished": "Befejezve",
+      "wins": "Győzelmek",
+      "winRate": "Győzelmi arány",
+      "currentStreak": "Jelenlegi sorozat",
+      "longestStreak": "Leghosszabb sorozat",
+      "avgScore": "Átl. eredmény"
+    },
+    "print": "Nyomtatás / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Válaszd ki a kép kivágását",
+    "hint": "Húzd az áthelyezéshez, a csúszkával nagyíthatsz (igazolványkép-formátum 2:3).",
+    "apply": "Alkalmaz"
+  },
+  "history": {
+    "heading": "Játéktörténet",
+    "all": {
+      "heading": "Összes játék",
+      "hint": "A legújabbak elöl. A folyamatban lévő játékok folytathatók, a befejezettek az eredményt mutatják."
+    },
+    "filter": {
+      "all": "Összes",
+      "active": "Folyamatban",
+      "finished": "Befejezett"
+    },
+    "empty": "Még nem játszottak egyetlen játékot sem.",
+    "filterEmpty": {
+      "active": "Nincs folyamatban lévő játék.",
+      "finished": "Még nincs befejezett játék."
+    },
+    "deleteConfirm": "Tényleg véglegesen törlöd: „{label}” a játéktörténetből?",
+    "badge": {
+      "finished": "Befejezve",
+      "active": "Folyamatban"
+    },
+    "meta": {
+      "target": "Cél: {score} pont",
+      "rounds": "{played}/{total}. kör",
+      "winners": "Győztes: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Beállítások",
+    "subtitle": "Mindenkire vonatkozik, aki ezt az alkalmazást használja (globálisan mentve).",
+    "tabs": {
+      "aussehen": "Megjelenés",
+      "allgemein": "Általános",
+      "spieler": "Játékosok",
+      "spiele": "Saját játékok",
+      "zugang": "Hozzáférés-védelem",
+      "backup": "Biztonsági mentés"
+    },
+    "theme": {
+      "heading": "Megjelenés",
+      "hint": "Három önálló stílus közül választhatsz. A színek finomhangolása lejjebb, a „Színek részletesen” pontban található.",
+      "classic": "Klasszikus",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Kiemelő szín",
+      "accent": {
+        "green": "Zöld",
+        "orange": "Narancssárga",
+        "pink": "Rózsaszín",
+        "violet": "Ibolya",
+        "cyan": "Ciánkék"
+      },
+      "backgroundLabel": "Háttér",
+      "background": {
+        "dark": "Sötét",
+        "darkBlue": "Sötétkék",
+        "black": "Fekete"
+      },
+      "cardStyleLabel": "Kártyastílus",
+      "cardStyle": {
+        "classic": "Klasszikus",
+        "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Szín-javaslat",
+      "flipPreset": {
+        "amber": "Borostyán",
+        "petrol": "Petróleumkék",
+        "karmesin": "Karmazsin",
+        "knallorange": "Élénk narancs",
+        "violett": "Ibolya"
+      }
+    },
+    "title": {
+      "heading": "Cím",
+      "hint": "A fejlécben és a böngészőfül címében jelenik meg.",
+      "label": "Cím"
+    },
+    "feedback": {
+      "heading": "Visszajelzés mentéskor",
+      "hint": "Rövid hang (és rezgés, ha az eszköz támogatja) egy kör mentésekor. iPhone-on/iPaden a rezgés technikai okokból (Safari) nem lehetséges, a hang viszont működik.",
+      "label": "Hang mentéskor"
+    },
+    "presets": {
+      "heading": "Saját játékok",
+      "hint": "A saját, teljesen beállított játékaid (pl. „Flip7” 200-as céllal) — a kezdőlapon a „Saját játékok” alatt jelennek meg, és kattintásra előre kitöltik a beállítási űrlapot.",
+      "favoritesHeading": "Kedvencek",
+      "favoritesHint": "A sorrendet a nyilakkal vagy húzással módosíthatod — ez határozza meg a kedvencek sorának sorrendjét a kezdőlapon.",
+      "allHeading": "Összes játék",
+      "allHint": "Ábécé szerint rendezve — a kedvencek itt is megjelennek, hogy mindenképp megtalálhatók legyenek.",
+      "addButton": "Új játék hozzáadása",
+      "formHeadingNew": "Új játék",
+      "formHeadingEdit": "{name} szerkesztése",
+      "nameLabel": "Név",
+      "iconLabel": "Ikon",
+      "modeLabel": "Mód",
+      "metaTarget": "Cél: {target} pont",
+      "metaRounds": "{rounds} kör",
+      "saveFailed": "A játékot nem sikerült menteni.",
+      "deleteConfirm": "Tényleg törlöd: „{name}”?",
+      "empty": "Még nem hoztak létre játékot.",
+      "favoriteLabel": "Kedvenc",
+      "moveUp": "Feljebb",
+      "moveDown": "Lejjebb",
+      "editButton": "Szerkesztés"
+    },
+    "access": {
+      "heading": "Hozzáférés-védelem",
+      "hint": "Egyetlen, közösen használt jelszóval védi az egész oldalt mindenki számára, aki ismeri a linket. Aktív védelem nélkül bárki használhatja az oldalt, akinek megvan a linkje.",
+      "enableLabel": "Hozzáférés-védelem bekapcsolása",
+      "noPasswordSet": "Még nincs beállítva jelszó — a védelem inaktív marad, amíg nincs beállítva.",
+      "passwordLabel": "Új jelszó",
+      "passwordConfirmLabel": "Jelszó megerősítése",
+      "passwordHint": "Legalább 8 karakter. Hagyd üresen a jelenleg mentett jelszó megtartásához. Elfelejtetted a jelszót? Nézd meg a README-t a fájleléréssel történő visszaállítás útmutatójáért.",
+      "mismatchError": "A két jelszó nem egyezik.",
+      "tooShortError": "A jelszónak legalább 8 karakter hosszúnak kell lennie.",
+      "saveFailed": "A mentés sikertelen.",
+      "logoutButton": "Kijelentkezés ezen az eszközön"
+    },
+    "logo": {
+      "heading": "Logó",
+      "hint": "Alapértelmezés szerint nincs aktív saját logó, a toll ikon látható marad.",
+      "modeLabel": "Megjelenítés",
+      "modeNone": "Nincs logó",
+      "modeSquare": "Négyzet alakú, bal felül",
+      "modeBanner": "Teljes szélességű szalag",
+      "squareHeading": "Négyzet alakú logó",
+      "squareHint": "Javasolt: 160×160 képpont (négyzet). PNG, JPEG vagy SVG, max. 2 MB.",
+      "bannerHeading": "Szalag logó",
+      "bannerHint": "Javasolt: kb. 1400×160 képpont (széles, nem túl magas). PNG, JPEG vagy SVG, max. 2 MB.",
+      "uploadButton": "Feltöltés",
+      "removeConfirm": "Tényleg eltávolítod ezt a logót?",
+      "uploadSuccess": "Logó feltöltve.",
+      "removeSuccess": "Logó eltávolítva.",
+      "uploadFailed": "A logót nem sikerült feltölteni.",
+      "noFileSelected": "Válassz előbb egy fájlt."
+    },
+    "language": {
+      "heading": "Nyelv",
+      "hint": "Később további nyelvek is hozzáadhatók.",
+      "label": "Nyelv"
+    },
+    "colors": {
+      "advancedHeading": "Színek részletesen",
+      "advancedSummary": "Speciális beállítások megnyitása",
+      "boldNote": "Csak a Klasszikus stílusra vonatkozik — a Bold a fenti előbeállításokat használja.",
+      "single": {
+        "heading": "Kiemelő és funkcionális színek",
+        "hint": "Változatlanul érvényesek világos és sötét módban is."
+      },
+      "pairs": {
+        "heading": "Alapszínek (külön világos/sötét módhoz)",
+        "hint": "Háttér, felület, szöveg és keret — egyszer-egyszer világos és sötét módhoz.",
+        "light": "Világos",
+        "dark": "Sötét"
+      },
+      "flip": {
+        "heading": "Flip Board színek",
+        "hint": "Felülírja a fent kiválasztott szín-javaslatot — egyszer-egyszer világos és sötét módhoz."
+      }
+    },
+    "resetButton": "Alapértelmezett színek visszaállítása",
+    "resetConfirm": "Tényleg visszaállítod az összes színt az alapértelmezett értékekre?",
+    "savedStatus": "Mentve. A többi oldal a következő látogatáskor veszi át a változtatást.",
+    "resetStatus": "Visszaállítva az alapértelmezett színekre.",
+    "backup": {
+      "heading": "Adat biztonsági mentése",
+      "hint": "Az összes játékos, játék, avatar és logó teljes biztonsági mentése ZIP-fájlként — pl. hogy szerverváltáskor semmi ne vesszen el.",
+      "exportHeading": "Biztonsági mentés letöltése",
+      "exportHint": "Tartalmazza a teljes adatbázist, valamint az összes avatarképet és a logót.",
+      "exportButton": "Biztonsági mentés letöltése",
+      "importHeading": "Biztonsági mentés visszaállítása",
+      "importWarning": "Figyelem: az importálás visszavonhatatlanul lecseréli az összes jelenlegi játékost, játékot, avatart és logót a biztonsági mentés fájl tartalmára.",
+      "fileLabel": "Biztonsági mentés fájlja (.zip)",
+      "importButton": "Biztonsági mentés importálása",
+      "confirmHint": "A megerősítéshez írd be pontosan az ERSETZEN szót alább.",
+      "confirmLabel": "Megerősítés",
+      "confirmButton": "Csere most, véglegesen",
+      "noFileSelected": "Válassz előbb egy biztonsági mentés fájlt.",
+      "finalConfirm": "Tényleg visszavonhatatlanul lecseréled az összes jelenlegi játékadatot a biztonsági mentésre?",
+      "importInProgress": "Biztonsági mentés visszaállítása …",
+      "importSuccess": "Biztonsági mentés visszaállítva: {games} játék, {players} játékos. Az oldal újratöltése …",
+      "importFailed": "Az importálás sikertelen."
+    },
+    "colorLabels": {
+      "green": "Neonzöld (fő kiemelés)",
+      "greenStrong": "Neonzöld, sötétített (szöveg/vonalak)",
+      "amber": "Borostyán (másodlagos kiemelés)",
+      "amberStrong": "Borostyán, sötétített (szöveg/vonalak)",
+      "onAccent": "Szöveg kiemelt felületeken",
+      "focus": "Fókuszkeret (billentyűzetes navigáció)",
+      "danger": "Hiba / veszély (pl. törlés gombok)",
+      "bg": "Háttér",
+      "surface": "Felület (kártyák)",
+      "text": "Szöveg",
+      "textMuted": "Halványított szöveg",
+      "border": "Keret"
+    }
+  },
+  "login": {
+    "heading": "Bejelentkezés",
+    "hint": "Ez az oldal jelszóval védett.",
+    "error": "Hibás jelszó.",
+    "passwordLabel": "Jelszó",
+    "submitButton": "Bejelentkezés"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Új játék beállítása (pl. Flip7, Tutto)",
+      "labelPlaceholder": "pl. Flip7, Tutto",
+      "targetLabel": "Milyen pontértékig játsszatok?",
+      "winDirectionHint": "A legtöbb játékban a legmagasabb pontszám nyer (pl. Flip7, Tutto) — de néhányban, mint a Skyjo, éppen a legalacsonyabb pontszám nyer. A játék mindenképp véget ér, amint valaki eléri vagy túllépi a célt.",
+      "targetBonusLabel": "Bónusz a cél eléréséért"
+    },
+    "game": {
+      "subtitle": "Cél: {target} pont · {started}",
+      "roundEntryHint": "Add meg ennek a körnek a pontjait játékosonként (0 normális, pl. túllépés esetén)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Új játék beállítása (pl. Doppelkopf)",
+      "labelPlaceholder": "pl. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "a legmagasabb pontszám nyer",
+        "lowest": "a legalacsonyabb pontszám nyer"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Új játék beállítása",
+      "roundsLabel": "Hány kört kell játszani?",
+      "announceLabel": "Minden kör után jelezze, hogy véget ért",
+      "announceHint": "Minden mentett kör után rövid, bezárható értesítést jelenít meg."
+    },
+    "game": {
+      "subtitleOngoing": "{round}. kör / {total} · {started}",
+      "subtitleReached": "{played}/{total} kör lejátszva · {started}",
+      "roundEndNotice": "{round}. kör befejezve",
+      "targetReached": {
+        "heading": "Lejátszottátok a megbeszélt {total} kört.",
+        "extendLabel": "Folytatás, ennyi további körrel:",
+        "extendButton": "Folytatás"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Új játék beállítása — 10 kör, ütésbecslés",
+      "hint": "Fix 10 kör (10-től 1 lapig), a végén a legmagasabb pontszám nyer.",
+      "labelPlaceholder": "pl. RAGE-est",
+      "showBonusMalusLabel": "Bónusz/malus megjelenítése",
+      "showBonusMalusHint": "A +5/−5 különleges lap mezők megjelenítése/elrejtése a kör rögzítésénél."
+    },
+    "game": {
+      "cardSingular": "lap",
+      "cardPlural": "lap",
+      "subtitleFinished": "{played}/10 kör lejátszva · {started}",
+      "subtitleOngoing": "{round}. kör / 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Kör rögzítése",
+        "staticHint": "Add meg a becslést és a tényleges ütéseket játékosonként, esetleges különleges lapokkal.",
+        "heading": "{round}. kör rögzítése ({cards} {cardWord})",
+        "hint": "Add meg a becslést és a tényleges ütéseket játékosonként (0 érvényes). Minden játékos ütéseinek összege {cards} legyen.",
+        "table": {
+          "player": "Játékos",
+          "bid": "Becslés",
+          "tricks": "Ütések",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Pontok"
+        }
+      },
+      "roundsTableHint": "Módosítsd az értékeket közvetlenül a beviteli hibák javításához. Becslés / ütések / +5 / −5 / pontok (számítva) játékosonként és körönként.",
+      "deleteRoundButton": "K{round}. kör törlése",
+      "mismatchConfirm": "A megadott ütések összege ({actual}) nem egyezik ennek a körnek a lapszámával ({expected}). Mentés mindenképp?",
+      "saveFailed": "A kört nem sikerült menteni."
+    }
+  },
+  "chooser": {
+    "heading": "Ki kezd?",
+    "subtitle": "Tegyétek az összes ujjatokat egyszerre a képernyőre — multitouch érintéssel működik (iPad/iPhone).",
+    "hint": "Tedd az ujjaidat a képernyőre …",
+    "winnerCountLabel": "Győztesek száma",
+    "resultSingle": "Ez a személy kezd! Tegyétek újra az ujjaitokat egy új körhöz.",
+    "resultMulti": "Ez a(z) {count} személy kezd! Tegyétek újra az ujjaitokat egy új körhöz."
+  }
+}

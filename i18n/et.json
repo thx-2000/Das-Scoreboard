@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Liigu sisu juurde",
+    "nav": {
+      "home": "Avaleht",
+      "history": "Ajalugu",
+      "stats": "Statistika",
+      "chooser": "Kes alustab?",
+      "settings": "Seaded",
+      "openMenu": "Ava menüü",
+      "closeMenu": "Sulge menüü"
+    },
+    "updateAvailable": "Saadaval on uuendus ({version})",
+    "buttons": {
+      "add": "Lisa",
+      "save": "Salvesta",
+      "delete": "Kustuta",
+      "start": "Alusta mängu",
+      "finish": "Lõpeta mäng",
+      "resume": "Jätka mängu",
+      "remove": "Eemalda",
+      "reactivate": "Aktiveeri uuesti",
+      "close": "Sulge",
+      "cancel": "Tühista"
+    },
+    "winDirection": {
+      "heading": "Kes lõpuks võidab?",
+      "highest": "Kõrgeim tulemus",
+      "lowest": "Madalaim tulemus"
+    },
+    "stepper": {
+      "decrease": "Vähenda",
+      "increase": "Suurenda",
+      "minusValue": "Lahuta {value}",
+      "plusValue": "Lisa {value}"
+    },
+    "table": {
+      "rank": "Koht",
+      "name": "Nimi",
+      "points": "Punktid",
+      "progress": "Edenemine",
+      "actions": "Toimingud",
+      "round": "Voor"
+    },
+    "game": {
+      "loading": "Laadimine …",
+      "notFound": "Mängu ei leitud.",
+      "standingsHeading": "Seis",
+      "standings": {
+        "collapse": "Ahenda",
+        "expand": "Näita",
+        "teamTotalSuffix": "punkti kokku"
+      },
+      "startingPlayerLegend": "★ Alustav mängija (juhuslik)",
+      "startedSuffix": "alustatud {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Mäng on läbi! {names} võidavad koos {points} punktiga.",
+        "single": "🏆 Mäng on läbi! {names} võitis {points} punktiga."
+      },
+      "roundEntry": {
+        "heading": "Sisesta uus voor",
+        "saveButton": "Salvesta voor",
+        "switchToButtons": "Sammunupud",
+        "switchToType": "Kirjutamine"
+      },
+      "roundsTable": {
+        "heading": "Voorude ajalugu ja parandus",
+        "hint": "Muuda väärtusi otse, et parandada sisestusvigu.",
+        "empty": "Ühtegi vooru pole veel mängitud.",
+        "deleteConfirm": "Kas soovid selle vooru tõesti kustutada?",
+        "undoButton": "Tühista viimane voor"
+      },
+      "noPlayersHint": "Mängijaid pole veel — lisa üks allpool.",
+      "roundEntryHintGeneric": "Sisesta selle vooru punktid mängija kohta (0 on tavaline)."
+    },
+    "setup": {
+      "heading": "Seadista mäng",
+      "labelOptional": "Silt (valikuline)",
+      "whoPlays": "Kes mängib?",
+      "addPlayerLabel": "Lisa uus mängija",
+      "addPlayerPlaceholder": "Sisesta nimi",
+      "advancedOptions": "Täpsemad valikud",
+      "teamModeLabel": "Luba meeskonnarežiim",
+      "teamModeHint": "Mängijaid saab rühmitada meeskondadesse, mille punktid liidetakse kokku.",
+      "teamScoringHeading": "Meeskonna punktiarvestus",
+      "teamScoringShared": "Ühine tulemus",
+      "teamScoringSharedHint": "Meeskonnaliikmed sisestavad ühiselt ühe ühise tulemuse vooru kohta.",
+      "teamScoringIndividual": "Individuaalsed tulemused, ühine summa",
+      "teamScoringIndividualHint": "Iga mängija sisestab oma tulemuse — kuvatakse nii individuaalsed tulemused kui ka meeskonna kogusumma.",
+      "teamNone": "Ei ole meeskonda",
+      "teamNumber": "Meeskond {number}",
+      "teamNameLabel": "Meeskonna {number} nimi (valikuline)",
+      "teamNamePlaceholder": "nt Kotkad",
+      "selectAll": "Vali kõik",
+      "selectNone": "Tühista kõikide valik",
+      "allowNegativeLabel": "Luba negatiivsed punktid",
+      "allowNegativeHint": "Kui väljas, piiratakse negatiivsed voorusisestused nulliga.",
+      "targetBonusHint": "Lisapunktid, mille võitja(d) saab/saavad sihttulemuse saavutamise eest (0 = boonust pole).",
+      "roundEntryStepsLabel": "Vooru sisestamise sammusuurused",
+      "roundEntryStepsHint": "Sammunupud numbrite kirjutamise alternatiivina — vali, millised sammusuurused (±) on saadaval. Kirjutamise ja sammunuppude vahel saab igal ajal vahetada, ka mängu ajal."
+    },
+    "errors": {
+      "minPlayers": "Vali vähemalt 2 mängijat.",
+      "createPlayerFailed": "Mängijat ei õnnestunud luua.",
+      "startGameFailed": "Mängu ei õnnestunud alustada."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Punktiabiline mänguõhtutele"
+    },
+    "stats": {
+      "title": "Statistika"
+    },
+    "history": {
+      "title": "Mängude ajalugu"
+    },
+    "settings": {
+      "title": "Seaded"
+    },
+    "pointsToTargetSetup": {
+      "title": "Punktid sihini — Uus mäng"
+    },
+    "pointsToTargetGame": {
+      "title": "Punktid sihini"
+    },
+    "pointsOpenSetup": {
+      "title": "Avatud punktivoor — Uus mäng"
+    },
+    "pointsOpenGame": {
+      "title": "Avatud punktivoor"
+    },
+    "fixedRoundsSetup": {
+      "title": "Punktivoor fikseeritud voorude arvuga — Uus mäng"
+    },
+    "fixedRoundsGame": {
+      "title": "Punktivoor fikseeritud voorude arvuga"
+    },
+    "rageSetup": {
+      "title": "RAGE — Uus mäng"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Kes alustab?"
+    },
+    "login": {
+      "title": "Logi sisse"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Punktid sihini",
+      "description": "Punktid liidetakse kokku voor vooru järel, kuni keegi saavutab fikseeritud sihtväärtuse või ületab seda. Võidab see, kellel on siis kõige rohkem punkte.",
+      "examples": "nt Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Avatud punktivoor",
+      "description": "Punktid liidetakse kokku voor vooru järel ilma fikseeritud sihita. Te otsustate ise, millal lõpetada — võidab kõrgeim või madalaim tulemus, olenevalt seadistusest.",
+      "examples": "nt Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Punktivoor fikseeritud voorude arvuga",
+      "description": "Seadistamisel otsustate, mitu vooru mängitakse ja kas lõpuks võidab kõrgeim või madalaim tulemus. Pärast viimast vooru küsib mäng, kas lõpetada või jätkata rohkemate voorudega."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fikseeritud 10 vooru väheneva kaartide arvuga (10-lt 1-le). Enne iga vooru kuulutad välja oodatava trikkide arvu, seejärel sisestad tegelikud trikid — punktid arvutatakse automaatselt RAGE reeglite järgi (sh Rage-boonus/kättemaks).",
+      "examples": "Kaardimäng RAGE"
+    }
+  },
+  "home": {
+    "heading": "Punktiabiline mänguõhtutele",
+    "newGame": {
+      "startButton": "Alusta uut mängu"
+    },
+    "generalBoards": {
+      "heading": "Üldised punktitabelid",
+      "hint": "Vabalt seadistatav — määra sihttulemus, võidusuund ja sammusuurused seadistamisel."
+    },
+    "myGames": {
+      "heading": "Minu mängud",
+      "hint": "RAGE ja sinu enda, täielikult seadistatud mängud (loo need Seaded → Minu mängud all).",
+      "favoritesHeading": "Lemmikud",
+      "allHeading": "Kõik mängud",
+      "metaTarget": "Siht: {score} punkti",
+      "metaRounds": "{rounds} vooru"
+    },
+    "openGames": {
+      "heading": "Käimasolevad mängud",
+      "viewAll": "Näita kõiki"
+    },
+    "pwaHint": {
+      "heading": "Kasuta rakendusena",
+      "text": "iPadis/iPhone'is: puuduta Safaris jagamisikooni ja vali seejärel „Lisa avakuvale“ — leht kuvatakse siis eraldiseisva rakendusena, ilma aadressiribata."
+    },
+    "support": {
+      "label": "Toeta seda projekti",
+      "ariaLabel": "Toeta seda projekti Buy Me a Coffee kaudu"
+    }
+  },
+  "players": {
+    "heading": "Halda mängijaid",
+    "newPlayer": {
+      "heading": "Uus mängija",
+      "nameLabel": "Nimi"
+    },
+    "active": {
+      "heading": "Aktiivsed mängijad",
+      "hint": "Need mängijad on uutes mängudes kiirvaliku jaoks saadaval.",
+      "empty": "Aktiivseid mängijaid pole veel."
+    },
+    "inactive": {
+      "heading": "Deaktiveeritud mängijad",
+      "hint": "Jäävad varasemates mängudes nähtavaks, kuid ei ilmu enam kiirvalikusse.",
+      "empty": "Deaktiveeritud mängijaid pole."
+    },
+    "avatar": {
+      "uploadLabel": "Laadi foto üles",
+      "changeLabel": "Muuda fotot",
+      "removeLabel": "Eemalda foto",
+      "removeConfirm": "Kas soovid selle avatari tõesti eemaldada?",
+      "uploadFailed": "Fotot ei õnnestunud salvestada."
+    },
+    "deleteConfirm": "Kas soovid \"{name}\" tõesti jäädavalt kustutada? Erinevalt eemaldamisest ei ole mängijahalduses tagasiteed — varasemad mängud näitavad nime endiselt."
+  },
+  "groups": {
+    "hint": "Rühmita mängijaid (nt „Perekond“, „Püsimängijad“) — mängu seadistamisel saad siis terve rühma ühe klõpsuga valida. Üks inimene võib kuuluda mitmesse rühma.",
+    "newGroup": {
+      "heading": "Uus rühm",
+      "nameLabel": "Rühma nimi",
+      "namePlaceholder": "nt Perekond",
+      "membersLabel": "Liikmed"
+    },
+    "active": {
+      "heading": "Aktiivsed rühmad",
+      "empty": "Ühtegi rühma pole veel loodud."
+    },
+    "inactive": {
+      "heading": "Deaktiveeritud rühmad",
+      "empty": "Deaktiveeritud rühmi pole."
+    },
+    "empty": "Liikmeid pole",
+    "editButton": "Muuda",
+    "saveButton": "Salvesta",
+    "cancelButton": "Tühista",
+    "deleteConfirm": "Kas soovid rühma \"{name}\" tõesti kustutada? Liikmed ise jäävad alles — kustutatakse ainult rühmitus.",
+    "createFailed": "Rühma ei õnnestunud luua."
+  },
+  "stats": {
+    "heading": "Statistika",
+    "filter": {
+      "heading": "Ajavahemik",
+      "hint": "Jäta tühjaks kõigi mängude statistika jaoks. Üle südaöö kestva mänguõhtu puhul sisesta nt 18:00 kuni järgmise päeva 03:00-ni.",
+      "fromLabel": "Alates",
+      "toLabel": "Kuni",
+      "apply": "Rakenda",
+      "reset": "Lähtesta"
+    },
+    "kpi": {
+      "games": "Mängud",
+      "finished": "Lõpetatud",
+      "winRate": "Lõpetatud osakaal",
+      "avgScore": "Keskm. punktid"
+    },
+    "overall": {
+      "heading": "Kokku",
+      "empty": "Selles ajavahemikus mänge pole."
+    },
+    "byMode": {
+      "heading": "Režiimi järgi"
+    },
+    "modeDistribution": {
+      "heading": "Jaotus režiimi järgi",
+      "empty": "Selles ajavahemikus mänge pole."
+    },
+    "headToHead": {
+      "heading": "Otseheitlused",
+      "empty": "Selles ajavahemikus pole veel kahte mängijat ühiste lõpetatud mängudega.",
+      "listSummary": "Näita nimekirjana",
+      "draws": "viigid",
+      "gamesSuffix": "mängu"
+    },
+    "games": {
+      "heading": "Mängud selles ajavahemikus",
+      "empty": "Selles ajavahemikus mänge pole."
+    },
+    "table": {
+      "player": "Mängija",
+      "gamesPlayed": "Mängud",
+      "gamesFinished": "Lõpetatud",
+      "wins": "Võidud",
+      "winRate": "Võiduprotsent",
+      "currentStreak": "Praegune seeria",
+      "longestStreak": "Pikim seeria",
+      "avgScore": "Keskm. tulemus"
+    },
+    "print": "Prindi / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Vali pildi kärpimine",
+    "hint": "Lohista, et liigutada, kasuta suumimiseks liugurit (passifoto formaat 2:3).",
+    "apply": "Rakenda"
+  },
+  "history": {
+    "heading": "Mängude ajalugu",
+    "all": {
+      "heading": "Kõik mängud",
+      "hint": "Uusimad ees. Käimasolevaid mänge saab jätkata, lõpetatud näitavad tulemust."
+    },
+    "filter": {
+      "all": "Kõik",
+      "active": "Käimasolev",
+      "finished": "Lõpetatud"
+    },
+    "empty": "Ühtegi mängu pole veel mängitud.",
+    "filterEmpty": {
+      "active": "Käimasolevaid mänge pole.",
+      "finished": "Lõpetatud mänge pole veel."
+    },
+    "deleteConfirm": "Kas soovid \"{label}\" mängude ajaloost tõesti jäädavalt kustutada?",
+    "badge": {
+      "finished": "Lõpetatud",
+      "active": "Käimasolev"
+    },
+    "meta": {
+      "target": "Siht: {score} punkti",
+      "rounds": "Voor {played}/{total}",
+      "winners": "Võitja: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Seaded",
+    "subtitle": "Kehtib kõigile, kes seda rakendust kasutavad (salvestatakse globaalselt).",
+    "tabs": {
+      "aussehen": "Välimus",
+      "allgemein": "Üldine",
+      "spieler": "Mängijad",
+      "spiele": "Minu mängud",
+      "zugang": "Juurdepääsukaitse",
+      "backup": "Varukoopia"
+    },
+    "theme": {
+      "heading": "Välimus",
+      "hint": "Valikus on kolm sõltumatut stiili. Värvide täppishäälestus asub allpool jaotises „Värvid üksikasjalikult“.",
+      "classic": "Klassikaline",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Rõhuvärv",
+      "accent": {
+        "green": "Roheline",
+        "orange": "Oranž",
+        "pink": "Roosa",
+        "violet": "Violetne",
+        "cyan": "Tsüaan"
+      },
+      "backgroundLabel": "Taust",
+      "background": {
+        "dark": "Tume",
+        "darkBlue": "Tumesinine",
+        "black": "Must"
+      },
+      "cardStyleLabel": "Kaardi stiil",
+      "cardStyle": {
+        "classic": "Klassikaline",
+        "modern": "Moodne"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Värvisoovitus",
+      "flipPreset": {
+        "amber": "Merevaigukollane",
+        "petrol": "Petrooleumsinine",
+        "karmesin": "Karmiinpunane",
+        "knallorange": "Ere oranž",
+        "violett": "Violetne"
+      }
+    },
+    "title": {
+      "heading": "Pealkiri",
+      "hint": "Kuvatakse päises ja brauseri vahekaardi pealkirjas.",
+      "label": "Pealkiri"
+    },
+    "feedback": {
+      "heading": "Tagasiside salvestamisel",
+      "hint": "Lühike heli (ja vibratsioon, kui seade seda toetab) vooru salvestamisel. iPhone'is/iPadis pole vibratsioon tehnilistel põhjustel võimalik (Safari), kuid heli töötab.",
+      "label": "Heli salvestamisel"
+    },
+    "presets": {
+      "heading": "Minu mängud",
+      "hint": "Sinu enda, täielikult seadistatud mängud (nt „Flip7“ sihiga 200) — need kuvatakse avalehel jaotises „Minu mängud“ ja täidavad klõpsates seadistusvormi ette ära.",
+      "favoritesHeading": "Lemmikud",
+      "favoritesHint": "Kohanda järjekorda nooltega või lohistades — määrab lemmikute rea järjekorra avalehel.",
+      "allHeading": "Kõik mängud",
+      "allHint": "Sorditud tähestikus — lemmikud kuvatakse ka siin, et need jääksid alati leitavaks.",
+      "addButton": "Lisa uus mäng",
+      "formHeadingNew": "Uus mäng",
+      "formHeadingEdit": "Muuda {name}",
+      "nameLabel": "Nimi",
+      "iconLabel": "Ikoon",
+      "modeLabel": "Režiim",
+      "metaTarget": "Siht: {target} punkti",
+      "metaRounds": "{rounds} vooru",
+      "saveFailed": "Mängu ei õnnestunud salvestada.",
+      "deleteConfirm": "Kas soovid \"{name}\" tõesti kustutada?",
+      "empty": "Ühtegi mängu pole veel loodud.",
+      "favoriteLabel": "Lemmik",
+      "moveUp": "Liiguta üles",
+      "moveDown": "Liiguta alla",
+      "editButton": "Muuda"
+    },
+    "access": {
+      "heading": "Juurdepääsukaitse",
+      "hint": "Kaitseb kogu saiti ühe jagatud parooliga kõigi jaoks, kes linki teavad. Ilma aktiivse kaitseta saab saiti kasutada igaüks, kellel on link.",
+      "enableLabel": "Luba juurdepääsukaitse",
+      "noPasswordSet": "Parooli pole veel määratud — kaitse jääb passiivseks, kuni see on määratud.",
+      "passwordLabel": "Uus parool",
+      "passwordConfirmLabel": "Kinnita parool",
+      "passwordHint": "Vähemalt 8 tähemärki. Jäta tühjaks, et säilitada praegu salvestatud parool. Unustasid parooli? Vaata README-st juhiseid lähtestamiseks failidele juurdepääsu kaudu.",
+      "mismatchError": "Kaks parooli ei kattu.",
+      "tooShortError": "Parool peab olema vähemalt 8 tähemärki pikk.",
+      "saveFailed": "Salvestamine ebaõnnestus.",
+      "logoutButton": "Logi sellest seadmest välja"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Vaikimisi pole aktiivset kohandatud logo, pastaikoon jääb nähtavaks.",
+      "modeLabel": "Kuvamine",
+      "modeNone": "Logo puudub",
+      "modeSquare": "Ruudukujuline, üleval vasakul",
+      "modeBanner": "Riba kogu laiuses",
+      "squareHeading": "Ruudukujuline logo",
+      "squareHint": "Soovitatav: 160×160 pikslit (ruut). PNG, JPEG või SVG, maks. 2 MB.",
+      "bannerHeading": "Ribalogo",
+      "bannerHint": "Soovitatav: u 1400×160 pikslit (lai, mitte liiga kõrge). PNG, JPEG või SVG, maks. 2 MB.",
+      "uploadButton": "Laadi üles",
+      "removeConfirm": "Kas soovid selle logo tõesti eemaldada?",
+      "uploadSuccess": "Logo üles laaditud.",
+      "removeSuccess": "Logo eemaldatud.",
+      "uploadFailed": "Logo ei õnnestunud üles laadida.",
+      "noFileSelected": "Vali kõigepealt fail."
+    },
+    "language": {
+      "heading": "Keel",
+      "hint": "Hiljem saab lisada rohkem keeli.",
+      "label": "Keel"
+    },
+    "colors": {
+      "advancedHeading": "Värvid üksikasjalikult",
+      "advancedSummary": "Ava täpsemad valikud",
+      "boldNote": "Kehtib ainult Klassikalise kohta — Bold kasutab ülaltoodud eelseadeid.",
+      "single": {
+        "heading": "Rõhu- ja funktsioonivärvid",
+        "hint": "Kehtivad muutumatult nii heledas kui tumedas režiimis."
+      },
+      "pairs": {
+        "heading": "Põhivärvid (eraldi heleda/tumeda režiimi jaoks)",
+        "hint": "Taust, pind, tekst ja äär — üks kord kummagi jaoks, hele ja tume režiim.",
+        "light": "Hele",
+        "dark": "Tume"
+      },
+      "flip": {
+        "heading": "Flip Board värvid",
+        "hint": "Asendab ülal valitud värvisoovituse — üks kord kummagi jaoks, hele ja tume režiim."
+      }
+    },
+    "resetButton": "Lähtesta vaikevärvidele",
+    "resetConfirm": "Kas soovid kõik värvid tõesti vaikeväärtustele lähtestada?",
+    "savedStatus": "Salvestatud. Teised lehed võtavad muudatuse üle järgmisel külastusel.",
+    "resetStatus": "Lähtestatud vaikevärvidele.",
+    "backup": {
+      "heading": "Andmete varukoopia",
+      "hint": "Kõigi mängijate, mängude, avatarite ja logode täielik varukoopia ZIP-failina — nt et midagi ei kaoks uuele serverile kolimisel.",
+      "exportHeading": "Laadi varukoopia alla",
+      "exportHint": "Sisaldab täielikku andmebaasi ning kõiki avatari pilte ja logo.",
+      "exportButton": "Laadi varukoopia alla",
+      "importHeading": "Taasta varukoopia",
+      "importWarning": "Hoiatus: importimine asendab pöördumatult kõik praegused mängijad, mängud, avatarid ja logod varukoopiafaili sisuga.",
+      "fileLabel": "Varukoopiafail (.zip)",
+      "importButton": "Impordi varukoopia",
+      "confirmHint": "Kinnitamiseks kirjuta täpselt ERSETZEN allpool.",
+      "confirmLabel": "Kinnitus",
+      "confirmButton": "Asenda kohe, jäädavalt",
+      "noFileSelected": "Vali kõigepealt varukoopiafail.",
+      "finalConfirm": "Kas soovid kõik praegused mänguandmed varukoopiaga tõesti pöördumatult asendada?",
+      "importInProgress": "Varukoopia taastamine …",
+      "importSuccess": "Varukoopia taastatud: {games} mängu, {players} mängijat. Lehe uuesti laadimine …",
+      "importFailed": "Importimine ebaõnnestus."
+    },
+    "colorLabels": {
+      "green": "Neoonroheline (peamine rõhk)",
+      "greenStrong": "Neoonroheline, tumendatud (tekst/jooned)",
+      "amber": "Merevaigukollane (teisene rõhk)",
+      "amberStrong": "Merevaigukollane, tumendatud (tekst/jooned)",
+      "onAccent": "Tekst rõhupindadel",
+      "focus": "Fookuse kontuur (klaviatuurinavigatsioon)",
+      "danger": "Viga / oht (nt kustutusnupud)",
+      "bg": "Taust",
+      "surface": "Pind (kaardid)",
+      "text": "Tekst",
+      "textMuted": "Tuhmistatud tekst",
+      "border": "Äär"
+    }
+  },
+  "login": {
+    "heading": "Logi sisse",
+    "hint": "See sait on parooliga kaitstud.",
+    "error": "Vale parool.",
+    "passwordLabel": "Parool",
+    "submitButton": "Logi sisse"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Seadista uus mäng (nt Flip7, Tutto)",
+      "labelPlaceholder": "nt Flip7, Tutto",
+      "targetLabel": "Mängitakse mis punktisummani?",
+      "winDirectionHint": "Enamikus mängudes võidab kõrgeim tulemus (nt Flip7, Tutto) — kuid mõnes, näiteks Skyjo, võidab hoopis madalaim tulemus. Mäng lõpeb igal juhul niipea, kui keegi saavutab sihi või ületab selle.",
+      "targetBonusLabel": "Boonus sihi saavutamise eest"
+    },
+    "game": {
+      "subtitle": "Siht: {target} punkti · {started}",
+      "roundEntryHint": "Sisesta selle vooru punktid mängija kohta (0 on tavaline, nt üleastumise korral)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Seadista uus mäng (nt Doppelkopf)",
+      "labelPlaceholder": "nt Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "võidab kõrgeim tulemus",
+        "lowest": "võidab madalaim tulemus"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Seadista uus mäng",
+      "roundsLabel": "Mitu vooru tuleb mängida?",
+      "announceLabel": "Teata pärast iga vooru, et see on lõppenud",
+      "announceHint": "Näitab pärast iga salvestatud vooru lühikest, suletavat teadet."
+    },
+    "game": {
+      "subtitleOngoing": "Voor {round}/{total} · {started}",
+      "subtitleReached": "{played}/{total} vooru mängitud · {started}",
+      "roundEndNotice": "Voor {round} lõpetatud",
+      "targetReached": {
+        "heading": "Olete mänginud kokkulepitud {total} vooru.",
+        "extendLabel": "Jätka mängu, nii mitme vooru võrra veel:",
+        "extendButton": "Jätka mängu"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Seadista uus mäng — 10 vooru, trikkide kuulutamine",
+      "hint": "Fikseeritud 10 vooru (10-lt 1 kaardini), lõpus võidab kõrgeim tulemus.",
+      "labelPlaceholder": "nt RAGE-õhtu",
+      "showBonusMalusLabel": "Näita boonust/miinust",
+      "showBonusMalusHint": "Näita/peida vooru sisestamisel eriliste kaartide +5/−5 väljad."
+    },
+    "game": {
+      "cardSingular": "kaart",
+      "cardPlural": "kaarti",
+      "subtitleFinished": "{played}/10 vooru mängitud · {started}",
+      "subtitleOngoing": "Voor {round}/10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Sisesta voor",
+        "staticHint": "Sisesta kuulutus ja tegelikud trikid mängija kohta, võimalikud erilised kaardid.",
+        "heading": "Sisesta voor {round} ({cards} {cardWord})",
+        "hint": "Sisesta kuulutus ja tegelikud trikid mängija kohta (0 on kehtiv). Kõigi mängijate trikid peaksid kokku andma {cards}.",
+        "table": {
+          "player": "Mängija",
+          "bid": "Kuulutus",
+          "tricks": "Trikid",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Punktid"
+        }
+      },
+      "roundsTableHint": "Muuda väärtusi otse, et parandada sisestusvigu. Kuulutus / trikid / +5 / −5 / punktid (arvutatud) mängija ja vooru kohta.",
+      "deleteRoundButton": "Kustuta V{round}",
+      "mismatchConfirm": "Sisestatud trikkide summa ({actual}) ei vasta selle vooru kaartide arvule ({expected}). Kas salvestada ikkagi?",
+      "saveFailed": "Vooru ei õnnestunud salvestada."
+    }
+  },
+  "chooser": {
+    "heading": "Kes alustab?",
+    "subtitle": "Pange kõik sõrmed korraga ekraanile — töötab mitme puutega (iPad/iPhone).",
+    "hint": "Aseta sõrmed ekraanile …",
+    "winnerCountLabel": "Võitjate arv",
+    "resultSingle": "See inimene alustab! Aseta sõrmed uue vooru jaoks uuesti.",
+    "resultMulti": "Need {count} inimest alustavad! Aseta sõrmed uue vooru jaoks uuesti."
+  }
+}

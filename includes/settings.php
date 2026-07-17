@@ -104,9 +104,41 @@ function supported_languages(): array
 {
     // Reihenfolge = Anzeigereihenfolge im Sprachwahl-Dropdown. Neue Sprache
     // hinzufuegen: hier eintragen + passende i18n/{code}.json anlegen.
+    // Namen jeweils in der Sprache selbst (Endonym), wie in Sprachauswahl-
+    // Dropdowns ueblich.
     return [
         'de' => 'Deutsch',
         'en' => 'English',
+        'fr' => 'Français',
+        'it' => 'Italiano',
+        'es' => 'Español',
+        'pt' => 'Português',
+        'nl' => 'Nederlands',
+        'sv' => 'Svenska',
+        'nb' => 'Norsk',
+        'da' => 'Dansk',
+        'fi' => 'Suomi',
+        'is' => 'Íslenska',
+        'pl' => 'Polski',
+        'cs' => 'Čeština',
+        'sk' => 'Slovenčina',
+        'hu' => 'Magyar',
+        'ro' => 'Română',
+        'bg' => 'Български',
+        'el' => 'Ελληνικά',
+        'hr' => 'Hrvatski',
+        'sl' => 'Slovenščina',
+        'et' => 'Eesti',
+        'lv' => 'Latviešu',
+        'lt' => 'Lietuvių',
+        'uk' => 'Українська',
+        'sr' => 'Српски',
+        'bs' => 'Bosanski',
+        'mk' => 'Македонски',
+        'be' => 'Беларуская',
+        'sq' => 'Shqip',
+        'ga' => 'Gaeilge',
+        'mt' => 'Malti',
     ];
 }
 

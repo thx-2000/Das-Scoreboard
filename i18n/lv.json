@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Pāriet uz saturu",
+    "nav": {
+      "home": "Sākums",
+      "history": "Vēsture",
+      "stats": "Statistika",
+      "chooser": "Kurš sāk?",
+      "settings": "Iestatījumi",
+      "openMenu": "Atvērt izvēlni",
+      "closeMenu": "Aizvērt izvēlni"
+    },
+    "updateAvailable": "Pieejams atjauninājums ({version})",
+    "buttons": {
+      "add": "Pievienot",
+      "save": "Saglabāt",
+      "delete": "Dzēst",
+      "start": "Sākt spēli",
+      "finish": "Pabeigt spēli",
+      "resume": "Turpināt spēli",
+      "remove": "Noņemt",
+      "reactivate": "Aktivizēt no jauna",
+      "close": "Aizvērt",
+      "cancel": "Atcelt"
+    },
+    "winDirection": {
+      "heading": "Kurš uzvar beigās?",
+      "highest": "Augstākais rezultāts",
+      "lowest": "Zemākais rezultāts"
+    },
+    "stepper": {
+      "decrease": "Samazināt",
+      "increase": "Palielināt",
+      "minusValue": "Atņemt {value}",
+      "plusValue": "Pieskaitīt {value}"
+    },
+    "table": {
+      "rank": "Vieta",
+      "name": "Vārds",
+      "points": "Punkti",
+      "progress": "Progress",
+      "actions": "Darbības",
+      "round": "Kārta"
+    },
+    "game": {
+      "loading": "Ielādē …",
+      "notFound": "Spēle nav atrasta.",
+      "standingsHeading": "Rezultāti",
+      "standings": {
+        "collapse": "Sakļaut",
+        "expand": "Rādīt",
+        "teamTotalSuffix": "punkti kopā"
+      },
+      "startingPlayerLegend": "★ Sākuma spēlētājs (nejauši)",
+      "startedSuffix": "sākta {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Spēle beigusies! {names} uzvar kopā ar {points} punktiem.",
+        "single": "🏆 Spēle beigusies! {names} uzvarēja ar {points} punktiem."
+      },
+      "roundEntry": {
+        "heading": "Ievadīt jaunu kārtu",
+        "saveButton": "Saglabāt kārtu",
+        "switchToButtons": "Soļa pogas",
+        "switchToType": "Ierakstīšana"
+      },
+      "roundsTable": {
+        "heading": "Kārtu vēsture un labošana",
+        "hint": "Mainiet vērtības tieši, lai izlabotu ievades kļūdas.",
+        "empty": "Vēl nav spēlēta neviena kārta.",
+        "deleteConfirm": "Vai tiešām dzēst šo kārtu?",
+        "undoButton": "Atsaukt pēdējo kārtu"
+      },
+      "noPlayersHint": "Vēl nav spēlētāju — pievienojiet vienu zemāk.",
+      "roundEntryHintGeneric": "Ievadiet šīs kārtas punktus katram spēlētājam (0 ir normāli)."
+    },
+    "setup": {
+      "heading": "Iestatīt spēli",
+      "labelOptional": "Nosaukums (nav obligāts)",
+      "whoPlays": "Kas spēlē?",
+      "addPlayerLabel": "Pievienot jaunu spēlētāju",
+      "addPlayerPlaceholder": "Ievadiet vārdu",
+      "advancedOptions": "Papildu iestatījumi",
+      "teamModeLabel": "Iespējot komandu režīmu",
+      "teamModeHint": "Spēlētājus var grupēt komandās, kuru punkti tiek summēti kopā.",
+      "teamScoringHeading": "Komandas punktu skaitīšana",
+      "teamScoringShared": "Kopīgs rezultāts",
+      "teamScoringSharedHint": "Komandas dalībnieki kopīgi ievada vienu kopīgu rezultātu par kārtu.",
+      "teamScoringIndividual": "Individuāli rezultāti, kopīga summa",
+      "teamScoringIndividualHint": "Katrs spēlētājs ievada savu rezultātu — tiek rādīti gan individuālie rezultāti, gan komandas kopsumma.",
+      "teamNone": "Nav komandas",
+      "teamNumber": "{number}. komanda",
+      "teamNameLabel": "{number}. komandas nosaukums (nav obligāts)",
+      "teamNamePlaceholder": "piem., Ērgļi",
+      "selectAll": "Atlasīt visus",
+      "selectNone": "Noņemt visu atlasi",
+      "allowNegativeLabel": "Atļaut negatīvus punktus",
+      "allowNegativeHint": "Ja izslēgts, negatīvās kārtas vērtības tiek ierobežotas līdz 0.",
+      "targetBonusHint": "Papildu punkti, ko uzvarētājs(-i) saņem par mērķa rezultāta sasniegšanu (0 = bez bonusa).",
+      "roundEntryStepsLabel": "Soļa lielumi kārtas ievadei",
+      "roundEntryStepsHint": "Soļa pogas kā alternatīva skaitļu ierakstīšanai — izvēlieties, kuri soļa lielumi (±) būs pieejami. Jebkurā brīdī varat pārslēgties starp ierakstīšanu un soļa pogām, arī spēles laikā."
+    },
+    "errors": {
+      "minPlayers": "Izvēlieties vismaz 2 spēlētājus.",
+      "createPlayerFailed": "Neizdevās izveidot spēlētāju.",
+      "startGameFailed": "Neizdevās sākt spēli."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Punktu palīgs spēļu vakariem"
+    },
+    "stats": {
+      "title": "Statistika"
+    },
+    "history": {
+      "title": "Spēļu vēsture"
+    },
+    "settings": {
+      "title": "Iestatījumi"
+    },
+    "pointsToTargetSetup": {
+      "title": "Punkti līdz mērķim — Jauna spēle"
+    },
+    "pointsToTargetGame": {
+      "title": "Punkti līdz mērķim"
+    },
+    "pointsOpenSetup": {
+      "title": "Atklāta punktu kārta — Jauna spēle"
+    },
+    "pointsOpenGame": {
+      "title": "Atklāta punktu kārta"
+    },
+    "fixedRoundsSetup": {
+      "title": "Punktu kārta ar fiksētu kārtu skaitu — Jauna spēle"
+    },
+    "fixedRoundsGame": {
+      "title": "Punktu kārta ar fiksētu kārtu skaitu"
+    },
+    "rageSetup": {
+      "title": "RAGE — Jauna spēle"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Kurš sāk?"
+    },
+    "login": {
+      "title": "Pieteikties"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Punkti līdz mērķim",
+      "description": "Punkti tiek summēti kārtu pēc kārtas, līdz kāds sasniedz vai pārsniedz fiksētu mērķa vērtību. Uzvar tas, kuram tad ir visvairāk punktu.",
+      "examples": "piem., Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Atklāta punktu kārta",
+      "description": "Punkti tiek summēti kārtu pēc kārtas bez fiksēta mērķa. Jūs paši izlemjat, kad beigt — uzvar augstākais vai zemākais rezultāts, atkarībā no iestatījuma.",
+      "examples": "piem., Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Punktu kārta ar fiksētu kārtu skaitu",
+      "description": "Iestatīšanas laikā izlemjat, cik kārtas tiks spēlētas un vai beigās uzvar augstākais vai zemākais rezultāts. Pēc pēdējās kārtas spēle jautā, vai beigt, vai turpināt ar vairāk kārtām."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fiksētas 10 kārtas ar samazinošos kāršu skaitu (no 10 līdz 1). Pirms katras kārtas jūs paziņojat sagaidāmo stiķu skaitu, pēc tam ievadāt faktiskos stiķus — punkti tiek automātiski aprēķināti pēc RAGE noteikumiem (ieskaitot Rage bonusu/atriebību).",
+      "examples": "Kāršu spēle RAGE"
+    }
+  },
+  "home": {
+    "heading": "Punktu palīgs spēļu vakariem",
+    "newGame": {
+      "startButton": "Sākt jaunu spēli"
+    },
+    "generalBoards": {
+      "heading": "Vispārīgie rezultātu tabulas",
+      "hint": "Brīvi konfigurējams — iestatiet mērķa rezultātu, uzvaras virzienu un soļa lielumus iestatīšanas laikā."
+    },
+    "myGames": {
+      "heading": "Manas spēles",
+      "hint": "RAGE un jūsu pašu, pilnībā konfigurētas spēles (izveidojiet tās sadaļā Iestatījumi → Manas spēles).",
+      "favoritesHeading": "Izlase",
+      "allHeading": "Visas spēles",
+      "metaTarget": "Mērķis: {score} punkti",
+      "metaRounds": "{rounds} kārtas"
+    },
+    "openGames": {
+      "heading": "Notiekošās spēles",
+      "viewAll": "Skatīt visas"
+    },
+    "pwaHint": {
+      "heading": "Izmantot kā lietotni",
+      "text": "iPad/iPhone: pieskarieties koplietošanas ikonai Safari pārlūkā, tad izvēlieties „Pievienot sākuma ekrānam“ — lapa pēc tam parādīsies kā sava lietotne bez adreses joslas."
+    },
+    "support": {
+      "label": "Atbalstīt šo projektu",
+      "ariaLabel": "Atbalstīt šo projektu Buy Me a Coffee platformā"
+    }
+  },
+  "players": {
+    "heading": "Pārvaldīt spēlētājus",
+    "newPlayer": {
+      "heading": "Jauns spēlētājs",
+      "nameLabel": "Vārds"
+    },
+    "active": {
+      "heading": "Aktīvie spēlētāji",
+      "hint": "Šie spēlētāji ir pieejami ātrai izvēlei jaunās spēlēs.",
+      "empty": "Vēl nav aktīvu spēlētāju."
+    },
+    "inactive": {
+      "heading": "Deaktivizētie spēlētāji",
+      "hint": "Paliek redzami iepriekšējās spēlēs, bet vairs neparādās ātrajā izvēlē.",
+      "empty": "Nav deaktivizētu spēlētāju."
+    },
+    "avatar": {
+      "uploadLabel": "Augšupielādēt fotoattēlu",
+      "changeLabel": "Mainīt fotoattēlu",
+      "removeLabel": "Noņemt fotoattēlu",
+      "removeConfirm": "Vai tiešām noņemt šo avatāru?",
+      "uploadFailed": "Fotoattēlu neizdevās saglabāt."
+    },
+    "deleteConfirm": "Vai tiešām neatgriezeniski dzēst \"{name}\"? Atšķirībā no noņemšanas, spēlētāju pārvaldībā nav ceļa atpakaļ — iepriekšējās spēles joprojām rādīs vārdu."
+  },
+  "groups": {
+    "hint": "Grupējiet spēlētājus (piem., „Ģimene“, „Pastāvīgie“) — spēles iestatīšanas laikā pēc tam varēsiet ar vienu klikšķi izvēlēties visu grupu. Viena persona var būt vairākās grupās.",
+    "newGroup": {
+      "heading": "Jauna grupa",
+      "nameLabel": "Grupas nosaukums",
+      "namePlaceholder": "piem., Ģimene",
+      "membersLabel": "Dalībnieki"
+    },
+    "active": {
+      "heading": "Aktīvās grupas",
+      "empty": "Vēl nav izveidota neviena grupa."
+    },
+    "inactive": {
+      "heading": "Deaktivizētās grupas",
+      "empty": "Nav deaktivizētu grupu."
+    },
+    "empty": "Nav dalībnieku",
+    "editButton": "Rediģēt",
+    "saveButton": "Saglabāt",
+    "cancelButton": "Atcelt",
+    "deleteConfirm": "Vai tiešām dzēst grupu \"{name}\"? Paši dalībnieki paliek — tiek noņemta tikai grupēšana.",
+    "createFailed": "Neizdevās izveidot grupu."
+  },
+  "stats": {
+    "heading": "Statistika",
+    "filter": {
+      "heading": "Laika periods",
+      "hint": "Atstājiet tukšu, lai iegūtu statistiku par visām spēlēm. Spēļu vakaram, kas turpinās pēc pusnakts, ievadiet, piem., no 18:00 līdz nākamās dienas 03:00.",
+      "fromLabel": "No",
+      "toLabel": "Līdz",
+      "apply": "Piemērot",
+      "reset": "Atiestatīt"
+    },
+    "kpi": {
+      "games": "Spēles",
+      "finished": "Pabeigtas",
+      "winRate": "Pabeigto īpatsvars",
+      "avgScore": "Vid. punkti"
+    },
+    "overall": {
+      "heading": "Kopā",
+      "empty": "Šajā periodā nav spēļu."
+    },
+    "byMode": {
+      "heading": "Pēc režīma"
+    },
+    "modeDistribution": {
+      "heading": "Sadalījums pēc režīma",
+      "empty": "Šajā periodā nav spēļu."
+    },
+    "headToHead": {
+      "heading": "Tiešā konfrontācija",
+      "empty": "Šajā periodā vēl nav divu spēlētāju ar kopīgām pabeigtām spēlēm.",
+      "listSummary": "Rādīt kā sarakstu",
+      "draws": "neizšķirti",
+      "gamesSuffix": "spēles"
+    },
+    "games": {
+      "heading": "Spēles šajā periodā",
+      "empty": "Šajā periodā nav spēļu."
+    },
+    "table": {
+      "player": "Spēlētājs",
+      "gamesPlayed": "Spēles",
+      "gamesFinished": "Pabeigtas",
+      "wins": "Uzvaras",
+      "winRate": "Uzvaru īpatsvars",
+      "currentStreak": "Pašreizējā sērija",
+      "longestStreak": "Garākā sērija",
+      "avgScore": "Vid. rezultāts"
+    },
+    "print": "Drukāt / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Izvēlieties attēla apgriešanu",
+    "hint": "Velciet, lai pārvietotu, izmantojiet slīdni tuvināšanai (pases fotoattēla formāts 2:3).",
+    "apply": "Piemērot"
+  },
+  "history": {
+    "heading": "Spēļu vēsture",
+    "all": {
+      "heading": "Visas spēles",
+      "hint": "Jaunākās vispirms. Notiekošās spēles var turpināt, pabeigtās rāda rezultātu."
+    },
+    "filter": {
+      "all": "Visas",
+      "active": "Notiekošas",
+      "finished": "Pabeigtas"
+    },
+    "empty": "Vēl nav spēlēta neviena spēle.",
+    "filterEmpty": {
+      "active": "Nav notiekošu spēļu.",
+      "finished": "Vēl nav pabeigtu spēļu."
+    },
+    "deleteConfirm": "Vai tiešām neatgriezeniski dzēst \"{label}\" no spēļu vēstures?",
+    "badge": {
+      "finished": "Pabeigta",
+      "active": "Notiekoša"
+    },
+    "meta": {
+      "target": "Mērķis: {score} punkti",
+      "rounds": "Kārta {played}/{total}",
+      "winners": "Uzvarētājs: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Iestatījumi",
+    "subtitle": "Attiecas uz visiem, kas izmanto šo lietotni (saglabāts globāli).",
+    "tabs": {
+      "aussehen": "Izskats",
+      "allgemein": "Vispārīgi",
+      "spieler": "Spēlētāji",
+      "spiele": "Manas spēles",
+      "zugang": "Piekļuves aizsardzība",
+      "backup": "Rezerves kopija"
+    },
+    "theme": {
+      "heading": "Izskats",
+      "hint": "Izvēlei pieejami trīs neatkarīgi stili. Krāsu smalka pielāgošana atrodama zemāk sadaļā „Krāsas detalizēti“.",
+      "classic": "Klasisks",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Akcentkrāsa",
+      "accent": {
+        "green": "Zaļa",
+        "orange": "Oranža",
+        "pink": "Rozā",
+        "violet": "Violeta",
+        "cyan": "Ciāna"
+      },
+      "backgroundLabel": "Fons",
+      "background": {
+        "dark": "Tumšs",
+        "darkBlue": "Tumši zils",
+        "black": "Melns"
+      },
+      "cardStyleLabel": "Kartītes stils",
+      "cardStyle": {
+        "classic": "Klasisks",
+        "modern": "Moderns"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Krāsas ieteikums",
+      "flipPreset": {
+        "amber": "Dzintara",
+        "petrol": "Petroleja zila",
+        "karmesin": "Karmīnsarkana",
+        "knallorange": "Spilgti oranža",
+        "violett": "Violeta"
+      }
+    },
+    "title": {
+      "heading": "Nosaukums",
+      "hint": "Tiek rādīts galvenē un pārlūka cilnes nosaukumā.",
+      "label": "Nosaukums"
+    },
+    "feedback": {
+      "heading": "Atgriezeniskā saite saglabājot",
+      "hint": "Īsa skaņa (un vibrācija, ja ierīce to atbalsta) kārtas saglabāšanas laikā. iPhone/iPad vibrācija nav iespējama tehnisku iemeslu dēļ (Safari), bet skaņa darbojas.",
+      "label": "Skaņa saglabājot"
+    },
+    "presets": {
+      "heading": "Manas spēles",
+      "hint": "Jūsu pašu, pilnībā konfigurētas spēles (piem., „Flip7“ ar mērķi 200) — parādās sākumlapā sadaļā „Manas spēles“ un noklikšķinot iepriekš aizpilda iestatīšanas veidlapu.",
+      "favoritesHeading": "Izlase",
+      "favoritesHint": "Pielāgojiet secību ar bultiņām vai velkot — nosaka izlases rindas secību sākumlapā.",
+      "allHeading": "Visas spēles",
+      "allHint": "Sakārtotas alfabētiski — izlase parādās arī šeit, lai tā vienmēr būtu atrodama.",
+      "addButton": "Pievienot jaunu spēli",
+      "formHeadingNew": "Jauna spēle",
+      "formHeadingEdit": "Rediģēt {name}",
+      "nameLabel": "Nosaukums",
+      "iconLabel": "Ikona",
+      "modeLabel": "Režīms",
+      "metaTarget": "Mērķis: {target} punkti",
+      "metaRounds": "{rounds} kārtas",
+      "saveFailed": "Neizdevās saglabāt spēli.",
+      "deleteConfirm": "Vai tiešām dzēst \"{name}\"?",
+      "empty": "Vēl nav izveidota neviena spēle.",
+      "favoriteLabel": "Izlase",
+      "moveUp": "Pārvietot augšup",
+      "moveDown": "Pārvietot lejup",
+      "editButton": "Rediģēt"
+    },
+    "access": {
+      "heading": "Piekļuves aizsardzība",
+      "hint": "Aizsargā visu vietni ar vienu kopīgu paroli visiem, kas zina saiti. Bez aktīvas aizsardzības vietni var izmantot ikviens, kam ir saite.",
+      "enableLabel": "Iespējot piekļuves aizsardzību",
+      "noPasswordSet": "Parole vēl nav iestatīta — aizsardzība paliek neaktīva, kamēr tā nav iestatīta.",
+      "passwordLabel": "Jauna parole",
+      "passwordConfirmLabel": "Apstiprināt paroli",
+      "passwordHint": "Vismaz 8 rakstzīmes. Atstājiet tukšu, lai saglabātu pašreiz saglabāto paroli. Aizmirsāt paroli? Skatiet README instrukcijas atiestatīšanai, izmantojot piekļuvi failiem.",
+      "mismatchError": "Abas paroles nesakrīt.",
+      "tooShortError": "Parolei jābūt vismaz 8 rakstzīmes garai.",
+      "saveFailed": "Saglabāšana neizdevās.",
+      "logoutButton": "Izrakstīties šajā ierīcē"
+    },
+    "logo": {
+      "heading": "Logotips",
+      "hint": "Pēc noklusējuma nav aktīvs neviens pielāgots logotips, pildspalvas ikona paliek redzama.",
+      "modeLabel": "Attēlojums",
+      "modeNone": "Bez logotipa",
+      "modeSquare": "Kvadrātveida, augšā pa kreisi",
+      "modeBanner": "Baneris pilnā platumā",
+      "squareHeading": "Kvadrātveida logotips",
+      "squareHint": "Ieteicams: 160×160 pikseļi (kvadrāts). PNG, JPEG vai SVG, maks. 2 MB.",
+      "bannerHeading": "Banera logotips",
+      "bannerHint": "Ieteicams: aptuveni 1400×160 pikseļi (plats, ne pārāk augsts). PNG, JPEG vai SVG, maks. 2 MB.",
+      "uploadButton": "Augšupielādēt",
+      "removeConfirm": "Vai tiešām noņemt šo logotipu?",
+      "uploadSuccess": "Logotips augšupielādēts.",
+      "removeSuccess": "Logotips noņemts.",
+      "uploadFailed": "Logotipu neizdevās augšupielādēt.",
+      "noFileSelected": "Vispirms izvēlieties failu."
+    },
+    "language": {
+      "heading": "Valoda",
+      "hint": "Vēlāk var pievienot vairāk valodu.",
+      "label": "Valoda"
+    },
+    "colors": {
+      "advancedHeading": "Krāsas detalizēti",
+      "advancedSummary": "Atvērt papildu iestatījumus",
+      "boldNote": "Attiecas tikai uz Klasisko — Bold izmanto iepriekš minētos priekšiestatījumus.",
+      "single": {
+        "heading": "Akcenta un funkciju krāsas",
+        "hint": "Attiecas nemainīgi gaišajā un tumšajā režīmā."
+      },
+      "pairs": {
+        "heading": "Pamatkrāsas (atsevišķi gaišajam/tumšajam režīmam)",
+        "hint": "Fons, virsma, teksts un mala — pa vienai gaišajam un tumšajam režīmam.",
+        "light": "Gaišs",
+        "dark": "Tumšs"
+      },
+      "flip": {
+        "heading": "Flip Board krāsas",
+        "hint": "Aizstāj iepriekš izvēlēto krāsas ieteikumu — pa vienai gaišajam un tumšajam režīmam."
+      }
+    },
+    "resetButton": "Atiestatīt uz noklusējuma krāsām",
+    "resetConfirm": "Vai tiešām atiestatīt visas krāsas uz noklusējuma vērtībām?",
+    "savedStatus": "Saglabāts. Citas lapas pārņems izmaiņas nākamajā apmeklējumā.",
+    "resetStatus": "Atiestatīts uz noklusējuma krāsām.",
+    "backup": {
+      "heading": "Datu rezerves kopija",
+      "hint": "Pilna rezerves kopija visiem spēlētājiem, spēlēm, avatāriem un logotipiem kā ZIP fails — piem., lai nekas nezustu, pārceļot uz jaunu serveri.",
+      "exportHeading": "Lejupielādēt rezerves kopiju",
+      "exportHint": "Satur pilnu datubāzi, kā arī visus avatāru attēlus un logotipu.",
+      "exportButton": "Lejupielādēt rezerves kopiju",
+      "importHeading": "Atjaunot rezerves kopiju",
+      "importWarning": "Uzmanību: importēšana neatgriezeniski aizstāj visus pašreizējos spēlētājus, spēles, avatārus un logotipus ar rezerves kopijas faila saturu.",
+      "fileLabel": "Rezerves kopijas fails (.zip)",
+      "importButton": "Importēt rezerves kopiju",
+      "confirmHint": "Lai apstiprinātu, ierakstiet tieši ERSETZEN zemāk.",
+      "confirmLabel": "Apstiprinājums",
+      "confirmButton": "Aizstāt tagad, neatgriezeniski",
+      "noFileSelected": "Vispirms izvēlieties rezerves kopijas failu.",
+      "finalConfirm": "Vai tiešām neatgriezeniski aizstāt visus pašreizējos spēles datus ar rezerves kopiju?",
+      "importInProgress": "Rezerves kopijas atjaunošana …",
+      "importSuccess": "Rezerves kopija atjaunota: {games} spēles, {players} spēlētāji. Lapa tiek pārlādēta …",
+      "importFailed": "Importēšana neizdevās."
+    },
+    "colorLabels": {
+      "green": "Neona zaļa (galvenais akcents)",
+      "greenStrong": "Neona zaļa, tumšāka (teksts/līnijas)",
+      "amber": "Dzintara (sekundārais akcents)",
+      "amberStrong": "Dzintara, tumšāka (teksts/līnijas)",
+      "onAccent": "Teksts uz akcenta virsmām",
+      "focus": "Fokusa kontūra (navigācija ar tastatūru)",
+      "danger": "Kļūda / bīstamība (piem., dzēšanas pogas)",
+      "bg": "Fons",
+      "surface": "Virsma (kartītes)",
+      "text": "Teksts",
+      "textMuted": "Klusināts teksts",
+      "border": "Mala"
+    }
+  },
+  "login": {
+    "heading": "Pieteikties",
+    "hint": "Šī vietne ir aizsargāta ar paroli.",
+    "error": "Nepareiza parole.",
+    "passwordLabel": "Parole",
+    "submitButton": "Pieteikties"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Iestatīt jaunu spēli (piem., Flip7, Tutto)",
+      "labelPlaceholder": "piem., Flip7, Tutto",
+      "targetLabel": "Līdz kādai punktu vērtībai spēlēt?",
+      "winDirectionHint": "Lielākajā daļā spēļu uzvar augstākais rezultāts (piem., Flip7, Tutto) — bet dažās, piemēram, Skyjo, uzvar tieši zemākais rezultāts. Spēle jebkurā gadījumā beidzas, tiklīdz kāds sasniedz vai pārsniedz mērķi.",
+      "targetBonusLabel": "Bonuss par mērķa sasniegšanu"
+    },
+    "game": {
+      "subtitle": "Mērķis: {target} punkti · {started}",
+      "roundEntryHint": "Ievadiet šīs kārtas punktus katram spēlētājam (0 ir normāli, piem., pārsniedzot robežu)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Iestatīt jaunu spēli (piem., Doppelkopf)",
+      "labelPlaceholder": "piem., Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "uzvar augstākais rezultāts",
+        "lowest": "uzvar zemākais rezultāts"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Iestatīt jaunu spēli",
+      "roundsLabel": "Cik kārtas jāspēlē?",
+      "announceLabel": "Paziņot pēc katras kārtas, ka tā ir beigusies",
+      "announceHint": "Pēc katras saglabātās kārtas parāda īsu, aizveramu paziņojumu."
+    },
+    "game": {
+      "subtitleOngoing": "Kārta {round} no {total} · {started}",
+      "subtitleReached": "{played} no {total} kārtām spēlētas · {started}",
+      "roundEndNotice": "Kārta {round} pabeigta",
+      "targetReached": {
+        "heading": "Jūs esat spēlējuši norunātās {total} kārtas.",
+        "extendLabel": "Turpināt spēli vēl par šādu kārtu skaitu:",
+        "extendButton": "Turpināt spēli"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Iestatīt jaunu spēli — 10 kārtas, stiķu solīšana",
+      "hint": "Fiksētas 10 kārtas (no 10 līdz 1 kārtij), beigās uzvar augstākais rezultāts.",
+      "labelPlaceholder": "piem., RAGE vakars",
+      "showBonusMalusLabel": "Rādīt bonusu/malusu",
+      "showBonusMalusHint": "Rādīt/slēpt speciālo kāršu +5/−5 laukus kārtas ievadē."
+    },
+    "game": {
+      "cardSingular": "kārts",
+      "cardPlural": "kārtis",
+      "subtitleFinished": "{played} no 10 kārtām spēlētas · {started}",
+      "subtitleOngoing": "Kārta {round} no 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Ievadīt kārtu",
+        "staticHint": "Ievadiet solījumu un faktiskos stiķus katram spēlētājam, iespējamās speciālās kārtis.",
+        "heading": "Ievadīt kārtu {round} ({cards} {cardWord})",
+        "hint": "Ievadiet solījumu un faktiskos stiķus katram spēlētājam (0 ir derīgs). Visu spēlētāju stiķu summai jābūt {cards}.",
+        "table": {
+          "player": "Spēlētājs",
+          "bid": "Solījums",
+          "tricks": "Stiķi",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Punkti"
+        }
+      },
+      "roundsTableHint": "Mainiet vērtības tieši, lai izlabotu ievades kļūdas. Solījums / stiķi / +5 / −5 / punkti (aprēķināti) katram spēlētājam un kārtai.",
+      "deleteRoundButton": "Dzēst K{round}",
+      "mismatchConfirm": "Ievadīto stiķu summa ({actual}) nesakrīt ar šīs kārtas kāršu skaitu ({expected}). Vai tomēr saglabāt?",
+      "saveFailed": "Kārtu neizdevās saglabāt."
+    }
+  },
+  "chooser": {
+    "heading": "Kurš sāk?",
+    "subtitle": "Novietojiet visus pirkstus uz ekrāna vienlaikus — darbojas ar vairākpieskārienu (iPad/iPhone).",
+    "hint": "Novietojiet pirkstus uz ekrāna …",
+    "winnerCountLabel": "Uzvarētāju skaits",
+    "resultSingle": "Šī persona sāk! Novietojiet pirkstus atkal jaunai kārtai.",
+    "resultMulti": "Šīs {count} personas sāk! Novietojiet pirkstus atkal jaunai kārtai."
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Preskoči na sadržaj",
+    "nav": {
+      "home": "Početna",
+      "history": "Historija",
+      "stats": "Statistika",
+      "chooser": "Ko počinje?",
+      "settings": "Postavke",
+      "openMenu": "Otvori meni",
+      "closeMenu": "Zatvori meni"
+    },
+    "updateAvailable": "Dostupno je ažuriranje ({version})",
+    "buttons": {
+      "add": "Dodaj",
+      "save": "Sačuvaj",
+      "delete": "Izbriši",
+      "start": "Pokreni igru",
+      "finish": "Završi igru",
+      "resume": "Nastavi igru",
+      "remove": "Ukloni",
+      "reactivate": "Ponovo aktiviraj",
+      "close": "Zatvori",
+      "cancel": "Otkaži"
+    },
+    "winDirection": {
+      "heading": "Ko na kraju pobjeđuje?",
+      "highest": "Najviši rezultat",
+      "lowest": "Najniži rezultat"
+    },
+    "stepper": {
+      "decrease": "Smanji",
+      "increase": "Povećaj",
+      "minusValue": "Oduzmi {value}",
+      "plusValue": "Dodaj {value}"
+    },
+    "table": {
+      "rank": "Mjesto",
+      "name": "Ime",
+      "points": "Bodovi",
+      "progress": "Napredak",
+      "actions": "Radnje",
+      "round": "Krug"
+    },
+    "game": {
+      "loading": "Učitavanje …",
+      "notFound": "Igra nije pronađena.",
+      "standingsHeading": "Poredak",
+      "standings": {
+        "collapse": "Sažmi",
+        "expand": "Prikaži",
+        "teamTotalSuffix": "bodova ukupno"
+      },
+      "startingPlayerLegend": "★ Igrač koji počinje (nasumično)",
+      "startedSuffix": "započeto {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Igra je gotova! {names} pobjeđuju zajedno sa {points} bodova.",
+        "single": "🏆 Igra je gotova! {names} je pobijedio(la) sa {points} bodova."
+      },
+      "roundEntry": {
+        "heading": "Unesi novi krug",
+        "saveButton": "Sačuvaj krug",
+        "switchToButtons": "Dugmad koraka",
+        "switchToType": "Upisivanje"
+      },
+      "roundsTable": {
+        "heading": "Historija krugova i ispravka",
+        "hint": "Direktno prilagodite vrijednosti kako biste ispravili greške pri unosu.",
+        "empty": "Još nije odigran nijedan krug.",
+        "deleteConfirm": "Stvarno izbrisati ovaj krug?",
+        "undoButton": "Poništi posljednji krug"
+      },
+      "noPlayersHint": "Još nema igrača — dodajte jednog ispod.",
+      "roundEntryHintGeneric": "Unesite bodove ovog kruga po igraču (0 je normalno)."
+    },
+    "setup": {
+      "heading": "Postavi igru",
+      "labelOptional": "Oznaka (opcionalno)",
+      "whoPlays": "Ko igra?",
+      "addPlayerLabel": "Dodaj novog igrača",
+      "addPlayerPlaceholder": "Unesite ime",
+      "advancedOptions": "Napredne postavke",
+      "teamModeLabel": "Aktiviraj timski način",
+      "teamModeHint": "Igrači se mogu grupisati u timove čiji se bodovi zbrajaju zajedno.",
+      "teamScoringHeading": "Timsko bodovanje",
+      "teamScoringShared": "Zajednički rezultat",
+      "teamScoringSharedHint": "Članovi tima zajednički unose jedan zajednički rezultat po krugu.",
+      "teamScoringIndividual": "Pojedinačni rezultati, zajednički zbir",
+      "teamScoringIndividualHint": "Svaki igrač unosi svoj rezultat — prikazuju se i pojedinačni rezultati i ukupan zbir tima.",
+      "teamNone": "Bez tima",
+      "teamNumber": "Tim {number}",
+      "teamNameLabel": "Naziv tima {number} (opcionalno)",
+      "teamNamePlaceholder": "npr. Orlovi",
+      "selectAll": "Odaberi sve",
+      "selectNone": "Poništi odabir svih",
+      "allowNegativeLabel": "Dozvoli negativne bodove",
+      "allowNegativeHint": "Ako je isključeno, negativni unosi kruga ograničavaju se na 0.",
+      "targetBonusHint": "Dodatni bodovi koje pobjednik(ci) dobijaju za postizanje ciljnog rezultata (0 = bez bonusa).",
+      "roundEntryStepsLabel": "Veličine koraka za unos kruga",
+      "roundEntryStepsHint": "Dugmad koraka kao alternativa upisivanju brojeva — odaberite koje veličine koraka (±) će biti dostupne. U bilo kojem trenutku možete prebacivati između upisivanja i dugmadi koraka, čak i usred igre."
+    },
+    "errors": {
+      "minPlayers": "Odaberite najmanje 2 igrača.",
+      "createPlayerFailed": "Igrača nije bilo moguće napraviti.",
+      "startGameFailed": "Igru nije bilo moguće pokrenuti."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Pomoć za bodovanje za igračke večeri"
+    },
+    "stats": {
+      "title": "Statistika"
+    },
+    "history": {
+      "title": "Historija igara"
+    },
+    "settings": {
+      "title": "Postavke"
+    },
+    "pointsToTargetSetup": {
+      "title": "Bodovi do cilja — Nova igra"
+    },
+    "pointsToTargetGame": {
+      "title": "Bodovi do cilja"
+    },
+    "pointsOpenSetup": {
+      "title": "Otvoreni krug bodova — Nova igra"
+    },
+    "pointsOpenGame": {
+      "title": "Otvoreni krug bodova"
+    },
+    "fixedRoundsSetup": {
+      "title": "Krug bodova sa fiksnim brojem krugova — Nova igra"
+    },
+    "fixedRoundsGame": {
+      "title": "Krug bodova sa fiksnim brojem krugova"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nova igra"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Ko počinje?"
+    },
+    "login": {
+      "title": "Prijava"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Bodovi do cilja",
+      "description": "Bodovi se sabiraju krug po krug dok neko ne dostigne ili premaši fiksnu ciljnu vrijednost. Pobjeđuje onaj ko tada ima najviše bodova.",
+      "examples": "npr. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Otvoreni krug bodova",
+      "description": "Bodovi se sabiraju krug po krug bez fiksnog cilja. Sami odlučujete kada stati — pobjeđuje najviši ili najniži rezultat, ovisno o postavci.",
+      "examples": "npr. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Krug bodova sa fiksnim brojem krugova",
+      "description": "Prilikom postavljanja odlučujete koliko će se krugova odigrati i pobjeđuje li na kraju najviši ili najniži rezultat. Nakon posljednjeg kruga igra pita želite li završiti ili nastaviti s dodatnim krugovima."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fiksnih 10 krugova sa smanjujućim brojem karata (od 10 do 1). Prije svakog kruga najavljujete očekivani broj štihova, zatim unosite stvarne štihove — bodovi se automatski izračunavaju prema pravilima RAGE-a (uklj. Rage bonus/osvetu).",
+      "examples": "Igra kartama RAGE"
+    }
+  },
+  "home": {
+    "heading": "Pomoć za bodovanje za igračke večeri",
+    "newGame": {
+      "startButton": "Pokreni novu igru"
+    },
+    "generalBoards": {
+      "heading": "Opći rezultatski pregledi",
+      "hint": "Slobodno podesivo — postavite ciljni rezultat, smjer pobjede i veličine koraka prilikom postavljanja."
+    },
+    "myGames": {
+      "heading": "Moje igre",
+      "hint": "RAGE plus vaše vlastite, potpuno konfigurisane igre (napravite ih u Postavke → Moje igre).",
+      "favoritesHeading": "Favoriti",
+      "allHeading": "Sve igre",
+      "metaTarget": "Cilj: {score} bodova",
+      "metaRounds": "{rounds} krugova"
+    },
+    "openGames": {
+      "heading": "Igre u toku",
+      "viewAll": "Prikaži sve"
+    },
+    "pwaHint": {
+      "heading": "Koristi kao aplikaciju",
+      "text": "Na iPadu/iPhoneu: dodirnite ikonu Podijeli u Safariju, a zatim odaberite „Dodaj na Home ekran” — stranica će se zatim prikazati kao vlastita aplikacija, bez adresne trake."
+    },
+    "support": {
+      "label": "Podržite ovaj projekat",
+      "ariaLabel": "Podržite ovaj projekat na Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Upravljanje igračima",
+    "newPlayer": {
+      "heading": "Novi igrač",
+      "nameLabel": "Ime"
+    },
+    "active": {
+      "heading": "Aktivni igrači",
+      "hint": "Ovi igrači su dostupni za brzi odabir u novim igrama.",
+      "empty": "Još nema aktivnih igrača."
+    },
+    "inactive": {
+      "heading": "Deaktivirani igrači",
+      "hint": "Ostaju vidljivi u prošlim igrama, ali se više ne pojavljuju u brzom odabiru.",
+      "empty": "Nema deaktiviranih igrača."
+    },
+    "avatar": {
+      "uploadLabel": "Prenesi fotografiju",
+      "changeLabel": "Promijeni fotografiju",
+      "removeLabel": "Ukloni fotografiju",
+      "removeConfirm": "Stvarno ukloniti ovaj avatar?",
+      "uploadFailed": "Fotografiju nije bilo moguće sačuvati."
+    },
+    "deleteConfirm": "Stvarno trajno izbrisati \"{name}\"? Za razliku od uklanjanja, u upravljanju igračima nema povratka — prošle igre će i dalje prikazivati ime."
+  },
+  "groups": {
+    "hint": "Grupišite igrače (npr. „Porodica”, „Stalni gosti”) — pri postavljanju igre tada možete jednim klikom odabrati cijelu grupu. Jedna osoba može biti u više grupa.",
+    "newGroup": {
+      "heading": "Nova grupa",
+      "nameLabel": "Naziv grupe",
+      "namePlaceholder": "npr. Porodica",
+      "membersLabel": "Članovi"
+    },
+    "active": {
+      "heading": "Aktivne grupe",
+      "empty": "Još nije napravljena nijedna grupa."
+    },
+    "inactive": {
+      "heading": "Deaktivirane grupe",
+      "empty": "Nema deaktiviranih grupa."
+    },
+    "empty": "Nema članova",
+    "editButton": "Uredi",
+    "saveButton": "Sačuvaj",
+    "cancelButton": "Otkaži",
+    "deleteConfirm": "Stvarno izbrisati grupu \"{name}\"? Sami članovi ostaju — briše se samo grupisanje.",
+    "createFailed": "Grupu nije bilo moguće napraviti."
+  },
+  "stats": {
+    "heading": "Statistika",
+    "filter": {
+      "heading": "Period",
+      "hint": "Ostavite prazno za statistiku svih igara. Za igračku večer koja traje i nakon ponoći, unesite npr. 18:00 do 03:00 sljedećeg dana.",
+      "fromLabel": "Od",
+      "toLabel": "Do",
+      "apply": "Primijeni",
+      "reset": "Poništi"
+    },
+    "kpi": {
+      "games": "Igre",
+      "finished": "Završeno",
+      "winRate": "Udio završenih",
+      "avgScore": "Prosj. bodovi"
+    },
+    "overall": {
+      "heading": "Ukupno",
+      "empty": "Nema igara u ovom periodu."
+    },
+    "byMode": {
+      "heading": "Prema načinu"
+    },
+    "modeDistribution": {
+      "heading": "Raspodjela prema načinu",
+      "empty": "Nema igara u ovom periodu."
+    },
+    "headToHead": {
+      "heading": "Direktni susreti",
+      "empty": "Još nema dva igrača sa zajedničkim završenim igrama u ovom periodu.",
+      "listSummary": "Prikaži kao listu",
+      "draws": "neriješeno",
+      "gamesSuffix": "igara"
+    },
+    "games": {
+      "heading": "Igre u ovom periodu",
+      "empty": "Nema igara u ovom periodu."
+    },
+    "table": {
+      "player": "Igrač",
+      "gamesPlayed": "Igre",
+      "gamesFinished": "Završeno",
+      "wins": "Pobjede",
+      "winRate": "Procenat pobjeda",
+      "currentStreak": "Trenutni niz",
+      "longestStreak": "Najduži niz",
+      "avgScore": "Prosj. rezultat"
+    },
+    "print": "Štampaj / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Odaberite izrezivanje slike",
+    "hint": "Povucite za pomicanje, koristite klizač za uvećanje (format slike za dokumenta 2:3).",
+    "apply": "Primijeni"
+  },
+  "history": {
+    "heading": "Historija igara",
+    "all": {
+      "heading": "Sve igre",
+      "hint": "Najnovije prve. Igre u toku se mogu nastaviti, završene prikazuju rezultat."
+    },
+    "filter": {
+      "all": "Sve",
+      "active": "U toku",
+      "finished": "Završene"
+    },
+    "empty": "Još nije odigrana nijedna igra.",
+    "filterEmpty": {
+      "active": "Nema igara u toku.",
+      "finished": "Još nema završenih igara."
+    },
+    "deleteConfirm": "Stvarno trajno izbrisati \"{label}\" iz historije igara?",
+    "badge": {
+      "finished": "Završeno",
+      "active": "U toku"
+    },
+    "meta": {
+      "target": "Cilj: {score} bodova",
+      "rounds": "Krug {played}/{total}",
+      "winners": "Pobjednik: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Postavke",
+    "subtitle": "Vrijedi za sve koji koriste ovu aplikaciju (sprema se globalno).",
+    "tabs": {
+      "aussehen": "Izgled",
+      "allgemein": "Općenito",
+      "spieler": "Igrači",
+      "spiele": "Moje igre",
+      "zugang": "Zaštita pristupa",
+      "backup": "Sigurnosna kopija"
+    },
+    "theme": {
+      "heading": "Izgled",
+      "hint": "Tri nezavisna stila za odabir. Fino podešavanje boja nalazi se niže pod „Boje detaljno”.",
+      "classic": "Klasično",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Naglašena boja",
+      "accent": {
+        "green": "Zelena",
+        "orange": "Narandžasta",
+        "pink": "Ružičasta",
+        "violet": "Ljubičasta",
+        "cyan": "Cijan"
+      },
+      "backgroundLabel": "Pozadina",
+      "background": {
+        "dark": "Tamna",
+        "darkBlue": "Tamnoplava",
+        "black": "Crna"
+      },
+      "cardStyleLabel": "Stil kartice",
+      "cardStyle": {
+        "classic": "Klasično",
+        "modern": "Moderno"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Prijedlog boje",
+      "flipPreset": {
+        "amber": "Jantarna",
+        "petrol": "Petrolej plava",
+        "karmesin": "Grimizna",
+        "knallorange": "Jarko narandžasta",
+        "violett": "Ljubičasta"
+      }
+    },
+    "title": {
+      "heading": "Naslov",
+      "hint": "Prikazuje se u zaglavlju i u naslovu kartice preglednika.",
+      "label": "Naslov"
+    },
+    "feedback": {
+      "heading": "Povratna informacija pri spremanju",
+      "hint": "Kratak zvuk (i vibracija, ako uređaj to podržava) pri spremanju kruga. Na iPhoneu/iPadu vibracija nije moguća iz tehničkih razloga (Safari), ali zvuk radi.",
+      "label": "Zvuk pri spremanju"
+    },
+    "presets": {
+      "heading": "Moje igre",
+      "hint": "Vaše vlastite, potpuno konfigurisane igre (npr. „Flip7” sa ciljem 200) — pojavljuju se na početnoj stranici pod „Moje igre” i unaprijed ispunjavaju obrazac za postavljanje pri kliku.",
+      "favoritesHeading": "Favoriti",
+      "favoritesHint": "Prilagodite redoslijed strelicama ili povlačenjem — određuje redoslijed retka favorita na početnoj stranici.",
+      "allHeading": "Sve igre",
+      "allHint": "Poredano abecedno — favoriti se pojavljuju i ovdje, kako bi uvijek bili pronalazivi.",
+      "addButton": "Dodaj novu igru",
+      "formHeadingNew": "Nova igra",
+      "formHeadingEdit": "Uredi {name}",
+      "nameLabel": "Naziv",
+      "iconLabel": "Ikona",
+      "modeLabel": "Način",
+      "metaTarget": "Cilj: {target} bodova",
+      "metaRounds": "{rounds} krugova",
+      "saveFailed": "Igru nije bilo moguće sačuvati.",
+      "deleteConfirm": "Stvarno izbrisati \"{name}\"?",
+      "empty": "Još nije napravljena nijedna igra.",
+      "favoriteLabel": "Favorit",
+      "moveUp": "Pomjeri gore",
+      "moveDown": "Pomjeri dolje",
+      "editButton": "Uredi"
+    },
+    "access": {
+      "heading": "Zaštita pristupa",
+      "hint": "Štiti cijeli sajt jednom zajedničkom lozinkom za sve koji znaju vezu. Bez aktivne zaštite, svako sa vezom može koristiti sajt.",
+      "enableLabel": "Aktiviraj zaštitu pristupa",
+      "noPasswordSet": "Lozinka još nije postavljena — zaštita ostaje neaktivna dok se ne postavi.",
+      "passwordLabel": "Nova lozinka",
+      "passwordConfirmLabel": "Potvrdi lozinku",
+      "passwordHint": "Najmanje 8 znakova. Ostavite prazno kako biste zadržali trenutno sačuvanu lozinku. Zaboravili ste lozinku? Pogledajte README za upute o ponovnom postavljanju putem pristupa datotekama.",
+      "mismatchError": "Dvije lozinke se ne podudaraju.",
+      "tooShortError": "Lozinka mora imati najmanje 8 znakova.",
+      "saveFailed": "Spremanje nije uspjelo.",
+      "logoutButton": "Odjavi se na ovom uređaju"
+    },
+    "logo": {
+      "heading": "Logotip",
+      "hint": "Prema zadanim postavkama nije aktivan nijedan prilagođeni logotip, ikona olovke ostaje vidljiva.",
+      "modeLabel": "Prikaz",
+      "modeNone": "Bez logotipa",
+      "modeSquare": "Kvadratni, gore lijevo",
+      "modeBanner": "Traka preko cijele širine",
+      "squareHeading": "Kvadratni logotip",
+      "squareHint": "Preporučeno: 160×160 piksela (kvadrat). PNG, JPEG ili SVG, maks. 2 MB.",
+      "bannerHeading": "Logotip u obliku trake",
+      "bannerHint": "Preporučeno: oko 1400×160 piksela (širok, ne previsok). PNG, JPEG ili SVG, maks. 2 MB.",
+      "uploadButton": "Prenesi",
+      "removeConfirm": "Stvarno ukloniti ovaj logotip?",
+      "uploadSuccess": "Logotip prenesen.",
+      "removeSuccess": "Logotip uklonjen.",
+      "uploadFailed": "Logotip nije bilo moguće prenijeti.",
+      "noFileSelected": "Najprije odaberite datoteku."
+    },
+    "language": {
+      "heading": "Jezik",
+      "hint": "Kasnije se mogu dodati dodatni jezici.",
+      "label": "Jezik"
+    },
+    "colors": {
+      "advancedHeading": "Boje detaljno",
+      "advancedSummary": "Otvori napredne postavke",
+      "boldNote": "Vrijedi samo za Klasično — Bold koristi gornje predloške.",
+      "single": {
+        "heading": "Boje isticanja i funkcije",
+        "hint": "Vrijede nepromijenjene u svijetlom i tamnom režimu."
+      },
+      "pairs": {
+        "heading": "Osnovne boje (odvojeno za svijetli/tamni režim)",
+        "hint": "Pozadina, površina, tekst i obrub — po jednom za svijetli i tamni režim.",
+        "light": "Svijetli",
+        "dark": "Tamni"
+      },
+      "flip": {
+        "heading": "Boje Flip Boarda",
+        "hint": "Zamjenjuje gore odabrani prijedlog boje — po jednom za svijetli i tamni režim."
+      }
+    },
+    "resetButton": "Vrati zadane boje",
+    "resetConfirm": "Stvarno vratiti sve boje na zadane vrijednosti?",
+    "savedStatus": "Sačuvano. Ostale stranice će preuzeti promjenu pri sljedećoj posjeti.",
+    "resetStatus": "Vraćeno na zadane boje.",
+    "backup": {
+      "heading": "Sigurnosna kopija podataka",
+      "hint": "Potpuna sigurnosna kopija svih igrača, igara, avatara i logotipova kao ZIP datoteka — npr. kako ništa ne bi bilo izgubljeno pri preseljenju na novi server.",
+      "exportHeading": "Preuzmi sigurnosnu kopiju",
+      "exportHint": "Sadrži potpunu bazu podataka te sve slike avatara i logotip.",
+      "exportButton": "Preuzmi sigurnosnu kopiju",
+      "importHeading": "Vrati sigurnosnu kopiju",
+      "importWarning": "Upozorenje: uvoz nepovratno zamjenjuje sve trenutne igrače, igre, avatare i logotipe sadržajem datoteke sigurnosne kopije.",
+      "fileLabel": "Datoteka sigurnosne kopije (.zip)",
+      "importButton": "Uvezi sigurnosnu kopiju",
+      "confirmHint": "Za potvrdu tačno upišite ERSETZEN ispod.",
+      "confirmLabel": "Potvrda",
+      "confirmButton": "Zamijeni sada, trajno",
+      "noFileSelected": "Najprije odaberite datoteku sigurnosne kopije.",
+      "finalConfirm": "Stvarno nepovratno zamijeniti sve trenutne podatke igara sigurnosnom kopijom?",
+      "importInProgress": "Vraćanje sigurnosne kopije …",
+      "importSuccess": "Sigurnosna kopija vraćena: {games} igara, {players} igrača. Ponovno učitavanje stranice …",
+      "importFailed": "Uvoz nije uspio."
+    },
+    "colorLabels": {
+      "green": "Neonsko zelena (glavno isticanje)",
+      "greenStrong": "Neonsko zelena, tamnija (tekst/linije)",
+      "amber": "Jantarna (sekundarno isticanje)",
+      "amberStrong": "Jantarna, tamnija (tekst/linije)",
+      "onAccent": "Tekst na naglašenim površinama",
+      "focus": "Obris fokusa (navigacija tastaturom)",
+      "danger": "Greška / opasnost (npr. dugmad za brisanje)",
+      "bg": "Pozadina",
+      "surface": "Površina (kartice)",
+      "text": "Tekst",
+      "textMuted": "Prigušeni tekst",
+      "border": "Obrub"
+    }
+  },
+  "login": {
+    "heading": "Prijava",
+    "hint": "Ova stranica je zaštićena lozinkom.",
+    "error": "Pogrešna lozinka.",
+    "passwordLabel": "Lozinka",
+    "submitButton": "Prijava"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Postavi novu igru (npr. Flip7, Tutto)",
+      "labelPlaceholder": "npr. Flip7, Tutto",
+      "targetLabel": "Igrati do koje vrijednosti bodova?",
+      "winDirectionHint": "U većini igara pobjeđuje najviši rezultat (npr. Flip7, Tutto) — ali u nekima, poput Skyjo, umjesto toga pobjeđuje najniži rezultat. Igra svakako završava čim neko dostigne ili premaši cilj.",
+      "targetBonusLabel": "Bonus za postizanje cilja"
+    },
+    "game": {
+      "subtitle": "Cilj: {target} bodova · {started}",
+      "roundEntryHint": "Unesite bodove ovog kruga po igraču (0 je normalno, npr. kod prekoračenja)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Postavi novu igru (npr. Doppelkopf)",
+      "labelPlaceholder": "npr. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "pobjeđuje najviši rezultat",
+        "lowest": "pobjeđuje najniži rezultat"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Postavi novu igru",
+      "roundsLabel": "Koliko krugova treba odigrati?",
+      "announceLabel": "Najavi nakon svakog kruga da je završio",
+      "announceHint": "Prikazuje kratku obavijest, koja se može zatvoriti, nakon svakog sačuvanog kruga."
+    },
+    "game": {
+      "subtitleOngoing": "Krug {round} od {total} · {started}",
+      "subtitleReached": "{played} od {total} krugova odigrano · {started}",
+      "roundEndNotice": "Krug {round} završen",
+      "targetReached": {
+        "heading": "Odigrali ste dogovorenih {total} krugova.",
+        "extendLabel": "Nastavi igru, ovoliko dodatnih krugova:",
+        "extendButton": "Nastavi igru"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Postavi novu igru — 10 krugova, najava štihova",
+      "hint": "Fiksnih 10 krugova (od 10 do 1 karte), na kraju pobjeđuje najviši rezultat.",
+      "labelPlaceholder": "npr. RAGE večer",
+      "showBonusMalusLabel": "Prikaži bonus/malus",
+      "showBonusMalusHint": "Prikaži/sakrij polja specijalnih karata +5/−5 u unosu kruga."
+    },
+    "game": {
+      "cardSingular": "karta",
+      "cardPlural": "karata",
+      "subtitleFinished": "{played} od 10 krugova odigrano · {started}",
+      "subtitleOngoing": "Krug {round} od 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Unesi krug",
+        "staticHint": "Unesite najavu i stvarne štihove po igraču, eventualne specijalne karte.",
+        "heading": "Unesi krug {round} ({cards} {cardWord})",
+        "hint": "Unesite najavu i stvarne štihove po igraču (0 je važeće). Štihovi svih igrača trebalo bi da zbrajaju {cards}.",
+        "table": {
+          "player": "Igrač",
+          "bid": "Najava",
+          "tricks": "Štihovi",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Bodovi"
+        }
+      },
+      "roundsTableHint": "Direktno prilagodite vrijednosti kako biste ispravili greške pri unosu. Najava / štihovi / +5 / −5 / bodovi (izračunato) po igraču i krugu.",
+      "deleteRoundButton": "Izbriši K{round}",
+      "mismatchConfirm": "Zbir unesenih štihova ({actual}) ne odgovara broju karata ovog kruga ({expected}). Ipak sačuvati?",
+      "saveFailed": "Krug nije bilo moguće sačuvati."
+    }
+  },
+  "chooser": {
+    "heading": "Ko počinje?",
+    "subtitle": "Stavite sve prste na ekran istovremeno — funkcioniše putem multidodira (iPad/iPhone).",
+    "hint": "Stavite prste na ekran …",
+    "winnerCountLabel": "Broj pobjednika",
+    "resultSingle": "Ova osoba počinje! Ponovo stavite prste za novi krug.",
+    "resultMulti": "Ovih {count} osoba počinje! Ponovo stavite prste za novi krug."
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Naar de inhoud springen",
+    "nav": {
+      "home": "Start",
+      "history": "Verlauf",
+      "stats": "Statistieken",
+      "chooser": "Wie begint?",
+      "settings": "Instellingen",
+      "openMenu": "Menu openen",
+      "closeMenu": "Menu sluiten"
+    },
+    "updateAvailable": "Update beschikbaar ({version})",
+    "buttons": {
+      "add": "Toevoegen",
+      "save": "Opslaan",
+      "delete": "Verwijderen",
+      "start": "Spel starten",
+      "finish": "Spel beëindigen",
+      "resume": "Spel hervatten",
+      "remove": "Verwijderen",
+      "reactivate": "Reactiveren",
+      "close": "Sluiten",
+      "cancel": "Annuleren"
+    },
+    "winDirection": {
+      "heading": "Wie wint er uiteindelijk?",
+      "highest": "Hoogste score",
+      "lowest": "Laagste score"
+    },
+    "stepper": {
+      "decrease": "Verlagen",
+      "increase": "Verhogen",
+      "minusValue": "{value} aftrekken",
+      "plusValue": "{value} optellen"
+    },
+    "table": {
+      "rank": "Plaats",
+      "name": "Naam",
+      "points": "Punten",
+      "progress": "Voortgang",
+      "actions": "Acties",
+      "round": "Ronde"
+    },
+    "game": {
+      "loading": "Laden …",
+      "notFound": "Spel niet gevonden.",
+      "standingsHeading": "Stand",
+      "standings": {
+        "collapse": "Inklappen",
+        "expand": "Tonen",
+        "teamTotalSuffix": "punten totaal"
+      },
+      "startingPlayerLegend": "★ Beginnende speler (willekeurig)",
+      "startedSuffix": "gestart op {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Spel afgelopen! {names} winnen samen met {points} punten.",
+        "single": "🏆 Spel afgelopen! {names} heeft gewonnen met {points} punten."
+      },
+      "roundEntry": {
+        "heading": "Nieuwe ronde invoeren",
+        "saveButton": "Ronde opslaan",
+        "switchToButtons": "Stapknoppen",
+        "switchToType": "Typen"
+      },
+      "roundsTable": {
+        "heading": "Rondeoverzicht & correctie",
+        "hint": "Pas waarden direct aan om invoerfouten te corrigeren.",
+        "empty": "Nog geen rondes gespeeld.",
+        "deleteConfirm": "Deze ronde echt verwijderen?",
+        "undoButton": "Laatste ronde ongedaan maken"
+      },
+      "noPlayersHint": "Nog geen spelers — voeg er hieronder een toe.",
+      "roundEntryHintGeneric": "Voer de punten van deze ronde per speler in (0 is normaal)."
+    },
+    "setup": {
+      "heading": "Spel instellen",
+      "labelOptional": "Label (optioneel)",
+      "whoPlays": "Wie speelt er mee?",
+      "addPlayerLabel": "Nieuwe speler toevoegen",
+      "addPlayerPlaceholder": "Naam invoeren",
+      "advancedOptions": "Geavanceerde opties",
+      "teamModeLabel": "Teammodus inschakelen",
+      "teamModeHint": "Spelers kunnen worden ingedeeld in teams waarvan de punten samen worden geteld.",
+      "teamScoringHeading": "Teamscore",
+      "teamScoringShared": "Gecombineerde score",
+      "teamScoringSharedHint": "Teamleden voeren samen één gecombineerde score per ronde in.",
+      "teamScoringIndividual": "Individuele scores, gecombineerd totaal",
+      "teamScoringIndividualHint": "Elke speler voert zijn eigen score in — zowel de individuele scores als het teamtotaal worden getoond.",
+      "teamNone": "Geen team",
+      "teamNumber": "Team {number}",
+      "teamNameLabel": "Naam voor team {number} (optioneel)",
+      "teamNamePlaceholder": "bijv. De Adelaars",
+      "selectAll": "Alles selecteren",
+      "selectNone": "Alles deselecteren",
+      "allowNegativeLabel": "Negatieve punten toestaan",
+      "allowNegativeHint": "Indien uit, worden negatieve rondeinvoer begrensd tot 0.",
+      "targetBonusHint": "Extra punten die de winnaar(s) krijgen voor het behalen van de doelscore (0 = geen bonus).",
+      "roundEntryStepsLabel": "Stapgroottes voor rondeinvoer",
+      "roundEntryStepsHint": "Stapknoppen als alternatief voor het typen van getallen — kies welke stapgroottes (±) beschikbaar zijn. Je kunt altijd wisselen tussen typen en stapknoppen, ook tijdens het spel."
+    },
+    "errors": {
+      "minPlayers": "Selecteer minstens 2 spelers.",
+      "createPlayerFailed": "Speler kon niet worden aangemaakt.",
+      "startGameFailed": "Spel kon niet worden gestart."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Scorehulp voor spelavonden"
+    },
+    "stats": {
+      "title": "Statistieken"
+    },
+    "history": {
+      "title": "Spelgeschiedenis"
+    },
+    "settings": {
+      "title": "Instellingen"
+    },
+    "pointsToTargetSetup": {
+      "title": "Punten tot doelwaarde — Nieuw spel"
+    },
+    "pointsToTargetGame": {
+      "title": "Punten tot doelwaarde"
+    },
+    "pointsOpenSetup": {
+      "title": "Open puntenronde — Nieuw spel"
+    },
+    "pointsOpenGame": {
+      "title": "Open puntenronde"
+    },
+    "fixedRoundsSetup": {
+      "title": "Puntenronde met vast aantal rondes — Nieuw spel"
+    },
+    "fixedRoundsGame": {
+      "title": "Puntenronde met vast aantal rondes"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nieuw spel"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Wie begint?"
+    },
+    "login": {
+      "title": "Inloggen"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Punten tot doelwaarde",
+      "description": "Punten worden ronde na ronde opgeteld tot iemand een vaste doelwaarde bereikt of overschrijdt. Wie dan de meeste punten heeft, wint.",
+      "examples": "bijv. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Open puntenronde",
+      "description": "Punten worden ronde na ronde opgeteld zonder vaste doelwaarde. Jullie beslissen zelf wanneer te stoppen — de hoogste of laagste score wint, zoals ingesteld.",
+      "examples": "bijv. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Puntenronde met vast aantal rondes",
+      "description": "Bij het instellen bepaal je hoeveel rondes er worden gespeeld en of aan het eind de hoogste of laagste score wint. Na de laatste ronde vraagt het spel of je wilt beëindigen of nog meer rondes wilt spelen."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Vaste 10 rondes met een afnemend aantal kaarten (van 10 naar 1). Voor elke ronde geef je je verwachte aantal slagen op, daarna voer je de werkelijke slagen in — de punten worden automatisch berekend volgens de RAGE-regels (incl. Rage-bonus/wraak).",
+      "examples": "Kaartspel RAGE"
+    }
+  },
+  "home": {
+    "heading": "Scorehulp voor spelavonden",
+    "newGame": {
+      "startButton": "Nieuw spel starten"
+    },
+    "generalBoards": {
+      "heading": "Algemene scoreborden",
+      "hint": "Vrij instelbaar — stel de doelscore, winrichting en stapgroottes in bij het instellen."
+    },
+    "myGames": {
+      "heading": "Mijn spellen",
+      "hint": "RAGE plus je eigen, volledig ingestelde spellen (aanmaken onder Instellingen → Mijn spellen).",
+      "favoritesHeading": "Favorieten",
+      "allHeading": "Alle spellen",
+      "metaTarget": "Doel: {score} punten",
+      "metaRounds": "{rounds} rondes"
+    },
+    "openGames": {
+      "heading": "Lopende spellen",
+      "viewAll": "Alles tonen"
+    },
+    "pwaHint": {
+      "heading": "Gebruiken als app",
+      "text": "Op iPad/iPhone: tik op het deelicoon in Safari en kies dan \"Zet op beginscherm\" — de pagina verschijnt dan als eigen app, zonder adresbalk."
+    },
+    "support": {
+      "label": "Steun dit project",
+      "ariaLabel": "Steun dit project op Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Spelers beheren",
+    "newPlayer": {
+      "heading": "Nieuwe speler",
+      "nameLabel": "Naam"
+    },
+    "active": {
+      "heading": "Actieve spelers",
+      "hint": "Deze spelers zijn beschikbaar voor snelle selectie bij nieuwe spellen.",
+      "empty": "Nog geen actieve spelers."
+    },
+    "inactive": {
+      "heading": "Gedeactiveerde spelers",
+      "hint": "Blijven zichtbaar in eerdere spellen, maar verschijnen niet meer in de snelle selectie.",
+      "empty": "Geen gedeactiveerde spelers."
+    },
+    "avatar": {
+      "uploadLabel": "Foto uploaden",
+      "changeLabel": "Foto wijzigen",
+      "removeLabel": "Foto verwijderen",
+      "removeConfirm": "Deze avatar echt verwijderen?",
+      "uploadFailed": "De foto kon niet worden opgeslagen."
+    },
+    "deleteConfirm": "\"{name}\" echt permanent verwijderen? In tegenstelling tot verwijderen uit de selectie is dit binnen spelersbeheer niet ongedaan te maken — eerdere spellen tonen de naam nog steeds."
+  },
+  "groups": {
+    "hint": "Groepeer spelers (bijv. \"Familie\", \"Vaste gasten\") — bij het instellen van een spel kun je dan de hele groep met één klik selecteren. Een persoon kan in meerdere groepen zitten.",
+    "newGroup": {
+      "heading": "Nieuwe groep",
+      "nameLabel": "Groepsnaam",
+      "namePlaceholder": "bijv. Familie",
+      "membersLabel": "Leden"
+    },
+    "active": {
+      "heading": "Actieve groepen",
+      "empty": "Nog geen groepen aangemaakt."
+    },
+    "inactive": {
+      "heading": "Gedeactiveerde groepen",
+      "empty": "Geen gedeactiveerde groepen."
+    },
+    "empty": "Geen leden",
+    "editButton": "Bewerken",
+    "saveButton": "Opslaan",
+    "cancelButton": "Annuleren",
+    "deleteConfirm": "Groep \"{name}\" echt verwijderen? De leden zelf blijven bestaan — alleen de groepering wordt verwijderd.",
+    "createFailed": "Groep kon niet worden aangemaakt."
+  },
+  "stats": {
+    "heading": "Statistieken",
+    "filter": {
+      "heading": "Periode",
+      "hint": "Laat leeg voor statistieken over alle spellen. Voor een spelavond die doorloopt tot na middernacht, voer bijv. 18:00 tot 03:00 de volgende dag in.",
+      "fromLabel": "Van",
+      "toLabel": "Tot",
+      "apply": "Toepassen",
+      "reset": "Resetten"
+    },
+    "kpi": {
+      "games": "Spellen",
+      "finished": "Afgerond",
+      "winRate": "Aandeel afgerond",
+      "avgScore": "Gem. punten"
+    },
+    "overall": {
+      "heading": "Totaal",
+      "empty": "Geen spellen in deze periode."
+    },
+    "byMode": {
+      "heading": "Per modus"
+    },
+    "modeDistribution": {
+      "heading": "Verdeling per modus",
+      "empty": "Geen spellen in deze periode."
+    },
+    "headToHead": {
+      "heading": "Onderling",
+      "empty": "Nog geen twee spelers met gezamenlijk afgeronde spellen in deze periode.",
+      "listSummary": "Als lijst tonen",
+      "draws": "gelijkspel",
+      "gamesSuffix": "spellen"
+    },
+    "games": {
+      "heading": "Spellen in deze periode",
+      "empty": "Geen spellen in deze periode."
+    },
+    "table": {
+      "player": "Speler",
+      "gamesPlayed": "Spellen",
+      "gamesFinished": "Afgerond",
+      "wins": "Overwinningen",
+      "winRate": "Winstpercentage",
+      "currentStreak": "Huidige reeks",
+      "longestStreak": "Langste reeks",
+      "avgScore": "Gem. score"
+    },
+    "print": "Afdrukken / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Bijsnijden kiezen",
+    "hint": "Sleep om te verschuiven, gebruik de schuifregelaar om te zoomen (pasfotoformaat 2:3).",
+    "apply": "Toepassen"
+  },
+  "history": {
+    "heading": "Spelgeschiedenis",
+    "all": {
+      "heading": "Alle spellen",
+      "hint": "Nieuwste eerst. Lopende spellen kunnen worden hervat, afgeronde spellen tonen het resultaat."
+    },
+    "filter": {
+      "all": "Alle",
+      "active": "Lopend",
+      "finished": "Afgerond"
+    },
+    "empty": "Nog geen spellen gespeeld.",
+    "filterEmpty": {
+      "active": "Geen lopende spellen.",
+      "finished": "Nog geen afgeronde spellen."
+    },
+    "deleteConfirm": "\"{label}\" echt permanent uit de spelgeschiedenis verwijderen?",
+    "badge": {
+      "finished": "Afgerond",
+      "active": "Lopend"
+    },
+    "meta": {
+      "target": "Doel: {score} punten",
+      "rounds": "Ronde {played}/{total}",
+      "winners": "Winnaar: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Instellingen",
+    "subtitle": "Geldt voor iedereen die deze app gebruikt (globaal opgeslagen).",
+    "tabs": {
+      "aussehen": "Uiterlijk",
+      "allgemein": "Algemeen",
+      "spieler": "Spelers",
+      "spiele": "Mijn spellen",
+      "zugang": "Toegangsbeveiliging",
+      "backup": "Back-up"
+    },
+    "theme": {
+      "heading": "Uiterlijk",
+      "hint": "Drie onafhankelijke stijlen om uit te kiezen. Fijnafstelling van de kleuren vind je verderop onder \"Kleuren in detail\".",
+      "classic": "Klassiek",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Accentkleur",
+      "accent": {
+        "green": "Groen",
+        "orange": "Oranje",
+        "pink": "Roze",
+        "violet": "Paars",
+        "cyan": "Cyaan"
+      },
+      "backgroundLabel": "Achtergrond",
+      "background": {
+        "dark": "Donker",
+        "darkBlue": "Donkerblauw",
+        "black": "Zwart"
+      },
+      "cardStyleLabel": "Kaartstijl",
+      "cardStyle": {
+        "classic": "Klassiek",
+        "modern": "Modern"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Kleursuggestie",
+      "flipPreset": {
+        "amber": "Amber",
+        "petrol": "Petrol",
+        "karmesin": "Karmozijn",
+        "knallorange": "Fel oranje",
+        "violett": "Paars"
+      }
+    },
+    "title": {
+      "heading": "Titel",
+      "hint": "Wordt getoond in de kopregel en in de titel van het browsertabblad.",
+      "label": "Titel"
+    },
+    "feedback": {
+      "heading": "Feedback bij opslaan",
+      "hint": "Kort geluid (en trilling, indien ondersteund door het apparaat) bij het opslaan van een ronde. Op iPhone/iPad is trillen om technische redenen (Safari) niet mogelijk, het geluid werkt wel.",
+      "label": "Geluid bij opslaan"
+    },
+    "presets": {
+      "heading": "Mijn spellen",
+      "hint": "Je eigen, volledig ingestelde spellen (bijv. \"Flip7\" met doel 200) — verschijnen op de startpagina onder \"Mijn spellen\" en vullen het instelformulier vooraf in bij een klik.",
+      "favoritesHeading": "Favorieten",
+      "favoritesHint": "Pas de volgorde aan met de pijlen of via slepen — bepaalt de volgorde van de favorietenrij op de startpagina.",
+      "allHeading": "Alle spellen",
+      "allHint": "Alfabetisch gesorteerd — favorieten verschijnen hier ook, zodat ze sowieso vindbaar blijven.",
+      "addButton": "Nieuw spel toevoegen",
+      "formHeadingNew": "Nieuw spel",
+      "formHeadingEdit": "{name} bewerken",
+      "nameLabel": "Naam",
+      "iconLabel": "Icoon",
+      "modeLabel": "Modus",
+      "metaTarget": "Doel: {target} punten",
+      "metaRounds": "{rounds} rondes",
+      "saveFailed": "Spel kon niet worden opgeslagen.",
+      "deleteConfirm": "\"{name}\" echt verwijderen?",
+      "empty": "Nog geen spellen aangemaakt.",
+      "favoriteLabel": "Favoriet",
+      "moveUp": "Omhoog verplaatsen",
+      "moveDown": "Omlaag verplaatsen",
+      "editButton": "Bewerken"
+    },
+    "access": {
+      "heading": "Toegangsbeveiliging",
+      "hint": "Beveiligt de hele site met één gedeeld wachtwoord voor iedereen die de link kent. Zonder actieve beveiliging kan iedereen met de link de site gebruiken.",
+      "enableLabel": "Toegangsbeveiliging inschakelen",
+      "noPasswordSet": "Er is nog geen wachtwoord ingesteld — de beveiliging blijft inactief totdat er een is ingesteld.",
+      "passwordLabel": "Nieuw wachtwoord",
+      "passwordConfirmLabel": "Wachtwoord bevestigen",
+      "passwordHint": "Minstens 8 tekens. Laat leeg om het huidige opgeslagen wachtwoord te behouden. Wachtwoord vergeten? Zie de README voor de reset-instructies via bestandstoegang.",
+      "mismatchError": "De twee wachtwoorden komen niet overeen.",
+      "tooShortError": "Het wachtwoord moet minstens 8 tekens lang zijn.",
+      "saveFailed": "Opslaan mislukt.",
+      "logoutButton": "Uitloggen op dit apparaat"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Standaard is er geen eigen logo actief, het pictogram met de pen blijft zichtbaar.",
+      "modeLabel": "Weergave",
+      "modeNone": "Geen logo",
+      "modeSquare": "Vierkant, linksboven",
+      "modeBanner": "Banner over de volledige breedte",
+      "squareHeading": "Vierkant logo",
+      "squareHint": "Aanbevolen: 160×160 pixels (vierkant). PNG, JPEG of SVG, max. 2 MB.",
+      "bannerHeading": "Bannerlogo",
+      "bannerHint": "Aanbevolen: ca. 1400×160 pixels (breed, niet te hoog). PNG, JPEG of SVG, max. 2 MB.",
+      "uploadButton": "Uploaden",
+      "removeConfirm": "Dit logo echt verwijderen?",
+      "uploadSuccess": "Logo geüpload.",
+      "removeSuccess": "Logo verwijderd.",
+      "uploadFailed": "Logo kon niet worden geüpload.",
+      "noFileSelected": "Selecteer eerst een bestand."
+    },
+    "language": {
+      "heading": "Taal",
+      "hint": "Later kunnen meer talen worden toegevoegd.",
+      "label": "Taal"
+    },
+    "colors": {
+      "advancedHeading": "Kleuren in detail",
+      "advancedSummary": "Geavanceerd openen",
+      "boldNote": "Geldt alleen voor Klassiek — Bold gebruikt de voorinstellingen hierboven.",
+      "single": {
+        "heading": "Accent- en functiekleuren",
+        "hint": "Gelden ongewijzigd in lichte en donkere modus."
+      },
+      "pairs": {
+        "heading": "Basiskleuren (apart voor lichte/donkere modus)",
+        "hint": "Achtergrond, oppervlak, tekst en rand — elk één keer voor lichte en donkere modus.",
+        "light": "Licht",
+        "dark": "Donker"
+      },
+      "flip": {
+        "heading": "Flip Board-kleuren",
+        "hint": "Overschrijft de hierboven gekozen kleursuggestie — elk één keer voor lichte en donkere modus."
+      }
+    },
+    "resetButton": "Terugzetten naar standaardkleuren",
+    "resetConfirm": "Alle kleuren echt terugzetten naar de standaardwaarden?",
+    "savedStatus": "Opgeslagen. Andere pagina's nemen de wijziging over bij hun volgende bezoek.",
+    "resetStatus": "Teruggezet naar standaardkleuren.",
+    "backup": {
+      "heading": "Gegevensback-up",
+      "hint": "Volledige back-up van alle spelers, spellen, avatars en logo's als ZIP-bestand — bijv. om er zeker van te zijn dat er niets verloren gaat bij een serververhuizing.",
+      "exportHeading": "Back-up downloaden",
+      "exportHint": "Bevat de volledige database plus alle avatarafbeeldingen en het logo.",
+      "exportButton": "Back-up downloaden",
+      "importHeading": "Back-up herstellen",
+      "importWarning": "Let op: een import vervangt onherroepelijk alle huidige spelers, spellen, avatars en logo's door de inhoud van het back-upbestand.",
+      "fileLabel": "Back-upbestand (.zip)",
+      "importButton": "Back-up importeren",
+      "confirmHint": "Typ ter bevestiging hieronder exact ERSETZEN.",
+      "confirmLabel": "Bevestiging",
+      "confirmButton": "Nu permanent vervangen",
+      "noFileSelected": "Selecteer eerst een back-upbestand.",
+      "finalConfirm": "Alle huidige speldata echt onherroepelijk vervangen door de back-up?",
+      "importInProgress": "Back-up wordt hersteld …",
+      "importSuccess": "Back-up hersteld: {games} spellen, {players} spelers. Pagina wordt herladen …",
+      "importFailed": "Importeren mislukt."
+    },
+    "colorLabels": {
+      "green": "Neongroen (hoofdaccent)",
+      "greenStrong": "Neongroen, donkerder (tekst/lijnen)",
+      "amber": "Amber (secundair accent)",
+      "amberStrong": "Amber, donkerder (tekst/lijnen)",
+      "onAccent": "Tekst op accentvlakken",
+      "focus": "Focusomlijning (toetsenbordnavigatie)",
+      "danger": "Fout / gevaar (bijv. verwijderknoppen)",
+      "bg": "Achtergrond",
+      "surface": "Oppervlak (kaarten)",
+      "text": "Tekst",
+      "textMuted": "Gedempte tekst",
+      "border": "Rand"
+    }
+  },
+  "login": {
+    "heading": "Inloggen",
+    "hint": "Deze site is met een wachtwoord beveiligd.",
+    "error": "Onjuist wachtwoord.",
+    "passwordLabel": "Wachtwoord",
+    "submitButton": "Inloggen"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Nieuw spel instellen (bijv. Flip7, Tutto)",
+      "labelPlaceholder": "bijv. Flip7, Tutto",
+      "targetLabel": "Spelen tot welke puntenwaarde?",
+      "winDirectionHint": "Bij de meeste spellen wint de hoogste score (bijv. Flip7, Tutto) — maar bij sommige, zoals Skyjo, wint juist de laagste score. Het spel eindigt zodra iemand het doel bereikt of overschrijdt.",
+      "targetBonusLabel": "Bonus voor het behalen van het doel"
+    },
+    "game": {
+      "subtitle": "Doel: {target} punten · {started}",
+      "roundEntryHint": "Voer de punten van deze ronde per speler in (0 is normaal, bijv. bij een bust)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Nieuw spel instellen (bijv. Doppelkopf)",
+      "labelPlaceholder": "bijv. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "hoogste score wint",
+        "lowest": "laagste score wint"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Nieuw spel instellen",
+      "roundsLabel": "Hoeveel rondes moeten er worden gespeeld?",
+      "announceLabel": "Na elke ronde aankondigen dat deze is afgelopen",
+      "announceHint": "Toont een kort, sluitbaar bericht na elke opgeslagen ronde."
+    },
+    "game": {
+      "subtitleOngoing": "Ronde {round} van {total} · {started}",
+      "subtitleReached": "{played} van {total} rondes gespeeld · {started}",
+      "roundEndNotice": "Ronde {round} afgerond",
+      "targetReached": {
+        "heading": "Jullie hebben de afgesproken {total} rondes gespeeld.",
+        "extendLabel": "Doorspelen, dit aantal rondes extra:",
+        "extendButton": "Doorspelen"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Nieuw spel instellen — 10 rondes, slagenbieding",
+      "hint": "Vaste 10 rondes (van 10 naar 1 kaart), hoogste score wint aan het eind.",
+      "labelPlaceholder": "bijv. RAGE-avond",
+      "showBonusMalusLabel": "Bonus/malus tonen",
+      "showBonusMalusHint": "De +5/−5-velden voor speciale kaarten in de rondeinvoer tonen/verbergen."
+    },
+    "game": {
+      "cardSingular": "kaart",
+      "cardPlural": "kaarten",
+      "subtitleFinished": "{played} van 10 rondes gespeeld · {started}",
+      "subtitleOngoing": "Ronde {round} van 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Ronde invoeren",
+        "staticHint": "Voer bieding en werkelijke slagen per speler in, en eventuele speciale kaarten.",
+        "heading": "Ronde {round} invoeren ({cards} {cardWord})",
+        "hint": "Voer bieding en werkelijke slagen per speler in (0 is geldig). De slagen van alle spelers zouden samen {cards} moeten zijn.",
+        "table": {
+          "player": "Speler",
+          "bid": "Bieding",
+          "tricks": "Slagen",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Punten"
+        }
+      },
+      "roundsTableHint": "Pas waarden direct aan om invoerfouten te corrigeren. Bieding / slagen / +5 / −5 / punten (berekend) per speler en ronde.",
+      "deleteRoundButton": "R{round} verwijderen",
+      "mismatchConfirm": "De som van de ingevoerde slagen ({actual}) komt niet overeen met het aantal kaarten van deze ronde ({expected}). Toch opslaan?",
+      "saveFailed": "Ronde kon niet worden opgeslagen."
+    }
+  },
+  "chooser": {
+    "heading": "Wie begint?",
+    "subtitle": "Leg alle vingers tegelijk op het scherm — werkt via multitouch (iPad/iPhone).",
+    "hint": "Leg vingers op het scherm …",
+    "winnerCountLabel": "Aantal winnaars",
+    "resultSingle": "Deze persoon begint! Leg de vingers opnieuw neer voor een nieuwe ronde.",
+    "resultMulti": "Deze {count} personen beginnen! Leg de vingers opnieuw neer voor een nieuwe ronde."
+  }
+}

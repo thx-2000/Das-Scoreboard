@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Fara í efni",
+    "nav": {
+      "home": "Heim",
+      "history": "Ferill",
+      "stats": "Tölfræði",
+      "chooser": "Hver byrjar?",
+      "settings": "Stillingar",
+      "openMenu": "Opna valmynd",
+      "closeMenu": "Loka valmynd"
+    },
+    "updateAvailable": "Uppfærsla í boði ({version})",
+    "buttons": {
+      "add": "Bæta við",
+      "save": "Vista",
+      "delete": "Eyða",
+      "start": "Hefja leik",
+      "finish": "Ljúka leik",
+      "resume": "Halda áfram leik",
+      "remove": "Fjarlægja",
+      "reactivate": "Endurvirkja",
+      "close": "Loka",
+      "cancel": "Hætta við"
+    },
+    "winDirection": {
+      "heading": "Hver vinnur að lokum?",
+      "highest": "Hæst stig",
+      "lowest": "Lægst stig"
+    },
+    "stepper": {
+      "decrease": "Minnka",
+      "increase": "Auka",
+      "minusValue": "Draga frá {value}",
+      "plusValue": "Bæta við {value}"
+    },
+    "table": {
+      "rank": "Sæti",
+      "name": "Nafn",
+      "points": "Stig",
+      "progress": "Framvinda",
+      "actions": "Aðgerðir",
+      "round": "Umferð"
+    },
+    "game": {
+      "loading": "Hleð …",
+      "notFound": "Leikur fannst ekki.",
+      "standingsHeading": "Staða",
+      "standings": {
+        "collapse": "Fella saman",
+        "expand": "Sýna",
+        "teamTotalSuffix": "stig samtals"
+      },
+      "startingPlayerLegend": "★ Byrjandi (af handahófi)",
+      "startedSuffix": "hófst {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Leik lokið! {names} vinna saman með {points} stig.",
+        "single": "🏆 Leik lokið! {names} vann með {points} stig."
+      },
+      "roundEntry": {
+        "heading": "Skrá nýja umferð",
+        "saveButton": "Vista umferð",
+        "switchToButtons": "Skref-hnappar",
+        "switchToType": "Innsláttur"
+      },
+      "roundsTable": {
+        "heading": "Umferðarsaga & leiðrétting",
+        "hint": "Breyttu gildum beint til að leiðrétta innsláttarvillur.",
+        "empty": "Engin umferð spiluð enn.",
+        "deleteConfirm": "Á virkilega að eyða þessari umferð?",
+        "undoButton": "Afturkalla síðustu umferð"
+      },
+      "noPlayersHint": "Engir leikmenn ennþá — bættu einum við hér fyrir neðan.",
+      "roundEntryHintGeneric": "Sláðu inn stig þessarar umferðar fyrir hvern leikmann (0 er eðlilegt)."
+    },
+    "setup": {
+      "heading": "Setja upp leik",
+      "labelOptional": "Merking (valfrjálst)",
+      "whoPlays": "Hverjir spila?",
+      "addPlayerLabel": "Bæta við nýjum leikmanni",
+      "addPlayerPlaceholder": "Sláðu inn nafn",
+      "advancedOptions": "Ítarlegar stillingar",
+      "teamModeLabel": "Kveikja á liðaham",
+      "teamModeHint": "Hægt er að flokka leikmenn í lið þar sem stig þeirra eru lögð saman.",
+      "teamScoringHeading": "Stigagjöf liða",
+      "teamScoringShared": "Sameiginleg stig",
+      "teamScoringSharedHint": "Liðsmenn skrá sameiginlega ein samsett stig fyrir hverja umferð.",
+      "teamScoringIndividual": "Einstaklingsstig, samanlögð heild",
+      "teamScoringIndividualHint": "Hver leikmaður skráir sín eigin stig — bæði einstaklingsstig og heildarstig liðsins eru sýnd.",
+      "teamNone": "Ekkert lið",
+      "teamNumber": "Lið {number}",
+      "teamNameLabel": "Nafn liðs {number} (valfrjálst)",
+      "teamNamePlaceholder": "t.d. Ernirnir",
+      "selectAll": "Velja allt",
+      "selectNone": "Afvelja allt",
+      "allowNegativeLabel": "Leyfa neikvæð stig",
+      "allowNegativeHint": "Ef slökkt, eru neikvæðar umferðarfærslur takmarkaðar við 0.",
+      "targetBonusHint": "Aukastig sem sigurvegari(ar) fá fyrir að ná markstigum (0 = enginn bónus).",
+      "roundEntryStepsLabel": "Skrefastærðir fyrir umferðarskráningu",
+      "roundEntryStepsHint": "Skref-hnappar sem valkostur við að slá inn tölur — veldu hvaða skrefastærðir (±) eru í boði. Þú getur hvenær sem er skipt milli innsláttar og skref-hnappa, jafnvel í miðjum leik."
+    },
+    "errors": {
+      "minPlayers": "Veldu að minnsta kosti 2 leikmenn.",
+      "createPlayerFailed": "Ekki tókst að búa til leikmann.",
+      "startGameFailed": "Ekki tókst að hefja leik."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Stigahjálp fyrir spilakvöld"
+    },
+    "stats": {
+      "title": "Tölfræði"
+    },
+    "history": {
+      "title": "Leikjaferill"
+    },
+    "settings": {
+      "title": "Stillingar"
+    },
+    "pointsToTargetSetup": {
+      "title": "Stig að marki — Nýr leikur"
+    },
+    "pointsToTargetGame": {
+      "title": "Stig að marki"
+    },
+    "pointsOpenSetup": {
+      "title": "Opin stigaumferð — Nýr leikur"
+    },
+    "pointsOpenGame": {
+      "title": "Opin stigaumferð"
+    },
+    "fixedRoundsSetup": {
+      "title": "Stigaumferð með föstum fjölda umferða — Nýr leikur"
+    },
+    "fixedRoundsGame": {
+      "title": "Stigaumferð með föstum fjölda umferða"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nýr leikur"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Hver byrjar?"
+    },
+    "login": {
+      "title": "Innskráning"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Stig að marki",
+      "description": "Stig eru lögð saman umferð eftir umferð þar til einhver nær eða fer yfir fast markgildi. Sá sem þá hefur flest stig vinnur.",
+      "examples": "t.d. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Opin stigaumferð",
+      "description": "Stig eru lögð saman umferð eftir umferð án fasts markmiðs. Þið ákveðið sjálf hvenær á að hætta — hæst eða lægst stig vinna, eftir því hvernig þið stillið það upp.",
+      "examples": "t.d. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Stigaumferð með föstum fjölda umferða",
+      "description": "Í uppsetningu ákveðið þið hversu margar umferðir á að spila og hvort hæst eða lægst stig vinna að lokum. Eftir síðustu umferð spyr leikurinn hvort eigi að ljúka eða halda áfram með fleiri umferðum."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "Fastar 10 umferðir með fækkandi fjölda spila (10 niður í 1). Fyrir hverja umferð tilkynnir þú vænt slagafjölda þinn, síðan slærðu inn raunverulega slagi — stig eru reiknuð sjálfkrafa samkvæmt reglum RAGE (þ.m.t. Rage-bónus/hefnd).",
+      "examples": "Spilaleikurinn RAGE"
+    }
+  },
+  "home": {
+    "heading": "Stigahjálp fyrir spilakvöld",
+    "newGame": {
+      "startButton": "Hefja nýjan leik"
+    },
+    "generalBoards": {
+      "heading": "Almenn stigatöflur",
+      "hint": "Frjálst stillanlegt — settu markstig, sigurátt og skrefastærðir í uppsetningu."
+    },
+    "myGames": {
+      "heading": "Leikirnir mínir",
+      "hint": "RAGE ásamt þínum eigin, fullstilltu leikjum (búðu til undir Stillingar → Leikirnir mínir).",
+      "favoritesHeading": "Uppáhald",
+      "allHeading": "Allir leikir",
+      "metaTarget": "Mark: {score} stig",
+      "metaRounds": "{rounds} umferðir"
+    },
+    "openGames": {
+      "heading": "Leikir í gangi",
+      "viewAll": "Sjá alla"
+    },
+    "pwaHint": {
+      "heading": "Nota sem forrit",
+      "text": "Á iPad/iPhone: ýttu á deilitáknið í Safari og veldu síðan „Bæta á heimaskjá“ — síðan birtist þá sem sjálfstætt forrit, án vistfangsstiku."
+    },
+    "support": {
+      "label": "Styðja þetta verkefni",
+      "ariaLabel": "Styðja þetta verkefni á Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Stjórna leikmönnum",
+    "newPlayer": {
+      "heading": "Nýr leikmaður",
+      "nameLabel": "Nafn"
+    },
+    "active": {
+      "heading": "Virkir leikmenn",
+      "hint": "Þessir leikmenn eru í boði til hraðvals í nýjum leikjum.",
+      "empty": "Engir virkir leikmenn ennþá."
+    },
+    "inactive": {
+      "heading": "Óvirkir leikmenn",
+      "hint": "Eru áfram sýnilegir í fyrri leikjum en birtast ekki lengur í hraðvali.",
+      "empty": "Engir óvirkir leikmenn."
+    },
+    "avatar": {
+      "uploadLabel": "Hlaða upp mynd",
+      "changeLabel": "Breyta mynd",
+      "removeLabel": "Fjarlægja mynd",
+      "removeConfirm": "Á virkilega að fjarlægja þennan aðgangsmynd?",
+      "uploadFailed": "Ekki tókst að vista myndina."
+    },
+    "deleteConfirm": "Á virkilega að eyða \"{name}\" varanlega? Ólíkt því að fjarlægja er engin leið til baka í leikmannastjórnun — fyrri leikir munu áfram sýna nafnið."
+  },
+  "groups": {
+    "hint": "Flokkaðu leikmenn saman (t.d. „Fjölskylda“, „Fastagestir“) — við uppsetningu leiks getur þú þá valið allan hópinn með einum smelli. Ein manneskja getur verið í mörgum hópum.",
+    "newGroup": {
+      "heading": "Nýr hópur",
+      "nameLabel": "Nafn hóps",
+      "namePlaceholder": "t.d. Fjölskylda",
+      "membersLabel": "Meðlimir"
+    },
+    "active": {
+      "heading": "Virkir hópar",
+      "empty": "Enginn hópur búinn til ennþá."
+    },
+    "inactive": {
+      "heading": "Óvirkir hópar",
+      "empty": "Engir óvirkir hópar."
+    },
+    "empty": "Engir meðlimir",
+    "editButton": "Breyta",
+    "saveButton": "Vista",
+    "cancelButton": "Hætta við",
+    "deleteConfirm": "Á virkilega að eyða hópnum \"{name}\"? Meðlimirnir sjálfir haldast — aðeins flokkunin er fjarlægð.",
+    "createFailed": "Ekki tókst að búa til hóp."
+  },
+  "stats": {
+    "heading": "Tölfræði",
+    "filter": {
+      "heading": "Tímabil",
+      "hint": "Skildu eftir autt fyrir tölfræði yfir alla leiki. Fyrir spilakvöld sem teygir sig fram yfir miðnætti, sláðu t.d. inn 18:00 til 03:00 daginn eftir.",
+      "fromLabel": "Frá",
+      "toLabel": "Til",
+      "apply": "Nota",
+      "reset": "Endurstilla"
+    },
+    "kpi": {
+      "games": "Leikir",
+      "finished": "Lokið",
+      "winRate": "Hlutfall lokið",
+      "avgScore": "Meðalstig"
+    },
+    "overall": {
+      "heading": "Samtals",
+      "empty": "Engir leikir á þessu tímabili."
+    },
+    "byMode": {
+      "heading": "Eftir leikham"
+    },
+    "modeDistribution": {
+      "heading": "Dreifing eftir leikham",
+      "empty": "Engir leikir á þessu tímabili."
+    },
+    "headToHead": {
+      "heading": "Beinn samanburður",
+      "empty": "Engir tveir leikmenn með sameiginlega lokna leiki á þessu tímabili ennþá.",
+      "listSummary": "Sýna sem lista",
+      "draws": "jafntefli",
+      "gamesSuffix": "leikir"
+    },
+    "games": {
+      "heading": "Leikir á þessu tímabili",
+      "empty": "Engir leikir á þessu tímabili."
+    },
+    "table": {
+      "player": "Leikmaður",
+      "gamesPlayed": "Leikir",
+      "gamesFinished": "Lokið",
+      "wins": "Sigrar",
+      "winRate": "Sigurhlutfall",
+      "currentStreak": "Núverandi runa",
+      "longestStreak": "Lengsta runa",
+      "avgScore": "Meðalstig"
+    },
+    "print": "Prenta / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Veldu myndsnið",
+    "hint": "Dragðu til að hnika til, notaðu sleðann til að stækka (vegabréfsmyndarhlutfall 2:3).",
+    "apply": "Nota"
+  },
+  "history": {
+    "heading": "Leikjaferill",
+    "all": {
+      "heading": "Allir leikir",
+      "hint": "Nýjast fyrst. Hægt er að halda áfram leikjum í gangi, lokinn leikir sýna niðurstöðuna."
+    },
+    "filter": {
+      "all": "Allir",
+      "active": "Í gangi",
+      "finished": "Lokið"
+    },
+    "empty": "Enginn leikur spilaður ennþá.",
+    "filterEmpty": {
+      "active": "Engir leikir í gangi.",
+      "finished": "Engir leikir lokið ennþá."
+    },
+    "deleteConfirm": "Á virkilega að eyða \"{label}\" varanlega úr leikjaferli?",
+    "badge": {
+      "finished": "Lokið",
+      "active": "Í gangi"
+    },
+    "meta": {
+      "target": "Mark: {score} stig",
+      "rounds": "Umferð {played}/{total}",
+      "winners": "Sigurvegari: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Stillingar",
+    "subtitle": "Á við um alla sem nota þetta forrit (vistað víðvært).",
+    "tabs": {
+      "aussehen": "Útlit",
+      "allgemein": "Almennt",
+      "spieler": "Leikmenn",
+      "spiele": "Leikirnir mínir",
+      "zugang": "Aðgangsvörn",
+      "backup": "Öryggisafrit"
+    },
+    "theme": {
+      "heading": "Útlit",
+      "hint": "Þrír sjálfstæðir stílar í boði. Fínstilling lita er neðar undir „Litir í smáatriðum“.",
+      "classic": "Klassískt",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Áherslulitur",
+      "accent": {
+        "green": "Grænn",
+        "orange": "Appelsínugulur",
+        "pink": "Bleikur",
+        "violet": "Fjólublár",
+        "cyan": "Blágrænn"
+      },
+      "backgroundLabel": "Bakgrunnur",
+      "background": {
+        "dark": "Dökkt",
+        "darkBlue": "Dökkblátt",
+        "black": "Svart"
+      },
+      "cardStyleLabel": "Kortastíll",
+      "cardStyle": {
+        "classic": "Klassískt",
+        "modern": "Nútímalegt"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Litatillaga",
+      "flipPreset": {
+        "amber": "Rafgult",
+        "petrol": "Blágrænt",
+        "karmesin": "Karmósín",
+        "knallorange": "Skær appelsínugult",
+        "violett": "Fjólublátt"
+      }
+    },
+    "title": {
+      "heading": "Titill",
+      "hint": "Birtist í haus og í titli vafraflipans.",
+      "label": "Titill"
+    },
+    "feedback": {
+      "heading": "Viðbrögð við vistun",
+      "hint": "Stutt hljóð (og titringur, ef tækið styður það) þegar umferð er vistuð. Á iPhone/iPad er titringur ekki mögulegur af tæknilegum ástæðum (Safari), en hljóðið virkar.",
+      "label": "Hljóð við vistun"
+    },
+    "presets": {
+      "heading": "Leikirnir mínir",
+      "hint": "Þínir eigin, fullstilltu leikir (t.d. „Flip7“ með mark 200) — birtast á forsíðu undir „Leikirnir mínir“ og forfylla uppsetningarform við smell.",
+      "favoritesHeading": "Uppáhald",
+      "favoritesHint": "Breyttu röðinni með örvunum eða með því að draga — ákvarðar röð uppáhaldsraðar á forsíðu.",
+      "allHeading": "Allir leikir",
+      "allHint": "Raðað í stafrófsröð — uppáhald birtist einnig hér, svo að þau haldist finnanleg hvort sem er.",
+      "addButton": "Bæta við nýjum leik",
+      "formHeadingNew": "Nýr leikur",
+      "formHeadingEdit": "Breyta {name}",
+      "nameLabel": "Nafn",
+      "iconLabel": "Tákn",
+      "modeLabel": "Leikháttur",
+      "metaTarget": "Mark: {target} stig",
+      "metaRounds": "{rounds} umferðir",
+      "saveFailed": "Ekki tókst að vista leik.",
+      "deleteConfirm": "Á virkilega að eyða \"{name}\"?",
+      "empty": "Enginn leikur búinn til ennþá.",
+      "favoriteLabel": "Uppáhald",
+      "moveUp": "Færa upp",
+      "moveDown": "Færa niður",
+      "editButton": "Breyta"
+    },
+    "access": {
+      "heading": "Aðgangsvörn",
+      "hint": "Verndar alla síðuna með einu sameiginlegu lykilorði fyrir alla sem þekkja tengilinn. Án virkrar verndar getur hver sem er með tengilinn notað síðuna.",
+      "enableLabel": "Virkja aðgangsvörn",
+      "noPasswordSet": "Ekkert lykilorð hefur verið sett enn — vörnin er óvirk þar til eitt er sett.",
+      "passwordLabel": "Nýtt lykilorð",
+      "passwordConfirmLabel": "Staðfesta lykilorð",
+      "passwordHint": "Að minnsta kosti 8 stafir. Skildu eftir autt til að halda núverandi vistuðu lykilorði. Gleymdirðu lykilorðinu? Sjá README fyrir leiðbeiningar um endurstillingu með skráaraðgangi.",
+      "mismatchError": "Lykilorðin tvö stemma ekki saman.",
+      "tooShortError": "Lykilorðið verður að vera að minnsta kosti 8 stafir.",
+      "saveFailed": "Ekki tókst að vista.",
+      "logoutButton": "Skrá út á þessu tæki"
+    },
+    "logo": {
+      "heading": "Merki",
+      "hint": "Ekkert eigið merki er virkt sjálfgefið, penna-táknið helst sýnilegt.",
+      "modeLabel": "Birting",
+      "modeNone": "Ekkert merki",
+      "modeSquare": "Ferningur, efst til vinstri",
+      "modeBanner": "Borði yfir alla breiddina",
+      "squareHeading": "Ferningslaga merki",
+      "squareHint": "Mælt með: 160×160 dílar (ferningur). PNG, JPEG eða SVG, hám. 2 MB.",
+      "bannerHeading": "Borðamerki",
+      "bannerHint": "Mælt með: u.þ.b. 1400×160 dílar (breitt, ekki of hátt). PNG, JPEG eða SVG, hám. 2 MB.",
+      "uploadButton": "Hlaða upp",
+      "removeConfirm": "Á virkilega að fjarlægja þetta merki?",
+      "uploadSuccess": "Merki hlaðið upp.",
+      "removeSuccess": "Merki fjarlægt.",
+      "uploadFailed": "Ekki tókst að hlaða upp merki.",
+      "noFileSelected": "Veldu fyrst skrá."
+    },
+    "language": {
+      "heading": "Tungumál",
+      "hint": "Hægt er að bæta við fleiri tungumálum síðar.",
+      "label": "Tungumál"
+    },
+    "colors": {
+      "advancedHeading": "Litir í smáatriðum",
+      "advancedSummary": "Opna ítarlegt",
+      "boldNote": "Á aðeins við um Klassískt — Bold notar fyrirfram stillingarnar hér að ofan.",
+      "single": {
+        "heading": "Áherslu- og virknilitir",
+        "hint": "Gilda óbreyttir í ljósu og dökku ham."
+      },
+      "pairs": {
+        "heading": "Grunnlitir (aðskildir fyrir ljóst/dökkt ham)",
+        "hint": "Bakgrunnur, yfirborð, texti og jaðar — einu sinni hvor fyrir ljóst og dökkt ham.",
+        "light": "Ljóst",
+        "dark": "Dökkt"
+      },
+      "flip": {
+        "heading": "Flip Board litir",
+        "hint": "Yfirskrifar litatillöguna valda hér að ofan — einu sinni hvor fyrir ljóst og dökkt ham."
+      }
+    },
+    "resetButton": "Endurstilla á sjálfgefna liti",
+    "resetConfirm": "Á virkilega að endurstilla alla liti á sjálfgefin gildi?",
+    "savedStatus": "Vistað. Aðrar síður taka breytinguna upp við næstu heimsókn.",
+    "resetStatus": "Endurstillt á sjálfgefna liti.",
+    "backup": {
+      "heading": "Gagnaöryggisafrit",
+      "hint": "Fullt öryggisafrit af öllum leikmönnum, leikjum, aðgangsmyndum og merkjum sem ZIP-skrá — t.d. til að tryggja að ekkert tapist við flutning á nýjan netþjón.",
+      "exportHeading": "Sækja öryggisafrit",
+      "exportHint": "Inniheldur allan gagnagrunninn ásamt öllum aðgangsmyndum og merkinu.",
+      "exportButton": "Sækja öryggisafrit",
+      "importHeading": "Endurheimta öryggisafrit",
+      "importWarning": "Aðvörun: innflutningur skiptir óafturkallanlega út öllum núverandi leikmönnum, leikjum, aðgangsmyndum og merkjum fyrir efni öryggisafritsins.",
+      "fileLabel": "Öryggisafritsskrá (.zip)",
+      "importButton": "Flytja inn öryggisafrit",
+      "confirmHint": "Sláðu nákvæmlega inn ERSETZEN hér fyrir neðan til að staðfesta.",
+      "confirmLabel": "Staðfesting",
+      "confirmButton": "Skipta út núna, varanlega",
+      "noFileSelected": "Veldu fyrst öryggisafritsskrá.",
+      "finalConfirm": "Á virkilega að skipta óafturkallanlega út öllum núverandi leikjagögnum fyrir öryggisafritið?",
+      "importInProgress": "Endurheimti öryggisafrit …",
+      "importSuccess": "Öryggisafrit endurheimt: {games} leikir, {players} leikmenn. Endurhleð síðu …",
+      "importFailed": "Innflutningur mistókst."
+    },
+    "colorLabels": {
+      "green": "Neongrænn (aðaláhersla)",
+      "greenStrong": "Neongrænn, dekkri (texti/línur)",
+      "amber": "Rafgult (aukaáhersla)",
+      "amberStrong": "Rafgult, dekkri (texti/línur)",
+      "onAccent": "Texti á áherslufleti",
+      "focus": "Fókusrammi (lyklaborðsleiðsögn)",
+      "danger": "Villa / hætta (t.d. eyða-hnappar)",
+      "bg": "Bakgrunnur",
+      "surface": "Yfirborð (spjöld)",
+      "text": "Texti",
+      "textMuted": "Deyfður texti",
+      "border": "Jaðar"
+    }
+  },
+  "login": {
+    "heading": "Innskráning",
+    "hint": "Þessi síða er lykilorðsvarin.",
+    "error": "Rangt lykilorð.",
+    "passwordLabel": "Lykilorð",
+    "submitButton": "Skrá inn"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Setja upp nýjan leik (t.d. Flip7, Tutto)",
+      "labelPlaceholder": "t.d. Flip7, Tutto",
+      "targetLabel": "Spila upp að hvaða stigagildi?",
+      "winDirectionHint": "Í flestum leikjum vinnur hæsta skorið (t.d. Flip7, Tutto) — en í sumum, eins og Skyjo, vinnur lægsta skorið í staðinn. Leiknum lýkur samt um leið og einhver nær eða fer yfir markið.",
+      "targetBonusLabel": "Bónus fyrir að ná markinu"
+    },
+    "game": {
+      "subtitle": "Mark: {target} stig · {started}",
+      "roundEntryHint": "Sláðu inn stig þessarar umferðar fyrir hvern leikmann (0 er eðlilegt, t.d. við sprengingu)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Setja upp nýjan leik (t.d. Doppelkopf)",
+      "labelPlaceholder": "t.d. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "hæsta skorið vinnur",
+        "lowest": "lægsta skorið vinnur"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Setja upp nýjan leik",
+      "roundsLabel": "Hversu margar umferðir á að spila?",
+      "announceLabel": "Tilkynna eftir hverja umferð að henni sé lokið",
+      "announceHint": "Sýnir stutta tilkynningu, sem hægt er að loka, eftir hverja vistaða umferð."
+    },
+    "game": {
+      "subtitleOngoing": "Umferð {round} af {total} · {started}",
+      "subtitleReached": "{played} af {total} umferðum spilaðar · {started}",
+      "roundEndNotice": "Umferð {round} lokið",
+      "targetReached": {
+        "heading": "Þið hafið spilað umsamdar {total} umferðir.",
+        "extendLabel": "Halda áfram að spila, þessum fjölda umferða til viðbótar:",
+        "extendButton": "Halda áfram að spila"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Setja upp nýjan leik — 10 umferðir, slagaspá",
+      "hint": "Fastar 10 umferðir (10 niður í 1 spil), hæsta skorið vinnur að lokum.",
+      "labelPlaceholder": "t.d. RAGE-kvöld",
+      "showBonusMalusLabel": "Sýna bónus/mínus",
+      "showBonusMalusHint": "Sýna/fela sérstök spilareiti +5/−5 í umferðarskráningu."
+    },
+    "game": {
+      "cardSingular": "spil",
+      "cardPlural": "spil",
+      "subtitleFinished": "{played} af 10 umferðum spilaðar · {started}",
+      "subtitleOngoing": "Umferð {round} af 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Skrá umferð",
+        "staticHint": "Sláðu inn spá og raunverulega slagi fyrir hvern leikmann, sérstök spil ef einhver eru.",
+        "heading": "Skrá umferð {round} ({cards} {cardWord})",
+        "hint": "Sláðu inn spá og raunverulega slagi fyrir hvern leikmann (0 er gilt). Slagir allra leikmanna ættu að leggjast saman í {cards}.",
+        "table": {
+          "player": "Leikmaður",
+          "bid": "Spá",
+          "tricks": "Slagir",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Stig"
+        }
+      },
+      "roundsTableHint": "Breyttu gildum beint til að leiðrétta innsláttarvillur. Spá / slagir / +5 / −5 / stig (reiknuð) fyrir hvern leikmann og umferð.",
+      "deleteRoundButton": "Eyða U{round}",
+      "mismatchConfirm": "Summa skráðra slaga ({actual}) stemmir ekki við spilafjölda þessarar umferðar ({expected}). Vista samt?",
+      "saveFailed": "Ekki tókst að vista umferð."
+    }
+  },
+  "chooser": {
+    "heading": "Hver byrjar?",
+    "subtitle": "Settu alla fingur á skjáinn samtímis — virkar með fjölsnertingu (iPad/iPhone).",
+    "hint": "Settu fingurna á skjáinn …",
+    "winnerCountLabel": "Fjöldi sigurvegara",
+    "resultSingle": "Þessi manneskja byrjar! Settu fingurna aftur á fyrir nýja umferð.",
+    "resultMulti": "Þessar {count} manneskjur byrja! Settu fingurna aftur á fyrir nýja umferð."
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Passer au contenu",
+    "nav": {
+      "home": "Accueil",
+      "history": "Historique",
+      "stats": "Statistiques",
+      "chooser": "Qui commence ?",
+      "settings": "Paramètres",
+      "openMenu": "Ouvrir le menu",
+      "closeMenu": "Fermer le menu"
+    },
+    "updateAvailable": "Mise à jour disponible ({version})",
+    "buttons": {
+      "add": "Ajouter",
+      "save": "Enregistrer",
+      "delete": "Supprimer",
+      "start": "Démarrer la partie",
+      "finish": "Terminer la partie",
+      "resume": "Reprendre la partie",
+      "remove": "Retirer",
+      "reactivate": "Réactiver",
+      "close": "Fermer",
+      "cancel": "Annuler"
+    },
+    "winDirection": {
+      "heading": "Qui gagne à la fin ?",
+      "highest": "Score le plus élevé",
+      "lowest": "Score le plus bas"
+    },
+    "stepper": {
+      "decrease": "Diminuer",
+      "increase": "Augmenter",
+      "minusValue": "Soustraire {value}",
+      "plusValue": "Ajouter {value}"
+    },
+    "table": {
+      "rank": "Rang",
+      "name": "Nom",
+      "points": "Points",
+      "progress": "Progression",
+      "actions": "Actions",
+      "round": "Manche"
+    },
+    "game": {
+      "loading": "Chargement …",
+      "notFound": "Partie introuvable.",
+      "standingsHeading": "Classement",
+      "standings": {
+        "collapse": "Réduire",
+        "expand": "Afficher",
+        "teamTotalSuffix": "points au total"
+      },
+      "startingPlayerLegend": "★ Joueur de départ (aléatoire)",
+      "startedSuffix": "commencée le {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Partie terminée ! {names} gagnent ensemble avec {points} points.",
+        "single": "🏆 Partie terminée ! {names} a gagné avec {points} points."
+      },
+      "roundEntry": {
+        "heading": "Saisir une nouvelle manche",
+        "saveButton": "Enregistrer la manche",
+        "switchToButtons": "Boutons de pas",
+        "switchToType": "Saisie"
+      },
+      "roundsTable": {
+        "heading": "Historique des manches et correction",
+        "hint": "Modifiez les valeurs directement pour corriger une erreur de saisie.",
+        "empty": "Aucune manche jouée pour l'instant.",
+        "deleteConfirm": "Vraiment supprimer cette manche ?",
+        "undoButton": "Annuler la dernière manche"
+      },
+      "noPlayersHint": "Pas encore de joueurs — ajoutez-en un ci-dessous.",
+      "roundEntryHintGeneric": "Saisissez les points de cette manche par joueur (0 est normal)."
+    },
+    "setup": {
+      "heading": "Configurer la partie",
+      "labelOptional": "Libellé (facultatif)",
+      "whoPlays": "Qui joue ?",
+      "addPlayerLabel": "Ajouter un nouveau joueur",
+      "addPlayerPlaceholder": "Entrer un nom",
+      "advancedOptions": "Options avancées",
+      "teamModeLabel": "Activer le mode équipe",
+      "teamModeHint": "Les joueurs peuvent être regroupés en équipes dont les points sont additionnés.",
+      "teamScoringHeading": "Décompte par équipe",
+      "teamScoringShared": "Score combiné",
+      "teamScoringSharedHint": "Les membres de l'équipe saisissent ensemble un score combiné par manche.",
+      "teamScoringIndividual": "Scores individuels, total combiné",
+      "teamScoringIndividualHint": "Chaque joueur saisit son propre score — les scores individuels et le total d'équipe sont tous deux affichés.",
+      "teamNone": "Aucune équipe",
+      "teamNumber": "Équipe {number}",
+      "teamNameLabel": "Nom de l'équipe {number} (facultatif)",
+      "teamNamePlaceholder": "p. ex. Les Aigles",
+      "selectAll": "Tout sélectionner",
+      "selectNone": "Tout désélectionner",
+      "allowNegativeLabel": "Autoriser les points négatifs",
+      "allowNegativeHint": "Si désactivé, les saisies négatives sont ramenées à 0.",
+      "targetBonusHint": "Points supplémentaires accordés au(x) gagnant(s) pour avoir atteint le score cible (0 = pas de bonus).",
+      "roundEntryStepsLabel": "Pas pour la saisie des manches",
+      "roundEntryStepsHint": "Boutons de pas comme alternative à la saisie de nombres — choisissez les pas (±) disponibles. Vous pouvez basculer entre saisie et boutons à tout moment, même en cours de partie."
+    },
+    "errors": {
+      "minPlayers": "Sélectionnez au moins 2 joueurs.",
+      "createPlayerFailed": "Impossible de créer le joueur.",
+      "startGameFailed": "Impossible de démarrer la partie."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Aide au score pour soirées jeux"
+    },
+    "stats": {
+      "title": "Statistiques"
+    },
+    "history": {
+      "title": "Historique des parties"
+    },
+    "settings": {
+      "title": "Paramètres"
+    },
+    "pointsToTargetSetup": {
+      "title": "Points jusqu'à l'objectif — Nouvelle partie"
+    },
+    "pointsToTargetGame": {
+      "title": "Points jusqu'à l'objectif"
+    },
+    "pointsOpenSetup": {
+      "title": "Manche à points libre — Nouvelle partie"
+    },
+    "pointsOpenGame": {
+      "title": "Manche à points libre"
+    },
+    "fixedRoundsSetup": {
+      "title": "Manche à points avec nombre de tours fixe — Nouvelle partie"
+    },
+    "fixedRoundsGame": {
+      "title": "Manche à points avec nombre de tours fixe"
+    },
+    "rageSetup": {
+      "title": "RAGE — Nouvelle partie"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Qui commence ?"
+    },
+    "login": {
+      "title": "Connexion"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Points jusqu'à l'objectif",
+      "description": "Les points s'additionnent manche après manche jusqu'à ce que quelqu'un atteigne ou dépasse une valeur cible fixe. Celui qui a le plus de points gagne alors.",
+      "examples": "p. ex. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Manche à points libre",
+      "description": "Les points s'additionnent manche après manche sans objectif fixe. Vous décidez vous-mêmes quand arrêter — le score le plus élevé ou le plus bas gagne, selon la configuration.",
+      "examples": "p. ex. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Manche à points avec nombre de tours fixe",
+      "description": "Vous décidez à la configuration combien de manches jouer et si le score le plus élevé ou le plus bas gagne à la fin. Après la dernière manche, la partie demande s'il faut terminer ou continuer avec d'autres manches."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "10 manches fixes avec un nombre de cartes décroissant (de 10 à 1). Avant chaque manche, vous annoncez votre nombre de plis prévu, puis saisissez les plis réels — les points sont calculés automatiquement selon les règles de RAGE (bonus Rage/revanche inclus).",
+      "examples": "Jeu de cartes RAGE"
+    }
+  },
+  "home": {
+    "heading": "Aide au score pour soirées jeux",
+    "newGame": {
+      "startButton": "Démarrer une nouvelle partie"
+    },
+    "generalBoards": {
+      "heading": "Tableaux de score généraux",
+      "hint": "Librement configurable — définissez le score cible, le sens de victoire et les pas lors de la configuration."
+    },
+    "myGames": {
+      "heading": "Mes parties",
+      "hint": "RAGE ainsi que vos propres parties entièrement configurées (à créer sous Paramètres → Mes parties).",
+      "favoritesHeading": "Favoris",
+      "allHeading": "Toutes les parties",
+      "metaTarget": "Objectif : {score} points",
+      "metaRounds": "{rounds} manches"
+    },
+    "openGames": {
+      "heading": "Parties en cours",
+      "viewAll": "Tout afficher"
+    },
+    "pwaHint": {
+      "heading": "Utiliser comme application",
+      "text": "Sur iPad/iPhone : appuyez sur l'icône Partager dans Safari, puis choisissez « Sur l'écran d'accueil » — la page apparaîtra alors comme sa propre application, sans barre d'adresse."
+    },
+    "support": {
+      "label": "Soutenir ce projet",
+      "ariaLabel": "Soutenir ce projet sur Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Gérer les joueurs",
+    "newPlayer": {
+      "heading": "Nouveau joueur",
+      "nameLabel": "Nom"
+    },
+    "active": {
+      "heading": "Joueurs actifs",
+      "hint": "Ces joueurs sont disponibles pour une sélection rapide dans les nouvelles parties.",
+      "empty": "Pas encore de joueurs actifs."
+    },
+    "inactive": {
+      "heading": "Joueurs désactivés",
+      "hint": "Restent visibles dans les parties passées mais n'apparaissent plus dans la sélection rapide.",
+      "empty": "Aucun joueur désactivé."
+    },
+    "avatar": {
+      "uploadLabel": "Ajouter une photo",
+      "changeLabel": "Changer la photo",
+      "removeLabel": "Retirer la photo",
+      "removeConfirm": "Vraiment retirer cet avatar ?",
+      "uploadFailed": "La photo n'a pas pu être enregistrée."
+    },
+    "deleteConfirm": "Vraiment supprimer définitivement « {name} » ? Contrairement à la désactivation, il n'y a pas de retour possible dans la gestion des joueurs — les parties passées afficheront toujours le nom."
+  },
+  "groups": {
+    "hint": "Regroupez des joueurs (p. ex. « Famille », « Habitués ») — lors de la configuration d'une partie, vous pouvez alors sélectionner tout le groupe en un clic. Une personne peut appartenir à plusieurs groupes.",
+    "newGroup": {
+      "heading": "Nouveau groupe",
+      "nameLabel": "Nom du groupe",
+      "namePlaceholder": "p. ex. Famille",
+      "membersLabel": "Membres"
+    },
+    "active": {
+      "heading": "Groupes actifs",
+      "empty": "Aucun groupe créé pour l'instant."
+    },
+    "inactive": {
+      "heading": "Groupes désactivés",
+      "empty": "Aucun groupe désactivé."
+    },
+    "empty": "Aucun membre",
+    "editButton": "Modifier",
+    "saveButton": "Enregistrer",
+    "cancelButton": "Annuler",
+    "deleteConfirm": "Vraiment supprimer le groupe « {name} » ? Les membres eux-mêmes restent — seul le regroupement est supprimé.",
+    "createFailed": "Impossible de créer le groupe."
+  },
+  "stats": {
+    "heading": "Statistiques",
+    "filter": {
+      "heading": "Période",
+      "hint": "Laissez vide pour des statistiques sur toutes les parties. Pour une soirée qui se prolonge après minuit, entrez p. ex. 18h00 à 03h00 le lendemain.",
+      "fromLabel": "De",
+      "toLabel": "À",
+      "apply": "Appliquer",
+      "reset": "Réinitialiser"
+    },
+    "kpi": {
+      "games": "Parties",
+      "finished": "Terminées",
+      "winRate": "Part terminée",
+      "avgScore": "Points moy."
+    },
+    "overall": {
+      "heading": "Vue d'ensemble",
+      "empty": "Aucune partie sur cette période."
+    },
+    "byMode": {
+      "heading": "Par mode"
+    },
+    "modeDistribution": {
+      "heading": "Répartition par mode",
+      "empty": "Aucune partie sur cette période."
+    },
+    "headToHead": {
+      "heading": "Face à face",
+      "empty": "Aucun binôme de joueurs avec des parties terminées communes sur cette période.",
+      "listSummary": "Afficher sous forme de liste",
+      "draws": "égalités",
+      "gamesSuffix": "parties"
+    },
+    "games": {
+      "heading": "Parties sur cette période",
+      "empty": "Aucune partie sur cette période."
+    },
+    "table": {
+      "player": "Joueur",
+      "gamesPlayed": "Parties",
+      "gamesFinished": "Terminées",
+      "wins": "Victoires",
+      "winRate": "Taux de victoire",
+      "currentStreak": "Série actuelle",
+      "longestStreak": "Plus longue série",
+      "avgScore": "Score moy."
+    },
+    "print": "Imprimer / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Choisir le recadrage de l'image",
+    "hint": "Faites glisser pour déplacer, utilisez le curseur pour zoomer (format portrait 2:3).",
+    "apply": "Appliquer"
+  },
+  "history": {
+    "heading": "Historique des parties",
+    "all": {
+      "heading": "Toutes les parties",
+      "hint": "Les plus récentes en premier. Les parties en cours peuvent être reprises, les parties terminées affichent le résultat."
+    },
+    "filter": {
+      "all": "Toutes",
+      "active": "En cours",
+      "finished": "Terminées"
+    },
+    "empty": "Aucune partie jouée pour l'instant.",
+    "filterEmpty": {
+      "active": "Aucune partie en cours.",
+      "finished": "Aucune partie terminée pour l'instant."
+    },
+    "deleteConfirm": "Vraiment supprimer définitivement « {label} » de l'historique des parties ?",
+    "badge": {
+      "finished": "Terminée",
+      "active": "En cours"
+    },
+    "meta": {
+      "target": "Objectif : {score} points",
+      "rounds": "Manche {played}/{total}",
+      "winners": "Gagnant : {names}"
+    }
+  },
+  "settings": {
+    "heading": "Paramètres",
+    "subtitle": "S'applique à tous ceux qui utilisent cette application (enregistré globalement).",
+    "tabs": {
+      "aussehen": "Apparence",
+      "allgemein": "Général",
+      "spieler": "Joueurs",
+      "spiele": "Mes parties",
+      "zugang": "Protection d'accès",
+      "backup": "Sauvegarde"
+    },
+    "theme": {
+      "heading": "Apparence",
+      "hint": "Trois styles indépendants au choix. Le réglage fin des couleurs se trouve plus bas sous « Couleurs en détail ».",
+      "classic": "Classique",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Couleur d'accent",
+      "accent": {
+        "green": "Vert",
+        "orange": "Orange",
+        "pink": "Rose",
+        "violet": "Violet",
+        "cyan": "Cyan"
+      },
+      "backgroundLabel": "Arrière-plan",
+      "background": {
+        "dark": "Sombre",
+        "darkBlue": "Bleu foncé",
+        "black": "Noir"
+      },
+      "cardStyleLabel": "Style de carte",
+      "cardStyle": {
+        "classic": "Classique",
+        "modern": "Moderne"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Suggestion de couleur",
+      "flipPreset": {
+        "amber": "Ambre",
+        "petrol": "Bleu pétrole",
+        "karmesin": "Cramoisi",
+        "knallorange": "Orange vif",
+        "violett": "Violet"
+      }
+    },
+    "title": {
+      "heading": "Titre",
+      "hint": "Affiché dans l'en-tête et dans le titre de l'onglet du navigateur.",
+      "label": "Titre"
+    },
+    "feedback": {
+      "heading": "Retour à l'enregistrement",
+      "hint": "Court son (et vibration, si l'appareil le prend en charge) lors de l'enregistrement d'une manche. Sur iPhone/iPad, la vibration n'est pas possible pour des raisons techniques (Safari), mais le son fonctionne.",
+      "label": "Son à l'enregistrement"
+    },
+    "presets": {
+      "heading": "Mes parties",
+      "hint": "Vos propres parties entièrement configurées (p. ex. « Flip7 » avec objectif 200) — apparaissent sur la page d'accueil sous « Mes parties » et pré-remplissent le formulaire de configuration au clic.",
+      "favoritesHeading": "Favoris",
+      "favoritesHint": "Ajustez l'ordre avec les flèches ou par glisser-déposer — définit l'ordre de la ligne des favoris sur la page d'accueil.",
+      "allHeading": "Toutes les parties",
+      "allHint": "Triées par ordre alphabétique — les favoris y apparaissent aussi, pour rester trouvables dans tous les cas.",
+      "addButton": "Ajouter une nouvelle partie",
+      "formHeadingNew": "Nouvelle partie",
+      "formHeadingEdit": "Modifier {name}",
+      "nameLabel": "Nom",
+      "iconLabel": "Icône",
+      "modeLabel": "Mode",
+      "metaTarget": "Objectif : {target} points",
+      "metaRounds": "{rounds} manches",
+      "saveFailed": "Impossible d'enregistrer la partie.",
+      "deleteConfirm": "Vraiment supprimer « {name} » ?",
+      "empty": "Aucune partie créée pour l'instant.",
+      "favoriteLabel": "Favori",
+      "moveUp": "Monter",
+      "moveDown": "Descendre",
+      "editButton": "Modifier"
+    },
+    "access": {
+      "heading": "Protection d'accès",
+      "hint": "Protège l'ensemble du site avec un mot de passe partagé pour tous ceux qui connaissent le lien. Sans protection active, quiconque possède le lien peut utiliser le site.",
+      "enableLabel": "Activer la protection d'accès",
+      "noPasswordSet": "Aucun mot de passe défini pour l'instant — la protection reste inactive tant qu'aucun n'est défini.",
+      "passwordLabel": "Nouveau mot de passe",
+      "passwordConfirmLabel": "Confirmer le mot de passe",
+      "passwordHint": "Au moins 8 caractères. Laissez vide pour conserver le mot de passe actuellement enregistré. Mot de passe oublié ? Consultez le README pour les instructions de réinitialisation par accès aux fichiers.",
+      "mismatchError": "Les deux mots de passe ne correspondent pas.",
+      "tooShortError": "Le mot de passe doit comporter au moins 8 caractères.",
+      "saveFailed": "Échec de l'enregistrement.",
+      "logoutButton": "Se déconnecter sur cet appareil"
+    },
+    "logo": {
+      "heading": "Logo",
+      "hint": "Aucun logo personnalisé n'est actif par défaut, l'icône stylo reste visible.",
+      "modeLabel": "Affichage",
+      "modeNone": "Aucun logo",
+      "modeSquare": "Carré, en haut à gauche",
+      "modeBanner": "Bannière sur toute la largeur",
+      "squareHeading": "Logo carré",
+      "squareHint": "Recommandé : 160 × 160 pixels (carré). PNG, JPEG ou SVG, max. 2 Mo.",
+      "bannerHeading": "Logo bannière",
+      "bannerHint": "Recommandé : env. 1400 × 160 pixels (large, pas trop haut). PNG, JPEG ou SVG, max. 2 Mo.",
+      "uploadButton": "Téléverser",
+      "removeConfirm": "Vraiment retirer ce logo ?",
+      "uploadSuccess": "Logo téléversé.",
+      "removeSuccess": "Logo retiré.",
+      "uploadFailed": "Impossible de téléverser le logo.",
+      "noFileSelected": "Veuillez d'abord sélectionner un fichier."
+    },
+    "language": {
+      "heading": "Langue",
+      "hint": "D'autres langues pourront être ajoutées plus tard.",
+      "label": "Langue"
+    },
+    "colors": {
+      "advancedHeading": "Couleurs en détail",
+      "advancedSummary": "Ouvrir les options avancées",
+      "boldNote": "S'applique uniquement à Classique — Bold utilise les préréglages ci-dessus.",
+      "single": {
+        "heading": "Couleurs d'accent et de fonction",
+        "hint": "S'appliquent sans changement en mode clair et sombre."
+      },
+      "pairs": {
+        "heading": "Couleurs de base (distinctes pour mode clair/sombre)",
+        "hint": "Arrière-plan, surface, texte et bordure — une fois chacune pour le mode clair et sombre.",
+        "light": "Clair",
+        "dark": "Sombre"
+      },
+      "flip": {
+        "heading": "Couleurs Flip Board",
+        "hint": "Remplace la suggestion de couleur sélectionnée ci-dessus — une fois chacune pour le mode clair et sombre."
+      }
+    },
+    "resetButton": "Réinitialiser les couleurs par défaut",
+    "resetConfirm": "Vraiment réinitialiser toutes les couleurs à leurs valeurs par défaut ?",
+    "savedStatus": "Enregistré. Les autres pages prendront en compte le changement à leur prochaine visite.",
+    "resetStatus": "Réinitialisé aux couleurs par défaut.",
+    "backup": {
+      "heading": "Sauvegarde des données",
+      "hint": "Sauvegarde complète de tous les joueurs, parties, avatars et logos sous forme de fichier ZIP — p. ex. pour être sûr de ne rien perdre lors d'un changement de serveur.",
+      "exportHeading": "Télécharger la sauvegarde",
+      "exportHint": "Contient la base de données complète ainsi que toutes les images d'avatar et le logo.",
+      "exportButton": "Télécharger la sauvegarde",
+      "importHeading": "Restaurer une sauvegarde",
+      "importWarning": "Attention : une importation remplace irréversiblement tous les joueurs, parties, avatars et logos actuels par le contenu du fichier de sauvegarde.",
+      "fileLabel": "Fichier de sauvegarde (.zip)",
+      "importButton": "Importer la sauvegarde",
+      "confirmHint": "Pour confirmer, saisissez exactement ERSETZEN ci-dessous.",
+      "confirmLabel": "Confirmation",
+      "confirmButton": "Remplacer maintenant, définitivement",
+      "noFileSelected": "Veuillez d'abord sélectionner un fichier de sauvegarde.",
+      "finalConfirm": "Vraiment remplacer irréversiblement toutes les données de partie actuelles par la sauvegarde ?",
+      "importInProgress": "Restauration de la sauvegarde …",
+      "importSuccess": "Sauvegarde restaurée : {games} parties, {players} joueurs. Rechargement de la page …",
+      "importFailed": "Échec de l'importation."
+    },
+    "colorLabels": {
+      "green": "Vert néon (accent principal)",
+      "greenStrong": "Vert néon, foncé (texte/lignes)",
+      "amber": "Ambre (accent secondaire)",
+      "amberStrong": "Ambre, foncé (texte/lignes)",
+      "onAccent": "Texte sur surfaces d'accent",
+      "focus": "Contour de focus (navigation clavier)",
+      "danger": "Erreur / danger (p. ex. boutons de suppression)",
+      "bg": "Arrière-plan",
+      "surface": "Surface (cartes)",
+      "text": "Texte",
+      "textMuted": "Texte atténué",
+      "border": "Bordure"
+    }
+  },
+  "login": {
+    "heading": "Connexion",
+    "hint": "Ce site est protégé par un mot de passe.",
+    "error": "Mot de passe incorrect.",
+    "passwordLabel": "Mot de passe",
+    "submitButton": "Se connecter"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Configurer une nouvelle partie (p. ex. Flip7, Tutto)",
+      "labelPlaceholder": "p. ex. Flip7, Tutto",
+      "targetLabel": "Jouer jusqu'à quelle valeur de points ?",
+      "winDirectionHint": "Dans la plupart des jeux, le score le plus élevé gagne (p. ex. Flip7, Tutto) — mais dans certains, comme Skyjo, c'est le score le plus bas qui gagne. La partie se termine dès que quelqu'un atteint ou dépasse l'objectif.",
+      "targetBonusLabel": "Bonus pour avoir atteint l'objectif"
+    },
+    "game": {
+      "subtitle": "Objectif : {target} points · {started}",
+      "roundEntryHint": "Saisissez les points de cette manche par joueur (0 est normal, p. ex. en cas de bust)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Configurer une nouvelle partie (p. ex. Doppelkopf)",
+      "labelPlaceholder": "p. ex. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "le score le plus élevé gagne",
+        "lowest": "le score le plus bas gagne"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Configurer une nouvelle partie",
+      "roundsLabel": "Combien de manches doivent être jouées ?",
+      "announceLabel": "Annoncer après chaque manche qu'elle est terminée",
+      "announceHint": "Affiche un court message, qu'on peut fermer, après chaque manche enregistrée."
+    },
+    "game": {
+      "subtitleOngoing": "Manche {round} sur {total} · {started}",
+      "subtitleReached": "{played} manches sur {total} jouées · {started}",
+      "roundEndNotice": "Manche {round} terminée",
+      "targetReached": {
+        "heading": "Vous avez joué les {total} manches convenues.",
+        "extendLabel": "Continuer, avec ce nombre de manches en plus :",
+        "extendButton": "Continuer à jouer"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Configurer une nouvelle partie — 10 manches, annonces de plis",
+      "hint": "10 manches fixes (de 10 à 1 carte), le score le plus élevé gagne à la fin.",
+      "labelPlaceholder": "p. ex. Soirée RAGE",
+      "showBonusMalusLabel": "Afficher bonus/malus",
+      "showBonusMalusHint": "Afficher/masquer les champs de cartes spéciales +5/−5 dans la saisie de manche."
+    },
+    "game": {
+      "cardSingular": "carte",
+      "cardPlural": "cartes",
+      "subtitleFinished": "{played} manches sur 10 jouées · {started}",
+      "subtitleOngoing": "Manche {round} sur 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Saisir la manche",
+        "staticHint": "Saisissez l'annonce et les plis réels par joueur, ainsi que les cartes spéciales le cas échéant.",
+        "heading": "Saisir la manche {round} ({cards} {cardWord})",
+        "hint": "Saisissez l'annonce et les plis réels par joueur (0 est valide). Les plis de tous les joueurs devraient totaliser {cards}.",
+        "table": {
+          "player": "Joueur",
+          "bid": "Annonce",
+          "tricks": "Plis",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Points"
+        }
+      },
+      "roundsTableHint": "Modifiez les valeurs directement pour corriger une erreur de saisie. Annonce / plis / +5 / −5 / points (calculés) par joueur et manche.",
+      "deleteRoundButton": "Supprimer M{round}",
+      "mismatchConfirm": "La somme des plis saisis ({actual}) ne correspond pas au nombre de cartes de cette manche ({expected}). Enregistrer quand même ?",
+      "saveFailed": "Impossible d'enregistrer la manche."
+    }
+  },
+  "chooser": {
+    "heading": "Qui commence ?",
+    "subtitle": "Posez tous les doigts sur l'écran en même temps — fonctionne via le multitouch (iPad/iPhone).",
+    "hint": "Posez les doigts sur l'écran …",
+    "winnerCountLabel": "Nombre de gagnants",
+    "resultSingle": "Cette personne commence ! Reposez les doigts pour une nouvelle manche.",
+    "resultMulti": "Ces {count} personnes commencent ! Reposez les doigts pour une nouvelle manche."
+  }
+}

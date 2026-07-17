@@ -1,0 +1,597 @@
+{
+  "common": {
+    "skipLink": "Léim go dtí an t-ábhar",
+    "nav": {
+      "home": "Baile",
+      "history": "Stair",
+      "stats": "Staitisticí",
+      "chooser": "Cé a thosaíonn?",
+      "settings": "Socruithe",
+      "openMenu": "Oscail an roghchlár",
+      "closeMenu": "Dún an roghchlár"
+    },
+    "updateAvailable": "Nuashonrú ar fáil ({version})",
+    "buttons": {
+      "add": "Cuir leis",
+      "save": "Sábháil",
+      "delete": "Scrios",
+      "start": "Tosaigh cluiche",
+      "finish": "Críochnaigh cluiche",
+      "resume": "Lean ar aghaidh leis an gcluiche",
+      "remove": "Bain",
+      "reactivate": "Athghníomhachtaigh",
+      "close": "Dún",
+      "cancel": "Cealaigh"
+    },
+    "winDirection": {
+      "heading": "Cé a bhuann sa deireadh?",
+      "highest": "An scór is airde",
+      "lowest": "An scór is ísle"
+    },
+    "stepper": {
+      "decrease": "Laghdaigh",
+      "increase": "Méadaigh",
+      "minusValue": "Bain {value}",
+      "plusValue": "Cuir {value} leis"
+    },
+    "table": {
+      "rank": "Ionad",
+      "name": "Ainm",
+      "points": "Pointí",
+      "progress": "Dul chun cinn",
+      "actions": "Gníomhartha",
+      "round": "Babhta"
+    },
+    "game": {
+      "loading": "Á lódáil …",
+      "notFound": "Níor aimsíodh an cluiche.",
+      "standingsHeading": "Seasaimh",
+      "standings": {
+        "collapse": "Laghdaigh",
+        "expand": "Taispeáin",
+        "teamTotalSuffix": "pointe san iomlán"
+      },
+      "startingPlayerLegend": "★ Imreoir tosaigh (randamach)",
+      "startedSuffix": "tosaithe {date}",
+      "dateTime": "{date}",
+      "winnerBanner": {
+        "multi": "🏆 Tá an cluiche thart! Buann {names} le chéile le {points} pointe.",
+        "single": "🏆 Tá an cluiche thart! Bhuaigh {names} le {points} pointe."
+      },
+      "roundEntry": {
+        "heading": "Cuir isteach babhta nua",
+        "saveButton": "Sábháil an babhta",
+        "switchToButtons": "Cnaipí céime",
+        "switchToType": "Clóscríobh"
+      },
+      "roundsTable": {
+        "heading": "Stair babhtaí agus ceartúchán",
+        "hint": "Athraigh na luachanna go díreach chun earráidí iontrála a cheartú.",
+        "empty": "Níor imríodh babhta ar bith fós.",
+        "deleteConfirm": "An bhfuil tú cinnte gur mian leat an babhta seo a scriosadh?",
+        "undoButton": "Cealaigh an babhta deireanach"
+      },
+      "noPlayersHint": "Níl aon imreoirí ann fós — cuir ceann leis thíos.",
+      "roundEntryHintGeneric": "Cuir isteach pointí an bhabhta seo in aghaidh an imreora (is gnách 0)."
+    },
+    "setup": {
+      "heading": "Socraigh an cluiche",
+      "labelOptional": "Lipéad (roghnach)",
+      "whoPlays": "Cé atá ag imirt?",
+      "addPlayerLabel": "Cuir imreoir nua leis",
+      "addPlayerPlaceholder": "Iontráil ainm",
+      "advancedOptions": "Ardroghanna",
+      "teamModeLabel": "Cumasaigh modh foirne",
+      "teamModeHint": "Is féidir imreoirí a ghrúpáil in foirne a gcomhairtear a bpointí le chéile.",
+      "teamScoringHeading": "Scóráil foirne",
+      "teamScoringShared": "Scór comhcheangailte",
+      "teamScoringSharedHint": "Cuireann baill na foirne scór comhcheangailte amháin isteach le chéile in aghaidh an bhabhta.",
+      "teamScoringIndividual": "Scóir aonair, iomlán comhcheangailte",
+      "teamScoringIndividualHint": "Cuireann gach imreoir a scór féin isteach — taispeántar na scóir aonair agus iomlán na foirne araon.",
+      "teamNone": "Gan fhoireann",
+      "teamNumber": "Foireann {number}",
+      "teamNameLabel": "Ainm na foirne {number} (roghnach)",
+      "teamNamePlaceholder": "m.sh. Na hIolair",
+      "selectAll": "Roghnaigh gach ceann",
+      "selectNone": "Díroghnaigh gach ceann",
+      "allowNegativeLabel": "Ceadaigh pointí diúltacha",
+      "allowNegativeHint": "Mura bhfuil sé cumasaithe, tá iontrálacha diúltacha babhta teoranta go 0.",
+      "targetBonusHint": "Pointí breise a fhaigheann an buaiteoir(í) as an sprioc-scór a bhaint amach (0 = gan bhónas).",
+      "roundEntryStepsLabel": "Méideanna céime le haghaidh iontráil babhta",
+      "roundEntryStepsHint": "Cnaipí céime mar rogha eile in ionad uimhreacha a chlóscríobh — roghnaigh cé na méideanna céime (±) a bheidh ar fáil. Is féidir leat aistriú idir clóscríobh agus cnaipí céime aon uair, fiú i lár an chluiche."
+    },
+    "errors": {
+      "minPlayers": "Roghnaigh ar a laghad 2 imreoir.",
+      "createPlayerFailed": "Níorbh fhéidir an t-imreoir a chruthú.",
+      "startGameFailed": "Níorbh fhéidir an cluiche a thosú."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Cúntóir scórála le haghaidh oícheanta cluichí"
+    },
+    "stats": {
+      "title": "Staitisticí"
+    },
+    "history": {
+      "title": "Stair na gcluichí"
+    },
+    "settings": {
+      "title": "Socruithe"
+    },
+    "pointsToTargetSetup": {
+      "title": "Pointí go dtí sprioc — Cluiche nua"
+    },
+    "pointsToTargetGame": {
+      "title": "Pointí go dtí sprioc"
+    },
+    "pointsOpenSetup": {
+      "title": "Babhta pointí oscailte — Cluiche nua"
+    },
+    "pointsOpenGame": {
+      "title": "Babhta pointí oscailte"
+    },
+    "fixedRoundsSetup": {
+      "title": "Babhta pointí le líon seasta babhtaí — Cluiche nua"
+    },
+    "fixedRoundsGame": {
+      "title": "Babhta pointí le líon seasta babhtaí"
+    },
+    "rageSetup": {
+      "title": "RAGE — Cluiche nua"
+    },
+    "rageGame": {
+      "title": "RAGE"
+    },
+    "chooser": {
+      "title": "Cé a thosaíonn?"
+    },
+    "login": {
+      "title": "Logáil isteach"
+    }
+  },
+  "modes": {
+    "pointsToTarget": {
+      "title": "Pointí go dtí sprioc",
+      "description": "Suimítear pointí babhta i ndiaidh babhta go dtí go mbaineann duine amach nó go sáraíonn siad luach sprice seasta. Buann an duine a bhfuil na pointí is mó acu ansin.",
+      "examples": "m.sh. Flip7, Tutto"
+    },
+    "pointsOpen": {
+      "title": "Babhta pointí oscailte",
+      "description": "Suimítear pointí babhta i ndiaidh babhta gan sprioc sheasta. Socraíonn sibh féin cathain a stopfaidh sibh — buann an scór is airde nó is ísle, ag brath ar an socrú.",
+      "examples": "m.sh. Doppelkopf"
+    },
+    "fixedRounds": {
+      "title": "Babhta pointí le líon seasta babhtaí",
+      "description": "Le linn an tsocraithe socraíonn sibh cé mhéad babhta a imreofar agus an mbuafaidh an scór is airde nó is ísle sa deireadh. Tar éis an bhabhta dheireanaigh, fiafraíonn an cluiche cé acu ar mhaith libh críochnú nó leanúint ar aghaidh le tuilleadh babhtaí."
+    },
+    "rage": {
+      "title": "RAGE",
+      "description": "10 mbabhta sheasta le líon laghdaitheach cártaí (10 síos go 1). Roimh gach babhta fógraíonn tú an líon táillí atá súil agat leis, ansin cuireann tú isteach na táillí iarbhír — ríomhtar na pointí go huathoibríoch de réir rialacha RAGE (lena n-áirítear bónas Rage/díoltas).",
+      "examples": "Cluiche cártaí RAGE"
+    }
+  },
+  "home": {
+    "heading": "Cúntóir scórála le haghaidh oícheanta cluichí",
+    "newGame": {
+      "startButton": "Tosaigh cluiche nua"
+    },
+    "generalBoards": {
+      "heading": "Cláir scóir ghinearálta",
+      "hint": "Inchumraithe go saor — socraigh an sprioc-scór, treo an bhua agus na méideanna céime le linn an tsocraithe."
+    },
+    "myGames": {
+      "heading": "Mo chuid cluichí",
+      "hint": "RAGE móide do chuid cluichí féin atá cumraithe go hiomlán (cruthaigh iad faoi Socruithe → Mo chuid cluichí).",
+      "favoritesHeading": "Ceanáin",
+      "allHeading": "Gach cluiche",
+      "metaTarget": "Sprioc: {score} pointe",
+      "metaRounds": "{rounds} babhta"
+    },
+    "openGames": {
+      "heading": "Cluichí ar siúl",
+      "viewAll": "Féach ar gach ceann"
+    },
+    "pwaHint": {
+      "heading": "Úsáid mar aip",
+      "text": "Ar iPad/iPhone: tapáil an deilbhín Roinn i Safari, agus ansin roghnaigh „Cuir leis an Scáileán Baile” — feicfear an leathanach ansin mar aip féin, gan barra seolta."
+    },
+    "support": {
+      "label": "Tacaigh leis an tionscadal seo",
+      "ariaLabel": "Tacaigh leis an tionscadal seo ar Buy Me a Coffee"
+    }
+  },
+  "players": {
+    "heading": "Bainistigh imreoirí",
+    "newPlayer": {
+      "heading": "Imreoir nua",
+      "nameLabel": "Ainm"
+    },
+    "active": {
+      "heading": "Imreoirí gníomhacha",
+      "hint": "Tá na himreoirí seo ar fáil le haghaidh roghnú tapa i gcluichí nua.",
+      "empty": "Níl aon imreoirí gníomhacha ann fós."
+    },
+    "inactive": {
+      "heading": "Imreoirí díghníomhachtaithe",
+      "hint": "Fanann siad le feiceáil i gcluichí roimhe seo, ach ní léirítear a thuilleadh iad sa roghnú tapa.",
+      "empty": "Níl aon imreoirí díghníomhachtaithe ann."
+    },
+    "avatar": {
+      "uploadLabel": "Uaslódáil grianghraf",
+      "changeLabel": "Athraigh grianghraf",
+      "removeLabel": "Bain grianghraf",
+      "removeConfirm": "An bhfuil tú cinnte gur mian leat an t-aváta seo a bhaint?",
+      "uploadFailed": "Níorbh fhéidir an grianghraf a shábháil."
+    },
+    "deleteConfirm": "An bhfuil tú cinnte gur mian leat \"{name}\" a scriosadh go buan? Murab ionann agus bhaint, níl aon bhealach ar ais i mbainistíocht imreoirí — leanfaidh cluichí roimhe seo ag taispeáint an ainm."
+  },
+  "groups": {
+    "hint": "Grúpáil imreoirí (m.sh. „Teaghlach”, „Gnáthimreoirí”) — nuair a bheidh cluiche á shocrú agat, is féidir leat an grúpa iomlán a roghnú le cliceáil amháin ansin. Is féidir le duine a bheith i roinnt grúpaí.",
+    "newGroup": {
+      "heading": "Grúpa nua",
+      "nameLabel": "Ainm an ghrúpa",
+      "namePlaceholder": "m.sh. Teaghlach",
+      "membersLabel": "Baill"
+    },
+    "active": {
+      "heading": "Grúpaí gníomhacha",
+      "empty": "Níor cruthaíodh grúpa ar bith fós."
+    },
+    "inactive": {
+      "heading": "Grúpaí díghníomhachtaithe",
+      "empty": "Níl aon ghrúpaí díghníomhachtaithe ann."
+    },
+    "empty": "Gan baill",
+    "editButton": "Cuir in eagar",
+    "saveButton": "Sábháil",
+    "cancelButton": "Cealaigh",
+    "deleteConfirm": "An bhfuil tú cinnte gur mian leat an grúpa \"{name}\" a scriosadh? Fanann na baill féin — ní bhaintear ach an grúpáil.",
+    "createFailed": "Níorbh fhéidir an grúpa a chruthú."
+  },
+  "stats": {
+    "heading": "Staitisticí",
+    "filter": {
+      "heading": "Tréimhse ama",
+      "hint": "Fág folamh le haghaidh staitisticí ar gach cluiche. Le haghaidh oíche cluichí a leanann thar mheán oíche, cuir isteach m.sh. 18:00 go dtí 03:00 an lá dár gcionn.",
+      "fromLabel": "Ó",
+      "toLabel": "Go dtí",
+      "apply": "Cuir i bhfeidhm",
+      "reset": "Athshocraigh"
+    },
+    "kpi": {
+      "games": "Cluichí",
+      "finished": "Críochnaithe",
+      "winRate": "Céatadán críochnaithe",
+      "avgScore": "Meán pointí"
+    },
+    "overall": {
+      "heading": "San iomlán",
+      "empty": "Níl aon chluichí sa tréimhse seo."
+    },
+    "byMode": {
+      "heading": "De réir mhodha"
+    },
+    "modeDistribution": {
+      "heading": "Dáileadh de réir mhodha",
+      "empty": "Níl aon chluichí sa tréimhse seo."
+    },
+    "headToHead": {
+      "heading": "Ceann le ceann",
+      "empty": "Níl aon bheirt imreoirí ann fós a bhfuil cluichí críochnaithe comhroinnte acu sa tréimhse seo.",
+      "listSummary": "Taispeáin mar liosta",
+      "draws": "cluichí cothroma",
+      "gamesSuffix": "cluiche"
+    },
+    "games": {
+      "heading": "Cluichí sa tréimhse seo",
+      "empty": "Níl aon chluichí sa tréimhse seo."
+    },
+    "table": {
+      "player": "Imreoir",
+      "gamesPlayed": "Cluichí",
+      "gamesFinished": "Críochnaithe",
+      "wins": "Bua",
+      "winRate": "Céatadán bua",
+      "currentStreak": "Sraith reatha",
+      "longestStreak": "An tsraith is faide",
+      "avgScore": "Meánscór"
+    },
+    "print": "Priontáil / PDF"
+  },
+  "avatarCropper": {
+    "heading": "Roghnaigh bearradh na híomhá",
+    "hint": "Tarraing chun bogadh, úsáid an sleamhnán chun súmáil (formáid grianghraf pas 2:3).",
+    "apply": "Cuir i bhfeidhm"
+  },
+  "history": {
+    "heading": "Stair na gcluichí",
+    "all": {
+      "heading": "Gach cluiche",
+      "hint": "An ceann is déanaí ar dtús. Is féidir leanúint ar aghaidh le cluichí atá ar siúl, taispeánann cinn chríochnaithe an toradh."
+    },
+    "filter": {
+      "all": "Gach ceann",
+      "active": "Ar siúl",
+      "finished": "Críochnaithe"
+    },
+    "empty": "Níor imríodh cluiche ar bith fós.",
+    "filterEmpty": {
+      "active": "Níl aon chluichí ar siúl.",
+      "finished": "Níl aon chluichí críochnaithe ann fós."
+    },
+    "deleteConfirm": "An bhfuil tú cinnte gur mian leat \"{label}\" a scriosadh go buan ó stair na gcluichí?",
+    "badge": {
+      "finished": "Críochnaithe",
+      "active": "Ar siúl"
+    },
+    "meta": {
+      "target": "Sprioc: {score} pointe",
+      "rounds": "Babhta {played}/{total}",
+      "winners": "Buaiteoir: {names}"
+    }
+  },
+  "settings": {
+    "heading": "Socruithe",
+    "subtitle": "Baineann sé le gach duine a úsáideann an aip seo (sábháilte go domhanda).",
+    "tabs": {
+      "aussehen": "Cuma",
+      "allgemein": "Ginearálta",
+      "spieler": "Imreoirí",
+      "spiele": "Mo chuid cluichí",
+      "zugang": "Cosaint rochtana",
+      "backup": "Cúltaca"
+    },
+    "theme": {
+      "heading": "Cuma",
+      "hint": "Trí stíl neamhspleácha le roghnú. Tá mionchoigeartú na ndathanna thíos faoi „Dathanna go mion”.",
+      "classic": "Clasaiceach",
+      "bold": "Bold Scorekeeper",
+      "accentLabel": "Dath aicinn",
+      "accent": {
+        "green": "Glas",
+        "orange": "Oráiste",
+        "pink": "Bándearg",
+        "violet": "Corcairghorm",
+        "cyan": "Cian"
+      },
+      "backgroundLabel": "Cúlra",
+      "background": {
+        "dark": "Dorcha",
+        "darkBlue": "Gorm dorcha",
+        "black": "Dubh"
+      },
+      "cardStyleLabel": "Stíl chárta",
+      "cardStyle": {
+        "classic": "Clasaiceach",
+        "modern": "Nua-aimseartha"
+      },
+      "flip": "Flip Board",
+      "flipPresetLabel": "Moladh datha",
+      "flipPreset": {
+        "amber": "Ómra",
+        "petrol": "Gorm peitril",
+        "karmesin": "Corcairdhearg",
+        "knallorange": "Oráiste geal",
+        "violett": "Corcairghorm"
+      }
+    },
+    "title": {
+      "heading": "Teideal",
+      "hint": "Léirítear é sa cheanntásc agus i dteideal chluaisín an bhrabhsálaí.",
+      "label": "Teideal"
+    },
+    "feedback": {
+      "heading": "Aiseolas ag am sábhála",
+      "hint": "Fuaim ghairid (agus crith, má thacaíonn an gléas leis) nuair a shábháiltear babhta. Ar iPhone/iPad níl crith indéanta ar chúiseanna teicniúla (Safari), ach oibríonn an fhuaim.",
+      "label": "Fuaim ag am sábhála"
+    },
+    "presets": {
+      "heading": "Mo chuid cluichí",
+      "hint": "Do chuid cluichí féin atá cumraithe go hiomlán (m.sh. „Flip7” le sprioc 200) — léirítear iad ar an leathanach baile faoi „Mo chuid cluichí” agus líonann siad an fhoirm socraithe roimh ré nuair a chliceáiltear iad.",
+      "favoritesHeading": "Ceanáin",
+      "favoritesHint": "Coigeartaigh an t-ord leis na saigheada nó trí tharraingt — socraíonn sé ord líne na gceanán ar an leathanach baile.",
+      "allHeading": "Gach cluiche",
+      "allHint": "Curtha in ord aibítre — léirítear na ceanáin anseo freisin, ionas go bhfanann siad in-aimsithe ar aon nós.",
+      "addButton": "Cuir cluiche nua leis",
+      "formHeadingNew": "Cluiche nua",
+      "formHeadingEdit": "Cuir {name} in eagar",
+      "nameLabel": "Ainm",
+      "iconLabel": "Deilbhín",
+      "modeLabel": "Modh",
+      "metaTarget": "Sprioc: {target} pointe",
+      "metaRounds": "{rounds} babhta",
+      "saveFailed": "Níorbh fhéidir an cluiche a shábháil.",
+      "deleteConfirm": "An bhfuil tú cinnte gur mian leat \"{name}\" a scriosadh?",
+      "empty": "Níor cruthaíodh cluiche ar bith fós.",
+      "favoriteLabel": "Ceanán",
+      "moveUp": "Bog suas",
+      "moveDown": "Bog síos",
+      "editButton": "Cuir in eagar"
+    },
+    "access": {
+      "heading": "Cosaint rochtana",
+      "hint": "Cosnaíonn sé an suíomh iomlán le focal faire amháin roinnte do chách a bhfuil an nasc acu. Gan chosaint ghníomhach, is féidir le duine ar bith a bhfuil an nasc acu an suíomh a úsáid.",
+      "enableLabel": "Cumasaigh cosaint rochtana",
+      "noPasswordSet": "Níl aon fhocal faire socraithe fós — fanann an chosaint neamhghníomhach go dtí go socrófar ceann.",
+      "passwordLabel": "Focal faire nua",
+      "passwordConfirmLabel": "Deimhnigh an focal faire",
+      "passwordHint": "Ar a laghad 8 gcarachtar. Fág folamh chun an focal faire atá sábháilte faoi láthair a choinneáil. Dearmad an focal faire? Féach an README le haghaidh treoracha athshocraithe trí rochtain ar chomhaid.",
+      "mismatchError": "Ní ionann an dá fhocal faire.",
+      "tooShortError": "Ní mór don fhocal faire a bheith ar a laghad 8 gcarachtar ar fad.",
+      "saveFailed": "Theip ar an sábháil.",
+      "logoutButton": "Logáil amach ar an ngléas seo"
+    },
+    "logo": {
+      "heading": "Lógó",
+      "hint": "De réir réamhshocraithe níl aon lógó saincheaptha gníomhach, fanann deilbhín an phinn le feiceáil.",
+      "modeLabel": "Taispeáint",
+      "modeNone": "Gan lógó",
+      "modeSquare": "Cearnógach, thuas ar chlé",
+      "modeBanner": "Bratach ar fud na leithne",
+      "squareHeading": "Lógó cearnógach",
+      "squareHint": "Molta: 160×160 picteilín (cearnóg). PNG, JPEG nó SVG, uas. 2 MB.",
+      "bannerHeading": "Lógó bratach",
+      "bannerHint": "Molta: thart ar 1400×160 picteilín (leathan, gan a bheith ró-ard). PNG, JPEG nó SVG, uas. 2 MB.",
+      "uploadButton": "Uaslódáil",
+      "removeConfirm": "An bhfuil tú cinnte gur mian leat an lógó seo a bhaint?",
+      "uploadSuccess": "Lógó uaslódáilte.",
+      "removeSuccess": "Lógó bainte.",
+      "uploadFailed": "Níorbh fhéidir an lógó a uaslódáil.",
+      "noFileSelected": "Roghnaigh comhad ar dtús."
+    },
+    "language": {
+      "heading": "Teanga",
+      "hint": "Is féidir tuilleadh teangacha a chur leis níos déanaí.",
+      "label": "Teanga"
+    },
+    "colors": {
+      "advancedHeading": "Dathanna go mion",
+      "advancedSummary": "Oscail ardroghanna",
+      "boldNote": "Baineann sé leis an gClasaiceach amháin — úsáideann Bold na réamhshocruithe thuas.",
+      "single": {
+        "heading": "Dathanna aicinn agus feidhme",
+        "hint": "Baineann siad gan athrú i mód geal agus i mód dorcha."
+      },
+      "pairs": {
+        "heading": "Bundathanna (ar leith le haghaidh mód geal/dorcha)",
+        "hint": "Cúlra, dromchla, téacs agus imlíne — ceann amháin an duine le haghaidh mód geal agus dorcha.",
+        "light": "Geal",
+        "dark": "Dorcha"
+      },
+      "flip": {
+        "heading": "Dathanna Flip Board",
+        "hint": "Sáraíonn sé an moladh datha a roghnaíodh thuas — ceann amháin an duine le haghaidh mód geal agus dorcha."
+      }
+    },
+    "resetButton": "Athshocraigh na dathanna réamhshocraithe",
+    "resetConfirm": "An bhfuil tú cinnte gur mian leat na dathanna go léir a athshocrú go dtí a luachanna réamhshocraithe?",
+    "savedStatus": "Sábháilte. Gabhfaidh leathanaigh eile leis an athrú ar a gcuairt eile.",
+    "resetStatus": "Athshocraithe go dtí na dathanna réamhshocraithe.",
+    "backup": {
+      "heading": "Cúltaca sonraí",
+      "hint": "Cúltaca iomlán de gach imreoir, cluiche, aváta agus lógó mar chomhad ZIP — m.sh. lena chinntiú nach gcailltear rud ar bith agus tú ag aistriú go freastalaí nua.",
+      "exportHeading": "Íoslódáil an cúltaca",
+      "exportHint": "Tá an bunachar sonraí iomlán ann móide gach íomhá aváta agus an lógó.",
+      "exportButton": "Íoslódáil an cúltaca",
+      "importHeading": "Athchóirigh an cúltaca",
+      "importWarning": "Rabhadh: cuireann iompórtáil in ionad go do-athraithe gach imreoir, cluiche, aváta agus lógó reatha le hábhar an chomhaid chúltaca.",
+      "fileLabel": "Comhad cúltaca (.zip)",
+      "importButton": "Iompórtáil cúltaca",
+      "confirmHint": "Chun deimhniú, clóscríobh ERSETZEN go beacht thíos.",
+      "confirmLabel": "Deimhniú",
+      "confirmButton": "Cuir in ionad anois, go buan",
+      "noFileSelected": "Roghnaigh comhad cúltaca ar dtús.",
+      "finalConfirm": "An bhfuil tú cinnte gur mian leat gach sonra cluiche reatha a chur in ionad go do-athraithe leis an gcúltaca?",
+      "importInProgress": "Ag athchóiriú an chúltaca …",
+      "importSuccess": "Cúltaca athchóirithe: {games} cluiche, {players} imreoir. Ag athlódáil an leathanaigh …",
+      "importFailed": "Theip ar an iompórtáil."
+    },
+    "colorLabels": {
+      "green": "Glas neon (príomhaicinn)",
+      "greenStrong": "Glas neon, doiléirithe (téacs/línte)",
+      "amber": "Ómra (aicinn thánaisteach)",
+      "amberStrong": "Ómra, doiléirithe (téacs/línte)",
+      "onAccent": "Téacs ar dhromchlaí aicinn",
+      "focus": "Imlíne fócais (nascleanúint méarchláir)",
+      "danger": "Earráid / contúirt (m.sh. cnaipí scriosta)",
+      "bg": "Cúlra",
+      "surface": "Dromchla (cártaí)",
+      "text": "Téacs",
+      "textMuted": "Téacs maolaithe",
+      "border": "Imlíne"
+    }
+  },
+  "login": {
+    "heading": "Logáil isteach",
+    "hint": "Tá an suíomh seo cosanta le focal faire.",
+    "error": "Focal faire mícheart.",
+    "passwordLabel": "Focal faire",
+    "submitButton": "Logáil isteach"
+  },
+  "pointsToTarget": {
+    "setup": {
+      "subtitle": "Socraigh cluiche nua (m.sh. Flip7, Tutto)",
+      "labelPlaceholder": "m.sh. Flip7, Tutto",
+      "targetLabel": "Imirt suas go dtí cén luach pointí?",
+      "winDirectionHint": "Sa chuid is mó de na cluichí buann an scór is airde (m.sh. Flip7, Tutto) — ach i gcuid acu, mar Skyjo, buann an scór is ísle ina ionad sin. Críochnaíonn an cluiche ar aon nós a luaithe a bhaineann duine an sprioc amach nó a sháraíonn siad í.",
+      "targetBonusLabel": "Bónas as an sprioc a bhaint amach"
+    },
+    "game": {
+      "subtitle": "Sprioc: {target} pointe · {started}",
+      "roundEntryHint": "Cuir isteach pointí an bhabhta seo in aghaidh an imreora (is gnách 0, m.sh. nuair a théitear thar fóir)."
+    }
+  },
+  "pointsOpen": {
+    "setup": {
+      "subtitle": "Socraigh cluiche nua (m.sh. Doppelkopf)",
+      "labelPlaceholder": "m.sh. Doppelkopf"
+    },
+    "game": {
+      "subtitle": "{direction} · {started}",
+      "direction": {
+        "highest": "buann an scór is airde",
+        "lowest": "buann an scór is ísle"
+      }
+    }
+  },
+  "fixedRounds": {
+    "setup": {
+      "subtitle": "Socraigh cluiche nua",
+      "roundsLabel": "Cé mhéad babhta ba chóir a imirt?",
+      "announceLabel": "Fógair tar éis gach babhta go bhfuil sé thart",
+      "announceHint": "Taispeánann sé fógra gairid, indúnta, tar éis gach babhta a shábháiltear."
+    },
+    "game": {
+      "subtitleOngoing": "Babhta {round} as {total} · {started}",
+      "subtitleReached": "{played} as {total} babhta imeartha · {started}",
+      "roundEndNotice": "Babhta {round} críochnaithe",
+      "targetReached": {
+        "heading": "D'imir sibh na {total} babhta a socraíodh.",
+        "extendLabel": "Lean ar aghaidh ag imirt, an méid seo babhtaí eile:",
+        "extendButton": "Lean ar aghaidh ag imirt"
+      }
+    }
+  },
+  "rage": {
+    "setup": {
+      "subtitle": "Socraigh cluiche nua — 10 mbabhta, tairiscint táillí",
+      "hint": "10 mbabhta sheasta (10 síos go 1 chárta), buann an scór is airde sa deireadh.",
+      "labelPlaceholder": "m.sh. Oíche RAGE",
+      "showBonusMalusLabel": "Taispeáin bónas/pionós",
+      "showBonusMalusHint": "Taispeáin/folaigh na réimsí cártaí speisialta +5/−5 in iontráil an bhabhta."
+    },
+    "game": {
+      "cardSingular": "cárta",
+      "cardPlural": "cárta",
+      "subtitleFinished": "{played} as 10 mbabhta imeartha · {started}",
+      "subtitleOngoing": "Babhta {round} as 10 ({cards} {cardWord}) · {started}",
+      "roundEntry": {
+        "staticHeading": "Cuir isteach babhta",
+        "staticHint": "Cuir isteach an tairiscint agus na táillí iarbhír in aghaidh an imreora, cártaí speisialta más ann dóibh.",
+        "heading": "Cuir isteach babhta {round} ({cards} {cardWord})",
+        "hint": "Cuir isteach an tairiscint agus na táillí iarbhír in aghaidh an imreora (tá 0 bailí). Ba chóir go suimeodh táillí gach imreora go {cards}.",
+        "table": {
+          "player": "Imreoir",
+          "bid": "Tairiscint",
+          "tricks": "Táillí",
+          "plus5": "+5",
+          "minus5": "−5",
+          "points": "Pointí"
+        }
+      },
+      "roundsTableHint": "Athraigh na luachanna go díreach chun earráidí iontrála a cheartú. Tairiscint / táillí / +5 / −5 / pointí (ríofa) in aghaidh an imreora agus an bhabhta.",
+      "deleteRoundButton": "Scrios B{round}",
+      "mismatchConfirm": "Ní ionann suim na dtáillí a cuireadh isteach ({actual}) agus líon cártaí an bhabhta seo ({expected}). Sábháil mar sin féin?",
+      "saveFailed": "Níorbh fhéidir an babhta a shábháil."
+    }
+  },
+  "chooser": {
+    "heading": "Cé a thosaíonn?",
+    "subtitle": "Cuir gach méar ar an scáileán ag an am céanna — oibríonn sé trí ilteagmháil (iPad/iPhone).",
+    "hint": "Cuir na méara ar an scáileán …",
+    "winnerCountLabel": "Líon na mbuaiteoirí",
+    "resultSingle": "Tosaíonn an duine seo! Cuir na méara síos arís le haghaidh babhta nua.",
+    "resultMulti": "Tosaíonn na {count} duine seo! Cuir na méara síos arís le haghaidh babhta nua."
+  }
+}

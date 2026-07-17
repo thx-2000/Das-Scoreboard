@@ -29,3 +29,14 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)\.html$ $1.php [L]
 </IfModule>
+
+# Grundlegende Security-Header site-weit (zusaetzlich zum SVG-spezifischen
+# CSP in api/logo.php). Kein globales CSP hier, da das Theme-System per
+# Inline-<style>-Block arbeitet (siehe includes/settings.php::
+# render_theme_style_css()) - ein striktes CSP bräuchte 'unsafe-inline'
+# fuer style-src und würde dadurch kaum echten Schutz bringen.
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

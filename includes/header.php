@@ -49,7 +49,7 @@ if ($themeData['cardStyle']) {
   <link rel="stylesheet" href="/css/style.css?v=<?= urlencode($appVersion) ?>">
   <style><?= render_theme_style_css($themeData) ?></style>
   <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/png" href="/assets/icons/icon-192.png">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">

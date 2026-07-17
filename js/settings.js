@@ -3,11 +3,17 @@
 // beim Speichern auf Reiter B nicht verloren geht (der globale Speichern-
 // Button unten liest immer den kompletten, aktuellen DOM-Zustand aus,
 // unabhaengig davon, welcher Reiter gerade sichtbar ist).
-// Der Zugangsschutz-Reiter hat einen eigenen Speichern-Button (siehe
-// accessSaveBtn weiter unten) - Passwort/Aktivierung laufen bewusst NICHT
-// ueber die globale Speichern-Leiste (eigene Validierung noetig). Ohne
-// Ausblenden waeren dort zwei "Speichern"-Buttons untereinander sichtbar,
-// von denen einer nichts bewirkt - daher hier aktiv verstecken.
+//
+// Die globale Speichern-Leiste liest ausschliesslich Felder aus, die zu
+// collectFormValues() gehoeren (Titel/Sound/Sprache/Theme/Logo/Farben) -
+// das sind genau die Felder auf "allgemein" und "aussehen". Alle anderen
+// Reiter (Spieler, Meine Spiele, Zugangsschutz, Backup) speichern jede
+// Aktion sofort einzeln (eigener Button/Request je Element) - dort haette
+// die globale Leiste nichts zu tun und stuende nur als zweiter, wirkungs-
+// loser "Speichern"-Knopf daneben. Deshalb nur auf den beiden relevanten
+// Reitern anzeigen.
+const SETTINGS_SAVE_BAR_TABS = ['allgemein', 'aussehen'];
+
 function switchSettingsTab(tab) {
   document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((b) => {
     b.setAttribute('aria-selected', String(b.dataset.tab === tab));
@@ -15,7 +21,7 @@ function switchSettingsTab(tab) {
   document.querySelectorAll('.settings-tab-panel').forEach((panel) => {
     panel.hidden = panel.dataset.tabPanel !== tab;
   });
-  document.getElementById('settings-save-bar').hidden = tab === 'zugang';
+  document.getElementById('settings-save-bar').hidden = !SETTINGS_SAVE_BAR_TABS.includes(tab);
 }
 
 document.querySelectorAll('#settings-tabs .settings-tabs__btn').forEach((btn) => {

@@ -188,6 +188,9 @@ function preset_icon_options(): array
         'dice', 'star', 'target', 'grid', 'flame', 'controller', 'bolt', 'clover',
         'gem', 'crown', 'anchor', 'sun', 'flag', 'medal', 'hourglass', 'key',
         'camera', 'music', 'compass', 'book', 'rocket',
+        'dice-1', 'dice-2', 'dice-3', 'dice-4', 'dice-5', 'dice-6', 'dice-pair',
+        'card-diamond', 'card-heart', 'card-spade', 'card-club',
+        'cards-stack', 'cards-fan', 'card-back', 'card-joker',
     ];
 }
 
@@ -215,6 +218,27 @@ function preset_icon_svg_paths(): array
         'compass' => '<circle cx="12" cy="12" r="9"/><path d="M15 9l-1.5 4.5L9 15l1.5-4.5z" stroke-linejoin="round"/>',
         'book' => '<path d="M2 5l10 2 10-2v14l-10-2-10 2z" stroke-linejoin="round"/><path d="M12 7v14"/>',
         'rocket' => '<path d="M12 2l3 9-3 4-3-4z" stroke-linejoin="round"/><path d="M9 15l-2 5 3-1M15 15l2 5-3-1" stroke-linejoin="round" stroke-linecap="round"/><circle cx="12" cy="8" r="1.3" fill="currentColor" stroke="none"/>',
+
+        // Wuerfel-Augenzahlen 1-6 (klassisches Pip-Layout) + Wuerfelpaar,
+        // fuer Presets, die spezifisch ein Wuerfelspiel abbilden wollen.
+        'dice-1' => '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>',
+        'dice-2' => '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/>',
+        'dice-3' => '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/>',
+        'dice-4' => '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/>',
+        'dice-5' => '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/>',
+        'dice-6' => '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8" cy="7.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="7.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="8" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="8" cy="16.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="16.5" r="1.1" fill="currentColor" stroke="none"/>',
+        'dice-pair' => '<rect x="2" y="7" width="9" height="9" rx="2"/><circle cx="4.5" cy="9.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="8.5" cy="13.5" r="0.8" fill="currentColor" stroke="none"/><rect x="13" y="8" width="9" height="9" rx="2"/><circle cx="15.5" cy="10.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="19.5" cy="10.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="19.5" cy="14.5" r="0.8" fill="currentColor" stroke="none"/>',
+
+        // Spielkarten: einzelne Farbsymbole, gestapelt/gefaechert, Rueckseite
+        // und Joker - fuer Presets, die spezifisch ein Kartenspiel abbilden.
+        'card-diamond' => '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8l2.5 4-2.5 4-2.5-4z" fill="currentColor" stroke="none"/>',
+        'card-heart' => '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8 12 10.5 15 8 16.5 11 12 17 7.5 11z" fill="currentColor" stroke="none" stroke-linejoin="round"/>',
+        'card-spade' => '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 7 16.5 13 15 16 12 13.5 9 16 7.5 13z" fill="currentColor" stroke="none"/><path d="M11.3 15.3h1.4l.3 2.7h-2z" fill="currentColor" stroke="none"/>',
+        'card-club' => '<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="9" r="1.8" fill="currentColor" stroke="none"/><circle cx="9.7" cy="12.2" r="1.8" fill="currentColor" stroke="none"/><circle cx="14.3" cy="12.2" r="1.8" fill="currentColor" stroke="none"/><path d="M11.3 14h1.4l.4 3h-2.2z" fill="currentColor" stroke="none"/>',
+        'cards-stack' => '<rect x="3" y="6" width="13" height="16" rx="2"/><rect x="8" y="2" width="13" height="16" rx="2"/>',
+        'cards-fan' => '<rect x="2" y="4" width="9" height="16" rx="1.5"/><rect x="7.5" y="4" width="9" height="16" rx="1.5"/><rect x="13" y="4" width="9" height="16" rx="1.5"/>',
+        'card-back' => '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h8"/>',
+        'card-joker' => '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8.5l1 2.2 2.4.3-1.8 1.6.5 2.3-2.1-1.2-2.1 1.2.5-2.3-1.8-1.6 2.4-.3z" fill="currentColor" stroke="none"/>',
     ];
 }
 
@@ -350,7 +374,33 @@ function save_settings(PDO $pdo, array $updates): void
     }
 }
 
+/**
+ * Setzt ausschliesslich Aussehen/Farben zurueck (Button-Beschriftung "Auf
+ * Standardfarben zuruecksetzen", Bestaetigungstext nennt explizit "Farben").
+ * Zuvor loeschte diese Funktion die komplette settings-Tabelle inkl.
+ * access_enabled/access_password_hash sowie Titel/Sprache/Logo - auf einer
+ * oeffentlich zugaenglichen, passwortgeschuetzten Seite haette das den
+ * Zugangsschutz unbemerkt deaktiviert. Titel/Sprache/Logo/Zugangsschutz
+ * bleiben deshalb jetzt bewusst unberuehrt.
+ */
 function reset_settings(PDO $pdo): void
 {
-    $pdo->exec('DELETE FROM settings');
+    $resettableKeys = [
+        'theme_style', 'bold_accent', 'bold_background', 'bold_card_style',
+        'flip_accent',
+        'flip_color_bg_light', 'flip_color_bg_dark',
+        'flip_color_surface_light', 'flip_color_surface_dark',
+        'flip_color_ink_light', 'flip_color_ink_dark',
+        'flip_color_accent_light', 'flip_color_accent_dark',
+        'color_bg_light', 'color_bg_dark',
+        'color_surface_light', 'color_surface_dark',
+        'color_text_light', 'color_text_dark',
+        'color_text_muted_light', 'color_text_muted_dark',
+        'color_border_light', 'color_border_dark',
+        'color_green', 'color_green_strong',
+        'color_amber', 'color_amber_strong',
+        'color_on_accent', 'color_focus', 'color_danger',
+    ];
+    $placeholders = implode(',', array_fill(0, count($resettableKeys), '?'));
+    $pdo->prepare("DELETE FROM settings WHERE key IN ($placeholders)")->execute($resettableKeys);
 }

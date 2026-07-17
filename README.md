@@ -49,7 +49,8 @@ Beispieldaten.*
   Rundenzahl* und *RAGE* (Stichspiel mit automatischer Punkteberechnung).
 - **Eigene Spiele**: fertig konfigurierte Varianten der drei
   Punkte-Modi (z.B. "Flip7" mit Zielwert 200, eigenen Punkteschritten
-  und einem frei wählbaren, einfarbigen Icon aus über 20 Symbolen)
+  und einem frei wählbaren, einfarbigen Icon aus über 35 Symbolen,
+  darunter mehrere Würfel- und Spielkarten-Varianten)
   unter Einstellungen → Meine Spiele anlegen. Favoriten erscheinen in
   einer eigenen, manuell sortierbaren Reihe oben auf der Startseite,
   zusätzlich alphabetisch in der vollständigen Liste aller Spiele
@@ -216,7 +217,8 @@ data.*
   count*, and *RAGE* (a trick-taking card game with automatic scoring).
 - **Custom games**: save fully configured variants of the three
   point-based modes (e.g. "Flip7" with a target of 200, its own step
-  sizes, and a freely chosen, single-color icon from over 20 symbols)
+  sizes, and a freely chosen, single-color icon from over 35 symbols,
+  including several dice and playing-card variants)
   under Settings → My games. Favorites get their own, manually
   sortable row at the top of the home page, and also appear
   alphabetically in the full list of all games (incl. RAGE) below —

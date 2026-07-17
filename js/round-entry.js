@@ -103,6 +103,11 @@ function renderRoundEntryFields(container, groups, allowNegative = true, roundEn
   const mode = roundEntryGetMode();
   const steps = roundEntryParseSteps(roundEntrySteps);
 
+  // Schritt-Buttons brauchen die volle Kartenbreite, um in einer Zeile neben
+  // dem Wert zu bleiben (siehe .round-steps) - das schmale Mehrspalten-Raster
+  // ist nur fuer Tippen gedacht, wo ein einzelnes Zahlenfeld pro Spalte reicht.
+  container.classList.toggle('round-form-grid--buttons', mode === 'buttons');
+
   groups.forEach((group) => {
     const field = document.createElement('div');
     field.className = 'round-form-field';

@@ -101,16 +101,20 @@ const favoritePresetHeading = document.getElementById('favorite-preset-heading')
 const favoritePresetGrid = document.getElementById('favorite-preset-grid');
 const myGamesGrid = document.getElementById('my-games-grid');
 
+/** Nur die kurze Tatsache statt "Modus-Titel · Tatsache" - manche Modus-
+ * Titel sind lang genug, um die Karte unschoen zu strecken (siehe
+ * "Punkterunde mit fester Rundenzahl"), das eigene Icon zeigt den Modus
+ * bereits visuell an. */
 function presetCardMeta(preset) {
-  const modes = homeModeInfo();
-  const title = (modes[preset.mode] || {}).title || preset.mode;
   if (preset.mode === 'points_to_target') {
-    return `${title} · ${window.t('home.myGames.metaTarget', { score: preset.targetScore })}`;
+    return window.t('home.myGames.metaTarget', { score: preset.targetScore });
   }
   if (preset.mode === 'fixed_rounds') {
-    return `${title} · ${window.t('home.myGames.metaRounds', { rounds: preset.totalRounds })}`;
+    return window.t('home.myGames.metaRounds', { rounds: preset.totalRounds });
   }
-  return title;
+  return preset.winDirection === 'lowest'
+    ? window.t('pointsOpen.game.direction.lowest')
+    : window.t('pointsOpen.game.direction.highest');
 }
 
 function buildPresetCard(preset) {

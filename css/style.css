@@ -753,6 +753,17 @@ main {
   margin-bottom: 1rem;
 }
 
+/* Schritt-Buttons-Modus: eine Spalte statt des schmalen Mehrspalten-Rasters,
+   damit die Schritt-Zeile (.round-steps) nicht neben der Zahl umbricht,
+   siehe js/round-entry.js::renderRoundEntryFields(). */
+.round-form-grid--buttons {
+  grid-template-columns: 1fr;
+}
+
+.round-form-grid--buttons .round-steps {
+  justify-content: flex-start;
+}
+
 .round-form-field label {
   display: block;
   font-weight: 600;
@@ -825,6 +836,11 @@ main {
 }
 
 .round-steps__value--input {
+  /* Als <input> braucht es zusaetzlich "width" - min-width allein verhindert
+     nur ein Schrumpfen unter den Wert, nicht die browsereigene Default-
+     Breite eines Text-Inputs (die deutlich groesser ist und sonst die ganze
+     Zeile sprengt). */
+  width: 3rem;
   font-family: inherit;
   color: var(--color-text);
 }
@@ -1932,17 +1948,17 @@ main {
   border-top-color: var(--color-amber);
 }
 
+/* Einfarbige SVG-Linien-Icons statt der bunten Emoji (wirkten zu generisch/
+   KI-generiert, gleiche Kritik wie bei den Preset-Icons) - dieselben Icons,
+   die Flip Board bereits nutzt (siehe [data-theme-style="flip"]
+   .mode-card__icon-svg weiter unten), hier nur groesser passend zur
+   sonstigen Bold-Optik. .mode-card__icon (Emoji) bleibt im Markup fuer
+   Classic/Bold-Kompatibilitaet, wird hier aber ausgeblendet. */
 [data-theme-style="bold"] .mode-card__icon {
-  display: block;
-  font-size: 2rem;
-  line-height: 1;
-  margin-bottom: 0.6rem;
+  display: none;
 }
 
-/* Eigene Spiele-Presets haben ein einfarbiges SVG-Icon statt Emoji (siehe
-   js/preset-icons.js) - im Bold-Theme in gleicher Groesse wie die Emoji-
-   Icons der eingebauten Modi. */
-[data-theme-style="bold"] .mode-card--preset .mode-card__icon-svg {
+[data-theme-style="bold"] .mode-card__icon-svg {
   display: block;
   width: 2rem;
   height: 2rem;
@@ -2927,13 +2943,36 @@ main {
 }
 
 [data-theme-style="flip"] .entry-row .round-steps__value {
-  min-width: 4.5rem;
+  width: 2.75rem;
+  min-width: 2.75rem;
   font-family: var(--font-mono);
   font-size: 1.2rem;
   font-weight: 700;
   background: color-mix(in srgb, var(--color-text) 6%, transparent);
   border-radius: 4px;
   color: var(--color-text);
+}
+
+/* Auf schmalen Handy-Breiten (z.B. iPhone SE/mini) reicht der Platz sonst
+   nicht fuer alle aktivierten Schrittweiten in einer Zeile - Buttons/Wert/
+   Abstand hier nochmal etwas enger, bleiben aber weiterhin gut treffbar. */
+@media (max-width: 400px) {
+  [data-theme-style="flip"] .entry-row .round-steps {
+    gap: 0.35rem;
+  }
+
+  [data-theme-style="flip"] .entry-row .round-steps__btn {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.3rem 0.35rem;
+    font-size: 0.85rem;
+  }
+
+  [data-theme-style="flip"] .entry-row .round-steps__value {
+    width: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
 }
 
 /* ---- RAGE-Aktivansicht: gleiches Glas-Punktestand-Muster (oben), Mini-

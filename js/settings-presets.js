@@ -34,13 +34,8 @@ const presetFormCancelBtn = document.getElementById('preset-form-cancel-btn');
 let presets = [];
 let editingPresetId = null;
 
-function modeLabel(mode) {
-  if (mode === 'points_to_target') return window.t('modes.pointsToTarget.title');
-  if (mode === 'points_open') return window.t('modes.pointsOpen.title');
-  if (mode === 'fixed_rounds') return window.t('modes.fixedRounds.title');
-  return mode;
-}
-
+/** Nur die kurze Tatsache statt des (teils langen) Modus-Titels - das
+ * gewaehlte Icon zeigt den Modus bereits visuell an. */
 function presetMeta(preset) {
   if (preset.mode === 'points_to_target') {
     return window.t('settings.presets.metaTarget', { target: preset.targetScore });
@@ -48,7 +43,9 @@ function presetMeta(preset) {
   if (preset.mode === 'fixed_rounds') {
     return window.t('settings.presets.metaRounds', { rounds: preset.totalRounds });
   }
-  return modeLabel(preset.mode);
+  return preset.winDirection === 'lowest'
+    ? window.t('pointsOpen.game.direction.lowest')
+    : window.t('pointsOpen.game.direction.highest');
 }
 
 function updatePresetModeFieldVisibility() {

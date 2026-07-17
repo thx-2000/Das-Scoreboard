@@ -69,10 +69,10 @@ require __DIR__ . '/includes/header.php';
             <span class="flip-preset-card__swatch" aria-hidden="true"></span>
             <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.karmesin">Karmesin</span>
           </label>
-          <label class="flip-preset-card" style="--flip-preset-color:#3f7a4d">
-            <input type="radio" name="flip-accent" value="waldgruen">
+          <label class="flip-preset-card" style="--flip-preset-color:#ea580c">
+            <input type="radio" name="flip-accent" value="knallorange">
             <span class="flip-preset-card__swatch" aria-hidden="true"></span>
-            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.waldgruen">Waldgrün</span>
+            <span class="flip-preset-card__label" data-i18n="settings.theme.flipPreset.knallorange">Knallorange</span>
           </label>
           <label class="flip-preset-card" style="--flip-preset-color:#6a4fb2">
             <input type="radio" name="flip-accent" value="violett">

@@ -354,7 +354,7 @@ angelegt.
     und flach/kantig reskinnten Mini-Stepper-Karten (gleiche Funktion wie
     Bold, nur andere Optik); Einstellungen mit 5 kuratierten
     Farbvorschlägen als Vorschau-Kacheln (Bernstein/Petrol/Karmesin/
-    Waldgrün/Violett, `includes/settings.php::flip_accent_palette()`) statt
+    Knallorange/Violett, `includes/settings.php::flip_accent_palette()`) statt
     reiner Farbpunkte — Klick überschreibt `flip_color_accent_light/_dark`
     als Schnellwahl, Feinjustierung von Hintergrund/Fläche/Text/Akzent
     (je hell/dunkel, 8 Felder) bleibt unter "Farben im Detail" möglich,
@@ -994,7 +994,7 @@ the player database and game history are deliberately mode-agnostic.
     same fields "Save round" reads; the RAGE active view uses the same glass
     standings panel plus flat/sharp-edged mini-stepper cards (same function
     as Bold, just different styling); settings show 5 curated color
-    suggestions as preview tiles (amber/teal/crimson/forest green/violet,
+    suggestions as preview tiles (amber/teal/crimson/vivid orange/violet,
     `includes/settings.php::flip_accent_palette()`) instead of plain color
     dots — clicking overwrites `flip_color_accent_light/_dark` as a quick
     pick, fine-tuning background/surface/text/accent (light/dark each, 8

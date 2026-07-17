@@ -206,7 +206,7 @@ function flip_accent_palette(): array
         'amber' => ['#c9761a', '#f2a93b'],
         'petrol' => ['#1f7a6c', '#4fd6bd'],
         'karmesin' => ['#b23a3a', '#ef6a6a'],
-        'waldgruen' => ['#3f7a4d', '#8bd17c'],
+        'knallorange' => ['#ea580c', '#fb923c'],
         'violett' => ['#6a4fb2', '#b39ddb'],
     ];
 }

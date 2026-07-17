@@ -14,10 +14,9 @@
  */
 
 require_once __DIR__ . '/settings.php';
+require_once __DIR__ . '/session.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+scoreboard_session_start();
 
 function auth_check(): void
 {

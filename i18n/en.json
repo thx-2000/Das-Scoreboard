@@ -381,8 +381,10 @@
       "noPasswordSet": "No password is set yet — protection stays inactive until one is set.",
       "passwordLabel": "New password",
       "passwordConfirmLabel": "Confirm password",
-      "passwordHint": "Leave blank to keep the currently saved password. Forgot the password? See the README for the file-access reset instructions.",
+      "passwordHint": "At least 8 characters. Leave blank to keep the currently saved password. Forgot the password? See the README for the file-access reset instructions.",
       "mismatchError": "The two passwords don't match.",
+      "tooShortError": "The password must be at least 8 characters long.",
+      "saveFailed": "Failed to save.",
       "logoutButton": "Log out on this device"
     },
     "logo": {

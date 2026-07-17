@@ -56,6 +56,15 @@ if ($method === 'GET') {
 
     header('Content-Type: ' . LOGO_MIME_BY_EXT[$ext]);
     header('Cache-Control: public, max-age=3600');
+    // SVG-Logos werden im Frontend zwar immer per <img> eingebunden (dort
+    // fuehren Browser kein eingebettetes <script> aus), aber ruft jemand
+    // diese URL direkt auf (Top-Level-Navigation), wuerde ein bewusst
+    // praeparierter SVG-Upload sonst als HTML-Dokument mit Skript-Ausfuehrung
+    // behandelt - CSP hier verhindert das unabhaengig vom Aufrufkontext.
+    if ($ext === 'svg') {
+        header("Content-Security-Policy: script-src 'none'");
+    }
+    header('X-Content-Type-Options: nosniff');
     readfile($path);
     exit;
 }

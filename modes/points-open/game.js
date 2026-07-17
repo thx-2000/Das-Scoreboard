@@ -58,12 +58,12 @@ function renderStandings(state) {
     const row = document.createElement('tr');
     if (rank === 1) row.className = 'rank-first';
 
-    const displayName = player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name;
+    const displayName = window.escapeHtml(player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name);
     // teamLabel/teamTotal gibt es nur im team_scoring "individual" (Migration
     // 9) - dort bleibt jeder Spieler eine eigene Zeile, zeigt aber zusaetzlich
     // die Team-Zugehoerigkeit und -Summe an.
     const teamHint = player.teamLabel
-      ? `<div class="hint-text standings-team-hint">${player.teamLabel} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
+      ? `<div class="hint-text standings-team-hint">${window.escapeHtml(player.teamLabel)} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
       : '';
 
     row.innerHTML = `
@@ -91,9 +91,9 @@ function renderStandingsCards(state) {
     previousRankValue = player.rankValue;
     previousRank = rank;
 
-    const displayName = player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name;
+    const displayName = window.escapeHtml(player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name);
     const teamHint = player.teamLabel
-      ? `<div class="hint-text standings-team-hint">${player.teamLabel} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
+      ? `<div class="hint-text standings-team-hint">${window.escapeHtml(player.teamLabel)} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
       : '';
     const anchorId = player.memberIds && player.memberIds.length ? player.memberIds[0] : player.id;
     const colorIndex = window.scoreboardPlayerColorIndex(state.players, anchorId);

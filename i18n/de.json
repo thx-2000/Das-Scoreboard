@@ -381,8 +381,10 @@
       "noPasswordSet": "Es ist noch kein Passwort hinterlegt — der Schutz bleibt bis dahin wirkungslos.",
       "passwordLabel": "Neues Passwort",
       "passwordConfirmLabel": "Passwort wiederholen",
-      "passwordHint": "Leer lassen, um das aktuell gespeicherte Passwort beizubehalten. Passwort vergessen? Siehe README für die Reset-Anleitung per Datei-Zugriff.",
+      "passwordHint": "Mindestens 8 Zeichen. Leer lassen, um das aktuell gespeicherte Passwort beizubehalten. Passwort vergessen? Siehe README für die Reset-Anleitung per Datei-Zugriff.",
       "mismatchError": "Die beiden Passwörter stimmen nicht überein.",
+      "tooShortError": "Das Passwort muss mindestens 8 Zeichen lang sein.",
+      "saveFailed": "Speichern fehlgeschlagen.",
       "logoutButton": "Auf diesem Gerät abmelden"
     },
     "logo": {

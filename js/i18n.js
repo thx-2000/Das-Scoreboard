@@ -22,6 +22,19 @@ function interpolate(str, vars) {
   return str.replace(/\{(\w+)\}/g, (match, key) => (vars[key] !== undefined ? String(vars[key]) : match));
 }
 
+/**
+ * HTML-Escaping fuer nutzergenerierte Texte (Spieler-/Team-/Gruppennamen),
+ * die per innerHTML-Template in DOM eingefuegt werden - .textContent ist
+ * meist die bessere Wahl, aber wo ganze Zeilen als Template-String gebaut
+ * werden, muss jeder eingebettete Wert einzeln escaped werden. Hier
+ * platziert, da i18n.js auf jeder Seite geladen wird (siehe footer.php).
+ */
+window.escapeHtml = function escapeHtml(value) {
+  const div = document.createElement('div');
+  div.textContent = String(value ?? '');
+  return div.innerHTML;
+};
+
 window.t = function t(key, vars) {
   const value = getNested(dictionary, key);
   if (value === undefined) return key;

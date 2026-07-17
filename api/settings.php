@@ -27,6 +27,9 @@ if ($method === 'PATCH') {
         // Leeres/fehlendes Feld = Passwort unveraendert lassen (kein
         // versehentliches Loeschen beim Speichern anderer Einstellungen).
         if (!empty($updates['new_password'])) {
+            if (mb_strlen((string) $updates['new_password']) < 8) {
+                send_json(['error' => 'Passwort muss mindestens 8 Zeichen lang sein.'], 400);
+            }
             set_access_password_hash($pdo, password_hash((string) $updates['new_password'], PASSWORD_DEFAULT));
         }
         unset($updates['new_password'], $updates['access_password_hash']);

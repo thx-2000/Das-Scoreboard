@@ -625,6 +625,41 @@ eigenen Server und werden an keine dritte Stelle übertragen.
   Empfehlenswert für nicht-öffentliche Nutzung: den in den Einstellungen
   verfügbaren Zugangsschutz (Passwort) aktivieren.
 
+## Sicherheit
+
+- **Ausgabe-Escaping**: alle nutzergenerierten Texte (Spieler-, Team- und
+  Gruppennamen), die per JS als HTML-Schnipsel gerendert werden, laufen
+  durch eine zentrale `escapeHtml()`-Funktion (`js/i18n.js`) — verhindert
+  gespeichertes XSS über z.B. einen absichtlich präparierten Spielernamen.
+- **SQL**: ausschließlich vorbereitete Anweisungen (PDO Prepared Statements)
+  mit gebundenen Parametern, keine String-Konkatenation von Nutzereingaben
+  in SQL-Text.
+- **Datei-Uploads** (Avatar/Logo): MIME-Typ wird serverseitig per
+  `finfo`/`getimagesize()` aus dem tatsächlichen Dateiinhalt geprüft (nicht
+  aus Dateiname/Client-Header übernommen), Zielverzeichnis und Dateiname
+  sind serverseitig fest vorgegeben (keine Pfad-Traversierung möglich).
+  SVG-Logos werden zusätzlich mit `Content-Security-Policy: script-src
+  'none'` ausgeliefert, falls die Datei direkt aufgerufen wird.
+- **Zugangsschutz-Session**: `HttpOnly`, `SameSite=Lax` und (unter HTTPS)
+  `Secure`-Cookie, `session.use_strict_mode`, sowie
+  `session_regenerate_id()` nach erfolgreichem Login (Schutz gegen
+  Session-Fixation). Passwort wird ausschließlich als bcrypt-Hash
+  gespeichert (`password_hash()`), nie im Klartext; Mindestlänge 8 Zeichen;
+  künstliche Verzögerung bei falschem Passwort bremst automatisiertes
+  Durchprobieren.
+- **Fehlerausgabe**: `display_errors` wird per `.htaccess` deaktiviert, um
+  keine Serverpfade oder SQL-Details in einer Fehlerseite preiszugeben.
+- **Kein Tracking, keine Cloud-Anbindung** — siehe Abschnitt "Datenschutz"
+  oben.
+
+Diese Software wurde vor der Erstveröffentlichung einem manuellen
+Sicherheitscheck unterzogen (Code-Review + gezielte Exploit-Versuche in
+einer isolierten Testumgebung, u.a. gespeichertes XSS, SQL-Injection,
+Zip-Slip beim Backup-Import, Session-Fixation, Datei-Upload-Validierung).
+Trotzdem gilt wie bei jeder Software: keine Garantie auf absolute
+Fehlerfreiheit. Sicherheitsrelevante Hinweise gerne als Issue oder direkt
+an die im Repository hinterlegten Kontaktwege.
+
 ## Lizenz
 
 [PolyForm Noncommercial License 1.0.0](LICENSE) — freie Nutzung, Veränderung
@@ -1143,6 +1178,38 @@ else.
   depending on how it's used, your own installation may need an imprint
   or privacy notice. For non-public use, enabling the password-based
   access protection in settings is recommended.
+
+## Security
+
+- **Output escaping**: all user-generated text (player, team, and group
+  names) that gets rendered as an HTML snippet in JS goes through a
+  central `escapeHtml()` function (`js/i18n.js`) — prevents stored XSS via,
+  e.g., a deliberately crafted player name.
+- **SQL**: exclusively prepared statements (PDO) with bound parameters, no
+  string concatenation of user input into SQL text.
+- **File uploads** (avatar/logo): the MIME type is verified server-side
+  from the actual file content via `finfo`/`getimagesize()` (not taken
+  from the filename or client header), the target directory and filename
+  are fixed server-side (no path traversal possible). SVG logos are
+  additionally served with `Content-Security-Policy: script-src 'none'`
+  in case the file is opened directly.
+- **Access-protection session**: `HttpOnly`, `SameSite=Lax`, and (under
+  HTTPS) `Secure` cookie flags, `session.use_strict_mode`, and
+  `session_regenerate_id()` after a successful login (protects against
+  session fixation). The password is stored exclusively as a bcrypt hash
+  (`password_hash()`), never in plain text; minimum length 8 characters;
+  an artificial delay on a wrong password slows down automated guessing.
+- **Error output**: `display_errors` is disabled via `.htaccess` so a
+  server error page never leaks file paths or SQL details.
+- **No tracking, no cloud connection** — see the "Privacy" section above.
+
+This software went through a manual security review before its first
+public release (code review plus targeted exploit attempts in an isolated
+test environment, covering stored XSS, SQL injection, zip-slip in the
+backup import, session fixation, and file-upload validation, among
+others). As with any software, that's not a guarantee of being bug-free.
+Security-relevant reports are welcome as an issue or via the contact
+channels listed in the repository.
 
 ## License
 

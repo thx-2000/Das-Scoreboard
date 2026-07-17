@@ -8,10 +8,9 @@
  */
 
 require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/session.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+scoreboard_session_start();
 
 $pdo = get_db();
 $settings = get_settings($pdo);
@@ -31,10 +30,18 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = (string) ($_POST['password'] ?? '');
     if (password_verify($password, $settings['access_password_hash'])) {
+        // Session-ID nach dem Rechte-Wechsel (nicht angemeldet -> angemeldet)
+        // neu erzeugen - verhindert Session-Fixation (eine vorher vom
+        // Angreifer bekannte Session-ID wuerde sonst nach dem Login gueltig).
+        session_regenerate_id(true);
         $_SESSION['scoreboard_authenticated'] = true;
         header('Location: ' . $redirect);
         exit;
     }
+    // Kuenstliche Verzoegerung bei falschem Passwort - bremst automatisiertes
+    // Durchprobieren spuerbar aus (kein vollstaendiges Rate-Limiting, aber
+    // fuer den Bedrohungsgrad dieser Single-Passwort-Loesung angemessen).
+    usleep(500000);
     $error = 'Falsches Passwort.';
 }
 

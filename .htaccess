@@ -1,3 +1,13 @@
+# PHP-Fehler nie direkt im Browser anzeigen (koennte sonst Serverpfade oder
+# SQL-Details preisgeben) - stattdessen ins Server-Error-Log schreiben.
+# Wird stillschweigend ignoriert, falls der Host mod_php nicht nutzt (z.B.
+# PHP-FPM) - dort muss display_errors stattdessen ueber php.ini/Hoster-Panel
+# deaktiviert sein.
+<IfModule mod_php.c>
+    php_flag display_errors off
+    php_flag log_errors on
+</IfModule>
+
 # VERSION-Datei und SQLite-Dateien niemals direkt ausliefern
 <FilesMatch "^(VERSION|.*\.sqlite.*)$">
     <IfModule mod_authz_core.c>

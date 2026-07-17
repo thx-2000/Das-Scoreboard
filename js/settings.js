@@ -468,6 +468,11 @@ accessSaveBtn.addEventListener('click', async () => {
     return;
   }
 
+  if (password !== '' && password.length < 8) {
+    showAccessStatus(window.t('settings.access.tooShortError'));
+    return;
+  }
+
   const values = { access_enabled: accessEnabledInput.checked ? '1' : '0' };
   if (password !== '') {
     values.new_password = password;
@@ -479,6 +484,12 @@ accessSaveBtn.addEventListener('click', async () => {
     body: JSON.stringify(values),
   });
   const data = await response.json();
+
+  if (!response.ok) {
+    showAccessStatus(data.error || window.t('settings.access.saveFailed'));
+    return;
+  }
+
   currentSettings = data.settings;
   renderAccessSettings(data.settings);
   accessPasswordInput.value = '';

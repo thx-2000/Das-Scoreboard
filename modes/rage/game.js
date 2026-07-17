@@ -80,7 +80,7 @@ function renderStandings(state) {
     const row = document.createElement('tr');
     if (rank === 1) row.className = 'rank-first';
 
-    const displayName = player.id === state.startingPlayerId ? `${player.name} ★` : player.name;
+    const displayName = window.escapeHtml(player.id === state.startingPlayerId ? `${player.name} ★` : player.name);
 
     row.innerHTML = `
       <td>${rank}</td>
@@ -107,7 +107,7 @@ function renderStandingsCards(state) {
     previousTotal = player.total;
     previousRank = rank;
 
-    const displayName = player.id === state.startingPlayerId ? `${player.name} ★` : player.name;
+    const displayName = window.escapeHtml(player.id === state.startingPlayerId ? `${player.name} ★` : player.name);
     const colorIndex = window.scoreboardPlayerColorIndex(state.players, player.id);
 
     const card = document.createElement('div');
@@ -257,7 +257,7 @@ function renderRoundEntry(state) {
     const row = document.createElement('tr');
     row.dataset.playerId = player.id;
     row.innerHTML = `
-      <td style="text-align:left;">${player.name}</td>
+      <td style="text-align:left;">${window.escapeHtml(player.name)}</td>
       <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bid" value="0"></td>
       <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-actual" value="0"></td>
       <td class="col-bonus"><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bonus" value="0"></td>

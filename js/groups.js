@@ -67,7 +67,7 @@ function memberPreviewHtml(group) {
     const avatar = player.avatarExt
       ? `<img src="/api/player-avatar.php?id=${player.id}" alt="" class="group-member-preview__avatar">`
       : '';
-    return `<span class="group-member-preview__item">${avatar}${player.name}</span>`;
+    return `<span class="group-member-preview__item">${avatar}${window.escapeHtml(player.name)}</span>`;
   }).join('');
 }
 

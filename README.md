@@ -176,6 +176,9 @@ und Weitergabe für nicht-kommerzielle Zwecke (privates Hosting, Hobby-Projekte,
 gemeinnützige/Bildungseinrichtungen). Für kommerzielle Nutzung bitte vorher
 Kontakt aufnehmen.
 
+Copyright © 2026 Thomas Hageleit. Licensed under the PolyForm Noncommercial
+License 1.0.0.
+
 ---
 
 # Das Scoreboard (English)
@@ -342,3 +345,6 @@ Entirely optional — the software stays free to use either way.
 share for noncommercial purposes (personal hosting, hobby projects,
 charitable/educational organizations). For commercial use, please get in
 touch first.
+
+Copyright © 2026 Thomas Hageleit. Licensed under the PolyForm Noncommercial
+License 1.0.0.

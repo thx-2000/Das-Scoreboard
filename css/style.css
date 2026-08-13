@@ -824,6 +824,11 @@ main {
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
+  /* Ohne das interpretiert Mobile Safari/Chrome ein schnelles zweimaliges
+     Antippen (z.B. 2x "+10") als Doppeltipp-zum-Zoomen-Geste statt als zwei
+     Klicks. Wirkt nur auf dieses Element, Pinch-Zoom bleibt ueberall sonst
+     auf der Seite erhalten. */
+  touch-action: manipulation;
 }
 
 .round-steps__btn--plus {

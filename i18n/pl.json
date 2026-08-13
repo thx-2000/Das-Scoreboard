@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Czy na pewno dodać {name} do trwającej gry?",
         "withdrawButton": "Wycofaj się",
         "confirmWithdraw": "Czy na pewno oznaczyć {name} jako wycofanego?",
-        "noPlayersAvailable": "Brak dostępnych graczy"
+        "noPlayersAvailable": "Brak dostępnych graczy",
+        "newPlayerLabel": "Albo utwórz nowego gracza",
+        "startingScoreLabel": "Punkty startowe"
       },
       "rematchButton": "Zagraj kolejną rundę"
     },

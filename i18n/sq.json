@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Ta shtosh me të vërtetë {name} në lojën në vazhdim?",
         "withdrawButton": "Tërhiqu",
         "confirmWithdraw": "Ta shënosh me të vërtetë {name} si të tërhequr?",
-        "noPlayersAvailable": "Nuk ka më lojtarë të disponueshëm"
+        "noPlayersAvailable": "Nuk ka më lojtarë të disponueshëm",
+        "newPlayerLabel": "Ose krijo një lojtar të ri",
+        "startingScoreLabel": "Pikët fillestare"
       },
       "rematchButton": "Luaj edhe një raund"
     },

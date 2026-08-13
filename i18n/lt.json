@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Tikrai pridėti {name} prie vykstančio žaidimo?",
         "withdrawButton": "Pasitraukti",
         "confirmWithdraw": "Tikrai pažymėti {name} kaip pasitraukusį?",
-        "noPlayersAvailable": "Daugiau žaidėjų nėra"
+        "noPlayersAvailable": "Daugiau žaidėjų nėra",
+        "newPlayerLabel": "Arba sukurti naują žaidėją",
+        "startingScoreLabel": "Pradiniai taškai"
       },
       "rematchButton": "Žaisti dar vieną raundą"
     },

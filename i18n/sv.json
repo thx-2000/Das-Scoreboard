@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Verkligen lägga till {name} i det pågående spelet?",
         "withdrawButton": "Hoppa av",
         "confirmWithdraw": "Verkligen markera {name} som avhoppad?",
-        "noPlayersAvailable": "Inga fler spelare tillgängliga"
+        "noPlayersAvailable": "Inga fler spelare tillgängliga",
+        "newPlayerLabel": "Eller skapa en ny spelare",
+        "startingScoreLabel": "Startpoäng"
       },
       "rematchButton": "Spela en omgång till"
     },

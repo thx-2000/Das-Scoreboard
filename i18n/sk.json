@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Naozaj pridať {name} do prebiehajúcej hry?",
         "withdrawButton": "Odstúpiť",
         "confirmWithdraw": "Naozaj označiť {name} ako odstúpeného?",
-        "noPlayersAvailable": "Žiadni ďalší hráči k dispozícii"
+        "noPlayersAvailable": "Žiadni ďalší hráči k dispozícii",
+        "newPlayerLabel": "Alebo vytvoriť nového hráča",
+        "startingScoreLabel": "Počiatočné body"
       },
       "rematchButton": "Hrať ďalšie kolo"
     },

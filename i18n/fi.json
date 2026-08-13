@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Lisätäänkö {name} todella käynnissä olevaan peliin?",
         "withdrawButton": "Jätä kesken",
         "confirmWithdraw": "Merkitäänkö {name} todella pudonneeksi?",
-        "noPlayersAvailable": "Ei muita pelaajia saatavilla"
+        "noPlayersAvailable": "Ei muita pelaajia saatavilla",
+        "newPlayerLabel": "Tai luo uusi pelaaja",
+        "startingScoreLabel": "Aloituspisteet"
       },
       "rematchButton": "Pelaa vielä yksi kierros"
     },

@@ -78,8 +78,16 @@ require __DIR__ . '/../../includes/header.php';
         <div class="game-edit__add-player">
           <label for="game-edit-add-select" data-i18n="common.game.edit.addPlayerLabel">Spieler hinzufügen</label>
           <select id="game-edit-add-select"></select>
-          <input type="text" inputmode="numeric" pattern="-?[0-9]*" id="game-edit-add-starting-score" data-i18n-placeholder="common.game.edit.startingScorePlaceholder" placeholder="Startpunkte (optional)">
           <button type="button" id="game-edit-add-btn" class="btn btn--small" data-i18n="common.buttons.add">Hinzufügen</button>
+        </div>
+        <div class="game-edit__add-player">
+          <label for="game-edit-new-player-name" data-i18n="common.game.edit.newPlayerLabel">Oder neuen Spieler anlegen</label>
+          <input type="text" id="game-edit-new-player-name" placeholder="Name eingeben" data-i18n-placeholder="common.setup.addPlayerPlaceholder" maxlength="40" autocomplete="off">
+          <button type="button" id="game-edit-new-player-btn" class="btn btn--small" data-i18n="common.buttons.add">Hinzufügen</button>
+        </div>
+        <div class="game-edit__target-score">
+          <label for="game-edit-add-starting-score" data-i18n="common.game.edit.startingScoreLabel">Startpunkte</label>
+          <input type="text" inputmode="numeric" pattern="-?[0-9]*" id="game-edit-add-starting-score" data-i18n-placeholder="common.game.edit.startingScorePlaceholder" placeholder="Startpunkte (optional)">
         </div>
         <p class="error-text" id="game-edit-error" hidden></p>
       </details>

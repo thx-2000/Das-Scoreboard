@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Προσθήκη του/της {name} στο τρέχον παιχνίδι;",
         "withdrawButton": "Αποχώρηση",
         "confirmWithdraw": "Σήμανση του/της {name} ως αποχωρήσαντα/ούσα;",
-        "noPlayersAvailable": "Δεν υπάρχουν άλλοι διαθέσιμοι παίκτες"
+        "noPlayersAvailable": "Δεν υπάρχουν άλλοι διαθέσιμοι παίκτες",
+        "newPlayerLabel": "Ή δημιουργήστε νέο παίκτη",
+        "startingScoreLabel": "Πόντοι εκκίνησης"
       },
       "rematchButton": "Παίξε άλλον έναν γύρο"
     },

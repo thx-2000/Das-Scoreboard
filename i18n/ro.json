@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Chiar adaugi {name} la jocul în desfășurare?",
         "withdrawButton": "Retrage-te",
         "confirmWithdraw": "Chiar marchezi {name} ca retras?",
-        "noPlayersAvailable": "Niciun alt jucător disponibil"
+        "noPlayersAvailable": "Niciun alt jucător disponibil",
+        "newPlayerLabel": "Sau creează un jucător nou",
+        "startingScoreLabel": "Puncte de start"
       },
       "rematchButton": "Joacă încă o rundă"
     },

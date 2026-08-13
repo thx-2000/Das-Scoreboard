@@ -84,7 +84,9 @@
         "confirmAddPlayer": "An bhfuil tú cinnte gur mian leat {name} a chur leis an gcluiche atá ar siúl?",
         "withdrawButton": "Éirigh as",
         "confirmWithdraw": "An bhfuil tú cinnte gur mian leat {name} a mharcáil mar dhuine atá éirithe as?",
-        "noPlayersAvailable": "Níl imreoirí eile ar fáil"
+        "noPlayersAvailable": "Níl imreoirí eile ar fáil",
+        "newPlayerLabel": "Nó cruthaigh imreoir nua",
+        "startingScoreLabel": "Pointí tosaigh"
       },
       "rematchButton": "Imir babhta eile"
     },

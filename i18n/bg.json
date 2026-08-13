@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Наистина ли да се добави {name} към текущата игра?",
         "withdrawButton": "Отказване",
         "confirmWithdraw": "Наистина ли {name} да се отбележи като оттеглен?",
-        "noPlayersAvailable": "Няма повече налични играчи"
+        "noPlayersAvailable": "Няма повече налични играчи",
+        "newPlayerLabel": "Или създай нов играч",
+        "startingScoreLabel": "Начални точки"
       },
       "rematchButton": "Играй още един кръг"
     },

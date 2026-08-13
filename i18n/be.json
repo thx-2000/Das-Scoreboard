@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Сапраўды дадаць {name} у бягучую гульню?",
         "withdrawButton": "Выбыць",
         "confirmWithdraw": "Сапраўды пазначыць {name} як выбылага?",
-        "noPlayersAvailable": "Больш няма даступных гульцоў"
+        "noPlayersAvailable": "Больш няма даступных гульцоў",
+        "newPlayerLabel": "Або стварыць новага гульца",
+        "startingScoreLabel": "Пачатковыя ачкі"
       },
       "rematchButton": "Гуляць яшчэ адзін раунд"
     },

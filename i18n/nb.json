@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Er du sikker på at du vil legge til {name} i det pågående spillet?",
         "withdrawButton": "Trekk seg",
         "confirmWithdraw": "Er du sikker på at du vil markere {name} som avhoppet?",
-        "noPlayersAvailable": "Ingen flere spillere tilgjengelig"
+        "noPlayersAvailable": "Ingen flere spillere tilgjengelig",
+        "newPlayerLabel": "Eller opprett en ny spiller",
+        "startingScoreLabel": "Startpoeng"
       },
       "rematchButton": "Spill en runde til"
     },

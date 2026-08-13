@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Adicionar mesmo {name} ao jogo em curso?",
         "withdrawButton": "Desistir",
         "confirmWithdraw": "Marcar mesmo {name} como desistente?",
-        "noPlayersAvailable": "Não há mais jogadores disponíveis"
+        "noPlayersAvailable": "Não há mais jogadores disponíveis",
+        "newPlayerLabel": "Ou criar um novo jogador",
+        "startingScoreLabel": "Pontos iniciais"
       },
       "rematchButton": "Jogar outra rodada"
     },

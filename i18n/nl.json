@@ -84,7 +84,9 @@
         "confirmAddPlayer": "{name} echt aan het lopende spel toevoegen?",
         "withdrawButton": "Uitstappen",
         "confirmWithdraw": "{name} echt als uitgestapt markeren?",
-        "noPlayersAvailable": "Geen andere spelers beschikbaar"
+        "noPlayersAvailable": "Geen andere spelers beschikbaar",
+        "newPlayerLabel": "Of nieuwe speler aanmaken",
+        "startingScoreLabel": "Startpunten"
       },
       "rematchButton": "Nog een ronde spelen"
     },

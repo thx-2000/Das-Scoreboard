@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Дійсно додати {name} до поточної гри?",
         "withdrawButton": "Вибути",
         "confirmWithdraw": "Дійсно позначити {name} як вибулого?",
-        "noPlayersAvailable": "Більше немає доступних гравців"
+        "noPlayersAvailable": "Більше немає доступних гравців",
+        "newPlayerLabel": "Або створити нового гравця",
+        "startingScoreLabel": "Початкові очки"
       },
       "rematchButton": "Зіграти ще один раунд"
     },

@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Res dodati {name} v trenutno igro?",
         "withdrawButton": "Izstopi",
         "confirmWithdraw": "Res označiti {name} kot izstopil/-a?",
-        "noPlayersAvailable": "Ni več razpoložljivih igralcev"
+        "noPlayersAvailable": "Ni več razpoložljivih igralcev",
+        "newPlayerLabel": "Ali ustvari novega igralca",
+        "startingScoreLabel": "Začetne točke"
       },
       "rematchButton": "Igraj še eno rundo"
     },

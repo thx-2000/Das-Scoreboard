@@ -84,7 +84,9 @@
         "confirmAddPlayer": "¿Añadir de verdad a {name} a la partida en curso?",
         "withdrawButton": "Retirarse",
         "confirmWithdraw": "¿Marcar de verdad a {name} como retirado?",
-        "noPlayersAvailable": "No hay más jugadores disponibles"
+        "noPlayersAvailable": "No hay más jugadores disponibles",
+        "newPlayerLabel": "O crear un jugador nuevo",
+        "startingScoreLabel": "Puntos iniciales"
       },
       "rematchButton": "Jugar otra ronda"
     },

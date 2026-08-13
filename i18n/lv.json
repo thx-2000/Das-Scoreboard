@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Vai tiešām pievienot {name} notiekošajai spēlei?",
         "withdrawButton": "Izstāties",
         "confirmWithdraw": "Vai tiešām atzīmēt {name} kā izstājušos?",
-        "noPlayersAvailable": "Nav pieejami citi spēlētāji"
+        "noPlayersAvailable": "Nav pieejami citi spēlētāji",
+        "newPlayerLabel": "Vai izveidot jaunu spēlētāju",
+        "startingScoreLabel": "Sākuma punkti"
       },
       "rematchButton": "Spēlēt vēl vienu kārtu"
     },

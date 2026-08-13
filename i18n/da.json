@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Vil du virkelig tilføje {name} til det igangværende spil?",
         "withdrawButton": "Udgå",
         "confirmWithdraw": "Vil du virkelig markere {name} som udgået?",
-        "noPlayersAvailable": "Ingen flere spillere tilgængelige"
+        "noPlayersAvailable": "Ingen flere spillere tilgængelige",
+        "newPlayerLabel": "Eller opret en ny spiller",
+        "startingScoreLabel": "Startpoint"
       },
       "rematchButton": "Spil endnu en runde"
     },

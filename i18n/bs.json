@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Stvarno dodati {name} u trenutnu igru?",
         "withdrawButton": "Odustani",
         "confirmWithdraw": "Stvarno označiti {name} kao odustao?",
-        "noPlayersAvailable": "Nema više dostupnih igrača"
+        "noPlayersAvailable": "Nema više dostupnih igrača",
+        "newPlayerLabel": "Ili napravi novog igrača",
+        "startingScoreLabel": "Početni bodovi"
       },
       "rematchButton": "Igraj još jednu rundu"
     },

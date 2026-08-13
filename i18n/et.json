@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Kas tõesti lisada {name} pooleliolevasse mängu?",
         "withdrawButton": "Loobu",
         "confirmWithdraw": "Kas tõesti märkida {name} loobunuks?",
-        "noPlayersAvailable": "Rohkem mängijaid pole saadaval"
+        "noPlayersAvailable": "Rohkem mängijaid pole saadaval",
+        "newPlayerLabel": "Või loo uus mängija",
+        "startingScoreLabel": "Algpunktid"
       },
       "rematchButton": "Mängi veel üks voor"
     },

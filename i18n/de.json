@@ -84,7 +84,9 @@
         "confirmAddPlayer": "{name} wirklich zum laufenden Spiel hinzufügen?",
         "withdrawButton": "Ausscheiden",
         "confirmWithdraw": "{name} wirklich als ausgeschieden markieren?",
-        "noPlayersAvailable": "Keine weiteren Spieler verfügbar"
+        "noPlayersAvailable": "Keine weiteren Spieler verfügbar",
+        "newPlayerLabel": "Oder neuen Spieler anlegen",
+        "startingScoreLabel": "Startpunkte"
       },
       "rematchButton": "Weitere Runde spielen"
     },

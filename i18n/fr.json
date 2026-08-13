@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Vraiment ajouter {name} à la partie en cours ?",
         "withdrawButton": "Se retirer",
         "confirmWithdraw": "Vraiment marquer {name} comme abandonné·e ?",
-        "noPlayersAvailable": "Aucun autre joueur disponible"
+        "noPlayersAvailable": "Aucun autre joueur disponible",
+        "newPlayerLabel": "Ou créer un nouveau joueur",
+        "startingScoreLabel": "Points de départ"
       },
       "rematchButton": "Jouer une autre manche"
     },

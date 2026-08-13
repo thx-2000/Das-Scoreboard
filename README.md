@@ -70,9 +70,10 @@ Beispieldaten.*
   Verlauf heraus) mit einem Klick ein neues Spiel mit denselben Spielern
   und Einstellungen vorausfüllen.
 - **Laufendes Spiel bearbeiten**: Spieler können nachträglich ausscheiden
-  (Punktestand bleibt erhalten) oder mit optionalem Startwert dazukommen,
-  bei "Punkte bis Höchstwert" lässt sich auch der Zielwert nachträglich
-  anpassen.
+  (Punktestand bleibt erhalten) oder mit optionalem Startwert dazukommen —
+  wählbar sind sowohl aktive als auch deaktivierte Spieler, alternativ lässt
+  sich direkt ein neuer Name anlegen. Bei "Punkte bis Höchstwert" lässt sich
+  auch der Zielwert nachträglich anpassen.
 - **"Wer fängt an?"**: Multitouch-Fingerauswahl für iPad/iPhone.
 - **Mehrsprachig**: 32 Sprachen (u.a. Deutsch, Englisch, Französisch,
   Spanisch, Italienisch und die meisten weiteren europäischen Sprachen),
@@ -253,8 +254,10 @@ data.*
   list), prefill a new game with the same players and settings in one
   click.
 - **Edit a running game**: players can withdraw later on (their score
-  stays on the board) or join mid-game with an optional starting score;
-  for "Points to target" the target score can be changed too.
+  stays on the board) or join mid-game with an optional starting score —
+  both active and deactivated players can be picked, or a brand-new name
+  entered directly. For "Points to target" the target score can be
+  changed too.
 - **"Who starts?"**: a multitouch finger-picker for iPad/iPhone.
 - **Multi-language**: 32 languages (German, English, French, Spanish,
   Italian, and most other European languages), switchable in settings.

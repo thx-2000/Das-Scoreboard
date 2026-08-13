@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Verament iżżid lil {name} mal-logħba li għaddejja?",
         "withdrawButton": "Irtira",
         "confirmWithdraw": "Verament timmarka lil {name} bħala irtirat?",
-        "noPlayersAvailable": "L-ebda plejer ieħor disponibbli"
+        "noPlayersAvailable": "L-ebda plejer ieħor disponibbli",
+        "newPlayerLabel": "Jew oħloq plejer ġdid",
+        "startingScoreLabel": "Punti tal-bidu"
       },
       "rematchButton": "Ilgħab logħba oħra"
     },

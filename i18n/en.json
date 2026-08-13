@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Really add {name} to the ongoing game?",
         "withdrawButton": "Withdraw",
         "confirmWithdraw": "Really mark {name} as withdrawn?",
-        "noPlayersAvailable": "No more players available"
+        "noPlayersAvailable": "No more players available",
+        "newPlayerLabel": "Or create a new player",
+        "startingScoreLabel": "Starting points"
       },
       "rematchButton": "Play another round"
     },

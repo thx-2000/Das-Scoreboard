@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Aggiungere davvero {name} alla partita in corso?",
         "withdrawButton": "Ritirati",
         "confirmWithdraw": "Segnare davvero {name} come ritirato?",
-        "noPlayersAvailable": "Nessun altro giocatore disponibile"
+        "noPlayersAvailable": "Nessun altro giocatore disponibile",
+        "newPlayerLabel": "Oppure crea un nuovo giocatore",
+        "startingScoreLabel": "Punti di partenza"
       },
       "rematchButton": "Gioca un'altra partita"
     },

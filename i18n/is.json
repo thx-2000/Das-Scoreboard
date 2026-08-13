@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Bæta {name} virkilega við leikinn sem stendur yfir?",
         "withdrawButton": "Hætta",
         "confirmWithdraw": "Merkja {name} sem hætt(a) í leiknum?",
-        "noPlayersAvailable": "Engir fleiri leikmenn í boði"
+        "noPlayersAvailable": "Engir fleiri leikmenn í boði",
+        "newPlayerLabel": "Eða búa til nýjan leikmann",
+        "startingScoreLabel": "Byrjunarstig"
       },
       "rematchButton": "Spila aðra umferð"
     },

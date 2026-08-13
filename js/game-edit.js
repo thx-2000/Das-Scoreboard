@@ -67,6 +67,41 @@ function initGameEdit(gameId, onUpdated, showTargetScore) {
     onUpdated(data);
   });
 
+  // Neuen Spieler direkt aus dem laufenden Spiel heraus anlegen, statt erst
+  // ueber die Spielerverwaltung gehen zu muessen (gleiches Muster wie
+  // addPlayerInlineBtn in den setup.js-Dateien) - nutzt denselben
+  // Startpunkte-Wert wie die Auswahl oben.
+  const newPlayerNameInput = document.getElementById('game-edit-new-player-name');
+  const newPlayerBtn = document.getElementById('game-edit-new-player-btn');
+  newPlayerBtn.addEventListener('click', async () => {
+    const name = newPlayerNameInput.value.trim();
+    if (!name) return;
+    if (!window.confirm(window.t('common.game.edit.confirmAddPlayer', { name }))) return;
+    gameEditClearError();
+
+    const createResponse = await fetch('/api/players.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name }),
+    });
+    const createData = await createResponse.json();
+    if (!createResponse.ok) { gameEditShowError(createData.error); return; }
+    const newPlayer = createData.find((p) => p.name === name);
+    if (!newPlayer) return;
+
+    const startingScore = parseInt(addStartingScoreInput.value, 10) || 0;
+    const response = await fetch('/api/game-players.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gameId, playerId: newPlayer.id, startingScore }),
+    });
+    const data = await response.json();
+    if (!response.ok) { gameEditShowError(data.error); return; }
+    newPlayerNameInput.value = '';
+    addStartingScoreInput.value = '';
+    onUpdated(data);
+  });
+
   playerList.addEventListener('click', async (event) => {
     const btn = event.target.closest('button[data-withdraw-player-id]');
     if (!btn) return;
@@ -125,14 +160,19 @@ async function renderGameEditPanel(state) {
 
   const addSelect = document.getElementById('game-edit-add-select');
   const addBtn = document.getElementById('game-edit-add-btn');
-  const response = await fetch('/api/players.php');
+  // ?all=1 liefert auch deaktivierte Spieler mit (siehe api/players.php) -
+  // die duerfen mitspielen (Backend prueft beim Hinzufuegen nur deleted_at,
+  // nicht active), erscheinen aber in einer eigenen Gruppe unten, damit klar
+  // bleibt, dass sie regulaer nicht in der Schnellauswahl auftauchen.
+  const response = await fetch('/api/players.php?all=1');
   if (!response.ok) return;
-  const allActivePlayers = await response.json();
+  const allPlayers = await response.json();
   const inGameIds = new Set(activePlayers.map((p) => p.id));
-  const available = allActivePlayers.filter((p) => !inGameIds.has(p.id));
+  const availableActive = allPlayers.filter((p) => p.active && !inGameIds.has(p.id));
+  const availableInactive = allPlayers.filter((p) => !p.active && !inGameIds.has(p.id));
 
   addSelect.innerHTML = '';
-  if (available.length === 0) {
+  if (availableActive.length === 0 && availableInactive.length === 0) {
     const opt = document.createElement('option');
     opt.textContent = window.t('common.game.edit.noPlayersAvailable');
     opt.disabled = true;
@@ -141,12 +181,21 @@ async function renderGameEditPanel(state) {
     return;
   }
   addBtn.disabled = false;
-  available.forEach((p) => {
-    const opt = document.createElement('option');
-    opt.value = p.id;
-    opt.textContent = p.name;
-    addSelect.appendChild(opt);
-  });
+
+  function appendGroup(players, labelKey) {
+    if (players.length === 0) return;
+    const group = document.createElement('optgroup');
+    group.label = window.t(labelKey);
+    players.forEach((p) => {
+      const opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = p.name;
+      group.appendChild(opt);
+    });
+    addSelect.appendChild(group);
+  }
+  appendGroup(availableActive, 'players.active.heading');
+  appendGroup(availableInactive, 'players.inactive.heading');
 }
 
 window.initGameEdit = initGameEdit;

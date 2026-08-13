@@ -84,7 +84,9 @@
         "confirmAddPlayer": "Tényleg hozzáadod {name} nevű játékost a folyamatban lévő játékhoz?",
         "withdrawButton": "Kiszállás",
         "confirmWithdraw": "Tényleg kiszállóként jelölöd {name} nevű játékost?",
-        "noPlayersAvailable": "Nincs több elérhető játékos"
+        "noPlayersAvailable": "Nincs több elérhető játékos",
+        "newPlayerLabel": "Vagy hozz létre új játékost",
+        "startingScoreLabel": "Kezdőpontok"
       },
       "rematchButton": "Még egy kör játék"
     },

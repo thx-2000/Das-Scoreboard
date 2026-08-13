@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Collapse",
         "expand": "Show",
-        "teamTotalSuffix": "points total"
+        "teamTotalSuffix": "points total",
+        "withdrawnBadge": "Withdrawn"
       },
       "startingPlayerLegend": "★ Starting player (random)",
       "startedSuffix": "started {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Undo last round"
       },
       "noPlayersHint": "No players yet — add one below.",
-      "roundEntryHintGeneric": "Enter this round's points per player (0 is normal)."
+      "roundEntryHintGeneric": "Enter this round's points per player (0 is normal).",
+      "edit": {
+        "summary": "Edit game",
+        "targetScoreLabel": "Target score",
+        "playersHeading": "Participants",
+        "addPlayerLabel": "Add player",
+        "startingScorePlaceholder": "Starting points (optional)",
+        "confirmTargetScore": "Really change the target score to {value} points?",
+        "confirmAddPlayer": "Really add {name} to the ongoing game?",
+        "withdrawButton": "Withdraw",
+        "confirmWithdraw": "Really mark {name} as withdrawn?",
+        "noPlayersAvailable": "No more players available"
+      },
+      "rematchButton": "Play another round"
     },
     "setup": {
       "heading": "Set up game",

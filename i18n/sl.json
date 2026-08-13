@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Strni",
         "expand": "Prikaži",
-        "teamTotalSuffix": "točk skupaj"
+        "teamTotalSuffix": "točk skupaj",
+        "withdrawnBadge": "Izstopil"
       },
       "startingPlayerLegend": "★ Igralec, ki začne (naključno)",
       "startedSuffix": "začeto {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Razveljavi zadnji krog"
       },
       "noPlayersHint": "Še ni igralcev — dodajte enega spodaj.",
-      "roundEntryHintGeneric": "Vnesite točke tega kroga za vsakega igralca (0 je normalno)."
+      "roundEntryHintGeneric": "Vnesite točke tega kroga za vsakega igralca (0 je normalno).",
+      "edit": {
+        "summary": "Uredi igro",
+        "targetScoreLabel": "Ciljni rezultat",
+        "playersHeading": "Udeleženci",
+        "addPlayerLabel": "Dodaj igralca",
+        "startingScorePlaceholder": "Začetne točke (neobvezno)",
+        "confirmTargetScore": "Res spremeniti cilj na {value} točk?",
+        "confirmAddPlayer": "Res dodati {name} v trenutno igro?",
+        "withdrawButton": "Izstopi",
+        "confirmWithdraw": "Res označiti {name} kot izstopil/-a?",
+        "noPlayersAvailable": "Ni več razpoložljivih igralcev"
+      },
+      "rematchButton": "Igraj še eno rundo"
     },
     "setup": {
       "heading": "Nastavi igro",

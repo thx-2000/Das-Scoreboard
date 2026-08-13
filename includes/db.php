@@ -354,6 +354,21 @@ function migrations(): array
                 $update->execute([$newIcon, $row['id']]);
             }
         },
+
+        // Live-Bearbeitung eines laufenden Spiels: Spieler koennen ausscheiden
+        // (withdrawn_at gesetzt statt geloescht, Historie/Punktestand bleiben
+        // erhalten) oder nachtraeglich dazukommen (starting_score, damit sie
+        // nicht bei 0 anfangen muessen, siehe get_totals()).
+        16 => function (PDO $pdo) {
+            $columns = $pdo->query('PRAGMA table_info(game_players)')->fetchAll(PDO::FETCH_ASSOC);
+            $existing = array_column($columns, 'name');
+            if (!in_array('withdrawn_at', $existing, true)) {
+                $pdo->exec('ALTER TABLE game_players ADD COLUMN withdrawn_at TEXT');
+            }
+            if (!in_array('starting_score', $existing, true)) {
+                $pdo->exec('ALTER TABLE game_players ADD COLUMN starting_score INTEGER NOT NULL DEFAULT 0');
+            }
+        },
     ];
 }
 

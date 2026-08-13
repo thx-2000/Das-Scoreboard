@@ -124,4 +124,31 @@ setupForm.addEventListener('submit', async (event) => {
   window.location.href = `game.php?id=${data.id}`;
 });
 
-window.scoreboardI18nReady.then(loadPlayers);
+/**
+ * "Weitere Runde spielen" (Task #156): ?fromGame=<id> uebergibt ein
+ * bestehendes RAGE-Spiel, dessen Rahmenbedingungen UND Teilnehmer
+ * vorausgefuellt werden (ein weiterer Tap bleibt trotzdem noetig, z.B. um
+ * vorher jemanden abzuwaehlen). Nur noch aktive Spieler aus dem alten Spiel
+ * werden uebernommen (nicht ausgeschieden, nicht inzwischen deaktiviert/
+ * geloescht).
+ */
+async function prefillFromGame() {
+  const fromGameId = Number(new URLSearchParams(window.location.search).get('fromGame'));
+  if (!fromGameId) return;
+
+  const response = await fetch(`/api/games.php?id=${fromGameId}`);
+  if (!response.ok) return;
+  const game = await response.json();
+  if (game.mode !== 'rage') return;
+
+  gameLabelInput.value = game.label || '';
+  document.getElementById('rage-show-bonus-malus').checked = game.rageShowBonusMalus;
+
+  const knownIds = new Set(knownPlayers.map((p) => p.id));
+  game.players
+    .filter((p) => !p.withdrawnAt && knownIds.has(p.id))
+    .forEach((p) => selectedPlayerIds.add(p.id));
+  refreshPlayerPicker();
+}
+
+window.scoreboardI18nReady.then(loadPlayers).then(prefillFromGame);

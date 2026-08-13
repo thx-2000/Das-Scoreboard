@@ -44,5 +44,17 @@ function scoreboardPlayerColorIndex(players, playerId) {
   return ((idx >= 0 ? idx : 0) % 4) + 1;
 }
 
+/**
+ * Ausgeschiedene Spieler (withdrawnAt gesetzt, siehe Migration 16) duerfen
+ * keine neuen Rundenwerte mehr bekommen, bleiben aber ueberall sonst
+ * (Punktestand, Korrektur-Tabelle, Farbindex) sichtbar - deshalb wird NICHT
+ * state.players selbst gefiltert, sondern nur an den Stellen, die eine neue
+ * Runde aufbauen, diese Filterfunktion zwischengeschaltet.
+ */
+function activeGamePlayers(players) {
+  return players.filter((p) => !p.withdrawnAt);
+}
+
 window.groupPlayersByTeam = groupPlayersByTeam;
+window.activeGamePlayers = activeGamePlayers;
 window.scoreboardPlayerColorIndex = scoreboardPlayerColorIndex;

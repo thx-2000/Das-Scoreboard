@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Fella saman",
         "expand": "Sýna",
-        "teamTotalSuffix": "stig samtals"
+        "teamTotalSuffix": "stig samtals",
+        "withdrawnBadge": "Hættur"
       },
       "startingPlayerLegend": "★ Byrjandi (af handahófi)",
       "startedSuffix": "hófst {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Afturkalla síðustu umferð"
       },
       "noPlayersHint": "Engir leikmenn ennþá — bættu einum við hér fyrir neðan.",
-      "roundEntryHintGeneric": "Sláðu inn stig þessarar umferðar fyrir hvern leikmann (0 er eðlilegt)."
+      "roundEntryHintGeneric": "Sláðu inn stig þessarar umferðar fyrir hvern leikmann (0 er eðlilegt).",
+      "edit": {
+        "summary": "Breyta leik",
+        "targetScoreLabel": "Markmiðsstig",
+        "playersHeading": "Þátttakendur",
+        "addPlayerLabel": "Bæta við leikmanni",
+        "startingScorePlaceholder": "Byrjunarstig (valfrjálst)",
+        "confirmTargetScore": "Breyta markmiðinu virkilega í {value} stig?",
+        "confirmAddPlayer": "Bæta {name} virkilega við leikinn sem stendur yfir?",
+        "withdrawButton": "Hætta",
+        "confirmWithdraw": "Merkja {name} sem hætt(a) í leiknum?",
+        "noPlayersAvailable": "Engir fleiri leikmenn í boði"
+      },
+      "rematchButton": "Spila aðra umferð"
     },
     "setup": {
       "heading": "Setja upp leik",

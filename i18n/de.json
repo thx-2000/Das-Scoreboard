@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Einklappen",
         "expand": "Anzeigen",
-        "teamTotalSuffix": "Punkte gesamt"
+        "teamTotalSuffix": "Punkte gesamt",
+        "withdrawnBadge": "Ausgeschieden"
       },
       "startingPlayerLegend": "★ Startspieler (zufällig)",
       "startedSuffix": "gestartet {date} Uhr",
@@ -72,7 +73,20 @@
         "undoButton": "Letzte Runde rückgängig"
       },
       "noPlayersHint": "Noch keine Spieler angelegt — rechts unten hinzufügen.",
-      "roundEntryHintGeneric": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal)."
+      "roundEntryHintGeneric": "Punkte der aktuellen Runde je Spieler eingeben (0 ist normal).",
+      "edit": {
+        "summary": "Spiel bearbeiten",
+        "targetScoreLabel": "Zielwert",
+        "playersHeading": "Teilnehmer",
+        "addPlayerLabel": "Spieler hinzufügen",
+        "startingScorePlaceholder": "Startpunkte (optional)",
+        "confirmTargetScore": "Zielwert wirklich auf {value} Punkte ändern?",
+        "confirmAddPlayer": "{name} wirklich zum laufenden Spiel hinzufügen?",
+        "withdrawButton": "Ausscheiden",
+        "confirmWithdraw": "{name} wirklich als ausgeschieden markieren?",
+        "noPlayersAvailable": "Keine weiteren Spieler verfügbar"
+      },
+      "rematchButton": "Weitere Runde spielen"
     },
     "setup": {
       "heading": "Spiel einrichten",

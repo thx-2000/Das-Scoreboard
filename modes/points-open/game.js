@@ -28,6 +28,7 @@ async function loadGame() {
   }
   currentState = await response.json();
   render(currentState);
+  window.initGameEdit(gameId, (newState) => { currentState = newState; render(currentState); }, false);
 }
 
 function renderHeader(state) {
@@ -57,6 +58,7 @@ function renderStandings(state) {
 
     const row = document.createElement('tr');
     if (rank === 1) row.className = 'rank-first';
+    if (player.withdrawnAt) row.classList.add('standings-row--withdrawn');
 
     const displayName = window.escapeHtml(player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name);
     // teamLabel/teamTotal gibt es nur im team_scoring "individual" (Migration
@@ -65,10 +67,13 @@ function renderStandings(state) {
     const teamHint = player.teamLabel
       ? `<div class="hint-text standings-team-hint">${window.escapeHtml(player.teamLabel)} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
       : '';
+    const withdrawnBadge = player.withdrawnAt
+      ? `<span class="badge badge--withdrawn">${window.t('common.game.standings.withdrawnBadge')}</span>`
+      : '';
 
     row.innerHTML = `
       <td>${rank}</td>
-      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div>${teamHint}</td>
+      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span>${withdrawnBadge}</div>${teamHint}</td>
       <td>${player.total}</td>
     `;
     standingsBody.appendChild(row);
@@ -95,16 +100,19 @@ function renderStandingsCards(state) {
     const teamHint = player.teamLabel
       ? `<div class="hint-text standings-team-hint">${window.escapeHtml(player.teamLabel)} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
       : '';
+    const withdrawnBadge = player.withdrawnAt
+      ? `<span class="badge badge--withdrawn">${window.t('common.game.standings.withdrawnBadge')}</span>`
+      : '';
     const anchorId = player.memberIds && player.memberIds.length ? player.memberIds[0] : player.id;
     const colorIndex = window.scoreboardPlayerColorIndex(state.players, anchorId);
 
     const card = document.createElement('div');
-    card.className = 'standings-card';
+    card.className = player.withdrawnAt ? 'standings-card standings-row--withdrawn' : 'standings-card';
     card.dataset.playerColor = colorIndex;
     card.innerHTML = `
       <div class="standings-card__rank">${rank}</div>
       <div class="standings-card__info">
-        <div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div>
+        <div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span>${withdrawnBadge}</div>
         ${teamHint}
       </div>
       <div class="standings-card__points">${player.total}</div>
@@ -124,11 +132,17 @@ function renderWinnerBanner(state) {
     ? window.t('common.game.winnerBanner.multi', { names, points: state.winners[0].total })
     : window.t('common.game.winnerBanner.single', { names, points: state.winners[0].total });
   winnerBannerWrap.appendChild(banner);
+
+  const rematchLink = document.createElement('a');
+  rematchLink.href = `setup.php?fromGame=${state.id}`;
+  rematchLink.className = 'btn btn--secondary';
+  rematchLink.textContent = window.t('common.game.rematchButton');
+  winnerBannerWrap.appendChild(rematchLink);
 }
 
 function renderRoundEntryForm(state) {
   roundEntryCard.hidden = state.status === 'finished';
-  window.renderRoundEntryFields(roundFormGrid, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative, state.roundEntrySteps);
+  window.renderRoundEntryFields(roundFormGrid, window.groupPlayersByTeam(window.activeGamePlayers(state.players), state.teamScoring), state.allowNegative, state.roundEntrySteps);
 }
 
 /**
@@ -142,7 +156,7 @@ function renderRoundEntrySequence(state) {
     roundEntrySequence.innerHTML = '';
     return;
   }
-  window.buildRoundEntryPicker(roundEntrySequence, window.groupPlayersByTeam(state.players, state.teamScoring), state.players, state.allowNegative, state.roundEntrySteps);
+  window.buildRoundEntryPicker(roundEntrySequence, window.groupPlayersByTeam(window.activeGamePlayers(state.players), state.teamScoring), state.players, state.allowNegative, state.roundEntrySteps);
 }
 
 /**
@@ -154,7 +168,7 @@ function renderRoundEntryFlip(state) {
     roundEntryFlip.innerHTML = '';
     return;
   }
-  window.buildFlipRoundEntry(roundEntryFlip, window.groupPlayersByTeam(state.players, state.teamScoring), state.allowNegative, state.roundEntrySteps);
+  window.buildFlipRoundEntry(roundEntryFlip, window.groupPlayersByTeam(window.activeGamePlayers(state.players), state.teamScoring), state.allowNegative, state.roundEntrySteps);
 }
 
 function renderRoundsTable(state) {
@@ -253,6 +267,7 @@ function render(state) {
   renderRoundEntryFlip(state);
   renderRoundsTable(state);
   renderUndoButton(state);
+  window.renderGameEditPanel(state);
 }
 
 function undoLastRound() {

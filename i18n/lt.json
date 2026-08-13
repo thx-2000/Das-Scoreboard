@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Suskleisti",
         "expand": "Rodyti",
-        "teamTotalSuffix": "taškai iš viso"
+        "teamTotalSuffix": "taškai iš viso",
+        "withdrawnBadge": "Pasitraukęs"
       },
       "startingPlayerLegend": "★ Pradedantis žaidėjas (atsitiktinai)",
       "startedSuffix": "pradėta {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Anuliuoti paskutinį raundą"
       },
       "noPlayersHint": "Dar nėra žaidėjų — pridėkite vieną žemiau.",
-      "roundEntryHintGeneric": "Įveskite šio raundo taškus kiekvienam žaidėjui (0 yra normalu)."
+      "roundEntryHintGeneric": "Įveskite šio raundo taškus kiekvienam žaidėjui (0 yra normalu).",
+      "edit": {
+        "summary": "Redaguoti žaidimą",
+        "targetScoreLabel": "Tikslo taškai",
+        "playersHeading": "Dalyviai",
+        "addPlayerLabel": "Pridėti žaidėją",
+        "startingScorePlaceholder": "Pradiniai taškai (neprivaloma)",
+        "confirmTargetScore": "Tikrai pakeisti tikslą į {value} taškų?",
+        "confirmAddPlayer": "Tikrai pridėti {name} prie vykstančio žaidimo?",
+        "withdrawButton": "Pasitraukti",
+        "confirmWithdraw": "Tikrai pažymėti {name} kaip pasitraukusį?",
+        "noPlayersAvailable": "Daugiau žaidėjų nėra"
+      },
+      "rematchButton": "Žaisti dar vieną raundą"
     },
     "setup": {
       "heading": "Nustatyti žaidimą",

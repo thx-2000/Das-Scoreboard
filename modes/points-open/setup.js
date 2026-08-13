@@ -160,5 +160,37 @@ async function prefillFromPreset() {
   window.renderRoundEntryStepsField(roundEntryStepsField, preset.roundEntrySteps);
 }
 
-window.scoreboardI18nReady.then(loadPlayers);
+/**
+ * "Weitere Runde spielen" (Task #156): ?fromGame=<id> uebergibt ein
+ * bestehendes Spiel, dessen Rahmenbedingungen UND Teilnehmer vorausgefuellt
+ * werden - anders als bei der Preset-Vorbelegung oben werden hier bewusst
+ * auch die Spieler vorausgewaehlt (genau das ist der Zweck des Knopfes, ein
+ * weiterer Tap bleibt trotzdem noetig, z.B. um vorher jemanden abzuwaehlen).
+ * Nur noch aktive Spieler aus dem alten Spiel werden uebernommen (nicht
+ * ausgeschieden, nicht inzwischen deaktiviert/geloescht). Team-Zuordnung wird
+ * bewusst NICHT wiederhergestellt (bleibt wie bei einem neuen Spiel ein
+ * eigener, manueller Schritt - siehe js/team-setup.js).
+ */
+async function prefillFromGame() {
+  const fromGameId = Number(new URLSearchParams(window.location.search).get('fromGame'));
+  if (!fromGameId) return;
+
+  const response = await fetch(`/api/games.php?id=${fromGameId}`);
+  if (!response.ok) return;
+  const game = await response.json();
+  if (game.mode !== 'points_open') return;
+
+  gameLabelInput.value = game.label || '';
+  document.querySelector(`input[name="win-direction"][value="${game.winDirection}"]`).checked = true;
+  document.getElementById('allow-negative').checked = game.allowNegative;
+  window.renderRoundEntryStepsField(roundEntryStepsField, game.roundEntrySteps);
+
+  const knownIds = new Set(knownPlayers.map((p) => p.id));
+  game.players
+    .filter((p) => !p.withdrawnAt && knownIds.has(p.id))
+    .forEach((p) => selectedPlayerIds.add(p.id));
+  refreshPlayerPicker();
+}
+
+window.scoreboardI18nReady.then(loadPlayers).then(prefillFromGame);
 window.scoreboardI18nReady.then(prefillFromPreset);

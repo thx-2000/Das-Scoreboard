@@ -167,6 +167,14 @@ if ($method === 'PATCH' && $id !== null) {
     if (array_key_exists('extendRounds', $body)) {
         extend_total_rounds($pdo, $id, (int) $body['extendRounds']);
     }
+    // Live-Bearbeitung eines laufenden Spiels (Migration 16) - Frontend zeigt
+    // das Zielwert-Feld nur bei "Punkte bis Hoechstwert" an, serverseitig
+    // bewusst kein Modus-Check, damit dieser PATCH-Zweig generisch bleibt.
+    if (array_key_exists('targetScore', $body)) {
+        $pdo->prepare('UPDATE games SET target_score = ? WHERE id = ?')
+            ->execute([max(0, (int) $body['targetScore']), $id]);
+        recompute_game_status($pdo, $id);
+    }
 
     send_json(build_game_state($pdo, $id));
 }

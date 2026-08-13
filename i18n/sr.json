@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Скупи",
         "expand": "Прикажи",
-        "teamTotalSuffix": "поена укупно"
+        "teamTotalSuffix": "поена укупно",
+        "withdrawnBadge": "Одустао"
       },
       "startingPlayerLegend": "★ Играч који почиње (случајно)",
       "startedSuffix": "започето {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Поништи последњи круг"
       },
       "noPlayersHint": "Још нема играча — додајте једног испод.",
-      "roundEntryHintGeneric": "Унесите поене овог круга по играчу (0 је нормално)."
+      "roundEntryHintGeneric": "Унесите поене овог круга по играчу (0 је нормално).",
+      "edit": {
+        "summary": "Уреди игру",
+        "targetScoreLabel": "Циљни резултат",
+        "playersHeading": "Учесници",
+        "addPlayerLabel": "Додај играча",
+        "startingScorePlaceholder": "Почетни поени (опционо)",
+        "confirmTargetScore": "Стварно променити циљ на {value} поена?",
+        "confirmAddPlayer": "Стварно додати {name} у тренутну игру?",
+        "withdrawButton": "Одустани",
+        "confirmWithdraw": "Стварно означити {name} као одустао?",
+        "noPlayersAvailable": "Нема више доступних играча"
+      },
+      "rematchButton": "Играј још једну рунду"
     },
     "setup": {
       "heading": "Подеси игру",

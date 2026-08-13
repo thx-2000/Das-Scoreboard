@@ -66,6 +66,13 @@ Beispieldaten.*
 - **Verlauf & Statistiken**: alle Spiele mit Filter nach Status, dazu eine
   Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
   Zeitraumfilter (inkl. Drucken/PDF).
+- **Weitere Runde spielen**: nach Spielende (oder auch später aus dem
+  Verlauf heraus) mit einem Klick ein neues Spiel mit denselben Spielern
+  und Einstellungen vorausfüllen.
+- **Laufendes Spiel bearbeiten**: Spieler können nachträglich ausscheiden
+  (Punktestand bleibt erhalten) oder mit optionalem Startwert dazukommen,
+  bei "Punkte bis Höchstwert" lässt sich auch der Zielwert nachträglich
+  anpassen.
 - **"Wer fängt an?"**: Multitouch-Fingerauswahl für iPad/iPhone.
 - **Mehrsprachig**: 32 Sprachen (u.a. Deutsch, Englisch, Französisch,
   Spanisch, Italienisch und die meisten weiteren europäischen Sprachen),
@@ -242,6 +249,12 @@ data.*
 - **History & statistics**: all games with a status filter, plus a stats
   page with win rates, head-to-head comparisons, and a date-range filter
   (including print/PDF).
+- **Play another round**: after a game ends (or later from the history
+  list), prefill a new game with the same players and settings in one
+  click.
+- **Edit a running game**: players can withdraw later on (their score
+  stays on the board) or join mid-game with an optional starting score;
+  for "Points to target" the target score can be changed too.
 - **"Who starts?"**: a multitouch finger-picker for iPad/iPhone.
 - **Multi-language**: 32 languages (German, English, French, Spanish,
   Italian, and most other European languages), switchable in settings.

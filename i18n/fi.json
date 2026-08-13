@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Pienennä",
         "expand": "Näytä",
-        "teamTotalSuffix": "pistettä yhteensä"
+        "teamTotalSuffix": "pistettä yhteensä",
+        "withdrawnBadge": "Pudonnut"
       },
       "startingPlayerLegend": "★ Aloittava pelaaja (satunnainen)",
       "startedSuffix": "aloitettu {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Kumoa viimeisin kierros"
       },
       "noPlayersHint": "Ei vielä pelaajia — lisää yksi alta.",
-      "roundEntryHintGeneric": "Syötä tämän kierroksen pisteet pelaajaa kohden (0 on normaali)."
+      "roundEntryHintGeneric": "Syötä tämän kierroksen pisteet pelaajaa kohden (0 on normaali).",
+      "edit": {
+        "summary": "Muokkaa peliä",
+        "targetScoreLabel": "Tavoitepisteet",
+        "playersHeading": "Osallistujat",
+        "addPlayerLabel": "Lisää pelaaja",
+        "startingScorePlaceholder": "Aloituspisteet (valinnainen)",
+        "confirmTargetScore": "Vaihdetaanko tavoite todella arvoon {value} pistettä?",
+        "confirmAddPlayer": "Lisätäänkö {name} todella käynnissä olevaan peliin?",
+        "withdrawButton": "Jätä kesken",
+        "confirmWithdraw": "Merkitäänkö {name} todella pudonneeksi?",
+        "noPlayersAvailable": "Ei muita pelaajia saatavilla"
+      },
+      "rematchButton": "Pelaa vielä yksi kierros"
     },
     "setup": {
       "heading": "Pelin asetukset",

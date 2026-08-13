@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Згорнути",
         "expand": "Показати",
-        "teamTotalSuffix": "очок всього"
+        "teamTotalSuffix": "очок всього",
+        "withdrawnBadge": "Вибув"
       },
       "startingPlayerLegend": "★ Гравець, який починає (випадково)",
       "startedSuffix": "розпочато {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Скасувати останній раунд"
       },
       "noPlayersHint": "Ще немає гравців — додайте одного нижче.",
-      "roundEntryHintGeneric": "Введіть очки цього раунду для кожного гравця (0 — це нормально)."
+      "roundEntryHintGeneric": "Введіть очки цього раунду для кожного гравця (0 — це нормально).",
+      "edit": {
+        "summary": "Редагувати гру",
+        "targetScoreLabel": "Цільовий рахунок",
+        "playersHeading": "Учасники",
+        "addPlayerLabel": "Додати гравця",
+        "startingScorePlaceholder": "Початкові очки (необов'язково)",
+        "confirmTargetScore": "Дійсно змінити ціль на {value} очок?",
+        "confirmAddPlayer": "Дійсно додати {name} до поточної гри?",
+        "withdrawButton": "Вибути",
+        "confirmWithdraw": "Дійсно позначити {name} як вибулого?",
+        "noPlayersAvailable": "Більше немає доступних гравців"
+      },
+      "rematchButton": "Зіграти ще один раунд"
     },
     "setup": {
       "heading": "Налаштувати гру",

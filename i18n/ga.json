@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Laghdaigh",
         "expand": "Taispeáin",
-        "teamTotalSuffix": "pointe san iomlán"
+        "teamTotalSuffix": "pointe san iomlán",
+        "withdrawnBadge": "Éirithe as"
       },
       "startingPlayerLegend": "★ Imreoir tosaigh (randamach)",
       "startedSuffix": "tosaithe {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Cealaigh an babhta deireanach"
       },
       "noPlayersHint": "Níl aon imreoirí ann fós — cuir ceann leis thíos.",
-      "roundEntryHintGeneric": "Cuir isteach pointí an bhabhta seo in aghaidh an imreora (is gnách 0)."
+      "roundEntryHintGeneric": "Cuir isteach pointí an bhabhta seo in aghaidh an imreora (is gnách 0).",
+      "edit": {
+        "summary": "Cuir cluiche in eagar",
+        "targetScoreLabel": "Scór sprice",
+        "playersHeading": "Rannpháirtithe",
+        "addPlayerLabel": "Cuir imreoir leis",
+        "startingScorePlaceholder": "Pointí tosaigh (roghnach)",
+        "confirmTargetScore": "An bhfuil tú cinnte gur mian leat an sprioc a athrú go {value} pointe?",
+        "confirmAddPlayer": "An bhfuil tú cinnte gur mian leat {name} a chur leis an gcluiche atá ar siúl?",
+        "withdrawButton": "Éirigh as",
+        "confirmWithdraw": "An bhfuil tú cinnte gur mian leat {name} a mharcáil mar dhuine atá éirithe as?",
+        "noPlayersAvailable": "Níl imreoirí eile ar fáil"
+      },
+      "rematchButton": "Imir babhta eile"
     },
     "setup": {
       "heading": "Socraigh an cluiche",

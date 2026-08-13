@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Összecsukás",
         "expand": "Megjelenítés",
-        "teamTotalSuffix": "pont összesen"
+        "teamTotalSuffix": "pont összesen",
+        "withdrawnBadge": "Kiszállt"
       },
       "startingPlayerLegend": "★ Kezdőjátékos (véletlenszerű)",
       "startedSuffix": "kezdve: {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Utolsó kör visszavonása"
       },
       "noPlayersHint": "Még nincs játékos — adj hozzá egyet alább.",
-      "roundEntryHintGeneric": "Add meg ennek a körnek a pontjait játékosonként (0 normális)."
+      "roundEntryHintGeneric": "Add meg ennek a körnek a pontjait játékosonként (0 normális).",
+      "edit": {
+        "summary": "Játék szerkesztése",
+        "targetScoreLabel": "Célpontszám",
+        "playersHeading": "Résztvevők",
+        "addPlayerLabel": "Játékos hozzáadása",
+        "startingScorePlaceholder": "Kezdőpontok (opcionális)",
+        "confirmTargetScore": "Tényleg {value} pontra változtatod a célt?",
+        "confirmAddPlayer": "Tényleg hozzáadod {name} nevű játékost a folyamatban lévő játékhoz?",
+        "withdrawButton": "Kiszállás",
+        "confirmWithdraw": "Tényleg kiszállóként jelölöd {name} nevű játékost?",
+        "noPlayersAvailable": "Nincs több elérhető játékos"
+      },
+      "rematchButton": "Még egy kör játék"
     },
     "setup": {
       "heading": "Játék beállítása",

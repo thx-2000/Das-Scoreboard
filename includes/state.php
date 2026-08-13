@@ -163,16 +163,18 @@ function get_winner_ids(PDO $pdo, array $game): array
 function get_totals(PDO $pdo, int $gameId): array
 {
     $players = $pdo->prepare('
-        SELECT p.id FROM game_players gp
+        SELECT p.id, gp.starting_score FROM game_players gp
         JOIN players p ON p.id = gp.player_id
         WHERE gp.game_id = ?
     ');
     $players->execute([$gameId]);
-    $playerIds = array_column($players->fetchAll(PDO::FETCH_ASSOC), 'id');
 
+    // starting_score (Migration 16): Spieler, die nachtraeglich zu einem
+    // laufenden Spiel dazugekommen sind, koennen statt bei 0 mit einem
+    // gewaehlten Startwert einsteigen (siehe api/game-players.php).
     $totals = [];
-    foreach ($playerIds as $id) {
-        $totals[$id] = 0;
+    foreach ($players->fetchAll(PDO::FETCH_ASSOC) as $p) {
+        $totals[(int) $p['id']] = (int) $p['starting_score'];
     }
 
     $scores = $pdo->prepare('
@@ -184,7 +186,7 @@ function get_totals(PDO $pdo, int $gameId): array
     ');
     $scores->execute([$gameId]);
     foreach ($scores->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        $totals[(int) $row['player_id']] = (int) $row['total'];
+        $totals[(int) $row['player_id']] = ($totals[(int) $row['player_id']] ?? 0) + (int) $row['total'];
     }
 
     return $totals;
@@ -230,7 +232,8 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     }
 
     $playersStmt = $pdo->prepare('
-        SELECT p.id, p.name, p.avatar_ext, gp.team_number, gp.team_name FROM game_players gp
+        SELECT p.id, p.name, p.avatar_ext, gp.team_number, gp.team_name, gp.withdrawn_at, gp.starting_score
+        FROM game_players gp
         JOIN players p ON p.id = gp.player_id
         WHERE gp.game_id = ?
         ORDER BY p.id
@@ -317,6 +320,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
                 'teamLabel' => $hasTeam ? $teamLabels[$teamNumber] : null,
                 'teamTotal' => $hasTeam ? $rankValue : null,
                 'rankValue' => $rankValue,
+                'withdrawnAt' => $p['withdrawn_at'],
             ];
         }
     } else {
@@ -354,6 +358,11 @@ function build_game_state(PDO $pdo, int $gameId): ?array
                     // bewusst kein Avatar (siehe Team-Zeile weiter oben, kein
                     // avatarExt-Feld).
                     'avatarExt' => $p['avatar_ext'],
+                    // Analog nur bei Solo-Zeilen: bei einer Team-Zeile ist nicht
+                    // eindeutig, ob "ausgeschieden" fuer das ganze Team gelten
+                    // soll, wenn nur ein Mitglied ausscheidet (Team spielt mit
+                    // den Verbleibenden einfach weiter, siehe api/game-players.php).
+                    'withdrawnAt' => $p['withdrawn_at'],
                 ];
             }
         }
@@ -427,6 +436,11 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'allowNegative' => (bool) ($game['allow_negative'] ?? 1),
         'rageShowBonusMalus' => (bool) ($game['rage_show_bonus_malus'] ?? 1),
         'roundEntrySteps' => $game['round_entry_steps'] ?? '1,5,10',
+        // withdrawnAt bleibt bewusst auch fuer ausgeschiedene Spieler in dieser
+        // Liste (nicht rausgefiltert) - Farbindex/Avatar-Zuordnung im Frontend
+        // (siehe scoreboardPlayerColorIndex()) bleiben so ueber die ganze
+        // Spieldauer stabil. Die Rundenerfassung filtert stattdessen gezielt
+        // (siehe window.activeGamePlayers() in js/round-entry.js).
         'players' => array_map(function ($p) use ($teamLabels) {
             $teamNumber = $p['team_number'] !== null ? (int) $p['team_number'] : null;
             $teamLabel = $teamNumber !== null ? ($teamLabels[$teamNumber] ?? null) : null;
@@ -436,6 +450,8 @@ function build_game_state(PDO $pdo, int $gameId): ?array
                 'avatarExt' => $p['avatar_ext'],
                 'teamNumber' => $teamLabel !== null ? $teamNumber : null,
                 'teamLabel' => $teamLabel,
+                'withdrawnAt' => $p['withdrawn_at'],
+                'startingScore' => (int) $p['starting_score'],
             ];
         }, $players),
         'rounds' => $roundsOut,

@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Inklappen",
         "expand": "Tonen",
-        "teamTotalSuffix": "punten totaal"
+        "teamTotalSuffix": "punten totaal",
+        "withdrawnBadge": "Uitgestapt"
       },
       "startingPlayerLegend": "★ Beginnende speler (willekeurig)",
       "startedSuffix": "gestart op {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Laatste ronde ongedaan maken"
       },
       "noPlayersHint": "Nog geen spelers — voeg er hieronder een toe.",
-      "roundEntryHintGeneric": "Voer de punten van deze ronde per speler in (0 is normaal)."
+      "roundEntryHintGeneric": "Voer de punten van deze ronde per speler in (0 is normaal).",
+      "edit": {
+        "summary": "Spel bewerken",
+        "targetScoreLabel": "Streefwaarde",
+        "playersHeading": "Deelnemers",
+        "addPlayerLabel": "Speler toevoegen",
+        "startingScorePlaceholder": "Startpunten (optioneel)",
+        "confirmTargetScore": "Streefwaarde echt wijzigen naar {value} punten?",
+        "confirmAddPlayer": "{name} echt aan het lopende spel toevoegen?",
+        "withdrawButton": "Uitstappen",
+        "confirmWithdraw": "{name} echt als uitgestapt markeren?",
+        "noPlayersAvailable": "Geen andere spelers beschikbaar"
+      },
+      "rematchButton": "Nog een ronde spelen"
     },
     "setup": {
       "heading": "Spel instellen",

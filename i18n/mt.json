@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Għalaq",
         "expand": "Uri",
-        "teamTotalSuffix": "punt total"
+        "teamTotalSuffix": "punt total",
+        "withdrawnBadge": "Irtirat"
       },
       "startingPlayerLegend": "★ Plejer li jibda (b'mod każwali)",
       "startedSuffix": "bdiet {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Ħassar l-aħħar rawnd"
       },
       "noPlayersHint": "Għad m'hemm l-ebda plejer — żid wieħed hawn taħt.",
-      "roundEntryHintGeneric": "Daħħal il-punti ta' dan ir-rawnd għal kull plejer (0 hu normali)."
+      "roundEntryHintGeneric": "Daħħal il-punti ta' dan ir-rawnd għal kull plejer (0 hu normali).",
+      "edit": {
+        "summary": "Editja l-logħba",
+        "targetScoreLabel": "Punteġġ mira",
+        "playersHeading": "Parteċipanti",
+        "addPlayerLabel": "Żid plejer",
+        "startingScorePlaceholder": "Punti tal-bidu (mhux obbligatorju)",
+        "confirmTargetScore": "Verament tibdel il-mira għal {value} punt?",
+        "confirmAddPlayer": "Verament iżżid lil {name} mal-logħba li għaddejja?",
+        "withdrawButton": "Irtira",
+        "confirmWithdraw": "Verament timmarka lil {name} bħala irtirat?",
+        "noPlayersAvailable": "L-ebda plejer ieħor disponibbli"
+      },
+      "rematchButton": "Ilgħab logħba oħra"
     },
     "setup": {
       "heading": "Issettja l-logħba",

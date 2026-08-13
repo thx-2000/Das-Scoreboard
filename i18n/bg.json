@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Свий",
         "expand": "Покажи",
-        "teamTotalSuffix": "точки общо"
+        "teamTotalSuffix": "точки общо",
+        "withdrawnBadge": "Оттеглен"
       },
       "startingPlayerLegend": "★ Начален играч (произволно)",
       "startedSuffix": "започната на {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Отмени последния рунд"
       },
       "noPlayersHint": "Все още няма играчи — добави един по-долу.",
-      "roundEntryHintGeneric": "Въведи точките от този рунд за всеки играч (0 е нормално)."
+      "roundEntryHintGeneric": "Въведи точките от този рунд за всеки играч (0 е нормално).",
+      "edit": {
+        "summary": "Редактиране на играта",
+        "targetScoreLabel": "Целеви резултат",
+        "playersHeading": "Участници",
+        "addPlayerLabel": "Добавяне на играч",
+        "startingScorePlaceholder": "Начални точки (незадължително)",
+        "confirmTargetScore": "Наистина ли да се промени целта на {value} точки?",
+        "confirmAddPlayer": "Наистина ли да се добави {name} към текущата игра?",
+        "withdrawButton": "Отказване",
+        "confirmWithdraw": "Наистина ли {name} да се отбележи като оттеглен?",
+        "noPlayersAvailable": "Няма повече налични играчи"
+      },
+      "rematchButton": "Играй още един кръг"
     },
     "setup": {
       "heading": "Настройка на играта",

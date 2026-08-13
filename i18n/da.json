@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Fold sammen",
         "expand": "Vis",
-        "teamTotalSuffix": "point i alt"
+        "teamTotalSuffix": "point i alt",
+        "withdrawnBadge": "Udgået"
       },
       "startingPlayerLegend": "★ Startspiller (tilfældig)",
       "startedSuffix": "startet {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Fortryd seneste runde"
       },
       "noPlayersHint": "Ingen spillere endnu — tilføj en herunder.",
-      "roundEntryHintGeneric": "Indtast denne rundes point pr. spiller (0 er normalt)."
+      "roundEntryHintGeneric": "Indtast denne rundes point pr. spiller (0 er normalt).",
+      "edit": {
+        "summary": "Rediger spil",
+        "targetScoreLabel": "Målpoint",
+        "playersHeading": "Deltagere",
+        "addPlayerLabel": "Tilføj spiller",
+        "startingScorePlaceholder": "Startpoint (valgfrit)",
+        "confirmTargetScore": "Vil du virkelig ændre målet til {value} point?",
+        "confirmAddPlayer": "Vil du virkelig tilføje {name} til det igangværende spil?",
+        "withdrawButton": "Udgå",
+        "confirmWithdraw": "Vil du virkelig markere {name} som udgået?",
+        "noPlayersAvailable": "Ingen flere spillere tilgængelige"
+      },
+      "rematchButton": "Spil endnu en runde"
     },
     "setup": {
       "heading": "Opsæt spil",

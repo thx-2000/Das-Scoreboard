@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Σύμπτυξη",
         "expand": "Εμφάνιση",
-        "teamTotalSuffix": "πόντοι συνολικά"
+        "teamTotalSuffix": "πόντοι συνολικά",
+        "withdrawnBadge": "Αποχώρησε"
       },
       "startingPlayerLegend": "★ Παίκτης που ξεκινά (τυχαία)",
       "startedSuffix": "ξεκίνησε {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Αναίρεση τελευταίου γύρου"
       },
       "noPlayersHint": "Δεν υπάρχουν ακόμη παίκτες — προσθέστε έναν παρακάτω.",
-      "roundEntryHintGeneric": "Καταχωρίστε τους πόντους αυτού του γύρου ανά παίκτη (0 είναι φυσιολογικό)."
+      "roundEntryHintGeneric": "Καταχωρίστε τους πόντους αυτού του γύρου ανά παίκτη (0 είναι φυσιολογικό).",
+      "edit": {
+        "summary": "Επεξεργασία παιχνιδιού",
+        "targetScoreLabel": "Στόχος πόντων",
+        "playersHeading": "Συμμετέχοντες",
+        "addPlayerLabel": "Προσθήκη παίκτη",
+        "startingScorePlaceholder": "Πόντοι εκκίνησης (προαιρετικό)",
+        "confirmTargetScore": "Αλλαγή στόχου σε {value} πόντους;",
+        "confirmAddPlayer": "Προσθήκη του/της {name} στο τρέχον παιχνίδι;",
+        "withdrawButton": "Αποχώρηση",
+        "confirmWithdraw": "Σήμανση του/της {name} ως αποχωρήσαντα/ούσα;",
+        "noPlayersAvailable": "Δεν υπάρχουν άλλοι διαθέσιμοι παίκτες"
+      },
+      "rematchButton": "Παίξε άλλον έναν γύρο"
     },
     "setup": {
       "heading": "Ρύθμιση παιχνιδιού",

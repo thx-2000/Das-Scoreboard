@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Réduire",
         "expand": "Afficher",
-        "teamTotalSuffix": "points au total"
+        "teamTotalSuffix": "points au total",
+        "withdrawnBadge": "Abandonné"
       },
       "startingPlayerLegend": "★ Joueur de départ (aléatoire)",
       "startedSuffix": "commencée le {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Annuler la dernière manche"
       },
       "noPlayersHint": "Pas encore de joueurs — ajoutez-en un ci-dessous.",
-      "roundEntryHintGeneric": "Saisissez les points de cette manche par joueur (0 est normal)."
+      "roundEntryHintGeneric": "Saisissez les points de cette manche par joueur (0 est normal).",
+      "edit": {
+        "summary": "Modifier la partie",
+        "targetScoreLabel": "Objectif de points",
+        "playersHeading": "Participants",
+        "addPlayerLabel": "Ajouter un joueur",
+        "startingScorePlaceholder": "Points de départ (optionnel)",
+        "confirmTargetScore": "Vraiment changer l'objectif à {value} points ?",
+        "confirmAddPlayer": "Vraiment ajouter {name} à la partie en cours ?",
+        "withdrawButton": "Se retirer",
+        "confirmWithdraw": "Vraiment marquer {name} comme abandonné·e ?",
+        "noPlayersAvailable": "Aucun autre joueur disponible"
+      },
+      "rematchButton": "Jouer une autre manche"
     },
     "setup": {
       "heading": "Configurer la partie",

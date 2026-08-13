@@ -63,6 +63,26 @@ require __DIR__ . '/../../includes/header.php';
         </table>
       </div>
     </section>
+
+    <section class="card section-spacing">
+      <details class="advanced-options" id="game-edit-details">
+        <summary data-i18n="common.game.edit.summary">Spiel bearbeiten</summary>
+        <div class="game-edit__target-score" id="game-edit-target-score" hidden>
+          <label for="game-edit-target-input" data-i18n="common.game.edit.targetScoreLabel">Zielwert</label>
+          <input type="text" inputmode="numeric" pattern="[0-9]*" id="game-edit-target-input">
+          <button type="button" id="game-edit-target-save-btn" class="btn btn--small" data-i18n="common.buttons.save">Speichern</button>
+        </div>
+        <h3 data-i18n="common.game.edit.playersHeading">Teilnehmer</h3>
+        <ul class="game-edit__player-list" id="game-edit-player-list"></ul>
+        <div class="game-edit__add-player">
+          <label for="game-edit-add-select" data-i18n="common.game.edit.addPlayerLabel">Spieler hinzufügen</label>
+          <select id="game-edit-add-select"></select>
+          <input type="text" inputmode="numeric" pattern="-?[0-9]*" id="game-edit-add-starting-score" data-i18n-placeholder="common.game.edit.startingScorePlaceholder" placeholder="Startpunkte (optional)">
+          <button type="button" id="game-edit-add-btn" class="btn btn--small" data-i18n="common.buttons.add">Hinzufügen</button>
+        </div>
+        <p class="error-text" id="game-edit-error" hidden></p>
+      </details>
+    </section>
   </main>
 
 <?php
@@ -72,6 +92,7 @@ $page_scripts = [
     'js/avatar-helpers.js',
     'js/team-helpers.js',
     'js/round-entry.js',
+    'js/game-edit.js',
     'modes/points-to-target/game.js',
 ];
 require __DIR__ . '/../../includes/footer.php';

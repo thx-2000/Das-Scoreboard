@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Згарнуць",
         "expand": "Паказаць",
-        "teamTotalSuffix": "ачкоў усяго"
+        "teamTotalSuffix": "ачкоў усяго",
+        "withdrawnBadge": "Выбыў"
       },
       "startingPlayerLegend": "★ Гулец, які пачынае (выпадкова)",
       "startedSuffix": "распачата {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Скасаваць апошні раунд"
       },
       "noPlayersHint": "Пакуль няма гульцоў — дадайце аднаго ніжэй.",
-      "roundEntryHintGeneric": "Увядзіце ачкі гэтага раунду для кожнага гульца (0 — гэта нармальна)."
+      "roundEntryHintGeneric": "Увядзіце ачкі гэтага раунду для кожнага гульца (0 — гэта нармальна).",
+      "edit": {
+        "summary": "Рэдагаваць гульню",
+        "targetScoreLabel": "Мэтавы лік",
+        "playersHeading": "Удзельнікі",
+        "addPlayerLabel": "Дадаць гульца",
+        "startingScorePlaceholder": "Пачатковыя ачкі (неабавязкова)",
+        "confirmTargetScore": "Сапраўды змяніць мэту на {value} ачкоў?",
+        "confirmAddPlayer": "Сапраўды дадаць {name} у бягучую гульню?",
+        "withdrawButton": "Выбыць",
+        "confirmWithdraw": "Сапраўды пазначыць {name} як выбылага?",
+        "noPlayersAvailable": "Больш няма даступных гульцоў"
+      },
+      "rematchButton": "Гуляць яшчэ адзін раунд"
     },
     "setup": {
       "heading": "Наладзіць гульню",

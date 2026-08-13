@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Restrânge",
         "expand": "Afișează",
-        "teamTotalSuffix": "puncte în total"
+        "teamTotalSuffix": "puncte în total",
+        "withdrawnBadge": "Retras"
       },
       "startingPlayerLegend": "★ Jucător de start (aleatoriu)",
       "startedSuffix": "început la {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Anulează ultima rundă"
       },
       "noPlayersHint": "Încă niciun jucător — adaugă unul mai jos.",
-      "roundEntryHintGeneric": "Introdu punctele acestei runde per jucător (0 este normal)."
+      "roundEntryHintGeneric": "Introdu punctele acestei runde per jucător (0 este normal).",
+      "edit": {
+        "summary": "Editează jocul",
+        "targetScoreLabel": "Scor țintă",
+        "playersHeading": "Participanți",
+        "addPlayerLabel": "Adaugă jucător",
+        "startingScorePlaceholder": "Puncte de start (opțional)",
+        "confirmTargetScore": "Chiar schimbi ținta la {value} puncte?",
+        "confirmAddPlayer": "Chiar adaugi {name} la jocul în desfășurare?",
+        "withdrawButton": "Retrage-te",
+        "confirmWithdraw": "Chiar marchezi {name} ca retras?",
+        "noPlayersAvailable": "Niciun alt jucător disponibil"
+      },
+      "rematchButton": "Joacă încă o rundă"
     },
     "setup": {
       "heading": "Configurează jocul",

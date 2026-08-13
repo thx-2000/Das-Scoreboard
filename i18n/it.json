@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Comprimi",
         "expand": "Mostra",
-        "teamTotalSuffix": "punti totali"
+        "teamTotalSuffix": "punti totali",
+        "withdrawnBadge": "Ritirato"
       },
       "startingPlayerLegend": "★ Giocatore di partenza (casuale)",
       "startedSuffix": "iniziata il {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Annulla ultimo turno"
       },
       "noPlayersHint": "Ancora nessun giocatore — aggiungine uno qui sotto.",
-      "roundEntryHintGeneric": "Inserisci i punti di questo turno per giocatore (0 è normale)."
+      "roundEntryHintGeneric": "Inserisci i punti di questo turno per giocatore (0 è normale).",
+      "edit": {
+        "summary": "Modifica partita",
+        "targetScoreLabel": "Punteggio obiettivo",
+        "playersHeading": "Partecipanti",
+        "addPlayerLabel": "Aggiungi giocatore",
+        "startingScorePlaceholder": "Punti di partenza (opzionale)",
+        "confirmTargetScore": "Cambiare davvero l'obiettivo a {value} punti?",
+        "confirmAddPlayer": "Aggiungere davvero {name} alla partita in corso?",
+        "withdrawButton": "Ritirati",
+        "confirmWithdraw": "Segnare davvero {name} come ritirato?",
+        "noPlayersAvailable": "Nessun altro giocatore disponibile"
+      },
+      "rematchButton": "Gioca un'altra partita"
     },
     "setup": {
       "heading": "Configura partita",

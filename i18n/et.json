@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Ahenda",
         "expand": "Näita",
-        "teamTotalSuffix": "punkti kokku"
+        "teamTotalSuffix": "punkti kokku",
+        "withdrawnBadge": "Loobunud"
       },
       "startingPlayerLegend": "★ Alustav mängija (juhuslik)",
       "startedSuffix": "alustatud {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Tühista viimane voor"
       },
       "noPlayersHint": "Mängijaid pole veel — lisa üks allpool.",
-      "roundEntryHintGeneric": "Sisesta selle vooru punktid mängija kohta (0 on tavaline)."
+      "roundEntryHintGeneric": "Sisesta selle vooru punktid mängija kohta (0 on tavaline).",
+      "edit": {
+        "summary": "Muuda mängu",
+        "targetScoreLabel": "Eesmärkpunktid",
+        "playersHeading": "Osalejad",
+        "addPlayerLabel": "Lisa mängija",
+        "startingScorePlaceholder": "Algpunktid (valikuline)",
+        "confirmTargetScore": "Kas tõesti muuta eesmärk {value} punktile?",
+        "confirmAddPlayer": "Kas tõesti lisada {name} pooleliolevasse mängu?",
+        "withdrawButton": "Loobu",
+        "confirmWithdraw": "Kas tõesti märkida {name} loobunuks?",
+        "noPlayersAvailable": "Rohkem mängijaid pole saadaval"
+      },
+      "rematchButton": "Mängi veel üks voor"
     },
     "setup": {
       "heading": "Seadista mäng",

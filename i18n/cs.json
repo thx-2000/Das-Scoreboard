@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Sbalit",
         "expand": "Zobrazit",
-        "teamTotalSuffix": "bodů celkem"
+        "teamTotalSuffix": "bodů celkem",
+        "withdrawnBadge": "Odstoupil"
       },
       "startingPlayerLegend": "★ Začínající hráč (náhodně)",
       "startedSuffix": "zahájeno {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Vrátit poslední kolo"
       },
       "noPlayersHint": "Zatím žádní hráči — přidejte jednoho níže.",
-      "roundEntryHintGeneric": "Zadejte body tohoto kola pro každého hráče (0 je normální)."
+      "roundEntryHintGeneric": "Zadejte body tohoto kola pro každého hráče (0 je normální).",
+      "edit": {
+        "summary": "Upravit hru",
+        "targetScoreLabel": "Cílové skóre",
+        "playersHeading": "Účastníci",
+        "addPlayerLabel": "Přidat hráče",
+        "startingScorePlaceholder": "Počáteční body (volitelné)",
+        "confirmTargetScore": "Opravdu změnit cíl na {value} bodů?",
+        "confirmAddPlayer": "Opravdu přidat {name} do probíhající hry?",
+        "withdrawButton": "Odstoupit",
+        "confirmWithdraw": "Opravdu označit {name} jako odstoupivšího?",
+        "noPlayersAvailable": "Žádní další hráči k dispozici"
+      },
+      "rematchButton": "Hrát další kolo"
     },
     "setup": {
       "heading": "Nastavit hru",

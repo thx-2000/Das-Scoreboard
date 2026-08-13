@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Fäll ihop",
         "expand": "Visa",
-        "teamTotalSuffix": "poäng totalt"
+        "teamTotalSuffix": "poäng totalt",
+        "withdrawnBadge": "Avhoppad"
       },
       "startingPlayerLegend": "★ Startspelare (slumpmässig)",
       "startedSuffix": "startade {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Ångra senaste rundan"
       },
       "noPlayersHint": "Inga spelare ännu — lägg till en nedan.",
-      "roundEntryHintGeneric": "Ange den här rundans poäng per spelare (0 är normalt)."
+      "roundEntryHintGeneric": "Ange den här rundans poäng per spelare (0 är normalt).",
+      "edit": {
+        "summary": "Redigera spel",
+        "targetScoreLabel": "Målpoäng",
+        "playersHeading": "Deltagare",
+        "addPlayerLabel": "Lägg till spelare",
+        "startingScorePlaceholder": "Startpoäng (valfritt)",
+        "confirmTargetScore": "Verkligen ändra målpoängen till {value} poäng?",
+        "confirmAddPlayer": "Verkligen lägga till {name} i det pågående spelet?",
+        "withdrawButton": "Hoppa av",
+        "confirmWithdraw": "Verkligen markera {name} som avhoppad?",
+        "noPlayersAvailable": "Inga fler spelare tillgängliga"
+      },
+      "rematchButton": "Spela en omgång till"
     },
     "setup": {
       "heading": "Ställ in spel",

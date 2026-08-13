@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Sakļaut",
         "expand": "Rādīt",
-        "teamTotalSuffix": "punkti kopā"
+        "teamTotalSuffix": "punkti kopā",
+        "withdrawnBadge": "Izstājies"
       },
       "startingPlayerLegend": "★ Sākuma spēlētājs (nejauši)",
       "startedSuffix": "sākta {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Atsaukt pēdējo kārtu"
       },
       "noPlayersHint": "Vēl nav spēlētāju — pievienojiet vienu zemāk.",
-      "roundEntryHintGeneric": "Ievadiet šīs kārtas punktus katram spēlētājam (0 ir normāli)."
+      "roundEntryHintGeneric": "Ievadiet šīs kārtas punktus katram spēlētājam (0 ir normāli).",
+      "edit": {
+        "summary": "Rediģēt spēli",
+        "targetScoreLabel": "Mērķa rezultāts",
+        "playersHeading": "Dalībnieki",
+        "addPlayerLabel": "Pievienot spēlētāju",
+        "startingScorePlaceholder": "Sākuma punkti (neobligāti)",
+        "confirmTargetScore": "Vai tiešām mainīt mērķi uz {value} punktiem?",
+        "confirmAddPlayer": "Vai tiešām pievienot {name} notiekošajai spēlei?",
+        "withdrawButton": "Izstāties",
+        "confirmWithdraw": "Vai tiešām atzīmēt {name} kā izstājušos?",
+        "noPlayersAvailable": "Nav pieejami citi spēlētāji"
+      },
+      "rematchButton": "Spēlēt vēl vienu kārtu"
     },
     "setup": {
       "heading": "Iestatīt spēli",

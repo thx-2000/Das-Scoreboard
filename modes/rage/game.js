@@ -44,6 +44,7 @@ async function loadGame() {
   }
   currentState = await response.json();
   render(currentState);
+  window.initGameEdit(gameId, (newState) => { currentState = newState; render(currentState); }, false);
 }
 
 function renderHeader(state) {
@@ -79,12 +80,16 @@ function renderStandings(state) {
 
     const row = document.createElement('tr');
     if (rank === 1) row.className = 'rank-first';
+    if (player.withdrawnAt) row.classList.add('standings-row--withdrawn');
 
     const displayName = window.escapeHtml(player.id === state.startingPlayerId ? `${player.name} ★` : player.name);
+    const withdrawnBadge = player.withdrawnAt
+      ? `<span class="badge badge--withdrawn">${window.t('common.game.standings.withdrawnBadge')}</span>`
+      : '';
 
     row.innerHTML = `
       <td>${rank}</td>
-      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div></td>
+      <td><div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span>${withdrawnBadge}</div></td>
       <td>${player.total}</td>
     `;
     standingsBody.appendChild(row);
@@ -108,15 +113,18 @@ function renderStandingsCards(state) {
     previousRank = rank;
 
     const displayName = window.escapeHtml(player.id === state.startingPlayerId ? `${player.name} ★` : player.name);
+    const withdrawnBadge = player.withdrawnAt
+      ? `<span class="badge badge--withdrawn">${window.t('common.game.standings.withdrawnBadge')}</span>`
+      : '';
     const colorIndex = window.scoreboardPlayerColorIndex(state.players, player.id);
 
     const card = document.createElement('div');
-    card.className = 'standings-card';
+    card.className = player.withdrawnAt ? 'standings-card standings-row--withdrawn' : 'standings-card';
     card.dataset.playerColor = colorIndex;
     card.innerHTML = `
       <div class="standings-card__rank">${rank}</div>
       <div class="standings-card__info">
-        <div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span></div>
+        <div class="standings-name">${window.avatarImgHtml(player)}<span>${displayName}</span>${withdrawnBadge}</div>
       </div>
       <div class="standings-card__points">${player.total}</div>
     `;
@@ -139,6 +147,12 @@ function renderWinnerBanner(state) {
     ? window.t('common.game.winnerBanner.multi', { names, points: state.winners[0].total })
     : window.t('common.game.winnerBanner.single', { names, points: state.winners[0].total });
   winnerBannerWrap.appendChild(banner);
+
+  const rematchLink = document.createElement('a');
+  rematchLink.href = `setup.php?fromGame=${state.id}`;
+  rematchLink.className = 'btn btn--secondary';
+  rematchLink.textContent = window.t('common.game.rematchButton');
+  winnerBannerWrap.appendChild(rematchLink);
 }
 
 function updateEntryRowPreview(row) {
@@ -253,7 +267,7 @@ function renderRoundEntry(state) {
   roundEntryBody.innerHTML = '';
   rageRoundCards.innerHTML = '';
   const showBonusMalus = state.rageShowBonusMalus !== false;
-  state.players.forEach((player) => {
+  window.activeGamePlayers(state.players).forEach((player) => {
     const row = document.createElement('tr');
     row.dataset.playerId = player.id;
     row.innerHTML = `
@@ -478,6 +492,7 @@ function render(state) {
   renderRoundEntry(state);
   renderRoundsTable(state);
   renderUndoButton(state);
+  window.renderGameEditPanel(state);
 }
 
 function undoLastRound() {

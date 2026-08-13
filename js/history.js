@@ -120,6 +120,18 @@ function renderHistory(games) {
     link.appendChild(title);
     link.appendChild(meta);
 
+    // "Weitere Runde spielen" (Task #156) auch aus dem Verlauf heraus nutzbar,
+    // nicht nur direkt nach Spielende - nur bei bereits abgeschlossenen
+    // Spielen sinnvoll (setup.php liegt im selben Modus-Ordner wie game.php).
+    let rematchBtn = null;
+    if (game.status === 'finished' && info.url !== '#') {
+      rematchBtn = document.createElement('a');
+      rematchBtn.className = 'btn btn--small btn--secondary';
+      rematchBtn.textContent = window.t('common.game.rematchButton');
+      rematchBtn.style.alignSelf = 'center';
+      rematchBtn.href = `${info.url.replace('game.php', 'setup.php')}?fromGame=${game.id}`;
+    }
+
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.className = 'btn btn--small btn--danger';
@@ -128,6 +140,7 @@ function renderHistory(games) {
     deleteBtn.addEventListener('click', () => deleteGame(game.id, displayLabel));
 
     li.appendChild(link);
+    if (rematchBtn) li.appendChild(rematchBtn);
     li.appendChild(deleteBtn);
     historyList.appendChild(li);
   });

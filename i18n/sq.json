@@ -49,7 +49,8 @@
       "standings": {
         "collapse": "Mbyll",
         "expand": "Shfaq",
-        "teamTotalSuffix": "pikë gjithsej"
+        "teamTotalSuffix": "pikë gjithsej",
+        "withdrawnBadge": "Tërhequr"
       },
       "startingPlayerLegend": "★ Lojtari fillestar (rastësisht)",
       "startedSuffix": "filluar më {date}",
@@ -72,7 +73,20 @@
         "undoButton": "Zhbëj raundin e fundit"
       },
       "noPlayersHint": "Ende nuk ka lojtarë — shtoni një më poshtë.",
-      "roundEntryHintGeneric": "Fusni pikët e këtij raundi për çdo lojtar (0 është normale)."
+      "roundEntryHintGeneric": "Fusni pikët e këtij raundi për çdo lojtar (0 është normale).",
+      "edit": {
+        "summary": "Modifiko lojën",
+        "targetScoreLabel": "Rezultati i synuar",
+        "playersHeading": "Pjesëmarrësit",
+        "addPlayerLabel": "Shto lojtar",
+        "startingScorePlaceholder": "Pikët fillestare (opsionale)",
+        "confirmTargetScore": "Ta ndryshosh me të vërtetë synimin në {value} pikë?",
+        "confirmAddPlayer": "Ta shtosh me të vërtetë {name} në lojën në vazhdim?",
+        "withdrawButton": "Tërhiqu",
+        "confirmWithdraw": "Ta shënosh me të vërtetë {name} si të tërhequr?",
+        "noPlayersAvailable": "Nuk ka më lojtarë të disponueshëm"
+      },
+      "rematchButton": "Luaj edhe një raund"
     },
     "setup": {
       "heading": "Konfiguro lojën",

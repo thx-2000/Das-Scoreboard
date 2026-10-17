@@ -6,13 +6,14 @@ const newPlayerInlineInput = document.getElementById('new-player-inline');
 const addPlayerInlineBtn = document.getElementById('add-player-inline-btn');
 const setupError = document.getElementById('setup-error');
 
-const seatOrderSection = document.getElementById('seat-order-section');
-const seatOrderEl = document.getElementById('seat-order');
+// Sitzordnung im Uhrzeigersinn (js/seat-order.js), bei RAGE immer aktiv.
+const seatOrder = window.initSeatOrder({
+  section: document.getElementById('seat-order-section'),
+  container: document.getElementById('seat-order'),
+  isActive: () => true,
+});
 
 const selectedPlayerIds = new Set();
-// Sitzordnung im Uhrzeigersinn: Spieler-IDs in der Reihenfolge, in der sie
-// angetippt wurden (siehe refreshSeatOrder).
-let seatSequence = [];
 let knownPlayers = [];
 let groupPicker = null;
 
@@ -26,53 +27,8 @@ function clearError() {
   setupError.textContent = '';
 }
 
-/**
- * Sitzordnung abfragen: erst antippen, wer irgendwo sitzt, dann jeweils der
- * naechste im Uhrzeigersinn. Antippen eines bereits nummerierten Spielers
- * nimmt ihn und alle danach Eingetragenen wieder zurueck (so ist ein
- * Vertippen schnell korrigiert).
- */
 function refreshSeatOrder() {
-  seatSequence = seatSequence.filter((id) => selectedPlayerIds.has(id));
-  const selected = knownPlayers.filter((p) => selectedPlayerIds.has(p.id));
-  seatOrderSection.hidden = selected.length < 2;
-  seatOrderEl.innerHTML = '';
-
-  selected.forEach((player) => {
-    const pos = seatSequence.indexOf(player.id);
-    const chip = document.createElement('button');
-    chip.type = 'button';
-    chip.className = 'rage-seat-chip';
-    chip.setAttribute('aria-pressed', String(pos !== -1));
-    if (pos !== -1) {
-      const num = document.createElement('span');
-      num.className = 'rage-seat-chip__num';
-      num.textContent = String(pos + 1);
-      chip.appendChild(num);
-    }
-    chip.appendChild(document.createTextNode(player.name));
-    chip.addEventListener('click', () => {
-      if (pos === -1) {
-        seatSequence.push(player.id);
-      } else {
-        seatSequence = seatSequence.slice(0, pos);
-      }
-      refreshSeatOrder();
-    });
-    seatOrderEl.appendChild(chip);
-  });
-
-  if (seatSequence.length > 0) {
-    const resetBtn = document.createElement('button');
-    resetBtn.type = 'button';
-    resetBtn.className = 'btn btn--small btn--ghost';
-    resetBtn.textContent = window.t('rage.setup.seatOrderReset');
-    resetBtn.addEventListener('click', () => {
-      seatSequence = [];
-      refreshSeatOrder();
-    });
-    seatOrderEl.appendChild(resetBtn);
-  }
+  seatOrder.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
 }
 
 function renderPlayerChip(player, index) {
@@ -160,8 +116,8 @@ setupForm.addEventListener('submit', async (event) => {
     return;
   }
 
-  if (seatSequence.length !== selectedPlayerIds.size) {
-    showError(window.t('rage.setup.seatOrderIncomplete'));
+  if (seatOrder.getSequence().length !== selectedPlayerIds.size) {
+    showError(window.t('common.setup.seatOrderIncomplete'));
     return;
   }
 
@@ -172,7 +128,7 @@ setupForm.addEventListener('submit', async (event) => {
       mode: 'rage',
       label: gameLabelInput.value.trim(),
       // Reihenfolge = Sitzordnung im Uhrzeigersinn (siehe api/games.php).
-      playerIds: seatSequence,
+      playerIds: seatOrder.getSequence(),
       rageShowBonusMalus: document.getElementById('rage-show-bonus-malus').checked,
     }),
   });
@@ -211,9 +167,7 @@ async function prefillFromGame() {
   const returning = game.players.filter((p) => !p.withdrawnAt && knownIds.has(p.id));
   returning.forEach((p) => selectedPlayerIds.add(p.id));
   // Sitzordnung vom letzten Spiel uebernehmen, solange sie vollstaendig bekannt ist.
-  if (returning.every((p) => p.seatPosition !== null && p.seatPosition !== undefined)) {
-    seatSequence = [...returning].sort((a, b) => a.seatPosition - b.seatPosition).map((p) => p.id);
-  }
+  seatOrder.setSequence(window.seatSequenceFromGame(returning));
   refreshPlayerPicker();
 }
 

@@ -89,7 +89,9 @@
         "startingScoreLabel": "Startpoäng",
         "seatAfterLabel": "Sitter till vänster om"
       },
-      "rematchButton": "Spela en omgång till"
+      "rematchButton": "Spela en omgång till",
+      "dealerLegend": "★ Givare den här omgången",
+      "dealerLine": "Givare: {dealer}"
     },
     "setup": {
       "heading": "Ställ in spel",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Om avstängt begränsas negativa rundinmatningar till 0.",
       "targetBonusHint": "Extrapoäng som vinnaren/vinnarna får för att ha nått målpoängen (0 = ingen bonus).",
       "roundEntryStepsLabel": "Stegstorlekar för rundregistrering",
-      "roundEntryStepsHint": "Stegknappar som alternativ till att skriva in siffror — välj vilka stegstorlekar (±) som ska vara tillgängliga. Du kan när som helst växla mellan att skriva in och stegknappar, även mitt i spelet."
+      "roundEntryStepsHint": "Stegknappar som alternativ till att skriva in siffror — välj vilka stegstorlekar (±) som ska vara tillgängliga. Du kan när som helst växla mellan att skriva in och stegknappar, även mitt i spelet.",
+      "seatOrderLabel": "Sittordning (medurs)",
+      "seatOrderHint": "Tryck på spelarna i tur och ordning – börja med vem som helst, sedan alltid nästa medurs.",
+      "seatOrderReset": "Börja om",
+      "seatOrderIncomplete": "Ange hela sittordningen.",
+      "showDealerLabel": "Visa givare",
+      "showDealerHint": "Visar vem som ger varje omgång – givaren byts i tur och ordning. Då efterfrågas sittordningen."
     },
     "errors": {
       "minPlayers": "Välj minst 2 spelare.",
@@ -576,11 +584,7 @@
       "hint": "Fasta 10 rundor (10 ner till 1 kort), högst poäng vinner till slut.",
       "labelPlaceholder": "t.ex. RAGE-kväll",
       "showBonusMalusLabel": "Visa bonus/malus",
-      "showBonusMalusHint": "Visa/dölj fälten för specialkort +5/−5 i rundregistreringen.",
-      "seatOrderLabel": "Sittordning (medurs)",
-      "seatOrderHint": "Tryck på spelarna i tur och ordning – börja med vem som helst, sedan alltid nästa medurs.",
-      "seatOrderReset": "Börja om",
-      "seatOrderIncomplete": "Ange hela sittordningen."
+      "showBonusMalusHint": "Visa/dölj fälten för specialkort +5/−5 i rundregistreringen."
     },
     "game": {
       "cardSingular": "kort",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Ta bort R{round}",
       "mismatchConfirm": "Summan av angivna stick ({actual}) matchar inte den här rundans antal kort ({expected}). Spara ändå?",
       "saveFailed": "Rundan kunde inte sparas.",
-      "dealerLegend": "★ Givare den här omgången",
       "round": {
         "dealerLine": "Givare: {dealer} · Budgivningen börjar med {first}"
       },

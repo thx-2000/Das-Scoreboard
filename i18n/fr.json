@@ -89,7 +89,9 @@
         "startingScoreLabel": "Points de départ",
         "seatAfterLabel": "Assis à gauche de"
       },
-      "rematchButton": "Jouer une autre manche"
+      "rematchButton": "Jouer une autre manche",
+      "dealerLegend": "★ Donneur de cette manche",
+      "dealerLine": "Donneur : {dealer}"
     },
     "setup": {
       "heading": "Configurer la partie",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Si désactivé, les saisies négatives sont ramenées à 0.",
       "targetBonusHint": "Points supplémentaires accordés au(x) gagnant(s) pour avoir atteint le score cible (0 = pas de bonus).",
       "roundEntryStepsLabel": "Pas pour la saisie des manches",
-      "roundEntryStepsHint": "Boutons de pas comme alternative à la saisie de nombres — choisissez les pas (±) disponibles. Vous pouvez basculer entre saisie et boutons à tout moment, même en cours de partie."
+      "roundEntryStepsHint": "Boutons de pas comme alternative à la saisie de nombres — choisissez les pas (±) disponibles. Vous pouvez basculer entre saisie et boutons à tout moment, même en cours de partie.",
+      "seatOrderLabel": "Ordre des places (sens horaire)",
+      "seatOrderHint": "Touchez les joueurs l'un après l'autre – en commençant par n'importe qui, puis toujours le suivant dans le sens horaire.",
+      "seatOrderReset": "Recommencer",
+      "seatOrderIncomplete": "Veuillez définir l'ordre des places complet.",
+      "showDealerLabel": "Afficher le donneur",
+      "showDealerHint": "Indique qui donne à chaque manche – le donneur change à tour de rôle. L'ordre des places est alors demandé."
     },
     "errors": {
       "minPlayers": "Sélectionnez au moins 2 joueurs.",
@@ -576,11 +584,7 @@
       "hint": "10 manches fixes (de 10 à 1 carte), le score le plus élevé gagne à la fin.",
       "labelPlaceholder": "p. ex. Soirée RAGE",
       "showBonusMalusLabel": "Afficher bonus/malus",
-      "showBonusMalusHint": "Afficher/masquer les champs de cartes spéciales +5/−5 dans la saisie de manche.",
-      "seatOrderLabel": "Ordre des places (sens horaire)",
-      "seatOrderHint": "Touchez les joueurs l'un après l'autre – en commençant par n'importe qui, puis toujours le suivant dans le sens horaire.",
-      "seatOrderReset": "Recommencer",
-      "seatOrderIncomplete": "Veuillez définir l'ordre des places complet."
+      "showBonusMalusHint": "Afficher/masquer les champs de cartes spéciales +5/−5 dans la saisie de manche."
     },
     "game": {
       "cardSingular": "carte",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Supprimer M{round}",
       "mismatchConfirm": "La somme des plis saisis ({actual}) ne correspond pas au nombre de cartes de cette manche ({expected}). Enregistrer quand même ?",
       "saveFailed": "Impossible d'enregistrer la manche.",
-      "dealerLegend": "★ Donneur de cette manche",
       "round": {
         "dealerLine": "Donneur : {dealer} · L'annonce commence par {first}"
       },

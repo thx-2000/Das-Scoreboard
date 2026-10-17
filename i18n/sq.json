@@ -89,7 +89,9 @@
         "startingScoreLabel": "Pikët fillestare",
         "seatAfterLabel": "Ulet në të majtë të"
       },
-      "rematchButton": "Luaj edhe një raund"
+      "rematchButton": "Luaj edhe një raund",
+      "dealerLegend": "★ Shpërndarësi i këtij raundi",
+      "dealerLine": "Shpërndan: {dealer}"
     },
     "setup": {
       "heading": "Konfiguro lojën",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Nëse është çaktivizuar, vlerat negative të raundit kufizohen në 0.",
       "targetBonusHint": "Pikë shtesë që fituesi(t) marrin për arritjen e rezultatit të synuar (0 = pa bonus).",
       "roundEntryStepsLabel": "Madhësitë e hapave për futjen e raundit",
-      "roundEntryStepsHint": "Butonat e hapave si alternativë e shkrimit të numrave — zgjidhni cilat madhësi hapash (±) do të jenë të disponueshme. Mund të kaloni në çdo kohë midis shkrimit dhe butonave të hapave, edhe në mes të lojës."
+      "roundEntryStepsHint": "Butonat e hapave si alternativë e shkrimit të numrave — zgjidhni cilat madhësi hapash (±) do të jenë të disponueshme. Mund të kaloni në çdo kohë midis shkrimit dhe butonave të hapave, edhe në mes të lojës.",
+      "seatOrderLabel": "Renditja e uljes (në drejtim të akrepave të orës)",
+      "seatOrderHint": "Prek lojtarët një nga një – fillo me cilindo, pastaj gjithmonë tjetrin sipas akrepave të orës.",
+      "seatOrderReset": "Fillo përsëri",
+      "seatOrderIncomplete": "Cakto renditjen e plotë të uljes.",
+      "showDealerLabel": "Shfaq shpërndarësin",
+      "showDealerHint": "Tregon kush shpërndan në çdo raund – shpërndarësi ndryshon me radhë. Për këtë pyetet renditja e uljes."
     },
     "errors": {
       "minPlayers": "Zgjidhni të paktën 2 lojtarë.",
@@ -576,11 +584,7 @@
       "hint": "10 raunde fikse (nga 10 deri në 1 kartë), në fund fiton rezultati më i lartë.",
       "labelPlaceholder": "p.sh. Mbrëmje RAGE",
       "showBonusMalusLabel": "Shfaq bonus/malus",
-      "showBonusMalusHint": "Shfaq/fshih fushat e kartave speciale +5/−5 në futjen e raundit.",
-      "seatOrderLabel": "Renditja e uljes (në drejtim të akrepave të orës)",
-      "seatOrderHint": "Prek lojtarët një nga një – fillo me cilindo, pastaj gjithmonë tjetrin sipas akrepave të orës.",
-      "seatOrderReset": "Fillo përsëri",
-      "seatOrderIncomplete": "Cakto renditjen e plotë të uljes."
+      "showBonusMalusHint": "Shfaq/fshih fushat e kartave speciale +5/−5 në futjen e raundit."
     },
     "game": {
       "cardSingular": "kartë",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Fshi R{round}",
       "mismatchConfirm": "Shuma e bazave të futura ({actual}) nuk përputhet me numrin e kartave të këtij raundi ({expected}). Ta ruaj gjithsesi?",
       "saveFailed": "Raundi nuk mund të ruhej.",
-      "dealerLegend": "★ Shpërndarësi i këtij raundi",
       "round": {
         "dealerLine": "Shpërndan: {dealer} · Deklarimi fillon te {first}"
       },

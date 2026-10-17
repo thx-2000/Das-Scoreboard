@@ -89,7 +89,9 @@
         "startingScoreLabel": "Početni bodovi",
         "seatAfterLabel": "Sjedi lijevo od"
       },
-      "rematchButton": "Igraj još jednu rundu"
+      "rematchButton": "Igraj još jednu rundu",
+      "dealerLegend": "★ Djelitelj u ovoj rundi",
+      "dealerLine": "Dijeli: {dealer}"
     },
     "setup": {
       "heading": "Postavi igru",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Ako je isključeno, negativni unosi kruga ograničavaju se na 0.",
       "targetBonusHint": "Dodatni bodovi koje pobjednik(ci) dobijaju za postizanje ciljnog rezultata (0 = bez bonusa).",
       "roundEntryStepsLabel": "Veličine koraka za unos kruga",
-      "roundEntryStepsHint": "Dugmad koraka kao alternativa upisivanju brojeva — odaberite koje veličine koraka (±) će biti dostupne. U bilo kojem trenutku možete prebacivati između upisivanja i dugmadi koraka, čak i usred igre."
+      "roundEntryStepsHint": "Dugmad koraka kao alternativa upisivanju brojeva — odaberite koje veličine koraka (±) će biti dostupne. U bilo kojem trenutku možete prebacivati između upisivanja i dugmadi koraka, čak i usred igre.",
+      "seatOrderLabel": "Redoslijed sjedenja (u smjeru kazaljke na satu)",
+      "seatOrderHint": "Dodirni igrače jednog za drugim – počni s bilo kim, zatim uvijek sljedeći u smjeru kazaljke na satu.",
+      "seatOrderReset": "Počni ispočetka",
+      "seatOrderIncomplete": "Postavi cijeli redoslijed sjedenja.",
+      "showDealerLabel": "Prikaži djelitelja",
+      "showDealerHint": "Pokazuje ko dijeli u svakoj rundi – djelitelj se mijenja redom. Zato se pita redoslijed sjedenja."
     },
     "errors": {
       "minPlayers": "Odaberite najmanje 2 igrača.",
@@ -576,11 +584,7 @@
       "hint": "Fiksnih 10 krugova (od 10 do 1 karte), na kraju pobjeđuje najviši rezultat.",
       "labelPlaceholder": "npr. RAGE večer",
       "showBonusMalusLabel": "Prikaži bonus/malus",
-      "showBonusMalusHint": "Prikaži/sakrij polja specijalnih karata +5/−5 u unosu kruga.",
-      "seatOrderLabel": "Redoslijed sjedenja (u smjeru kazaljke na satu)",
-      "seatOrderHint": "Dodirni igrače jednog za drugim – počni s bilo kim, zatim uvijek sljedeći u smjeru kazaljke na satu.",
-      "seatOrderReset": "Počni ispočetka",
-      "seatOrderIncomplete": "Postavi cijeli redoslijed sjedenja."
+      "showBonusMalusHint": "Prikaži/sakrij polja specijalnih karata +5/−5 u unosu kruga."
     },
     "game": {
       "cardSingular": "karta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Izbriši K{round}",
       "mismatchConfirm": "Zbir unesenih štihova ({actual}) ne odgovara broju karata ovog kruga ({expected}). Ipak sačuvati?",
       "saveFailed": "Krug nije bilo moguće sačuvati.",
-      "dealerLegend": "★ Djelitelj u ovoj rundi",
       "round": {
         "dealerLine": "Dijeli: {dealer} · Najava počinje kod {first}"
       },

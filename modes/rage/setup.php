@@ -26,9 +26,9 @@ require __DIR__ . '/../../includes/header.php';
         </div>
 
         <div id="seat-order-section" hidden>
-          <label data-i18n="rage.setup.seatOrderLabel">Sitzordnung (im Uhrzeigersinn)</label>
-          <p class="hint-text" data-i18n="rage.setup.seatOrderHint">Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.</p>
-          <div class="rage-seat-order" id="seat-order"></div>
+          <label data-i18n="common.setup.seatOrderLabel">Sitzordnung (im Uhrzeigersinn)</label>
+          <p class="hint-text" data-i18n="common.setup.seatOrderHint">Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.</p>
+          <div class="seat-order" id="seat-order"></div>
         </div>
 
         <details class="advanced-options">
@@ -48,5 +48,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/group-picker.js', 'modes/rage/setup.js'];
+$page_scripts = ['js/group-picker.js', 'js/seat-order.js', 'modes/rage/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

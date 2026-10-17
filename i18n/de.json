@@ -89,7 +89,9 @@
         "startingScoreLabel": "Startpunkte",
         "seatAfterLabel": "Sitzt links von"
       },
-      "rematchButton": "Weitere Runde spielen"
+      "rematchButton": "Weitere Runde spielen",
+      "dealerLegend": "★ Geber dieser Runde",
+      "dealerLine": "Geber: {dealer}"
     },
     "setup": {
       "heading": "Spiel einrichten",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Wenn deaktiviert, werden negative Rundeneingaben auf 0 begrenzt.",
       "targetBonusHint": "Zusätzliche Punkte, die der/die Sieger beim Erreichen des Zielwerts bekommen (0 = kein Bonus).",
       "roundEntryStepsLabel": "Punkteschritte für die Rundenerfassung",
-      "roundEntryStepsHint": "Schritt-Buttons als Alternative zur Zahleneingabe — hier auswählen, welche Schrittgrößen (±) zur Verfügung stehen. Zwischen Tippen und Schritt-Buttons kann im laufenden Spiel jederzeit umgeschaltet werden."
+      "roundEntryStepsHint": "Schritt-Buttons als Alternative zur Zahleneingabe — hier auswählen, welche Schrittgrößen (±) zur Verfügung stehen. Zwischen Tippen und Schritt-Buttons kann im laufenden Spiel jederzeit umgeschaltet werden.",
+      "seatOrderLabel": "Sitzordnung (im Uhrzeigersinn)",
+      "seatOrderHint": "Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.",
+      "seatOrderReset": "Neu beginnen",
+      "seatOrderIncomplete": "Bitte die Sitzordnung vollständig festlegen.",
+      "showDealerLabel": "Geber anzeigen",
+      "showDealerHint": "Zeigt in jeder Runde, wer gibt – der Geber wechselt reihum. Dafür wird die Sitzordnung abgefragt."
     },
     "errors": {
       "minPlayers": "Mindestens 2 Spieler auswählen.",
@@ -576,11 +584,7 @@
       "hint": "Feste 10 Runden (10 bis 1 Karte), am Ende gewinnt die höchste Punktzahl.",
       "labelPlaceholder": "z.B. RAGE-Abend",
       "showBonusMalusLabel": "Bonus/Malus anzeigen",
-      "showBonusMalusHint": "+5/−5-Felder für Sonderkarten in der Rundenerfassung ein-/ausblenden.",
-      "seatOrderLabel": "Sitzordnung (im Uhrzeigersinn)",
-      "seatOrderHint": "Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.",
-      "seatOrderReset": "Neu beginnen",
-      "seatOrderIncomplete": "Bitte die Sitzordnung vollständig festlegen."
+      "showBonusMalusHint": "+5/−5-Felder für Sonderkarten in der Rundenerfassung ein-/ausblenden."
     },
     "game": {
       "cardSingular": "Karte",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "R{round} löschen",
       "mismatchConfirm": "Die Summe der eingetragenen Stiche ({actual}) entspricht nicht der Kartenzahl dieser Runde ({expected}). Trotzdem speichern?",
       "saveFailed": "Runde konnte nicht gespeichert werden.",
-      "dealerLegend": "★ Geber dieser Runde",
       "round": {
         "dealerLine": "Geber: {dealer} · Ansage beginnt bei {first}"
       },

@@ -89,7 +89,9 @@
         "startingScoreLabel": "Začetne točke",
         "seatAfterLabel": "Sedi levo od"
       },
-      "rematchButton": "Igraj še eno rundo"
+      "rematchButton": "Igraj še eno rundo",
+      "dealerLegend": "★ Delivec v tem krogu",
+      "dealerLine": "Deli: {dealer}"
     },
     "setup": {
       "heading": "Nastavi igro",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Če je izklopljeno, se negativni vnosi kroga omejijo na 0.",
       "targetBonusHint": "Dodatne točke, ki jih zmagovalec(ci) dobi(jo) za dosego ciljnega rezultata (0 = brez bonusa).",
       "roundEntryStepsLabel": "Velikosti korakov za vnos kroga",
-      "roundEntryStepsHint": "Koračni gumbi kot alternativa vpisovanju številk — izberite, katere velikosti korakov (±) bodo na voljo. Med vpisovanjem in koračnimi gumbi lahko kadar koli preklapljate, tudi sredi igre."
+      "roundEntryStepsHint": "Koračni gumbi kot alternativa vpisovanju številk — izberite, katere velikosti korakov (±) bodo na voljo. Med vpisovanjem in koračnimi gumbi lahko kadar koli preklapljate, tudi sredi igre.",
+      "seatOrderLabel": "Vrstni red sedenja (v smeri urnega kazalca)",
+      "seatOrderHint": "Tapni igralce enega za drugim – začni s komer koli, nato vedno z naslednjim v smeri urnega kazalca.",
+      "seatOrderReset": "Začni znova",
+      "seatOrderIncomplete": "Nastavi celoten vrstni red sedenja.",
+      "showDealerLabel": "Pokaži delivca",
+      "showDealerHint": "Prikaže, kdo deli v vsakem krogu – delivec se menja po vrsti. Za to se vpraša vrstni red sedenja."
     },
     "errors": {
       "minPlayers": "Izberite vsaj 2 igralca.",
@@ -576,11 +584,7 @@
       "hint": "Fiksnih 10 krogov (od 10 do 1 karte), na koncu zmaga najvišji rezultat.",
       "labelPlaceholder": "npr. Večer RAGE",
       "showBonusMalusLabel": "Prikaži bonus/malus",
-      "showBonusMalusHint": "Prikaži/skrij polja posebnih kart +5/−5 pri vnosu kroga.",
-      "seatOrderLabel": "Vrstni red sedenja (v smeri urnega kazalca)",
-      "seatOrderHint": "Tapni igralce enega za drugim – začni s komer koli, nato vedno z naslednjim v smeri urnega kazalca.",
-      "seatOrderReset": "Začni znova",
-      "seatOrderIncomplete": "Nastavi celoten vrstni red sedenja."
+      "showBonusMalusHint": "Prikaži/skrij polja posebnih kart +5/−5 pri vnosu kroga."
     },
     "game": {
       "cardSingular": "karta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Izbriši K{round}",
       "mismatchConfirm": "Vsota vnesenih vzetkov ({actual}) se ne ujema s številom kart tega kroga ({expected}). Vseeno shranim?",
       "saveFailed": "Kroga ni bilo mogoče shraniti.",
-      "dealerLegend": "★ Delivec v tem krogu",
       "round": {
         "dealerLine": "Deli: {dealer} · Napovedi začne {first}"
       },

@@ -104,6 +104,9 @@ if ($method === 'POST') {
     // pro Runde ein. "individual": jeder Spieler traegt eigene Punkte ein,
     // das Team-Ergebnis ist die Summe - siehe build_game_state().
     $teamScoring = ($body['teamScoring'] ?? 'shared') === 'individual' ? 'individual' : 'shared';
+    // Geber-Anzeige (Migration 18): bei RAGE immer, sonst per Setup-Option. Die
+    // Reihenfolge von playerIds ist dann die Sitzordnung im Uhrzeigersinn.
+    $showDealer = $mode === 'rage' || !empty($body['showDealer']);
 
     if ($mode === '') {
         send_json(['error' => 'Modus fehlt.'], 400);
@@ -127,13 +130,14 @@ if ($method === 'POST') {
     $pdo->beginTransaction();
 
     $insertGame = $pdo->prepare('
-        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end, team_scoring, target_bonus, allow_negative, rage_show_bonus_malus, round_entry_steps)
-        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO games (mode, label, target_score, win_direction, status, started_at, starting_player_id, total_rounds, announce_round_end, team_scoring, target_bonus, allow_negative, rage_show_bonus_malus, round_entry_steps, show_dealer)
+        VALUES (?, ?, ?, ?, "active", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ');
     $insertGame->execute([
         $mode, $label !== '' ? $label : null, max(0, $targetScore), $winDirection, now_iso(), $startingPlayerId,
         max(0, $totalRounds), $announceRoundEnd ? 1 : 0, $teamScoring,
         $targetBonus, $allowNegative ? 1 : 0, $rageShowBonusMalus ? 1 : 0, $roundEntrySteps,
+        $showDealer ? 1 : 0,
     ]);
     $gameId = (int) $pdo->lastInsertId();
 
@@ -145,10 +149,10 @@ if ($method === 'POST') {
         $teamName = $teamNumber !== null && !empty($teamNames[$teamNumber])
             ? trim((string) $teamNames[$teamNumber])
             : null;
-        // Bei RAGE ist die Reihenfolge von playerIds die Sitzordnung im
-        // Uhrzeigersinn (Setup fragt sie ab); bei den anderen Modi ist sie nur
-        // die Klickreihenfolge und wird deshalb nicht gespeichert.
-        $insertGamePlayer->execute([$gameId, $playerId, $teamNumber, $teamName !== '' ? $teamName : null, $mode === 'rage' ? $seatIndex : null]);
+        // Mit Geber-Anzeige ist die Reihenfolge von playerIds die Sitzordnung
+        // im Uhrzeigersinn (Setup fragt sie ab); sonst ist sie nur die
+        // Klickreihenfolge und wird deshalb nicht gespeichert.
+        $insertGamePlayer->execute([$gameId, $playerId, $teamNumber, $teamName !== '' ? $teamName : null, $showDealer ? $seatIndex : null]);
     }
 
     $pdo->commit();

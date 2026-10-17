@@ -697,14 +697,14 @@ main {
   min-height: 3.25rem;
 }
 
-.rage-seat-order {
+.seat-order {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
 }
 
-.rage-seat-chip {
+.seat-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -719,7 +719,7 @@ main {
   touch-action: manipulation;
 }
 
-.rage-seat-chip__num {
+.seat-chip__num {
   min-width: 1.6rem;
   height: 1.6rem;
   border-radius: 50%;
@@ -732,11 +732,11 @@ main {
   color: var(--color-on-accent);
 }
 
-.rage-seat-chip[aria-pressed="true"] {
+.seat-chip[aria-pressed="true"] {
   border-color: var(--color-green-strong);
 }
 
-.rage-seat-chip:focus-visible {
+.seat-chip:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }

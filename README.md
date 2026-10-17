@@ -66,6 +66,10 @@ Beispieldaten.*
 - **Verlauf & Statistiken**: alle Spiele mit Filter nach Status, dazu eine
   Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
   Zeitraumfilter (inkl. Drucken/PDF).
+- **Geber-Anzeige in allen Modi**: unter "Erweiterte Optionen" einschaltbar –
+  dann wird die Sitzordnung im Uhrzeigersinn abgefragt, der Geber wechselt
+  pro Runde reihum und wird im Punktestand (★) und über der Rundeneingabe
+  angezeigt. Bei RAGE ist das immer aktiv.
 - **RAGE in zwei Phasen**: erst die Sitzordnung (im Uhrzeigersinn
   antippen), dann je Runde zuerst nur die Ansagen mit Live-Summe gegen die
   Kartenzahl ("4 von 6 Stichen angesagt") und "Ansagen abschließen", danach
@@ -255,6 +259,10 @@ data.*
 - **History & statistics**: all games with a status filter, plus a stats
   page with win rates, head-to-head comparisons, and a date-range filter
   (including print/PDF).
+- **Dealer display in all modes**: can be switched on under "Advanced
+  options" – the seating order is then asked clockwise, the dealer rotates
+  each round and is shown in the standings (★) and above the round entry.
+  Always active for RAGE.
 - **RAGE in two phases**: first the seating order (tap players
   clockwise), then each round starts with bids only, with a live total
   against the number of cards ("4 of 6 tricks bid") and "Lock bids",

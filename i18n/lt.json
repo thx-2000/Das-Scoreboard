@@ -89,7 +89,9 @@
         "startingScoreLabel": "Pradiniai taškai",
         "seatAfterLabel": "Sėdi kairėje nuo"
       },
-      "rematchButton": "Žaisti dar vieną raundą"
+      "rematchButton": "Žaisti dar vieną raundą",
+      "dealerLegend": "★ Šio rato dalytojas",
+      "dealerLine": "Dalija: {dealer}"
     },
     "setup": {
       "heading": "Nustatyti žaidimą",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Jei išjungta, neigiami raundo įrašai apribojami iki 0.",
       "targetBonusHint": "Papildomi taškai, kuriuos laimėtojas(-ai) gauna pasiekus tikslinį rezultatą (0 = be premijos).",
       "roundEntryStepsLabel": "Žingsnio dydžiai raundo įvedimui",
-      "roundEntryStepsHint": "Žingsnio mygtukai kaip alternatyva skaičių rašymui — pasirinkite, kurie žingsnio dydžiai (±) bus prieinami. Bet kuriuo metu galite perjungti tarp rašymo ir žingsnio mygtukų, net ir žaidimo metu."
+      "roundEntryStepsHint": "Žingsnio mygtukai kaip alternatyva skaičių rašymui — pasirinkite, kurie žingsnio dydžiai (±) bus prieinami. Bet kuriuo metu galite perjungti tarp rašymo ir žingsnio mygtukų, net ir žaidimo metu.",
+      "seatOrderLabel": "Sėdėjimo tvarka (pagal laikrodžio rodyklę)",
+      "seatOrderHint": "Paliesk žaidėjus paeiliui – pradėk nuo bet kurio, paskui visada kitas pagal laikrodžio rodyklę.",
+      "seatOrderReset": "Pradėti iš naujo",
+      "seatOrderIncomplete": "Nustatyk visą sėdėjimo tvarką.",
+      "showDealerLabel": "Rodyti dalytoją",
+      "showDealerHint": "Rodo, kas dalija kiekviename rate – dalytojas keičiasi paeiliui. Todėl klausiama sėdėjimo tvarkos."
     },
     "errors": {
       "minPlayers": "Pasirinkite bent 2 žaidėjus.",
@@ -576,11 +584,7 @@
       "hint": "Fiksuoti 10 raundų (nuo 10 iki 1 kortos), pabaigoje laimi didžiausias rezultatas.",
       "labelPlaceholder": "pvz., RAGE vakaras",
       "showBonusMalusLabel": "Rodyti premiją/nuobaudą",
-      "showBonusMalusHint": "Rodyti/slėpti specialiųjų kortų +5/−5 laukus raundo įvedime.",
-      "seatOrderLabel": "Sėdėjimo tvarka (pagal laikrodžio rodyklę)",
-      "seatOrderHint": "Paliesk žaidėjus paeiliui – pradėk nuo bet kurio, paskui visada kitas pagal laikrodžio rodyklę.",
-      "seatOrderReset": "Pradėti iš naujo",
-      "seatOrderIncomplete": "Nustatyk visą sėdėjimo tvarką."
+      "showBonusMalusHint": "Rodyti/slėpti specialiųjų kortų +5/−5 laukus raundo įvedime."
     },
     "game": {
       "cardSingular": "korta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Ištrinti R{round}",
       "mismatchConfirm": "Įvestų lėkčių suma ({actual}) neatitinka šio raundo kortų skaičiaus ({expected}). Vis tiek išsaugoti?",
       "saveFailed": "Nepavyko išsaugoti raundo.",
-      "dealerLegend": "★ Šio rato dalytojas",
       "round": {
         "dealerLine": "Dalija: {dealer} · Skelbimas prasideda nuo {first}"
       },

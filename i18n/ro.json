@@ -89,7 +89,9 @@
         "startingScoreLabel": "Puncte de start",
         "seatAfterLabel": "Stă în stânga lui"
       },
-      "rematchButton": "Joacă încă o rundă"
+      "rematchButton": "Joacă încă o rundă",
+      "dealerLegend": "★ Împărțitor în această rundă",
+      "dealerLine": "Împarte: {dealer}"
     },
     "setup": {
       "heading": "Configurează jocul",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Dacă este dezactivat, valorile negative introduse pe rundă sunt limitate la 0.",
       "targetBonusHint": "Puncte suplimentare pe care câștigătorul(ii) le primesc pentru atingerea scorului țintă (0 = fără bonus).",
       "roundEntryStepsLabel": "Mărimi de pas pentru introducerea rundei",
-      "roundEntryStepsHint": "Butoane de pas ca alternativă la scrierea numerelor — alege ce mărimi de pas (±) vor fi disponibile. Poți comuta oricând între scriere și butoane de pas, chiar și în timpul jocului."
+      "roundEntryStepsHint": "Butoane de pas ca alternativă la scrierea numerelor — alege ce mărimi de pas (±) vor fi disponibile. Poți comuta oricând între scriere și butoane de pas, chiar și în timpul jocului.",
+      "seatOrderLabel": "Ordinea la masă (în sensul acelor de ceasornic)",
+      "seatOrderHint": "Atinge jucătorii unul după altul – începe cu oricine, apoi mereu următorul în sensul acelor de ceasornic.",
+      "seatOrderReset": "Începe din nou",
+      "seatOrderIncomplete": "Stabilește ordinea completă la masă.",
+      "showDealerLabel": "Afișează împărțitorul",
+      "showDealerHint": "Arată cine împarte în fiecare rundă – împărțitorul se schimbă pe rând. Pentru asta se cere ordinea la masă."
     },
     "errors": {
       "minPlayers": "Selectează cel puțin 2 jucători.",
@@ -576,11 +584,7 @@
       "hint": "10 runde fixe (de la 10 la 1 carte), câștigă scorul cel mai mare la final.",
       "labelPlaceholder": "de ex. Seară RAGE",
       "showBonusMalusLabel": "Afișează bonus/malus",
-      "showBonusMalusHint": "Afișează/ascunde câmpurile de cărți speciale +5/−5 la introducerea rundei.",
-      "seatOrderLabel": "Ordinea la masă (în sensul acelor de ceasornic)",
-      "seatOrderHint": "Atinge jucătorii unul după altul – începe cu oricine, apoi mereu următorul în sensul acelor de ceasornic.",
-      "seatOrderReset": "Începe din nou",
-      "seatOrderIncomplete": "Stabilește ordinea completă la masă."
+      "showBonusMalusHint": "Afișează/ascunde câmpurile de cărți speciale +5/−5 la introducerea rundei."
     },
     "game": {
       "cardSingular": "carte",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Șterge R{round}",
       "mismatchConfirm": "Suma levatelor introduse ({actual}) nu corespunde numărului de cărți al acestei runde ({expected}). Salvezi oricum?",
       "saveFailed": "Runda nu a putut fi salvată.",
-      "dealerLegend": "★ Împărțitor în această rundă",
       "round": {
         "dealerLine": "Împarte: {dealer} · Anunțurile încep cu {first}"
       },

@@ -89,7 +89,9 @@
         "startingScoreLabel": "Byrjunarstig",
         "seatAfterLabel": "Situr vinstra megin við"
       },
-      "rematchButton": "Spila aðra umferð"
+      "rematchButton": "Spila aðra umferð",
+      "dealerLegend": "★ Gjafari þessarar umferðar",
+      "dealerLine": "Gjafari: {dealer}"
     },
     "setup": {
       "heading": "Setja upp leik",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Ef slökkt, eru neikvæðar umferðarfærslur takmarkaðar við 0.",
       "targetBonusHint": "Aukastig sem sigurvegari(ar) fá fyrir að ná markstigum (0 = enginn bónus).",
       "roundEntryStepsLabel": "Skrefastærðir fyrir umferðarskráningu",
-      "roundEntryStepsHint": "Skref-hnappar sem valkostur við að slá inn tölur — veldu hvaða skrefastærðir (±) eru í boði. Þú getur hvenær sem er skipt milli innsláttar og skref-hnappa, jafnvel í miðjum leik."
+      "roundEntryStepsHint": "Skref-hnappar sem valkostur við að slá inn tölur — veldu hvaða skrefastærðir (±) eru í boði. Þú getur hvenær sem er skipt milli innsláttar og skref-hnappa, jafnvel í miðjum leik.",
+      "seatOrderLabel": "Sætaskipan (réttsælis)",
+      "seatOrderHint": "Ýttu á leikmennina hvern á eftir öðrum – byrjaðu á hverjum sem er og svo alltaf næsta réttsælis.",
+      "seatOrderReset": "Byrja upp á nýtt",
+      "seatOrderIncomplete": "Settu alla sætaskipanina.",
+      "showDealerLabel": "Sýna gjafara",
+      "showDealerHint": "Sýnir hver gefur í hverri umferð – gjafarinn skiptist á. Þá er spurt um sætaskipanina."
     },
     "errors": {
       "minPlayers": "Veldu að minnsta kosti 2 leikmenn.",
@@ -576,11 +584,7 @@
       "hint": "Fastar 10 umferðir (10 niður í 1 spil), hæsta skorið vinnur að lokum.",
       "labelPlaceholder": "t.d. RAGE-kvöld",
       "showBonusMalusLabel": "Sýna bónus/mínus",
-      "showBonusMalusHint": "Sýna/fela sérstök spilareiti +5/−5 í umferðarskráningu.",
-      "seatOrderLabel": "Sætaskipan (réttsælis)",
-      "seatOrderHint": "Ýttu á leikmennina hvern á eftir öðrum – byrjaðu á hverjum sem er og svo alltaf næsta réttsælis.",
-      "seatOrderReset": "Byrja upp á nýtt",
-      "seatOrderIncomplete": "Settu alla sætaskipanina."
+      "showBonusMalusHint": "Sýna/fela sérstök spilareiti +5/−5 í umferðarskráningu."
     },
     "game": {
       "cardSingular": "spil",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Eyða U{round}",
       "mismatchConfirm": "Summa skráðra slaga ({actual}) stemmir ekki við spilafjölda þessarar umferðar ({expected}). Vista samt?",
       "saveFailed": "Ekki tókst að vista umferð.",
-      "dealerLegend": "★ Gjafari þessarar umferðar",
       "round": {
         "dealerLine": "Gjafari: {dealer} · Sagnir byrja hjá {first}"
       },

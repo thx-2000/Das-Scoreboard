@@ -89,7 +89,9 @@
         "startingScoreLabel": "Punti tal-bidu",
         "seatAfterLabel": "Bilqiegħda fuq ix-xellug ta'"
       },
-      "rematchButton": "Ilgħab logħba oħra"
+      "rematchButton": "Ilgħab logħba oħra",
+      "dealerLegend": "★ Id-dealer ta' dan ir-rawnd",
+      "dealerLine": "Dealer: {dealer}"
     },
     "setup": {
       "heading": "Issettja l-logħba",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Jekk mitfi, id-dħul negattiv tar-rawnd jiġi limitat għal 0.",
       "targetBonusHint": "Punti addizzjonali li jirċievi/jirċievu r-rebbieħ(a) talli laħaq/laħqu l-punteġġ mira (0 = l-ebda bonus).",
       "roundEntryStepsLabel": "Daqsijiet tal-pass għad-dħul tar-rawnd",
-      "roundEntryStepsHint": "Buttuni tal-pass bħala alternattiva għat-tajpjar tan-numri — agħżel liema daqsijiet tal-pass (±) ikunu disponibbli. Tista' taqleb bejn it-tajpjar u l-buttuni tal-pass f'kull ħin, anke f'nofs il-logħba."
+      "roundEntryStepsHint": "Buttuni tal-pass bħala alternattiva għat-tajpjar tan-numri — agħżel liema daqsijiet tal-pass (±) ikunu disponibbli. Tista' taqleb bejn it-tajpjar u l-buttuni tal-pass f'kull ħin, anke f'nofs il-logħba.",
+      "seatOrderLabel": "Ordni tal-lqugħ (fid-direzzjoni tal-arloġġ)",
+      "seatOrderHint": "Mil-lasaq il-plejers wieħed wara l-ieħor – ibda b'xi ħadd, imbagħad dejjem li jmiss fid-direzzjoni tal-arloġġ.",
+      "seatOrderReset": "Ibda mill-ġdid",
+      "seatOrderIncomplete": "Issettja l-ordni sħiħ tal-lqugħ.",
+      "showDealerLabel": "Uri d-dealer",
+      "showDealerHint": "Juri min jagħti l-karti f'kull rawnd – id-dealer jinbidel bit-turn. Għal dan jintalab l-ordni tal-lqugħ."
     },
     "errors": {
       "minPlayers": "Agħżel mill-inqas 2 plejers.",
@@ -576,11 +584,7 @@
       "hint": "10 rawndijiet fissi (minn 10 sa karta waħda), fl-aħħar jirbaħ l-ogħla punteġġ.",
       "labelPlaceholder": "eż. Lejl RAGE",
       "showBonusMalusLabel": "Uri bonus/malus",
-      "showBonusMalusHint": "Uri/aħbi l-oqsma tal-karti speċjali +5/−5 fid-dħul tar-rawnd.",
-      "seatOrderLabel": "Ordni tal-lqugħ (fid-direzzjoni tal-arloġġ)",
-      "seatOrderHint": "Mil-lasaq il-plejers wieħed wara l-ieħor – ibda b'xi ħadd, imbagħad dejjem li jmiss fid-direzzjoni tal-arloġġ.",
-      "seatOrderReset": "Ibda mill-ġdid",
-      "seatOrderIncomplete": "Issettja l-ordni sħiħ tal-lqugħ."
+      "showBonusMalusHint": "Uri/aħbi l-oqsma tal-karti speċjali +5/−5 fid-dħul tar-rawnd."
     },
     "game": {
       "cardSingular": "karta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Ħassar R{round}",
       "mismatchConfirm": "It-total tat-teħid imdaħħal ({actual}) ma jaqbilx man-numru ta' karti ta' dan ir-rawnd ({expected}). Issejvja xorta?",
       "saveFailed": "Ir-rawnd ma setax jiġi ssejvjat.",
-      "dealerLegend": "★ Id-dealer ta' dan ir-rawnd",
       "round": {
         "dealerLine": "Dealer: {dealer} · Id-dikjarazzjoni tibda minn {first}"
       },

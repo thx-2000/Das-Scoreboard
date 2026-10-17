@@ -11,6 +11,15 @@ const teamSetup = initTeamSetup(document.getElementById('team-setup'));
 const roundEntryStepsField = document.getElementById('round-entry-steps-field');
 window.renderRoundEntryStepsField(roundEntryStepsField, '1,5,10');
 
+// Optionale Geber-Anzeige (Migration 18): Sitzordnung im Uhrzeigersinn
+// abfragen, siehe js/seat-order.js.
+const showDealerInput = document.getElementById('show-dealer');
+const seatOrder = window.initSeatOrder({
+  section: document.getElementById('seat-order-section'),
+  container: document.getElementById('seat-order'),
+  isActive: () => showDealerInput.checked,
+});
+
 const selectedPlayerIds = new Set();
 let knownPlayers = [];
 let groupPicker = null;
@@ -18,6 +27,11 @@ let groupPicker = null;
 function refreshTeamSetup() {
   teamSetup.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
 }
+
+function refreshSeatOrder() {
+  seatOrder.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
+}
+showDealerInput.addEventListener('change', refreshSeatOrder);
 
 function showError(message) {
   setupError.textContent = message;
@@ -47,6 +61,7 @@ function renderPlayerChip(player, index) {
       label.classList.remove('player-chip--checked');
     }
     refreshTeamSetup();
+    refreshSeatOrder();
   });
 
   if (checkbox.checked) label.classList.add('player-chip--checked');
@@ -70,6 +85,7 @@ function refreshPlayerPicker() {
   }
   if (groupPicker) groupPicker.refreshLabel(knownPlayers.map((p) => p.id));
   refreshTeamSetup();
+  refreshSeatOrder();
 }
 
 async function loadPlayers() {
@@ -114,6 +130,11 @@ setupForm.addEventListener('submit', async (event) => {
     return;
   }
 
+  if (showDealerInput.checked && seatOrder.getSequence().length !== selectedPlayerIds.size) {
+    showError(window.t('common.setup.seatOrderIncomplete'));
+    return;
+  }
+
   const winDirection = document.querySelector('input[name="win-direction"]:checked').value;
 
   const response = await fetch('/api/games.php', {
@@ -125,7 +146,9 @@ setupForm.addEventListener('submit', async (event) => {
       totalRounds: Number(totalRoundsInput.value),
       winDirection,
       announceRoundEnd: announceRoundEndInput.checked,
-      playerIds: Array.from(selectedPlayerIds),
+      // Mit Geber-Anzeige ist die Reihenfolge die Sitzordnung im Uhrzeigersinn.
+      playerIds: showDealerInput.checked ? seatOrder.getSequence() : Array.from(selectedPlayerIds),
+      showDealer: showDealerInput.checked,
       teamAssignments: teamSetup.getTeamAssignments(),
       teamNames: teamSetup.getTeamNames(),
       teamScoring: teamSetup.getTeamScoring(),
@@ -193,9 +216,11 @@ async function prefillFromGame() {
   window.renderRoundEntryStepsField(roundEntryStepsField, game.roundEntrySteps);
 
   const knownIds = new Set(knownPlayers.map((p) => p.id));
-  game.players
-    .filter((p) => !p.withdrawnAt && knownIds.has(p.id))
-    .forEach((p) => selectedPlayerIds.add(p.id));
+  const returning = game.players.filter((p) => !p.withdrawnAt && knownIds.has(p.id));
+  returning.forEach((p) => selectedPlayerIds.add(p.id));
+  // Geber-Anzeige samt Sitzordnung vom letzten Spiel uebernehmen.
+  showDealerInput.checked = Boolean(game.showDealer);
+  seatOrder.setSequence(game.showDealer ? window.seatSequenceFromGame(returning) : []);
   refreshPlayerPicker();
 }
 

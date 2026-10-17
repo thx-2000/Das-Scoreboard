@@ -399,6 +399,17 @@ function migrations(): array
                 )
             ');
         },
+
+        // Geber-Anzeige auch ausserhalb von RAGE: show_dealer schaltet pro Spiel
+        // Sitzordnung + Geberwechsel ein (bei RAGE ohnehin immer, daher fuer
+        // bestehende RAGE-Spiele nachtraeglich gesetzt).
+        18 => function (PDO $pdo) {
+            $gameColumns = array_column($pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+            if (!in_array('show_dealer', $gameColumns, true)) {
+                $pdo->exec('ALTER TABLE games ADD COLUMN show_dealer INTEGER NOT NULL DEFAULT 0');
+            }
+            $pdo->exec("UPDATE games SET show_dealer = 1 WHERE mode = 'rage'");
+        },
     ];
 }
 

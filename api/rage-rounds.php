@@ -60,7 +60,7 @@ if ($method === 'POST' && $roundId === null) {
         send_json(['error' => 'Alle 10 Runden sind bereits gespielt.'], 400);
     }
 
-    $dealerId = rage_round_roles($pdo, $gameId)['dealerId'];
+    $dealerId = game_round_roles($pdo, $gameId)['dealerId'];
 
     $pdo->beginTransaction();
 

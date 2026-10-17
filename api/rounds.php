@@ -48,8 +48,12 @@ if ($method === 'POST' && $roundId === null) {
 
     $pdo->beginTransaction();
 
-    $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at) VALUES (?, ?, ?)');
-    $insertRound->execute([$gameId, $nextRoundNumber, now_iso()]);
+    // Geber dieser Runde festhalten (nur mit Geber-Anzeige), damit der Wechsel
+    // auch nach Ausscheiden/Dazukommen von Spielern stabil bleibt.
+    $dealerId = !empty($game['show_dealer']) ? game_round_roles($pdo, $gameId)['dealerId'] : null;
+
+    $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at, dealer_id) VALUES (?, ?, ?, ?)');
+    $insertRound->execute([$gameId, $nextRoundNumber, now_iso(), $dealerId]);
     $newRoundId = (int) $pdo->lastInsertId();
 
     $insertScore = $pdo->prepare('INSERT INTO round_scores (round_id, player_id, points) VALUES (?, ?, ?)');

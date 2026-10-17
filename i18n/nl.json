@@ -89,7 +89,9 @@
         "startingScoreLabel": "Startpunten",
         "seatAfterLabel": "Zit links van"
       },
-      "rematchButton": "Nog een ronde spelen"
+      "rematchButton": "Nog een ronde spelen",
+      "dealerLegend": "★ Gever van deze ronde",
+      "dealerLine": "Gever: {dealer}"
     },
     "setup": {
       "heading": "Spel instellen",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Indien uit, worden negatieve rondeinvoer begrensd tot 0.",
       "targetBonusHint": "Extra punten die de winnaar(s) krijgen voor het behalen van de doelscore (0 = geen bonus).",
       "roundEntryStepsLabel": "Stapgroottes voor rondeinvoer",
-      "roundEntryStepsHint": "Stapknoppen als alternatief voor het typen van getallen — kies welke stapgroottes (±) beschikbaar zijn. Je kunt altijd wisselen tussen typen en stapknoppen, ook tijdens het spel."
+      "roundEntryStepsHint": "Stapknoppen als alternatief voor het typen van getallen — kies welke stapgroottes (±) beschikbaar zijn. Je kunt altijd wisselen tussen typen en stapknoppen, ook tijdens het spel.",
+      "seatOrderLabel": "Zitvolgorde (met de klok mee)",
+      "seatOrderHint": "Tik de spelers na elkaar aan – begin bij iemand, daarna steeds de volgende met de klok mee.",
+      "seatOrderReset": "Opnieuw beginnen",
+      "seatOrderIncomplete": "Leg de zitvolgorde volledig vast.",
+      "showDealerLabel": "Gever tonen",
+      "showDealerHint": "Toont wie er elke ronde geeft – de gever wisselt om de beurt. Daarvoor wordt de zitvolgorde gevraagd."
     },
     "errors": {
       "minPlayers": "Selecteer minstens 2 spelers.",
@@ -576,11 +584,7 @@
       "hint": "Vaste 10 rondes (van 10 naar 1 kaart), hoogste score wint aan het eind.",
       "labelPlaceholder": "bijv. RAGE-avond",
       "showBonusMalusLabel": "Bonus/malus tonen",
-      "showBonusMalusHint": "De +5/−5-velden voor speciale kaarten in de rondeinvoer tonen/verbergen.",
-      "seatOrderLabel": "Zitvolgorde (met de klok mee)",
-      "seatOrderHint": "Tik de spelers na elkaar aan – begin bij iemand, daarna steeds de volgende met de klok mee.",
-      "seatOrderReset": "Opnieuw beginnen",
-      "seatOrderIncomplete": "Leg de zitvolgorde volledig vast."
+      "showBonusMalusHint": "De +5/−5-velden voor speciale kaarten in de rondeinvoer tonen/verbergen."
     },
     "game": {
       "cardSingular": "kaart",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "R{round} verwijderen",
       "mismatchConfirm": "De som van de ingevoerde slagen ({actual}) komt niet overeen met het aantal kaarten van deze ronde ({expected}). Toch opslaan?",
       "saveFailed": "Ronde kon niet worden opgeslagen.",
-      "dealerLegend": "★ Gever van deze ronde",
       "round": {
         "dealerLine": "Gever: {dealer} · Bieden begint bij {first}"
       },

@@ -89,7 +89,9 @@
         "startingScoreLabel": "Pontos iniciais",
         "seatAfterLabel": "Senta-se à esquerda de"
       },
-      "rematchButton": "Jogar outra rodada"
+      "rematchButton": "Jogar outra rodada",
+      "dealerLegend": "★ Dador desta ronda",
+      "dealerLine": "Dador: {dealer}"
     },
     "setup": {
       "heading": "Configurar jogo",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Se desativado, as entradas negativas de ronda são limitadas a 0.",
       "targetBonusHint": "Pontos extra que o(s) vencedor(es) recebem por atingir a pontuação-alvo (0 = sem bónus).",
       "roundEntryStepsLabel": "Incrementos para o registo de ronda",
-      "roundEntryStepsHint": "Botões de incremento como alternativa a escrever números — escolha que incrementos (±) estarão disponíveis. Pode alternar entre escrever e botões de incremento em qualquer altura, mesmo a meio do jogo."
+      "roundEntryStepsHint": "Botões de incremento como alternativa a escrever números — escolha que incrementos (±) estarão disponíveis. Pode alternar entre escrever e botões de incremento em qualquer altura, mesmo a meio do jogo.",
+      "seatOrderLabel": "Ordem dos lugares (sentido horário)",
+      "seatOrderHint": "Toque nos jogadores um a um – comece por qualquer um e depois sempre o seguinte no sentido horário.",
+      "seatOrderReset": "Recomeçar",
+      "seatOrderIncomplete": "Defina a ordem dos lugares completa.",
+      "showDealerLabel": "Mostrar o dador",
+      "showDealerHint": "Mostra quem dá as cartas em cada ronda – o dador muda à vez. Para isso é pedida a ordem dos lugares."
     },
     "errors": {
       "minPlayers": "Selecione pelo menos 2 jogadores.",
@@ -576,11 +584,7 @@
       "hint": "10 rondas fixas (de 10 a 1 carta), vence a pontuação mais alta no final.",
       "labelPlaceholder": "p. ex. Noite RAGE",
       "showBonusMalusLabel": "Mostrar bónus/malus",
-      "showBonusMalusHint": "Mostrar/ocultar os campos de cartas especiais +5/−5 no registo de ronda.",
-      "seatOrderLabel": "Ordem dos lugares (sentido horário)",
-      "seatOrderHint": "Toque nos jogadores um a um – comece por qualquer um e depois sempre o seguinte no sentido horário.",
-      "seatOrderReset": "Recomeçar",
-      "seatOrderIncomplete": "Defina a ordem dos lugares completa."
+      "showBonusMalusHint": "Mostrar/ocultar os campos de cartas especiais +5/−5 no registo de ronda."
     },
     "game": {
       "cardSingular": "carta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Eliminar R{round}",
       "mismatchConfirm": "A soma das vazas introduzidas ({actual}) não corresponde ao número de cartas desta ronda ({expected}). Guardar mesmo assim?",
       "saveFailed": "Não foi possível guardar a ronda.",
-      "dealerLegend": "★ Dador desta ronda",
       "round": {
         "dealerLine": "Dador: {dealer} · A aposta começa em {first}"
       },

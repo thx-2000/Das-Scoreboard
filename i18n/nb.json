@@ -89,7 +89,9 @@
         "startingScoreLabel": "Startpoeng",
         "seatAfterLabel": "Sitter til venstre for"
       },
-      "rematchButton": "Spill en runde til"
+      "rematchButton": "Spill en runde til",
+      "dealerLegend": "★ Giver denne runden",
+      "dealerLine": "Giver: {dealer}"
     },
     "setup": {
       "heading": "Sett opp spill",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Hvis av, begrenses negative rundeføringer til 0.",
       "targetBonusHint": "Ekstra poeng vinneren/vinnerne får for å ha nådd målpoengsummen (0 = ingen bonus).",
       "roundEntryStepsLabel": "Trinnstørrelser for runderegistrering",
-      "roundEntryStepsHint": "Trinnknapper som alternativ til å skrive inn tall — velg hvilke trinnstørrelser (±) som skal være tilgjengelige. Du kan når som helst bytte mellom å skrive inn og trinnknapper, også midt i spillet."
+      "roundEntryStepsHint": "Trinnknapper som alternativ til å skrive inn tall — velg hvilke trinnstørrelser (±) som skal være tilgjengelige. Du kan når som helst bytte mellom å skrive inn og trinnknapper, også midt i spillet.",
+      "seatOrderLabel": "Sittrekkefølge (med klokka)",
+      "seatOrderHint": "Trykk på spillerne etter hverandre – begynn med hvem som helst, deretter alltid neste med klokka.",
+      "seatOrderReset": "Begynn på nytt",
+      "seatOrderIncomplete": "Angi hele sittrekkefølgen.",
+      "showDealerLabel": "Vis giver",
+      "showDealerHint": "Viser hvem som gir hver runde – giveren bytter på rundgang. Da spørres det om sittrekkefølgen."
     },
     "errors": {
       "minPlayers": "Velg minst 2 spillere.",
@@ -576,11 +584,7 @@
       "hint": "Faste 10 runder (10 ned til 1 kort), høyest poengsum vinner til slutt.",
       "labelPlaceholder": "f.eks. RAGE-kveld",
       "showBonusMalusLabel": "Vis bonus/malus",
-      "showBonusMalusHint": "Vis/skjul feltene for spesialkort +5/−5 i runderegistreringen.",
-      "seatOrderLabel": "Sittrekkefølge (med klokka)",
-      "seatOrderHint": "Trykk på spillerne etter hverandre – begynn med hvem som helst, deretter alltid neste med klokka.",
-      "seatOrderReset": "Begynn på nytt",
-      "seatOrderIncomplete": "Angi hele sittrekkefølgen."
+      "showBonusMalusHint": "Vis/skjul feltene for spesialkort +5/−5 i runderegistreringen."
     },
     "game": {
       "cardSingular": "kort",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Slett R{round}",
       "mismatchConfirm": "Summen av registrerte stikk ({actual}) samsvarer ikke med denne rundens antall kort ({expected}). Lagre likevel?",
       "saveFailed": "Runden kunne ikke lagres.",
-      "dealerLegend": "★ Giver denne runden",
       "round": {
         "dealerLine": "Giver: {dealer} · Budgivningen starter med {first}"
       },

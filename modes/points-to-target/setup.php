@@ -65,6 +65,17 @@ require __DIR__ . '/../../includes/header.php';
           <p class="hint-text" data-i18n="common.setup.roundEntryStepsHint">Schritt-Buttons als Alternative zur Zahleneingabe. Zwischen Tippen und Schritt-Buttons kann direkt im laufenden Spiel umgeschaltet werden.</p>
           <div class="player-picker" id="round-entry-steps-field"></div>
 
+          <label class="player-chip">
+            <input type="checkbox" id="show-dealer">
+            <span data-i18n="common.setup.showDealerLabel">Geber anzeigen</span>
+          </label>
+          <p class="hint-text" data-i18n="common.setup.showDealerHint">Zeigt in jeder Runde, wer gibt – der Geber wechselt reihum. Dafür wird die Sitzordnung abgefragt.</p>
+          <div id="seat-order-section" hidden>
+            <label data-i18n="common.setup.seatOrderLabel">Sitzordnung (im Uhrzeigersinn)</label>
+            <p class="hint-text" data-i18n="common.setup.seatOrderHint">Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.</p>
+            <div class="seat-order" id="seat-order"></div>
+          </div>
+
           <div class="team-setup" id="team-setup">
             <label class="player-chip">
               <input type="checkbox" data-team-enable>
@@ -97,5 +108,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'js/group-picker.js', 'js/round-entry-steps-field.js', 'modes/points-to-target/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'js/group-picker.js', 'js/round-entry-steps-field.js', 'js/seat-order.js', 'modes/points-to-target/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

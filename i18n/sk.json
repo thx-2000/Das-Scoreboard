@@ -89,7 +89,9 @@
         "startingScoreLabel": "Počiatočné body",
         "seatAfterLabel": "Sedí naľavo od"
       },
-      "rematchButton": "Hrať ďalšie kolo"
+      "rematchButton": "Hrať ďalšie kolo",
+      "dealerLegend": "★ Rozdávajúci v tomto kole",
+      "dealerLine": "Rozdáva: {dealer}"
     },
     "setup": {
       "heading": "Nastaviť hru",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Ak je vypnuté, záporné záznamy kola sa obmedzia na 0.",
       "targetBonusHint": "Body navyše, ktoré víťaz(i) dostanú za dosiahnutie cieľového skóre (0 = žiadny bonus).",
       "roundEntryStepsLabel": "Veľkosti krokov pre zadávanie kola",
-      "roundEntryStepsHint": "Krokové tlačidlá ako alternatíva k zadávaniu čísel — vyberte, ktoré veľkosti krokov (±) budú k dispozícii. Medzi písaním a krokovými tlačidlami môžete kedykoľvek prepínať, aj počas hry."
+      "roundEntryStepsHint": "Krokové tlačidlá ako alternatíva k zadávaniu čísel — vyberte, ktoré veľkosti krokov (±) budú k dispozícii. Medzi písaním a krokovými tlačidlami môžete kedykoľvek prepínať, aj počas hry.",
+      "seatOrderLabel": "Poradie pri stole (v smere hodinových ručičiek)",
+      "seatOrderHint": "Ťukajte na hráčov postupne – začnite kýmkoľvek a potom vždy ďalším v smere hodinových ručičiek.",
+      "seatOrderReset": "Začať odznova",
+      "seatOrderIncomplete": "Nastavte celé poradie pri stole.",
+      "showDealerLabel": "Zobraziť rozdávajúceho",
+      "showDealerHint": "Ukazuje, kto v každom kole rozdáva – rozdávajúci sa strieda. Na to sa zisťuje poradie pri stole."
     },
     "errors": {
       "minPlayers": "Vyberte aspoň 2 hráčov.",
@@ -576,11 +584,7 @@
       "hint": "Pevných 10 kôl (od 10 do 1 karty), na konci vyhráva najvyššie skóre.",
       "labelPlaceholder": "napr. Večer RAGE",
       "showBonusMalusLabel": "Zobraziť bonus/malus",
-      "showBonusMalusHint": "Zobraziť/skryť polia špeciálnych kariet +5/−5 pri zadávaní kola.",
-      "seatOrderLabel": "Poradie pri stole (v smere hodinových ručičiek)",
-      "seatOrderHint": "Ťukajte na hráčov postupne – začnite kýmkoľvek a potom vždy ďalším v smere hodinových ručičiek.",
-      "seatOrderReset": "Začať odznova",
-      "seatOrderIncomplete": "Nastavte celé poradie pri stole."
+      "showBonusMalusHint": "Zobraziť/skryť polia špeciálnych kariet +5/−5 pri zadávaní kola."
     },
     "game": {
       "cardSingular": "karta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Odstrániť K{round}",
       "mismatchConfirm": "Súčet zadaných zdvihov ({actual}) nezodpovedá počtu kariet tohto kola ({expected}). Napriek tomu uložiť?",
       "saveFailed": "Kolo sa nepodarilo uložiť.",
-      "dealerLegend": "★ Rozdávajúci v tomto kole",
       "round": {
         "dealerLine": "Rozdáva: {dealer} · Hlásenie začína pri {first}"
       },

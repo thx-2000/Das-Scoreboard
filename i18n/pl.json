@@ -89,7 +89,9 @@
         "startingScoreLabel": "Punkty startowe",
         "seatAfterLabel": "Siedzi po lewej stronie"
       },
-      "rematchButton": "Zagraj kolejną rundę"
+      "rematchButton": "Zagraj kolejną rundę",
+      "dealerLegend": "★ Rozdający w tej rundzie",
+      "dealerLine": "Rozdaje: {dealer}"
     },
     "setup": {
       "heading": "Skonfiguruj grę",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Jeśli wyłączone, ujemne wpisy rundy są ograniczane do 0.",
       "targetBonusHint": "Dodatkowe punkty, które zwycięzca(y) otrzymują za osiągnięcie wyniku docelowego (0 = brak bonusu).",
       "roundEntryStepsLabel": "Wielkości kroków dla wprowadzania rundy",
-      "roundEntryStepsHint": "Przyciski krokowe jako alternatywa dla wpisywania liczb — wybierz, które wielkości kroków (±) mają być dostępne. Możesz w dowolnym momencie przełączać się między wpisywaniem a przyciskami krokowymi, nawet w trakcie gry."
+      "roundEntryStepsHint": "Przyciski krokowe jako alternatywa dla wpisywania liczb — wybierz, które wielkości kroków (±) mają być dostępne. Możesz w dowolnym momencie przełączać się między wpisywaniem a przyciskami krokowymi, nawet w trakcie gry.",
+      "seatOrderLabel": "Kolejność przy stole (zgodnie z ruchem wskazówek zegara)",
+      "seatOrderHint": "Stukaj graczy po kolei – zacznij od dowolnego, potem zawsze od następnego zgodnie z ruchem wskazówek zegara.",
+      "seatOrderReset": "Zacznij od nowa",
+      "seatOrderIncomplete": "Ustaw pełną kolejność przy stole.",
+      "showDealerLabel": "Pokaż rozdającego",
+      "showDealerHint": "Pokazuje, kto rozdaje w każdej rundzie – rozdający zmienia się po kolei. W tym celu pytamy o kolejność przy stole."
     },
     "errors": {
       "minPlayers": "Wybierz co najmniej 2 graczy.",
@@ -576,11 +584,7 @@
       "hint": "Stałe 10 rund (od 10 do 1 karty), na koniec wygrywa najwyższy wynik.",
       "labelPlaceholder": "np. Wieczór RAGE",
       "showBonusMalusLabel": "Pokaż bonus/malus",
-      "showBonusMalusHint": "Pokaż/ukryj pola kart specjalnych +5/−5 przy wprowadzaniu rundy.",
-      "seatOrderLabel": "Kolejność przy stole (zgodnie z ruchem wskazówek zegara)",
-      "seatOrderHint": "Stukaj graczy po kolei – zacznij od dowolnego, potem zawsze od następnego zgodnie z ruchem wskazówek zegara.",
-      "seatOrderReset": "Zacznij od nowa",
-      "seatOrderIncomplete": "Ustaw pełną kolejność przy stole."
+      "showBonusMalusHint": "Pokaż/ukryj pola kart specjalnych +5/−5 przy wprowadzaniu rundy."
     },
     "game": {
       "cardSingular": "karta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Usuń R{round}",
       "mismatchConfirm": "Suma wprowadzonych lew ({actual}) nie zgadza się z liczbą kart tej rundy ({expected}). Zapisać mimo to?",
       "saveFailed": "Nie udało się zapisać rundy.",
-      "dealerLegend": "★ Rozdający w tej rundzie",
       "round": {
         "dealerLine": "Rozdaje: {dealer} · Zapowiedzi zaczyna {first}"
       },

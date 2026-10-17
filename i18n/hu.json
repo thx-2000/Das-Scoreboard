@@ -89,7 +89,9 @@
         "startingScoreLabel": "Kezdőpontok",
         "seatAfterLabel": "Bal oldalán ül:"
       },
-      "rematchButton": "Még egy kör játék"
+      "rematchButton": "Még egy kör játék",
+      "dealerLegend": "★ A kör osztója",
+      "dealerLine": "Oszt: {dealer}"
     },
     "setup": {
       "heading": "Játék beállítása",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Ha ki van kapcsolva, a negatív köradatok 0-ra korlátozódnak.",
       "targetBonusHint": "Extra pontok, amelyeket a nyertes(ek) kapnak a célpontszám eléréséért (0 = nincs bónusz).",
       "roundEntryStepsLabel": "Lépésközök a kör rögzítéséhez",
-      "roundEntryStepsHint": "Léptető gombok a számok beírása helyett — válaszd ki, mely lépésközök (±) legyenek elérhetők. Bármikor válthatsz beírás és léptető gombok között, akár játék közben is."
+      "roundEntryStepsHint": "Léptető gombok a számok beírása helyett — válaszd ki, mely lépésközök (±) legyenek elérhetők. Bármikor válthatsz beírás és léptető gombok között, akár játék közben is.",
+      "seatOrderLabel": "Ülésrend (az óramutató járásával megegyezően)",
+      "seatOrderHint": "Koppints a játékosokra egymás után – kezdd bárkivel, utána mindig a következővel az óramutató járása szerint.",
+      "seatOrderReset": "Újrakezdés",
+      "seatOrderIncomplete": "Add meg a teljes ülésrendet.",
+      "showDealerLabel": "Osztó megjelenítése",
+      "showDealerHint": "Megmutatja, ki oszt az egyes köröknél – az osztó sorban váltakozik. Ehhez az ülésrendet is megkérdezzük."
     },
     "errors": {
       "minPlayers": "Válassz ki legalább 2 játékost.",
@@ -576,11 +584,7 @@
       "hint": "Fix 10 kör (10-től 1 lapig), a végén a legmagasabb pontszám nyer.",
       "labelPlaceholder": "pl. RAGE-est",
       "showBonusMalusLabel": "Bónusz/malus megjelenítése",
-      "showBonusMalusHint": "A +5/−5 különleges lap mezők megjelenítése/elrejtése a kör rögzítésénél.",
-      "seatOrderLabel": "Ülésrend (az óramutató járásával megegyezően)",
-      "seatOrderHint": "Koppints a játékosokra egymás után – kezdd bárkivel, utána mindig a következővel az óramutató járása szerint.",
-      "seatOrderReset": "Újrakezdés",
-      "seatOrderIncomplete": "Add meg a teljes ülésrendet."
+      "showBonusMalusHint": "A +5/−5 különleges lap mezők megjelenítése/elrejtése a kör rögzítésénél."
     },
     "game": {
       "cardSingular": "lap",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "K{round}. kör törlése",
       "mismatchConfirm": "A megadott ütések összege ({actual}) nem egyezik ennek a körnek a lapszámával ({expected}). Mentés mindenképp?",
       "saveFailed": "A kört nem sikerült menteni.",
-      "dealerLegend": "★ A kör osztója",
       "round": {
         "dealerLine": "Oszt: {dealer} · A bemondás itt kezdődik: {first}"
       },

@@ -89,7 +89,9 @@
         "startingScoreLabel": "Starting points",
         "seatAfterLabel": "Sits to the left of"
       },
-      "rematchButton": "Play another round"
+      "rematchButton": "Play another round",
+      "dealerLegend": "★ Dealer this round",
+      "dealerLine": "Dealer: {dealer}"
     },
     "setup": {
       "heading": "Set up game",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "When off, negative round entries are clamped to 0.",
       "targetBonusHint": "Extra points the winner(s) get for reaching the target score (0 = no bonus).",
       "roundEntryStepsLabel": "Step sizes for round entry",
-      "roundEntryStepsHint": "Step buttons as an alternative to typing numbers — choose which step sizes (±) are available. You can switch between typing and step buttons anytime, even mid-game."
+      "roundEntryStepsHint": "Step buttons as an alternative to typing numbers — choose which step sizes (±) are available. You can switch between typing and step buttons anytime, even mid-game.",
+      "seatOrderLabel": "Seating order (clockwise)",
+      "seatOrderHint": "Tap the players one after another – start with anyone, then always the next one clockwise.",
+      "seatOrderReset": "Start over",
+      "seatOrderIncomplete": "Please set the full seating order.",
+      "showDealerLabel": "Show dealer",
+      "showDealerHint": "Shows who deals each round – the dealer rotates around the table. This asks for the seating order."
     },
     "errors": {
       "minPlayers": "Select at least 2 players.",
@@ -576,11 +584,7 @@
       "hint": "Fixed 10 rounds (10 down to 1 card), highest score wins at the end.",
       "labelPlaceholder": "e.g. RAGE night",
       "showBonusMalusLabel": "Show bonus/malus",
-      "showBonusMalusHint": "Show/hide the +5/−5 special-card fields in round entry.",
-      "seatOrderLabel": "Seating order (clockwise)",
-      "seatOrderHint": "Tap the players one after another – start with anyone, then always the next one clockwise.",
-      "seatOrderReset": "Start over",
-      "seatOrderIncomplete": "Please set the full seating order."
+      "showBonusMalusHint": "Show/hide the +5/−5 special-card fields in round entry."
     },
     "game": {
       "cardSingular": "card",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Delete R{round}",
       "mismatchConfirm": "The sum of entered tricks ({actual}) does not match this round's card count ({expected}). Save anyway?",
       "saveFailed": "Could not save round.",
-      "dealerLegend": "★ Dealer this round",
       "round": {
         "dealerLine": "Dealer: {dealer} · Bidding starts with {first}"
       },

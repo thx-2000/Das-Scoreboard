@@ -68,7 +68,7 @@ function renderStandings(state) {
     if (rank === 1) row.className = 'rank-first';
     if (player.withdrawnAt) row.classList.add('standings-row--withdrawn');
 
-    const displayName = window.escapeHtml(player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name);
+    const displayName = window.escapeHtml(player.memberIds.includes(window.scoreboardMarkerPlayerId(state)) ? `${player.name} ★` : player.name);
     // teamLabel/teamTotal gibt es nur im team_scoring "individual" (Migration
     // 9) - dort bleibt jeder Spieler eine eigene Zeile, zeigt aber zusaetzlich
     // die Team-Zugehoerigkeit und -Summe an.
@@ -104,7 +104,7 @@ function renderStandingsCards(state) {
     previousRankValue = player.rankValue;
     previousRank = rank;
 
-    const displayName = window.escapeHtml(player.memberIds.includes(state.startingPlayerId) ? `${player.name} ★` : player.name);
+    const displayName = window.escapeHtml(player.memberIds.includes(window.scoreboardMarkerPlayerId(state)) ? `${player.name} ★` : player.name);
     const teamHint = player.teamLabel
       ? `<div class="hint-text standings-team-hint">${window.escapeHtml(player.teamLabel)} · ${player.teamTotal} ${window.t('common.game.standings.teamTotalSuffix')}</div>`
       : '';
@@ -130,7 +130,8 @@ function renderStandingsCards(state) {
 }
 
 function renderStartingPlayerLegend(state) {
-  startingPlayerLegend.hidden = state.startingPlayerId === null || state.startingPlayerId === undefined;
+  window.scoreboardRenderMarkerLegend(state, startingPlayerLegend);
+  window.scoreboardRenderDealerLine(state, document.getElementById('dealer-line'));
 }
 
 function renderWinnerBanner(state) {

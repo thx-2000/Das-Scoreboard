@@ -28,7 +28,7 @@ require __DIR__ . '/../../includes/header.php';
             <tbody id="standings-body"></tbody>
           </table>
           <div class="standings-cards" id="standings-cards"></div>
-          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="rage.game.dealerLegend" hidden>★ Geber dieser Runde</p>
+          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.dealerLegend" hidden>★ Geber dieser Runde</p>
         </div>
       </section>
     </div>
@@ -78,7 +78,7 @@ require __DIR__ . '/../../includes/header.php';
           <input type="text" id="game-edit-new-player-name" placeholder="Name eingeben" data-i18n-placeholder="common.setup.addPlayerPlaceholder" maxlength="40" autocomplete="off">
           <button type="button" id="game-edit-new-player-btn" class="btn btn--small" data-i18n="common.buttons.add">Hinzufügen</button>
         </div>
-        <div class="game-edit__add-player">
+        <div class="game-edit__add-player" id="game-edit-seat-row" hidden>
           <label for="game-edit-seat-after" data-i18n="common.game.edit.seatAfterLabel">Sitzt links von</label>
           <select id="game-edit-seat-after"></select>
         </div>

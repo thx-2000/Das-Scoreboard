@@ -55,6 +55,41 @@ function activeGamePlayers(players) {
   return players.filter((p) => !p.withdrawnAt);
 }
 
+/**
+ * Spieler, der im Punktestand mit ★ markiert wird: mit Geber-Anzeige
+ * (Migration 18) der Geber der naechsten Runde, sonst der zufaellig gezogene
+ * Startspieler. Nach Spielende gibt es keinen Geber mehr.
+ */
+function scoreboardMarkerPlayerId(state) {
+  if (state.showDealer) {
+    return state.status === 'finished' || !state.dealer ? null : state.dealer.dealerId;
+  }
+  return state.startingPlayerId;
+}
+
+/** Legende unter dem Punktestand: "★ Startspieler (zufaellig)" bzw. mit Geber-Anzeige "★ Geber dieser Runde". */
+function scoreboardRenderMarkerLegend(state, legendEl) {
+  if (state.showDealer) {
+    legendEl.textContent = window.t('common.game.dealerLegend');
+  }
+  const markerId = scoreboardMarkerPlayerId(state);
+  legendEl.hidden = markerId === null || markerId === undefined;
+}
+
+/** Zeile "Geber: X" ueber der Rundeneingabe (nur mit Geber-Anzeige). */
+function scoreboardRenderDealerLine(state, lineEl) {
+  if (!lineEl) return;
+  const dealer = state.showDealer && state.status !== 'finished' && state.dealer
+    ? state.players.find((p) => p.id === state.dealer.dealerId)
+    : null;
+  lineEl.hidden = !dealer;
+  if (dealer) lineEl.textContent = window.t('common.game.dealerLine', { dealer: dealer.name });
+}
+
+window.scoreboardMarkerPlayerId = scoreboardMarkerPlayerId;
+window.scoreboardRenderMarkerLegend = scoreboardRenderMarkerLegend;
+window.scoreboardRenderDealerLine = scoreboardRenderDealerLine;
+
 window.groupPlayersByTeam = groupPlayersByTeam;
 window.activeGamePlayers = activeGamePlayers;
 window.scoreboardPlayerColorIndex = scoreboardPlayerColorIndex;

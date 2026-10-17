@@ -89,7 +89,9 @@
         "startingScoreLabel": "Sākuma punkti",
         "seatAfterLabel": "Sēž pa kreisi no"
       },
-      "rematchButton": "Spēlēt vēl vienu kārtu"
+      "rematchButton": "Spēlēt vēl vienu kārtu",
+      "dealerLegend": "★ Šīs kārtas dalītājs",
+      "dealerLine": "Dala: {dealer}"
     },
     "setup": {
       "heading": "Iestatīt spēli",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Ja izslēgts, negatīvās kārtas vērtības tiek ierobežotas līdz 0.",
       "targetBonusHint": "Papildu punkti, ko uzvarētājs(-i) saņem par mērķa rezultāta sasniegšanu (0 = bez bonusa).",
       "roundEntryStepsLabel": "Soļa lielumi kārtas ievadei",
-      "roundEntryStepsHint": "Soļa pogas kā alternatīva skaitļu ierakstīšanai — izvēlieties, kuri soļa lielumi (±) būs pieejami. Jebkurā brīdī varat pārslēgties starp ierakstīšanu un soļa pogām, arī spēles laikā."
+      "roundEntryStepsHint": "Soļa pogas kā alternatīva skaitļu ierakstīšanai — izvēlieties, kuri soļa lielumi (±) būs pieejami. Jebkurā brīdī varat pārslēgties starp ierakstīšanu un soļa pogām, arī spēles laikā.",
+      "seatOrderLabel": "Sēdvietu secība (pulksteņrādītāja virzienā)",
+      "seatOrderHint": "Pieskaries spēlētājiem pēc kārtas – sāc ar jebkuru, tad vienmēr nākamo pulksteņrādītāja virzienā.",
+      "seatOrderReset": "Sākt no jauna",
+      "seatOrderIncomplete": "Norādi visu sēdvietu secību.",
+      "showDealerLabel": "Rādīt dalītāju",
+      "showDealerHint": "Parāda, kas dala katrā kārtā – dalītājs mainās pēc kārtas. Tāpēc tiek jautāta sēdvietu secība."
     },
     "errors": {
       "minPlayers": "Izvēlieties vismaz 2 spēlētājus.",
@@ -576,11 +584,7 @@
       "hint": "Fiksētas 10 kārtas (no 10 līdz 1 kārtij), beigās uzvar augstākais rezultāts.",
       "labelPlaceholder": "piem., RAGE vakars",
       "showBonusMalusLabel": "Rādīt bonusu/malusu",
-      "showBonusMalusHint": "Rādīt/slēpt speciālo kāršu +5/−5 laukus kārtas ievadē.",
-      "seatOrderLabel": "Sēdvietu secība (pulksteņrādītāja virzienā)",
-      "seatOrderHint": "Pieskaries spēlētājiem pēc kārtas – sāc ar jebkuru, tad vienmēr nākamo pulksteņrādītāja virzienā.",
-      "seatOrderReset": "Sākt no jauna",
-      "seatOrderIncomplete": "Norādi visu sēdvietu secību."
+      "showBonusMalusHint": "Rādīt/slēpt speciālo kāršu +5/−5 laukus kārtas ievadē."
     },
     "game": {
       "cardSingular": "kārts",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Dzēst K{round}",
       "mismatchConfirm": "Ievadīto stiķu summa ({actual}) nesakrīt ar šīs kārtas kāršu skaitu ({expected}). Vai tomēr saglabāt?",
       "saveFailed": "Kārtu neizdevās saglabāt.",
-      "dealerLegend": "★ Šīs kārtas dalītājs",
       "round": {
         "dealerLine": "Dala: {dealer} · Pieteikumi sākas ar {first}"
       },

@@ -43,6 +43,7 @@ require __DIR__ . '/../../includes/header.php';
         <button type="button" id="round-entry-mode-btn" class="btn btn--small btn--ghost"></button>
       </div>
       <p class="hint-text" data-i18n="common.game.roundEntryHintGeneric">Punkte der aktuellen Runde je Spieler eingeben (0 ist normal).</p>
+      <p class="hint-text" id="dealer-line" hidden></p>
       <div class="round-form-grid" id="round-form-grid"></div>
       <div class="round-entry-sequence" id="round-entry-sequence"></div>
       <div class="entry-list" id="round-entry-flip"></div>
@@ -82,6 +83,10 @@ require __DIR__ . '/../../includes/header.php';
           <label for="game-edit-new-player-name" data-i18n="common.game.edit.newPlayerLabel">Oder neuen Spieler anlegen</label>
           <input type="text" id="game-edit-new-player-name" placeholder="Name eingeben" data-i18n-placeholder="common.setup.addPlayerPlaceholder" maxlength="40" autocomplete="off">
           <button type="button" id="game-edit-new-player-btn" class="btn btn--small" data-i18n="common.buttons.add">Hinzufügen</button>
+        </div>
+        <div class="game-edit__add-player" id="game-edit-seat-row" hidden>
+          <label for="game-edit-seat-after" data-i18n="common.game.edit.seatAfterLabel">Sitzt links von</label>
+          <select id="game-edit-seat-after"></select>
         </div>
         <div class="game-edit__target-score">
           <label for="game-edit-add-starting-score" data-i18n="common.game.edit.startingScoreLabel">Startpunkte</label>

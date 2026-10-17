@@ -89,7 +89,9 @@
         "startingScoreLabel": "Algpunktid",
         "seatAfterLabel": "Istub vasakul:"
       },
-      "rematchButton": "Mängi veel üks voor"
+      "rematchButton": "Mängi veel üks voor",
+      "dealerLegend": "★ Selle vooru jagaja",
+      "dealerLine": "Jagab: {dealer}"
     },
     "setup": {
       "heading": "Seadista mäng",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Kui väljas, piiratakse negatiivsed voorusisestused nulliga.",
       "targetBonusHint": "Lisapunktid, mille võitja(d) saab/saavad sihttulemuse saavutamise eest (0 = boonust pole).",
       "roundEntryStepsLabel": "Vooru sisestamise sammusuurused",
-      "roundEntryStepsHint": "Sammunupud numbrite kirjutamise alternatiivina — vali, millised sammusuurused (±) on saadaval. Kirjutamise ja sammunuppude vahel saab igal ajal vahetada, ka mängu ajal."
+      "roundEntryStepsHint": "Sammunupud numbrite kirjutamise alternatiivina — vali, millised sammusuurused (±) on saadaval. Kirjutamise ja sammunuppude vahel saab igal ajal vahetada, ka mängu ajal.",
+      "seatOrderLabel": "Istumisjärjekord (päripäeva)",
+      "seatOrderHint": "Puuduta mängijaid üksteise järel – alusta kellegagi, siis alati järgmisest päripäeva.",
+      "seatOrderReset": "Alusta uuesti",
+      "seatOrderIncomplete": "Määra kogu istumisjärjekord.",
+      "showDealerLabel": "Näita jagajat",
+      "showDealerHint": "Näitab, kes igas voorus jagab – jagaja vahetub järjest. Selleks küsitakse istumisjärjekorda."
     },
     "errors": {
       "minPlayers": "Vali vähemalt 2 mängijat.",
@@ -576,11 +584,7 @@
       "hint": "Fikseeritud 10 vooru (10-lt 1 kaardini), lõpus võidab kõrgeim tulemus.",
       "labelPlaceholder": "nt RAGE-õhtu",
       "showBonusMalusLabel": "Näita boonust/miinust",
-      "showBonusMalusHint": "Näita/peida vooru sisestamisel eriliste kaartide +5/−5 väljad.",
-      "seatOrderLabel": "Istumisjärjekord (päripäeva)",
-      "seatOrderHint": "Puuduta mängijaid üksteise järel – alusta kellegagi, siis alati järgmisest päripäeva.",
-      "seatOrderReset": "Alusta uuesti",
-      "seatOrderIncomplete": "Määra kogu istumisjärjekord."
+      "showBonusMalusHint": "Näita/peida vooru sisestamisel eriliste kaartide +5/−5 väljad."
     },
     "game": {
       "cardSingular": "kaart",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Kustuta V{round}",
       "mismatchConfirm": "Sisestatud trikkide summa ({actual}) ei vasta selle vooru kaartide arvule ({expected}). Kas salvestada ikkagi?",
       "saveFailed": "Vooru ei õnnestunud salvestada.",
-      "dealerLegend": "★ Selle vooru jagaja",
       "round": {
         "dealerLine": "Jagab: {dealer} · Ennustamine algab: {first}"
       },

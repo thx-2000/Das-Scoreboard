@@ -89,7 +89,9 @@
         "startingScoreLabel": "Aloituspisteet",
         "seatAfterLabel": "Istuu vasemmalla pelaajasta"
       },
-      "rematchButton": "Pelaa vielä yksi kierros"
+      "rematchButton": "Pelaa vielä yksi kierros",
+      "dealerLegend": "★ Tämän kierroksen jakaja",
+      "dealerLine": "Jakaja: {dealer}"
     },
     "setup": {
       "heading": "Pelin asetukset",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Jos pois päältä, negatiiviset kierrossyötöt rajataan nollaan.",
       "targetBonusHint": "Ylimääräiset pisteet, jotka voittaja(t) saavat tavoitepistemäärän saavuttamisesta (0 = ei bonusta).",
       "roundEntryStepsLabel": "Kierroksen syötön askelkoot",
-      "roundEntryStepsHint": "Askelpainikkeet vaihtoehtona numeroiden kirjoittamiselle — valitse, mitkä askelkoot (±) ovat käytettävissä. Voit vaihtaa kirjoittamisen ja askelpainikkeiden välillä milloin tahansa, myös kesken pelin."
+      "roundEntryStepsHint": "Askelpainikkeet vaihtoehtona numeroiden kirjoittamiselle — valitse, mitkä askelkoot (±) ovat käytettävissä. Voit vaihtaa kirjoittamisen ja askelpainikkeiden välillä milloin tahansa, myös kesken pelin.",
+      "seatOrderLabel": "Istumajärjestys (myötäpäivään)",
+      "seatOrderHint": "Napauta pelaajat peräkkäin – aloita keneltä tahansa, sitten aina seuraava myötäpäivään.",
+      "seatOrderReset": "Aloita alusta",
+      "seatOrderIncomplete": "Määritä koko istumajärjestys.",
+      "showDealerLabel": "Näytä jakaja",
+      "showDealerHint": "Näyttää, kuka jakaa kullakin kierroksella – jakaja vaihtuu vuorotellen. Tätä varten kysytään istumajärjestys."
     },
     "errors": {
       "minPlayers": "Valitse vähintään 2 pelaajaa.",
@@ -576,11 +584,7 @@
       "hint": "Kiinteät 10 kierrosta (10:stä 1 korttiin), korkein pistemäärä voittaa lopussa.",
       "labelPlaceholder": "esim. RAGE-ilta",
       "showBonusMalusLabel": "Näytä bonus/malus",
-      "showBonusMalusHint": "Näytä/piilota erikoiskorttien +5/−5-kentät kierroksen syötössä.",
-      "seatOrderLabel": "Istumajärjestys (myötäpäivään)",
-      "seatOrderHint": "Napauta pelaajat peräkkäin – aloita keneltä tahansa, sitten aina seuraava myötäpäivään.",
-      "seatOrderReset": "Aloita alusta",
-      "seatOrderIncomplete": "Määritä koko istumajärjestys."
+      "showBonusMalusHint": "Näytä/piilota erikoiskorttien +5/−5-kentät kierroksen syötössä."
     },
     "game": {
       "cardSingular": "kortti",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Poista K{round}",
       "mismatchConfirm": "Syötettyjen tikkien summa ({actual}) ei vastaa tämän kierroksen korttimäärää ({expected}). Tallennetaanko silti?",
       "saveFailed": "Kierrosta ei voitu tallentaa.",
-      "dealerLegend": "★ Tämän kierroksen jakaja",
       "round": {
         "dealerLine": "Jakaja: {dealer} · Ilmoitukset alkavat: {first}"
       },

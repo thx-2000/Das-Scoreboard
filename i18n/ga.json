@@ -89,7 +89,9 @@
         "startingScoreLabel": "Pointí tosaigh",
         "seatAfterLabel": "Suíonn ar thaobh clé de"
       },
-      "rematchButton": "Imir babhta eile"
+      "rematchButton": "Imir babhta eile",
+      "dealerLegend": "★ Déileálaí an bhabhta seo",
+      "dealerLine": "Déileálaí: {dealer}"
     },
     "setup": {
       "heading": "Socraigh an cluiche",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Mura bhfuil sé cumasaithe, tá iontrálacha diúltacha babhta teoranta go 0.",
       "targetBonusHint": "Pointí breise a fhaigheann an buaiteoir(í) as an sprioc-scór a bhaint amach (0 = gan bhónas).",
       "roundEntryStepsLabel": "Méideanna céime le haghaidh iontráil babhta",
-      "roundEntryStepsHint": "Cnaipí céime mar rogha eile in ionad uimhreacha a chlóscríobh — roghnaigh cé na méideanna céime (±) a bheidh ar fáil. Is féidir leat aistriú idir clóscríobh agus cnaipí céime aon uair, fiú i lár an chluiche."
+      "roundEntryStepsHint": "Cnaipí céime mar rogha eile in ionad uimhreacha a chlóscríobh — roghnaigh cé na méideanna céime (±) a bheidh ar fáil. Is féidir leat aistriú idir clóscríobh agus cnaipí céime aon uair, fiú i lár an chluiche.",
+      "seatOrderLabel": "Ord suí (deiseal)",
+      "seatOrderHint": "Tapáil na himreoirí ceann i ndiaidh a chéile – tosaigh le duine ar bith, ansin an chéad duine eile deiseal i gcónaí.",
+      "seatOrderReset": "Tosaigh as an nua",
+      "seatOrderIncomplete": "Socraigh an t-ord suí iomlán.",
+      "showDealerLabel": "Taispeáin an déileálaí",
+      "showDealerHint": "Taispeánann sé cé a dhéileálann gach babhta – athraíonn an déileálaí ar a seal. Chuige sin iarrtar an t-ord suí."
     },
     "errors": {
       "minPlayers": "Roghnaigh ar a laghad 2 imreoir.",
@@ -576,11 +584,7 @@
       "hint": "10 mbabhta sheasta (10 síos go 1 chárta), buann an scór is airde sa deireadh.",
       "labelPlaceholder": "m.sh. Oíche RAGE",
       "showBonusMalusLabel": "Taispeáin bónas/pionós",
-      "showBonusMalusHint": "Taispeáin/folaigh na réimsí cártaí speisialta +5/−5 in iontráil an bhabhta.",
-      "seatOrderLabel": "Ord suí (deiseal)",
-      "seatOrderHint": "Tapáil na himreoirí ceann i ndiaidh a chéile – tosaigh le duine ar bith, ansin an chéad duine eile deiseal i gcónaí.",
-      "seatOrderReset": "Tosaigh as an nua",
-      "seatOrderIncomplete": "Socraigh an t-ord suí iomlán."
+      "showBonusMalusHint": "Taispeáin/folaigh na réimsí cártaí speisialta +5/−5 in iontráil an bhabhta."
     },
     "game": {
       "cardSingular": "cárta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Scrios B{round}",
       "mismatchConfirm": "Ní ionann suim na dtáillí a cuireadh isteach ({actual}) agus líon cártaí an bhabhta seo ({expected}). Sábháil mar sin féin?",
       "saveFailed": "Níorbh fhéidir an babhta a shábháil.",
-      "dealerLegend": "★ Déileálaí an bhabhta seo",
       "round": {
         "dealerLine": "Déileálaí: {dealer} · Tosaíonn an tairiscint le {first}"
       },

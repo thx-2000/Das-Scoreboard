@@ -33,10 +33,11 @@ function initGameEdit(gameId, onUpdated, showTargetScore) {
 
   if (showTargetScore && targetScoreWrap) targetScoreWrap.hidden = false;
 
-  // Nur bei RAGE vorhanden (modes/rage/game.php): neuer Spieler braucht einen
-  // Sitz im Kreis, damit Geberwechsel und Ansagereihenfolge stimmen.
+  // Mit Geber-Anzeige (RAGE immer, sonst per Setup-Option): neuer Spieler
+  // braucht einen Sitz im Kreis, damit der Geberwechsel stimmt.
   const seatAfterSelect = document.getElementById('game-edit-seat-after');
-  const seatAfterPayload = () => (seatAfterSelect && seatAfterSelect.value
+  const seatRow = document.getElementById('game-edit-seat-row');
+  const seatAfterPayload = () => (seatAfterSelect && seatRow && !seatRow.hidden && seatAfterSelect.value
     ? { afterPlayerId: parseInt(seatAfterSelect.value, 10) }
     : {});
 
@@ -165,12 +166,15 @@ async function renderGameEditPanel(state) {
     playerList.appendChild(li);
   });
 
-  // RAGE: Sitzplatz-Auswahl "sitzt links von ..." mit den aktiven Spielern in
-  // Sitzreihenfolge, Vorauswahl = letzter Sitz (neuer Spieler kommt ans Ende).
+  // Mit Geber-Anzeige: Sitzplatz-Auswahl "sitzt links von ..." mit den aktiven
+  // Spielern in Sitzreihenfolge, Vorauswahl = letzter Sitz (neuer Spieler kommt
+  // ans Ende).
   const seatAfterSelect = document.getElementById('game-edit-seat-after');
-  if (seatAfterSelect && state.rage) {
+  const seatRow = document.getElementById('game-edit-seat-row');
+  if (seatRow) seatRow.hidden = !(state.showDealer && state.dealer);
+  if (seatAfterSelect && state.showDealer && state.dealer) {
     const byId = new Map(activePlayers.map((p) => [p.id, p]));
-    const seated = state.rage.seatOrder.map((id) => byId.get(id)).filter(Boolean);
+    const seated = state.dealer.seatOrder.map((id) => byId.get(id)).filter(Boolean);
     const previous = seatAfterSelect.value;
     seatAfterSelect.innerHTML = '';
     seated.forEach((p) => {

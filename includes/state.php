@@ -3,6 +3,7 @@
 require_once __DIR__ . '/db.php';
 
 require_once __DIR__ . '/rage.php';
+require_once __DIR__ . '/seating.php';
 
 function send_json($data, int $status = 200): void
 {
@@ -421,11 +422,24 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         unset($w);
     }
 
+    // Geber-Anzeige (Migration 18, bei RAGE immer an): Geber der naechsten
+    // Runde und Sitzreihenfolge, siehe includes/seating.php.
+    $showDealer = (bool) ($game['show_dealer'] ?? 0);
+    $dealerState = null;
+    if ($showDealer) {
+        $dealerRoles = game_round_roles($pdo, $gameId);
+        $dealerState = [
+            'dealerId' => $dealerRoles['dealerId'],
+            'bidStartId' => $dealerRoles['bidStartId'],
+            'seatOrder' => array_column(game_seat_order($pdo, $gameId), 'id'),
+        ];
+    }
+
     // RAGE: Geber/Ansagebeginn, gespeicherte Ansagen der laufenden Runde und
     // Sitzordnung (siehe includes/rage.php und api/rage-bids.php).
     $rageState = null;
     if ($game['mode'] === 'rage') {
-        $roles = rage_round_roles($pdo, $gameId);
+        $roles = game_round_roles($pdo, $gameId);
         $draftStmt = $pdo->prepare('SELECT player_id, bid FROM rage_draft_bids WHERE game_id = ?');
         $draftStmt->execute([$gameId]);
         $draftBids = [];
@@ -440,7 +454,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
             'bidStartId' => $roles['bidStartId'],
             'bids' => (object) $draftBids,
             'bidsLocked' => (bool) $game['rage_bids_locked'],
-            'seatOrder' => array_column(rage_seat_order($pdo, $gameId), 'id'),
+            'seatOrder' => array_column(game_seat_order($pdo, $gameId), 'id'),
         ];
     }
 
@@ -462,6 +476,8 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'rageShowBonusMalus' => (bool) ($game['rage_show_bonus_malus'] ?? 1),
         'roundEntrySteps' => $game['round_entry_steps'] ?? '1,5,10',
         'rage' => $rageState,
+        'showDealer' => $showDealer,
+        'dealer' => $dealerState,
         // withdrawnAt bleibt bewusst auch fuer ausgeschiedene Spieler in dieser
         // Liste (nicht rausgefiltert) - Farbindex/Avatar-Zuordnung im Frontend
         // (siehe scoreboardPlayerColorIndex()) bleiben so ueber die ganze

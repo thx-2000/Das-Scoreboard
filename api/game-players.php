@@ -60,11 +60,11 @@ if ($method === 'POST') {
             ->execute([$gameId, $playerId, $startingScore]);
     }
 
-    // RAGE: neuer bzw. zurueckkehrender Spieler bekommt einen Sitz im Kreis
+    // Mit Geber-Anzeige: neuer bzw. zurueckkehrender Spieler bekommt einen Sitz im Kreis
     // (links = im Uhrzeigersinn direkt nach afterPlayerId, sonst am Ende).
-    if ($game['mode'] === 'rage') {
+    if (!empty($game['show_dealer'])) {
         $afterPlayerId = isset($body['afterPlayerId']) ? (int) $body['afterPlayerId'] : null;
-        rage_place_seat($pdo, $gameId, $playerId, $afterPlayerId ?: null);
+        game_place_seat($pdo, $gameId, $playerId, $afterPlayerId ?: null);
     }
 
     recompute_game_status($pdo, $gameId);

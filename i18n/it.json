@@ -89,7 +89,9 @@
         "startingScoreLabel": "Punti di partenza",
         "seatAfterLabel": "Siede a sinistra di"
       },
-      "rematchButton": "Gioca un'altra partita"
+      "rematchButton": "Gioca un'altra partita",
+      "dealerLegend": "★ Mazziere di questo round",
+      "dealerLine": "Mazziere: {dealer}"
     },
     "setup": {
       "heading": "Configura partita",
@@ -115,7 +117,13 @@
       "allowNegativeHint": "Se disattivato, gli inserimenti negativi vengono limitati a 0.",
       "targetBonusHint": "Punti extra assegnati al/ai vincitore/i per aver raggiunto il punteggio obiettivo (0 = nessun bonus).",
       "roundEntryStepsLabel": "Incrementi per l'inserimento del turno",
-      "roundEntryStepsHint": "Pulsanti a passo come alternativa alla digitazione dei numeri — scegli quali incrementi (±) rendere disponibili. Puoi passare dalla digitazione ai pulsanti in qualsiasi momento, anche a partita in corso."
+      "roundEntryStepsHint": "Pulsanti a passo come alternativa alla digitazione dei numeri — scegli quali incrementi (±) rendere disponibili. Puoi passare dalla digitazione ai pulsanti in qualsiasi momento, anche a partita in corso.",
+      "seatOrderLabel": "Disposizione dei posti (in senso orario)",
+      "seatOrderHint": "Tocca i giocatori uno dopo l'altro – inizia da chiunque, poi sempre il successivo in senso orario.",
+      "seatOrderReset": "Ricomincia",
+      "seatOrderIncomplete": "Imposta la disposizione dei posti completa.",
+      "showDealerLabel": "Mostra il mazziere",
+      "showDealerHint": "Mostra chi distribuisce a ogni round – il mazziere cambia a turno. Viene chiesta la disposizione dei posti."
     },
     "errors": {
       "minPlayers": "Seleziona almeno 2 giocatori.",
@@ -576,11 +584,7 @@
       "hint": "10 round fissi (da 10 a 1 carta), vince il punteggio più alto alla fine.",
       "labelPlaceholder": "es. Serata RAGE",
       "showBonusMalusLabel": "Mostra bonus/malus",
-      "showBonusMalusHint": "Mostra/nascondi i campi carte speciali +5/−5 nell'inserimento del turno.",
-      "seatOrderLabel": "Disposizione dei posti (in senso orario)",
-      "seatOrderHint": "Tocca i giocatori uno dopo l'altro – inizia da chiunque, poi sempre il successivo in senso orario.",
-      "seatOrderReset": "Ricomincia",
-      "seatOrderIncomplete": "Imposta la disposizione dei posti completa."
+      "showBonusMalusHint": "Mostra/nascondi i campi carte speciali +5/−5 nell'inserimento del turno."
     },
     "game": {
       "cardSingular": "carta",
@@ -605,7 +609,6 @@
       "deleteRoundButton": "Elimina R{round}",
       "mismatchConfirm": "La somma delle prese inserite ({actual}) non corrisponde al numero di carte di questo round ({expected}). Salvare comunque?",
       "saveFailed": "Impossibile salvare il turno.",
-      "dealerLegend": "★ Mazziere di questo round",
       "round": {
         "dealerLine": "Mazziere: {dealer} · La dichiarazione inizia da {first}"
       },

@@ -26,6 +26,10 @@ let bidSaveTimer = null;
 // "Runde abschliessen" als echte Runde gespeichert.
 let resultDraft = {};
 let resultDraftRound = 0;
+// Runde, deren Ansagephase den Punktestand schon automatisch eingeklappt hat -
+// damit er nur beim Betreten der Phase einklappt und nicht bei jedem Neuaufbau
+// (sonst waere ein manuelles Wiederaufklappen sofort wieder weg).
+let autoCollapsedRound = 0;
 
 function cardsForRound(roundNumber) {
   return Math.max(0, 11 - roundNumber);
@@ -287,6 +291,13 @@ function renderBidPhase(state, players) {
   roundEntryHint.textContent = window.t('rage.game.bids.hint');
 
   if (bidSaveTimer === null) bidDraft = { ...state.rage.bids };
+
+  // Platz fuer die Ansagen schaffen: Punktestand beim Start der Phase einklappen
+  // (per Tipp auf "Anzeigen" jederzeit wieder aufklappbar).
+  if (autoCollapsedRound !== nextRound && window.scoreboardSetStandingsCollapsed) {
+    autoCollapsedRound = nextRound;
+    window.scoreboardSetStandingsCollapsed(true);
+  }
 
   rageFlow.innerHTML = '';
   const sumEl = document.createElement('p');

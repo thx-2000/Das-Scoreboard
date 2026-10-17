@@ -23,6 +23,15 @@
 
   window.scoreboardI18nReady.then(() => applyState(collapsed));
 
+  // Fuer Seiten, die den Punktestand zeitweise automatisch einklappen wollen
+  // (z.B. RAGE-Ansagephase, siehe modes/rage/game.js): setzt nur die Anzeige,
+  // speichert bewusst NICHT in localStorage - die gewohnte Einstellung des
+  // Geraets bleibt unberuehrt.
+  window.scoreboardSetStandingsCollapsed = (value) => {
+    collapsed = Boolean(value);
+    applyState(collapsed);
+  };
+
   btn.addEventListener('click', () => {
     collapsed = !collapsed;
     window.localStorage.setItem(STORAGE_KEY, collapsed ? '1' : '0');

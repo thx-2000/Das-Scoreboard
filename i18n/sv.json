@@ -52,7 +52,7 @@
         "teamTotalSuffix": "poäng totalt",
         "withdrawnBadge": "Avhoppad"
       },
-      "startingPlayerLegend": "★ Startspelare (slumpmässig)",
+      "startingPlayerLegend": "★ Startspelare",
       "startedSuffix": "startade {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Börja om",
       "seatOrderIncomplete": "Ange hela sittordningen.",
       "showDealerLabel": "Visa givare",
-      "showDealerHint": "Visar vem som ger varje omgång – givaren byts i tur och ordning. Då efterfrågas sittordningen."
+      "showDealerHint": "Visar vem som ger varje omgång – givaren byts i tur och ordning. Då efterfrågas sittordningen.",
+      "startingPlayerLabel": "Startspelare",
+      "firstDealerLabel": "Första givare",
+      "startingPlayerRandom": "Slumpmässig"
     },
     "errors": {
       "minPlayers": "Välj minst 2 spelare.",

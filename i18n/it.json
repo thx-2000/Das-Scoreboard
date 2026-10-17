@@ -52,7 +52,7 @@
         "teamTotalSuffix": "punti totali",
         "withdrawnBadge": "Ritirato"
       },
-      "startingPlayerLegend": "★ Giocatore di partenza (casuale)",
+      "startingPlayerLegend": "★ Giocatore di partenza",
       "startedSuffix": "iniziata il {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Ricomincia",
       "seatOrderIncomplete": "Imposta la disposizione dei posti completa.",
       "showDealerLabel": "Mostra il mazziere",
-      "showDealerHint": "Mostra chi distribuisce a ogni round – il mazziere cambia a turno. Viene chiesta la disposizione dei posti."
+      "showDealerHint": "Mostra chi distribuisce a ogni round – il mazziere cambia a turno. Viene chiesta la disposizione dei posti.",
+      "startingPlayerLabel": "Giocatore di partenza",
+      "firstDealerLabel": "Primo mazziere",
+      "startingPlayerRandom": "Casuale"
     },
     "errors": {
       "minPlayers": "Seleziona almeno 2 giocatori.",

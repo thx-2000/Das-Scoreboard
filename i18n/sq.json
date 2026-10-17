@@ -52,7 +52,7 @@
         "teamTotalSuffix": "pikë gjithsej",
         "withdrawnBadge": "Tërhequr"
       },
-      "startingPlayerLegend": "★ Lojtari fillestar (rastësisht)",
+      "startingPlayerLegend": "★ Lojtari fillestar",
       "startedSuffix": "filluar më {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Fillo përsëri",
       "seatOrderIncomplete": "Cakto renditjen e plotë të uljes.",
       "showDealerLabel": "Shfaq shpërndarësin",
-      "showDealerHint": "Tregon kush shpërndan në çdo raund – shpërndarësi ndryshon me radhë. Për këtë pyetet renditja e uljes."
+      "showDealerHint": "Tregon kush shpërndan në çdo raund – shpërndarësi ndryshon me radhë. Për këtë pyetet renditja e uljes.",
+      "startingPlayerLabel": "Lojtari fillestar",
+      "firstDealerLabel": "Shpërndarësi i parë",
+      "startingPlayerRandom": "Rastësisht"
     },
     "errors": {
       "minPlayers": "Zgjidhni të paktën 2 lojtarë.",

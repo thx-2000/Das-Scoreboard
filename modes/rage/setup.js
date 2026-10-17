@@ -13,6 +13,15 @@ const seatOrder = window.initSeatOrder({
   isActive: () => true,
 });
 
+// Startspieler: "Zufaellig" oder ein bestimmter Mitspieler (bei Geber-Anzeige:
+// der erste Geber), siehe js/starting-player-select.js.
+const startingPlayer = window.initStartingPlayerSelect({
+  field: document.getElementById('starting-player-field'),
+  select: document.getElementById('starting-player'),
+  label: document.getElementById('starting-player-label'),
+  isDealerMode: () => true,
+});
+
 const selectedPlayerIds = new Set();
 let knownPlayers = [];
 let groupPicker = null;
@@ -27,8 +36,10 @@ function clearError() {
   setupError.textContent = '';
 }
 
-function refreshSeatOrder() {
-  seatOrder.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
+function refreshPlayerDependentFields() {
+  const selected = knownPlayers.filter((p) => selectedPlayerIds.has(p.id));
+  seatOrder.refresh(selected);
+  startingPlayer.refresh(selected);
 }
 
 function renderPlayerChip(player, index) {
@@ -48,7 +59,7 @@ function renderPlayerChip(player, index) {
       selectedPlayerIds.delete(player.id);
       label.classList.remove('player-chip--checked');
     }
-    refreshSeatOrder();
+    refreshPlayerDependentFields();
   });
 
   if (checkbox.checked) label.classList.add('player-chip--checked');
@@ -71,7 +82,7 @@ function refreshPlayerPicker() {
     });
   }
   if (groupPicker) groupPicker.refreshLabel(knownPlayers.map((p) => p.id));
-  refreshSeatOrder();
+  refreshPlayerDependentFields();
 }
 
 async function loadPlayers() {
@@ -129,6 +140,7 @@ setupForm.addEventListener('submit', async (event) => {
       label: gameLabelInput.value.trim(),
       // Reihenfolge = Sitzordnung im Uhrzeigersinn (siehe api/games.php).
       playerIds: seatOrder.getSequence(),
+      startingPlayerId: startingPlayer.getValue(),
       rageShowBonusMalus: document.getElementById('rage-show-bonus-malus').checked,
     }),
   });

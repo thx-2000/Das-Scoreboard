@@ -124,8 +124,12 @@ if ($method === 'POST') {
         send_json(['error' => 'Mindestens 2 Spieler erforderlich.'], 400);
     }
 
-    // Startspieler zufaellig unter den teilnehmenden Spielern auslosen.
-    $startingPlayerId = $playerIds[array_rand($playerIds)];
+    // Startspieler: auf Wunsch ein bestimmter Mitspieler (startingPlayerId),
+    // sonst zufaellig unter den teilnehmenden Spielern ausgelost.
+    $requestedStart = (int) ($body['startingPlayerId'] ?? 0);
+    $startingPlayerId = in_array($requestedStart, $playerIds, true)
+        ? $requestedStart
+        : $playerIds[array_rand($playerIds)];
 
     $pdo->beginTransaction();
 

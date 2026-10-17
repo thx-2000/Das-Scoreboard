@@ -52,7 +52,7 @@
         "teamTotalSuffix": "πόντοι συνολικά",
         "withdrawnBadge": "Αποχώρησε"
       },
-      "startingPlayerLegend": "★ Παίκτης που ξεκινά (τυχαία)",
+      "startingPlayerLegend": "★ Παίκτης που ξεκινά",
       "startedSuffix": "ξεκίνησε {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Ξεκίνα από την αρχή",
       "seatOrderIncomplete": "Ορίστε ολόκληρη τη σειρά θέσεων.",
       "showDealerLabel": "Εμφάνιση μοιραστή",
-      "showDealerHint": "Δείχνει ποιος μοιράζει σε κάθε γύρο – ο μοιραστής αλλάζει εκ περιτροπής. Γι' αυτό ζητείται η σειρά θέσεων."
+      "showDealerHint": "Δείχνει ποιος μοιράζει σε κάθε γύρο – ο μοιραστής αλλάζει εκ περιτροπής. Γι' αυτό ζητείται η σειρά θέσεων.",
+      "startingPlayerLabel": "Παίκτης εκκίνησης",
+      "firstDealerLabel": "Πρώτος μοιραστής",
+      "startingPlayerRandom": "Τυχαία"
     },
     "errors": {
       "minPlayers": "Επιλέξτε τουλάχιστον 2 παίκτες.",

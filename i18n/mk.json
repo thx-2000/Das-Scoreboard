@@ -52,7 +52,7 @@
         "teamTotalSuffix": "поени вкупно",
         "withdrawnBadge": "Повлечен"
       },
-      "startingPlayerLegend": "★ Играч што започнува (случајно)",
+      "startingPlayerLegend": "★ Играч што започнува",
       "startedSuffix": "започнато {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Почни одново",
       "seatOrderIncomplete": "Постави го целиот редослед на седење.",
       "showDealerLabel": "Прикажи го делителот",
-      "showDealerHint": "Покажува кој дели во секој круг – делителот се менува по ред. За тоа се прашува редоследот на седење."
+      "showDealerHint": "Покажува кој дели во секој круг – делителот се менува по ред. За тоа се прашува редоследот на седење.",
+      "startingPlayerLabel": "Почетен играч",
+      "firstDealerLabel": "Прв делител",
+      "startingPlayerRandom": "Случајно"
     },
     "errors": {
       "minPlayers": "Изберете најмалку 2 играчи.",

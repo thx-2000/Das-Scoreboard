@@ -52,7 +52,7 @@
         "teamTotalSuffix": "pistettä yhteensä",
         "withdrawnBadge": "Pudonnut"
       },
-      "startingPlayerLegend": "★ Aloittava pelaaja (satunnainen)",
+      "startingPlayerLegend": "★ Aloittava pelaaja",
       "startedSuffix": "aloitettu {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Aloita alusta",
       "seatOrderIncomplete": "Määritä koko istumajärjestys.",
       "showDealerLabel": "Näytä jakaja",
-      "showDealerHint": "Näyttää, kuka jakaa kullakin kierroksella – jakaja vaihtuu vuorotellen. Tätä varten kysytään istumajärjestys."
+      "showDealerHint": "Näyttää, kuka jakaa kullakin kierroksella – jakaja vaihtuu vuorotellen. Tätä varten kysytään istumajärjestys.",
+      "startingPlayerLabel": "Aloittaja",
+      "firstDealerLabel": "Ensimmäinen jakaja",
+      "startingPlayerRandom": "Satunnainen"
     },
     "errors": {
       "minPlayers": "Valitse vähintään 2 pelaajaa.",

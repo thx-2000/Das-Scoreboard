@@ -52,7 +52,7 @@
         "teamTotalSuffix": "pointe san iomlán",
         "withdrawnBadge": "Éirithe as"
       },
-      "startingPlayerLegend": "★ Imreoir tosaigh (randamach)",
+      "startingPlayerLegend": "★ Imreoir tosaigh",
       "startedSuffix": "tosaithe {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Tosaigh as an nua",
       "seatOrderIncomplete": "Socraigh an t-ord suí iomlán.",
       "showDealerLabel": "Taispeáin an déileálaí",
-      "showDealerHint": "Taispeánann sé cé a dhéileálann gach babhta – athraíonn an déileálaí ar a seal. Chuige sin iarrtar an t-ord suí."
+      "showDealerHint": "Taispeánann sé cé a dhéileálann gach babhta – athraíonn an déileálaí ar a seal. Chuige sin iarrtar an t-ord suí.",
+      "startingPlayerLabel": "Imreoir tosaigh",
+      "firstDealerLabel": "An chéad déileálaí",
+      "startingPlayerRandom": "Randamach"
     },
     "errors": {
       "minPlayers": "Roghnaigh ar a laghad 2 imreoir.",

@@ -52,7 +52,7 @@
         "teamTotalSuffix": "punkti kokku",
         "withdrawnBadge": "Loobunud"
       },
-      "startingPlayerLegend": "★ Alustav mängija (juhuslik)",
+      "startingPlayerLegend": "★ Alustav mängija",
       "startedSuffix": "alustatud {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Alusta uuesti",
       "seatOrderIncomplete": "Määra kogu istumisjärjekord.",
       "showDealerLabel": "Näita jagajat",
-      "showDealerHint": "Näitab, kes igas voorus jagab – jagaja vahetub järjest. Selleks küsitakse istumisjärjekorda."
+      "showDealerHint": "Näitab, kes igas voorus jagab – jagaja vahetub järjest. Selleks küsitakse istumisjärjekorda.",
+      "startingPlayerLabel": "Alustaja",
+      "firstDealerLabel": "Esimene jagaja",
+      "startingPlayerRandom": "Juhuslik"
     },
     "errors": {
       "minPlayers": "Vali vähemalt 2 mängijat.",

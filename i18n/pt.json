@@ -52,7 +52,7 @@
         "teamTotalSuffix": "pontos no total",
         "withdrawnBadge": "Desistiu"
       },
-      "startingPlayerLegend": "★ Jogador inicial (aleatório)",
+      "startingPlayerLegend": "★ Jogador inicial",
       "startedSuffix": "iniciado em {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Recomeçar",
       "seatOrderIncomplete": "Defina a ordem dos lugares completa.",
       "showDealerLabel": "Mostrar o dador",
-      "showDealerHint": "Mostra quem dá as cartas em cada ronda – o dador muda à vez. Para isso é pedida a ordem dos lugares."
+      "showDealerHint": "Mostra quem dá as cartas em cada ronda – o dador muda à vez. Para isso é pedida a ordem dos lugares.",
+      "startingPlayerLabel": "Jogador inicial",
+      "firstDealerLabel": "Primeiro dador",
+      "startingPlayerRandom": "Aleatório"
     },
     "errors": {
       "minPlayers": "Selecione pelo menos 2 jogadores.",

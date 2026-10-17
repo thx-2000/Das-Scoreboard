@@ -18,6 +18,15 @@ const seatOrder = window.initSeatOrder({
   isActive: () => showDealerInput.checked,
 });
 
+// Startspieler: "Zufaellig" oder ein bestimmter Mitspieler (bei Geber-Anzeige:
+// der erste Geber), siehe js/starting-player-select.js.
+const startingPlayer = window.initStartingPlayerSelect({
+  field: document.getElementById('starting-player-field'),
+  select: document.getElementById('starting-player'),
+  label: document.getElementById('starting-player-label'),
+  isDealerMode: () => showDealerInput.checked,
+});
+
 const selectedPlayerIds = new Set();
 let knownPlayers = [];
 let groupPicker = null;
@@ -26,10 +35,12 @@ function refreshTeamSetup() {
   teamSetup.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
 }
 
-function refreshSeatOrder() {
-  seatOrder.refresh(knownPlayers.filter((p) => selectedPlayerIds.has(p.id)));
+function refreshPlayerDependentFields() {
+  const selected = knownPlayers.filter((p) => selectedPlayerIds.has(p.id));
+  seatOrder.refresh(selected);
+  startingPlayer.refresh(selected);
 }
-showDealerInput.addEventListener('change', refreshSeatOrder);
+showDealerInput.addEventListener('change', refreshPlayerDependentFields);
 
 function showError(message) {
   setupError.textContent = message;
@@ -59,7 +70,7 @@ function renderPlayerChip(player, index) {
       label.classList.remove('player-chip--checked');
     }
     refreshTeamSetup();
-    refreshSeatOrder();
+    refreshPlayerDependentFields();
   });
 
   if (checkbox.checked) label.classList.add('player-chip--checked');
@@ -83,7 +94,7 @@ function refreshPlayerPicker() {
   }
   if (groupPicker) groupPicker.refreshLabel(knownPlayers.map((p) => p.id));
   refreshTeamSetup();
-  refreshSeatOrder();
+  refreshPlayerDependentFields();
 }
 
 async function loadPlayers() {
@@ -144,6 +155,7 @@ setupForm.addEventListener('submit', async (event) => {
       winDirection,
       // Mit Geber-Anzeige ist die Reihenfolge die Sitzordnung im Uhrzeigersinn.
       playerIds: showDealerInput.checked ? seatOrder.getSequence() : Array.from(selectedPlayerIds),
+      startingPlayerId: startingPlayer.getValue(),
       showDealer: showDealerInput.checked,
       teamAssignments: teamSetup.getTeamAssignments(),
       teamNames: teamSetup.getTeamNames(),

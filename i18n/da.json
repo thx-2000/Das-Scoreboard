@@ -52,7 +52,7 @@
         "teamTotalSuffix": "point i alt",
         "withdrawnBadge": "Udgået"
       },
-      "startingPlayerLegend": "★ Startspiller (tilfældig)",
+      "startingPlayerLegend": "★ Startspiller",
       "startedSuffix": "startet {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Start forfra",
       "seatOrderIncomplete": "Angiv hele siddeordenen.",
       "showDealerLabel": "Vis giver",
-      "showDealerHint": "Viser, hvem der giver hver runde – giveren skifter på skift. Derfor spørges der til siddeordenen."
+      "showDealerHint": "Viser, hvem der giver hver runde – giveren skifter på skift. Derfor spørges der til siddeordenen.",
+      "startingPlayerLabel": "Startspiller",
+      "firstDealerLabel": "Første giver",
+      "startingPlayerRandom": "Tilfældig"
     },
     "errors": {
       "minPlayers": "Vælg mindst 2 spillere.",

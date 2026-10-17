@@ -52,7 +52,7 @@
         "teamTotalSuffix": "поена укупно",
         "withdrawnBadge": "Одустао"
       },
-      "startingPlayerLegend": "★ Играч који почиње (случајно)",
+      "startingPlayerLegend": "★ Играч који почиње",
       "startedSuffix": "започето {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Почни испочетка",
       "seatOrderIncomplete": "Постави цео редослед седења.",
       "showDealerLabel": "Прикажи дилера",
-      "showDealerHint": "Показује ко дели у свакој рунди – дилер се мења редом. Зато се пита редослед седења."
+      "showDealerHint": "Показује ко дели у свакој рунди – дилер се мења редом. Зато се пита редослед седења.",
+      "startingPlayerLabel": "Почетни играч",
+      "firstDealerLabel": "Први дилер",
+      "startingPlayerRandom": "Насумично"
     },
     "errors": {
       "minPlayers": "Изаберите најмање 2 играча.",

@@ -52,7 +52,7 @@
         "teamTotalSuffix": "очок всього",
         "withdrawnBadge": "Вибув"
       },
-      "startingPlayerLegend": "★ Гравець, який починає (випадково)",
+      "startingPlayerLegend": "★ Гравець, який починає",
       "startedSuffix": "розпочато {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Почати знову",
       "seatOrderIncomplete": "Вкажи повний порядок місць.",
       "showDealerLabel": "Показувати здавача",
-      "showDealerHint": "Показує, хто здає в кожному раунді – здавач змінюється по черзі. Для цього запитується порядок місць."
+      "showDealerHint": "Показує, хто здає в кожному раунді – здавач змінюється по черзі. Для цього запитується порядок місць.",
+      "startingPlayerLabel": "Гравець, що починає",
+      "firstDealerLabel": "Перший здавач",
+      "startingPlayerRandom": "Випадково"
     },
     "errors": {
       "minPlayers": "Виберіть щонайменше 2 гравців.",

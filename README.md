@@ -66,6 +66,9 @@ Beispieldaten.*
 - **Verlauf & Statistiken**: alle Spiele mit Filter nach Status, dazu eine
   Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
   Zeitraumfilter (inkl. Drucken/PDF).
+- **Startspieler wählbar**: beim Einrichten entweder "Zufällig" (Standard)
+  oder einen bestimmten Mitspieler festlegen – bei eingeschalteter
+  Geber-Anzeige (und bei RAGE) ist das der erste Geber.
 - **Geber-Anzeige in allen Modi**: unter "Erweiterte Optionen" einschaltbar –
   dann wird die Sitzordnung im Uhrzeigersinn abgefragt, der Geber wechselt
   pro Runde reihum und wird im Punktestand (★) und über der Rundeneingabe
@@ -259,6 +262,9 @@ data.*
 - **History & statistics**: all games with a status filter, plus a stats
   page with win rates, head-to-head comparisons, and a date-range filter
   (including print/PDF).
+- **Choose the starting player**: when setting up a game, pick either
+  "Random" (default) or a specific player – with the dealer display on (and
+  for RAGE) that player is the first dealer.
 - **Dealer display in all modes**: can be switched on under "Advanced
   options" – the seating order is then asked clockwise, the dealer rotates
   each round and is shown in the standings (★) and above the round entry.

@@ -28,7 +28,7 @@ require __DIR__ . '/../../includes/header.php';
             <tbody id="standings-body"></tbody>
           </table>
           <div class="standings-cards" id="standings-cards"></div>
-          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
+          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler</p>
         </div>
       </section>
     </div>

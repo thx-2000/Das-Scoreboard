@@ -52,7 +52,7 @@
         "teamTotalSuffix": "punktów łącznie",
         "withdrawnBadge": "Wycofany"
       },
-      "startingPlayerLegend": "★ Gracz rozpoczynający (losowo)",
+      "startingPlayerLegend": "★ Gracz rozpoczynający",
       "startedSuffix": "rozpoczęto {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Zacznij od nowa",
       "seatOrderIncomplete": "Ustaw pełną kolejność przy stole.",
       "showDealerLabel": "Pokaż rozdającego",
-      "showDealerHint": "Pokazuje, kto rozdaje w każdej rundzie – rozdający zmienia się po kolei. W tym celu pytamy o kolejność przy stole."
+      "showDealerHint": "Pokazuje, kto rozdaje w każdej rundzie – rozdający zmienia się po kolei. W tym celu pytamy o kolejność przy stole.",
+      "startingPlayerLabel": "Gracz rozpoczynający",
+      "firstDealerLabel": "Pierwszy rozdający",
+      "startingPlayerRandom": "Losowo"
     },
     "errors": {
       "minPlayers": "Wybierz co najmniej 2 graczy.",

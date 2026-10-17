@@ -49,6 +49,11 @@ require __DIR__ . '/../../includes/header.php';
           <button type="button" id="add-player-inline-btn" class="btn btn--ghost" data-i18n="common.buttons.add">Hinzufügen</button>
         </div>
 
+        <div id="starting-player-field" hidden>
+          <label for="starting-player" id="starting-player-label" data-i18n="common.setup.startingPlayerLabel">Startspieler</label>
+          <select id="starting-player"></select>
+        </div>
+
         <details class="advanced-options">
           <summary data-i18n="common.setup.advancedOptions">Erweiterte Optionen</summary>
 
@@ -105,5 +110,5 @@ require __DIR__ . '/../../includes/header.php';
   </main>
 
 <?php
-$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'js/group-picker.js', 'js/round-entry-steps-field.js', 'js/seat-order.js', 'modes/fixed-rounds/setup.js'];
+$page_scripts = ['js/team-setup.js', 'js/stepper.js', 'js/group-picker.js', 'js/round-entry-steps-field.js', 'js/seat-order.js', 'js/starting-player-select.js', 'modes/fixed-rounds/setup.js'];
 require __DIR__ . '/../../includes/footer.php';

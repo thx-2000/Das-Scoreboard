@@ -52,7 +52,7 @@
         "teamTotalSuffix": "taškai iš viso",
         "withdrawnBadge": "Pasitraukęs"
       },
-      "startingPlayerLegend": "★ Pradedantis žaidėjas (atsitiktinai)",
+      "startingPlayerLegend": "★ Pradedantis žaidėjas",
       "startedSuffix": "pradėta {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Pradėti iš naujo",
       "seatOrderIncomplete": "Nustatyk visą sėdėjimo tvarką.",
       "showDealerLabel": "Rodyti dalytoją",
-      "showDealerHint": "Rodo, kas dalija kiekviename rate – dalytojas keičiasi paeiliui. Todėl klausiama sėdėjimo tvarkos."
+      "showDealerHint": "Rodo, kas dalija kiekviename rate – dalytojas keičiasi paeiliui. Todėl klausiama sėdėjimo tvarkos.",
+      "startingPlayerLabel": "Pradedantis žaidėjas",
+      "firstDealerLabel": "Pirmasis dalytojas",
+      "startingPlayerRandom": "Atsitiktinai"
     },
     "errors": {
       "minPlayers": "Pasirinkite bent 2 žaidėjus.",

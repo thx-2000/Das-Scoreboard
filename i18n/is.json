@@ -52,7 +52,7 @@
         "teamTotalSuffix": "stig samtals",
         "withdrawnBadge": "Hættur"
       },
-      "startingPlayerLegend": "★ Byrjandi (af handahófi)",
+      "startingPlayerLegend": "★ Byrjandi",
       "startedSuffix": "hófst {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Byrja upp á nýtt",
       "seatOrderIncomplete": "Settu alla sætaskipanina.",
       "showDealerLabel": "Sýna gjafara",
-      "showDealerHint": "Sýnir hver gefur í hverri umferð – gjafarinn skiptist á. Þá er spurt um sætaskipanina."
+      "showDealerHint": "Sýnir hver gefur í hverri umferð – gjafarinn skiptist á. Þá er spurt um sætaskipanina.",
+      "startingPlayerLabel": "Upphafsleikmaður",
+      "firstDealerLabel": "Fyrsti gjafari",
+      "startingPlayerRandom": "Af handahófi"
     },
     "errors": {
       "minPlayers": "Veldu að minnsta kosti 2 leikmenn.",

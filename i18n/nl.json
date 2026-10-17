@@ -52,7 +52,7 @@
         "teamTotalSuffix": "punten totaal",
         "withdrawnBadge": "Uitgestapt"
       },
-      "startingPlayerLegend": "★ Beginnende speler (willekeurig)",
+      "startingPlayerLegend": "★ Beginnende speler",
       "startedSuffix": "gestart op {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Opnieuw beginnen",
       "seatOrderIncomplete": "Leg de zitvolgorde volledig vast.",
       "showDealerLabel": "Gever tonen",
-      "showDealerHint": "Toont wie er elke ronde geeft – de gever wisselt om de beurt. Daarvoor wordt de zitvolgorde gevraagd."
+      "showDealerHint": "Toont wie er elke ronde geeft – de gever wisselt om de beurt. Daarvoor wordt de zitvolgorde gevraagd.",
+      "startingPlayerLabel": "Startspeler",
+      "firstDealerLabel": "Eerste gever",
+      "startingPlayerRandom": "Willekeurig"
     },
     "errors": {
       "minPlayers": "Selecteer minstens 2 spelers.",

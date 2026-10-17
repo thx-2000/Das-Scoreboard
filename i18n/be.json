@@ -52,7 +52,7 @@
         "teamTotalSuffix": "ачкоў усяго",
         "withdrawnBadge": "Выбыў"
       },
-      "startingPlayerLegend": "★ Гулец, які пачынае (выпадкова)",
+      "startingPlayerLegend": "★ Гулец, які пачынае",
       "startedSuffix": "распачата {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Пачаць нанова",
       "seatOrderIncomplete": "Задай поўны парадак месцаў.",
       "showDealerLabel": "Паказваць раздавальніка",
-      "showDealerHint": "Паказвае, хто раздае ў кожным раундзе – раздавальнік змяняецца па чарзе. Для гэтага пытаецца парадак месцаў."
+      "showDealerHint": "Паказвае, хто раздае ў кожным раундзе – раздавальнік змяняецца па чарзе. Для гэтага пытаецца парадак месцаў.",
+      "startingPlayerLabel": "Пачатковы гулец",
+      "firstDealerLabel": "Першы раздавальнік",
+      "startingPlayerRandom": "Выпадкова"
     },
     "errors": {
       "minPlayers": "Абярыце прынамсі 2 гульцоў.",

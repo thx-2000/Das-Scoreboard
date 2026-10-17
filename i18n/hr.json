@@ -52,7 +52,7 @@
         "teamTotalSuffix": "bodova ukupno",
         "withdrawnBadge": "Odustao"
       },
-      "startingPlayerLegend": "★ Igrač koji počinje (nasumično)",
+      "startingPlayerLegend": "★ Igrač koji počinje",
       "startedSuffix": "započeto {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Počni ispočetka",
       "seatOrderIncomplete": "Postavi cijeli redoslijed sjedenja.",
       "showDealerLabel": "Prikaži djelitelja",
-      "showDealerHint": "Pokazuje tko dijeli u svakoj rundi – djelitelj se mijenja redom. Zato se pita redoslijed sjedenja."
+      "showDealerHint": "Pokazuje tko dijeli u svakoj rundi – djelitelj se mijenja redom. Zato se pita redoslijed sjedenja.",
+      "startingPlayerLabel": "Početni igrač",
+      "firstDealerLabel": "Prvi djelitelj",
+      "startingPlayerRandom": "Nasumično"
     },
     "errors": {
       "minPlayers": "Odaberite najmanje 2 igrača.",

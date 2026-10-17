@@ -52,7 +52,7 @@
         "teamTotalSuffix": "bodů celkem",
         "withdrawnBadge": "Odstoupil"
       },
-      "startingPlayerLegend": "★ Začínající hráč (náhodně)",
+      "startingPlayerLegend": "★ Začínající hráč",
       "startedSuffix": "zahájeno {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Začít znovu",
       "seatOrderIncomplete": "Nastavte celé pořadí u stolu.",
       "showDealerLabel": "Zobrazit rozdávajícího",
-      "showDealerHint": "Ukazuje, kdo v každém kole rozdává – rozdávající se střídá. K tomu se zjišťuje pořadí u stolu."
+      "showDealerHint": "Ukazuje, kdo v každém kole rozdává – rozdávající se střídá. K tomu se zjišťuje pořadí u stolu.",
+      "startingPlayerLabel": "Začínající hráč",
+      "firstDealerLabel": "První rozdávající",
+      "startingPlayerRandom": "Náhodně"
     },
     "errors": {
       "minPlayers": "Vyberte alespoň 2 hráče.",

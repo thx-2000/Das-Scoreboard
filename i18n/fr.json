@@ -52,7 +52,7 @@
         "teamTotalSuffix": "points au total",
         "withdrawnBadge": "Abandonné"
       },
-      "startingPlayerLegend": "★ Joueur de départ (aléatoire)",
+      "startingPlayerLegend": "★ Joueur de départ",
       "startedSuffix": "commencée le {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Recommencer",
       "seatOrderIncomplete": "Veuillez définir l'ordre des places complet.",
       "showDealerLabel": "Afficher le donneur",
-      "showDealerHint": "Indique qui donne à chaque manche – le donneur change à tour de rôle. L'ordre des places est alors demandé."
+      "showDealerHint": "Indique qui donne à chaque manche – le donneur change à tour de rôle. L'ordre des places est alors demandé.",
+      "startingPlayerLabel": "Joueur de départ",
+      "firstDealerLabel": "Premier donneur",
+      "startingPlayerRandom": "Au hasard"
     },
     "errors": {
       "minPlayers": "Sélectionnez au moins 2 joueurs.",

@@ -52,7 +52,7 @@
         "teamTotalSuffix": "puntos en total",
         "withdrawnBadge": "Retirado"
       },
-      "startingPlayerLegend": "★ Jugador inicial (aleatorio)",
+      "startingPlayerLegend": "★ Jugador inicial",
       "startedSuffix": "iniciada el {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Empezar de nuevo",
       "seatOrderIncomplete": "Define el orden de asientos completo.",
       "showDealerLabel": "Mostrar quién reparte",
-      "showDealerHint": "Muestra quién reparte en cada ronda: el repartidor cambia por turnos. Para ello se pregunta el orden de asientos."
+      "showDealerHint": "Muestra quién reparte en cada ronda: el repartidor cambia por turnos. Para ello se pregunta el orden de asientos.",
+      "startingPlayerLabel": "Jugador inicial",
+      "firstDealerLabel": "Primer repartidor",
+      "startingPlayerRandom": "Aleatorio"
     },
     "errors": {
       "minPlayers": "Selecciona al menos 2 jugadores.",

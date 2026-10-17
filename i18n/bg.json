@@ -52,7 +52,7 @@
         "teamTotalSuffix": "точки общо",
         "withdrawnBadge": "Оттеглен"
       },
-      "startingPlayerLegend": "★ Начален играч (произволно)",
+      "startingPlayerLegend": "★ Начален играч",
       "startedSuffix": "започната на {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Започни отначало",
       "seatOrderIncomplete": "Задай пълния ред на сядане.",
       "showDealerLabel": "Показване на раздаващия",
-      "showDealerHint": "Показва кой раздава във всеки рунд – раздаващият се сменя последователно. За целта се пита за реда на сядане."
+      "showDealerHint": "Показва кой раздава във всеки рунд – раздаващият се сменя последователно. За целта се пита за реда на сядане.",
+      "startingPlayerLabel": "Начален играч",
+      "firstDealerLabel": "Пръв раздаващ",
+      "startingPlayerRandom": "Случайно"
     },
     "errors": {
       "minPlayers": "Избери поне 2 играчи.",

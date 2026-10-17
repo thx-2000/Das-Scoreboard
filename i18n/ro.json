@@ -52,7 +52,7 @@
         "teamTotalSuffix": "puncte în total",
         "withdrawnBadge": "Retras"
       },
-      "startingPlayerLegend": "★ Jucător de start (aleatoriu)",
+      "startingPlayerLegend": "★ Jucător de start",
       "startedSuffix": "început la {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Începe din nou",
       "seatOrderIncomplete": "Stabilește ordinea completă la masă.",
       "showDealerLabel": "Afișează împărțitorul",
-      "showDealerHint": "Arată cine împarte în fiecare rundă – împărțitorul se schimbă pe rând. Pentru asta se cere ordinea la masă."
+      "showDealerHint": "Arată cine împarte în fiecare rundă – împărțitorul se schimbă pe rând. Pentru asta se cere ordinea la masă.",
+      "startingPlayerLabel": "Jucător de start",
+      "firstDealerLabel": "Primul împărțitor",
+      "startingPlayerRandom": "Aleatoriu"
     },
     "errors": {
       "minPlayers": "Selectează cel puțin 2 jucători.",

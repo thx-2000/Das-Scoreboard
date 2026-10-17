@@ -52,7 +52,7 @@
         "teamTotalSuffix": "Punkte gesamt",
         "withdrawnBadge": "Ausgeschieden"
       },
-      "startingPlayerLegend": "★ Startspieler (zufällig)",
+      "startingPlayerLegend": "★ Startspieler",
       "startedSuffix": "gestartet {date} Uhr",
       "dateTime": "{date} Uhr",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Neu beginnen",
       "seatOrderIncomplete": "Bitte die Sitzordnung vollständig festlegen.",
       "showDealerLabel": "Geber anzeigen",
-      "showDealerHint": "Zeigt in jeder Runde, wer gibt – der Geber wechselt reihum. Dafür wird die Sitzordnung abgefragt."
+      "showDealerHint": "Zeigt in jeder Runde, wer gibt – der Geber wechselt reihum. Dafür wird die Sitzordnung abgefragt.",
+      "startingPlayerLabel": "Startspieler",
+      "firstDealerLabel": "Erster Geber",
+      "startingPlayerRandom": "Zufällig"
     },
     "errors": {
       "minPlayers": "Mindestens 2 Spieler auswählen.",

@@ -52,7 +52,7 @@
         "teamTotalSuffix": "punt total",
         "withdrawnBadge": "Irtirat"
       },
-      "startingPlayerLegend": "★ Plejer li jibda (b'mod każwali)",
+      "startingPlayerLegend": "★ Plejer li jibda",
       "startedSuffix": "bdiet {date}",
       "dateTime": "{date}",
       "winnerBanner": {
@@ -123,7 +123,10 @@
       "seatOrderReset": "Ibda mill-ġdid",
       "seatOrderIncomplete": "Issettja l-ordni sħiħ tal-lqugħ.",
       "showDealerLabel": "Uri d-dealer",
-      "showDealerHint": "Juri min jagħti l-karti f'kull rawnd – id-dealer jinbidel bit-turn. Għal dan jintalab l-ordni tal-lqugħ."
+      "showDealerHint": "Juri min jagħti l-karti f'kull rawnd – id-dealer jinbidel bit-turn. Għal dan jintalab l-ordni tal-lqugħ.",
+      "startingPlayerLabel": "Plejer tal-bidu",
+      "firstDealerLabel": "L-ewwel dealer",
+      "startingPlayerRandom": "Każwali"
     },
     "errors": {
       "minPlayers": "Agħżel mill-inqas 2 plejers.",

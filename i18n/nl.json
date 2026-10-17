@@ -86,7 +86,8 @@
         "confirmWithdraw": "{name} echt als uitgestapt markeren?",
         "noPlayersAvailable": "Geen andere spelers beschikbaar",
         "newPlayerLabel": "Of nieuwe speler aanmaken",
-        "startingScoreLabel": "Startpunten"
+        "startingScoreLabel": "Startpunten",
+        "seatAfterLabel": "Zit links van"
       },
       "rematchButton": "Nog een ronde spelen"
     },
@@ -575,7 +576,11 @@
       "hint": "Vaste 10 rondes (van 10 naar 1 kaart), hoogste score wint aan het eind.",
       "labelPlaceholder": "bijv. RAGE-avond",
       "showBonusMalusLabel": "Bonus/malus tonen",
-      "showBonusMalusHint": "De +5/−5-velden voor speciale kaarten in de rondeinvoer tonen/verbergen."
+      "showBonusMalusHint": "De +5/−5-velden voor speciale kaarten in de rondeinvoer tonen/verbergen.",
+      "seatOrderLabel": "Zitvolgorde (met de klok mee)",
+      "seatOrderHint": "Tik de spelers na elkaar aan – begin bij iemand, daarna steeds de volgende met de klok mee.",
+      "seatOrderReset": "Opnieuw beginnen",
+      "seatOrderIncomplete": "Leg de zitvolgorde volledig vast."
     },
     "game": {
       "cardSingular": "kaart",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Pas waarden direct aan om invoerfouten te corrigeren. Bieding / slagen / +5 / −5 / punten (berekend) per speler en ronde.",
       "deleteRoundButton": "R{round} verwijderen",
       "mismatchConfirm": "De som van de ingevoerde slagen ({actual}) komt niet overeen met het aantal kaarten van deze ronde ({expected}). Toch opslaan?",
-      "saveFailed": "Ronde kon niet worden opgeslagen."
+      "saveFailed": "Ronde kon niet worden opgeslagen.",
+      "dealerLegend": "★ Gever van deze ronde",
+      "round": {
+        "dealerLine": "Gever: {dealer} · Bieden begint bij {first}"
+      },
+      "bids": {
+        "heading": "Ronde {round}: biedingen ({cards} {cardWord})",
+        "hint": "Hoeveel slagen biedt elke speler?",
+        "sumLabel": "{sum} van {cards} slagen geboden",
+        "lockButton": "Biedingen afsluiten",
+        "unlockButton": "Biedingen corrigeren",
+        "unlockConfirm": "Biedingen weer vrijgeven en wijzigen?"
+      },
+      "results": {
+        "heading": "Ronde {round}: resultaten ({cards} {cardWord})",
+        "hint": "Hoeveel slagen heeft elke speler gehaald?",
+        "bidLabel": "Geboden: {bid}",
+        "tricksSum": "{sum} van {cards} slagen verdeeld",
+        "finishButton": "Ronde afsluiten"
+      }
     }
   },
   "chooser": {

@@ -86,7 +86,8 @@
         "confirmWithdraw": "Marcar mesmo {name} como desistente?",
         "noPlayersAvailable": "Não há mais jogadores disponíveis",
         "newPlayerLabel": "Ou criar um novo jogador",
-        "startingScoreLabel": "Pontos iniciais"
+        "startingScoreLabel": "Pontos iniciais",
+        "seatAfterLabel": "Senta-se à esquerda de"
       },
       "rematchButton": "Jogar outra rodada"
     },
@@ -575,7 +576,11 @@
       "hint": "10 rondas fixas (de 10 a 1 carta), vence a pontuação mais alta no final.",
       "labelPlaceholder": "p. ex. Noite RAGE",
       "showBonusMalusLabel": "Mostrar bónus/malus",
-      "showBonusMalusHint": "Mostrar/ocultar os campos de cartas especiais +5/−5 no registo de ronda."
+      "showBonusMalusHint": "Mostrar/ocultar os campos de cartas especiais +5/−5 no registo de ronda.",
+      "seatOrderLabel": "Ordem dos lugares (sentido horário)",
+      "seatOrderHint": "Toque nos jogadores um a um – comece por qualquer um e depois sempre o seguinte no sentido horário.",
+      "seatOrderReset": "Recomeçar",
+      "seatOrderIncomplete": "Defina a ordem dos lugares completa."
     },
     "game": {
       "cardSingular": "carta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Ajuste os valores diretamente para corrigir erros de introdução. Anúncio / vazas / +5 / −5 / pontos (calculados) por jogador e ronda.",
       "deleteRoundButton": "Eliminar R{round}",
       "mismatchConfirm": "A soma das vazas introduzidas ({actual}) não corresponde ao número de cartas desta ronda ({expected}). Guardar mesmo assim?",
-      "saveFailed": "Não foi possível guardar a ronda."
+      "saveFailed": "Não foi possível guardar a ronda.",
+      "dealerLegend": "★ Dador desta ronda",
+      "round": {
+        "dealerLine": "Dador: {dealer} · A aposta começa em {first}"
+      },
+      "bids": {
+        "heading": "Ronda {round}: apostas ({cards} {cardWord})",
+        "hint": "Quantas vazas aposta cada jogador?",
+        "sumLabel": "{sum} de {cards} vazas apostadas",
+        "lockButton": "Fechar apostas",
+        "unlockButton": "Corrigir apostas",
+        "unlockConfirm": "Reabrir as apostas para as alterar?"
+      },
+      "results": {
+        "heading": "Ronda {round}: resultados ({cards} {cardWord})",
+        "hint": "Quantas vazas fez cada jogador?",
+        "bidLabel": "Aposta: {bid}",
+        "tricksSum": "{sum} de {cards} vazas atribuídas",
+        "finishButton": "Terminar ronda"
+      }
     }
   },
   "chooser": {

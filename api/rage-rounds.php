@@ -24,9 +24,14 @@ if ($game['mode'] !== 'rage') {
 }
 
 /** @return array<int, array{bid:int, actualTricks:int, rageBonusCount:int, rageRacheCount:int}> */
-function rage_entries_for_game(PDO $pdo, int $gameId, array $rawEntries): array
+function rage_entries_for_game(PDO $pdo, int $gameId, array $rawEntries, bool $onlyActive = false): array
 {
-    $playersStmt = $pdo->prepare('SELECT player_id FROM game_players WHERE game_id = ?');
+    // Neue Runden: ausgeschiedene Spieler (Migration 16) bekommen keinen
+    // Eintrag - sonst wuerde ihr fehlendes "0 angesagt, 0 gemacht" jede Runde
+    // 10 Punkte bringen. Korrekturen (PATCH) duerfen alte Zeilen aller
+    // Spieler betreffen.
+    $sql = 'SELECT player_id FROM game_players WHERE game_id = ?' . ($onlyActive ? ' AND withdrawn_at IS NULL' : '');
+    $playersStmt = $pdo->prepare($sql);
     $playersStmt->execute([$gameId]);
     $playerIds = array_column($playersStmt->fetchAll(PDO::FETCH_ASSOC), 'player_id');
 
@@ -45,7 +50,7 @@ function rage_entries_for_game(PDO $pdo, int $gameId, array $rawEntries): array
 
 if ($method === 'POST' && $roundId === null) {
     $body = read_json_body();
-    $entries = rage_entries_for_game($pdo, $gameId, $body['entries'] ?? []);
+    $entries = rage_entries_for_game($pdo, $gameId, $body['entries'] ?? [], true);
 
     $countStmt = $pdo->prepare('SELECT COUNT(*) AS c FROM rounds WHERE game_id = ?');
     $countStmt->execute([$gameId]);
@@ -55,10 +60,12 @@ if ($method === 'POST' && $roundId === null) {
         send_json(['error' => 'Alle 10 Runden sind bereits gespielt.'], 400);
     }
 
+    $dealerId = rage_round_roles($pdo, $gameId)['dealerId'];
+
     $pdo->beginTransaction();
 
-    $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at) VALUES (?, ?, ?)');
-    $insertRound->execute([$gameId, $nextRoundNumber, now_iso()]);
+    $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at, dealer_id) VALUES (?, ?, ?, ?)');
+    $insertRound->execute([$gameId, $nextRoundNumber, now_iso(), $dealerId]);
     $newRoundId = (int) $pdo->lastInsertId();
 
     $insertScore = $pdo->prepare('
@@ -71,6 +78,8 @@ if ($method === 'POST' && $roundId === null) {
     }
 
     $pdo->commit();
+
+    rage_clear_draft($pdo, $gameId);
 
     if ($nextRoundNumber >= 10) {
         set_game_finished($pdo, $gameId, true);
@@ -121,6 +130,10 @@ if ($method === 'DELETE') {
         $i++;
     }
     $pdo->commit();
+
+    // Geber und Rundennummer der naechsten Runde aendern sich - gespeicherte
+    // Ansagen passen dann nicht mehr.
+    rage_clear_draft($pdo, $gameId);
 
     if (count($remainingRows) < 10) {
         set_game_finished($pdo, $gameId, false);

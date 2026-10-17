@@ -86,7 +86,8 @@
         "confirmWithdraw": "Segnare davvero {name} come ritirato?",
         "noPlayersAvailable": "Nessun altro giocatore disponibile",
         "newPlayerLabel": "Oppure crea un nuovo giocatore",
-        "startingScoreLabel": "Punti di partenza"
+        "startingScoreLabel": "Punti di partenza",
+        "seatAfterLabel": "Siede a sinistra di"
       },
       "rematchButton": "Gioca un'altra partita"
     },
@@ -575,7 +576,11 @@
       "hint": "10 round fissi (da 10 a 1 carta), vince il punteggio più alto alla fine.",
       "labelPlaceholder": "es. Serata RAGE",
       "showBonusMalusLabel": "Mostra bonus/malus",
-      "showBonusMalusHint": "Mostra/nascondi i campi carte speciali +5/−5 nell'inserimento del turno."
+      "showBonusMalusHint": "Mostra/nascondi i campi carte speciali +5/−5 nell'inserimento del turno.",
+      "seatOrderLabel": "Disposizione dei posti (in senso orario)",
+      "seatOrderHint": "Tocca i giocatori uno dopo l'altro – inizia da chiunque, poi sempre il successivo in senso orario.",
+      "seatOrderReset": "Ricomincia",
+      "seatOrderIncomplete": "Imposta la disposizione dei posti completa."
     },
     "game": {
       "cardSingular": "carta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Modifica i valori direttamente per correggere errori di inserimento. Dichiarazione / prese / +5 / −5 / punti (calcolati) per giocatore e round.",
       "deleteRoundButton": "Elimina R{round}",
       "mismatchConfirm": "La somma delle prese inserite ({actual}) non corrisponde al numero di carte di questo round ({expected}). Salvare comunque?",
-      "saveFailed": "Impossibile salvare il turno."
+      "saveFailed": "Impossibile salvare il turno.",
+      "dealerLegend": "★ Mazziere di questo round",
+      "round": {
+        "dealerLine": "Mazziere: {dealer} · La dichiarazione inizia da {first}"
+      },
+      "bids": {
+        "heading": "Round {round}: dichiarazioni ({cards} {cardWord})",
+        "hint": "Quante prese dichiara ciascun giocatore?",
+        "sumLabel": "{sum} di {cards} prese dichiarate",
+        "lockButton": "Conferma dichiarazioni",
+        "unlockButton": "Correggi dichiarazioni",
+        "unlockConfirm": "Riaprire le dichiarazioni per modificarle?"
+      },
+      "results": {
+        "heading": "Round {round}: risultati ({cards} {cardWord})",
+        "hint": "Quante prese ha fatto ciascun giocatore?",
+        "bidLabel": "Dichiarato: {bid}",
+        "tricksSum": "{sum} di {cards} prese assegnate",
+        "finishButton": "Concludi round"
+      }
     }
   },
   "chooser": {

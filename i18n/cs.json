@@ -86,7 +86,8 @@
         "confirmWithdraw": "Opravdu označit {name} jako odstoupivšího?",
         "noPlayersAvailable": "Žádní další hráči k dispozici",
         "newPlayerLabel": "Nebo vytvořit nového hráče",
-        "startingScoreLabel": "Počáteční body"
+        "startingScoreLabel": "Počáteční body",
+        "seatAfterLabel": "Sedí nalevo od"
       },
       "rematchButton": "Hrát další kolo"
     },
@@ -575,7 +576,11 @@
       "hint": "Pevných 10 kol (od 10 do 1 karty), na konci vyhrává nejvyšší skóre.",
       "labelPlaceholder": "např. Večer RAGE",
       "showBonusMalusLabel": "Zobrazit bonus/malus",
-      "showBonusMalusHint": "Zobrazit/skrýt pole speciálních karet +5/−5 při zadávání kola."
+      "showBonusMalusHint": "Zobrazit/skrýt pole speciálních karet +5/−5 při zadávání kola.",
+      "seatOrderLabel": "Pořadí u stolu (po směru hodinových ručiček)",
+      "seatOrderHint": "Klepejte na hráče postupně – začněte kýmkoli a pak vždy dalším po směru hodinových ručiček.",
+      "seatOrderReset": "Začít znovu",
+      "seatOrderIncomplete": "Nastavte celé pořadí u stolu."
     },
     "game": {
       "cardSingular": "karta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Upravte hodnoty přímo pro opravu chyb při zadávání. Licitace / zdvihy / +5 / −5 / body (vypočteno) pro každého hráče a kolo.",
       "deleteRoundButton": "Smazat K{round}",
       "mismatchConfirm": "Součet zadaných zdvihů ({actual}) neodpovídá počtu karet tohoto kola ({expected}). Přesto uložit?",
-      "saveFailed": "Kolo se nepodařilo uložit."
+      "saveFailed": "Kolo se nepodařilo uložit.",
+      "dealerLegend": "★ Rozdávající v tomto kole",
+      "round": {
+        "dealerLine": "Rozdává: {dealer} · Ohlašování začíná u {first}"
+      },
+      "bids": {
+        "heading": "Kolo {round}: ohlášení ({cards} {cardWord})",
+        "hint": "Kolik zdvihů ohlásí každý hráč?",
+        "sumLabel": "{sum} z {cards} zdvihů ohlášeno",
+        "lockButton": "Uzavřít ohlášení",
+        "unlockButton": "Opravit ohlášení",
+        "unlockConfirm": "Odemknout ohlášení a změnit je?"
+      },
+      "results": {
+        "heading": "Kolo {round}: výsledky ({cards} {cardWord})",
+        "hint": "Kolik zdvihů vzal každý hráč?",
+        "bidLabel": "Ohlášeno: {bid}",
+        "tricksSum": "{sum} z {cards} zdvihů rozdáno",
+        "finishButton": "Dokončit kolo"
+      }
     }
   },
   "chooser": {

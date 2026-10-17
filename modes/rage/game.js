@@ -9,9 +9,8 @@ const winnerBannerWrap = document.getElementById('winner-banner-wrap');
 const roundEntryCard = document.getElementById('round-entry-card');
 const roundEntryTitle = document.getElementById('round-entry-title');
 const roundEntryHint = document.getElementById('round-entry-hint');
-const roundEntryBody = document.getElementById('round-entry-body');
-const rageRoundCards = document.getElementById('rage-round-cards');
-const saveRoundBtn = document.getElementById('save-round-btn');
+const rageDealerLine = document.getElementById('rage-dealer-line');
+const rageFlow = document.getElementById('rage-flow');
 const roundsTableHead = document.getElementById('rounds-table-head');
 const roundsTableBody = document.getElementById('rounds-table-body');
 const toggleFinishedBtn = document.getElementById('toggle-finished-btn');
@@ -19,6 +18,14 @@ const startingPlayerLegend = document.getElementById('starting-player-legend');
 const undoLastRoundBtn = document.getElementById('undo-last-round-btn');
 
 let currentState = null;
+// Ansagen der laufenden Runde: lokal sofort aktuell, verzoegert per
+// api/rage-bids.php gespeichert (bidSaveTimer != null = Speichern steht aus).
+let bidDraft = {};
+let bidSaveTimer = null;
+// Ergebnisse der laufenden Runde (Phase 2) - nur im Speicher, wird mit
+// "Runde abschliessen" als echte Runde gespeichert.
+let resultDraft = {};
+let resultDraftRound = 0;
 
 function cardsForRound(roundNumber) {
   return Math.max(0, 11 - roundNumber);
@@ -82,7 +89,7 @@ function renderStandings(state) {
     if (rank === 1) row.className = 'rank-first';
     if (player.withdrawnAt) row.classList.add('standings-row--withdrawn');
 
-    const displayName = window.escapeHtml(player.id === state.startingPlayerId ? `${player.name} ★` : player.name);
+    const displayName = window.escapeHtml(player.id === currentDealerId(state) ? `${player.name} ★` : player.name);
     const withdrawnBadge = player.withdrawnAt
       ? `<span class="badge badge--withdrawn">${window.t('common.game.standings.withdrawnBadge')}</span>`
       : '';
@@ -112,7 +119,7 @@ function renderStandingsCards(state) {
     previousTotal = player.total;
     previousRank = rank;
 
-    const displayName = window.escapeHtml(player.id === state.startingPlayerId ? `${player.name} ★` : player.name);
+    const displayName = window.escapeHtml(player.id === currentDealerId(state) ? `${player.name} ★` : player.name);
     const withdrawnBadge = player.withdrawnAt
       ? `<span class="badge badge--withdrawn">${window.t('common.game.standings.withdrawnBadge')}</span>`
       : '';
@@ -132,8 +139,14 @@ function renderStandingsCards(state) {
   });
 }
 
+/** Geber der laufenden Runde - nach Spielende bzw. Runde 10 gibt es keinen mehr. */
+function currentDealerId(state) {
+  if (state.status === 'finished' || state.rounds.length >= 10 || !state.rage) return null;
+  return state.rage.dealerId;
+}
+
 function renderStartingPlayerLegend(state) {
-  startingPlayerLegend.hidden = state.startingPlayerId === null || state.startingPlayerId === undefined;
+  startingPlayerLegend.hidden = currentDealerId(state) === null;
 }
 
 function renderWinnerBanner(state) {
@@ -155,157 +168,270 @@ function renderWinnerBanner(state) {
   winnerBannerWrap.appendChild(rematchLink);
 }
 
-function updateEntryRowPreview(row) {
-  const bid = Number(row.querySelector('.field-bid').value) || 0;
-  const actual = Number(row.querySelector('.field-actual').value) || 0;
-  const bonus = Number(row.querySelector('.field-bonus').value) || 0;
-  const rache = Number(row.querySelector('.field-rache').value) || 0;
-  const points = computeRagePoints(bid, actual, bonus, rache);
-  row.querySelector('.field-preview').textContent = points;
-
-  const card = rageRoundCards.querySelector(`[data-player-id="${row.dataset.playerId}"]`);
-  if (card) card.querySelector('.rage-round-card__preview').textContent = points;
+/** Aktive Spieler in Ansagereihenfolge: links vom Geber beginnend, der Geber zuletzt. */
+function ragePlayersInBidOrder(state) {
+  const byId = new Map(state.players.map((p) => [p.id, p]));
+  const active = state.rage.seatOrder.map((id) => byId.get(id)).filter((p) => p && !p.withdrawnAt);
+  const startIdx = active.findIndex((p) => p.id === state.rage.bidStartId);
+  return startIdx > 0 ? [...active.slice(startIdx), ...active.slice(0, startIdx)] : active;
 }
 
 /**
- * Bold-Theme: Mini-Stepper (+/-1) fuer ein einzelnes Rundenerfassungs-Feld.
- * Schreibt direkt in das echte Tabellen-input (row bleibt einzige Quelle,
- * siehe Prinzip aus round-entry.js) und loest dessen 'input'-Event aus,
- * statt das Feld zu verschieben oder zu duplizieren.
+ * Grosser Minus/Wert/Plus-Stepper. onChange bekommt den neuen Wert; das
+ * Element bleibt bestehen (kein Neuaufbau pro Klick), damit schnelles
+ * Mehrfach-Antippen nichts verschluckt.
  */
-function buildRageMiniStepper(input, label) {
-  const wrap = document.createElement('div');
-  wrap.className = 'rage-stepper';
-
-  const labelEl = document.createElement('span');
-  labelEl.className = 'rage-stepper__label';
-  labelEl.textContent = label;
+function buildRageStepper(name, value, max, onChange) {
+  const control = document.createElement('div');
+  control.className = 'rage-row__control';
 
   const minusBtn = document.createElement('button');
   minusBtn.type = 'button';
-  minusBtn.className = 'rage-stepper__btn rage-stepper__btn--minus';
+  minusBtn.className = 'rage-row__btn rage-row__btn--minus';
   minusBtn.textContent = '−';
-  minusBtn.setAttribute('aria-label', `${window.t('common.stepper.decrease')}: ${label}`);
+  minusBtn.setAttribute('aria-label', `${window.t('common.stepper.decrease')}: ${name}`);
 
   const valueEl = document.createElement('span');
-  valueEl.className = 'rage-stepper__value';
-  valueEl.textContent = input.value;
+  valueEl.className = 'rage-row__value';
+  valueEl.textContent = String(value);
 
   const plusBtn = document.createElement('button');
   plusBtn.type = 'button';
-  plusBtn.className = 'rage-stepper__btn rage-stepper__btn--plus';
+  plusBtn.className = 'rage-row__btn rage-row__btn--plus';
   plusBtn.textContent = '+';
-  plusBtn.setAttribute('aria-label', `${window.t('common.stepper.increase')}: ${label}`);
+  plusBtn.setAttribute('aria-label', `${window.t('common.stepper.increase')}: ${name}`);
 
-  function adjust(delta) {
-    const next = Math.max(0, (Number(input.value) || 0) + delta);
-    input.value = String(next);
-    input.dispatchEvent(new Event('input', { bubbles: true }));
+  let current = value;
+  function set(next) {
+    const clamped = Math.max(0, Math.min(max, next));
+    if (clamped === current) return;
+    current = clamped;
+    valueEl.textContent = String(clamped);
+    onChange(clamped);
   }
-  minusBtn.addEventListener('click', () => adjust(-1));
-  plusBtn.addEventListener('click', () => adjust(1));
-  input.addEventListener('input', () => { valueEl.textContent = input.value; });
+  minusBtn.addEventListener('click', () => set(current - 1));
+  plusBtn.addEventListener('click', () => set(current + 1));
 
-  const control = document.createElement('div');
-  control.className = 'rage-stepper__control';
   control.appendChild(minusBtn);
   control.appendChild(valueEl);
   control.appendChild(plusBtn);
-
-  wrap.appendChild(labelEl);
-  wrap.appendChild(control);
-  return wrap;
+  return control;
 }
 
-/**
- * Bold-Theme: Mini-Stepper-Karte je Spieler statt Tabellenzeile - referenziert
- * dieselben 4 Felder wie die (im Bold-Theme per CSS ausgeblendete) Tabellen-
- * zeile, statt eigene Felder anzulegen.
- */
-function buildRageRoundCard(player, row, players, showBonusMalus) {
-  const card = document.createElement('div');
-  card.className = 'rage-round-card';
-  card.dataset.playerId = player.id;
-  card.dataset.playerColor = window.scoreboardPlayerColorIndex(players, player.id);
+function buildRageRow(state, player, metaText) {
+  const row = document.createElement('div');
+  row.className = 'rage-row';
+  row.dataset.playerColor = window.scoreboardPlayerColorIndex(state.players, player.id);
 
-  const header = document.createElement('div');
-  header.className = 'rage-round-card__header';
+  const who = document.createElement('div');
+  who.className = 'rage-row__who';
   const nameEl = document.createElement('span');
-  nameEl.className = 'rage-round-card__name';
-  nameEl.textContent = player.name;
-  const previewEl = document.createElement('span');
-  previewEl.className = 'rage-round-card__preview';
-  previewEl.textContent = row.querySelector('.field-preview').textContent;
-  header.appendChild(nameEl);
-  header.appendChild(previewEl);
-
-  const fields = document.createElement('div');
-  fields.className = 'rage-round-card__fields';
-  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bid'), window.t('rage.game.roundEntry.table.bid')));
-  fields.appendChild(buildRageMiniStepper(row.querySelector('.field-actual'), window.t('rage.game.roundEntry.table.tricks')));
-  if (showBonusMalus) {
-    fields.appendChild(buildRageMiniStepper(row.querySelector('.field-bonus'), window.t('rage.game.roundEntry.table.plus5')));
-    fields.appendChild(buildRageMiniStepper(row.querySelector('.field-rache'), window.t('rage.game.roundEntry.table.minus5')));
+  nameEl.className = 'rage-row__name';
+  nameEl.textContent = player.id === state.rage.dealerId ? `${player.name} ★` : player.name;
+  const head = document.createElement('div');
+  head.className = 'rage-row__head';
+  head.appendChild(nameEl);
+  who.appendChild(head);
+  if (metaText) {
+    const metaEl = document.createElement('span');
+    metaEl.className = 'rage-row__meta';
+    metaEl.textContent = metaText;
+    who.appendChild(metaEl);
   }
+  row.appendChild(who);
+  return row;
+}
 
-  card.appendChild(header);
-  card.appendChild(fields);
-  return card;
+async function flushBids() {
+  clearTimeout(bidSaveTimer);
+  bidSaveTimer = null;
+  await fetch('/api/rage-bids.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gameId: Number(gameId), bids: bidDraft }),
+  });
+}
+
+function scheduleBidSave() {
+  clearTimeout(bidSaveTimer);
+  bidSaveTimer = setTimeout(flushBids, 350);
+}
+
+async function setBidsLocked(locked) {
+  if (locked) {
+    clearTimeout(bidSaveTimer);
+    bidSaveTimer = null;
+  } else if (!window.confirm(window.t('rage.game.bids.unlockConfirm'))) {
+    return;
+  }
+  const body = { gameId: Number(gameId), locked };
+  if (locked) body.bids = bidDraft;
+  const response = await fetch('/api/rage-bids.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    window.alert(data.error || window.t('rage.game.saveFailed'));
+    return;
+  }
+  currentState = data;
+  render(currentState);
+}
+
+/** Phase 1: nur die angesagten Stiche je Spieler, mit Live-Summe gegen die Kartenzahl. */
+function renderBidPhase(state, players) {
+  const { nextRound, cards } = state.rage;
+  roundEntryTitle.textContent = window.t('rage.game.bids.heading', { round: nextRound, cards, cardWord: cardWord(cards) });
+  roundEntryHint.textContent = window.t('rage.game.bids.hint');
+
+  if (bidSaveTimer === null) bidDraft = { ...state.rage.bids };
+
+  rageFlow.innerHTML = '';
+  const sumEl = document.createElement('p');
+  sumEl.className = 'rage-flow__sum';
+  sumEl.setAttribute('aria-live', 'polite');
+  rageFlow.appendChild(sumEl);
+
+  const updateSum = () => {
+    const sum = players.reduce((acc, p) => acc + (Number(bidDraft[p.id]) || 0), 0);
+    sumEl.textContent = window.t('rage.game.bids.sumLabel', { sum, cards });
+  };
+
+  players.forEach((player) => {
+    const row = buildRageRow(state, player, '');
+    row.appendChild(buildRageStepper(player.name, Number(bidDraft[player.id]) || 0, cards, (next) => {
+      bidDraft[player.id] = next;
+      updateSum();
+      scheduleBidSave();
+    }));
+    rageFlow.appendChild(row);
+  });
+  updateSum();
+
+  const actions = document.createElement('div');
+  actions.className = 'rage-flow__actions';
+  const lockBtn = document.createElement('button');
+  lockBtn.type = 'button';
+  lockBtn.className = 'btn btn--primary';
+  lockBtn.textContent = window.t('rage.game.bids.lockButton');
+  lockBtn.addEventListener('click', () => {
+    lockBtn.disabled = true;
+    setBidsLocked(true).finally(() => { lockBtn.disabled = false; });
+  });
+  actions.appendChild(lockBtn);
+  rageFlow.appendChild(actions);
+}
+
+/** Phase 2: Ansagen stehen fest und sind sichtbar, jetzt die tatsaechlichen Stiche (und Sonderkarten) eintragen. */
+function renderResultPhase(state, players) {
+  const { nextRound, cards } = state.rage;
+  roundEntryTitle.textContent = window.t('rage.game.results.heading', { round: nextRound, cards, cardWord: cardWord(cards) });
+  roundEntryHint.textContent = window.t('rage.game.results.hint');
+
+  if (resultDraftRound !== nextRound) {
+    resultDraft = {};
+    resultDraftRound = nextRound;
+  }
+  const showBonusMalus = state.rageShowBonusMalus !== false;
+  const bidOf = (player) => Number(state.rage.bids[player.id]) || 0;
+
+  rageFlow.innerHTML = '';
+  const sumEl = document.createElement('p');
+  sumEl.className = 'rage-flow__sum';
+  sumEl.setAttribute('aria-live', 'polite');
+  rageFlow.appendChild(sumEl);
+
+  const updateSum = () => {
+    const sum = players.reduce((acc, p) => acc + resultDraft[p.id].tricks, 0);
+    sumEl.textContent = window.t('rage.game.results.tricksSum', { sum, cards });
+  };
+
+  players.forEach((player) => {
+    const entry = resultDraft[player.id] || (resultDraft[player.id] = { tricks: 0, bonus: 0, rache: 0 });
+    const row = buildRageRow(state, player, window.t('rage.game.results.bidLabel', { bid: bidOf(player) }));
+
+    const pointsEl = document.createElement('span');
+    pointsEl.className = 'rage-row__points';
+    const pointsLabel = window.t('rage.game.roundEntry.table.points');
+    pointsEl.title = pointsLabel;
+    const updatePoints = () => {
+      const points = computeRagePoints(bidOf(player), entry.tricks, entry.bonus, entry.rache);
+      pointsEl.textContent = String(points);
+      pointsEl.setAttribute('aria-label', `${pointsLabel}: ${points}`);
+    };
+
+    const control = buildRageStepper(player.name, entry.tricks, cards, (next) => {
+      entry.tricks = next;
+      updatePoints();
+      updateSum();
+    });
+    // Punktevorschau rechts neben dem Namen, Ansage darunter.
+    row.querySelector('.rage-row__head').appendChild(pointsEl);
+    row.appendChild(control);
+
+    if (showBonusMalus) {
+      const extras = document.createElement('div');
+      extras.className = 'rage-row__extras';
+      [['bonus', 'rage.game.roundEntry.table.plus5'], ['rache', 'rage.game.roundEntry.table.minus5']].forEach(([field, labelKey]) => {
+        const label = window.t(labelKey);
+        const extra = document.createElement('div');
+        extra.className = 'rage-row__extra';
+        const labelEl = document.createElement('span');
+        labelEl.textContent = label;
+        extra.appendChild(labelEl);
+        extra.appendChild(buildRageStepper(`${player.name} ${label}`, entry[field], 99, (next) => {
+          entry[field] = next;
+          updatePoints();
+        }));
+        extras.appendChild(extra);
+      });
+      row.appendChild(extras);
+    }
+
+    updatePoints();
+    rageFlow.appendChild(row);
+  });
+  updateSum();
+
+  const actions = document.createElement('div');
+  actions.className = 'rage-flow__actions';
+  const unlockBtn = document.createElement('button');
+  unlockBtn.type = 'button';
+  unlockBtn.className = 'btn btn--ghost';
+  unlockBtn.textContent = window.t('rage.game.bids.unlockButton');
+  unlockBtn.addEventListener('click', () => setBidsLocked(false));
+  const finishBtn = document.createElement('button');
+  finishBtn.type = 'button';
+  finishBtn.className = 'btn btn--primary';
+  finishBtn.textContent = window.t('rage.game.results.finishButton');
+  finishBtn.addEventListener('click', () => {
+    finishBtn.disabled = true;
+    saveNewRound(players).finally(() => { finishBtn.disabled = false; });
+  });
+  actions.appendChild(unlockBtn);
+  actions.appendChild(finishBtn);
+  rageFlow.appendChild(actions);
 }
 
 function renderRoundEntry(state) {
-  const playedRounds = state.rounds.length;
-  const finishedOrDone = state.status === 'finished' || playedRounds >= 10;
+  const finishedOrDone = state.status === 'finished' || state.rounds.length >= 10;
   roundEntryCard.hidden = finishedOrDone;
   if (finishedOrDone) return;
 
-  const nextRoundNumber = playedRounds + 1;
-  const cards = cardsForRound(nextRoundNumber);
-  roundEntryTitle.textContent = window.t('rage.game.roundEntry.heading', { round: nextRoundNumber, cards, cardWord: cardWord(cards) });
-  roundEntryHint.textContent = window.t('rage.game.roundEntry.hint', { cards });
-
-  roundEntryBody.innerHTML = '';
-  rageRoundCards.innerHTML = '';
-  const showBonusMalus = state.rageShowBonusMalus !== false;
-  window.activeGamePlayers(state.players).forEach((player) => {
-    const row = document.createElement('tr');
-    row.dataset.playerId = player.id;
-    row.innerHTML = `
-      <td style="text-align:left;">${window.escapeHtml(player.name)}</td>
-      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bid" value="0"></td>
-      <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-actual" value="0"></td>
-      <td class="col-bonus"><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-bonus" value="0"></td>
-      <td class="col-rache"><input type="text" inputmode="numeric" pattern="[0-9]*" class="field-rache" value="0"></td>
-      <td class="field-preview">0</td>
-    `;
-    row.querySelectorAll('input').forEach((input) => {
-      input.addEventListener('input', () => updateEntryRowPreview(row));
-    });
-    roundEntryBody.appendChild(row);
-    rageRoundCards.appendChild(buildRageRoundCard(player, row, state.players, showBonusMalus));
+  const players = ragePlayersInBidOrder(state);
+  const nameOf = (id) => (state.players.find((p) => p.id === id) || {}).name || '';
+  rageDealerLine.textContent = window.t('rage.game.round.dealerLine', {
+    dealer: nameOf(state.rage.dealerId),
+    first: nameOf(state.rage.bidStartId),
   });
 
-  // "Bonus/Malus anzeigen" (Migration 12, Setup-Option) - reine Anzeige-
-  // Einstellung, Bonus/Rache werden unabhaengig davon immer verrechnet
-  // (siehe computeRagePoints). Felder bleiben im DOM (nur versteckt), damit
-  // bereits gesetzte Werte beim Speichern nicht verlorengehen.
-  const thBonus = document.getElementById('th-bonus');
-  const thRache = document.getElementById('th-rache');
-  if (thBonus) thBonus.hidden = !showBonusMalus;
-  if (thRache) thRache.hidden = !showBonusMalus;
-  roundEntryBody.querySelectorAll('.col-bonus, .col-rache').forEach((cell) => {
-    cell.hidden = !showBonusMalus;
-  });
-}
-
-/** Liest die 4 Eingabefelder EINER Spieler-Zeile (Rundenerfassung). */
-function collectEntryFromPlayerRow(row) {
-  return {
-    bid: Number(row.querySelector('.field-bid').value) || 0,
-    actualTricks: Number(row.querySelector('.field-actual').value) || 0,
-    rageBonusCount: Number(row.querySelector('.field-bonus').value) || 0,
-    rageRacheCount: Number(row.querySelector('.field-rache').value) || 0,
-  };
+  if (state.rage.bidsLocked) {
+    renderResultPhase(state, players);
+  } else {
+    renderBidPhase(state, players);
+  }
 }
 
 /** Liest alle Spieler-Eingabefelder EINER Runden-Zeile (Korrektur-Tabelle). */
@@ -501,15 +627,19 @@ function undoLastRound() {
   deleteRound(lastRound.id);
 }
 
-async function saveNewRound() {
-  const rows = Array.from(roundEntryBody.querySelectorAll('tr'));
+async function saveNewRound(players) {
   const entries = {};
-  rows.forEach((row) => {
-    entries[row.dataset.playerId] = collectEntryFromPlayerRow(row);
+  players.forEach((player) => {
+    const e = resultDraft[player.id];
+    entries[player.id] = {
+      bid: Number(currentState.rage.bids[player.id]) || 0,
+      actualTricks: e.tricks,
+      rageBonusCount: e.bonus,
+      rageRacheCount: e.rache,
+    };
   });
 
-  const nextRoundNumber = currentState.rounds.length + 1;
-  const expectedCards = cardsForRound(nextRoundNumber);
+  const expectedCards = currentState.rage.cards;
   const actualSum = Object.values(entries).reduce((sum, e) => sum + e.actualTricks, 0);
 
   if (actualSum !== expectedCards) {
@@ -531,6 +661,7 @@ async function saveNewRound() {
     return;
   }
 
+  resultDraft = {};
   currentState = data;
   render(currentState);
   window.scoreboardPlaySaveFeedback();
@@ -573,7 +704,6 @@ async function toggleFinished() {
   render(currentState);
 }
 
-saveRoundBtn.addEventListener('click', saveNewRound);
 toggleFinishedBtn.addEventListener('click', toggleFinished);
 undoLastRoundBtn.addEventListener('click', undoLastRound);
 

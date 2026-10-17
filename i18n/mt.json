@@ -86,7 +86,8 @@
         "confirmWithdraw": "Verament timmarka lil {name} bħala irtirat?",
         "noPlayersAvailable": "L-ebda plejer ieħor disponibbli",
         "newPlayerLabel": "Jew oħloq plejer ġdid",
-        "startingScoreLabel": "Punti tal-bidu"
+        "startingScoreLabel": "Punti tal-bidu",
+        "seatAfterLabel": "Bilqiegħda fuq ix-xellug ta'"
       },
       "rematchButton": "Ilgħab logħba oħra"
     },
@@ -575,7 +576,11 @@
       "hint": "10 rawndijiet fissi (minn 10 sa karta waħda), fl-aħħar jirbaħ l-ogħla punteġġ.",
       "labelPlaceholder": "eż. Lejl RAGE",
       "showBonusMalusLabel": "Uri bonus/malus",
-      "showBonusMalusHint": "Uri/aħbi l-oqsma tal-karti speċjali +5/−5 fid-dħul tar-rawnd."
+      "showBonusMalusHint": "Uri/aħbi l-oqsma tal-karti speċjali +5/−5 fid-dħul tar-rawnd.",
+      "seatOrderLabel": "Ordni tal-lqugħ (fid-direzzjoni tal-arloġġ)",
+      "seatOrderHint": "Mil-lasaq il-plejers wieħed wara l-ieħor – ibda b'xi ħadd, imbagħad dejjem li jmiss fid-direzzjoni tal-arloġġ.",
+      "seatOrderReset": "Ibda mill-ġdid",
+      "seatOrderIncomplete": "Issettja l-ordni sħiħ tal-lqugħ."
     },
     "game": {
       "cardSingular": "karta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Biddel il-valuri direttament biex tikkoreġi żbalji fid-dħul. Offerta / teħid / +5 / −5 / punti (ikkalkulati) għal kull plejer u rawnd.",
       "deleteRoundButton": "Ħassar R{round}",
       "mismatchConfirm": "It-total tat-teħid imdaħħal ({actual}) ma jaqbilx man-numru ta' karti ta' dan ir-rawnd ({expected}). Issejvja xorta?",
-      "saveFailed": "Ir-rawnd ma setax jiġi ssejvjat."
+      "saveFailed": "Ir-rawnd ma setax jiġi ssejvjat.",
+      "dealerLegend": "★ Id-dealer ta' dan ir-rawnd",
+      "round": {
+        "dealerLine": "Dealer: {dealer} · Id-dikjarazzjoni tibda minn {first}"
+      },
+      "bids": {
+        "heading": "Rawnd {round}: dikjarazzjonijiet ({cards} {cardWord})",
+        "hint": "Kemm-il trick jiddikjara kull plejer?",
+        "sumLabel": "{sum} minn {cards} tricks iddikjarati",
+        "lockButton": "Agħlaq id-dikjarazzjonijiet",
+        "unlockButton": "Ikkoreġi d-dikjarazzjonijiet",
+        "unlockConfirm": "Tiftaħ id-dikjarazzjonijiet biex tibdilhom?"
+      },
+      "results": {
+        "heading": "Rawnd {round}: riżultati ({cards} {cardWord})",
+        "hint": "Kemm-il trick ħa kull plejer?",
+        "bidLabel": "Iddikjarat: {bid}",
+        "tricksSum": "{sum} minn {cards} tricks maqsuma",
+        "finishButton": "Itemm ir-rawnd"
+      }
     }
   },
   "chooser": {

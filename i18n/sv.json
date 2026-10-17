@@ -86,7 +86,8 @@
         "confirmWithdraw": "Verkligen markera {name} som avhoppad?",
         "noPlayersAvailable": "Inga fler spelare tillgängliga",
         "newPlayerLabel": "Eller skapa en ny spelare",
-        "startingScoreLabel": "Startpoäng"
+        "startingScoreLabel": "Startpoäng",
+        "seatAfterLabel": "Sitter till vänster om"
       },
       "rematchButton": "Spela en omgång till"
     },
@@ -575,7 +576,11 @@
       "hint": "Fasta 10 rundor (10 ner till 1 kort), högst poäng vinner till slut.",
       "labelPlaceholder": "t.ex. RAGE-kväll",
       "showBonusMalusLabel": "Visa bonus/malus",
-      "showBonusMalusHint": "Visa/dölj fälten för specialkort +5/−5 i rundregistreringen."
+      "showBonusMalusHint": "Visa/dölj fälten för specialkort +5/−5 i rundregistreringen.",
+      "seatOrderLabel": "Sittordning (medurs)",
+      "seatOrderHint": "Tryck på spelarna i tur och ordning – börja med vem som helst, sedan alltid nästa medurs.",
+      "seatOrderReset": "Börja om",
+      "seatOrderIncomplete": "Ange hela sittordningen."
     },
     "game": {
       "cardSingular": "kort",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Justera värden direkt för att rätta inmatningsfel. Bud / stick / +5 / −5 / poäng (beräknade) per spelare och runda.",
       "deleteRoundButton": "Ta bort R{round}",
       "mismatchConfirm": "Summan av angivna stick ({actual}) matchar inte den här rundans antal kort ({expected}). Spara ändå?",
-      "saveFailed": "Rundan kunde inte sparas."
+      "saveFailed": "Rundan kunde inte sparas.",
+      "dealerLegend": "★ Givare den här omgången",
+      "round": {
+        "dealerLine": "Givare: {dealer} · Budgivningen börjar med {first}"
+      },
+      "bids": {
+        "heading": "Omgång {round}: bud ({cards} {cardWord})",
+        "hint": "Hur många stick bjuder varje spelare?",
+        "sumLabel": "{sum} av {cards} stick budna",
+        "lockButton": "Lås buden",
+        "unlockButton": "Rätta buden",
+        "unlockConfirm": "Låsa upp buden och ändra dem?"
+      },
+      "results": {
+        "heading": "Omgång {round}: resultat ({cards} {cardWord})",
+        "hint": "Hur många stick tog varje spelare?",
+        "bidLabel": "Bud: {bid}",
+        "tricksSum": "{sum} av {cards} stick fördelade",
+        "finishButton": "Avsluta omgången"
+      }
     }
   },
   "chooser": {

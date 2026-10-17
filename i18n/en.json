@@ -86,7 +86,8 @@
         "confirmWithdraw": "Really mark {name} as withdrawn?",
         "noPlayersAvailable": "No more players available",
         "newPlayerLabel": "Or create a new player",
-        "startingScoreLabel": "Starting points"
+        "startingScoreLabel": "Starting points",
+        "seatAfterLabel": "Sits to the left of"
       },
       "rematchButton": "Play another round"
     },
@@ -575,7 +576,11 @@
       "hint": "Fixed 10 rounds (10 down to 1 card), highest score wins at the end.",
       "labelPlaceholder": "e.g. RAGE night",
       "showBonusMalusLabel": "Show bonus/malus",
-      "showBonusMalusHint": "Show/hide the +5/−5 special-card fields in round entry."
+      "showBonusMalusHint": "Show/hide the +5/−5 special-card fields in round entry.",
+      "seatOrderLabel": "Seating order (clockwise)",
+      "seatOrderHint": "Tap the players one after another – start with anyone, then always the next one clockwise.",
+      "seatOrderReset": "Start over",
+      "seatOrderIncomplete": "Please set the full seating order."
     },
     "game": {
       "cardSingular": "card",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Adjust values directly to correct entry mistakes. Bid / tricks / +5 / −5 / points (calculated) per player and round.",
       "deleteRoundButton": "Delete R{round}",
       "mismatchConfirm": "The sum of entered tricks ({actual}) does not match this round's card count ({expected}). Save anyway?",
-      "saveFailed": "Could not save round."
+      "saveFailed": "Could not save round.",
+      "dealerLegend": "★ Dealer this round",
+      "round": {
+        "dealerLine": "Dealer: {dealer} · Bidding starts with {first}"
+      },
+      "bids": {
+        "heading": "Round {round}: bids ({cards} {cardWord})",
+        "hint": "How many tricks does each player bid?",
+        "sumLabel": "{sum} of {cards} tricks bid",
+        "lockButton": "Lock bids",
+        "unlockButton": "Correct bids",
+        "unlockConfirm": "Unlock the bids and change them?"
+      },
+      "results": {
+        "heading": "Round {round}: results ({cards} {cardWord})",
+        "hint": "How many tricks did each player win?",
+        "bidLabel": "Bid: {bid}",
+        "tricksSum": "{sum} of {cards} tricks assigned",
+        "finishButton": "Finish round"
+      }
     }
   },
   "chooser": {

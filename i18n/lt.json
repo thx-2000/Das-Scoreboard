@@ -86,7 +86,8 @@
         "confirmWithdraw": "Tikrai pažymėti {name} kaip pasitraukusį?",
         "noPlayersAvailable": "Daugiau žaidėjų nėra",
         "newPlayerLabel": "Arba sukurti naują žaidėją",
-        "startingScoreLabel": "Pradiniai taškai"
+        "startingScoreLabel": "Pradiniai taškai",
+        "seatAfterLabel": "Sėdi kairėje nuo"
       },
       "rematchButton": "Žaisti dar vieną raundą"
     },
@@ -575,7 +576,11 @@
       "hint": "Fiksuoti 10 raundų (nuo 10 iki 1 kortos), pabaigoje laimi didžiausias rezultatas.",
       "labelPlaceholder": "pvz., RAGE vakaras",
       "showBonusMalusLabel": "Rodyti premiją/nuobaudą",
-      "showBonusMalusHint": "Rodyti/slėpti specialiųjų kortų +5/−5 laukus raundo įvedime."
+      "showBonusMalusHint": "Rodyti/slėpti specialiųjų kortų +5/−5 laukus raundo įvedime.",
+      "seatOrderLabel": "Sėdėjimo tvarka (pagal laikrodžio rodyklę)",
+      "seatOrderHint": "Paliesk žaidėjus paeiliui – pradėk nuo bet kurio, paskui visada kitas pagal laikrodžio rodyklę.",
+      "seatOrderReset": "Pradėti iš naujo",
+      "seatOrderIncomplete": "Nustatyk visą sėdėjimo tvarką."
     },
     "game": {
       "cardSingular": "korta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Keiskite reikšmes tiesiogiai, kad ištaisytumėte įvedimo klaidas. Skelbimas / lėktės / +5 / −5 / taškai (apskaičiuoti) kiekvienam žaidėjui ir raundui.",
       "deleteRoundButton": "Ištrinti R{round}",
       "mismatchConfirm": "Įvestų lėkčių suma ({actual}) neatitinka šio raundo kortų skaičiaus ({expected}). Vis tiek išsaugoti?",
-      "saveFailed": "Nepavyko išsaugoti raundo."
+      "saveFailed": "Nepavyko išsaugoti raundo.",
+      "dealerLegend": "★ Šio rato dalytojas",
+      "round": {
+        "dealerLine": "Dalija: {dealer} · Skelbimas prasideda nuo {first}"
+      },
+      "bids": {
+        "heading": "{round} ratas: skelbimai ({cards} {cardWord})",
+        "hint": "Kiek ėjimų skelbia kiekvienas žaidėjas?",
+        "sumLabel": "{sum} iš {cards} ėjimų paskelbta",
+        "lockButton": "Užrakinti skelbimus",
+        "unlockButton": "Taisyti skelbimus",
+        "unlockConfirm": "Atrakinti skelbimus pakeitimui?"
+      },
+      "results": {
+        "heading": "{round} ratas: rezultatai ({cards} {cardWord})",
+        "hint": "Kiek ėjimų paėmė kiekvienas žaidėjas?",
+        "bidLabel": "Paskelbta: {bid}",
+        "tricksSum": "{sum} iš {cards} ėjimų paskirstyta",
+        "finishButton": "Baigti ratą"
+      }
     }
   },
   "chooser": {

@@ -86,7 +86,8 @@
         "confirmWithdraw": "Merkja {name} sem hætt(a) í leiknum?",
         "noPlayersAvailable": "Engir fleiri leikmenn í boði",
         "newPlayerLabel": "Eða búa til nýjan leikmann",
-        "startingScoreLabel": "Byrjunarstig"
+        "startingScoreLabel": "Byrjunarstig",
+        "seatAfterLabel": "Situr vinstra megin við"
       },
       "rematchButton": "Spila aðra umferð"
     },
@@ -575,7 +576,11 @@
       "hint": "Fastar 10 umferðir (10 niður í 1 spil), hæsta skorið vinnur að lokum.",
       "labelPlaceholder": "t.d. RAGE-kvöld",
       "showBonusMalusLabel": "Sýna bónus/mínus",
-      "showBonusMalusHint": "Sýna/fela sérstök spilareiti +5/−5 í umferðarskráningu."
+      "showBonusMalusHint": "Sýna/fela sérstök spilareiti +5/−5 í umferðarskráningu.",
+      "seatOrderLabel": "Sætaskipan (réttsælis)",
+      "seatOrderHint": "Ýttu á leikmennina hvern á eftir öðrum – byrjaðu á hverjum sem er og svo alltaf næsta réttsælis.",
+      "seatOrderReset": "Byrja upp á nýtt",
+      "seatOrderIncomplete": "Settu alla sætaskipanina."
     },
     "game": {
       "cardSingular": "spil",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Breyttu gildum beint til að leiðrétta innsláttarvillur. Spá / slagir / +5 / −5 / stig (reiknuð) fyrir hvern leikmann og umferð.",
       "deleteRoundButton": "Eyða U{round}",
       "mismatchConfirm": "Summa skráðra slaga ({actual}) stemmir ekki við spilafjölda þessarar umferðar ({expected}). Vista samt?",
-      "saveFailed": "Ekki tókst að vista umferð."
+      "saveFailed": "Ekki tókst að vista umferð.",
+      "dealerLegend": "★ Gjafari þessarar umferðar",
+      "round": {
+        "dealerLine": "Gjafari: {dealer} · Sagnir byrja hjá {first}"
+      },
+      "bids": {
+        "heading": "Umferð {round}: sagnir ({cards} {cardWord})",
+        "hint": "Hversu marga slagi segir hver leikmaður?",
+        "sumLabel": "{sum} af {cards} slögum sagðir",
+        "lockButton": "Loka sögnum",
+        "unlockButton": "Leiðrétta sagnir",
+        "unlockConfirm": "Opna sagnirnar aftur og breyta þeim?"
+      },
+      "results": {
+        "heading": "Umferð {round}: úrslit ({cards} {cardWord})",
+        "hint": "Hversu marga slagi tók hver leikmaður?",
+        "bidLabel": "Sögn: {bid}",
+        "tricksSum": "{sum} af {cards} slögum úthlutað",
+        "finishButton": "Ljúka umferð"
+      }
     }
   },
   "chooser": {

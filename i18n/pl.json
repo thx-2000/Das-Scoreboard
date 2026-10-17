@@ -86,7 +86,8 @@
         "confirmWithdraw": "Czy na pewno oznaczyć {name} jako wycofanego?",
         "noPlayersAvailable": "Brak dostępnych graczy",
         "newPlayerLabel": "Albo utwórz nowego gracza",
-        "startingScoreLabel": "Punkty startowe"
+        "startingScoreLabel": "Punkty startowe",
+        "seatAfterLabel": "Siedzi po lewej stronie"
       },
       "rematchButton": "Zagraj kolejną rundę"
     },
@@ -575,7 +576,11 @@
       "hint": "Stałe 10 rund (od 10 do 1 karty), na koniec wygrywa najwyższy wynik.",
       "labelPlaceholder": "np. Wieczór RAGE",
       "showBonusMalusLabel": "Pokaż bonus/malus",
-      "showBonusMalusHint": "Pokaż/ukryj pola kart specjalnych +5/−5 przy wprowadzaniu rundy."
+      "showBonusMalusHint": "Pokaż/ukryj pola kart specjalnych +5/−5 przy wprowadzaniu rundy.",
+      "seatOrderLabel": "Kolejność przy stole (zgodnie z ruchem wskazówek zegara)",
+      "seatOrderHint": "Stukaj graczy po kolei – zacznij od dowolnego, potem zawsze od następnego zgodnie z ruchem wskazówek zegara.",
+      "seatOrderReset": "Zacznij od nowa",
+      "seatOrderIncomplete": "Ustaw pełną kolejność przy stole."
     },
     "game": {
       "cardSingular": "karta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Zmień wartości bezpośrednio, aby poprawić błędy wprowadzania. Licytacja / lewy / +5 / −5 / punkty (obliczone) dla każdego gracza i rundy.",
       "deleteRoundButton": "Usuń R{round}",
       "mismatchConfirm": "Suma wprowadzonych lew ({actual}) nie zgadza się z liczbą kart tej rundy ({expected}). Zapisać mimo to?",
-      "saveFailed": "Nie udało się zapisać rundy."
+      "saveFailed": "Nie udało się zapisać rundy.",
+      "dealerLegend": "★ Rozdający w tej rundzie",
+      "round": {
+        "dealerLine": "Rozdaje: {dealer} · Zapowiedzi zaczyna {first}"
+      },
+      "bids": {
+        "heading": "Runda {round}: zapowiedzi ({cards} {cardWord})",
+        "hint": "Ile lew zapowiada każdy gracz?",
+        "sumLabel": "{sum} z {cards} lew zapowiedzianych",
+        "lockButton": "Zatwierdź zapowiedzi",
+        "unlockButton": "Popraw zapowiedzi",
+        "unlockConfirm": "Odblokować zapowiedzi, aby je zmienić?"
+      },
+      "results": {
+        "heading": "Runda {round}: wyniki ({cards} {cardWord})",
+        "hint": "Ile lew wziął każdy gracz?",
+        "bidLabel": "Zapowiedź: {bid}",
+        "tricksSum": "{sum} z {cards} lew rozdanych",
+        "finishButton": "Zakończ rundę"
+      }
     }
   },
   "chooser": {

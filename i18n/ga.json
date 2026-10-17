@@ -86,7 +86,8 @@
         "confirmWithdraw": "An bhfuil tú cinnte gur mian leat {name} a mharcáil mar dhuine atá éirithe as?",
         "noPlayersAvailable": "Níl imreoirí eile ar fáil",
         "newPlayerLabel": "Nó cruthaigh imreoir nua",
-        "startingScoreLabel": "Pointí tosaigh"
+        "startingScoreLabel": "Pointí tosaigh",
+        "seatAfterLabel": "Suíonn ar thaobh clé de"
       },
       "rematchButton": "Imir babhta eile"
     },
@@ -575,7 +576,11 @@
       "hint": "10 mbabhta sheasta (10 síos go 1 chárta), buann an scór is airde sa deireadh.",
       "labelPlaceholder": "m.sh. Oíche RAGE",
       "showBonusMalusLabel": "Taispeáin bónas/pionós",
-      "showBonusMalusHint": "Taispeáin/folaigh na réimsí cártaí speisialta +5/−5 in iontráil an bhabhta."
+      "showBonusMalusHint": "Taispeáin/folaigh na réimsí cártaí speisialta +5/−5 in iontráil an bhabhta.",
+      "seatOrderLabel": "Ord suí (deiseal)",
+      "seatOrderHint": "Tapáil na himreoirí ceann i ndiaidh a chéile – tosaigh le duine ar bith, ansin an chéad duine eile deiseal i gcónaí.",
+      "seatOrderReset": "Tosaigh as an nua",
+      "seatOrderIncomplete": "Socraigh an t-ord suí iomlán."
     },
     "game": {
       "cardSingular": "cárta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Athraigh na luachanna go díreach chun earráidí iontrála a cheartú. Tairiscint / táillí / +5 / −5 / pointí (ríofa) in aghaidh an imreora agus an bhabhta.",
       "deleteRoundButton": "Scrios B{round}",
       "mismatchConfirm": "Ní ionann suim na dtáillí a cuireadh isteach ({actual}) agus líon cártaí an bhabhta seo ({expected}). Sábháil mar sin féin?",
-      "saveFailed": "Níorbh fhéidir an babhta a shábháil."
+      "saveFailed": "Níorbh fhéidir an babhta a shábháil.",
+      "dealerLegend": "★ Déileálaí an bhabhta seo",
+      "round": {
+        "dealerLine": "Déileálaí: {dealer} · Tosaíonn an tairiscint le {first}"
+      },
+      "bids": {
+        "heading": "Babhta {round}: tairiscintí ({cards} {cardWord})",
+        "hint": "Cé mhéad cleas a thairgeann gach imreoir?",
+        "sumLabel": "{sum} as {cards} cleas tairgthe",
+        "lockButton": "Cuir deireadh leis na tairiscintí",
+        "unlockButton": "Ceartaigh tairiscintí",
+        "unlockConfirm": "Díghlasáil na tairiscintí chun iad a athrú?"
+      },
+      "results": {
+        "heading": "Babhta {round}: torthaí ({cards} {cardWord})",
+        "hint": "Cé mhéad cleas a bhuaigh gach imreoir?",
+        "bidLabel": "Tairgthe: {bid}",
+        "tricksSum": "{sum} as {cards} cleas dáilte",
+        "finishButton": "Críochnaigh an babhta"
+      }
     }
   },
   "chooser": {

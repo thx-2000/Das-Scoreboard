@@ -25,6 +25,12 @@ require __DIR__ . '/../../includes/header.php';
           <button type="button" id="add-player-inline-btn" class="btn btn--ghost" data-i18n="common.buttons.add">Hinzufügen</button>
         </div>
 
+        <div id="seat-order-section" hidden>
+          <label data-i18n="rage.setup.seatOrderLabel">Sitzordnung (im Uhrzeigersinn)</label>
+          <p class="hint-text" data-i18n="rage.setup.seatOrderHint">Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.</p>
+          <div class="rage-seat-order" id="seat-order"></div>
+        </div>
+
         <details class="advanced-options">
           <summary data-i18n="common.setup.advancedOptions">Erweiterte Optionen</summary>
           <label class="player-chip">

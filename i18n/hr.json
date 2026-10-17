@@ -86,7 +86,8 @@
         "confirmWithdraw": "Stvarno označiti {name} kao odustalog?",
         "noPlayersAvailable": "Nema više dostupnih igrača",
         "newPlayerLabel": "Ili stvori novog igrača",
-        "startingScoreLabel": "Početni bodovi"
+        "startingScoreLabel": "Početni bodovi",
+        "seatAfterLabel": "Sjedi lijevo od"
       },
       "rematchButton": "Igraj još jedan krug"
     },
@@ -575,7 +576,11 @@
       "hint": "Fiksnih 10 krugova (od 10 do 1 karte), na kraju pobjeđuje najviši rezultat.",
       "labelPlaceholder": "npr. RAGE večer",
       "showBonusMalusLabel": "Prikaži bonus/malus",
-      "showBonusMalusHint": "Prikaži/sakrij polja specijalnih karata +5/−5 u unosu kruga."
+      "showBonusMalusHint": "Prikaži/sakrij polja specijalnih karata +5/−5 u unosu kruga.",
+      "seatOrderLabel": "Redoslijed sjedenja (u smjeru kazaljke na satu)",
+      "seatOrderHint": "Dodirni igrače jednog za drugim – počni s bilo kim, zatim uvijek sljedeći u smjeru kazaljke na satu.",
+      "seatOrderReset": "Počni ispočetka",
+      "seatOrderIncomplete": "Postavi cijeli redoslijed sjedenja."
     },
     "game": {
       "cardSingular": "karta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Izravno prilagodite vrijednosti kako biste ispravili pogreške pri unosu. Najava / štihovi / +5 / −5 / bodovi (izračunato) po igraču i krugu.",
       "deleteRoundButton": "Izbriši K{round}",
       "mismatchConfirm": "Zbroj unesenih štihova ({actual}) ne odgovara broju karata ovog kruga ({expected}). Ipak spremiti?",
-      "saveFailed": "Krug nije bilo moguće spremiti."
+      "saveFailed": "Krug nije bilo moguće spremiti.",
+      "dealerLegend": "★ Djelitelj u ovoj rundi",
+      "round": {
+        "dealerLine": "Dijeli: {dealer} · Najava počinje kod {first}"
+      },
+      "bids": {
+        "heading": "Runda {round}: najave ({cards} {cardWord})",
+        "hint": "Koliko ruku najavljuje svaki igrač?",
+        "sumLabel": "{sum} od {cards} ruku najavljeno",
+        "lockButton": "Zaključaj najave",
+        "unlockButton": "Ispravi najave",
+        "unlockConfirm": "Otključati najave radi izmjene?"
+      },
+      "results": {
+        "heading": "Runda {round}: rezultati ({cards} {cardWord})",
+        "hint": "Koliko ruku je osvojio svaki igrač?",
+        "bidLabel": "Najavljeno: {bid}",
+        "tricksSum": "{sum} od {cards} ruku raspoređeno",
+        "finishButton": "Završi rundu"
+      }
     }
   },
   "chooser": {

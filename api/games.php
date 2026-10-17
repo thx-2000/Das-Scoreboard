@@ -138,14 +138,17 @@ if ($method === 'POST') {
     $gameId = (int) $pdo->lastInsertId();
 
     $insertGamePlayer = $pdo->prepare('
-        INSERT INTO game_players (game_id, player_id, team_number, team_name) VALUES (?, ?, ?, ?)
+        INSERT INTO game_players (game_id, player_id, team_number, team_name, seat_position) VALUES (?, ?, ?, ?, ?)
     ');
-    foreach ($playerIds as $playerId) {
+    foreach ($playerIds as $seatIndex => $playerId) {
         $teamNumber = isset($teamAssignments[$playerId]) ? (int) $teamAssignments[$playerId] : null;
         $teamName = $teamNumber !== null && !empty($teamNames[$teamNumber])
             ? trim((string) $teamNames[$teamNumber])
             : null;
-        $insertGamePlayer->execute([$gameId, $playerId, $teamNumber, $teamName !== '' ? $teamName : null]);
+        // Bei RAGE ist die Reihenfolge von playerIds die Sitzordnung im
+        // Uhrzeigersinn (Setup fragt sie ab); bei den anderen Modi ist sie nur
+        // die Klickreihenfolge und wird deshalb nicht gespeichert.
+        $insertGamePlayer->execute([$gameId, $playerId, $teamNumber, $teamName !== '' ? $teamName : null, $mode === 'rage' ? $seatIndex : null]);
     }
 
     $pdo->commit();
@@ -191,6 +194,7 @@ if ($method === 'DELETE' && $id !== null) {
         DELETE FROM round_scores WHERE round_id IN (SELECT id FROM rounds WHERE game_id = ?)
     ')->execute([$id]);
     $pdo->prepare('DELETE FROM rounds WHERE game_id = ?')->execute([$id]);
+    $pdo->prepare('DELETE FROM rage_draft_bids WHERE game_id = ?')->execute([$id]);
     $pdo->prepare('DELETE FROM game_players WHERE game_id = ?')->execute([$id]);
     $pdo->prepare('DELETE FROM games WHERE id = ?')->execute([$id]);
     $pdo->commit();

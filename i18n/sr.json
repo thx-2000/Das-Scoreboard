@@ -86,7 +86,8 @@
         "confirmWithdraw": "Стварно означити {name} као одустао?",
         "noPlayersAvailable": "Нема више доступних играча",
         "newPlayerLabel": "Или направи новог играча",
-        "startingScoreLabel": "Почетни поени"
+        "startingScoreLabel": "Почетни поени",
+        "seatAfterLabel": "Седи лево од"
       },
       "rematchButton": "Играј још једну рунду"
     },
@@ -575,7 +576,11 @@
       "hint": "Фиксних 10 кругова (од 10 до 1 карте), на крају побеђује највиши резултат.",
       "labelPlaceholder": "нпр. RAGE вече",
       "showBonusMalusLabel": "Прикажи бонус/малус",
-      "showBonusMalusHint": "Прикажи/сакриј поља специјалних карата +5/−5 у уносу круга."
+      "showBonusMalusHint": "Прикажи/сакриј поља специјалних карата +5/−5 у уносу круга.",
+      "seatOrderLabel": "Редослед седења (у смеру казаљке на сату)",
+      "seatOrderHint": "Додирни играче један за другим – почни с било ким, па увек следећи у смеру казаљке на сату.",
+      "seatOrderReset": "Почни испочетка",
+      "seatOrderIncomplete": "Постави цео редослед седења."
     },
     "game": {
       "cardSingular": "карта",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Директно измените вредности да бисте исправили грешке при уносу. Најава / штихови / +5 / −5 / поени (израчунато) по играчу и кругу.",
       "deleteRoundButton": "Обриши K{round}",
       "mismatchConfirm": "Збир унетих штихова ({actual}) не одговара броју карата овог круга ({expected}). Ипак сачувати?",
-      "saveFailed": "Круг није било могуће сачувати."
+      "saveFailed": "Круг није било могуће сачувати.",
+      "dealerLegend": "★ Дилер у овој рунди",
+      "round": {
+        "dealerLine": "Дели: {dealer} · Најава почиње код {first}"
+      },
+      "bids": {
+        "heading": "Рунда {round}: најаве ({cards} {cardWord})",
+        "hint": "Колико руку најављује сваки играч?",
+        "sumLabel": "{sum} од {cards} руку најављено",
+        "lockButton": "Закључај најаве",
+        "unlockButton": "Исправи најаве",
+        "unlockConfirm": "Откључати најаве ради измене?"
+      },
+      "results": {
+        "heading": "Рунда {round}: резултати ({cards} {cardWord})",
+        "hint": "Колико руку је освојио сваки играч?",
+        "bidLabel": "Најављено: {bid}",
+        "tricksSum": "{sum} од {cards} руку распоређено",
+        "finishButton": "Заврши рунду"
+      }
     }
   },
   "chooser": {

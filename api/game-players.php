@@ -33,7 +33,7 @@ if ($method === 'POST') {
     $playerId = (int) ($body['playerId'] ?? 0);
     $startingScore = (int) ($body['startingScore'] ?? 0);
 
-    require_active_game($pdo, $gameId);
+    $game = require_active_game($pdo, $gameId);
 
     $playerStmt = $pdo->prepare('SELECT id FROM players WHERE id = ? AND deleted_at IS NULL');
     $playerStmt->execute([$playerId]);
@@ -58,6 +58,13 @@ if ($method === 'POST') {
     } else {
         $pdo->prepare('INSERT INTO game_players (game_id, player_id, starting_score) VALUES (?, ?, ?)')
             ->execute([$gameId, $playerId, $startingScore]);
+    }
+
+    // RAGE: neuer bzw. zurueckkehrender Spieler bekommt einen Sitz im Kreis
+    // (links = im Uhrzeigersinn direkt nach afterPlayerId, sonst am Ende).
+    if ($game['mode'] === 'rage') {
+        $afterPlayerId = isset($body['afterPlayerId']) ? (int) $body['afterPlayerId'] : null;
+        rage_place_seat($pdo, $gameId, $playerId, $afterPlayerId ?: null);
     }
 
     recompute_game_status($pdo, $gameId);

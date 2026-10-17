@@ -28,7 +28,7 @@ require __DIR__ . '/../../includes/header.php';
             <tbody id="standings-body"></tbody>
           </table>
           <div class="standings-cards" id="standings-cards"></div>
-          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="common.game.startingPlayerLegend" hidden>★ Startspieler (zufällig)</p>
+          <p class="hint-text starting-player-legend" id="starting-player-legend" data-i18n="rage.game.dealerLegend" hidden>★ Geber dieser Runde</p>
         </div>
       </section>
     </div>
@@ -38,25 +38,10 @@ require __DIR__ . '/../../includes/header.php';
     <div id="winner-banner-wrap"></div>
 
     <section class="card section-spacing" id="round-entry-card">
-      <h2 id="round-entry-title" data-i18n="rage.game.roundEntry.staticHeading">Runde eintragen</h2>
-      <p class="hint-text" id="round-entry-hint" data-i18n="rage.game.roundEntry.staticHint">Ansage und tatsächliche Stiche je Spieler eingeben, Sonderkarten falls vorhanden.</p>
-      <div class="rounds-table-wrap" id="round-entry-table-wrap">
-        <table class="rounds-table" id="round-entry-table">
-          <thead>
-            <tr>
-              <th scope="col" data-i18n="rage.game.roundEntry.table.player">Spieler</th>
-              <th scope="col" data-i18n="rage.game.roundEntry.table.bid">Ansage</th>
-              <th scope="col" data-i18n="rage.game.roundEntry.table.tricks">Stiche</th>
-              <th scope="col" id="th-bonus" data-i18n="rage.game.roundEntry.table.plus5">+5</th>
-              <th scope="col" id="th-rache" data-i18n="rage.game.roundEntry.table.minus5">−5</th>
-              <th scope="col" data-i18n="rage.game.roundEntry.table.points">Punkte</th>
-            </tr>
-          </thead>
-          <tbody id="round-entry-body"></tbody>
-        </table>
-      </div>
-      <div class="rage-round-cards" id="rage-round-cards"></div>
-      <button type="button" id="save-round-btn" class="btn btn--primary section-spacing" data-i18n="common.game.roundEntry.saveButton">Runde speichern</button>
+      <h2 id="round-entry-title"></h2>
+      <p class="hint-text" id="rage-dealer-line"></p>
+      <p class="hint-text" id="round-entry-hint"></p>
+      <div class="rage-flow" id="rage-flow"></div>
     </section>
 
     <section class="card section-spacing">
@@ -92,6 +77,10 @@ require __DIR__ . '/../../includes/header.php';
           <label for="game-edit-new-player-name" data-i18n="common.game.edit.newPlayerLabel">Oder neuen Spieler anlegen</label>
           <input type="text" id="game-edit-new-player-name" placeholder="Name eingeben" data-i18n-placeholder="common.setup.addPlayerPlaceholder" maxlength="40" autocomplete="off">
           <button type="button" id="game-edit-new-player-btn" class="btn btn--small" data-i18n="common.buttons.add">Hinzufügen</button>
+        </div>
+        <div class="game-edit__add-player">
+          <label for="game-edit-seat-after" data-i18n="common.game.edit.seatAfterLabel">Sitzt links von</label>
+          <select id="game-edit-seat-after"></select>
         </div>
         <div class="game-edit__target-score">
           <label for="game-edit-add-starting-score" data-i18n="common.game.edit.startingScoreLabel">Startpunkte</label>

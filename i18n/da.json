@@ -86,7 +86,8 @@
         "confirmWithdraw": "Vil du virkelig markere {name} som udgået?",
         "noPlayersAvailable": "Ingen flere spillere tilgængelige",
         "newPlayerLabel": "Eller opret en ny spiller",
-        "startingScoreLabel": "Startpoint"
+        "startingScoreLabel": "Startpoint",
+        "seatAfterLabel": "Sidder til venstre for"
       },
       "rematchButton": "Spil endnu en runde"
     },
@@ -575,7 +576,11 @@
       "hint": "Faste 10 runder (10 ned til 1 kort), højeste score vinder til sidst.",
       "labelPlaceholder": "f.eks. RAGE-aften",
       "showBonusMalusLabel": "Vis bonus/malus",
-      "showBonusMalusHint": "Vis/skjul felterne til specialkort +5/−5 i rundeindtastningen."
+      "showBonusMalusHint": "Vis/skjul felterne til specialkort +5/−5 i rundeindtastningen.",
+      "seatOrderLabel": "Siddeorden (med uret)",
+      "seatOrderHint": "Tryk på spillerne efter hinanden – start med en vilkårlig, derefter altid den næste med uret.",
+      "seatOrderReset": "Start forfra",
+      "seatOrderIncomplete": "Angiv hele siddeordenen."
     },
     "game": {
       "cardSingular": "kort",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Justér værdier direkte for at rette indtastningsfejl. Melding / stik / +5 / −5 / point (beregnet) pr. spiller og runde.",
       "deleteRoundButton": "Slet R{round}",
       "mismatchConfirm": "Summen af indtastede stik ({actual}) matcher ikke denne rundes antal kort ({expected}). Gem alligevel?",
-      "saveFailed": "Runden kunne ikke gemmes."
+      "saveFailed": "Runden kunne ikke gemmes.",
+      "dealerLegend": "★ Giver i denne runde",
+      "round": {
+        "dealerLine": "Giver: {dealer} · Meldingen starter hos {first}"
+      },
+      "bids": {
+        "heading": "Runde {round}: meldinger ({cards} {cardWord})",
+        "hint": "Hvor mange stik melder hver spiller?",
+        "sumLabel": "{sum} af {cards} stik meldt",
+        "lockButton": "Lås meldinger",
+        "unlockButton": "Ret meldinger",
+        "unlockConfirm": "Låse meldingerne op og ændre dem?"
+      },
+      "results": {
+        "heading": "Runde {round}: resultater ({cards} {cardWord})",
+        "hint": "Hvor mange stik tog hver spiller?",
+        "bidLabel": "Meldt: {bid}",
+        "tricksSum": "{sum} af {cards} stik fordelt",
+        "finishButton": "Afslut runden"
+      }
     }
   },
   "chooser": {

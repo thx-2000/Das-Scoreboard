@@ -86,7 +86,8 @@
         "confirmWithdraw": "Merkitäänkö {name} todella pudonneeksi?",
         "noPlayersAvailable": "Ei muita pelaajia saatavilla",
         "newPlayerLabel": "Tai luo uusi pelaaja",
-        "startingScoreLabel": "Aloituspisteet"
+        "startingScoreLabel": "Aloituspisteet",
+        "seatAfterLabel": "Istuu vasemmalla pelaajasta"
       },
       "rematchButton": "Pelaa vielä yksi kierros"
     },
@@ -575,7 +576,11 @@
       "hint": "Kiinteät 10 kierrosta (10:stä 1 korttiin), korkein pistemäärä voittaa lopussa.",
       "labelPlaceholder": "esim. RAGE-ilta",
       "showBonusMalusLabel": "Näytä bonus/malus",
-      "showBonusMalusHint": "Näytä/piilota erikoiskorttien +5/−5-kentät kierroksen syötössä."
+      "showBonusMalusHint": "Näytä/piilota erikoiskorttien +5/−5-kentät kierroksen syötössä.",
+      "seatOrderLabel": "Istumajärjestys (myötäpäivään)",
+      "seatOrderHint": "Napauta pelaajat peräkkäin – aloita keneltä tahansa, sitten aina seuraava myötäpäivään.",
+      "seatOrderReset": "Aloita alusta",
+      "seatOrderIncomplete": "Määritä koko istumajärjestys."
     },
     "game": {
       "cardSingular": "kortti",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Muuta arvoja suoraan korjataksesi syöttövirheitä. Tarjous / tikit / +5 / −5 / pisteet (laskettu) pelaajaa ja kierrosta kohden.",
       "deleteRoundButton": "Poista K{round}",
       "mismatchConfirm": "Syötettyjen tikkien summa ({actual}) ei vastaa tämän kierroksen korttimäärää ({expected}). Tallennetaanko silti?",
-      "saveFailed": "Kierrosta ei voitu tallentaa."
+      "saveFailed": "Kierrosta ei voitu tallentaa.",
+      "dealerLegend": "★ Tämän kierroksen jakaja",
+      "round": {
+        "dealerLine": "Jakaja: {dealer} · Ilmoitukset alkavat: {first}"
+      },
+      "bids": {
+        "heading": "Kierros {round}: ilmoitukset ({cards} {cardWord})",
+        "hint": "Montako tikkiä kukin pelaaja ilmoittaa?",
+        "sumLabel": "{sum} / {cards} tikkiä ilmoitettu",
+        "lockButton": "Lukitse ilmoitukset",
+        "unlockButton": "Korjaa ilmoituksia",
+        "unlockConfirm": "Avataanko ilmoitukset muokattaviksi?"
+      },
+      "results": {
+        "heading": "Kierros {round}: tulokset ({cards} {cardWord})",
+        "hint": "Montako tikkiä kukin pelaaja otti?",
+        "bidLabel": "Ilmoitus: {bid}",
+        "tricksSum": "{sum} / {cards} tikkiä jaettu",
+        "finishButton": "Päätä kierros"
+      }
     }
   },
   "chooser": {

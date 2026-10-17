@@ -86,7 +86,8 @@
         "confirmWithdraw": "Tényleg kiszállóként jelölöd {name} nevű játékost?",
         "noPlayersAvailable": "Nincs több elérhető játékos",
         "newPlayerLabel": "Vagy hozz létre új játékost",
-        "startingScoreLabel": "Kezdőpontok"
+        "startingScoreLabel": "Kezdőpontok",
+        "seatAfterLabel": "Bal oldalán ül:"
       },
       "rematchButton": "Még egy kör játék"
     },
@@ -575,7 +576,11 @@
       "hint": "Fix 10 kör (10-től 1 lapig), a végén a legmagasabb pontszám nyer.",
       "labelPlaceholder": "pl. RAGE-est",
       "showBonusMalusLabel": "Bónusz/malus megjelenítése",
-      "showBonusMalusHint": "A +5/−5 különleges lap mezők megjelenítése/elrejtése a kör rögzítésénél."
+      "showBonusMalusHint": "A +5/−5 különleges lap mezők megjelenítése/elrejtése a kör rögzítésénél.",
+      "seatOrderLabel": "Ülésrend (az óramutató járásával megegyezően)",
+      "seatOrderHint": "Koppints a játékosokra egymás után – kezdd bárkivel, utána mindig a következővel az óramutató járása szerint.",
+      "seatOrderReset": "Újrakezdés",
+      "seatOrderIncomplete": "Add meg a teljes ülésrendet."
     },
     "game": {
       "cardSingular": "lap",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Módosítsd az értékeket közvetlenül a beviteli hibák javításához. Becslés / ütések / +5 / −5 / pontok (számítva) játékosonként és körönként.",
       "deleteRoundButton": "K{round}. kör törlése",
       "mismatchConfirm": "A megadott ütések összege ({actual}) nem egyezik ennek a körnek a lapszámával ({expected}). Mentés mindenképp?",
-      "saveFailed": "A kört nem sikerült menteni."
+      "saveFailed": "A kört nem sikerült menteni.",
+      "dealerLegend": "★ A kör osztója",
+      "round": {
+        "dealerLine": "Oszt: {dealer} · A bemondás itt kezdődik: {first}"
+      },
+      "bids": {
+        "heading": "{round}. kör: bemondások ({cards} {cardWord})",
+        "hint": "Hány ütést mond be mindenki?",
+        "sumLabel": "{sum} / {cards} ütés bemondva",
+        "lockButton": "Bemondások lezárása",
+        "unlockButton": "Bemondások javítása",
+        "unlockConfirm": "Feloldod a bemondásokat a módosításhoz?"
+      },
+      "results": {
+        "heading": "{round}. kör: eredmények ({cards} {cardWord})",
+        "hint": "Hány ütést vitt mindenki?",
+        "bidLabel": "Bemondva: {bid}",
+        "tricksSum": "{sum} / {cards} ütés kiosztva",
+        "finishButton": "Kör befejezése"
+      }
     }
   },
   "chooser": {

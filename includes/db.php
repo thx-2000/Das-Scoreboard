@@ -369,6 +369,36 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE game_players ADD COLUMN starting_score INTEGER NOT NULL DEFAULT 0');
             }
         },
+
+        // RAGE in zwei Phasen (Ansagen, dann Ergebnisse) mit Sitzordnung und
+        // wechselndem Geber: seat_position haelt die Sitzreihenfolge im
+        // Uhrzeigersinn (NULL = nicht erfasst, z.B. Altspiele und alle Modi
+        // ausser RAGE), rounds.dealer_id merkt sich den Geber je Runde,
+        // rage_draft_bids + games.rage_bids_locked speichern die Ansagen der
+        // gerade laufenden Runde serverseitig, bis sie mit den Ergebnissen
+        // zusammen als echte Runde gespeichert werden.
+        17 => function (PDO $pdo) {
+            $gpColumns = array_column($pdo->query('PRAGMA table_info(game_players)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+            if (!in_array('seat_position', $gpColumns, true)) {
+                $pdo->exec('ALTER TABLE game_players ADD COLUMN seat_position INTEGER');
+            }
+            $roundColumns = array_column($pdo->query('PRAGMA table_info(rounds)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+            if (!in_array('dealer_id', $roundColumns, true)) {
+                $pdo->exec('ALTER TABLE rounds ADD COLUMN dealer_id INTEGER');
+            }
+            $gameColumns = array_column($pdo->query('PRAGMA table_info(games)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+            if (!in_array('rage_bids_locked', $gameColumns, true)) {
+                $pdo->exec('ALTER TABLE games ADD COLUMN rage_bids_locked INTEGER NOT NULL DEFAULT 0');
+            }
+            $pdo->exec('
+                CREATE TABLE IF NOT EXISTS rage_draft_bids (
+                    game_id   INTEGER NOT NULL REFERENCES games(id) ON DELETE CASCADE,
+                    player_id INTEGER NOT NULL REFERENCES players(id),
+                    bid       INTEGER NOT NULL DEFAULT 0,
+                    PRIMARY KEY (game_id, player_id)
+                )
+            ');
+        },
     ];
 }
 

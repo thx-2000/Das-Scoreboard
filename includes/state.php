@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/db.php';
 
+require_once __DIR__ . '/rage.php';
+
 function send_json($data, int $status = 200): void
 {
     http_response_code($status);
@@ -232,7 +234,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
     }
 
     $playersStmt = $pdo->prepare('
-        SELECT p.id, p.name, p.avatar_ext, gp.team_number, gp.team_name, gp.withdrawn_at, gp.starting_score
+        SELECT p.id, p.name, p.avatar_ext, gp.team_number, gp.team_name, gp.withdrawn_at, gp.starting_score, gp.seat_position
         FROM game_players gp
         JOIN players p ON p.id = gp.player_id
         WHERE gp.game_id = ?
@@ -419,6 +421,29 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         unset($w);
     }
 
+    // RAGE: Geber/Ansagebeginn, gespeicherte Ansagen der laufenden Runde und
+    // Sitzordnung (siehe includes/rage.php und api/rage-bids.php).
+    $rageState = null;
+    if ($game['mode'] === 'rage') {
+        $roles = rage_round_roles($pdo, $gameId);
+        $draftStmt = $pdo->prepare('SELECT player_id, bid FROM rage_draft_bids WHERE game_id = ?');
+        $draftStmt->execute([$gameId]);
+        $draftBids = [];
+        foreach ($draftStmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $draftBids[(int) $row['player_id']] = (int) $row['bid'];
+        }
+        $nextRound = count($rounds) + 1;
+        $rageState = [
+            'nextRound' => $nextRound,
+            'cards' => rage_cards_for_round($nextRound),
+            'dealerId' => $roles['dealerId'],
+            'bidStartId' => $roles['bidStartId'],
+            'bids' => (object) $draftBids,
+            'bidsLocked' => (bool) $game['rage_bids_locked'],
+            'seatOrder' => array_column(rage_seat_order($pdo, $gameId), 'id'),
+        ];
+    }
+
     return [
         'id' => (int) $game['id'],
         'mode' => $game['mode'],
@@ -436,6 +461,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
         'allowNegative' => (bool) ($game['allow_negative'] ?? 1),
         'rageShowBonusMalus' => (bool) ($game['rage_show_bonus_malus'] ?? 1),
         'roundEntrySteps' => $game['round_entry_steps'] ?? '1,5,10',
+        'rage' => $rageState,
         // withdrawnAt bleibt bewusst auch fuer ausgeschiedene Spieler in dieser
         // Liste (nicht rausgefiltert) - Farbindex/Avatar-Zuordnung im Frontend
         // (siehe scoreboardPlayerColorIndex()) bleiben so ueber die ganze
@@ -452,6 +478,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
                 'teamLabel' => $teamLabel,
                 'withdrawnAt' => $p['withdrawn_at'],
                 'startingScore' => (int) $p['starting_score'],
+                'seatPosition' => $p['seat_position'] !== null ? (int) $p['seat_position'] : null,
             ];
         }, $players),
         'rounds' => $roundsOut,

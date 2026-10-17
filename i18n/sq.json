@@ -86,7 +86,8 @@
         "confirmWithdraw": "Ta shënosh me të vërtetë {name} si të tërhequr?",
         "noPlayersAvailable": "Nuk ka më lojtarë të disponueshëm",
         "newPlayerLabel": "Ose krijo një lojtar të ri",
-        "startingScoreLabel": "Pikët fillestare"
+        "startingScoreLabel": "Pikët fillestare",
+        "seatAfterLabel": "Ulet në të majtë të"
       },
       "rematchButton": "Luaj edhe një raund"
     },
@@ -575,7 +576,11 @@
       "hint": "10 raunde fikse (nga 10 deri në 1 kartë), në fund fiton rezultati më i lartë.",
       "labelPlaceholder": "p.sh. Mbrëmje RAGE",
       "showBonusMalusLabel": "Shfaq bonus/malus",
-      "showBonusMalusHint": "Shfaq/fshih fushat e kartave speciale +5/−5 në futjen e raundit."
+      "showBonusMalusHint": "Shfaq/fshih fushat e kartave speciale +5/−5 në futjen e raundit.",
+      "seatOrderLabel": "Renditja e uljes (në drejtim të akrepave të orës)",
+      "seatOrderHint": "Prek lojtarët një nga një – fillo me cilindo, pastaj gjithmonë tjetrin sipas akrepave të orës.",
+      "seatOrderReset": "Fillo përsëri",
+      "seatOrderIncomplete": "Cakto renditjen e plotë të uljes."
     },
     "game": {
       "cardSingular": "kartë",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Ndryshoni vlerat drejtpërdrejt për të korrigjuar gabimet e futjes. Shpallja / bazat / +5 / −5 / pikët (llogaritur) për çdo lojtar dhe raund.",
       "deleteRoundButton": "Fshi R{round}",
       "mismatchConfirm": "Shuma e bazave të futura ({actual}) nuk përputhet me numrin e kartave të këtij raundi ({expected}). Ta ruaj gjithsesi?",
-      "saveFailed": "Raundi nuk mund të ruhej."
+      "saveFailed": "Raundi nuk mund të ruhej.",
+      "dealerLegend": "★ Shpërndarësi i këtij raundi",
+      "round": {
+        "dealerLine": "Shpërndan: {dealer} · Deklarimi fillon te {first}"
+      },
+      "bids": {
+        "heading": "Raundi {round}: deklarime ({cards} {cardWord})",
+        "hint": "Sa dore deklaron secili lojtar?",
+        "sumLabel": "{sum} nga {cards} dore të deklaruara",
+        "lockButton": "Mbyll deklarimet",
+        "unlockButton": "Korrigjo deklarimet",
+        "unlockConfirm": "Të zhbllokohen deklarimet për t'i ndryshuar?"
+      },
+      "results": {
+        "heading": "Raundi {round}: rezultatet ({cards} {cardWord})",
+        "hint": "Sa dore mori secili lojtar?",
+        "bidLabel": "Deklaruar: {bid}",
+        "tricksSum": "{sum} nga {cards} dore të ndara",
+        "finishButton": "Përfundo raundin"
+      }
     }
   },
   "chooser": {

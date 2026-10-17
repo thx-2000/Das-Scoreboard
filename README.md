@@ -66,6 +66,11 @@ Beispieldaten.*
 - **Verlauf & Statistiken**: alle Spiele mit Filter nach Status, dazu eine
   Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
   Zeitraumfilter (inkl. Drucken/PDF).
+- **RAGE in zwei Phasen**: erst die Sitzordnung (im Uhrzeigersinn
+  antippen), dann je Runde zuerst nur die Ansagen mit Live-Summe gegen die
+  Kartenzahl ("4 von 6 Stichen angesagt") und "Ansagen abschließen", danach
+  die Ergebnisse mit großen Knöpfen. Der Geber wechselt automatisch
+  reihum und wird angezeigt.
 - **Weitere Runde spielen**: nach Spielende (oder auch später aus dem
   Verlauf heraus) mit einem Klick ein neues Spiel mit denselben Spielern
   und Einstellungen vorausfüllen.
@@ -250,6 +255,11 @@ data.*
 - **History & statistics**: all games with a status filter, plus a stats
   page with win rates, head-to-head comparisons, and a date-range filter
   (including print/PDF).
+- **RAGE in two phases**: first the seating order (tap players
+  clockwise), then each round starts with bids only, with a live total
+  against the number of cards ("4 of 6 tricks bid") and "Lock bids",
+  followed by the results using large buttons. The dealer rotates
+  automatically and is always shown.
 - **Play another round**: after a game ends (or later from the history
   list), prefill a new game with the same players and settings in one
   click.

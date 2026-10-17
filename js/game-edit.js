@@ -33,6 +33,13 @@ function initGameEdit(gameId, onUpdated, showTargetScore) {
 
   if (showTargetScore && targetScoreWrap) targetScoreWrap.hidden = false;
 
+  // Nur bei RAGE vorhanden (modes/rage/game.php): neuer Spieler braucht einen
+  // Sitz im Kreis, damit Geberwechsel und Ansagereihenfolge stimmen.
+  const seatAfterSelect = document.getElementById('game-edit-seat-after');
+  const seatAfterPayload = () => (seatAfterSelect && seatAfterSelect.value
+    ? { afterPlayerId: parseInt(seatAfterSelect.value, 10) }
+    : {});
+
   if (targetScoreSaveBtn) {
     targetScoreSaveBtn.addEventListener('click', async () => {
       const value = Math.max(0, parseInt(targetScoreInput.value, 10) || 0);
@@ -59,7 +66,7 @@ function initGameEdit(gameId, onUpdated, showTargetScore) {
     const response = await fetch('/api/game-players.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gameId, playerId, startingScore }),
+      body: JSON.stringify({ gameId, playerId, startingScore, ...seatAfterPayload() }),
     });
     const data = await response.json();
     if (!response.ok) { gameEditShowError(data.error); return; }
@@ -93,7 +100,7 @@ function initGameEdit(gameId, onUpdated, showTargetScore) {
     const response = await fetch('/api/game-players.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gameId, playerId: newPlayer.id, startingScore }),
+      body: JSON.stringify({ gameId, playerId: newPlayer.id, startingScore, ...seatAfterPayload() }),
     });
     const data = await response.json();
     if (!response.ok) { gameEditShowError(data.error); return; }
@@ -157,6 +164,27 @@ async function renderGameEditPanel(state) {
     li.appendChild(btn);
     playerList.appendChild(li);
   });
+
+  // RAGE: Sitzplatz-Auswahl "sitzt links von ..." mit den aktiven Spielern in
+  // Sitzreihenfolge, Vorauswahl = letzter Sitz (neuer Spieler kommt ans Ende).
+  const seatAfterSelect = document.getElementById('game-edit-seat-after');
+  if (seatAfterSelect && state.rage) {
+    const byId = new Map(activePlayers.map((p) => [p.id, p]));
+    const seated = state.rage.seatOrder.map((id) => byId.get(id)).filter(Boolean);
+    const previous = seatAfterSelect.value;
+    seatAfterSelect.innerHTML = '';
+    seated.forEach((p) => {
+      const opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = p.name;
+      seatAfterSelect.appendChild(opt);
+    });
+    if (previous && seated.some((p) => String(p.id) === previous)) {
+      seatAfterSelect.value = previous;
+    } else if (seated.length > 0) {
+      seatAfterSelect.value = String(seated[seated.length - 1].id);
+    }
+  }
 
   const addSelect = document.getElementById('game-edit-add-select');
   const addBtn = document.getElementById('game-edit-add-btn');

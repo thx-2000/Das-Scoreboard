@@ -86,7 +86,8 @@
         "confirmWithdraw": "Vai tiešām atzīmēt {name} kā izstājušos?",
         "noPlayersAvailable": "Nav pieejami citi spēlētāji",
         "newPlayerLabel": "Vai izveidot jaunu spēlētāju",
-        "startingScoreLabel": "Sākuma punkti"
+        "startingScoreLabel": "Sākuma punkti",
+        "seatAfterLabel": "Sēž pa kreisi no"
       },
       "rematchButton": "Spēlēt vēl vienu kārtu"
     },
@@ -575,7 +576,11 @@
       "hint": "Fiksētas 10 kārtas (no 10 līdz 1 kārtij), beigās uzvar augstākais rezultāts.",
       "labelPlaceholder": "piem., RAGE vakars",
       "showBonusMalusLabel": "Rādīt bonusu/malusu",
-      "showBonusMalusHint": "Rādīt/slēpt speciālo kāršu +5/−5 laukus kārtas ievadē."
+      "showBonusMalusHint": "Rādīt/slēpt speciālo kāršu +5/−5 laukus kārtas ievadē.",
+      "seatOrderLabel": "Sēdvietu secība (pulksteņrādītāja virzienā)",
+      "seatOrderHint": "Pieskaries spēlētājiem pēc kārtas – sāc ar jebkuru, tad vienmēr nākamo pulksteņrādītāja virzienā.",
+      "seatOrderReset": "Sākt no jauna",
+      "seatOrderIncomplete": "Norādi visu sēdvietu secību."
     },
     "game": {
       "cardSingular": "kārts",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Mainiet vērtības tieši, lai izlabotu ievades kļūdas. Solījums / stiķi / +5 / −5 / punkti (aprēķināti) katram spēlētājam un kārtai.",
       "deleteRoundButton": "Dzēst K{round}",
       "mismatchConfirm": "Ievadīto stiķu summa ({actual}) nesakrīt ar šīs kārtas kāršu skaitu ({expected}). Vai tomēr saglabāt?",
-      "saveFailed": "Kārtu neizdevās saglabāt."
+      "saveFailed": "Kārtu neizdevās saglabāt.",
+      "dealerLegend": "★ Šīs kārtas dalītājs",
+      "round": {
+        "dealerLine": "Dala: {dealer} · Pieteikumi sākas ar {first}"
+      },
+      "bids": {
+        "heading": "{round}. kārta: pieteikumi ({cards} {cardWord})",
+        "hint": "Cik stiķus pieteic katrs spēlētājs?",
+        "sumLabel": "{sum} no {cards} stiķiem pieteikti",
+        "lockButton": "Slēgt pieteikumus",
+        "unlockButton": "Labot pieteikumus",
+        "unlockConfirm": "Atbloķēt pieteikumus, lai tos mainītu?"
+      },
+      "results": {
+        "heading": "{round}. kārta: rezultāti ({cards} {cardWord})",
+        "hint": "Cik stiķus ņēma katrs spēlētājs?",
+        "bidLabel": "Pieteikts: {bid}",
+        "tricksSum": "{sum} no {cards} stiķiem sadalīti",
+        "finishButton": "Pabeigt kārtu"
+      }
     }
   },
   "chooser": {

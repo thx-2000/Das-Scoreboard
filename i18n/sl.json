@@ -86,7 +86,8 @@
         "confirmWithdraw": "Res označiti {name} kot izstopil/-a?",
         "noPlayersAvailable": "Ni več razpoložljivih igralcev",
         "newPlayerLabel": "Ali ustvari novega igralca",
-        "startingScoreLabel": "Začetne točke"
+        "startingScoreLabel": "Začetne točke",
+        "seatAfterLabel": "Sedi levo od"
       },
       "rematchButton": "Igraj še eno rundo"
     },
@@ -575,7 +576,11 @@
       "hint": "Fiksnih 10 krogov (od 10 do 1 karte), na koncu zmaga najvišji rezultat.",
       "labelPlaceholder": "npr. Večer RAGE",
       "showBonusMalusLabel": "Prikaži bonus/malus",
-      "showBonusMalusHint": "Prikaži/skrij polja posebnih kart +5/−5 pri vnosu kroga."
+      "showBonusMalusHint": "Prikaži/skrij polja posebnih kart +5/−5 pri vnosu kroga.",
+      "seatOrderLabel": "Vrstni red sedenja (v smeri urnega kazalca)",
+      "seatOrderHint": "Tapni igralce enega za drugim – začni s komer koli, nato vedno z naslednjim v smeri urnega kazalca.",
+      "seatOrderReset": "Začni znova",
+      "seatOrderIncomplete": "Nastavi celoten vrstni red sedenja."
     },
     "game": {
       "cardSingular": "karta",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Vrednosti neposredno prilagodite za popravek napak pri vnosu. Napoved / vzetki / +5 / −5 / točke (izračunano) za vsakega igralca in krog.",
       "deleteRoundButton": "Izbriši K{round}",
       "mismatchConfirm": "Vsota vnesenih vzetkov ({actual}) se ne ujema s številom kart tega kroga ({expected}). Vseeno shranim?",
-      "saveFailed": "Kroga ni bilo mogoče shraniti."
+      "saveFailed": "Kroga ni bilo mogoče shraniti.",
+      "dealerLegend": "★ Delivec v tem krogu",
+      "round": {
+        "dealerLine": "Deli: {dealer} · Napovedi začne {first}"
+      },
+      "bids": {
+        "heading": "Krog {round}: napovedi ({cards} {cardWord})",
+        "hint": "Koliko štihov napove vsak igralec?",
+        "sumLabel": "{sum} od {cards} štihov napovedanih",
+        "lockButton": "Zakleni napovedi",
+        "unlockButton": "Popravi napovedi",
+        "unlockConfirm": "Odkleni napovedi za spremembo?"
+      },
+      "results": {
+        "heading": "Krog {round}: rezultati ({cards} {cardWord})",
+        "hint": "Koliko štihov je vzel vsak igralec?",
+        "bidLabel": "Napovedano: {bid}",
+        "tricksSum": "{sum} od {cards} štihov razdeljenih",
+        "finishButton": "Zaključi krog"
+      }
     }
   },
   "chooser": {

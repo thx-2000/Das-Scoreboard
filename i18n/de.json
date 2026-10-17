@@ -86,7 +86,8 @@
         "confirmWithdraw": "{name} wirklich als ausgeschieden markieren?",
         "noPlayersAvailable": "Keine weiteren Spieler verfügbar",
         "newPlayerLabel": "Oder neuen Spieler anlegen",
-        "startingScoreLabel": "Startpunkte"
+        "startingScoreLabel": "Startpunkte",
+        "seatAfterLabel": "Sitzt links von"
       },
       "rematchButton": "Weitere Runde spielen"
     },
@@ -575,7 +576,11 @@
       "hint": "Feste 10 Runden (10 bis 1 Karte), am Ende gewinnt die höchste Punktzahl.",
       "labelPlaceholder": "z.B. RAGE-Abend",
       "showBonusMalusLabel": "Bonus/Malus anzeigen",
-      "showBonusMalusHint": "+5/−5-Felder für Sonderkarten in der Rundenerfassung ein-/ausblenden."
+      "showBonusMalusHint": "+5/−5-Felder für Sonderkarten in der Rundenerfassung ein-/ausblenden.",
+      "seatOrderLabel": "Sitzordnung (im Uhrzeigersinn)",
+      "seatOrderHint": "Tippe die Spieler nacheinander an – beginnend bei einem beliebigen Spieler, dann immer der nächste im Uhrzeigersinn.",
+      "seatOrderReset": "Neu beginnen",
+      "seatOrderIncomplete": "Bitte die Sitzordnung vollständig festlegen."
     },
     "game": {
       "cardSingular": "Karte",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Werte direkt anpassen, um Eintragungsfehler zu korrigieren. Ansage / Stiche / +5 / −5 / Punkte (berechnet) je Spieler und Runde.",
       "deleteRoundButton": "R{round} löschen",
       "mismatchConfirm": "Die Summe der eingetragenen Stiche ({actual}) entspricht nicht der Kartenzahl dieser Runde ({expected}). Trotzdem speichern?",
-      "saveFailed": "Runde konnte nicht gespeichert werden."
+      "saveFailed": "Runde konnte nicht gespeichert werden.",
+      "dealerLegend": "★ Geber dieser Runde",
+      "round": {
+        "dealerLine": "Geber: {dealer} · Ansage beginnt bei {first}"
+      },
+      "bids": {
+        "heading": "Runde {round}: Ansagen ({cards} {cardWord})",
+        "hint": "Wie viele Stiche sagt jeder an?",
+        "sumLabel": "{sum} von {cards} Stichen angesagt",
+        "lockButton": "Ansagen abschließen",
+        "unlockButton": "Ansagen korrigieren",
+        "unlockConfirm": "Ansagen wieder freigeben und ändern?"
+      },
+      "results": {
+        "heading": "Runde {round}: Ergebnisse ({cards} {cardWord})",
+        "hint": "Wie viele Stiche hat jeder gemacht?",
+        "bidLabel": "Angesagt: {bid}",
+        "tricksSum": "{sum} von {cards} Stichen verteilt",
+        "finishButton": "Runde abschließen"
+      }
     }
   },
   "chooser": {

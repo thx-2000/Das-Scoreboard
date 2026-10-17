@@ -86,7 +86,8 @@
         "confirmWithdraw": "Vraiment marquer {name} comme abandonné·e ?",
         "noPlayersAvailable": "Aucun autre joueur disponible",
         "newPlayerLabel": "Ou créer un nouveau joueur",
-        "startingScoreLabel": "Points de départ"
+        "startingScoreLabel": "Points de départ",
+        "seatAfterLabel": "Assis à gauche de"
       },
       "rematchButton": "Jouer une autre manche"
     },
@@ -575,7 +576,11 @@
       "hint": "10 manches fixes (de 10 à 1 carte), le score le plus élevé gagne à la fin.",
       "labelPlaceholder": "p. ex. Soirée RAGE",
       "showBonusMalusLabel": "Afficher bonus/malus",
-      "showBonusMalusHint": "Afficher/masquer les champs de cartes spéciales +5/−5 dans la saisie de manche."
+      "showBonusMalusHint": "Afficher/masquer les champs de cartes spéciales +5/−5 dans la saisie de manche.",
+      "seatOrderLabel": "Ordre des places (sens horaire)",
+      "seatOrderHint": "Touchez les joueurs l'un après l'autre – en commençant par n'importe qui, puis toujours le suivant dans le sens horaire.",
+      "seatOrderReset": "Recommencer",
+      "seatOrderIncomplete": "Veuillez définir l'ordre des places complet."
     },
     "game": {
       "cardSingular": "carte",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Modifiez les valeurs directement pour corriger une erreur de saisie. Annonce / plis / +5 / −5 / points (calculés) par joueur et manche.",
       "deleteRoundButton": "Supprimer M{round}",
       "mismatchConfirm": "La somme des plis saisis ({actual}) ne correspond pas au nombre de cartes de cette manche ({expected}). Enregistrer quand même ?",
-      "saveFailed": "Impossible d'enregistrer la manche."
+      "saveFailed": "Impossible d'enregistrer la manche.",
+      "dealerLegend": "★ Donneur de cette manche",
+      "round": {
+        "dealerLine": "Donneur : {dealer} · L'annonce commence par {first}"
+      },
+      "bids": {
+        "heading": "Manche {round} : annonces ({cards} {cardWord})",
+        "hint": "Combien de plis chaque joueur annonce-t-il ?",
+        "sumLabel": "{sum} sur {cards} plis annoncés",
+        "lockButton": "Valider les annonces",
+        "unlockButton": "Corriger les annonces",
+        "unlockConfirm": "Rouvrir les annonces pour les modifier ?"
+      },
+      "results": {
+        "heading": "Manche {round} : résultats ({cards} {cardWord})",
+        "hint": "Combien de plis chaque joueur a-t-il faits ?",
+        "bidLabel": "Annonce : {bid}",
+        "tricksSum": "{sum} sur {cards} plis attribués",
+        "finishButton": "Terminer la manche"
+      }
     }
   },
   "chooser": {

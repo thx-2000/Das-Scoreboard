@@ -540,6 +540,207 @@ main {
   width: 8rem;
 }
 
+/* RAGE-Runde in zwei Phasen (Ansagen, dann Ergebnisse) - ein grosses,
+   fuer iPhone/iPad ohne Scrollen gedachtes Bedienfeld, themeuebergreifend
+   ueber die Theme-Variablen gefaerbt. */
+.rage-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.rage-flow__sum {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.rage-row {
+  --row-color: var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+  min-height: 4rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-left: 5px solid var(--row-color);
+  border-radius: 10px;
+  background: var(--color-surface);
+}
+
+.rage-row[data-player-color="1"] { --row-color: var(--player-color-1); }
+.rage-row[data-player-color="2"] { --row-color: var(--player-color-2); }
+.rage-row[data-player-color="3"] { --row-color: var(--player-color-3); }
+.rage-row[data-player-color="4"] { --row-color: var(--player-color-4); }
+
+.rage-row__who {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 4.5rem;
+  min-width: 0;
+}
+
+.rage-row__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.rage-row__name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.rage-row__meta {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.rage-row__control {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.rage-row__btn {
+  min-width: 2.9rem;
+  min-height: 3rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  /* Verhindert Doppeltipp-Zoom bei schnellem Mehrfach-Antippen, siehe
+     .round-steps__btn. */
+  touch-action: manipulation;
+}
+
+.rage-row__btn--plus { border-color: var(--color-green-strong); }
+.rage-row__btn--minus { border-color: var(--color-danger); }
+
+.rage-row__btn:active { transform: scale(0.94); }
+
+.rage-row__btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.rage-row__value {
+  min-width: 1.9rem;
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.rage-row__points {
+  color: var(--color-text);
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.rage-row__extras {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.rage-row__extra {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.rage-row__extra .rage-row__control {
+  gap: 0.3rem;
+}
+
+.rage-row__extra .rage-row__btn {
+  min-width: 2.2rem;
+  min-height: 2.2rem;
+  font-size: 1.15rem;
+  border-radius: 10px;
+}
+
+.rage-row__extra .rage-row__value {
+  min-width: 1.2rem;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.rage-flow__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.rage-flow__actions .btn {
+  flex: 1 1 10rem;
+  min-height: 3.25rem;
+}
+
+.rage-seat-order {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rage-seat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.rage-seat-chip__num {
+  min-width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: var(--color-green);
+  color: var(--color-on-accent);
+}
+
+.rage-seat-chip[aria-pressed="true"] {
+  border-color: var(--color-green-strong);
+}
+
+.rage-seat-chip:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
 .team-setup__assignments {
   display: flex;
   flex-direction: column;
@@ -685,13 +886,6 @@ main {
 
 /* Kartenansicht des Punktestands - nur im Bold-Theme sichtbar, siehe unten */
 .standings-cards {
-  display: none;
-}
-
-/* RAGE: Mini-Stepper-Karten je Spieler - nur im Bold-Theme sichtbar, siehe
-   unten. Referenzieren im Classic-Theme dieselben (dort weiterhin
-   sichtbaren) Tabellen-Felder aus #round-entry-table. */
-.rage-round-cards {
   display: none;
 }
 
@@ -2405,109 +2599,6 @@ main {
   opacity: 1;
 }
 
-/* ---- RAGE-Aktivansicht: Mini-Stepper-Karten je Spieler statt Tabelle ---- */
-
-[data-theme-style="bold"] #round-entry-table-wrap {
-  display: none;
-}
-
-[data-theme-style="bold"] .rage-round-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-[data-theme-style="bold"] .rage-round-card {
-  --row-color: var(--color-border);
-  padding: 1rem 1.1rem;
-  border-left: 4px solid var(--row-color);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--row-color) 12%, var(--color-surface));
-}
-
-[data-theme-style="bold"] .rage-round-card[data-player-color="1"] { --row-color: var(--player-color-1); }
-[data-theme-style="bold"] .rage-round-card[data-player-color="2"] { --row-color: var(--player-color-2); }
-[data-theme-style="bold"] .rage-round-card[data-player-color="3"] { --row-color: var(--player-color-3); }
-[data-theme-style="bold"] .rage-round-card[data-player-color="4"] { --row-color: var(--player-color-4); }
-
-[data-theme-style="bold"] .rage-round-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-[data-theme-style="bold"] .rage-round-card__name {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--row-color);
-}
-
-[data-theme-style="bold"] .rage-round-card__preview {
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-[data-theme-style="bold"] .rage-round-card__fields {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.6rem;
-}
-
-[data-theme-style="bold"] .rage-stepper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.5rem;
-  border-radius: 8px;
-  background: var(--color-bg);
-}
-
-[data-theme-style="bold"] .rage-stepper__label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--color-text-muted);
-}
-
-[data-theme-style="bold"] .rage-stepper__control {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-[data-theme-style="bold"] .rage-stepper__btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 2rem;
-  height: 2rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--color-green);
-  color: var(--color-on-accent);
-  font-size: 1.1rem;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
-}
-
-[data-theme-style="bold"] .rage-stepper__btn:active {
-  transform: scale(0.94);
-}
-
-[data-theme-style="bold"] .rage-stepper__value {
-  min-width: 1.6rem;
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: 800;
-}
-
 /* ---- Statistiken: Kopf-an-Kopf-Zeilen als angehobene Karten ---- */
 
 [data-theme-style="bold"] .h2h-row {
@@ -2531,7 +2622,6 @@ main {
 [data-theme-style="bold"][data-card-style="modern"] .mode-card,
 [data-theme-style="bold"][data-card-style="modern"] .history-item,
 [data-theme-style="bold"][data-card-style="modern"] .standings-card,
-[data-theme-style="bold"][data-card-style="modern"] .rage-round-card,
 [data-theme-style="bold"][data-card-style="modern"] .h2h-row {
   border-radius: 26px;
   border-color: transparent;
@@ -3055,110 +3145,6 @@ main {
     min-width: 2.5rem;
     min-height: 2.5rem;
   }
-}
-
-/* ---- RAGE-Aktivansicht: gleiches Glas-Punktestand-Muster (oben), Mini-
-   Stepper-Karten flach/kantig statt farbiger Karten je Spieler ---- */
-
-[data-theme-style="flip"] #round-entry-table-wrap {
-  display: none;
-}
-
-[data-theme-style="flip"] .rage-round-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--color-border);
-}
-
-[data-theme-style="flip"] .rage-round-card {
-  border-left: none;
-  border-radius: 0;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
-  padding: 0.85rem 1rem;
-}
-
-[data-theme-style="flip"] .rage-round-card:last-child {
-  border-bottom: none;
-}
-
-[data-theme-style="flip"] .rage-round-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.6rem;
-}
-
-[data-theme-style="flip"] .rage-round-card__name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-[data-theme-style="flip"] .rage-round-card__preview {
-  font-family: var(--font-mono);
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-[data-theme-style="flip"] .rage-round-card__fields {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-}
-
-[data-theme-style="flip"] .rage-stepper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.4rem;
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--color-text) 5%, transparent);
-}
-
-[data-theme-style="flip"] .rage-stepper__label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--color-text-muted);
-}
-
-[data-theme-style="flip"] .rage-stepper__control {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-[data-theme-style="flip"] .rage-stepper__btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 4px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-}
-
-[data-theme-style="flip"] .rage-stepper__btn:active {
-  background: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
-}
-
-[data-theme-style="flip"] .rage-stepper__value {
-  font-family: var(--font-mono);
-  min-width: 1.4rem;
-  text-align: center;
-  font-weight: 700;
 }
 
 /* ---- Statistiken: Monospace-Ziffern, Kopf-an-Kopf-Zeilen als Ledger statt

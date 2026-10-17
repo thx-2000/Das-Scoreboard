@@ -86,7 +86,8 @@
         "confirmWithdraw": "Chiar marchezi {name} ca retras?",
         "noPlayersAvailable": "Niciun alt jucător disponibil",
         "newPlayerLabel": "Sau creează un jucător nou",
-        "startingScoreLabel": "Puncte de start"
+        "startingScoreLabel": "Puncte de start",
+        "seatAfterLabel": "Stă în stânga lui"
       },
       "rematchButton": "Joacă încă o rundă"
     },
@@ -575,7 +576,11 @@
       "hint": "10 runde fixe (de la 10 la 1 carte), câștigă scorul cel mai mare la final.",
       "labelPlaceholder": "de ex. Seară RAGE",
       "showBonusMalusLabel": "Afișează bonus/malus",
-      "showBonusMalusHint": "Afișează/ascunde câmpurile de cărți speciale +5/−5 la introducerea rundei."
+      "showBonusMalusHint": "Afișează/ascunde câmpurile de cărți speciale +5/−5 la introducerea rundei.",
+      "seatOrderLabel": "Ordinea la masă (în sensul acelor de ceasornic)",
+      "seatOrderHint": "Atinge jucătorii unul după altul – începe cu oricine, apoi mereu următorul în sensul acelor de ceasornic.",
+      "seatOrderReset": "Începe din nou",
+      "seatOrderIncomplete": "Stabilește ordinea completă la masă."
     },
     "game": {
       "cardSingular": "carte",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Ajustează valorile direct pentru a corecta erorile de introducere. Licitație / levate / +5 / −5 / puncte (calculate) per jucător și rundă.",
       "deleteRoundButton": "Șterge R{round}",
       "mismatchConfirm": "Suma levatelor introduse ({actual}) nu corespunde numărului de cărți al acestei runde ({expected}). Salvezi oricum?",
-      "saveFailed": "Runda nu a putut fi salvată."
+      "saveFailed": "Runda nu a putut fi salvată.",
+      "dealerLegend": "★ Împărțitor în această rundă",
+      "round": {
+        "dealerLine": "Împarte: {dealer} · Anunțurile încep cu {first}"
+      },
+      "bids": {
+        "heading": "Runda {round}: anunțuri ({cards} {cardWord})",
+        "hint": "Câte levate anunță fiecare jucător?",
+        "sumLabel": "{sum} din {cards} levate anunțate",
+        "lockButton": "Încheie anunțurile",
+        "unlockButton": "Corectează anunțurile",
+        "unlockConfirm": "Deblochezi anunțurile pentru a le modifica?"
+      },
+      "results": {
+        "heading": "Runda {round}: rezultate ({cards} {cardWord})",
+        "hint": "Câte levate a făcut fiecare jucător?",
+        "bidLabel": "Anunțat: {bid}",
+        "tricksSum": "{sum} din {cards} levate distribuite",
+        "finishButton": "Încheie runda"
+      }
     }
   },
   "chooser": {

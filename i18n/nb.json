@@ -86,7 +86,8 @@
         "confirmWithdraw": "Er du sikker på at du vil markere {name} som avhoppet?",
         "noPlayersAvailable": "Ingen flere spillere tilgjengelig",
         "newPlayerLabel": "Eller opprett en ny spiller",
-        "startingScoreLabel": "Startpoeng"
+        "startingScoreLabel": "Startpoeng",
+        "seatAfterLabel": "Sitter til venstre for"
       },
       "rematchButton": "Spill en runde til"
     },
@@ -575,7 +576,11 @@
       "hint": "Faste 10 runder (10 ned til 1 kort), høyest poengsum vinner til slutt.",
       "labelPlaceholder": "f.eks. RAGE-kveld",
       "showBonusMalusLabel": "Vis bonus/malus",
-      "showBonusMalusHint": "Vis/skjul feltene for spesialkort +5/−5 i runderegistreringen."
+      "showBonusMalusHint": "Vis/skjul feltene for spesialkort +5/−5 i runderegistreringen.",
+      "seatOrderLabel": "Sittrekkefølge (med klokka)",
+      "seatOrderHint": "Trykk på spillerne etter hverandre – begynn med hvem som helst, deretter alltid neste med klokka.",
+      "seatOrderReset": "Begynn på nytt",
+      "seatOrderIncomplete": "Angi hele sittrekkefølgen."
     },
     "game": {
       "cardSingular": "kort",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Juster verdier direkte for å rette registreringsfeil. Melding / stikk / +5 / −5 / poeng (beregnet) per spiller og runde.",
       "deleteRoundButton": "Slett R{round}",
       "mismatchConfirm": "Summen av registrerte stikk ({actual}) samsvarer ikke med denne rundens antall kort ({expected}). Lagre likevel?",
-      "saveFailed": "Runden kunne ikke lagres."
+      "saveFailed": "Runden kunne ikke lagres.",
+      "dealerLegend": "★ Giver denne runden",
+      "round": {
+        "dealerLine": "Giver: {dealer} · Budgivningen starter med {first}"
+      },
+      "bids": {
+        "heading": "Runde {round}: bud ({cards} {cardWord})",
+        "hint": "Hvor mange stikk byr hver spiller?",
+        "sumLabel": "{sum} av {cards} stikk bydd",
+        "lockButton": "Lås budene",
+        "unlockButton": "Korriger budene",
+        "unlockConfirm": "Låse opp budene og endre dem?"
+      },
+      "results": {
+        "heading": "Runde {round}: resultater ({cards} {cardWord})",
+        "hint": "Hvor mange stikk tok hver spiller?",
+        "bidLabel": "Bud: {bid}",
+        "tricksSum": "{sum} av {cards} stikk fordelt",
+        "finishButton": "Avslutt runden"
+      }
     }
   },
   "chooser": {

@@ -86,7 +86,8 @@
         "confirmWithdraw": "Kas tõesti märkida {name} loobunuks?",
         "noPlayersAvailable": "Rohkem mängijaid pole saadaval",
         "newPlayerLabel": "Või loo uus mängija",
-        "startingScoreLabel": "Algpunktid"
+        "startingScoreLabel": "Algpunktid",
+        "seatAfterLabel": "Istub vasakul:"
       },
       "rematchButton": "Mängi veel üks voor"
     },
@@ -575,7 +576,11 @@
       "hint": "Fikseeritud 10 vooru (10-lt 1 kaardini), lõpus võidab kõrgeim tulemus.",
       "labelPlaceholder": "nt RAGE-õhtu",
       "showBonusMalusLabel": "Näita boonust/miinust",
-      "showBonusMalusHint": "Näita/peida vooru sisestamisel eriliste kaartide +5/−5 väljad."
+      "showBonusMalusHint": "Näita/peida vooru sisestamisel eriliste kaartide +5/−5 väljad.",
+      "seatOrderLabel": "Istumisjärjekord (päripäeva)",
+      "seatOrderHint": "Puuduta mängijaid üksteise järel – alusta kellegagi, siis alati järgmisest päripäeva.",
+      "seatOrderReset": "Alusta uuesti",
+      "seatOrderIncomplete": "Määra kogu istumisjärjekord."
     },
     "game": {
       "cardSingular": "kaart",
@@ -599,7 +604,26 @@
       "roundsTableHint": "Muuda väärtusi otse, et parandada sisestusvigu. Kuulutus / trikid / +5 / −5 / punktid (arvutatud) mängija ja vooru kohta.",
       "deleteRoundButton": "Kustuta V{round}",
       "mismatchConfirm": "Sisestatud trikkide summa ({actual}) ei vasta selle vooru kaartide arvule ({expected}). Kas salvestada ikkagi?",
-      "saveFailed": "Vooru ei õnnestunud salvestada."
+      "saveFailed": "Vooru ei õnnestunud salvestada.",
+      "dealerLegend": "★ Selle vooru jagaja",
+      "round": {
+        "dealerLine": "Jagab: {dealer} · Ennustamine algab: {first}"
+      },
+      "bids": {
+        "heading": "{round}. voor: ennustused ({cards} {cardWord})",
+        "hint": "Mitu käiku iga mängija ennustab?",
+        "sumLabel": "{sum} / {cards} käiku ennustatud",
+        "lockButton": "Lukusta ennustused",
+        "unlockButton": "Paranda ennustusi",
+        "unlockConfirm": "Kas avada ennustused muutmiseks?"
+      },
+      "results": {
+        "heading": "{round}. voor: tulemused ({cards} {cardWord})",
+        "hint": "Mitu käiku iga mängija võttis?",
+        "bidLabel": "Ennustus: {bid}",
+        "tricksSum": "{sum} / {cards} käiku jaotatud",
+        "finishButton": "Lõpeta voor"
+      }
     }
   },
   "chooser": {

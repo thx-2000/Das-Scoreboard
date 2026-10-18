@@ -659,7 +659,8 @@
       "templateCustom": "Hoja personalizada",
       "categoriesLabel": "Líneas de puntuación (una por línea)",
       "categoriesHint": "Cada línea se convierte en una fila de la hoja de puntuación. Las plantillas se pueden cambiar libremente.",
-      "categoriesRequired": "Indica al menos una línea de puntuación."
+      "categoriesRequired": "Indica al menos una línea de puntuación.",
+      "cascadiaCards": "Cartas de puntuación (variante por animal)"
     },
     "game": {
       "heading": "Hoja de puntuación",
@@ -671,6 +672,27 @@
       "add": "Sumar",
       "next": "Siguiente",
       "done": "Listo"
+    },
+    "helper": {
+      "countHint": "¿Cuántas veces aparece en tu paisaje? Cuenta con + y −.",
+      "bonusAll": "Bonificación si existen los tres tamaños de grupo",
+      "manual": "Introducir los puntos directamente",
+      "auto": "Calculado automáticamente",
+      "units": {
+        "pairs": "Parejas",
+        "groupSize": "Tamaño del grupo",
+        "lineLength": "Longitud de la línea",
+        "circleSize": "Alces en el círculo",
+        "chainLength": "Longitud de la cadena",
+        "sightlines": "Líneas de visión",
+        "species": "Especies animales distintas",
+        "neighborSpecies": "Animales vecinos distintos",
+        "mostCommon": "Especie vecina más frecuente",
+        "neighborPairs": "Parejas vecinas",
+        "buzzards": "Halcones",
+        "salmonInChain": "Salmones en cadenas (3+)",
+        "neighborAnimals": "Animales vecinos"
+      }
     }
   }
 }

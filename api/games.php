@@ -128,10 +128,17 @@ if ($method === 'POST') {
     // ["Baeume", "Tiere", "Hoehle"]. Pro Wertung entsteht unten eine Runde.
     $categories = [];
     if ($mode === 'score_sheet') {
+        // Eintrag = Text oder {label, helper}; helper ist nur eine Kennung fuer eine
+        // Rechenhilfe im Frontend (z.B. "cascadia:bear:A").
         foreach (is_array($body['categories'] ?? null) ? $body['categories'] : [] as $category) {
-            $categoryLabel = mb_substr(trim((string) $category), 0, 60);
+            $rawLabel = is_array($category) ? ($category['label'] ?? '') : $category;
+            $categoryLabel = mb_substr(trim((string) $rawLabel), 0, 60);
+            $helper = is_array($category) ? trim((string) ($category['helper'] ?? '')) : '';
             if ($categoryLabel !== '') {
-                $categories[] = $categoryLabel;
+                $categories[] = [
+                    'label' => $categoryLabel,
+                    'helper' => preg_match('/^[A-Za-z0-9:_-]{1,30}$/', $helper) ? $helper : null,
+                ];
             }
         }
         $categories = array_slice($categories, 0, 40);
@@ -176,10 +183,10 @@ if ($method === 'POST') {
     }
 
     if ($mode === 'score_sheet') {
-        $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at, label) VALUES (?, ?, ?, ?)');
+        $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at, label, helper) VALUES (?, ?, ?, ?, ?)');
         $insertScore = $pdo->prepare('INSERT INTO round_scores (round_id, player_id, points) VALUES (?, ?, 0)');
-        foreach ($categories as $index => $categoryLabel) {
-            $insertRound->execute([$gameId, $index + 1, now_iso(), $categoryLabel]);
+        foreach ($categories as $index => $category) {
+            $insertRound->execute([$gameId, $index + 1, now_iso(), $category['label'], $category['helper']]);
             $roundId = (int) $pdo->lastInsertId();
             foreach ($playerIds as $playerId) {
                 $insertScore->execute([$roundId, $playerId]);

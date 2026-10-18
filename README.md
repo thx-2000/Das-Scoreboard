@@ -69,7 +69,10 @@ Beispieldaten.*
 - **Wertungsbogen** *(in Arbeit, noch nicht veröffentlicht)*: Bogen mit
   festen Wertungen (Zeilen) für Spiele, die erst am Ende nach Kategorien
   gezählt werden, mit Vorlagen für Mischwald und Cascadia und einer
-  Zahlentastatur, die mehrere Werte addiert (6 + 6 + 3).
+  Zahlentastatur, die mehrere Werte addiert (6 + 6 + 3). Bei Cascadia
+  werden die Punkte jeder Tier-Wertungskarte (A–D, Tabellen aus der
+  offiziellen Anleitung) aus den gezählten Gruppen berechnet und die
+  Mehrheitsboni der Gebiete automatisch ermittelt.
 - **Startspieler wählbar**: beim Einrichten entweder "Zufällig" (Standard)
   oder einen bestimmten Mitspieler festlegen – bei eingeschalteter
   Geber-Anzeige (und bei RAGE) ist das der erste Geber.
@@ -269,7 +272,10 @@ data.*
 - **Score sheet** *(work in progress, not released yet)*: a sheet with
   fixed scoring lines for games counted by category at the end, with
   templates for Forest Shuffle (Mischwald) and Cascadia and a keypad that
-  adds several values (6 + 6 + 3).
+  adds several values (6 + 6 + 3). For Cascadia the points of each wildlife
+  scoring card (A-D, tables from the official rulebook) are calculated from
+  the counted groups, and the habitat majority bonuses are worked out
+  automatically.
 - **Choose the starting player**: when setting up a game, pick either
   "Random" (default) or a specific player – with the dealer display on (and
   for RAGE) that player is the first dealer.

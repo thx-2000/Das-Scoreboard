@@ -659,7 +659,8 @@
       "templateCustom": "Vlastiti list",
       "categoriesLabel": "Redovi bodovanja (jedan po retku)",
       "categoriesHint": "Svaki redak postaje redak bodovnog lista. Predlošci se mogu slobodno mijenjati.",
-      "categoriesRequired": "Unesi barem jedan redak bodovanja."
+      "categoriesRequired": "Unesi barem jedan redak bodovanja.",
+      "cascadiaCards": "Bodovne karte (varijanta po životinji)"
     },
     "game": {
       "heading": "Bodovni list",
@@ -671,6 +672,27 @@
       "add": "Zbroji",
       "next": "Dalje",
       "done": "Gotovo"
+    },
+    "helper": {
+      "countHint": "Koliko se puta pojavljuje u tvom krajoliku? Broji s + i −.",
+      "bonusAll": "Bonus ako postoje sve tri veličine grupa",
+      "manual": "Unesi bodove izravno",
+      "auto": "Izračunava se automatski",
+      "units": {
+        "pairs": "Parovi",
+        "groupSize": "Veličina grupe",
+        "lineLength": "Duljina linije",
+        "circleSize": "Jeleni u krugu",
+        "chainLength": "Duljina lanca",
+        "sightlines": "Linije vidljivosti",
+        "species": "Različite vrste životinja",
+        "neighborSpecies": "Različite susjedne životinje",
+        "mostCommon": "Najčešća susjedna vrsta",
+        "neighborPairs": "Susjedni parovi",
+        "buzzards": "Škanjci",
+        "salmonInChain": "Lososi u lancima (3+)",
+        "neighborAnimals": "Susjedne životinje"
+      }
     }
   }
 }

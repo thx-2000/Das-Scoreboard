@@ -659,7 +659,8 @@
       "templateCustom": "Sava lapa",
       "categoriesLabel": "Punktu rindas (viena rindā)",
       "categoriesHint": "Katra rinda kļūst par punktu lapas rindu. Veidnes var brīvi mainīt.",
-      "categoriesRequired": "Norādi vismaz vienu punktu rindu."
+      "categoriesRequired": "Norādi vismaz vienu punktu rindu.",
+      "cascadiaCards": "Punktu kartes (variants katram dzīvniekam)"
     },
     "game": {
       "heading": "Punktu lapa",
@@ -671,6 +672,27 @@
       "add": "Pieskaitīt",
       "next": "Tālāk",
       "done": "Gatavs"
+    },
+    "helper": {
+      "countHint": "Cik reizes tas parādās tavā ainavā? Skaiti ar + un −.",
+      "bonusAll": "Bonuss, ja ir visi trīs grupu izmēri",
+      "manual": "Ievadīt punktus tieši",
+      "auto": "Aprēķina automātiski",
+      "units": {
+        "pairs": "Pāri",
+        "groupSize": "Grupas izmērs",
+        "lineLength": "Līnijas garums",
+        "circleSize": "Brieži aplī",
+        "chainLength": "Ķēdes garums",
+        "sightlines": "Redzamības līnijas",
+        "species": "Dažādas dzīvnieku sugas",
+        "neighborSpecies": "Dažādi blakus esošie dzīvnieki",
+        "mostCommon": "Visbiežākā kaimiņu suga",
+        "neighborPairs": "Blakus esošie pāri",
+        "buzzards": "Klijāni",
+        "salmonInChain": "Laši ķēdēs (3+)",
+        "neighborAnimals": "Blakus esošie dzīvnieki"
+      }
     }
   }
 }

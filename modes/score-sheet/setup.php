@@ -17,6 +17,11 @@ require __DIR__ . '/../../includes/header.php';
         <label data-i18n="scoreSheet.setup.templateLabel">Vorlage</label>
         <div class="player-picker" id="template-picker"></div>
 
+        <div id="cascadia-options" hidden>
+          <label data-i18n="scoreSheet.setup.cascadiaCards">Wertungskarten (Variante je Tier)</label>
+          <div class="cascadia-variants" id="cascadia-variants"></div>
+        </div>
+
         <label for="categories" data-i18n="scoreSheet.setup.categoriesLabel">Wertungen (eine pro Zeile)</label>
         <textarea id="categories" rows="8" maxlength="2000" spellcheck="false"></textarea>
         <p class="hint-text" data-i18n="scoreSheet.setup.categoriesHint">Jede Zeile wird eine Zeile im Wertungsbogen. Die Vorlagen lassen sich frei ändern.</p>

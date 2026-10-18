@@ -659,7 +659,8 @@
       "templateCustom": "Folja tiegħi",
       "categoriesLabel": "Linji tal-punteġġ (waħda f'kull linja)",
       "categoriesHint": "Kull linja ssir ringiela tal-folja tal-punti. Il-mudelli jistgħu jinbidlu liberament.",
-      "categoriesRequired": "Daħħal mill-inqas linja waħda tal-punteġġ."
+      "categoriesRequired": "Daħħal mill-inqas linja waħda tal-punteġġ.",
+      "cascadiaCards": "Karti tal-punteġġ (varjant għal kull annimal)"
     },
     "game": {
       "heading": "Folja tal-punti",
@@ -671,6 +672,27 @@
       "add": "Żid",
       "next": "Li jmiss",
       "done": "Lest"
+    },
+    "helper": {
+      "countHint": "Kemm-il darba jseħħ fil-pajsaġġ tiegħek? Għodd bi + u −.",
+      "bonusAll": "Bonus jekk ikunu preżenti t-tliet daqsijiet tal-grupp",
+      "manual": "Daħħal il-punti direttament",
+      "auto": "Jiġi kkalkulat awtomatikament",
+      "units": {
+        "pairs": "Pari",
+        "groupSize": "Daqs tal-grupp",
+        "lineLength": "Tul tal-linja",
+        "circleSize": "Ċriev fiċ-ċirku",
+        "chainLength": "Tul tal-katina",
+        "sightlines": "Linji tal-vista",
+        "species": "Speċijiet differenti ta' annimali",
+        "neighborSpecies": "Annimali ġirien differenti",
+        "mostCommon": "L-aktar speċi ġara komuni",
+        "neighborPairs": "Pari ħdejn xulxin",
+        "buzzards": "Falkuni",
+        "salmonInChain": "Salamun f'katini (3+)",
+        "neighborAnimals": "Annimali ħdejn xulxin"
+      }
     }
   }
 }

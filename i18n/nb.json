@@ -659,7 +659,8 @@
       "templateCustom": "Eget ark",
       "categoriesLabel": "Poenglinjer (én per linje)",
       "categoriesHint": "Hver linje blir en rad i poengarket. Malene kan endres fritt.",
-      "categoriesRequired": "Oppgi minst én poenglinje."
+      "categoriesRequired": "Oppgi minst én poenglinje.",
+      "cascadiaCards": "Poengkort (variant per dyr)"
     },
     "game": {
       "heading": "Poengark",
@@ -671,6 +672,27 @@
       "add": "Legg til",
       "next": "Neste",
       "done": "Ferdig"
+    },
+    "helper": {
+      "countHint": "Hvor mange ganger forekommer det i landskapet ditt? Tell med + og −.",
+      "bonusAll": "Bonus hvis alle tre gruppestørrelsene finnes",
+      "manual": "Skriv inn poeng direkte",
+      "auto": "Beregnes automatisk",
+      "units": {
+        "pairs": "Par",
+        "groupSize": "Gruppestørrelse",
+        "lineLength": "Linjelengde",
+        "circleSize": "Elger i sirkelen",
+        "chainLength": "Kjedelengde",
+        "sightlines": "Siktlinjer",
+        "species": "Ulike dyrearter",
+        "neighborSpecies": "Ulike nabodyr",
+        "mostCommon": "Vanligste naboart",
+        "neighborPairs": "Tilstøtende par",
+        "buzzards": "Hauker",
+        "salmonInChain": "Laks i kjeder (3+)",
+        "neighborAnimals": "Tilstøtende dyr"
+      }
     }
   }
 }

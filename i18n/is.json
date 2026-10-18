@@ -659,7 +659,8 @@
       "templateCustom": "Eigið blað",
       "categoriesLabel": "Stigalínur (ein á línu)",
       "categoriesHint": "Hver lína verður að röð í stigablaðinu. Sniðmátunum má breyta frjálst.",
-      "categoriesRequired": "Settu inn að minnsta kosti eina stigalínu."
+      "categoriesRequired": "Settu inn að minnsta kosti eina stigalínu.",
+      "cascadiaCards": "Stigaspjöld (afbrigði á dýr)"
     },
     "game": {
       "heading": "Stigablað",
@@ -671,6 +672,27 @@
       "add": "Leggja við",
       "next": "Næsta",
       "done": "Lokið"
+    },
+    "helper": {
+      "countHint": "Hversu oft kemur það fyrir í landslaginu þínu? Teldu með + og −.",
+      "bonusAll": "Bónus ef allar þrjár hópastærðirnar eru til staðar",
+      "manual": "Slá inn stig beint",
+      "auto": "Reiknað sjálfkrafa",
+      "units": {
+        "pairs": "Pör",
+        "groupSize": "Stærð hóps",
+        "lineLength": "Lengd línu",
+        "circleSize": "Elgir í hringnum",
+        "chainLength": "Lengd keðju",
+        "sightlines": "Sjónlínur",
+        "species": "Mismunandi dýrategundir",
+        "neighborSpecies": "Mismunandi nágrannadýr",
+        "mostCommon": "Algengasta nágrannategund",
+        "neighborPairs": "Aðliggjandi pör",
+        "buzzards": "Fálkar",
+        "salmonInChain": "Laxar í keðjum (3+)",
+        "neighborAnimals": "Aðliggjandi dýr"
+      }
     }
   }
 }

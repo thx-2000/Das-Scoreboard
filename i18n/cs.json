@@ -659,7 +659,8 @@
       "templateCustom": "Vlastní arch",
       "categoriesLabel": "Řádky bodování (jeden na řádek)",
       "categoriesHint": "Každý řádek se stane řádkem zápisového archu. Šablony lze libovolně upravovat.",
-      "categoriesRequired": "Zadejte alespoň jeden řádek bodování."
+      "categoriesRequired": "Zadejte alespoň jeden řádek bodování.",
+      "cascadiaCards": "Bodovací karty (varianta pro zvíře)"
     },
     "game": {
       "heading": "Zápisový arch",
@@ -671,6 +672,27 @@
       "add": "Přičíst",
       "next": "Další",
       "done": "Hotovo"
+    },
+    "helper": {
+      "countHint": "Kolikrát se to vyskytuje v tvé krajině? Počítej pomocí + a −.",
+      "bonusAll": "Bonus, pokud se vyskytují všechny tři velikosti skupin",
+      "manual": "Zadat body přímo",
+      "auto": "Počítá se automaticky",
+      "units": {
+        "pairs": "Páry",
+        "groupSize": "Velikost skupiny",
+        "lineLength": "Délka řady",
+        "circleSize": "Jeleni v kruhu",
+        "chainLength": "Délka řetězce",
+        "sightlines": "Zorné linie",
+        "species": "Různé druhy zvířat",
+        "neighborSpecies": "Různá sousedící zvířata",
+        "mostCommon": "Nejčastější sousedící druh",
+        "neighborPairs": "Sousedící páry",
+        "buzzards": "Káňata",
+        "salmonInChain": "Lososi v řetězcích (3+)",
+        "neighborAnimals": "Sousedící zvířata"
+      }
     }
   }
 }

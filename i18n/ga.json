@@ -659,7 +659,8 @@
       "templateCustom": "Bileog saincheaptha",
       "categoriesLabel": "Línte scóir (ceann amháin in aghaidh na líne)",
       "categoriesHint": "Éiríonn gach líne ina sraith sa bhileog scór. Is féidir na teimpléid a athrú go saor.",
-      "categoriesRequired": "Cuir isteach líne scóir amháin ar a laghad."
+      "categoriesRequired": "Cuir isteach líne scóir amháin ar a laghad.",
+      "cascadiaCards": "Cártaí scóir (leagan do gach ainmhí)"
     },
     "game": {
       "heading": "Bileog scór",
@@ -671,6 +672,27 @@
       "add": "Suimigh",
       "next": "Ar aghaidh",
       "done": "Déanta"
+    },
+    "helper": {
+      "countHint": "Cé mhéad uair a tharlaíonn sé i do thírdhreach? Comhair le + agus −.",
+      "bonusAll": "Bónas má tá na trí mhéid grúpa ann",
+      "manual": "Cuir pointí isteach go díreach",
+      "auto": "Ríomhtar go huathoibríoch",
+      "units": {
+        "pairs": "Péirí",
+        "groupSize": "Méid an ghrúpa",
+        "lineLength": "Fad na líne",
+        "circleSize": "Eilc sa chiorcal",
+        "chainLength": "Fad na slabhra",
+        "sightlines": "Línte radhairc",
+        "species": "Speicis éagsúla ainmhithe",
+        "neighborSpecies": "Ainmhithe comharsanacha éagsúla",
+        "mostCommon": "An speiceas comharsanachta is coitianta",
+        "neighborPairs": "Péirí cóngaracha",
+        "buzzards": "Clamhain",
+        "salmonInChain": "Bradáin i slabhraí (3+)",
+        "neighborAnimals": "Ainmhithe cóngaracha"
+      }
     }
   }
 }

@@ -659,7 +659,8 @@
       "templateCustom": "Oma taulukko",
       "categoriesLabel": "Pisteytysrivit (yksi per rivi)",
       "categoriesHint": "Jokaisesta rivistä tulee rivi pistetaulukkoon. Pohjia voi muokata vapaasti.",
-      "categoriesRequired": "Anna vähintään yksi pisteytysrivi."
+      "categoriesRequired": "Anna vähintään yksi pisteytysrivi.",
+      "cascadiaCards": "Pistekortit (muunnelma eläimittäin)"
     },
     "game": {
       "heading": "Pistetaulukko",
@@ -671,6 +672,27 @@
       "add": "Lisää",
       "next": "Seuraava",
       "done": "Valmis"
+    },
+    "helper": {
+      "countHint": "Kuinka monta kertaa tämä esiintyy maisemassasi? Laske +:lla ja −:lla.",
+      "bonusAll": "Bonus, jos kaikki kolme ryhmäkokoa esiintyvät",
+      "manual": "Syötä pisteet suoraan",
+      "auto": "Lasketaan automaattisesti",
+      "units": {
+        "pairs": "Parit",
+        "groupSize": "Ryhmän koko",
+        "lineLength": "Linjan pituus",
+        "circleSize": "Hirvet ympyrässä",
+        "chainLength": "Ketjun pituus",
+        "sightlines": "Näkölinjat",
+        "species": "Eri eläinlajit",
+        "neighborSpecies": "Eri naapurieläimet",
+        "mostCommon": "Yleisin naapurilaji",
+        "neighborPairs": "Vierekkäiset parit",
+        "buzzards": "Haukat",
+        "salmonInChain": "Lohet ketjuissa (3+)",
+        "neighborAnimals": "Viereiset eläimet"
+      }
     }
   }
 }

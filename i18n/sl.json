@@ -659,7 +659,8 @@
       "templateCustom": "Lasten list",
       "categoriesLabel": "Vrstice točkovanja (ena na vrstico)",
       "categoriesHint": "Vsaka vrstica postane vrstica točkovnega lista. Predloge je mogoče prosto spreminjati.",
-      "categoriesRequired": "Vnesi vsaj eno vrstico točkovanja."
+      "categoriesRequired": "Vnesi vsaj eno vrstico točkovanja.",
+      "cascadiaCards": "Točkovalne karte (različica za žival)"
     },
     "game": {
       "heading": "Točkovni list",
@@ -671,6 +672,27 @@
       "add": "Prištej",
       "next": "Naprej",
       "done": "Končano"
+    },
+    "helper": {
+      "countHint": "Kolikokrat se pojavi v tvoji pokrajini? Štej s + in −.",
+      "bonusAll": "Bonus, če nastopajo vse tri velikosti skupin",
+      "manual": "Vnesi točke neposredno",
+      "auto": "Izračuna se samodejno",
+      "units": {
+        "pairs": "Pari",
+        "groupSize": "Velikost skupine",
+        "lineLength": "Dolžina vrste",
+        "circleSize": "Jeleni v krogu",
+        "chainLength": "Dolžina verige",
+        "sightlines": "Vidne črte",
+        "species": "Različne vrste živali",
+        "neighborSpecies": "Različne sosednje živali",
+        "mostCommon": "Najpogostejša sosednja vrsta",
+        "neighborPairs": "Sosednji pari",
+        "buzzards": "Kanje",
+        "salmonInChain": "Lososi v verigah (3+)",
+        "neighborAnimals": "Sosednje živali"
+      }
     }
   }
 }

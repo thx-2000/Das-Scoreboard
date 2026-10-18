@@ -659,7 +659,8 @@
       "templateCustom": "Saját lap",
       "categoriesLabel": "Pontozási sorok (soronként egy)",
       "categoriesHint": "Minden sor egy sora lesz a pontozólapnak. A sablonok szabadon módosíthatók.",
-      "categoriesRequired": "Adj meg legalább egy pontozási sort."
+      "categoriesRequired": "Adj meg legalább egy pontozási sort.",
+      "cascadiaCards": "Pontozókártyák (változat állatonként)"
     },
     "game": {
       "heading": "Pontozólap",
@@ -671,6 +672,27 @@
       "add": "Hozzáad",
       "next": "Tovább",
       "done": "Kész"
+    },
+    "helper": {
+      "countHint": "Hányszor fordul elő a tájadban? Számolj a + és − gombokkal.",
+      "bonusAll": "Bónusz, ha mindhárom csoportméret előfordul",
+      "manual": "Pontok közvetlen megadása",
+      "auto": "Automatikusan kiszámítva",
+      "units": {
+        "pairs": "Párok",
+        "groupSize": "Csoportméret",
+        "lineLength": "Vonal hossza",
+        "circleSize": "Szarvasok a körben",
+        "chainLength": "Lánc hossza",
+        "sightlines": "Látóvonalak",
+        "species": "Különböző állatfajok",
+        "neighborSpecies": "Különböző szomszédos állatok",
+        "mostCommon": "Leggyakoribb szomszédos faj",
+        "neighborPairs": "Szomszédos párok",
+        "buzzards": "Ölyvek",
+        "salmonInChain": "Lazacok láncokban (3+)",
+        "neighborAnimals": "Szomszédos állatok"
+      }
     }
   }
 }

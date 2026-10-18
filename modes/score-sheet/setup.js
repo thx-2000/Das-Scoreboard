@@ -17,29 +17,95 @@ let groupPicker = null;
  * bewusst nur auf Deutsch und Englisch hinterlegt (andere Sprachen bekommen
  * die englische Fassung) - sie sind Spielbegriffe, keine Oberflaechentexte,
  * und lassen sich im Textfeld ohnehin frei aendern.
+ *
+ * Eine Zeile ist {label, helper}; helper ist die Kennung einer Rechenhilfe
+ * (js/cascadia-cards.js), z.B. "cascadia:bear:A".
  */
+const CASCADIA_ANIMALS = ['bear', 'elk', 'salmon', 'hawk', 'fox'];
+const CASCADIA_TEXT = {
+  de: {
+    animals: { bear: 'Bär', elk: 'Hirsch', salmon: 'Lachs', hawk: 'Bussard', fox: 'Fuchs' },
+    habitats: ['Gebirge', 'Wald', 'Prärie', 'Feuchtgebiet', 'Fluss'],
+    area: 'größtes Gebiet',
+    bonus: 'Mehrheitsboni (automatisch)',
+    tokens: 'Übrige Zapfen',
+  },
+  en: {
+    animals: { bear: 'Bear', elk: 'Elk', salmon: 'Salmon', hawk: 'Hawk', fox: 'Fox' },
+    habitats: ['Mountain', 'Forest', 'Prairie', 'Wetland', 'River'],
+    area: 'largest area',
+    bonus: 'Majority bonuses (automatic)',
+    tokens: 'Remaining nature tokens',
+  },
+};
+
+function cascadiaRows(variants) {
+  const text = CASCADIA_TEXT[document.documentElement.lang] || CASCADIA_TEXT.en;
+  return [
+    ...CASCADIA_ANIMALS.map((animal) => ({
+      label: `${text.animals[animal]} (${variants[animal]})`,
+      helper: `cascadia:${animal}:${variants[animal]}`,
+    })),
+    ...text.habitats.map((habitat) => ({ label: `${habitat} (${text.area})`, helper: 'cascadia:habitat' })),
+    { label: text.bonus, helper: 'cascadia:bonus' },
+    { label: text.tokens, helper: null },
+  ];
+}
+
 const TEMPLATES = [
   {
     key: 'mischwald',
     name: 'Mischwald',
-    categories: {
-      de: ['Bäume', 'Tiere', 'Pflanzen & Pilze', 'Höhle (1 Punkt je Karte)', 'Sonstiges'],
-      en: ['Trees', 'Animals', 'Plants & mushrooms', 'Cave (1 point per card)', 'Other'],
+    rows: () => {
+      const lang = document.documentElement.lang;
+      const labels = lang === 'de'
+        ? ['Bäume', 'Tiere', 'Pflanzen & Pilze', 'Höhle (1 Punkt je Karte)', 'Sonstiges']
+        : ['Trees', 'Animals', 'Plants & mushrooms', 'Cave (1 point per card)', 'Other'];
+      return labels.map((label) => ({ label, helper: null }));
     },
   },
   {
     key: 'cascadia',
     name: 'Cascadia',
-    categories: {
-      de: ['Bär', 'Wapiti', 'Lachs', 'Bussard', 'Fuchs', 'Berge', 'Wälder', 'Prärien', 'Feuchtgebiete', 'Flüsse', 'Mehrheitsboni (Lebensräume)', 'Naturmarker'],
-      en: ['Bear', 'Elk', 'Salmon', 'Hawk', 'Fox', 'Mountains', 'Forests', 'Prairies', 'Wetlands', 'Rivers', 'Habitat majority bonuses', 'Nature tokens'],
-    },
+    rows: () => cascadiaRows(cascadiaVariants),
   },
 ];
 
-function templateLines(template) {
-  const lang = document.documentElement.lang;
-  return template.categories[lang] || template.categories.en;
+const cascadiaVariants = { bear: 'A', elk: 'A', salmon: 'A', hawk: 'A', fox: 'A' };
+// Rechenhilfen der aktuell im Textfeld stehenden Zeilen (Text -> Kennung);
+// wer eine Zeile umschreibt, verliert dafuer die Rechenhilfe.
+let helperByLine = {};
+
+function fillCategories(rows) {
+  categoriesInput.value = rows.map((row) => row.label).join('\n');
+  helperByLine = {};
+  rows.forEach((row) => { if (row.helper) helperByLine[row.label] = row.helper; });
+}
+
+function renderCascadiaVariants() {
+  const text = CASCADIA_TEXT[document.documentElement.lang] || CASCADIA_TEXT.en;
+  const container = document.getElementById('cascadia-variants');
+  container.innerHTML = '';
+  CASCADIA_ANIMALS.forEach((animal) => {
+    const label = document.createElement('label');
+    label.className = 'cascadia-variant';
+    const name = document.createElement('span');
+    name.textContent = text.animals[animal];
+    const select = document.createElement('select');
+    ['A', 'B', 'C', 'D'].forEach((variant) => {
+      const option = document.createElement('option');
+      option.value = variant;
+      option.textContent = variant;
+      select.appendChild(option);
+    });
+    select.value = cascadiaVariants[animal];
+    select.addEventListener('change', () => {
+      cascadiaVariants[animal] = select.value;
+      fillCategories(cascadiaRows(cascadiaVariants));
+    });
+    label.append(name, select);
+    container.appendChild(label);
+  });
 }
 
 function showError(message) {
@@ -73,9 +139,11 @@ function renderTemplatePicker() {
 }
 
 function applyTemplate(key) {
+  document.getElementById('cascadia-options').hidden = key !== 'cascadia';
   const template = TEMPLATES.find((t) => t.key === key);
   if (!template) return;
-  categoriesInput.value = templateLines(template).join('\n');
+  if (key === 'cascadia') renderCascadiaVariants();
+  fillCategories(template.rows());
   if (!gameLabelInput.value.trim()) gameLabelInput.placeholder = template.name;
 }
 
@@ -157,7 +225,8 @@ setupForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   clearError();
 
-  const categories = categoriesInput.value.split('\n').map((line) => line.trim()).filter(Boolean);
+  const categories = categoriesInput.value.split('\n').map((line) => line.trim()).filter(Boolean)
+    .map((line) => ({ label: line, helper: helperByLine[line] || null }));
   if (categories.length === 0) {
     showError(window.t('scoreSheet.setup.categoriesRequired'));
     return;
@@ -202,7 +271,7 @@ async function prefillFromGame() {
   if (game.mode !== 'score_sheet') return;
 
   gameLabelInput.value = game.label || '';
-  categoriesInput.value = game.rounds.map((round) => round.label || '').filter(Boolean).join('\n');
+  fillCategories(game.rounds.filter((round) => round.label).map((round) => ({ label: round.label, helper: round.helper })));
   document.querySelector(`input[name="win-direction"][value="${game.winDirection}"]`).checked = true;
 
   const knownIds = new Set(knownPlayers.map((p) => p.id));

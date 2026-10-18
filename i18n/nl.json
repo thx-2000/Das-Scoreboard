@@ -659,7 +659,8 @@
       "templateCustom": "Eigen blad",
       "categoriesLabel": "Scoreregels (één per regel)",
       "categoriesHint": "Elke regel wordt een rij in het scoreblad. De sjablonen zijn vrij te wijzigen.",
-      "categoriesRequired": "Geef minstens één scoreregel op."
+      "categoriesRequired": "Geef minstens één scoreregel op.",
+      "cascadiaCards": "Scorekaarten (variant per dier)"
     },
     "game": {
       "heading": "Scoreblad",
@@ -671,6 +672,27 @@
       "add": "Optellen",
       "next": "Volgende",
       "done": "Klaar"
+    },
+    "helper": {
+      "countHint": "Hoe vaak komt het voor in jouw landschap? Tel met + en −.",
+      "bonusAll": "Bonus als alle drie de groepsgroottes voorkomen",
+      "manual": "Punten direct invoeren",
+      "auto": "Automatisch berekend",
+      "units": {
+        "pairs": "Paren",
+        "groupSize": "Groepsgrootte",
+        "lineLength": "Lijnlengte",
+        "circleSize": "Elanden in de cirkel",
+        "chainLength": "Kettinglengte",
+        "sightlines": "Zichtlijnen",
+        "species": "Verschillende diersoorten",
+        "neighborSpecies": "Verschillende buurdieren",
+        "mostCommon": "Meest voorkomende buursoort",
+        "neighborPairs": "Aangrenzende paren",
+        "buzzards": "Buizerds",
+        "salmonInChain": "Zalmen in ketens (3+)",
+        "neighborAnimals": "Aangrenzende dieren"
+      }
     }
   }
 }

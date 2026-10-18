@@ -141,13 +141,29 @@ async function saveCell(round, playerId, value) {
   window.scoreboardPlaySaveFeedback();
 }
 
-/** Oeffnet die Zahlentastatur fuer ein Feld; "Weiter" springt zum naechsten aktiven Spieler derselben Zeile. */
-function editCell(roundId, playerId) {
+/**
+ * Oeffnet fuer ein Feld die passende Eingabe: bei Zeilen mit Rechenhilfe (z.B.
+ * Cascadia-Wertungskarte) erst deren Dialog, sonst die Zahlentastatur; "Weiter"
+ * springt zum naechsten aktiven Spieler derselben Zeile.
+ */
+function editCell(roundId, playerId, forceKeypad = false) {
   const round = currentState.rounds.find((r) => r.id === roundId);
   const active = currentState.players.filter((p) => !p.withdrawnAt);
   const player = active.find((p) => p.id === playerId);
   if (!round || !player) return;
   const nextPlayer = active[active.indexOf(player) + 1];
+
+  const card = forceKeypad ? null : window.cascadiaCardFor(round.helper);
+  if (card) {
+    window.openCascadiaCard({
+      card,
+      title: round.label || '',
+      subtitle: player.name,
+      onCommit: (value) => saveCell(round, player.id, value),
+      onManual: () => editCell(roundId, playerId, true),
+    });
+    return;
+  }
 
   window.openScoreKeypad({
     title: round.label || '',
@@ -161,6 +177,44 @@ function editCell(roundId, playerId) {
       setTimeout(() => editCell(roundId, nextPlayer.id), 250);
     },
   });
+}
+
+let bonusSyncRunning = false;
+
+/**
+ * Cascadia: die Mehrheitsboni der Gebiete (Zeile "cascadia:bonus") ergeben sich
+ * aus den Gebietsgroessen aller Spieler und werden deshalb automatisch
+ * berechnet und gespeichert, sobald sich eine Groesse aendert (oder ein Spieler
+ * dazukommt/ausscheidet).
+ */
+async function syncCascadiaBonus(state) {
+  const bonusRound = state.rounds.find((r) => r.helper === 'cascadia:bonus');
+  if (!bonusRound || bonusSyncRunning) return;
+
+  const habitatRounds = state.rounds.filter((r) => r.helper === 'cascadia:habitat');
+  const activeIds = state.players.filter((p) => !p.withdrawnAt).map((p) => p.id);
+  const bonus = window.cascadiaMajorityBonus(habitatRounds.map((r) => r.scores), activeIds);
+  if (activeIds.every((id) => (bonusRound.scores[id] ?? 0) === bonus[id])) return;
+
+  const scores = {};
+  state.players.forEach((p) => {
+    scores[p.id] = activeIds.includes(p.id) ? bonus[p.id] : (bonusRound.scores[p.id] ?? 0);
+  });
+  bonusSyncRunning = true;
+  try {
+    const response = await fetch(`/api/rounds.php?gameId=${gameId}&roundId=${bonusRound.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scores }),
+    });
+    if (response.ok) {
+      currentState = await response.json();
+      bonusSyncRunning = false;
+      render(currentState);
+    }
+  } finally {
+    bonusSyncRunning = false;
+  }
 }
 
 function renderSheet(state) {
@@ -194,12 +248,17 @@ function renderSheet(state) {
       btn.className = 'sheet-cell';
       btn.textContent = String(round.scores[player.id] ?? 0);
       btn.setAttribute('aria-label', `${round.label || ''} · ${player.name}: ${round.scores[player.id] ?? 0}`);
-      if (player.withdrawnAt) {
+      if (round.helper === 'cascadia:bonus') {
+        // Wird aus den Gebietsgroessen berechnet (siehe syncCascadiaBonus).
         btn.disabled = true;
-        cell.classList.add('sheet-col--withdrawn');
+        btn.classList.add('sheet-cell--auto');
+        btn.title = window.t('scoreSheet.helper.auto');
+      } else if (player.withdrawnAt) {
+        btn.disabled = true;
       } else {
         btn.addEventListener('click', () => editCell(round.id, player.id));
       }
+      if (player.withdrawnAt) cell.classList.add('sheet-col--withdrawn');
       cell.appendChild(btn);
       row.appendChild(cell);
     });
@@ -228,6 +287,7 @@ function render(state) {
   renderWinnerBanner(state);
   renderSheet(state);
   window.renderGameEditPanel(state);
+  syncCascadiaBonus(state);
 }
 
 async function toggleFinished() {

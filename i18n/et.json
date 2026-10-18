@@ -659,7 +659,8 @@
       "templateCustom": "Oma leht",
       "categoriesLabel": "Punktiread (üks rea kohta)",
       "categoriesHint": "Iga rida muutub punktilehe reaks. Malle saab vabalt muuta.",
-      "categoriesRequired": "Sisesta vähemalt üks punktirida."
+      "categoriesRequired": "Sisesta vähemalt üks punktirida.",
+      "cascadiaCards": "Punktikaardid (variant looma kohta)"
     },
     "game": {
       "heading": "Punktileht",
@@ -671,6 +672,27 @@
       "add": "Liida",
       "next": "Edasi",
       "done": "Valmis"
+    },
+    "helper": {
+      "countHint": "Mitu korda see sinu maastikus esineb? Loe + ja − nupuga.",
+      "bonusAll": "Boonus, kui esinevad kõik kolm grupisuurust",
+      "manual": "Sisesta punktid otse",
+      "auto": "Arvutatakse automaatselt",
+      "units": {
+        "pairs": "Paarid",
+        "groupSize": "Grupi suurus",
+        "lineLength": "Rea pikkus",
+        "circleSize": "Hirved ringis",
+        "chainLength": "Ahela pikkus",
+        "sightlines": "Nähtavusjooned",
+        "species": "Erinevad loomaliigid",
+        "neighborSpecies": "Erinevad naaberloomad",
+        "mostCommon": "Kõige levinum naaberliik",
+        "neighborPairs": "Kõrvuti paarid",
+        "buzzards": "Viud",
+        "salmonInChain": "Lõhed ahelates (3+)",
+        "neighborAnimals": "Naaberloomad"
+      }
     }
   }
 }

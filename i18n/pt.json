@@ -659,7 +659,8 @@
       "templateCustom": "Folha personalizada",
       "categoriesLabel": "Linhas de pontuação (uma por linha)",
       "categoriesHint": "Cada linha torna-se uma linha da folha de pontuação. Os modelos podem ser alterados livremente.",
-      "categoriesRequired": "Indique pelo menos uma linha de pontuação."
+      "categoriesRequired": "Indique pelo menos uma linha de pontuação.",
+      "cascadiaCards": "Cartas de pontuação (variante por animal)"
     },
     "game": {
       "heading": "Folha de pontuação",
@@ -671,6 +672,27 @@
       "add": "Somar",
       "next": "Seguinte",
       "done": "Concluído"
+    },
+    "helper": {
+      "countHint": "Quantas vezes aparece na tua paisagem? Conta com + e −.",
+      "bonusAll": "Bónus se existirem os três tamanhos de grupo",
+      "manual": "Introduzir os pontos diretamente",
+      "auto": "Calculado automaticamente",
+      "units": {
+        "pairs": "Pares",
+        "groupSize": "Tamanho do grupo",
+        "lineLength": "Comprimento da linha",
+        "circleSize": "Alces no círculo",
+        "chainLength": "Comprimento da cadeia",
+        "sightlines": "Linhas de visão",
+        "species": "Espécies animais diferentes",
+        "neighborSpecies": "Animais vizinhos diferentes",
+        "mostCommon": "Espécie vizinha mais frequente",
+        "neighborPairs": "Pares vizinhos",
+        "buzzards": "Falcões",
+        "salmonInChain": "Salmões em cadeias (3+)",
+        "neighborAnimals": "Animais vizinhos"
+      }
     }
   }
 }

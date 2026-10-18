@@ -659,7 +659,8 @@
       "templateCustom": "Feuille personnalisée",
       "categoriesLabel": "Lignes de score (une par ligne)",
       "categoriesHint": "Chaque ligne devient une ligne de la feuille de score. Les modèles sont librement modifiables.",
-      "categoriesRequired": "Veuillez saisir au moins une ligne de score."
+      "categoriesRequired": "Veuillez saisir au moins une ligne de score.",
+      "cascadiaCards": "Cartes de score (variante par animal)"
     },
     "game": {
       "heading": "Feuille de score",
@@ -671,6 +672,27 @@
       "add": "Additionner",
       "next": "Suivant",
       "done": "Terminé"
+    },
+    "helper": {
+      "countHint": "Combien de fois cela apparaît-il dans ton paysage ? Compte avec + et −.",
+      "bonusAll": "Bonus si les trois tailles de groupe existent",
+      "manual": "Saisir les points directement",
+      "auto": "Calculé automatiquement",
+      "units": {
+        "pairs": "Paires",
+        "groupSize": "Taille du groupe",
+        "lineLength": "Longueur de la ligne",
+        "circleSize": "Wapitis dans le cercle",
+        "chainLength": "Longueur de la chaîne",
+        "sightlines": "Lignes de vue",
+        "species": "Espèces animales différentes",
+        "neighborSpecies": "Animaux voisins différents",
+        "mostCommon": "Espèce voisine la plus fréquente",
+        "neighborPairs": "Paires voisines",
+        "buzzards": "Buses",
+        "salmonInChain": "Saumons en chaînes (3+)",
+        "neighborAnimals": "Animaux voisins"
+      }
     }
   }
 }

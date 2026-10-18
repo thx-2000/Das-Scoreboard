@@ -659,7 +659,8 @@
       "templateCustom": "Vlastný hárok",
       "categoriesLabel": "Riadky bodovania (jeden na riadok)",
       "categoriesHint": "Každý riadok sa stane riadkom zápisového hárka. Šablóny možno ľubovoľne upravovať.",
-      "categoriesRequired": "Zadajte aspoň jeden riadok bodovania."
+      "categoriesRequired": "Zadajte aspoň jeden riadok bodovania.",
+      "cascadiaCards": "Bodovacie karty (variant pre zviera)"
     },
     "game": {
       "heading": "Zápisový hárok",
@@ -671,6 +672,27 @@
       "add": "Pripočítať",
       "next": "Ďalej",
       "done": "Hotovo"
+    },
+    "helper": {
+      "countHint": "Koľkokrát sa to vyskytuje vo tvojej krajine? Počítaj pomocou + a −.",
+      "bonusAll": "Bonus, ak sa vyskytujú všetky tri veľkosti skupín",
+      "manual": "Zadať body priamo",
+      "auto": "Počíta sa automaticky",
+      "units": {
+        "pairs": "Páry",
+        "groupSize": "Veľkosť skupiny",
+        "lineLength": "Dĺžka radu",
+        "circleSize": "Jelene v kruhu",
+        "chainLength": "Dĺžka reťazca",
+        "sightlines": "Zorné línie",
+        "species": "Rôzne druhy zvierat",
+        "neighborSpecies": "Rôzne susediace zvieratá",
+        "mostCommon": "Najčastejší susediaci druh",
+        "neighborPairs": "Susediace páry",
+        "buzzards": "Myšiaky",
+        "salmonInChain": "Lososy v reťazcoch (3+)",
+        "neighborAnimals": "Susediace zvieratá"
+      }
     }
   }
 }

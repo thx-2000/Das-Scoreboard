@@ -420,6 +420,16 @@ function migrations(): array
                 $pdo->exec('ALTER TABLE rounds ADD COLUMN label TEXT');
             }
         },
+
+        // Wertungsbogen: optionale Rechenhilfe je Zeile (z.B. "cascadia:bear:A" =
+        // Punkte aus Gruppenanzahl berechnen), nur Kennung - die Regeln selbst
+        // liegen im Frontend (js/cascadia-cards.js).
+        20 => function (PDO $pdo) {
+            $roundColumns = array_column($pdo->query('PRAGMA table_info(rounds)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+            if (!in_array('helper', $roundColumns, true)) {
+                $pdo->exec('ALTER TABLE rounds ADD COLUMN helper TEXT');
+            }
+        },
     ];
 }
 

@@ -282,6 +282,7 @@ function build_game_state(PDO $pdo, int $gameId): ?array
             'id' => (int) $r['id'],
             'roundNumber' => (int) $r['round_number'],
             'label' => $r['label'] ?? null,
+            'helper' => $r['helper'] ?? null,
             'createdAt' => $r['created_at'],
             'scores' => $scoresByRound[$r['id']] ?? new stdClass(),
             'rageDetails' => $rageDetailsByRound[$r['id']] ?? new stdClass(),

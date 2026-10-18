@@ -659,7 +659,8 @@
       "templateCustom": "Custom sheet",
       "categoriesLabel": "Scoring lines (one per line)",
       "categoriesHint": "Each line becomes a row of the score sheet. The templates can be changed freely.",
-      "categoriesRequired": "Please enter at least one scoring line."
+      "categoriesRequired": "Please enter at least one scoring line.",
+      "cascadiaCards": "Scoring cards (variant per animal)"
     },
     "game": {
       "heading": "Score sheet",
@@ -671,6 +672,27 @@
       "add": "Add",
       "next": "Next",
       "done": "Done"
+    },
+    "helper": {
+      "countHint": "How often does it occur in your landscape? Count with + and −.",
+      "bonusAll": "Bonus if all three group sizes occur",
+      "manual": "Enter points directly",
+      "auto": "Calculated automatically",
+      "units": {
+        "pairs": "Pairs",
+        "groupSize": "Group size",
+        "lineLength": "Line length",
+        "circleSize": "Elk in the circle",
+        "chainLength": "Chain length",
+        "sightlines": "Lines of sight",
+        "species": "Different animal types",
+        "neighborSpecies": "Different neighboring animals",
+        "mostCommon": "Most common neighbor type",
+        "neighborPairs": "Adjacent pairs",
+        "buzzards": "Hawks",
+        "salmonInChain": "Salmon in chains (3+)",
+        "neighborAnimals": "Adjacent animals"
+      }
     }
   }
 }

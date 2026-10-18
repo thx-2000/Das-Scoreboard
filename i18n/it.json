@@ -659,7 +659,8 @@
       "templateCustom": "Foglio personalizzato",
       "categoriesLabel": "Righe di punteggio (una per riga)",
       "categoriesHint": "Ogni riga diventa una riga del foglio punteggi. I modelli si possono modificare liberamente.",
-      "categoriesRequired": "Inserisci almeno una riga di punteggio."
+      "categoriesRequired": "Inserisci almeno una riga di punteggio.",
+      "cascadiaCards": "Carte punteggio (variante per animale)"
     },
     "game": {
       "heading": "Foglio punteggi",
@@ -671,6 +672,27 @@
       "add": "Somma",
       "next": "Avanti",
       "done": "Fatto"
+    },
+    "helper": {
+      "countHint": "Quante volte compare nel tuo paesaggio? Conta con + e −.",
+      "bonusAll": "Bonus se esistono tutte e tre le dimensioni di gruppo",
+      "manual": "Inserisci i punti direttamente",
+      "auto": "Calcolato automaticamente",
+      "units": {
+        "pairs": "Coppie",
+        "groupSize": "Dimensione del gruppo",
+        "lineLength": "Lunghezza della linea",
+        "circleSize": "Alci nel cerchio",
+        "chainLength": "Lunghezza della catena",
+        "sightlines": "Linee di vista",
+        "species": "Specie animali diverse",
+        "neighborSpecies": "Animali vicini diversi",
+        "mostCommon": "Specie vicina più frequente",
+        "neighborPairs": "Coppie adiacenti",
+        "buzzards": "Poiane",
+        "salmonInChain": "Salmoni in catene (3+)",
+        "neighborAnimals": "Animali adiacenti"
+      }
     }
   }
 }

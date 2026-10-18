@@ -659,7 +659,8 @@
       "templateCustom": "Eget ark",
       "categoriesLabel": "Pointlinjer (én pr. linje)",
       "categoriesHint": "Hver linje bliver en række i pointarket. Skabelonerne kan ændres frit.",
-      "categoriesRequired": "Angiv mindst én pointlinje."
+      "categoriesRequired": "Angiv mindst én pointlinje.",
+      "cascadiaCards": "Pointkort (variant pr. dyr)"
     },
     "game": {
       "heading": "Pointark",
@@ -671,6 +672,27 @@
       "add": "Læg til",
       "next": "Næste",
       "done": "Færdig"
+    },
+    "helper": {
+      "countHint": "Hvor mange gange forekommer det i dit landskab? Tæl med + og −.",
+      "bonusAll": "Bonus hvis alle tre gruppestørrelser findes",
+      "manual": "Indtast point direkte",
+      "auto": "Beregnes automatisk",
+      "units": {
+        "pairs": "Par",
+        "groupSize": "Gruppestørrelse",
+        "lineLength": "Linjelængde",
+        "circleSize": "Elge i cirklen",
+        "chainLength": "Kædelængde",
+        "sightlines": "Sigtelinjer",
+        "species": "Forskellige dyrearter",
+        "neighborSpecies": "Forskellige nabodyr",
+        "mostCommon": "Mest almindelige nabo-art",
+        "neighborPairs": "Tilstødende par",
+        "buzzards": "Høge",
+        "salmonInChain": "Laks i kæder (3+)",
+        "neighborAnimals": "Tilstødende dyr"
+      }
     }
   }
 }

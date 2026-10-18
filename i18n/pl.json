@@ -659,7 +659,8 @@
       "templateCustom": "Własna karta",
       "categoriesLabel": "Wiersze punktacji (jeden na linię)",
       "categoriesHint": "Każda linia staje się wierszem karty wyników. Szablony można dowolnie zmieniać.",
-      "categoriesRequired": "Podaj co najmniej jeden wiersz punktacji."
+      "categoriesRequired": "Podaj co najmniej jeden wiersz punktacji.",
+      "cascadiaCards": "Karty punktacji (wariant dla zwierzęcia)"
     },
     "game": {
       "heading": "Karta wyników",
@@ -671,6 +672,27 @@
       "add": "Dodaj",
       "next": "Dalej",
       "done": "Gotowe"
+    },
+    "helper": {
+      "countHint": "Ile razy występuje to w Twoim krajobrazie? Licz przyciskami + i −.",
+      "bonusAll": "Bonus, jeśli występują wszystkie trzy wielkości grup",
+      "manual": "Wpisz punkty bezpośrednio",
+      "auto": "Obliczane automatycznie",
+      "units": {
+        "pairs": "Pary",
+        "groupSize": "Wielkość grupy",
+        "lineLength": "Długość linii",
+        "circleSize": "Łosie w kręgu",
+        "chainLength": "Długość łańcucha",
+        "sightlines": "Linie widzenia",
+        "species": "Różne gatunki zwierząt",
+        "neighborSpecies": "Różne zwierzęta sąsiadujące",
+        "mostCommon": "Najczęstszy gatunek sąsiadujący",
+        "neighborPairs": "Sąsiadujące pary",
+        "buzzards": "Myszołowy",
+        "salmonInChain": "Łososie w łańcuchach (3+)",
+        "neighborAnimals": "Sąsiadujące zwierzęta"
+      }
     }
   }
 }

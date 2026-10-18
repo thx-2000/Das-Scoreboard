@@ -659,7 +659,8 @@
       "templateCustom": "Fletë e vetë",
       "categoriesLabel": "Rreshtat e vlerësimit (një për rresht)",
       "categoriesHint": "Çdo rresht bëhet një rresht i fletës së pikëve. Shabllonet mund të ndryshohen lirisht.",
-      "categoriesRequired": "Jep të paktën një rresht vlerësimi."
+      "categoriesRequired": "Jep të paktën një rresht vlerësimi.",
+      "cascadiaCards": "Kartat e pikëve (varianti për kafshë)"
     },
     "game": {
       "heading": "Fleta e pikëve",
@@ -671,6 +672,27 @@
       "add": "Mblidh",
       "next": "Tjetra",
       "done": "U krye"
+    },
+    "helper": {
+      "countHint": "Sa herë shfaqet në peizazhin tënd? Numëro me + dhe −.",
+      "bonusAll": "Bonus nëse ekzistojnë të tria madhësitë e grupeve",
+      "manual": "Fut pikët drejtpërdrejt",
+      "auto": "Llogaritet automatikisht",
+      "units": {
+        "pairs": "Çifte",
+        "groupSize": "Madhësia e grupit",
+        "lineLength": "Gjatësia e vijës",
+        "circleSize": "Dreri në rreth",
+        "chainLength": "Gjatësia e zinxhirit",
+        "sightlines": "Vijat e shikimit",
+        "species": "Lloje të ndryshme kafshësh",
+        "neighborSpecies": "Kafshë të ndryshme fqinje",
+        "mostCommon": "Lloji fqinj më i shpeshtë",
+        "neighborPairs": "Çifte ngjitur",
+        "buzzards": "Skifterët",
+        "salmonInChain": "Salmonët në zinxhirë (3+)",
+        "neighborAnimals": "Kafshë ngjitur"
+      }
     }
   }
 }

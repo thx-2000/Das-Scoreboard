@@ -90,6 +90,7 @@ $page_scripts = [
     'js/team-helpers.js',
     'js/game-edit.js',
     'js/score-keypad.js',
+    'js/cascadia-cards.js',
     'modes/score-sheet/game.js',
 ];
 require __DIR__ . '/../../includes/footer.php';

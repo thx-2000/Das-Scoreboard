@@ -659,7 +659,8 @@
       "templateCustom": "Savas lapas",
       "categoriesLabel": "Taškų eilutės (po vieną eilutėje)",
       "categoriesHint": "Kiekviena eilutė tampa taškų lapo eilute. Šablonus galima laisvai keisti.",
-      "categoriesRequired": "Nurodyk bent vieną taškų eilutę."
+      "categoriesRequired": "Nurodyk bent vieną taškų eilutę.",
+      "cascadiaCards": "Taškų kortos (variantas kiekvienam gyvūnui)"
     },
     "game": {
       "heading": "Taškų lapas",
@@ -671,6 +672,27 @@
       "add": "Pridėti",
       "next": "Toliau",
       "done": "Baigta"
+    },
+    "helper": {
+      "countHint": "Kiek kartų tai pasitaiko tavo kraštovaizdyje? Skaičiuok su + ir −.",
+      "bonusAll": "Premija, jei yra visi trys grupių dydžiai",
+      "manual": "Įvesti taškus tiesiogiai",
+      "auto": "Skaičiuojama automatiškai",
+      "units": {
+        "pairs": "Poros",
+        "groupSize": "Grupės dydis",
+        "lineLength": "Linijos ilgis",
+        "circleSize": "Elniai rate",
+        "chainLength": "Grandinės ilgis",
+        "sightlines": "Matymo linijos",
+        "species": "Skirtingos gyvūnų rūšys",
+        "neighborSpecies": "Skirtingi kaimyniniai gyvūnai",
+        "mostCommon": "Dažniausia kaimyninė rūšis",
+        "neighborPairs": "Gretimos poros",
+        "buzzards": "Suopiai",
+        "salmonInChain": "Lašišos grandinėse (3+)",
+        "neighborAnimals": "Gretimi gyvūnai"
+      }
     }
   }
 }

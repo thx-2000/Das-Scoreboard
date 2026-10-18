@@ -659,7 +659,8 @@
       "templateCustom": "Fișă proprie",
       "categoriesLabel": "Rânduri de punctaj (câte unul pe linie)",
       "categoriesHint": "Fiecare linie devine un rând al fișei de scor. Șabloanele pot fi modificate liber.",
-      "categoriesRequired": "Introdu cel puțin un rând de punctaj."
+      "categoriesRequired": "Introdu cel puțin un rând de punctaj.",
+      "cascadiaCards": "Cărți de punctaj (variantă pe animal)"
     },
     "game": {
       "heading": "Fișă de scor",
@@ -671,6 +672,27 @@
       "add": "Adună",
       "next": "Înainte",
       "done": "Gata"
+    },
+    "helper": {
+      "countHint": "De câte ori apare în peisajul tău? Numără cu + și −.",
+      "bonusAll": "Bonus dacă apar toate cele trei mărimi de grup",
+      "manual": "Introdu punctele direct",
+      "auto": "Calculat automat",
+      "units": {
+        "pairs": "Perechi",
+        "groupSize": "Mărimea grupului",
+        "lineLength": "Lungimea liniei",
+        "circleSize": "Elani în cerc",
+        "chainLength": "Lungimea lanțului",
+        "sightlines": "Linii de vedere",
+        "species": "Specii de animale diferite",
+        "neighborSpecies": "Animale vecine diferite",
+        "mostCommon": "Cea mai frecventă specie vecină",
+        "neighborPairs": "Perechi alăturate",
+        "buzzards": "Șorecari",
+        "salmonInChain": "Somoni în lanțuri (3+)",
+        "neighborAnimals": "Animale alăturate"
+      }
     }
   }
 }

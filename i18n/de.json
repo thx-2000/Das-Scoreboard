@@ -659,7 +659,8 @@
       "templateCustom": "Eigener Bogen",
       "categoriesLabel": "Wertungen (eine pro Zeile)",
       "categoriesHint": "Jede Zeile wird eine Zeile im Wertungsbogen. Die Vorlagen lassen sich frei ändern.",
-      "categoriesRequired": "Bitte mindestens eine Wertung angeben."
+      "categoriesRequired": "Bitte mindestens eine Wertung angeben.",
+      "cascadiaCards": "Wertungskarten (Variante je Tier)"
     },
     "game": {
       "heading": "Wertungsbogen",
@@ -671,6 +672,27 @@
       "add": "Addieren",
       "next": "Weiter",
       "done": "Fertig"
+    },
+    "helper": {
+      "countHint": "Wie oft kommt es in deiner Landschaft vor? Mit + und − zählen.",
+      "bonusAll": "Bonus, wenn alle drei Gruppengrößen vorkommen",
+      "manual": "Punkte direkt eingeben",
+      "auto": "Wird automatisch berechnet",
+      "units": {
+        "pairs": "Paare",
+        "groupSize": "Gruppengröße",
+        "lineLength": "Linienlänge",
+        "circleSize": "Hirsche im Kreis",
+        "chainLength": "Kettenlänge",
+        "sightlines": "Sichtlinien",
+        "species": "Verschiedene Tierarten",
+        "neighborSpecies": "Verschiedene Nachbartiere",
+        "mostCommon": "Häufigste Nachbarart",
+        "neighborPairs": "Benachbarte Paare",
+        "buzzards": "Bussarde",
+        "salmonInChain": "Lachse in Ketten (3+)",
+        "neighborAnimals": "Benachbarte Tiere"
+      }
     }
   }
 }

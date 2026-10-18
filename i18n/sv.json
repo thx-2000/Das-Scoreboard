@@ -659,7 +659,8 @@
       "templateCustom": "Eget blad",
       "categoriesLabel": "Poängrader (en per rad)",
       "categoriesHint": "Varje rad blir en rad i poängbladet. Mallarna kan ändras fritt.",
-      "categoriesRequired": "Ange minst en poängrad."
+      "categoriesRequired": "Ange minst en poängrad.",
+      "cascadiaCards": "Poängkort (variant per djur)"
     },
     "game": {
       "heading": "Poängblad",
@@ -671,6 +672,27 @@
       "add": "Addera",
       "next": "Nästa",
       "done": "Klart"
+    },
+    "helper": {
+      "countHint": "Hur många gånger förekommer det i ditt landskap? Räkna med + och −.",
+      "bonusAll": "Bonus om alla tre gruppstorlekar finns",
+      "manual": "Skriv in poäng direkt",
+      "auto": "Beräknas automatiskt",
+      "units": {
+        "pairs": "Par",
+        "groupSize": "Gruppstorlek",
+        "lineLength": "Linjens längd",
+        "circleSize": "Älgar i cirkeln",
+        "chainLength": "Kedjans längd",
+        "sightlines": "Siktlinjer",
+        "species": "Olika djurarter",
+        "neighborSpecies": "Olika angränsande djur",
+        "mostCommon": "Vanligaste grannart",
+        "neighborPairs": "Angränsande par",
+        "buzzards": "Vråkar",
+        "salmonInChain": "Laxar i kedjor (3+)",
+        "neighborAnimals": "Angränsande djur"
+      }
     }
   }
 }

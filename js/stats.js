@@ -27,14 +27,15 @@ const modeDistributionEmpty = document.getElementById('mode-distribution-empty')
 // Feste Reihenfolge/Farbzuordnung fuer den Donut-Chart - wiederverwendet die
 // vorhandenen Spielerfarben-Tokens (4 Modi = 4 Farben), damit keine fuenfte
 // Palette gepflegt werden muss.
-const MODE_DONUT_ORDER = ['points_to_target', 'points_open', 'fixed_rounds', 'rage'];
-const MODE_DONUT_COLORS = ['var(--player-color-1)', 'var(--player-color-2)', 'var(--player-color-3)', 'var(--player-color-4)'];
+const MODE_DONUT_ORDER = ['points_to_target', 'points_open', 'fixed_rounds', 'rage', 'score_sheet'];
+const MODE_DONUT_COLORS = ['var(--player-color-1)', 'var(--player-color-2)', 'var(--player-color-3)', 'var(--player-color-4)', 'var(--color-amber)'];
 
 function modeInfo() {
   return {
     points_to_target: { title: window.t('modes.pointsToTarget.title'), url: '/modes/points-to-target/game.php' },
     points_open: { title: window.t('modes.pointsOpen.title'), url: '/modes/points-open/game.php' },
     fixed_rounds: { title: window.t('modes.fixedRounds.title'), url: '/modes/fixed-rounds/game.php' },
+    score_sheet: { title: window.t('modes.scoreSheet.title'), url: '/modes/score-sheet/game.php' },
     rage: { title: window.t('modes.rage.title'), url: '/modes/rage/game.php' },
   };
 }

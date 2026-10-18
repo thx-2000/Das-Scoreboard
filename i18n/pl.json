@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Zaloguj się"
+    },
+    "scoreSheetSetup": {
+      "title": "Karta wyników — Nowa gra"
+    },
+    "scoreSheetGame": {
+      "title": "Karta wyników"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Stałe 10 rund z malejącą liczbą kart (od 10 do 1). Przed każdą rundą zapowiadasz przewidywaną liczbę lew, a następnie wprowadzasz rzeczywiste lewy — punkty są obliczane automatycznie według zasad RAGE (wraz z bonusem Rage/rewanżem).",
       "examples": "Gra karciana RAGE"
+    },
+    "scoreSheet": {
+      "title": "Karta wyników",
+      "description": "Karta ze stałymi wierszami punktacji dla gier, które liczy się dopiero na końcu według kategorii. Z szablonami dla Mischwald (Forest Shuffle) i Cascadii; własne karty można tworzyć dowolnie.",
+      "examples": "np. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Liczba zwycięzców",
     "resultSingle": "Ta osoba zaczyna! Połóż palce ponownie, aby rozpocząć nową rundę.",
     "resultMulti": "Te {count} osoby zaczynają! Połóż palce ponownie, aby rozpocząć nową rundę."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Skonfiguruj nową grę (np. Mischwald, Cascadia)",
+      "labelPlaceholder": "np. Mischwald",
+      "templateLabel": "Szablon",
+      "templateCustom": "Własna karta",
+      "categoriesLabel": "Wiersze punktacji (jeden na linię)",
+      "categoriesHint": "Każda linia staje się wierszem karty wyników. Szablony można dowolnie zmieniać.",
+      "categoriesRequired": "Podaj co najmniej jeden wiersz punktacji."
+    },
+    "game": {
+      "heading": "Karta wyników",
+      "hint": "Dotknij pola, aby wpisać punkty. Kilka wartości można dodać znakiem +, np. 6 + 6 + 3.",
+      "categoryColumn": "Kategoria",
+      "totalRow": "Suma"
+    },
+    "keypad": {
+      "add": "Dodaj",
+      "next": "Dalej",
+      "done": "Gotowe"
+    }
   }
 }

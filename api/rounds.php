@@ -82,9 +82,14 @@ if ($method === 'PATCH') {
     $allowNegative = (bool) ($game['allow_negative'] ?? 1);
     $scores = valid_scores_for_game($pdo, $gameId, $body['scores'] ?? [], $allowNegative);
 
-    $update = $pdo->prepare('UPDATE round_scores SET points = ? WHERE round_id = ? AND player_id = ?');
+    // Upsert statt UPDATE: Spieler, die erst nach Anlegen der Runde dazukamen
+    // (Spiel bearbeiten, Migration 16), haben dort noch keine Zeile.
+    $upsert = $pdo->prepare('
+        INSERT INTO round_scores (round_id, player_id, points) VALUES (?, ?, ?)
+        ON CONFLICT(round_id, player_id) DO UPDATE SET points = excluded.points
+    ');
     foreach ($scores as $playerId => $points) {
-        $update->execute([$points, $roundId, $playerId]);
+        $upsert->execute([$roundId, $playerId, $points]);
     }
 
     recompute_game_status($pdo, $gameId);

@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Idħol"
+    },
+    "scoreSheetSetup": {
+      "title": "Folja tal-punti — Logħba ġdida"
+    },
+    "scoreSheetGame": {
+      "title": "Folja tal-punti"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 rawndijiet fissi b'numru dejjem inqas ta' karti (minn 10 sa 1). Qabel kull rawnd tħabbar in-numru mistenni ta' teħid, imbagħad iddaħħal it-teħid attwali — il-punti jiġu kkalkulati awtomatikament skont ir-regoli ta' RAGE (inkluż bonus Rage/vendikazzjoni).",
       "examples": "Logħba tal-karti RAGE"
+    },
+    "scoreSheet": {
+      "title": "Folja tal-punti",
+      "description": "Folja b'linji tal-punteġġ fissi għal logħob li jingħadd skont il-kategorija biss fl-aħħar. B'mudelli għal Mischwald (Forest Shuffle) u Cascadia; folji tiegħek jistgħu jinħolqu liberament.",
+      "examples": "eż. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Numru ta' rebbieħa",
     "resultSingle": "Din il-persuna tibda! Erġa' poġġi s-swaba' għal rawnd ġdid.",
     "resultMulti": "Dawn il-{count} persuni jibdew! Erġa' poġġi s-swaba' għal rawnd ġdid."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Issettja logħba ġdida (eż. Mischwald, Cascadia)",
+      "labelPlaceholder": "eż. Mischwald",
+      "templateLabel": "Mudell",
+      "templateCustom": "Folja tiegħi",
+      "categoriesLabel": "Linji tal-punteġġ (waħda f'kull linja)",
+      "categoriesHint": "Kull linja ssir ringiela tal-folja tal-punti. Il-mudelli jistgħu jinbidlu liberament.",
+      "categoriesRequired": "Daħħal mill-inqas linja waħda tal-punteġġ."
+    },
+    "game": {
+      "heading": "Folja tal-punti",
+      "hint": "Mil-lasaq qasam biex tidħol il-punti. Diversi valuri jistgħu jinġabru b'+, eż. 6 + 6 + 3.",
+      "categoryColumn": "Kategorija",
+      "totalRow": "Total"
+    },
+    "keypad": {
+      "add": "Żid",
+      "next": "Li jmiss",
+      "done": "Lest"
+    }
   }
 }

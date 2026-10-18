@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Autentificare"
+    },
+    "scoreSheetSetup": {
+      "title": "Fișă de scor — Joc nou"
+    },
+    "scoreSheetGame": {
+      "title": "Fișă de scor"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 runde fixe cu un număr descrescător de cărți (de la 10 la 1). Înainte de fiecare rundă anunți numărul așteptat de levate, apoi introduci levatele reale — punctele se calculează automat conform regulilor RAGE (incl. bonus Rage/răzbunare).",
       "examples": "Jocul de cărți RAGE"
+    },
+    "scoreSheet": {
+      "title": "Fișă de scor",
+      "description": "O fișă cu rânduri de punctaj fixe pentru jocuri care se numără pe categorii abia la final. Cu șabloane pentru Mischwald (Forest Shuffle) și Cascadia; fișele proprii se pot crea liber.",
+      "examples": "de ex. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Numărul de câștigători",
     "resultSingle": "Această persoană începe! Puneți degetele din nou pentru o rundă nouă.",
     "resultMulti": "Aceste {count} persoane încep! Puneți degetele din nou pentru o rundă nouă."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Configurează joc nou (de ex. Mischwald, Cascadia)",
+      "labelPlaceholder": "de ex. Mischwald",
+      "templateLabel": "Șablon",
+      "templateCustom": "Fișă proprie",
+      "categoriesLabel": "Rânduri de punctaj (câte unul pe linie)",
+      "categoriesHint": "Fiecare linie devine un rând al fișei de scor. Șabloanele pot fi modificate liber.",
+      "categoriesRequired": "Introdu cel puțin un rând de punctaj."
+    },
+    "game": {
+      "heading": "Fișă de scor",
+      "hint": "Atinge un câmp pentru a introduce punctele. Mai multe valori se pot aduna cu +, de ex. 6 + 6 + 3.",
+      "categoryColumn": "Categorie",
+      "totalRow": "Total"
+    },
+    "keypad": {
+      "add": "Adună",
+      "next": "Înainte",
+      "done": "Gata"
+    }
   }
 }

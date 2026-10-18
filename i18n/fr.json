@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Connexion"
+    },
+    "scoreSheetSetup": {
+      "title": "Feuille de score — Nouvelle partie"
+    },
+    "scoreSheetGame": {
+      "title": "Feuille de score"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 manches fixes avec un nombre de cartes décroissant (de 10 à 1). Avant chaque manche, vous annoncez votre nombre de plis prévu, puis saisissez les plis réels — les points sont calculés automatiquement selon les règles de RAGE (bonus Rage/revanche inclus).",
       "examples": "Jeu de cartes RAGE"
+    },
+    "scoreSheet": {
+      "title": "Feuille de score",
+      "description": "Une feuille avec des lignes de score fixes pour les jeux qui ne se comptent par catégorie qu'à la fin. Avec des modèles pour Mischwald (Forest Shuffle) et Cascadia ; les feuilles personnalisées sont libres.",
+      "examples": "p. ex. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Nombre de gagnants",
     "resultSingle": "Cette personne commence ! Reposez les doigts pour une nouvelle manche.",
     "resultMulti": "Ces {count} personnes commencent ! Reposez les doigts pour une nouvelle manche."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Configurer une nouvelle partie (p. ex. Mischwald, Cascadia)",
+      "labelPlaceholder": "p. ex. Mischwald",
+      "templateLabel": "Modèle",
+      "templateCustom": "Feuille personnalisée",
+      "categoriesLabel": "Lignes de score (une par ligne)",
+      "categoriesHint": "Chaque ligne devient une ligne de la feuille de score. Les modèles sont librement modifiables.",
+      "categoriesRequired": "Veuillez saisir au moins une ligne de score."
+    },
+    "game": {
+      "heading": "Feuille de score",
+      "hint": "Touchez un champ pour saisir les points. Plusieurs valeurs peuvent être additionnées avec +, p. ex. 6 + 6 + 3.",
+      "categoryColumn": "Catégorie",
+      "totalRow": "Total"
+    },
+    "keypad": {
+      "add": "Additionner",
+      "next": "Suivant",
+      "done": "Terminé"
+    }
   }
 }

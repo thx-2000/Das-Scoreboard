@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Bejelentkezés"
+    },
+    "scoreSheetSetup": {
+      "title": "Pontozólap — Új játék"
+    },
+    "scoreSheetGame": {
+      "title": "Pontozólap"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fix 10 kör, csökkenő lapszámmal (10-től 1-ig). Minden kör előtt megmondod a várható ütésszámodat, majd megadod a tényleges ütéseket — a pontokat automatikusan számolja a RAGE szabályai szerint (Rage-bónusszal/bosszúval együtt).",
       "examples": "RAGE kártyajáték"
+    },
+    "scoreSheet": {
+      "title": "Pontozólap",
+      "description": "Rögzített pontozási sorokkal rendelkező lap azokhoz a játékokhoz, amelyeket csak a végén számolnak kategóriánként. Sablonokkal a Mischwaldhoz (Forest Shuffle) és a Cascadiához; saját lapok szabadon létrehozhatók.",
+      "examples": "pl. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Győztesek száma",
     "resultSingle": "Ez a személy kezd! Tegyétek újra az ujjaitokat egy új körhöz.",
     "resultMulti": "Ez a(z) {count} személy kezd! Tegyétek újra az ujjaitokat egy új körhöz."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Új játék beállítása (pl. Mischwald, Cascadia)",
+      "labelPlaceholder": "pl. Mischwald",
+      "templateLabel": "Sablon",
+      "templateCustom": "Saját lap",
+      "categoriesLabel": "Pontozási sorok (soronként egy)",
+      "categoriesHint": "Minden sor egy sora lesz a pontozólapnak. A sablonok szabadon módosíthatók.",
+      "categoriesRequired": "Adj meg legalább egy pontozási sort."
+    },
+    "game": {
+      "heading": "Pontozólap",
+      "hint": "Koppints egy mezőre a pontok beírásához. Több érték összeadható a + gombbal, pl. 6 + 6 + 3.",
+      "categoryColumn": "Kategória",
+      "totalRow": "Összesen"
+    },
+    "keypad": {
+      "add": "Hozzáad",
+      "next": "Tovább",
+      "done": "Kész"
+    }
   }
 }

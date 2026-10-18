@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Innskráning"
+    },
+    "scoreSheetSetup": {
+      "title": "Stigablað — Nýr leikur"
+    },
+    "scoreSheetGame": {
+      "title": "Stigablað"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fastar 10 umferðir með fækkandi fjölda spila (10 niður í 1). Fyrir hverja umferð tilkynnir þú vænt slagafjölda þinn, síðan slærðu inn raunverulega slagi — stig eru reiknuð sjálfkrafa samkvæmt reglum RAGE (þ.m.t. Rage-bónus/hefnd).",
       "examples": "Spilaleikurinn RAGE"
+    },
+    "scoreSheet": {
+      "title": "Stigablað",
+      "description": "Blað með föstum stigalínum fyrir spil sem eru aðeins talin eftir flokkum í lokin. Með sniðmátum fyrir Mischwald (Forest Shuffle) og Cascadia; eigin blöð má búa til frjálst.",
+      "examples": "t.d. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Fjöldi sigurvegara",
     "resultSingle": "Þessi manneskja byrjar! Settu fingurna aftur á fyrir nýja umferð.",
     "resultMulti": "Þessar {count} manneskjur byrja! Settu fingurna aftur á fyrir nýja umferð."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Setja upp nýjan leik (t.d. Mischwald, Cascadia)",
+      "labelPlaceholder": "t.d. Mischwald",
+      "templateLabel": "Sniðmát",
+      "templateCustom": "Eigið blað",
+      "categoriesLabel": "Stigalínur (ein á línu)",
+      "categoriesHint": "Hver lína verður að röð í stigablaðinu. Sniðmátunum má breyta frjálst.",
+      "categoriesRequired": "Settu inn að minnsta kosti eina stigalínu."
+    },
+    "game": {
+      "heading": "Stigablað",
+      "hint": "Ýttu á reit til að slá inn stigin. Mörg gildi má leggja saman með +, t.d. 6 + 6 + 3.",
+      "categoryColumn": "Flokkur",
+      "totalRow": "Samtals"
+    },
+    "keypad": {
+      "add": "Leggja við",
+      "next": "Næsta",
+      "done": "Lokið"
+    }
   }
 }

@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Anmelden"
+    },
+    "scoreSheetSetup": {
+      "title": "Wertungsbogen — Neues Spiel"
+    },
+    "scoreSheetGame": {
+      "title": "Wertungsbogen"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Feste 10 Runden mit sinkender Kartenzahl (10 bis 1). Vor jeder Runde sagt ihr eure Stichzahl an, danach tragt ihr die tatsächlichen Stiche ein — Punkte werden automatisch nach den RAGE-Regeln berechnet (inkl. Rage-Bonus/-Rache).",
       "examples": "Kartenspiel RAGE"
+    },
+    "scoreSheet": {
+      "title": "Wertungsbogen",
+      "description": "Ein Bogen mit festen Wertungen (Zeilen) für Spiele, die erst am Ende nach Kategorien gezählt werden. Mit Vorlagen für Mischwald und Cascadia, eigene Bögen sind frei anlegbar.",
+      "examples": "z.B. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Anzahl Sieger",
     "resultSingle": "Diese Person fängt an! Für eine neue Runde erneut Finger auflegen.",
     "resultMulti": "Diese {count} Personen fangen an! Für eine neue Runde erneut Finger auflegen."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Neues Spiel einrichten (z.B. Mischwald, Cascadia)",
+      "labelPlaceholder": "z.B. Mischwald",
+      "templateLabel": "Vorlage",
+      "templateCustom": "Eigener Bogen",
+      "categoriesLabel": "Wertungen (eine pro Zeile)",
+      "categoriesHint": "Jede Zeile wird eine Zeile im Wertungsbogen. Die Vorlagen lassen sich frei ändern.",
+      "categoriesRequired": "Bitte mindestens eine Wertung angeben."
+    },
+    "game": {
+      "heading": "Wertungsbogen",
+      "hint": "Auf ein Feld tippen, um die Punkte einzugeben. Mehrere Werte lassen sich mit + addieren, z.B. 6 + 6 + 3.",
+      "categoryColumn": "Wertung",
+      "totalRow": "Summe"
+    },
+    "keypad": {
+      "add": "Addieren",
+      "next": "Weiter",
+      "done": "Fertig"
+    }
   }
 }

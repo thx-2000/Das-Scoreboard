@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Iniciar sessão"
+    },
+    "scoreSheetSetup": {
+      "title": "Folha de pontuação — Novo jogo"
+    },
+    "scoreSheetGame": {
+      "title": "Folha de pontuação"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 rondas fixas com um número decrescente de cartas (de 10 a 1). Antes de cada ronda, anuncia o número previsto de vazas, depois introduz as vazas reais — os pontos são calculados automaticamente segundo as regras do RAGE (incl. bónus Rage/vingança).",
       "examples": "Jogo de cartas RAGE"
+    },
+    "scoreSheet": {
+      "title": "Folha de pontuação",
+      "description": "Uma folha com linhas de pontuação fixas para jogos que só se contam por categoria no fim. Com modelos para Mischwald (Forest Shuffle) e Cascadia; as folhas personalizadas criam-se livremente.",
+      "examples": "p. ex. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Número de vencedores",
     "resultSingle": "Esta pessoa começa! Coloque os dedos novamente para uma nova ronda.",
     "resultMulti": "Estas {count} pessoas começam! Coloque os dedos novamente para uma nova ronda."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Configurar novo jogo (p. ex. Mischwald, Cascadia)",
+      "labelPlaceholder": "p. ex. Mischwald",
+      "templateLabel": "Modelo",
+      "templateCustom": "Folha personalizada",
+      "categoriesLabel": "Linhas de pontuação (uma por linha)",
+      "categoriesHint": "Cada linha torna-se uma linha da folha de pontuação. Os modelos podem ser alterados livremente.",
+      "categoriesRequired": "Indique pelo menos uma linha de pontuação."
+    },
+    "game": {
+      "heading": "Folha de pontuação",
+      "hint": "Toque num campo para introduzir os pontos. Vários valores somam-se com +, p. ex. 6 + 6 + 3.",
+      "categoryColumn": "Categoria",
+      "totalRow": "Total"
+    },
+    "keypad": {
+      "add": "Somar",
+      "next": "Seguinte",
+      "done": "Concluído"
+    }
   }
 }

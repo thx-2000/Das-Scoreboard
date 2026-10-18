@@ -32,6 +32,13 @@ require __DIR__ . '/includes/header.php';
           <h2 data-i18n="modes.fixedRounds.title">Punkterunde mit fester Rundenzahl</h2>
           <p data-i18n="modes.fixedRounds.description">Ihr legt beim Einrichten fest, wie viele Runden gespielt werden und ob am Ende die höchste oder niedrigste Punktzahl gewinnt. Nach der letzten Runde fragt das Spiel, ob beendet oder um weitere Runden verlängert werden soll.</p>
         </a>
+        <a href="/modes/score-sheet/setup.php" class="mode-card">
+          <span class="mode-card__icon" aria-hidden="true">📋</span>
+          <svg class="mode-card__icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+          <h2 data-i18n="modes.scoreSheet.title">Wertungsbogen</h2>
+          <p data-i18n="modes.scoreSheet.description">Ein Bogen mit festen Wertungen (Zeilen) für Spiele, die erst am Ende nach Kategorien gezählt werden. Mit Vorlagen für Mischwald und Cascadia, eigene Bögen sind frei anlegbar.</p>
+          <p class="mode-card__examples" data-i18n="modes.scoreSheet.examples">z.B. Mischwald, Cascadia</p>
+        </a>
       </div>
     </section>
 

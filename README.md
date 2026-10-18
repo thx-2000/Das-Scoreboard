@@ -66,6 +66,10 @@ Beispieldaten.*
 - **Verlauf & Statistiken**: alle Spiele mit Filter nach Status, dazu eine
   Auswertungsseite mit Siegquoten, Kopf-an-Kopf-Vergleich und
   Zeitraumfilter (inkl. Drucken/PDF).
+- **Wertungsbogen** *(in Arbeit, noch nicht veröffentlicht)*: Bogen mit
+  festen Wertungen (Zeilen) für Spiele, die erst am Ende nach Kategorien
+  gezählt werden, mit Vorlagen für Mischwald und Cascadia und einer
+  Zahlentastatur, die mehrere Werte addiert (6 + 6 + 3).
 - **Startspieler wählbar**: beim Einrichten entweder "Zufällig" (Standard)
   oder einen bestimmten Mitspieler festlegen – bei eingeschalteter
   Geber-Anzeige (und bei RAGE) ist das der erste Geber.
@@ -262,6 +266,10 @@ data.*
 - **History & statistics**: all games with a status filter, plus a stats
   page with win rates, head-to-head comparisons, and a date-range filter
   (including print/PDF).
+- **Score sheet** *(work in progress, not released yet)*: a sheet with
+  fixed scoring lines for games counted by category at the end, with
+  templates for Forest Shuffle (Mischwald) and Cascadia and a keypad that
+  adds several values (6 + 6 + 3).
 - **Choose the starting player**: when setting up a game, pick either
   "Random" (default) or a specific player – with the dealer display on (and
   for RAGE) that player is the first dealer.

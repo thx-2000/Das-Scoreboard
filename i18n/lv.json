@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Pieteikties"
+    },
+    "scoreSheetSetup": {
+      "title": "Punktu lapa — Jauna spēle"
+    },
+    "scoreSheetGame": {
+      "title": "Punktu lapa"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fiksētas 10 kārtas ar samazinošos kāršu skaitu (no 10 līdz 1). Pirms katras kārtas jūs paziņojat sagaidāmo stiķu skaitu, pēc tam ievadāt faktiskos stiķus — punkti tiek automātiski aprēķināti pēc RAGE noteikumiem (ieskaitot Rage bonusu/atriebību).",
       "examples": "Kāršu spēle RAGE"
+    },
+    "scoreSheet": {
+      "title": "Punktu lapa",
+      "description": "Lapa ar fiksētām punktu rindām spēlēm, ko skaita pa kategorijām tikai beigās. Ar veidnēm spēlēm Mischwald (Forest Shuffle) un Cascadia; savas lapas var brīvi izveidot.",
+      "examples": "piem., Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Uzvarētāju skaits",
     "resultSingle": "Šī persona sāk! Novietojiet pirkstus atkal jaunai kārtai.",
     "resultMulti": "Šīs {count} personas sāk! Novietojiet pirkstus atkal jaunai kārtai."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Iestatīt jaunu spēli (piem., Mischwald, Cascadia)",
+      "labelPlaceholder": "piem., Mischwald",
+      "templateLabel": "Veidne",
+      "templateCustom": "Sava lapa",
+      "categoriesLabel": "Punktu rindas (viena rindā)",
+      "categoriesHint": "Katra rinda kļūst par punktu lapas rindu. Veidnes var brīvi mainīt.",
+      "categoriesRequired": "Norādi vismaz vienu punktu rindu."
+    },
+    "game": {
+      "heading": "Punktu lapa",
+      "hint": "Pieskaries laukam, lai ievadītu punktus. Vairākas vērtības var saskaitīt ar +, piem., 6 + 6 + 3.",
+      "categoryColumn": "Kategorija",
+      "totalRow": "Kopā"
+    },
+    "keypad": {
+      "add": "Pieskaitīt",
+      "next": "Tālāk",
+      "done": "Gatavs"
+    }
   }
 }

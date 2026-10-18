@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Kirjaudu sisään"
+    },
+    "scoreSheetSetup": {
+      "title": "Pistetaulukko — Uusi peli"
+    },
+    "scoreSheetGame": {
+      "title": "Pistetaulukko"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Kiinteät 10 kierrosta vähenevällä korttimäärällä (10:stä 1:een). Ennen jokaista kierrosta ilmoitat arvioidun tikkimääräsi, sitten syötät todelliset tikit — pisteet lasketaan automaattisesti RAGE-sääntöjen mukaan (sis. Rage-bonus/kosto).",
       "examples": "Korttipeli RAGE"
+    },
+    "scoreSheet": {
+      "title": "Pistetaulukko",
+      "description": "Taulukko kiinteillä pisteytysriveillä peleihin, jotka lasketaan luokittain vasta lopussa. Sisältää pohjat Mischwaldille (Forest Shuffle) ja Cascadialle; omat taulukot voi luoda vapaasti.",
+      "examples": "esim. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Voittajien määrä",
     "resultSingle": "Tämä henkilö aloittaa! Aseta sormet uudelleen uutta kierrosta varten.",
     "resultMulti": "Nämä {count} henkilöä aloittavat! Aseta sormet uudelleen uutta kierrosta varten."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Uuden pelin asetukset (esim. Mischwald, Cascadia)",
+      "labelPlaceholder": "esim. Mischwald",
+      "templateLabel": "Pohja",
+      "templateCustom": "Oma taulukko",
+      "categoriesLabel": "Pisteytysrivit (yksi per rivi)",
+      "categoriesHint": "Jokaisesta rivistä tulee rivi pistetaulukkoon. Pohjia voi muokata vapaasti.",
+      "categoriesRequired": "Anna vähintään yksi pisteytysrivi."
+    },
+    "game": {
+      "heading": "Pistetaulukko",
+      "hint": "Napauta kenttää syöttääksesi pisteet. Useita arvoja voi laskea yhteen +-merkillä, esim. 6 + 6 + 3.",
+      "categoryColumn": "Luokka",
+      "totalRow": "Yhteensä"
+    },
+    "keypad": {
+      "add": "Lisää",
+      "next": "Seuraava",
+      "done": "Valmis"
+    }
   }
 }

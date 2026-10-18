@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Prisijungti"
+    },
+    "scoreSheetSetup": {
+      "title": "Taškų lapas — Naujas žaidimas"
+    },
+    "scoreSheetGame": {
+      "title": "Taškų lapas"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fiksuoti 10 raundų su mažėjančiu kortų skaičiumi (nuo 10 iki 1). Prieš kiekvieną raundą paskelbiate numatomą lėkčių skaičių, tada įvedate faktines lėktes — taškai automatiškai apskaičiuojami pagal RAGE taisykles (įsk. Rage premiją / atkeršijimą).",
       "examples": "Kortų žaidimas RAGE"
+    },
+    "scoreSheet": {
+      "title": "Taškų lapas",
+      "description": "Lapas su fiksuotomis taškų eilutėmis žaidimams, kurie skaičiuojami pagal kategorijas tik pabaigoje. Su šablonais Mischwald (Forest Shuffle) ir Cascadia; savus lapus galima laisvai kurti.",
+      "examples": "pvz., Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Laimėtojų skaičius",
     "resultSingle": "Šis asmuo pradeda! Naujam raundui vėl uždėkite pirštus.",
     "resultMulti": "Šie {count} asmenys pradeda! Naujam raundui vėl uždėkite pirštus."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Nustatyti naują žaidimą (pvz., Mischwald, Cascadia)",
+      "labelPlaceholder": "pvz., Mischwald",
+      "templateLabel": "Šablonas",
+      "templateCustom": "Savas lapas",
+      "categoriesLabel": "Taškų eilutės (po vieną eilutėje)",
+      "categoriesHint": "Kiekviena eilutė tampa taškų lapo eilute. Šablonus galima laisvai keisti.",
+      "categoriesRequired": "Nurodyk bent vieną taškų eilutę."
+    },
+    "game": {
+      "heading": "Taškų lapas",
+      "hint": "Palieski lauką, kad įvestum taškus. Kelias reikšmes galima sudėti su +, pvz., 6 + 6 + 3.",
+      "categoryColumn": "Kategorija",
+      "totalRow": "Iš viso"
+    },
+    "keypad": {
+      "add": "Pridėti",
+      "next": "Toliau",
+      "done": "Baigta"
+    }
   }
 }

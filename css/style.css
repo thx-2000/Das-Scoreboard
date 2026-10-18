@@ -338,13 +338,20 @@ main {
 .form input[type="number"],
 .form input[type="text"],
 .form input[type="password"],
-.form select {
+.form select,
+.form textarea {
   padding: 0.6rem 0.75rem;
   border-radius: 8px;
   border: 1px solid var(--color-border);
   background: var(--color-bg);
   color: var(--color-text);
   font-size: 1rem;
+}
+
+.form textarea {
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
 }
 
 /* Plus/Minus-Stepper (Zielpunkte, Rundenzahl) - im Classic-Theme rendert
@@ -740,6 +747,158 @@ main {
 .seat-chip:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+/* Wertungsbogen: Zeilen = Wertungen, Spalten = Spieler, Felder oeffnen die
+   Zahlentastatur (js/score-keypad.js). Erste Spalte bleibt beim seitlichen
+   Scrollen stehen, damit die Wertung sichtbar bleibt. */
+.sheet-table th,
+.sheet-table td {
+  padding: 0.25rem 0.35rem;
+  text-align: center;
+}
+
+.sheet-table thead th {
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.sheet-table tbody th,
+.sheet-table tfoot th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 6.5rem;
+  max-width: 9rem;
+  text-align: left;
+  font-weight: 600;
+  background: var(--color-surface);
+}
+
+.sheet-cell {
+  width: 100%;
+  min-width: 2.9rem;
+  min-height: 2.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.sheet-cell:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.sheet-cell:disabled {
+  cursor: default;
+}
+
+.sheet-total {
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet-table tfoot td,
+.sheet-table tfoot th {
+  border-top: 2px solid var(--color-border);
+}
+
+.sheet-col--withdrawn {
+  opacity: 0.55;
+}
+
+.score-keypad {
+  width: min(92vw, 22rem);
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.score-keypad::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.score-keypad__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.score-keypad__subtitle {
+  margin: 0.1rem 0 0.6rem;
+  color: var(--color-text-muted);
+}
+
+.score-keypad__expression {
+  min-height: 1.5rem;
+  text-align: right;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.score-keypad__total {
+  text-align: right;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-keypad__keys {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.score-keypad__key {
+  min-height: 3.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.score-keypad__key:active {
+  transform: scale(0.95);
+}
+
+.score-keypad__key:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.score-keypad__key--add {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-color: var(--color-green-strong);
+}
+
+.score-keypad__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.score-keypad__actions .btn {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 3rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  font-size: 0.85rem;
 }
 
 .team-setup__assignments {

@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Inloggen"
+    },
+    "scoreSheetSetup": {
+      "title": "Scoreblad — Nieuw spel"
+    },
+    "scoreSheetGame": {
+      "title": "Scoreblad"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Vaste 10 rondes met een afnemend aantal kaarten (van 10 naar 1). Voor elke ronde geef je je verwachte aantal slagen op, daarna voer je de werkelijke slagen in — de punten worden automatisch berekend volgens de RAGE-regels (incl. Rage-bonus/wraak).",
       "examples": "Kaartspel RAGE"
+    },
+    "scoreSheet": {
+      "title": "Scoreblad",
+      "description": "Een blad met vaste scoreregels voor spellen die pas aan het einde per categorie geteld worden. Met sjablonen voor Mischwald (Forest Shuffle) en Cascadia; eigen bladen zijn vrij aan te maken.",
+      "examples": "bijv. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Aantal winnaars",
     "resultSingle": "Deze persoon begint! Leg de vingers opnieuw neer voor een nieuwe ronde.",
     "resultMulti": "Deze {count} personen beginnen! Leg de vingers opnieuw neer voor een nieuwe ronde."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Nieuw spel instellen (bijv. Mischwald, Cascadia)",
+      "labelPlaceholder": "bijv. Mischwald",
+      "templateLabel": "Sjabloon",
+      "templateCustom": "Eigen blad",
+      "categoriesLabel": "Scoreregels (één per regel)",
+      "categoriesHint": "Elke regel wordt een rij in het scoreblad. De sjablonen zijn vrij te wijzigen.",
+      "categoriesRequired": "Geef minstens één scoreregel op."
+    },
+    "game": {
+      "heading": "Scoreblad",
+      "hint": "Tik op een veld om de punten in te voeren. Meerdere waarden tel je op met +, bijv. 6 + 6 + 3.",
+      "categoryColumn": "Categorie",
+      "totalRow": "Totaal"
+    },
+    "keypad": {
+      "add": "Optellen",
+      "next": "Volgende",
+      "done": "Klaar"
+    }
   }
 }

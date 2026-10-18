@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Log ind"
+    },
+    "scoreSheetSetup": {
+      "title": "Pointark — Nyt spil"
+    },
+    "scoreSheetGame": {
+      "title": "Pointark"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Faste 10 runder med et faldende antal kort (10 ned til 1). Før hver runde melder du dit forventede antal stik, hvorefter du indtaster de faktiske stik — point beregnes automatisk efter RAGE-reglerne (inkl. Rage-bonus/hævn).",
       "examples": "Kortspillet RAGE"
+    },
+    "scoreSheet": {
+      "title": "Pointark",
+      "description": "Et ark med faste pointlinjer til spil, der først tælles pr. kategori til sidst. Med skabeloner til Mischwald (Forest Shuffle) og Cascadia; egne ark kan oprettes frit.",
+      "examples": "f.eks. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Antal vindere",
     "resultSingle": "Denne person starter! Læg fingrene igen for en ny runde.",
     "resultMulti": "Disse {count} personer starter! Læg fingrene igen for en ny runde."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Opsæt nyt spil (f.eks. Mischwald, Cascadia)",
+      "labelPlaceholder": "f.eks. Mischwald",
+      "templateLabel": "Skabelon",
+      "templateCustom": "Eget ark",
+      "categoriesLabel": "Pointlinjer (én pr. linje)",
+      "categoriesHint": "Hver linje bliver en række i pointarket. Skabelonerne kan ændres frit.",
+      "categoriesRequired": "Angiv mindst én pointlinje."
+    },
+    "game": {
+      "heading": "Pointark",
+      "hint": "Tryk på et felt for at indtaste point. Flere værdier kan lægges sammen med +, f.eks. 6 + 6 + 3.",
+      "categoryColumn": "Kategori",
+      "totalRow": "Sum"
+    },
+    "keypad": {
+      "add": "Læg til",
+      "next": "Næste",
+      "done": "Færdig"
+    }
   }
 }

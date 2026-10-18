@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Log in"
+    },
+    "scoreSheetSetup": {
+      "title": "Score sheet — New game"
+    },
+    "scoreSheetGame": {
+      "title": "Score sheet"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fixed 10 rounds with a decreasing number of cards (10 down to 1). Before each round you bid your trick count, then enter the actual tricks — points are calculated automatically according to the RAGE rules (incl. Rage bonus/revenge).",
       "examples": "Card game RAGE"
+    },
+    "scoreSheet": {
+      "title": "Score sheet",
+      "description": "A sheet with fixed scoring lines for games that are only counted by category at the end. Includes templates for Forest Shuffle (Mischwald) and Cascadia; custom sheets can be created freely.",
+      "examples": "e.g. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Number of winners",
     "resultSingle": "This person starts! Place fingers again for a new round.",
     "resultMulti": "These {count} people start! Place fingers again for a new round."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Set up new game (e.g. Mischwald, Cascadia)",
+      "labelPlaceholder": "e.g. Mischwald",
+      "templateLabel": "Template",
+      "templateCustom": "Custom sheet",
+      "categoriesLabel": "Scoring lines (one per line)",
+      "categoriesHint": "Each line becomes a row of the score sheet. The templates can be changed freely.",
+      "categoriesRequired": "Please enter at least one scoring line."
+    },
+    "game": {
+      "heading": "Score sheet",
+      "hint": "Tap a field to enter the points. Several values can be added with +, e.g. 6 + 6 + 3.",
+      "categoryColumn": "Category",
+      "totalRow": "Total"
+    },
+    "keypad": {
+      "add": "Add",
+      "next": "Next",
+      "done": "Done"
+    }
   }
 }

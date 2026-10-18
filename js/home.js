@@ -14,6 +14,7 @@ function homeModeInfo() {
     points_to_target: { title: window.t('modes.pointsToTarget.title'), url: '/modes/points-to-target/game.php', icon: '🎯' },
     points_open: { title: window.t('modes.pointsOpen.title'), url: '/modes/points-open/game.php', icon: '♾️' },
     fixed_rounds: { title: window.t('modes.fixedRounds.title'), url: '/modes/fixed-rounds/game.php', icon: '🔟' },
+    score_sheet: { title: window.t('modes.scoreSheet.title'), url: '/modes/score-sheet/game.php', icon: '📋' },
     rage: { title: window.t('modes.rage.title'), url: '/modes/rage/game.php', icon: '🔥' },
   };
 }

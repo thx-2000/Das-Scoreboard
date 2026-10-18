@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Přihlásit se"
+    },
+    "scoreSheetSetup": {
+      "title": "Zápisový arch — Nová hra"
+    },
+    "scoreSheetGame": {
+      "title": "Zápisový arch"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Pevných 10 kol s klesajícím počtem karet (od 10 do 1). Před každým kolem oznámíte předpokládaný počet zdvihů, poté zadáte skutečné zdvihy — body se počítají automaticky podle pravidel RAGE (vč. bonusu Rage/pomsty).",
       "examples": "Karetní hra RAGE"
+    },
+    "scoreSheet": {
+      "title": "Zápisový arch",
+      "description": "Arch s pevnými řádky bodování pro hry, které se počítají podle kategorií až na konci. Se šablonami pro Mischwald (Forest Shuffle) a Cascadii; vlastní archy lze libovolně vytvářet.",
+      "examples": "např. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Počet vítězů",
     "resultSingle": "Tato osoba začíná! Pro nové kolo položte prsty znovu.",
     "resultMulti": "Těchto {count} osob začíná! Pro nové kolo položte prsty znovu."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Nastavit novou hru (např. Mischwald, Cascadia)",
+      "labelPlaceholder": "např. Mischwald",
+      "templateLabel": "Šablona",
+      "templateCustom": "Vlastní arch",
+      "categoriesLabel": "Řádky bodování (jeden na řádek)",
+      "categoriesHint": "Každý řádek se stane řádkem zápisového archu. Šablony lze libovolně upravovat.",
+      "categoriesRequired": "Zadejte alespoň jeden řádek bodování."
+    },
+    "game": {
+      "heading": "Zápisový arch",
+      "hint": "Klepnutím na pole zadáte body. Více hodnot lze sečíst pomocí +, např. 6 + 6 + 3.",
+      "categoryColumn": "Kategorie",
+      "totalRow": "Součet"
+    },
+    "keypad": {
+      "add": "Přičíst",
+      "next": "Další",
+      "done": "Hotovo"
+    }
   }
 }

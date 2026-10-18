@@ -410,6 +410,16 @@ function migrations(): array
             }
             $pdo->exec("UPDATE games SET show_dealer = 1 WHERE mode = 'rage'");
         },
+
+        // Wertungsbogen (Modus "score_sheet"): jede "Runde" ist dort eine
+        // benannte Wertung (z.B. "Baeume", "Hoehle"), alle werden beim Anlegen
+        // des Spiels einmalig erzeugt und danach nur noch ausgefuellt.
+        19 => function (PDO $pdo) {
+            $roundColumns = array_column($pdo->query('PRAGMA table_info(rounds)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+            if (!in_array('label', $roundColumns, true)) {
+                $pdo->exec('ALTER TABLE rounds ADD COLUMN label TEXT');
+            }
+        },
     ];
 }
 

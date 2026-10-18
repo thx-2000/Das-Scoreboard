@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Hyr"
+    },
+    "scoreSheetSetup": {
+      "title": "Fleta e pikëve — Lojë e re"
+    },
+    "scoreSheetGame": {
+      "title": "Fleta e pikëve"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 raunde fikse me numër zbritës kartash (nga 10 deri në 1). Para çdo raundi shpallni numrin e pritur të bazave, pastaj futni bazat reale — pikët llogariten automatikisht sipas rregullave të RAGE (përfshirë bonusin Rage/hakmarrjen).",
       "examples": "Loja me letra RAGE"
+    },
+    "scoreSheet": {
+      "title": "Fleta e pikëve",
+      "description": "Një fletë me rreshta të fiksuar vlerësimi për lojëra që numërohen sipas kategorive vetëm në fund. Me shabllone për Mischwald (Forest Shuffle) dhe Cascadia; fletët e tua krijohen lirisht.",
+      "examples": "p.sh. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Numri i fituesve",
     "resultSingle": "Ky person fillon! Vendosni sërish gishtat për një raund të ri.",
     "resultMulti": "Këta {count} persona fillojnë! Vendosni sërish gishtat për një raund të ri."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Konfiguro lojë të re (p.sh. Mischwald, Cascadia)",
+      "labelPlaceholder": "p.sh. Mischwald",
+      "templateLabel": "Shabllon",
+      "templateCustom": "Fletë e vetë",
+      "categoriesLabel": "Rreshtat e vlerësimit (një për rresht)",
+      "categoriesHint": "Çdo rresht bëhet një rresht i fletës së pikëve. Shabllonet mund të ndryshohen lirisht.",
+      "categoriesRequired": "Jep të paktën një rresht vlerësimi."
+    },
+    "game": {
+      "heading": "Fleta e pikëve",
+      "hint": "Prek një fushë për të futur pikët. Disa vlera mund të mblidhen me +, p.sh. 6 + 6 + 3.",
+      "categoryColumn": "Kategoria",
+      "totalRow": "Totali"
+    },
+    "keypad": {
+      "add": "Mblidh",
+      "next": "Tjetra",
+      "done": "U krye"
+    }
   }
 }

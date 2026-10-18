@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Prijava"
+    },
+    "scoreSheetSetup": {
+      "title": "Točkovni list — Nova igra"
+    },
+    "scoreSheetGame": {
+      "title": "Točkovni list"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fiksnih 10 krogov s padajočim številom kart (od 10 do 1). Pred vsakim krogom napoveste pričakovano število vzetk, nato vnesete dejanske vzetke — točke se samodejno izračunajo po pravilih RAGE (vključno z bonusom Rage/maščevanjem).",
       "examples": "Igra s kartami RAGE"
+    },
+    "scoreSheet": {
+      "title": "Točkovni list",
+      "description": "List s fiksnimi vrsticami točkovanja za igre, ki se štejejo po kategorijah šele na koncu. S predlogami za Mischwald (Forest Shuffle) in Cascadio; lastne liste je mogoče prosto ustvariti.",
+      "examples": "npr. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Število zmagovalcev",
     "resultSingle": "Ta oseba začne! Za nov krog ponovno položite prste.",
     "resultMulti": "Teh {count} oseb začne! Za nov krog ponovno položite prste."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Nastavi novo igro (npr. Mischwald, Cascadia)",
+      "labelPlaceholder": "npr. Mischwald",
+      "templateLabel": "Predloga",
+      "templateCustom": "Lasten list",
+      "categoriesLabel": "Vrstice točkovanja (ena na vrstico)",
+      "categoriesHint": "Vsaka vrstica postane vrstica točkovnega lista. Predloge je mogoče prosto spreminjati.",
+      "categoriesRequired": "Vnesi vsaj eno vrstico točkovanja."
+    },
+    "game": {
+      "heading": "Točkovni list",
+      "hint": "Tapni polje za vnos točk. Več vrednosti se sešteje s +, npr. 6 + 6 + 3.",
+      "categoryColumn": "Kategorija",
+      "totalRow": "Skupaj"
+    },
+    "keypad": {
+      "add": "Prištej",
+      "next": "Naprej",
+      "done": "Končano"
+    }
   }
 }

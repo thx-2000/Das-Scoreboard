@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Logáil isteach"
+    },
+    "scoreSheetSetup": {
+      "title": "Bileog scór — Cluiche nua"
+    },
+    "scoreSheetGame": {
+      "title": "Bileog scór"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 mbabhta sheasta le líon laghdaitheach cártaí (10 síos go 1). Roimh gach babhta fógraíonn tú an líon táillí atá súil agat leis, ansin cuireann tú isteach na táillí iarbhír — ríomhtar na pointí go huathoibríoch de réir rialacha RAGE (lena n-áirítear bónas Rage/díoltas).",
       "examples": "Cluiche cártaí RAGE"
+    },
+    "scoreSheet": {
+      "title": "Bileog scór",
+      "description": "Bileog le línte scóir socraithe do chluichí a áirítear de réir catagóire ag an deireadh amháin. Le teimpléid do Mischwald (Forest Shuffle) agus Cascadia; is féidir do bhileoga féin a chruthú go saor.",
+      "examples": "m.sh. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Líon na mbuaiteoirí",
     "resultSingle": "Tosaíonn an duine seo! Cuir na méara síos arís le haghaidh babhta nua.",
     "resultMulti": "Tosaíonn na {count} duine seo! Cuir na méara síos arís le haghaidh babhta nua."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Socraigh cluiche nua (m.sh. Mischwald, Cascadia)",
+      "labelPlaceholder": "m.sh. Mischwald",
+      "templateLabel": "Teimpléad",
+      "templateCustom": "Bileog saincheaptha",
+      "categoriesLabel": "Línte scóir (ceann amháin in aghaidh na líne)",
+      "categoriesHint": "Éiríonn gach líne ina sraith sa bhileog scór. Is féidir na teimpléid a athrú go saor.",
+      "categoriesRequired": "Cuir isteach líne scóir amháin ar a laghad."
+    },
+    "game": {
+      "heading": "Bileog scór",
+      "hint": "Tapáil réimse chun na pointí a iontráil. Is féidir roinnt luachanna a shuimiú le +, m.sh. 6 + 6 + 3.",
+      "categoryColumn": "Catagóir",
+      "totalRow": "Iomlán"
+    },
+    "keypad": {
+      "add": "Suimigh",
+      "next": "Ar aghaidh",
+      "done": "Déanta"
+    }
   }
 }

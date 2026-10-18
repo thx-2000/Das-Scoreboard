@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Logga in"
+    },
+    "scoreSheetSetup": {
+      "title": "Poängblad — Nytt spel"
+    },
+    "scoreSheetGame": {
+      "title": "Poängblad"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fasta 10 rundor med minskande antal kort (10 ner till 1). Före varje runda bjuder du ditt förväntade antal stick, sedan anger du de faktiska sticken — poängen räknas automatiskt ut enligt RAGE-reglerna (inkl. Rage-bonus/hämnd).",
       "examples": "Kortspelet RAGE"
+    },
+    "scoreSheet": {
+      "title": "Poängblad",
+      "description": "Ett blad med fasta poängrader för spel som först räknas per kategori i slutet. Med mallar för Mischwald (Forest Shuffle) och Cascadia; egna blad kan skapas fritt.",
+      "examples": "t.ex. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Antal vinnare",
     "resultSingle": "Den här personen börjar! Lägg fingrarna igen för en ny runda.",
     "resultMulti": "Dessa {count} personer börjar! Lägg fingrarna igen för en ny runda."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Ställ in nytt spel (t.ex. Mischwald, Cascadia)",
+      "labelPlaceholder": "t.ex. Mischwald",
+      "templateLabel": "Mall",
+      "templateCustom": "Eget blad",
+      "categoriesLabel": "Poängrader (en per rad)",
+      "categoriesHint": "Varje rad blir en rad i poängbladet. Mallarna kan ändras fritt.",
+      "categoriesRequired": "Ange minst en poängrad."
+    },
+    "game": {
+      "heading": "Poängblad",
+      "hint": "Tryck på ett fält för att skriva in poängen. Flera värden kan adderas med +, t.ex. 6 + 6 + 3.",
+      "categoryColumn": "Kategori",
+      "totalRow": "Summa"
+    },
+    "keypad": {
+      "add": "Addera",
+      "next": "Nästa",
+      "done": "Klart"
+    }
   }
 }

@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Prijava"
+    },
+    "scoreSheetSetup": {
+      "title": "Bodovni list — Nova igra"
+    },
+    "scoreSheetGame": {
+      "title": "Bodovni list"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fiksnih 10 krugova sa smanjujućim brojem karata (od 10 do 1). Prije svakog kruga najavljujete očekivani broj štihova, zatim unosite stvarne štihove — bodovi se automatski izračunavaju prema pravilima RAGE-a (uklj. Rage bonus/osvetu).",
       "examples": "Igra kartama RAGE"
+    },
+    "scoreSheet": {
+      "title": "Bodovni list",
+      "description": "List s fiksnim redovima bodovanja za igre koje se broje po kategorijama tek na kraju. Sa šablonima za Mischwald (Forest Shuffle) i Cascadiu; vlastiti listovi mogu se slobodno napraviti.",
+      "examples": "npr. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Broj pobjednika",
     "resultSingle": "Ova osoba počinje! Ponovo stavite prste za novi krug.",
     "resultMulti": "Ovih {count} osoba počinje! Ponovo stavite prste za novi krug."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Postavi novu igru (npr. Mischwald, Cascadia)",
+      "labelPlaceholder": "npr. Mischwald",
+      "templateLabel": "Šablon",
+      "templateCustom": "Vlastiti list",
+      "categoriesLabel": "Redovi bodovanja (jedan po retku)",
+      "categoriesHint": "Svaki redak postaje redak bodovnog lista. Šabloni se mogu slobodno mijenjati.",
+      "categoriesRequired": "Unesi barem jedan redak bodovanja."
+    },
+    "game": {
+      "heading": "Bodovni list",
+      "hint": "Dodirni polje za unos bodova. Više vrijednosti može se zbrojiti sa +, npr. 6 + 6 + 3.",
+      "categoryColumn": "Kategorija",
+      "totalRow": "Zbir"
+    },
+    "keypad": {
+      "add": "Zbroji",
+      "next": "Dalje",
+      "done": "Gotovo"
+    }
   }
 }

@@ -9,6 +9,7 @@ function modeInfo() {
     points_to_target: { title: window.t('modes.pointsToTarget.title'), url: '/modes/points-to-target/game.php' },
     points_open: { title: window.t('modes.pointsOpen.title'), url: '/modes/points-open/game.php' },
     fixed_rounds: { title: window.t('modes.fixedRounds.title'), url: '/modes/fixed-rounds/game.php' },
+    score_sheet: { title: window.t('modes.scoreSheet.title'), url: '/modes/score-sheet/game.php' },
     rage: { title: window.t('modes.rage.title'), url: '/modes/rage/game.php' },
   };
 }

@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Prihlásiť sa"
+    },
+    "scoreSheetSetup": {
+      "title": "Zápisový hárok — Nová hra"
+    },
+    "scoreSheetGame": {
+      "title": "Zápisový hárok"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Pevných 10 kôl s klesajúcim počtom kariet (od 10 do 1). Pred každým kolom oznámite predpokladaný počet zdvihov, potom zadáte skutočné zdvihy — body sa počítajú automaticky podľa pravidiel RAGE (vrátane bonusu Rage/pomsty).",
       "examples": "Kartová hra RAGE"
+    },
+    "scoreSheet": {
+      "title": "Zápisový hárok",
+      "description": "Hárok s pevnými riadkami bodovania pre hry, ktoré sa počítajú podľa kategórií až na konci. So šablónami pre Mischwald (Forest Shuffle) a Cascadiu; vlastné hárky možno ľubovoľne vytvárať.",
+      "examples": "napr. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Počet víťazov",
     "resultSingle": "Táto osoba začína! Pre nové kolo položte prsty znova.",
     "resultMulti": "Títo {count} ľudia začínajú! Pre nové kolo položte prsty znova."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Nastaviť novú hru (napr. Mischwald, Cascadia)",
+      "labelPlaceholder": "napr. Mischwald",
+      "templateLabel": "Šablóna",
+      "templateCustom": "Vlastný hárok",
+      "categoriesLabel": "Riadky bodovania (jeden na riadok)",
+      "categoriesHint": "Každý riadok sa stane riadkom zápisového hárka. Šablóny možno ľubovoľne upravovať.",
+      "categoriesRequired": "Zadajte aspoň jeden riadok bodovania."
+    },
+    "game": {
+      "heading": "Zápisový hárok",
+      "hint": "Ťuknutím na pole zadáte body. Viac hodnôt možno sčítať pomocou +, napr. 6 + 6 + 3.",
+      "categoryColumn": "Kategória",
+      "totalRow": "Súčet"
+    },
+    "keypad": {
+      "add": "Pripočítať",
+      "next": "Ďalej",
+      "done": "Hotovo"
+    }
   }
 }

@@ -124,6 +124,22 @@ if ($method === 'POST') {
         send_json(['error' => 'Mindestens 2 Spieler erforderlich.'], 400);
     }
 
+    // Wertungsbogen: die Wertungen (Zeilen des Bogens) kommen vom Setup, z.B.
+    // ["Baeume", "Tiere", "Hoehle"]. Pro Wertung entsteht unten eine Runde.
+    $categories = [];
+    if ($mode === 'score_sheet') {
+        foreach (is_array($body['categories'] ?? null) ? $body['categories'] : [] as $category) {
+            $categoryLabel = mb_substr(trim((string) $category), 0, 60);
+            if ($categoryLabel !== '') {
+                $categories[] = $categoryLabel;
+            }
+        }
+        $categories = array_slice($categories, 0, 40);
+        if (count($categories) === 0) {
+            send_json(['error' => 'Mindestens eine Wertung erforderlich.'], 400);
+        }
+    }
+
     // Startspieler: auf Wunsch ein bestimmter Mitspieler (startingPlayerId),
     // sonst zufaellig unter den teilnehmenden Spielern ausgelost.
     $requestedStart = (int) ($body['startingPlayerId'] ?? 0);
@@ -157,6 +173,18 @@ if ($method === 'POST') {
         // im Uhrzeigersinn (Setup fragt sie ab); sonst ist sie nur die
         // Klickreihenfolge und wird deshalb nicht gespeichert.
         $insertGamePlayer->execute([$gameId, $playerId, $teamNumber, $teamName !== '' ? $teamName : null, $showDealer ? $seatIndex : null]);
+    }
+
+    if ($mode === 'score_sheet') {
+        $insertRound = $pdo->prepare('INSERT INTO rounds (game_id, round_number, created_at, label) VALUES (?, ?, ?, ?)');
+        $insertScore = $pdo->prepare('INSERT INTO round_scores (round_id, player_id, points) VALUES (?, ?, 0)');
+        foreach ($categories as $index => $categoryLabel) {
+            $insertRound->execute([$gameId, $index + 1, now_iso(), $categoryLabel]);
+            $roundId = (int) $pdo->lastInsertId();
+            foreach ($playerIds as $playerId) {
+                $insertScore->execute([$roundId, $playerId]);
+            }
+        }
     }
 
     $pdo->commit();

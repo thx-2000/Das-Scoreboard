@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Logi sisse"
+    },
+    "scoreSheetSetup": {
+      "title": "Punktileht — Uus mäng"
+    },
+    "scoreSheetGame": {
+      "title": "Punktileht"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "Fikseeritud 10 vooru väheneva kaartide arvuga (10-lt 1-le). Enne iga vooru kuulutad välja oodatava trikkide arvu, seejärel sisestad tegelikud trikid — punktid arvutatakse automaatselt RAGE reeglite järgi (sh Rage-boonus/kättemaks).",
       "examples": "Kaardimäng RAGE"
+    },
+    "scoreSheet": {
+      "title": "Punktileht",
+      "description": "Leht kindlate punktiridadega mängudele, mida loetakse kategooriate kaupa alles lõpus. Mallidega Mischwaldile (Forest Shuffle) ja Cascadiale; oma lehti saab vabalt luua.",
+      "examples": "nt Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Võitjate arv",
     "resultSingle": "See inimene alustab! Aseta sõrmed uue vooru jaoks uuesti.",
     "resultMulti": "Need {count} inimest alustavad! Aseta sõrmed uue vooru jaoks uuesti."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Seadista uus mäng (nt Mischwald, Cascadia)",
+      "labelPlaceholder": "nt Mischwald",
+      "templateLabel": "Mall",
+      "templateCustom": "Oma leht",
+      "categoriesLabel": "Punktiread (üks rea kohta)",
+      "categoriesHint": "Iga rida muutub punktilehe reaks. Malle saab vabalt muuta.",
+      "categoriesRequired": "Sisesta vähemalt üks punktirida."
+    },
+    "game": {
+      "heading": "Punktileht",
+      "hint": "Puuduta välja, et sisestada punktid. Mitu väärtust saab liita märgiga +, nt 6 + 6 + 3.",
+      "categoryColumn": "Kategooria",
+      "totalRow": "Kokku"
+    },
+    "keypad": {
+      "add": "Liida",
+      "next": "Edasi",
+      "done": "Valmis"
+    }
   }
 }

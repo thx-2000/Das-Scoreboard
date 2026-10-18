@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Accedi"
+    },
+    "scoreSheetSetup": {
+      "title": "Foglio punteggi — Nuova partita"
+    },
+    "scoreSheetGame": {
+      "title": "Foglio punteggi"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 round fissi con un numero decrescente di carte (da 10 a 1). Prima di ogni round si dichiara il numero di prese previsto, poi si inseriscono le prese effettive — i punti vengono calcolati automaticamente secondo le regole di RAGE (incl. bonus Rage/rivincita).",
       "examples": "Gioco di carte RAGE"
+    },
+    "scoreSheet": {
+      "title": "Foglio punteggi",
+      "description": "Un foglio con righe di punteggio fisse per i giochi che si contano per categoria solo alla fine. Con modelli per Mischwald (Forest Shuffle) e Cascadia; i fogli personalizzati si creano liberamente.",
+      "examples": "es. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Numero di vincitori",
     "resultSingle": "Questa persona inizia! Appoggia di nuovo le dita per un nuovo turno.",
     "resultMulti": "Queste {count} persone iniziano! Appoggia di nuovo le dita per un nuovo turno."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Configura nuova partita (es. Mischwald, Cascadia)",
+      "labelPlaceholder": "es. Mischwald",
+      "templateLabel": "Modello",
+      "templateCustom": "Foglio personalizzato",
+      "categoriesLabel": "Righe di punteggio (una per riga)",
+      "categoriesHint": "Ogni riga diventa una riga del foglio punteggi. I modelli si possono modificare liberamente.",
+      "categoriesRequired": "Inserisci almeno una riga di punteggio."
+    },
+    "game": {
+      "heading": "Foglio punteggi",
+      "hint": "Tocca un campo per inserire i punti. Più valori si sommano con +, ad es. 6 + 6 + 3.",
+      "categoryColumn": "Categoria",
+      "totalRow": "Totale"
+    },
+    "keypad": {
+      "add": "Somma",
+      "next": "Avanti",
+      "done": "Fatto"
+    }
   }
 }

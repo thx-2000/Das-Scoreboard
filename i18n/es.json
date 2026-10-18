@@ -176,6 +176,12 @@
     },
     "login": {
       "title": "Iniciar sesión"
+    },
+    "scoreSheetSetup": {
+      "title": "Hoja de puntuación — Nueva partida"
+    },
+    "scoreSheetGame": {
+      "title": "Hoja de puntuación"
     }
   },
   "modes": {
@@ -197,6 +203,11 @@
       "title": "RAGE",
       "description": "10 rondas fijas con un número decreciente de cartas (de 10 a 1). Antes de cada ronda apuestas tu número previsto de bazas, luego introduces las bazas reales — los puntos se calculan automáticamente según las reglas de RAGE (incl. bonificación Rage/venganza).",
       "examples": "Juego de cartas RAGE"
+    },
+    "scoreSheet": {
+      "title": "Hoja de puntuación",
+      "description": "Una hoja con líneas de puntuación fijas para juegos que solo se cuentan por categorías al final. Con plantillas para Mischwald (Forest Shuffle) y Cascadia; las hojas personalizadas se crean libremente.",
+      "examples": "p. ej. Mischwald, Cascadia"
     }
   },
   "home": {
@@ -639,5 +650,27 @@
     "winnerCountLabel": "Número de ganadores",
     "resultSingle": "¡Esta persona empieza! Vuelve a colocar los dedos para una nueva ronda.",
     "resultMulti": "¡Estas {count} personas empiezan! Vuelve a colocar los dedos para una nueva ronda."
+  },
+  "scoreSheet": {
+    "setup": {
+      "subtitle": "Configurar nueva partida (p. ej. Mischwald, Cascadia)",
+      "labelPlaceholder": "p. ej. Mischwald",
+      "templateLabel": "Plantilla",
+      "templateCustom": "Hoja personalizada",
+      "categoriesLabel": "Líneas de puntuación (una por línea)",
+      "categoriesHint": "Cada línea se convierte en una fila de la hoja de puntuación. Las plantillas se pueden cambiar libremente.",
+      "categoriesRequired": "Indica al menos una línea de puntuación."
+    },
+    "game": {
+      "heading": "Hoja de puntuación",
+      "hint": "Toca un campo para introducir los puntos. Varios valores se suman con +, p. ej. 6 + 6 + 3.",
+      "categoryColumn": "Categoría",
+      "totalRow": "Total"
+    },
+    "keypad": {
+      "add": "Sumar",
+      "next": "Siguiente",
+      "done": "Listo"
+    }
   }
 }
